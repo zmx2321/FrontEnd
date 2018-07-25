@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html style="height: 100%;">
+
+	<head>
+		<meta charset="UTF-8">
+		
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<!-- Custom styling plus plugins -->
+		<link href="css/bootstrap/custom.css" rel="stylesheet">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		
+		<style type="text/css">
+			
+			div{
+				border: none;
+				width:100px;
+				height:80px;
+				left:10px;
+				top:8px;
+				/*background-color:#00BCD4;*/
+				position:fixed;
+				/*border:1px solid #ccc;
+				margin:20px 10px;
+				padding:7px 6px;*/
+			}
+			
+			.bc
+			{
+				background-color:#00BCD4;
+				
+			}
+		</style>
+	
+	</head>
+
+	<body style="height: 100%;">
+		
+		<div class="row" style="height:10%; width: 100%;background-color: rgba(0,0,0,0);">
+			
+		
+				
+				<div class="col-md-1 col-sm-1 col-xs-1">offsetWidth:</div>
+				
+				<div class="col-md-1 col-sm-1 col-xs-1" id="offsetWidth"></div>
+				<div class="col-md-1 col-sm-1 col-xs-1">offsetHeight:</div>
+				
+				<div class="col-md-1 col-sm-1 col-xs-1" id="offsetHeight"></div>
+	
+				<div class="col-md-1 col-sm-1 col-xs-1" id="clientX"></div>
+				<!--bootstrap的栅格系统-->
+				<div class="col-md-1 col-sm-1 col-xs-1">clientY:</div>
+				
+				<div class="col-md-1 col-sm-1 col-xs-1" id="clientY"></div>
+				
+				
+				<div class="col-md-1 col-sm-1 col-xs-1">offsetX:</div>
+				
+				<div class="col-md-1 col-sm-1 col-xs-1" id="offsetX"></div>
+				<!--bootstrap的栅格系统-->
+				<div class="col-md-1 col-sm-1 col-xs-1">offsetY:</div>
+				
+				<div class="col-md-1 col-sm-1 col-xs-1" id="offsetY"></div>
+			</div>
+			
+		<div id="div1" class="bc"></div>
+		<div id="div2" class="bc"></div>
+		<div id="div3" class="bc"></div>
+		<div id="div4" class="bc"></div>
+		<div id="div5" class="bc"></div>
+
+	</body>
+
+</html>
+
+<script src="js/echarts.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/move&resize.js"></script>
+<script src="js/china.js"></script>
+	
+<script type="text/javascript">
+	
+
+
+var drawChart = function(container,option)
+{
+	
+	// 基于准备好的dom，初始化echarts图表
+	var myChart = echarts.init(document.getElementById(container),theme.name);
+	
+	myChart.setOption(option);
+
+//	$("#"+container).sizeChanged(myChart.resize);  
+
+   $("#"+container).resize(myChart.resize);
+
+	return myChart;
+	
+}
+
+
+		var rankOption = {
+				
+				backgroundColor:"rgba(0,0,0,0)", //透明
+				
+				title: {
+					//text: '设备故障次数排行',
+					subtext: '创建数目前10',
+					left: '50%',
+					textAlign: 'center'
+				},
+				tooltip: {
+					trigger: 'axis'
+				},
+				legend: {}, //图例
+				toolbox: {}, //坐上工具栏
+				calculable: true,
+				grid: {
+						left: 50
+					},
+				yAxis: [{
+					type: 'category',
+					data: ['1','2','3','4','5','6'],
+					inverse: true,
+					nameTextStyle: {
+						color: '#FFFF'
+					},
+					axisLine: {
+
+						lineStyle: {
+
+							color: '#609ee9'
+
+						}
+					}
+				}],
+				xAxis: [{
+					type: 'value',
+					"name": '单',
+					axisLine: {
+
+						lineStyle: {
+
+							color: '#609ee9'
+
+						}
+					}
+				}],
+				series: [{
+
+					type: 'bar',
+					data: [100,120,130,140,150,160],
+					itemStyle: {
+						"normal": {
+							"label": {
+								"show": true,
+								"position": "inside"
+							}
+						}
+
+					},
+					markPoint: {}, //标记最大最小
+					markLine: {} //标记线
+				}]
+			};
+
+
+
+ var pieOption = {
+ 	
+ 	 backgroundColor: 'rgba(0,0,0,0)',
+ 	 
+    legend: {},
+    series: [{
+        type: 'pie',
+        data: [{
+            value: 270,
+            name: '天空'
+        }, {
+            value: 25,
+            name: '金字塔暗的一面',
+            itemStyle: {
+                normal: {
+                    color: '#5C3926'
+                }
+            }
+        }, {
+            value: 65,
+            name: '金字塔亮的一面',
+            itemStyle: {
+                normal: {
+                    color: '#D3A359'
+                }
+            }
+        }],
+        startAngle: -135,
+        itemStyle: {
+            normal: {
+                color: '#425E8D'
+            }
+        },
+        labelLine: {
+            normal: {
+                show: false
+            }
+        },
+        label: {
+            normal: {
+                show: false
+            }
+        },
+        silent: true
+    }]
+};
+
+
+ var count = 360;
+    var data = [];
+    for (var i = 0; i < count; i++) {
+        data.push([1, i]);
+    }
+   var  ringOption = {
+         backgroundColor: 'rgba(0,0,0,0)',
+        color: ['red'],
+        title: {
+            text: '100'+'%',
+            textStyle:{},
+            x: 'center',
+            y: 'center'
+       },
+        visualMap: [{
+            show: false,
+            dimension: 1,
+            min: 0,
+            max: count,
+            inRange: {
+                colorHue: [190, 60]
+            }
+        }],
+        series: [{
+            type: 'pie',
+            radius : ['55%', '75%'],
+            center: ['50%', '50%'],
+            silent: true,
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data: data
+        }]
+    
+}
+   
+   
+  
+   
+ var datas= [405, 11, 67, 234, 212, 113, 0];
+var datas2=datas[datas.length-1];
+var lineOption = {
+    backgroundColor: 'rgba(0,0,0,0)',
+    title: {},
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: [{
+            name: 'name1',
+        }, {
+            name: 'name2',
+        }],
+        x: 'right',
+        textStyle: {
+            color: '#ffffff',
+        },
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: true,
+        data: ['一月', '二月', '三', '四月', '五月', '六月', '七月'],
+        axisLabel: {
+            textStyle: {
+                color: '#ffffff'
+            }
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#ffffff',
+            }
+        },
+        axisTick: {
+            inside: true,
+            alignWithLabel: true
+        },
+    },
+    yAxis: {
+        type: 'value',
+        axisLabel: {
+            textStyle: {
+                color: '#ffffff'
+            }
+        },
+        axisLine: {
+            show: false,
+            lineStyle: {
+                color: '#ffffff'
+            }
+        }
+    },
+    series: [{
+        name: 'name1',
+        type: 'line',
+        data:datas,
+    	markPoint : {}
+    }, {
+        name: 'name2',
+        type: 'line',
+        data: [343, 76, 232, 553, 313, 32, 222],
+       
+    }],
+    lineStyle: {},
+     color:['#f8d377','#bc4a6d'],
+}
+   
+   
+   
+   
+   
+  var chinaOption = {
+    backgroundColor: 'rgba(0,0,0,0)',
+    title: {},
+    tooltip: {},
+    legend: {},
+    series: [
+    {
+            name: '王者荣耀',
+            type: 'map',
+            mapType: 'china',
+            roam: true,
+            label: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data: []
+       }
+    ]
+}
+   
+   
+   
+   
+   
+//drawChart('div1',pieOption);
+//drawChart('div2',ringOption);
+//drawChart('div3',rankOption);
+//drawChart('div4',lineOption);
+//drawChart('div5',chinaOption);
+
+bindMoveOrReszie('div1');
+bindMoveOrReszie('div2');
+bindMoveOrReszie('div3');
+bindMoveOrReszie('div4');
+bindMoveOrReszie('div5');
+	
+</script>

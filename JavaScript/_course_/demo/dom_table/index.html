@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>dom访问表格</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<table id="mytable" border="1">
+	<caption>课程</caption>
+	<tr>
+		<td>C</td>
+		<td>C++</td>
+	</tr>
+	<tr>
+		<td>LSD</td>
+		<td>ARM</td>
+	</tr>
+	<tr>
+		<td>J2EE</td>
+		<td>Android</td>
+	</tr>
+</table>
+
+<input type="button" value="表格标题" onclick="alert(document.getElementById('mytable').caption.innerHTML)" />
+<input type="button" value="第一行、第一格" onclick="alert(document.getElementById('mytable').rows[0].cells[0].innerHTML)" />
+<input type="button" value="第二行、第二格" onclick="alert(document.getElementById('mytable').rows[1].cells[1].innerHTML)" />
+<input type="button" value="第三行、第二格" onclick="alert(document.getElementById('mytable').rows[2].cells[1].innerHTML)" /><br />
+
+设置指定单元格的值：第
+<input id="row" type="text" size="2" />
+行，
+第
+<input id="cel" type="text" size="2" />
+列的值为
+<input id="course" type="text" size="10" />
+
+<input id="btn_set" type="button" value="修改" onclick="updateCell()" />
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

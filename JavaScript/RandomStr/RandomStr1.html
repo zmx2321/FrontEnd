@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sb大战</title>
+	<style>
+		body{
+			font-size: 50px;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		(function(){
+			/*var xx = (!(~+[])+{})[--[~+""][+[]]*[~+[]] + ~~!+[]]+({}+[])[[~!+[]]*~+[]];
+			var theArray=new Array();
+
+			theArray[0]="小梅是" + xx;
+			theArray[1]="老刘是" + xx;
+			theArray[2]="白菜是" + xx;
+			
+			function ranFun(){
+				return parseInt(Math.random()*3);
+			}
+
+		  document.write(theArray[ranFun()]);*/
+
+		  // console.log(parseInt(Math.random()*3) + 1);
+		  // 
+		  
+			var num1 = parseInt(Math.random()*4),
+				num2 = parseInt(Math.random()*3);
+
+			var arr1 = [
+				"小梅","老刘","白菜","老陈"
+			];
+		  
+			var	arr2 = [
+				"聪明","多金","帅"
+			];
+
+			str = arr1[num1] + arr2[num2];
+
+			document.write(str);
+		})();
+	</script>
+</body>
+</html>

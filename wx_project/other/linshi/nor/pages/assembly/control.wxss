@@ -1,0 +1,42 @@
+/* pages/assembly/control.wxss */
+progress{
+  margin-top: 15px;
+}
+
+.slider{
+  margin-top: 15px;
+}
+
+
+.switch_cm{
+  margin-top: 15px;
+  border-top: 1px gray solid;
+  border-bottom: 1px gray solid;
+  display: flex;
+  height: 40px
+
+}
+.switch_cm text{
+  flex: 1;
+  margin-left: 5px;
+  line-height: 40px;
+}
+
+.switch_meld{
+  display: flex;
+  margin: 5px;
+}
+
+.boy{
+  margin-left: 9px;
+}
+.girl{
+  margin-left:15px;
+}
+
+view{
+  margin-top: 1px;
+}
+checkbox{
+  margin-left: 8px;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//连接数据库
+			var mysql = require('mysql');
+			var connection = mysql.createConnection({
+				host: '数据库地址如:localhost',
+				user: '数据库用户名',
+				password: '密码',
+				database: '数据库名'
+			});
+
+			connection.connect();
+			//查询
+			connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+				if(err) throw err;
+				console.log('The solution is: ', rows[0].solution);
+			});
+			//关闭连接
+			connection.end();
+
+			//连接数据库
+			var mysql = require('mysql');
+			var connection = mysql.createConnection({
+				host: 'localhost',
+				user: 'root',
+				password: 'open00',
+				database: 'test'
+			});
+
+			connection.connect();
+			//查询
+			connection.query('select * from `mytable`', function(err, rows, fields) {
+				if(err) throw err;
+				console.log('查询结果为: ', rows);
+			});
+			//关闭连接
+			connection.end();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,40 @@
+.bindthree_all{
+    font-size: 0.24rem;
+}
+
+/* bindphone_cont s */
+.bindthree_cont a{
+	display: block;
+    width: 100%;
+    height: 1.02rem;
+    background: #fff;
+    margin-bottom: 0.16rem;
+    overflow: hidden;
+}
+
+.cont_left_txt input[type="text"]{
+	border: none;
+}
+
+.bindthree_cont span{
+	font-size: 0.28rem;
+}
+
+.bindthree_cont span.green{
+    position: relative;
+    color: #999999;
+    right: 0.4rem;
+}
+
+.bindthree_cont span.green::after{
+    content: '';
+    width: 0.25rem;
+    height: 0.25rem;
+    background: url(../images/icon-wdzk.png) top no-repeat;
+    background-size: 100%;
+    position: absolute;
+    right: -0.38rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* bindphone_cont e */

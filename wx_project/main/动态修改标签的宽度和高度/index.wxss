@@ -1,0 +1,11 @@
+.view{
+    background: green;
+    color: white;
+    text-align: center;
+}
+
+.box{
+  width: 100rpx;
+  height: 100rpx;
+  background: #f00;
+}

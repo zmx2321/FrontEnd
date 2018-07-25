@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/lib/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul id="example-1">
+			<li v-for="item in items">
+				{{item.message}}
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var example1 = new Vue({
+				el:'#example-1',
+				data:{
+					items:[
+					{message:'foo'},
+					{message:'Bar'}
+					]
+				}
+			})
+		</script>
+	</body>
+</html>

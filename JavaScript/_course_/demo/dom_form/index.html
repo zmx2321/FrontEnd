@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>dom访问表单</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<form id="myform" action="http://www.iotek.com.cn" method="get" target="_blank">
+	<input type="text" name="username" value="cacc" /><br />
+	<input type="text" name="password" value="123456" /><br />
+
+	<select name="city">
+		<option value="shanghai">上海</option>
+		<option value="nanjing" selected="selected">南京</option>
+	</select><br />
+
+	<input type="button" value="获取表单第一个控件" onclick="alert(document.getElementById('myform').elements[0].value)" />
+	<input type="button" value="获取表单第二个控件" onclick="alert(document.getElementById('myform').elements['password'].value)" />
+	<input type="button" value="获取表单第三个控件" onclick="alert(document.getElementById('myform').city.value)" />
+	<input type="button" value="操作表单" onclick="operatorForm()" />
+</form>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

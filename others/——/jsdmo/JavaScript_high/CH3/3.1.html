@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			['log', 'info', 'warn', 'error'].forEach(function(method) {
+				console[method] = console[method].bind(
+					console,
+					new Date().toISOString()
+				);
+			});
+
+			console.log("出错了！");
+			// 2014-05-18T09:00.000Z 出错了！
+
+			function greet(user) {
+				console.count();
+				return 'hi ' + user;
+			}
+
+			greet('bob')
+				//  : 1
+				// "hi bob"
+
+			greet('alice')
+				//  : 2
+				// "hi alice"
+
+			greet('bob')
+				//  : 3
+				// "hi bob"
+
+			for(var i = 0; i < 5; i++) {
+				console.log(i);
+				if(i === 2) debugger;
+			}
+		</script>
+	</body>
+
+</html>

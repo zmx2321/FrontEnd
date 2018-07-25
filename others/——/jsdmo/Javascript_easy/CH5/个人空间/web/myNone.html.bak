@@ -1,0 +1,26 @@
+﻿<Html>
+		<head>
+	<meta charset="UTF-8" >
+	
+
+<style type="text/css">
+	
+	img{
+		width:80%;
+		height:80%;
+		margin-top:5%;
+		}
+	
+</style>
+		
+	</head>
+	
+	<body >
+		
+		<audio src="../muisc/bgMuisc.mp3"  autoplay=true  ></audio>
+
+		<center><a href="./Home.html"><img src="../imgs/donghua2.jpg" alt="网络出现问题了"></a></center>
+		
+	</body>
+	
+</Html>

@@ -1,0 +1,91 @@
+/* fixaddress_all s */
+.fixaddress_all{
+    font-size: 0.24rem;
+}
+
+/* public s */
+.address_cont_wrap{
+	width: 100%;
+	overflow: auto;
+}
+
+.address_cont{
+	width: 100%;
+}
+
+.address_cont section{
+	min-height: 1rem;
+	background: #fff;
+	margin-bottom: 0.16rem;
+}
+
+.address_cont section:last-child{
+	border-top: solid 1px transparent;
+	border-bottom: solid 1px transparent;
+}
+
+.adscot_wrap{
+	width: 7.2rem;
+	margin: 0 auto;
+}
+
+.adscot_wrap li{
+	font-size: 0.28rem;
+}
+
+ul.normal li{
+	display: inline-block;
+	height: 1rem;
+	line-height: 1rem;
+}
+
+ul.normal li:first-child{
+    width: 1.5rem;
+}
+
+ul.normal li input[type="text"]{
+	border: none;
+}
+
+ul.normal dd{
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+ul.normal dd:last-child{
+	margin-right: 0;
+}
+
+ul.normal select{
+	font-size: 0.28rem;
+	border: none;
+	color: #999999;
+}
+
+ul.addtail{
+    margin: 0.16rem 0;
+}
+
+ul.addtail input[type="text"]{
+    border: none;
+    margin-top: 0.2rem;
+	width: 100%;
+}
+
+ul.addtail li:last-child{
+	width: 100%;
+}
+/* public e */
+
+/* fix_address_cont s */
+.fix_address_cont{
+	display: block;
+}
+/* fix_address_cont e */
+
+/* add_address_cont s */
+.add_address_cont{
+	display: none;
+}
+/* add_address_cont e */
+/* fixaddress_all e */

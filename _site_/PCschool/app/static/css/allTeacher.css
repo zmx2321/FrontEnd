@@ -1,0 +1,182 @@
+.all-teacher-container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.all-teacher-header {
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    background: white;
+    line-height: 60px;
+    padding: 0 0 0 16px;
+}
+
+.all-teacher-header p {
+    display: inline;
+    color: #333333;
+    font-size: 24px;
+    height: 24px;
+    border-left: 4px solid #EC2D4D;
+    padding: 0 0 0 8px;
+    margin: 0;
+}
+
+.all-teacher-header-span {
+    margin: 0 0 0 6px;
+    padding: 0 0 0 10px;
+    border-left: 2px solid #cccccc;
+}
+
+.all-teacher-tab {
+    box-sizing: border-box;
+    margin: 30px 0 0 0;
+    height: 34px;
+    width: 100%;
+    font-size: 16px;
+    border-bottom: 4px solid #E3E4E4;
+}
+
+.all-teacher-tab ul li {
+    margin: 0;
+    float: left;
+    width: 150px;
+    text-align: center;
+    padding: 0 0 12px 0;
+    /*border-bottom: 4px solid #E3E4E4;*/
+}
+
+.all-teacher-tab ul li:hover {
+    /* color: #EC2D4D; */
+    border-bottom: 4px solid #EC2D4D;
+    cursor: pointer;
+}
+
+.all-teacher-tab-selected {
+    color: #EC2D4D;
+    border-bottom: 4px solid #EC2D4D;
+    cursor: pointer;
+}
+
+.all-teacher-route {
+    float: right;
+    cursor: pointer;
+}
+
+.all-teacher-route span {
+    padding: 0 8px 0 10px;
+}
+
+.all-teacher-route span:after {
+    content: url("../images/icon/arrow_normal.png");
+    padding: 0 10px;
+}
+
+.all-teacher-route span:hover {
+    color: #EC2D4D;
+}
+
+.all-teacher-route span:hover:after {
+    content: url("../images/icon/arrow_onpress.png");
+}
+
+.all-teacher-list ul {
+    margin: 0 -30px 0 0;
+    box-sizing: border-box;
+    font-size: 0;
+}
+
+.all-teacher-list-container {
+
+}
+
+.all-teacher-list-li-header {
+    margin: 10px 0 0 20px;
+    color: #666666;
+}
+
+.all-teacher-list-li {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    background: white;
+    height: 460px;
+    width: 340px;
+    border: 1px solid #e3e3e3;
+    margin: 30px 30px 0 0;
+    float: left;
+    /*margin: 30px 30px 0 0;*/
+    font-size: 14px;
+    transition: all .2s cubic-bezier(0.28, 0.91, 0.68, 1);
+}
+
+.all-teacher-li-active {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, -2px, 0);
+}
+
+.all-teacher-list-li-content {
+    /*padding: 16px;*/
+}
+
+.all-teacher-list-li-content:hover {
+    /*box-sizing: border-box;*/
+    /*position: absolute;*/
+    /*top: -2%;*/
+    /*left: -2%;*/
+    /*width: 104%;*/
+    /*height: 104%;*/
+    /*box-shadow: 0 2px 20px #cccccc;*/
+    /*background: white;*/
+    /*border: 1px solid #e3e3e3;*/
+
+}
+
+.header-search {
+    display: inline-block;
+    float: right;
+    position: relative;
+    margin: 0 10px 0 0;
+}
+
+.search-input {
+    display: inline-block;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 20px;
+    height: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    width: 200px;
+    padding: 0 0 0 16px;
+}
+
+.search-input:hover {
+    border: 1px solid #999999;
+}
+
+.search-button {
+    position: absolute;
+    right: 16px;
+    top: 19px;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    background-image: url("../images/icon/search_normal.png");
+    background-repeat: no-repeat;
+}
+
+.search-button:hover {
+    background-image: url("../images/icon/search_onpress.png");
+}
+
+.all-teacher-list {
+    height: 50px;
+    clear: both;
+}
+
+.bestcourse-select span{
+/*    float: left;
+    margin-left: 17px;
+    margin-top: 8px;*/
+}

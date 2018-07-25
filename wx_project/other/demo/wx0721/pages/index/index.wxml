@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<!-- <view>
+  {{teacher}}
+</view> -->
+<view bindtap="changePicSty">
+  <image class="pic_{{style}}" src="../images/1.jpg"></image>
+</view>

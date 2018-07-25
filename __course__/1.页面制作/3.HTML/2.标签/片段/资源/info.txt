@@ -1,0 +1,9 @@
+可以使用shiv来解决兼容性问题	
+		https://github.com/afarkas/html5shiv
+
+
+video文件兼容性
+		https://en.wikipedia.org/wiki/HTML5_video#Browser_support
+
+audio文件兼容性
+		https://en.wikipedia.org/wiki/HTML5_Audio#Supported_audio_coding_formats

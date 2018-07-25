@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村-地图</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css">
+<link rel="stylesheet" type="text/css" href="http://api.map.baidu.com/res/12/bmap_autocomplete.css">
+</head>
+
+<body>
+<!-- body s -->
+<div id="allmap"></div>
+<!-- body e -->
+
+<!-- js s -->
+<!-- 百度地图 -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wgOuFDPx7axqgWBnORNpPOLtesYbGcpV"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js" charset="UTF-8"></script>
+
+<script type="text/javascript" src="http://api.map.baidu.com/library/CityList/1.2/src/CityList_min.js"></script>
+<!-- 百度地图 -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/lib/MarkerClusterer.js"></script>
+<!-- <script src="js/map5.js"></script> -->
+
+
+
+<script type="text/javascript">
+    var opts = {
+      width : 200,     // 信息窗口宽度
+      height: 100,     // 信息窗口高度
+      title : "泸州旅游地图"  // 信息窗口标题
+    }
+    //创建和初始化地图函数：
+    function initMap() {
+        createMap(); //创建地图
+        setMapEvent(); //设置地图事件
+        addMapControl(); //向地图添加控件
+    }
+
+    //创建地图函数：
+    function createMap() {
+        var map = new BMap.Map("allmap"); //在百度地图容器中创建一个地图
+        var point = new BMap.Point(105.457103,28.895163); //定义一个中心点坐标
+        map.centerAndZoom(point, 12); //设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map; //将map变量存储在全局
+        
+        
+    
+    var marker = new Array();
+    var markers = [];
+
+            
+
+        //向地图添加标注
+        var bounds = map.getBounds();        
+
+        var point1 = new BMap.Point(105.330670,28.825850);
+        
+        var marker1 = new BMap.Marker(point1);
+        var label = new BMap.Label('方山',{"offset":new BMap.Size(9,-15)});
+        
+        
+        
+        label.setStyle({  
+            
+             
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker1.setLabel(label);
+        label.addEventListener("click", function(){window.open( "http://image.baidu.com/i?tn=baiduimage&ct=201326592&lm=-1&cl=2&fr=ala1&word=%E3%F2%D6%DD%B7%BD%C9%BD%B7%E7%BE%B0%C7%F8") });
+        var content1 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="img/fangshan.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：四川省泸州市江阳区西郊方山镇<br/>电话：0830-3710264  <br/>简介：是国家3A级景区和川南历史上著名的佛教圣地和旅游胜地。' +
+                  '</div>';
+                  
+    searchInfoWindow1 = new BMapLib.SearchInfoWindow(map, content1, {
+            title  : "方山风景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[    
+
+                
+            ]
+        });      
+
+    marker1.addEventListener("click", function(e){
+        searchInfoWindow1.open(new BMap.Point(105.330670,28.825850)); 
+    })
+      markers.push(marker1);
+    map.addOverlay(marker1); 
+
+    
+    
+    
+    
+     
+    
+     
+                
+        var point2 = new BMap.Point(105.44406,28.962949); 
+        var marker2 = new BMap.Marker(point2);
+        var label = new BMap.Label('九狮山风景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker2.setLabel(label);    
+        label.addEventListener("click", function(){window.open( "http://image.baidu.com/i?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=index&fr=&sf=1&fmq=&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E4%B9%9D%E7%8B%AE%E5%B1%B1%E9%A3%8E%E6%99%AF%E5%8C%BA" )});
+        var content2 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="img/jiushi.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：泸州城以北10公里，安宁镇境内<br/>电话：(0830)2630039<br/>简介：泸州市近郊型风景旅游胜地。景区景点繁多。' +
+                  '</div>';
+                  
+    searchInfoWindow2 = new BMapLib.SearchInfoWindow(map, content2, {
+            title  : "九狮山风景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker2.addEventListener("click", function(e){
+        searchInfoWindow2.open(new BMap.Point(105.44406,28.962949)); 
+    })
+      markers.push(marker2);
+    map.addOverlay(marker2); 
+    
+    
+
+        var point3 = new BMap.Point(105.416769,29.157875);
+        var marker3 = new BMap.Marker(point3);
+        var label = new BMap.Label('玉蟾山风景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker3.setLabel(label);
+        label.addEventListener("click", function(){window.open("http://www.baidu.com")});
+        var content3 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：3333333333<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow3 = new BMapLib.SearchInfoWindow(map, content3, {
+            title  : "玉蟾山风景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker3.addEventListener("click", function(e){
+        searchInfoWindow3.open(new BMap.Point(105.416769,29.157875)); 
+    })
+      markers.push(marker3);
+    map.addOverlay(marker3); 
+    
+    
+    
+    
+
+        var point4 = new BMap.Point(105.674547,29.165004);
+        var marker4 = new BMap.Marker(point4);
+        var label = new BMap.Label('玉龙湖景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker4.setLabel(label);
+        
+        label.addEventListener("click", function(){window.open("http://www.baidu.com")});
+        var content4 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：4444444444<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow4 = new BMapLib.SearchInfoWindow(map, content4, {
+            title  : "玉龙湖景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker4.addEventListener("click", function(e){
+        searchInfoWindow4.open(new BMap.Point(105.674547,29.165004)); 
+    })
+      markers.push(marker4);
+    map.addOverlay(marker4); 
+    
+    
+    
+        
+        var point5 = new BMap.Point(106.133905,28.664317);
+        var marker5 = new BMap.Marker(point5);
+        var label = new BMap.Label('福宝风景名胜区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker5.setLabel(label);
+        label.addEventListener("click", function(){window.open("http://www.baidu.com")});
+        var content5 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：555555555<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow5 = new BMapLib.SearchInfoWindow(map, content5, {
+            title  : "福宝风景名胜区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker5.addEventListener("click", function(e){
+        searchInfoWindow5.open(new BMap.Point(106.133905,28.664317)); 
+    })
+      markers.push(marker5);
+    map.addOverlay(marker5); 
+        
+        var point6 = new BMap.Point(105.651766,28.742824);
+        var marker6 = new BMap.Marker(point6);
+        var label = new BMap.Label('尧坝古镇',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker6.setLabel(label);
+        label.addEventListener("click", function(){window.open("http://www.baidu.com")});
+        var content6 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：6666666666<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow6 = new BMapLib.SearchInfoWindow(map, content6, {
+            title  : "尧坝古镇",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker6.addEventListener("click", function(e){
+        searchInfoWindow6.open(new BMap.Point(105.651766,28.742824)); 
+    })
+      markers.push(marker6);
+    map.addOverlay(marker6); 
+        
+        var point7 = new BMap.Point(106.258877,28.705384);
+        var marker7 = new BMap.Marker(point7);
+        var label = new BMap.Label('自怀风景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker7.setLabel(label);
+        label.addEventListener("click", function(){window.open("http://www.baidu.com" )});
+        var content7 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：77777777777<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow7 = new BMapLib.SearchInfoWindow(map, content7, {
+            title  : "自怀风景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker7.addEventListener("click", function(e){
+        searchInfoWindow7.open(new BMap.Point(106.258877,28.705384)); 
+    })
+      markers.push(marker7);
+    map.addOverlay(marker7); 
+        
+        var point8 = new BMap.Point(105.793808,28.814567);
+        var marker8 = new BMap.Marker(point8);
+        var label = new BMap.Label('笔架山景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker8.setLabel(label);
+        label.addEventListener("click", function(){window.open("http://www.baidu.com" )});
+        var content8 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：888888888<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow8 = new BMapLib.SearchInfoWindow(map, content8, {
+            title  : "笔架山景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker8.addEventListener("click", function(e){
+        searchInfoWindow8.open(new BMap.Point(105.793808,28.814567)); 
+    })
+      markers.push(marker8);
+    map.addOverlay(marker8); 
+        
+        var point9 = new BMap.Point(105.418476,28.723377);
+        var marker9 = new BMap.Marker(point9);
+        var label = new BMap.Label('天仙硐风景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker9.setLabel(label);
+        label.addEventListener("click", function(){window.open( "http://image.baidu.com/i?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1397397664562_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E6%B3%B8%E5%B7%9E%E5%A4%A9%E4%BB%99%E7%A1%90%E9%A3%8E%E6%99%AF%E5%8C%BA" )});
+        var content9 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：9999999999<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow9 = new BMapLib.SearchInfoWindow(map, content9, {
+            title  : "天仙硐风景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker9.addEventListener("click", function(e){
+        searchInfoWindow9.open(new BMap.Point(105.418476,28.723377)); 
+    })
+      markers.push(marker9);
+    map.addOverlay(marker9); 
+        
+        var point10 = new BMap.Point(105.322447,28.704829);
+        var marker10 = new BMap.Marker(point10);
+        var label = new BMap.Label('凤凰湖风景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker10.setLabel(label);
+        label.addEventListener("click", function(){window.open( "http://image.baidu.com/i?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1397397707750_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E6%B3%B8%E5%B7%9E%E5%87%A4%E5%87%B0%E6%B9%96%E9%A3%8E%E6%99%AF%E5%8C%BA") });
+        var content10 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：101010101010<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow10 = new BMapLib.SearchInfoWindow(map, content10, {
+            title  : "凤凰湖风景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker10.addEventListener("click", function(e){
+        searchInfoWindow10.open(new BMap.Point(105.322447,28.704829)); 
+    })
+      markers.push(marker10);
+    map.addOverlay(marker10); 
+        
+        var point11 = new BMap.Point(105.491966,28.886221);
+        var marker11 = new BMap.Marker(point11);
+        var label = new BMap.Label('张坝桂圆林',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker11.setLabel(label);
+        label.addEventListener("click", function(){window.open( "http://image.baidu.com/i?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1397397564515_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E6%B3%B8%E5%B7%9E%E5%BC%A0%E5%9D%9D%E6%A1%82%E5%9C%86%E6%9E%97%E9%A3%8E%E6%99%AF%E5%8C%BA") });
+        var content11 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：110110111111<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow11 = new BMapLib.SearchInfoWindow(map, content11, {
+            title  : "张坝桂圆林",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker11.addEventListener("click", function(e){
+        searchInfoWindow11.open(new BMap.Point(105.491966,28.886221)); 
+    })
+      markers.push(marker11);
+    map.addOverlay(marker11); 
+        
+        var point12 = new BMap.Point(105.460100,28.890415);
+        var marker12 = new BMap.Marker(point12);
+        var label = new BMap.Label('老窖景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker12.setLabel(label);
+        label.addEventListener("click", function(){window.open("index1.html")});
+        var content12 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="img/P1040545.JPG" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：泸州市三星街国窖广场1号楼<br/>电话：(0830)2285189<br/>简介：是国家AAAA级旅游区，全国重点文物保护单位。' + 
+                  '</div>';
+                  
+    searchInfoWindow12 = new BMapLib.SearchInfoWindow(map, content12, {
+            title  : "老窖景区",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker12.addEventListener("click", function(e){
+        searchInfoWindow12.open(new BMap.Point(105.460100,28.890415)); 
+    })
+      markers.push(marker12);
+    map.addOverlay(marker12); 
+        
+        var point = new BMap.Point(105.5399,28.909266);
+        var marker = new BMap.Marker(point);
+        var label = new BMap.Label('洞窝景区',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker.setLabel(label);
+        label.addEventListener("click", function(){window.open( "http://image.baidu.com/i?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1397397611875_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E6%B3%B8%E5%B7%9E%E6%B4%9E%E7%AA%9D%E6%99%AF%E5%8C%BA%E9%A3%8E%E6%99%AF%E5%8C%BA") });
+       var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：北京市海淀区上地十街10号<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+            title  : "百度大厦",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker.addEventListener("click", function(e){
+        searchInfoWindow.open(new BMap.Point(105.5399,28.909266)); 
+    })
+      markers.push(marker);
+    map.addOverlay(marker); 
+        
+       
+        
+        var point20 = new BMap.Point(106.046023,28.142466);
+        var marker20 = new BMap.Marker(point20);
+        var label = new BMap.Label('太平古镇',{"offset":new BMap.Size(9,-15)});
+        label.setStyle({  
+             fontSize: "14px",
+             fontFamily: "微软雅黑",
+             height: "12px", 
+             backgroundColor:"none",
+             cursor:"pointer"
+         });    
+        marker20.setLabel(label);
+        label.addEventListener("click", function(){window.location.href = "http://www.baidu.com" });
+        var content20 = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="./img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：20202020<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+                  
+    searchInfoWindow20 = new BMapLib.SearchInfoWindow(map, content20, {
+            title  : "太平古镇",      //标题
+            width  : 290,             //宽度
+            height : 115,              //高度
+            panel  : "panel",         //检索结果面板
+            enableAutoPan : true,     //自动平移
+            searchTypes   :[
+                
+            ]
+        });      
+
+    marker20.addEventListener("click", function(e){
+        searchInfoWindow20.open(new BMap.Point(106.046023,28.142466)); 
+    })
+      markers.push(marker20);
+    map.addOverlay(marker20); 
+        
+    var markerClusterer = new BMapLib.MarkerClusterer(map, {markers: markers});
+    }
+    
+    
+    
+     
+
+    //地图事件设置函数：
+    function setMapEvent() {
+        map.enableDragging(); //启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom(); //启用地图滚轮放大缩小
+        map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard(); //启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl() {
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE });
+        map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({ anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: 1 });
+        map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT });
+        map.addControl(ctrl_sca);
+        map.addControl(new BMap.MapTypeControl());
+    }
+    
+    
+    
+    
+    initMap(); //创建和初始化地图
+</script>
+
+<!-- js e -->
+</body>
+</html>             

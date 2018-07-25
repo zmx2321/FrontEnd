@@ -1,0 +1,16 @@
+<template name="navigator">
+<view class="nav">
+  <view>
+    PC端
+  </view>
+  <view>
+    移动端
+  </view>
+  <view>
+    微信端
+  </view>
+  <view>
+    服务器端
+  </view>
+</view>
+</template>

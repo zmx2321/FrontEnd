@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JS方法测试</title>
+<script type="../EFGPShareMethod.js"></script>
+<script type="text/javascript">
+
+  /*绝对值*/
+  function fun() {
+ 
+    var y;
+    var s = document.getElementById("toms").value;
+    var v1 = Math.abs(s);
+    var v2 = Math.abs(-s);
+    if (v1 == v2)
+      y = s + " 和 "
+    y += -s + " 的绝对值是相同的。";
+    document.getElementById("A01").innerHTML = y;
+  }
+  /*设置指定ID背景颜色*/
+  function componentBgColor() {
+    var color = document.getElementById("A021").value;
+    document.getElementById("tt").style.backgroundColor = color;
+  }
+  /*设置指定ID字体颜色*/
+  function componentCharColor() {
+    var color = document.getElementById("A031").value;
+    document.getElementById("tt").style.color = color;
+  }
+  function componentDisable() {
+    var r = document.getElementById("A041").disabled;
+    if (r) {
+      document.getElementById("A041").disabled = false;
+      document.getElementById("A04").innerHTML = "文本框也解锁，再次点击锁定";
+      document.getElementById("A041").value = "文本框也解锁";
+    }
+    if (!r) {
+      document.getElementById("A041").disabled = true;
+      document.getElementById("A04").innerHTML = "文本框也锁定，再次点击解锁";
+      document.getElementById("A041").value = "文本框也锁定";
+    }
+  }
+  function componentReadOnly() {
+    var r = document.getElementById("A051").readOnly;
+    if (r) {
+      document.getElementById("A051").readOnly = false;
+      document.getElementById("A051").value = "已设置为可读写";
+      document.getElementById("A05").innerHTML = "已设置为可读写";
+    }
+    if (!r) {
+      document.getElementById("A051").readOnly = true;
+      document.getElementById("A051").value = "已设置为只读";
+      document.getElementById("A05").innerHTML = "已设置为只读";
+    }
+  }
+  function roundMath(value, num) {
+    return Math.round(parseFloat(value) * Math.pow(10, num))
+        / Math.pow(10, num);
+  }
+  function roundMathto() {
+    var mathone = document.getElementById("A062").value;
+    var mathtow = document.getElementById("A061").value;
+    var maththree = roundMath(mathone, mathtow);
+    document.getElementById("A06").innerHTML = maththree;
+  }
+  /*计算两日期之间的相差天数*/
+  function daysBetween(DateOne, DateTwo) {
+    var OneMonth = DateOne.substring(5, DateOne.lastIndexOf('/'));
+    var OneDay = DateOne.substring(DateOne.length,
+        DateOne.lastIndexOf('/') + 1);
+    var OneYear = DateOne.substring(0, DateOne.indexOf('/'));
+    var TwoMonth = DateTwo.substring(5, DateTwo.lastIndexOf('/'));
+    var TwoDay = DateTwo.substring(DateTwo.length,
+        DateTwo.lastIndexOf('/') + 1);
+    var TwoYear = DateTwo.substring(0, DateTwo.indexOf('/'));
+    var cha = ((Date.parse(OneMonth + '/' + OneDay + '/' + OneYear) - Date
+        .parse(TwoMonth + '/' + TwoDay + '/' + TwoYear)) / 86400000);
+    return Math.abs(cha);
+  }
+  function daysBetweentow() {
+    var mathone = document.getElementById("A072").value;
+    var mathtow = document.getElementById("A071").value;
+    var t = daysBetween(mathone, mathtow);
+    document.getElementById("A07").innerHTML = t;
+  }
+  function concatt() {
+    var mathone = document.getElementById("A082").value;
+    var mathtow = document.getElementById("A081").value;
+    var arr = new Array(mathone);
+    var arr2 = new Array(mathtow);
+    document.getElementById("A08").innerHTML = arr.concat(arr2);
+  }
+  function joint() {
+    var arr = new Array(2)
+    arr[0] = document.getElementById("A092").value;
+    arr[1] = document.getElementById("A091").value;
+    document.getElementById("A09").innerHTML = arr.join(document
+        .getElementById("A093").value);
+  }
+  function popt() {
+    var arr = new Array(2)
+    arr[0] = document.getElementById("A101").value;
+    arr[1] = document.getElementById("A102").value;
+    document.getElementById("A10").innerHTML = arr.pop();
+  }
+  function pusht() {
+    var arr = new Array(1);
+    arr[0] = document.getElementById("A111").value;
+    var t = document.getElementById("A102").value;
+    document.getElementById("A11").innerHTML = arr.push(t);
+  }
+  function reverset() {
+    var arr = new Array(2)
+    arr[0] = document.getElementById("A121").value;
+    arr[1] = document.getElementById("A122").value;
+    document.getElementById("A12").innerHTML = arr.reverse();
+  }
+  function shiftt() {
+    var arr = new Array(2)
+    arr[0] = document.getElementById("A131").value;
+    arr[1] = document.getElementById("A132").value;
+    document.getElementById("A13").innerHTML = arr.shift();
+  }
+  function slicet() {
+    var arr = new Array(3);
+    arr[0] = "George";
+    arr[1] = "John";
+    arr[2] = "Thomas";
+    document.getElementById("A14").innerHTML = arr.slice(document
+        .getElementById("A141").value);
+  }
+  function sortt() {
+    var arr = new Array(2);
+    arr[0] = document.getElementById("A151").value;
+    arr[1] = document.getElementById("A152").value;
+    document.getElementById("A15").innerHTML = arr.sort();
+  }
+  function splicet() {
+    var arr = new Array(6);
+    arr[0] = "George";
+    arr[1] = "John";
+    arr[2] = "Thomas";
+    arr[3] = "James";
+    arr[4] = "Adrew";
+    arr[5] = "Martin";
+    var one = document.getElementById("A161").value;
+    var tow = document.getElementById("A162").value;
+    var three = document.getElementById("A163").value;
+    document.getElementById("A16").innerHTML = arr.splice(one, tow, three);
+  }
+  function toStringt() {
+    var arr = new Array(2);
+    arr[0] = document.getElementById("A171").value;
+    arr[1] = document.getElementById("A172").value;
+    document.getElementById("A17").innerHTML = arr.toString();
+  }
+  function toLocaleStringt() {
+    var arr = new Array(2);
+    arr[0] = document.getElementById("A181").value;
+    arr[1] = document.getElementById("A182").value;
+    document.getElementById("A18").innerHTML = arr.toLocaleString();
+  }
+  function unshiftt() {
+    var arr = new Array()
+    arr[0] = "George"
+    arr[1] = "John"
+    arr[2] = "Thomas"
+    var t = document.getElementById("A191").value;
+    document.getElementById("A19").innerHTML = arr.unshift(t);
+  }
+  function valueOft() {
+    var arr = new Array()
+    arr[0] = "George"
+    arr[1] = "John"
+    arr[2] = "Thomas"
+    document.getElementById("A20").innerHTML = arr.valueOf();
+  }
+  function Datet() {
+    document.getElementById('A21').value = new Date();
+  }
+  var date = new Date();//获取日期的全句变量
+  function getDatet() {
+
+    document.getElementById('A22').value = date.getDate();
+    document.getElementById('A23').value = date.getDay();
+    document.getElementById('A24').value = date.getMonth() + 1;    
+    document.getElementById('A25').value = date.getFullYear();
+    document.getElementById('A26').value = date.getHours();
+    document.getElementById('A27').value = date.getMinutes();
+    document.getElementById('A28').value = date.getSeconds();
+    document.getElementById('A29').value = date.getMilliseconds();
+    document.getElementById('A30').value = date.getTime();
+  }
+  function parset() {
+    document.getElementById('A31').value = Date.parse(document
+        .getElementById('A31').value);
+  }
+  var stt = new Date();
+  function setDatet() {
+    stt.setDate(1);
+    document.getElementById('A32').value = stt;//日
+    stt.setMonth(1);
+    document.getElementById('A33').value = stt;//月
+    stt.setFullYear(2016);
+    document.getElementById('A34').value = stt;//年
+    stt.setHours(1);
+    document.getElementById('A35').value = stt;//时
+    stt.setMinutes(1);
+    document.getElementById('A36').value = stt;//分
+    stt.setMinutes(1);
+    document.getElementById('A37').value = stt;//秒
+    stt.setMilliseconds(1)
+    document.getElementById('A38').value = stt;//毫秒
+    document.getElementById('A40').value = stt;//整个时间
+  }
+
+  function setTimet() {//从1970到所设置的毫秒数说隔的时间
+    stt.setTime(document.getElementById('A39').value);
+    document.getElementById('A39').value = stt;
+  }
+  function UTCt() {
+    var d = Date.UTC(document.getElementById('A411').value, document
+        .getElementById('A412').value,
+        document.getElementById('A413').value);
+    document.getElementById('A41').value = d;
+  }
+
+  function atant(){
+    document.getElementById('A42').value=Math.atan(document.getElementById('A42').value);
+  }
+  function ceilt(){
+     document.getElementById('A43').value=Math.ceil(document.getElementById('A43').value);
+  }
+  function atan2t(){
+    document.getElementById('A44').value=Math.atan2(document.getElementById('A441').value,document.getElementById('A442').value);
+  }
+  function cost(){
+    document.getElementById('A45').value=Math.cos(document.getElementById('A45').value);
+  }
+  function floort(){
+   document.getElementById('A46').value=Math.floor(document.getElementById('A46').value);
+  }
+  function logt(){
+       document.getElementById('A47').value=Math.log(document.getElementById('A47').value);
+  }
+  function maxt(){
+    document.getElementById('A48').value=Math.max(document.getElementById('A481').value,document.getElementById('A482').value);
+  }
+function mint(){
+   document.getElementById('A49').value=Math.min(document.getElementById('A491').value,document.getElementById('A492').value);
+}
+function powt(){
+  document.getElementById('A50').value=Math.pow(document.getElementById('A501').value,document.getElementById('A502').value);
+}
+function randomt(){
+  document.getElementById('A51').value=Math.random();
+}
+function roundt(){
+  document.getElementById('A52').value=Math.round(document.getElementById('A52').value);
+}
+function sqrtt(){
+   document.getElementById('A53').value=Math.sqrt(document.getElementById('A53').value);
+}
+function toFixedt(){
+  var num = new Number(3.141592654);
+   document.getElementById('A54').value=num.toFixed(document.getElementById('A54').value);
+}
+function toExponentialt(){
+ var num = new Number(document.getElementById('A551').value);
+document.getElementById('A55').value=num.toExponential(document.getElementById('A552').value);
+}
+function bigt(){
+  var str=document.getElementById('A56').value;
+  document.getElementById('A561').innerHTML=str.big();
+}
+function blinkt(){
+ var str=document.getElementById('A57').value;
+  document.getElementById('A571').innerHTML=str.blink();
+}
+function boldt(){
+  var str=document.getElementById('A58').value;
+  document.getElementById('A581').innerHTML=str.bold();
+}
+function charAtt(){
+  var str=document.getElementById('A592').value;
+  document.getElementById('A591').innerHTML="输出结果："+str.charAt(document.getElementById('A593').value);
+}
+function charCodeAtt(){
+  var str= document.getElementById('A601').value;
+document.getElementById('A603').innerHTML="输出结果："+str.charCodeAt(document.getElementById('A602').value);
+}
+function fixedt(){
+   var str= document.getElementById('A611').value;
+   document.getElementById('A612').innerHTML="输出结果："+str.fixed();
+}
+function fontcolort(){
+var str=document.getElementById('A621').value;
+document.getElementById('A622').innerHTML="输出结果："+str.fontcolor(document.getElementById('A623').value);
+
+}
+function fontsizet(){
+  var str=document.getElementById('A631').value;
+document.getElementById('A633').innerHTML="输出结果："+str.fontsize(document.getElementById('A632').value);
+}
+function fromCharCodet(){
+var aray=new Array;
+
+  document.getElementById('A642').innerHTML="输出结果："+String.fromCharCode(document.getElementById('A641').value);
+}
+function indexOft() {
+    var str=document.getElementById('A651').value;
+document.getElementById('A653').innerHTML="输出结果："+str.indexOf(document.getElementById('A652').value);
+}
+function lastIndexOft(){
+    var str=document.getElementById('A661').value;
+document.getElementById('A663').innerHTML="输出结果："+str.indexOf(document.getElementById('A662').value);
+}
+function linkt(){
+   var str=document.getElementById('A671').value;
+document.getElementById('A673').innerHTML="输出结果："+str.link(document.getElementById('A672').value);
+}
+function localeComparet(){
+    var str=document.getElementById('A681').value;
+document.getElementById('A683').innerHTML="输出结果："+str.localeCompare(document.getElementById('A682').value);
+}
+
+
+</script>
+<style type="text/css">
+html {
+  background-color: #fff;
+}
+
+#A16 {
+  width: 500px;
+  height: 100px;
+}
+input{
+  width: 100px;
+}
+</style>
+</head>
+<body id="tt">
+
+  <a href="#date">date</a>
+  <a href="#Array">Array</a>
+  <a href="#Number">Number</a>
+  <a href="#String">String</a>
+  <p>
+
+    <!-- 查看绝对值-->
+    <input type="text" id="toms" onclick="fun()">
+  <div id="A01" onclick="fun()">点击我查看上面文本框的绝对值</div>
+  </p>
+
+  <!-- 改变背景颜色-->
+  <p>
+    <input type="text" value="输入颜色值" id="A021">
+  <div id="A02" onclick="componentBgColor()">点击我改变背景颜色</div>
+  </p>
+  <!-- 改变字体颜色-->
+  <p>
+    <input type="text" value="输入颜色值" id="A031">
+  <div id="A03" onclick="componentCharColor()">点击改变字体颜色</div>
+  </p>
+  <!--锁定一个栏位-->
+  <p>
+    <input type="text" value="" id="A041">
+  <div id="A04" onclick="componentDisable()">点击锁定上面文本框</div>
+  </p>
+  <!--设置栏位为只读-->
+  <p>
+    <input type="text" value="" id="A051">
+  <div id="A05" onclick="componentReadOnly()">点击锁定上面文本框</div>
+  </p>
+
+  <!--四舍五入-->
+  <p>
+    <input type="text" id="A062" value="请输入数字"> <input type="text"
+      id="A061" value="请输入保留的小数位">
+  <div id="A06" onclick="roundMathto()">点击查看四舍五入结果</div>
+  </p>
+
+  <p>
+    <input type="text" id="A072" value="第一个日期"> <input type="text"
+      id="A071" value="第二个日期">
+  <div id="A07" onclick="daysBetweentow()">点击我查看两个日期相差天数</div>
+  </p>
+
+<a name="Array"><h1>Array</h1></a>
+  <p>
+  <div id="A08" onclick="concatt()">concat() 连接两个或多个数组。</div>
+    <input type="text" id="A082" value="连接两个或更多的数组"> <input
+      type="text" id="A081" value="并返回结果。">
+  </p>
+  <p>
+   <div id="A09" onclick="joint()">join()用于把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。
+  </div>
+    <input type="text" id="A092" value="把数组中的所有元素放入一个字符串"> <input
+      type="text" id="A091" value="元素是通过指定的分隔符进行分隔的"> <input
+      type="text" id="A093" value="这里输入符号">
+  </p>
+
+  <p>
+    <div id="A10" onclick="popt()">pop()删除并返回数组的最后一个元素</div>
+    <input type="text" id="A101" value="这里输入第一个值"> <input
+      type="text" id="A102" value="这里输入第二个值">
+  </p>
+  <p>
+    <div id="A11" onclick="pusht()">push()向数组的末尾添加一个或多个元素，并返回新的长度。</div>
+    <input type="text" id="A111" value="第一个数组"> <input type="text"
+      id="A112" value="第二个数组">
+  </p>
+  <p>
+    <div id="A12" onclick="reverset()">reverse() 方法用于颠倒数组中元素的顺序</div>
+    <input type="text" id="A121" value="第一个数组"> <input type="text"
+      id="A122" value="第二个数组">
+  </p>
+  <p>
+    <div id="A13" onclick="shiftt()">shift()方法用于把数组的第一个元素从其中删除，并返回第一个元素的值</div>
+    <input type="text" id="A131" value="第一个数组"> <input type="text"
+      id="A132" value="第二个数组">
+  </p>
+  <p>
+   <div id="A14" onclick="slicet()">slice()从已有的数组中返回选定的元素。</div>
+  <div>该数组已存3个值 George，John，Thomas</div>
+    <input type="text" id="A141" value="请输入取出的值">
+  </p>
+  <p>
+    <div id="A15" onclick="sortt()">sort()对数组的元素进行排序。</div>
+    <input type="text" id="A151" value="请输第一个值"> <input
+      type="text" id="A152" value="请输第二个值">
+  </p>
+  <p onclick="splicet()">
+ splice()
+    向/从数组中添加/删除项目，然后返回被删除的项目
+    该数组已预设6个值，该方法3个参数 
+    <input type="text" id="A161" onclick="splicet()" 
+      value="必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置"> <input
+      type="text" id="A162" value="必需。要删除的项目数量。如果设置为 0，则不会删除项目。"> <input
+      type="text" id="A163" value=" 可选。向数组添加的新项目。"> <div id="A16" onclick="splicet()"></div>
+  
+  </p>
+  <p>
+    <div id="A17" onclick="toStringt()">toString()方法可把数组转换为字符串，并返回结果。</div>
+    <input type="text" id="A171" value="请输第一个值"> <input
+      type="text" id="A172" value="请输第二个值">
+
+  </p>
+  <p>
+    <div id="A18" onclick="toLocaleStringt()">toLocaleString()把数组转换为本地字符串。</div>
+    <input type="text" id="A181" value="请输第一个值"> <input
+      type="text" id="A182" value="请输第二个值">
+  </p>
+
+  <p>
+    <div id="A19" onclick="unshiftt()">unshift()
+    方法可向数组的开头添加一个或更多元素，并返回新的长度</div>
+    <input type="text" id="A191" value="请输第需要增加的值">
+  </p>
+  <p>该数组已存放三个值George,John,Thomas；
+  <div id="A20" onclick="valueOft()">valueOf()方法返回Array对象的原始值。</div>
+  </p>
+  <a name="date"><h1>Date</h1></a>
+  <p>
+    <input type="text" onclick="Datet()" id="A21" value="点击查看当前日期">
+  </p>
+  <input type="text" id="A25" onclick="getDatet()"
+    value="getFullYear() 方法可返回一个表示年份的 4 位数字。">年
+  <input type="text" id="A24" onclick="getDatet()"
+    value="getMonth() 方法可返回表示月份的数字。">月
+  <input type="text" id="A22" onclick="getDatet()"
+    value="getDate() 方法可返回月份的某一天。">日 星期
+  <input type="text" id="A23" onclick="getDatet()"
+    value="getDay() 方法可返回表示星期的某一天的数字">
+  <input type="text" id="A26" onclick="getDatet()"
+    value="getHours() 方法可返回时间的小时字段。">时
+  <input type="text" id="A27" onclick="getDatet()"
+    value="getMinutes() getDatet">分
+  <input type="text" id="A28" onclick="getDatet()"
+    value="getSeconds() 方法可返回时间的秒。">秒
+  <input type="text" id="A29" onclick="getDatet()"
+    value="getMilliseconds() 方法可返回时间的毫秒。">毫秒
+  <p>
+    <input type="text" id="A30" onclick="getTimet()"
+      value="getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。">
+  </p>
+  <p>
+    <input type="text" id="A31" onclick="parset()" value="请输入一个日期">
+  <div onclick="parset()">parse() 方法可解析一个日期时间字符串，并返回 1970/1/1
+    午夜距离该日期时间的毫秒数。</div>
+
+  </p>
+  <p>以下日期默认为 2016年1月1日1时1分1秒1毫秒</p>
+  年
+  <input type="text" id="A34" onclick="setDatet()"
+    value="setFullYear() 方法用于设置年份。"> 月
+  <input type="text" id="A33" onclick="setDatet()"
+    value="setMonth() 方法用于设置月份"> 天
+  <input type="text" id="A32" onclick="setDatet()"
+    value="setDate() 方法用于设置一个月的某一天。"> 时
+  <input type="text" id="A35" onclick="setDatet()"
+    value="setHours() 方法用于设置指定的时间的小时字段。"> 分
+  <input type="text" id="A36" onclick="setDatet()"
+    value="setMinutes() 方法用于设置指定时间的分钟字段。"> 秒
+  <input type="text" id="A37" onclick="setDatet()"
+    value="setSeconds() 方法用于设置指定时间的秒钟字段"> 毫秒
+  <input type="text" id="A38" onclick="setDatet()"
+    value="setMilliseconds() 方法用于设置指定时间的毫秒字段。">
+  <input type="text" id="A39" onclick="setTimet()"
+    value="setTime() 方法以毫秒设置 Date 对象。">
+  <p onclick="fdate()">
+    设置一个完整的日期 <br> <input type="text" id="A40">
+
+  </p>
+  <input type="text" id="A411">年
+  <input type="text" id="A412">月
+  <input type="text" id="A413">日
+  <input type="text" id="A41" onclick="UTCt()" value="在上面依次输入日期">
+  <div onclick="UTCt()">UTC() 方法可根据世界时返回 1970 年 1 月 1 日 到指定日期的毫秒数</div>
+
+  <h1>Math</h1>
+<p>atan() 方法可返回数字的反正切值。
+<input type="text" id="A42" onclick="atant()" value="输入数值点击查看">
+</p>
+
+<p>ceil() 方法可对一个数进行上舍入
+<input type="text" id="A43" onclick="ceilt()" value="输入数值点击查看">
+</p>
+
+<p>atan2() 方法可返回从 x 轴到点 (x,y) 之间的角度
+<input type="text" id="A44" onclick="atan2t()" value="点击查看">
+<input type="text" id="A441" onclick="atan2t()" value="输入数值X">
+<input type="text" id="A442" onclick="atan2t()" value="输入数值Y">
+</p>
+<p>cos() 方法可返回一个数字的余弦值。
+<input type="text" id="A45" onclick="cost()" value="输入数值点击查看">
+</p>
+<p>floor() 方法可对一个数进行下舍入。
+<input type="text" id="A46" onclick="floort()" value="输入数值点击查看">
+</p>
+<p>log() 方法可返回一个数的自然对数。
+<input type="text" id="A47" onclick="logt()" value="输入数值点击查看">
+</p>
+<p>max() 方法可返回两个指定的数中带有较大的值的那个数。
+<input type="text" id="A48" onclick="maxt()" value="点击查看">
+<input type="text" id="A481" value="输入数值点击查看">
+<input type="text" id="A482" value="输入数值点击查看">
+</p>
+<p>min() 方法可返回指定的数字中带有最低值的数字。
+<input type="text" id="A49" onclick="mint()" value="点击查看">
+<input type="text" id="A491" value="输入数值点击查看">
+<input type="text" id="A492" value="输入数值点击查看">
+</p>
+<p>pow() 方法可返回 x 的 y 次幂的值。
+<input type="text" id="A50" onclick="powt()" value="点击查看">
+<input type="text" id="A501" value="输入数值点击查看">
+<input type="text" id="A502" value="输入数值点击查看">
+</p>
+<p>random() 方法可返回介于 0 ~ 1 之间的一个随机数。
+<input type="text" id="A51" onclick="randomt()" value="点击查看">
+</p>
+<p>round() 方法可把一个数字舍入为最接近的整数。
+<input type="text" id="A52" onclick="roundt()" value="点击查看">
+</p>
+<p>sqrt() 方法可返回一个数的平方根。
+<input type="text" id="A53" onclick="sqrtt()" value="点击查看">
+</p>
+<a name="Number"><h1>Number</h1></a>
+<p>toFixed() 方法可把 Number 四舍五入为指定小数位数的数字。<br>
+(设置默认值为3.141592654)
+<input type="text" id="A54" onclick="toFixedt()" value="点击查看">
+</p>
+<p>toExponential() 方法可把对象的值转换成指数计数法。
+<input type="text" id="A55" onclick="toExponentialt()" value="点击查看">
+<input type="text" id="A551" value="输入数值">
+<input type="text" id="A552" value="输入指数计数法中的小数位数">
+</p>
+<a name="String"><h1>String</h1></a>
+</p>
+<p>big() 方法用于把字符串显示为大号字体。在HTML代码为big标签
+<input type="button" onclick="bigt()" id="A56" value="点击查看效果">
+<div id="A561">点击试试</div>
+</p>
+<p>blink() 方法用于显示闪动的字符串。在HTML代码为bink标签
+<input type="button" onclick="blinkt()" id="A57" value="点击查看效果">
+<div id="A571"> 点击试试</div>
+</p>
+<p>bold() 方法用于把字符串显示为粗体。在HTML代码为b标签。
+<input type="button" onclick="boldt()" id="A58" value="点击查看效果">
+<div id="A581">点击查看效果</div>
+</p>
+<p>charAt() 方法可返回指定位置的字符。
+<input type="button" onclick="charAtt()" id="A59" value="点击查看效果">
+<input type="text" value="请输入一个字符串" id="A592">
+<input type="text" value="请输入字符串下标位置" id="A593"><div id="A591">输出结果：</div>
+</p>
+<p>charCodeAt() 方法可返回指定位置的字符的 Unicode 编码。这个返回值是 0 - 65535 之间的整数。
+<input type="button" onclick="charCodeAtt()" id="A60" value="点击查看效果">
+<input type="text" value="请输入一个字符串" id="A601">
+<input type="text" value="请输入字符串下标位置" id="A602">
+<div id="A603">输出结果：</div>
+</p>
+
+<p>fixed() 方法用于把字符串显示为打字机字体。在HTML代码为tt标签
+<input type="button" onclick="fixedt()" id="A61" value="点击查看效果">
+<input type="text" value="请输入一个字符串" id="A611">
+<div id="A612">输出结果：</div>
+</p>
+
+
+<p>fontcolor() 方法用于按照指定的颜色来显示字符串。font标签 color属性
+<input type="button" onclick="fontcolort()" id="A62" value="点击查看效果">
+<input type="text" value="请输入一个字符串" id="A621">
+<input type="text" value="颜色值" id="A623">
+<div id="A622">输出结果：</div>
+</p>
+
+<p>fontsize() 方法用于按照指定的尺寸来显示字符串。font标签 size属性
+<input type="button" onclick="fontsizet()" id="A63" value="点击查看效果">
+<input type="text" value="请输入一个字符串" id="A631">
+<input type="text" value="值为1至7数字" id="A632">
+<div id="A633">输出结果：</div>
+</p>
+
+<p>fromCharCode() 可接受一个指定的 Unicode 值，然后返回一个字符串。
+<input type="button" onclick="fromCharCodet()" id="A64" value="点击查看效果">
+<input type="text" value="请输入Unicode 值" id="A641">
+<div id="A642">输出结果：</div>
+</p>
+
+<p>indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+<input type="button" onclick="indexOft()" id="A65" value="点击查看效果">
+<input type="text" value="请输入字符串" id="A651">
+<input type="text" value="请输入指定的字符串" id="A652">
+<div id="A653">输出结果：</div>
+</p>
+
+<p>lastIndexOf() 方法可返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索。
+<input type="button" onclick="lastIndexOft()" id="A66" value="点击查看效果">
+<input type="text" value="请输入字符串" id="A661">
+<input type="text" value="请输入指定的字符" id="A662">
+<div id="A663">输出结果：</div>
+</p>
+
+<p>link() 方法用于把字符串显示为超链接。相当于a标签
+<input type="button" onclick="linkt()" id="A67" value="点击查看效果">
+<input type="text" value="超链接显示名称" id="A671">
+<input type="text" value="地址" id="A672">
+<div id="A673">输出结果：</div>
+</p>
+
+<p>localeCompare() 用本地特定的顺序来比较两个字符串。相等返回0，数字1大于数字2返回1，数字1小于数字2返回-1
+<input type="button" onclick="localeComparet()" id="A68" value="点击查看效果">
+<input type="text" value="数字1" id="A681">
+<input type="text" value="数字2" id="A682">
+<div id="A683">输出结果：</div>
+</p>
+
+</body>
+</script>
+</html>

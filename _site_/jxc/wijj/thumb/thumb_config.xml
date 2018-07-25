@@ -1,0 +1,16 @@
+<krpano>
+<config>
+<groups name="KRpanocms">
+<group name="group_1" title="外景">
+<pano name="scene1">
+<info title="风景" thumburl="%SWFPATH%/images/scene1/thumb.jpg"/>
+</pano>
+</group>
+<group name="group_2" title="内景">
+<pano name="scene2">
+<info title="家全景" thumburl="%SWFPATH%/images/scene2/thumb.jpg"/>
+</pano>
+</group>
+</groups>
+</config>
+</krpano>

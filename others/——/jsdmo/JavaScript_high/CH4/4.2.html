@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			function f1() {}
+			f1.name // 'f1'
+
+			var f2 = function() {};
+			f2.name // ''
+
+			var f3 = function myName() {};
+			f3.name // 'myName'
+
+			var multiline = function(fn) {
+				var arr = fn.toString().split('\n');
+				return arr.slice(1, arr.length - 1).join('\n');
+			};
+
+			function f() {
+				/*
+				  这是一个
+				  多行注释
+				*/
+			}
+
+			multiline(f);
+			// " 这是一个
+			//   多行注释"
+
+			var a = 1;
+			var x = function() {
+				console.log(a);
+			};
+
+			function f() {
+				var a = 2;
+				x();
+			}
+
+			f() // 1
+
+			function foo() {
+				var x = 1;
+
+				function bar() {
+					console.log(x);
+				}
+				return bar;
+			}
+
+			var x = 2;
+			var f = foo();
+			f() // 1
+
+			var f = function(one) {
+				console.log(arguments[0]);
+				console.log(arguments[1]);
+				console.log(arguments[2]);
+			}
+
+			f(1, 2, 3)
+				// 1
+				// 2
+				// 3
+
+			var args = Array.prototype.slice.call(arguments);
+
+			// or
+
+			var args = [];
+			for(var i = 0; i < arguments.length; i++) {
+				args.push(arguments[i]);
+			}
+		</script>
+	</body>
+
+</html>

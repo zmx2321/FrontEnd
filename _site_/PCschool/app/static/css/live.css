@@ -1,0 +1,141 @@
+
+.live-container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.live-show-container {
+    box-sizing: border-box;
+    height: 556px;
+    font-size: 0;
+}
+
+.live-show-box {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    width: 780px;
+    height: 100%;
+    margin: 0 10px 0 0;
+    background: white;
+    border-radius: 5px;
+}
+
+.live-show-box-header {
+    box-sizing: border-box;
+    height: 66px;
+    width: 100%;
+    margin: 20px 0 30px 0;
+    padding: 0 30px;
+}
+
+.live-show-chat {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    width: 290px;
+    background: white;
+    height: 556px;
+    /*overflow-y: scroll;*/
+    border-radius: 5px;
+    padding: 30px 0 0 0;
+    overflow: hidden;
+}
+
+.live-show-box-screen {
+    box-sizing: border-box;
+    height: 440px;
+    overflow: hidden;
+}
+
+.live-show-chat-container {
+    box-sizing: border-box;
+    height: 450px;
+    overflow-y: scroll;
+    margin: 0 -16px 0 20px;
+    padding: 0 20px 30px 0;
+}
+
+.live-show-chat-footer {
+    width: 270px;
+    margin: 24px auto;
+    position: relative;
+}
+
+.live-show-chat-footer input {
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #e6e6e6;
+    height: 40px;
+    width: 100%;
+    padding: 0 80px 0 30px;
+    background: #f5f5f5;
+    border-radius: 20px;
+}
+
+.live-show-chat-footer span {
+    box-sizing: border-box;
+    display: inline-block;
+    position: absolute;
+    width: 74px;
+    height: 40px;
+    background: #EC2D4D;
+    border-radius: 0 20px 20px 0;
+    color: white;
+    right: 0;
+    top: 0;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.live-table-container {
+
+}
+
+.live-show-box-screen-content {
+    height: 440px;
+    width: 100%;
+}
+
+.teacher-header-img-fang {
+    width: 64px;
+    height: 64px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.live-show-box-header-title {
+    box-sizing: border-box;
+    display: inline-block;
+    width: auto;
+    margin: 0 0 0 24px;
+    vertical-align: top;
+}
+
+.live-show-box-header-title p {
+    margin: 0 0 20px 0;
+    color: #333333;
+    font-size: 18px;
+
+}
+
+.live-show-chat-li {
+    margin: 10px 0 0 0;
+    line-height: 200%;
+    color: #666666;
+}
+
+.live-show-chat-li span {
+    color: #C0A772;
+}
+
+.live-table-container {
+    box-sizing: border-box;
+    background: white;
+    border-radius: 5px;
+    height: 480px;
+    margin: 30px 0 0 0;
+}

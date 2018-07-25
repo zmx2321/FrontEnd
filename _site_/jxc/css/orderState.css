@@ -1,0 +1,350 @@
+.order_state_all{
+    font-size: 0.24rem;
+}
+
+/* order_state_top s */
+.order_state_top_wrap{
+	width: 100%;
+	min-height: 2rem;
+	background: #fff;
+	margin-bottom: 0.16rem;
+}
+
+.order_state_top{
+	width: 100%;
+	min-height: 2rem;
+	border-top: solid 1px #ccc;
+}
+
+.ordste_title{
+	width: 100%;
+	height: 2.1rem;
+	overflow: hidden;
+	background: #00cd00;
+}
+
+.ordste_title ul{
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+    margin: 0 0.68rem;
+}
+
+.ordste_title li:nth-child(odd){
+	float: left;
+	font-size: 0.36rem;
+	color: #fff;
+}
+
+.ordste_title li:nth-child(even){
+    float: right;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: -0.38rem;
+    overflow: hidden;
+}
+
+.ordste_title dl{
+    margin-top: -0.18rem;
+}
+
+.ordste_title dd:nth-child(2){
+    font-size: 0.24rem;
+    margin-top: 0.1rem;
+}
+
+.ordste_cont ul{
+    margin: 0.24rem;
+}
+
+.ordste_cont ul > li{
+	float: left;
+    padding-bottom: 0.24rem;
+}
+
+.ordste_cont ul > li:first-child{
+	width: 0.7rem;
+    height: 0.7rem;
+    overflow: hidden;
+    margin-right: 0.22rem;
+}
+
+.ordste_cont dd{
+    margin-bottom: 0.15rem;
+    font-size: 0.28rem;
+}
+
+.ordste_cont dd:last-child{
+	margin-bottom: 0;
+}
+
+.ordste_cont ol li{
+	display: inline-block;
+}
+/* myorder_cont s */
+.modrct_btn ul{
+    font-size: 0;
+}
+
+.modrct_btn li{
+	height: 0.58rem;
+    line-height: 0.58rem;
+    overflow: hidden;
+    display: inline-block;
+    width: 3.5rem;
+    text-align: center;
+    margin-top: 0.08rem;
+    position: relative;
+}
+
+.modrct_btn li:first-child{
+	border-right: solid 1px #ccc; 
+}
+
+.modrct_btn li button{
+	width: 100%;
+	height: 100%;
+	display: block;
+	font-size: 0.24rem;
+    margin-left: 0.4rem;
+}
+
+.modrct_btn li button::before{
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    position: absolute;
+    margin-left: -0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-size: 100%; 
+}
+
+.lxmj::before{
+	background: url(../images/lxmj.png) top no-repeat;
+
+}
+
+.bddh::before{
+	background: url(../images/bddh.png);
+}
+/* myorder_cont e */
+/* order_state_top e */
+
+/* order_state_cont s */
+.ordstat_list{
+	width: 100%;
+	min-height: 2rem;
+	margin-bottom: 0.16rem;
+	
+}
+
+.ordstat_dtl{
+    margin-bottom: 0.16rem;
+    background: #fff;
+}
+
+.ordstat_info{
+    margin-top: 0.16rem;
+}
+
+.ordstat_info .modrct_cot{
+    padding: 0.2rem 0;
+}
+
+.ordstat_info span{
+    margin-left: 0.16rem;
+}
+
+.ordstat_info li{
+    margin-bottom: 0.1rem;
+}
+
+.ordstat_info li:last-child{
+    margin: 0;
+}
+/* order_state_cont e */
+
+.zc_ordstat_list{
+    border-bottom: solid 1px #efefef;
+    padding-bottom: 0.2rem;
+    background: #fff;
+}
+
+.zc_ordstat_num{
+    border-bottom: solid 1px #efefef;
+    min-height: 0.8rem;
+    padding-bottom: 0.2rem;
+}
+
+.zc_ordstat_num span{
+    color: #666;
+}
+
+.zc_odi_l{
+    float: left;
+    margin-top: 0.1rem;
+}
+
+.zc_odi_l .price {
+    color: #00cd00;
+    font-size: 0.3rem;
+}
+
+.zc_odi_l span {
+    display: block;
+}
+
+.zc_odi_r {
+    float: right;
+    margin-top: 0.45rem;
+}
+
+.zc_odt_pic {
+    width: 1.1rem;
+    height: 1.1rem;
+    overflow: hidden;
+}
+
+.zc_odt_pic, .zc_odt_txt {
+    float: left;
+    margin-top: 0.16rem;
+}
+
+.zc_odt_txt {
+    width: 5.6rem;
+    margin-left: 0.15rem;
+}
+
+.ordste_cont{
+    display: none;
+}
+
+.zc_ordstat_cot {
+    margin-top: -0.16rem;
+}
+
+.zc_ordstat_tit{
+    width: 100%;
+    height: 0.6rem;
+    background: #fff;
+    overflow: hidden;
+    border-bottom: solid 1px #efefef;
+    line-height: 0.6rem;
+    position: relative;
+}
+
+.zc_od_s{
+    color: #00cd00;
+}
+
+.zc_od_t{
+    margin-left: 0.5rem;
+}
+
+.zc_od_t::before {
+    content: '';
+    width: 0.44rem;
+    height: 0.44rem;
+    position: absolute;
+    top: 0.08rem;
+    left: 0.24rem;
+    overflow: hidden;
+    background: url(../images/btn-sjzy.png) top no-repeat;
+    background-size: 100%;
+}
+
+.jqtip{
+    border-top: solid 1px transparent;
+}
+
+.jqtip_txt{
+    min-height: 2.4rem;
+    border-bottom: solid 1px #efefef;
+}
+
+.jqtip_num{
+    min-height: 1.5rem;
+    border-bottom: solid 1px #efefef;
+}
+
+.jqtip_rul{
+    min-height: 3.24rem;
+    border-bottom: solid 1px #efefef;
+}
+
+.jqtip_txt li, .jqtip_rul li{
+    margin-bottom: 0.2rem;
+}
+
+.jqtip_txt dd:first-child, .jqtip_rul dd:first-child{
+    color: #999;
+    width: 1.5rem;
+    margin-right: 0;
+}
+
+.jqtip_txt dd:last-child{
+    font-size: 0.24rem;
+}
+
+.jqtip dd{
+    float: initial;
+}
+
+.jqtip_txt ul, .jqtip_rul ul{
+    margin-top: 0.3rem;
+}
+
+.jqtip_rul dd{
+    float: left;
+}
+
+.jqtip_rul dd:last-child{
+    width: 5.5rem;
+}
+
+.jqtip_num_l{
+    float: left;
+}
+
+.jqtip_num_r{
+    float: right;
+    width: 1.5rem;
+    height: 0.7rem;
+    margin-top: 0.35rem;
+    border-left: solid 1px #efefef;
+    position: relative;
+}
+
+.jqtip_num_r img{
+    position: absolute;
+    width: 0.36rem;
+    height: 0.36rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.jqtip_num_r span{
+    font-size: 0.2rem;
+    text-align: center;
+    display: block;
+    margin-top: 0.45rem;
+}
+
+.jqtip_num_l{
+    float: left;
+}
+
+.jqtip_num_l ul{
+    margin-top: 0.35rem;
+}
+
+.jqtip_num_l li:first-child{
+    margin-bottom: 0.12rem;
+}
+
+.jqtip_num_l li:last-child{
+    color: #000;
+    font-weight: bold;
+    font-size: 0.3rem;
+}

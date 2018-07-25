@@ -1,0 +1,411 @@
+<section>
+    <div class="course-container">
+        <div class="courseMain">
+            <div class="courseMain-container">
+                <div>
+                    <!--ng-bind="course.course.name"-->
+                    <div class="courseMain-dv">
+                        {{courseInfo.name}}
+                    </div>
+                </div>
+                <div class="courseMain-Raiders">
+                    <div class="Raiders-video">
+                        <iframe ng-src="{{videoUrl | trusted}}" frameborder="0" width="960px" height="540px"></iframe>
+                    </div>
+                </div>
+                <div class="courseMain-Explain">
+                    <ul>
+                        <li ng-class={"li-active":iseavWenShow===0} ng-click="iseavWen(0)">课程说明</li>
+                        <li ng-class={"li-active":iseavWenShow===1} ng-click="iseavWen(1)">问答</li>
+                        <li ng-class={"li-active":iseavWenShow===2} ng-click="iseavWen(2)">课程评价</li>
+                    </ul>
+                    <div class="courseMain-gooddv">
+                        <div class="courseMain-good" ng-if="!isGoodShow" ng-click="isGood()">
+                            <img src="static/images/coures-good1.gif">
+                            <span>赞</span>
+                        </div>
+                        <div class="courseMain-good1" ng-if="isGoodShow" ng-click="isGood1()">
+                            <!--赞的图片-->
+                            <img src="static/images/coures-good2.gif">
+
+                            <span>已赞</span>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <!--课程信息区-->
+
+            <div class="course-info-container">
+
+                <!--课程说明-->
+                <div class="course-Introduction" ng-show="iseavWenShow===0">
+                    <div ng-bind-html="mainContent | to_trusted"></div>
+                    <div class="course-content-lack" ng-show="lackMainPoint">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>老师可能还暂时没添加内容哦，同学们耐心等待一下</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--课程评价-->
+                <div class="course-evaluateModel" ng-show="iseavWenShow===2">
+                    <!--进度评价-->
+                    <div class="course-evaluateBox">
+                        <div class="course-evaluate">
+                            <div class="course-evaluateHope">
+                                <span>课程内容是否有帮助</span>
+
+                                <div class="Hope curren">
+                                    <i class="course-evaluateHope-r"></i>
+                                    <i class="course-evaluateHope-h"></i>&nbsp;&nbsp;
+                                    <span>4.7分</span>
+                                </div>
+                            </div>
+                            <div class="course-evaluateExplain">
+                                <span>老师讲解是否清楚</span>
+
+                                <div class="Explain curren">
+                                    <i class="course-evaluateExplain-r"></i>
+                                    <i class="course-evaluateExplain-h"></i>&nbsp;&nbsp;
+                                    <span>4.8分</span>
+                                </div>
+                            </div>
+                            <div class="course-evaluateAtmosphere">
+                                <span>课堂氛围活跃互动性强</span>
+
+                                <div class="Atmosphere curren">
+                                    <i class="course-evaluateAtmosphere-r"></i>
+                                    <i class="course-evaluateAtmosphere-h"></i>&nbsp;&nbsp;
+                                    <span>5.0分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-white btn-big" ng-click="showEvaluation()">去评价</button>
+                        <div class="clear"></div>
+                    </div>
+
+                    <!--文字评价-->
+                    <div class="course-evaluateWrite">
+                        <div class="evaluateWrite-eva" ng-repeat="dis in discusses">
+                            <div class="evaluateWrite-img">
+                                <div class="img-auto-container evaluate-student-header">
+                                    <img src="" alt="" studentheader="dis-who">
+                                </div>
+                            </div>
+                            <div class="evaluateWrite-eva-right">
+                                <h4>{{(dis.who | studentInfo).summoner}}</h4>
+
+                                <p ng-bind="dis.content"></p>
+                                <span>{{dis.addDate | dateText }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!--<span ng-click="">回复</span>-->
+                            </div>
+                        </div>
+                        <!--<div class="evaluateWrite-eva">-->
+                        <!--<div class="evaluateWrite-img">-->
+                        <!--<img src="static/images/evaluateSer.png">-->
+                        <!--</div>-->
+                        <!--<div class="evaluateWrite-eva-right">-->
+                        <!--<h4>起舞</h4>-->
+
+                        <!--<p>杭州，简称杭，是浙江省省会，位于中国东南沿海、浙江省北简称杭，是浙江省省会，位于中国东南沿海、-->
+                        <!--浙江省北部简称杭，是浙江省省会，位于中国东南沿海、浙江省北部部、钱塘江下游北岸、京杭大运河南端，-->
+                        <!--是浙江省的政治、经济、文化、科教、交通、传媒、通信和金融中心。杭州是著名的旅游城市，-->
+                        <!--以风景秀丽著称。与苏州并称“苏杭”，素有“上有天堂下有苏杭”的美誉。-->
+                        <!--杭州是吴越文化的发源地之一，历史文化积淀深厚。其中主要代表性的独特文化有良渚文化、-->
+                        <!--丝绸文化、茶文化、以及流传下来的许多故事传说成为杭州文化的代表。-->
+                        <!--依托沪杭铁路等铁路线路的通车以及上海在进出口贸易方面的带动，轻工业发展迅速。-->
+                        <!--</p>-->
+                        <!--<span>2016-12-12 12:25</span>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                        <!--<span>回复</span>-->
+
+                        <!--&lt;!&ndash;弹出框，发送按钮样式&ndash;&gt;-->
+                        <!--<div class="evaluateWrite-eva-bom">-->
+                        <!--<img src="static/images/evaluateSer.png">-->
+
+                        <!--<div class="evaluateWrite-eva-bom_text">-->
+                        <!--<textarea type="text"/>-->
+                        <!--</div>-->
+                        <!--<a href="#" class="btn1 btn-red1">发送</a>-->
+                        <!--</div>-->
+
+                        <!--&lt;!&ndash;发送回复显示&ndash;&gt;-->
+                        <!--<div class="evaluateWrite-eva-Reply">-->
+                        <!--<div class="evaluateWrite-eva-ReplyLeft">-->
+                        <!--<img src="static/images/evaluateSer.png" >-->
+                        <!--<span>起舞</span>-->
+                        <!--</div>-->
+                        <!--<p>杭州，简称杭，是浙江省省会，位于中国东南沿海、浙江省北部、钱塘江下游北岸、京杭大运河南端 。-->
+                        <!--杭州，简称杭，是浙江省省会，位于中国东南沿海、浙江省北部、钱塘江下游北岸、京杭大运河南端 。-->
+                        <!--</p>-->
+                        <!--<span>昨天 16:25</span>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                        <!--<span>回复</span>-->
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="course-evaluate-lack" ng-show="lackDiscusses">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>沙发空缺中，赶快来抢啊</span>
+                        </div>
+                    </div>
+                </div>
+                <!--问答模块 s-->
+                <div class="courseAnswer" ng-show="iseavWenShow===1">
+                    <div class="courseask_box">
+                        <header>
+                            <span>提问</span>
+                        </header>
+                        <div class="courseAnswer_ask">
+                            <ul>
+                                <li>
+                                    <div class="ask_headport">
+                                        <img selfheader alt="">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ask_text">
+                                        <textarea ng-model="askContent"></textarea>
+                                    </div>
+                                </li>
+                                <li>
+                                    <button class="btn btn-red" ng-click="question()">提问</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="courseanswer_box">
+                        <header>
+                            <span>老师回答</span>
+                        </header>
+                        <div class="courseanswer_cont">
+                            <ul ng-repeat="q in questions">
+                                <li>
+                                    <div class="courseanswer_top">
+                                        <div class="corser_left">
+                                            <dl>
+                                                <dd>
+                                                    <img src="static/images/ask_headport.png" alt=""
+                                                         studentheader="q-studentNum">
+                                                </dd>
+                                                <dd>{{q.question}}</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="corser_right">
+                                            <ul>
+                                                <li>{{q.studentNum| bindsummoner}}</li>
+                                                <li>{{q.addTime | dateText}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="courseanswer_botton" ng-show="q.answer !=null">
+                                        <div class="courseanswer_pic">
+                                            <img src="{{course.course.actionId | teacherheader}}" alt="">
+                                        </div>
+                                        <div class="courseanswer_txt">
+                                            <ul>
+                                                <li>{{(course.course.actionId | teacherInfo).name}}</li>
+                                                <li>{{q.answer}}
+                                                </li>
+                                                <li>{{q.answerTime | dateText}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="courseAnswer-lack" ng-show="lackQuestions">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>此课程还未有提问，快向老师提出你的问题吧！</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--问答模块 e-->
+        </div>
+
+
+        <!--弹窗-->
+        <div class="mask-layer" ng-show="isShowMask">
+            <div class="mask-layer-content-middel" ng-show="isShowEvaluation">
+                <div class="mask-layer-close" ng-click="closeEvaluation()">
+                    <img src="static/images/icon/icon_close_normal.png" alt="">
+                </div>
+                <div class="mask-layer-body">
+                    <div class="service-evaluation-modal">
+                        <!--<div class="evaluation-score-side">-->
+                        <!--<header>已完成课程</header>-->
+                        <!--<article>-->
+                        <!--<div>-->
+                        <!--<img src="static/images/icon/icon_rili.png" alt="">-->
+
+                        <!--<div>-->
+                        <!--<div>艾欧尼亚</div>-->
+                        <!--<div>生死局助阵</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</article>-->
+                        <!--<footer>-->
+                        <!--<div>时间:<span>2016年11月28日</span></div>-->
+                        <!--<div>老师:<span>蓝阳老师</span></div>-->
+                        <!--</footer>-->
+                        <!--</div>-->
+                        <div class="evaluation-score-main">
+                            <div class="service-evaluation-modal-score">
+                                <header>请为该课程打分<span></span></header>
+                                <div>课程内容是否有帮助
+                                    <span class="score-list">
+                            <span>{{help}}</span>
+                            <ul>
+                                <li ng-click="getSerHelp(1)">1</li>
+                                <li ng-click="getSerHelp(2)">2</li>
+                                <li ng-click="getSerHelp(3)">3</li>
+                                <li ng-click="getSerHelp(4)">4</li>
+                                <li ng-click="getSerHelp(5)">5</li>
+                            </ul>
+                             <ol ng-if="help===1" class="score-list-red score-list-red1 ">
+                                 <li ng-click="getSerHelp(1)">1</li>
+                             </ol>
+                             <ol ng-if="help===2" class="score-list-red score-list-red2 ">
+                                 <li ng-click="getSerHelp(1)">1</li>
+                                 <li ng-click="getSerHelp(2)">2</li>
+                             </ol>
+                             <ol ng-if="help===3" class="score-list-red score-list-red3 ">
+                                 <li ng-click="getSerHelp(1)">1</li>
+                                 <li ng-click="getSerHelp(2)">2</li>
+                             </ol>
+                             <ol ng-if="help===3" class="score-list-red score-list-red3 ">
+                                 <li ng-click="getSerHelp(1)">1</li>
+                                 <li ng-click="getSerHelp(2)">2</li>
+                                 <li ng-click="getSerHelp(3)">3</li>
+                             </ol>
+                             <ol ng-if="help===4" class="score-list-red score-list-red4 ">
+                                 <li ng-click="getSerHelp(1)">1</li>
+                                 <li ng-click="getSerHelp(2)">2</li>
+                                 <li ng-click="getSerHelp(3)">3</li>
+                                 <li ng-click="getSerHelp(4)">4</li>
+                             </ol>
+                             <ol ng-if="help===5" class="score-list-red score-list-red5 ">
+                                 <li ng-click="getSerHelp(1)">1</li>
+                                 <li ng-click="getSerHelp(2)">2</li>
+                                 <li ng-click="getSerHelp(3)">3</li>
+                                 <li ng-click="getSerHelp(4)">4</li>
+                                 <li ng-click="getSerHelp(5)">5</li>
+                             </ol>
+                                        <!--<ol ng-if="help==='5分'" class="score-list-red score-list-red5 ">-->
+                                        <!--<li ng-click="getSerHelp(1)">1</li>-->
+                                        <!--<li ng-click="getSerHelp(2)">2</li>-->
+                                        <!--<li ng-click="getSerHelp(3)">3</li>-->
+                                        <!--<li ng-click="getSerHelp(4)">4</li>-->
+                                        <!--<li ng-click="getSerHelp(5)">5</li>-->
+                                        <!--</ol>-->
+                        </span>
+                                </div>
+                                <div>
+                                    老师讲解是否清楚
+                                    <span class="score-list">
+                            <span>{{attitude}}</span>
+                            <ul>
+                                <li ng-click="getSerAttitude(1)">1</li>
+                                <li ng-click="getSerAttitude(2)">2</li>
+                                <li ng-click="getSerAttitude(3)">3</li>
+                                <li ng-click="getSerAttitude(4)">4</li>
+                                <li ng-click="getSerAttitude(5)">5</li>
+                            </ul>
+                             <ol ng-if="attitude===1" class="score-list-t score-list-t1 ">
+                                 <li ng-click="getSerAttitude(1)">1</li>
+                             </ol>
+                             <ol ng-if="attitude===2" class="score-list-t score-list-t2 ">
+                                 <li ng-click="getSerAttitude(1)">1</li>
+                                 <li ng-click="getSerAttitude(2)">2</li>
+                             </ol>
+                             <ol ng-if="attitude===3" class="score-list-t score-list-t3 ">
+                                 <li ng-click="getSerAttitude(1)">1</li>
+                                 <li ng-click="getSerAttitude(2)">2</li>
+                                 <li ng-click="getSerAttitude(3)">3</li>
+                             </ol>
+                             <ol ng-if="attitude===4" class="score-list-t score-list-t4 ">
+                                 <li ng-click="getSerAttitude(1)">1</li>
+                                 <li ng-click="getSerAttitude(2)">2</li>
+                                 <li ng-click="getSerAttitude(3)">3</li>
+                                 <li ng-click="getSerAttitude(4)">4</li>
+                             </ol>
+                             <ol ng-if="attitude===5" class="score-list-t score-list-t5 ">
+                                 <li ng-click="getSerAttitude(1)">1</li>
+                                 <li ng-click="getSerAttitude(2)">2</li>
+                                 <li ng-click="getSerAttitude(3)">3</li>
+                                 <li ng-click="getSerAttitude(4)">4</li>
+                                 <li ng-click="getSerAttitude(5)">5</li>
+                             </ol>
+                        </span>
+                                </div>
+                                <div>
+                                    课堂氛围活跃互动性强
+                                    <span class="score-list">
+                            <span>{{aptitude}}</span>
+                            <ul>
+                                <li ng-click="getSerAptitude(1)">1</li>
+                                <li ng-click="getSerAptitude(2)">2</li>
+                                <li ng-click="getSerAptitude(3)">3</li>
+                                <li ng-click="getSerAptitude(4)">4</li>
+                                <li ng-click="getSerAptitude(5)">5</li>
+                            </ul>
+                             <ol ng-if="aptitude===1" class="score-list-y score-list-y1 ">
+                                 <li ng-click="getSerAptitude(1)">1</li>
+                             </ol>
+                             <ol ng-if="aptitude===2" class="score-list-y score-list-y2 ">
+                                 <li ng-click="getSerAptitude(1)">1</li>
+                                 <li ng-click="getSerAptitude(2)">2</li>
+                             </ol>
+                             <ol ng-if="aptitude===3" class="score-list-y score-list-y3 ">
+                                 <li ng-click="getSerAptitude(1)">1</li>
+                                 <li ng-click="getSerAptitude(2)">2</li>
+                                 <li ng-click="getSerAptitude(3)">3</li>
+                             </ol>
+                             <ol ng-if="aptitude===4" class="score-list-y score-list-y4 ">
+                                 <li ng-click="getSerAptitude(1)">1</li>
+                                 <li ng-click="getSerAptitude(2)">2</li>
+                                 <li ng-click="getSerAptitude(3)">3</li>
+                                 <li ng-click="getSerAptitude(4)">4</li>
+                             </ol>
+                             <ol ng-if="aptitude===5" class="score-list-y score-list-y5 ">
+                                 <li ng-click="getSerAptitude(1)">1</li>
+                                 <li ng-click="getSerAptitude(2)">2</li>
+                                 <li ng-click="getSerAptitude(3)">3</li>
+                                 <li ng-click="getSerAptitude(4)">4</li>
+                                 <li ng-click="getSerAptitude(5)">5</li>
+                             </ol>
+                        </span>
+                                </div>
+                            </div>
+                            <div class="service-evaluation-modal-text">
+                                <header>请写下您的收获</header>
+                                <textarea cols="30" rows="10" ng-model="courseEvaluationText"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mask-layer-footer">
+                    <button class="btn btn-red btn-big " ng-click="doDiscuss()">完成</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

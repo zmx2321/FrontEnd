@@ -1,0 +1,193 @@
+<!-- import -->
+<import src="../../../common/nav.wxml" />
+<!-- /import -->
+
+<!-- nav_wrap -->
+<template is="nav" />
+<!-- /nav_wrap -->
+
+<!-- swiper -->
+<!-- tab -->
+<view class="swp_tab tcc_tab">
+  <!-- villagers_rm -->
+  <view class="villagers_rm tab_item {{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav">热门</view>
+  <!-- /villagers_rm  -->
+
+  <!-- villagers_a -->
+  <view class="villagers_a tab_item {{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav">村产共建</view>
+  <!-- /villagers_a  -->
+
+  <!-- villagers_b -->
+  <view class="villagers_b tab_item {{currentTab==2 ? 'active' : ''}}" data-current="2" bindtap="swichNav">乡村招商</view>
+  <!-- /villagers_b   -->
+
+  <!-- villagers_c -->
+  <view class="villagers_c tab_item {{currentTab==3 ? 'active' : ''}}" data-current="3" bindtap="swichNav">村产交易</view>
+  <!-- /villagers_c   -->
+</view>
+<!-- /tab -->
+
+<!-- cont -->
+<swiper class="tab_cont" current="{{currentTab}}" duration="300" bindchange="bindChange" style="height:{{winHeight-140}}px">
+  <!-- villagers_rm_cot -->
+  <swiper-item class="villagers_rm_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_tcc/raiseDetails_tcc">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">荣誉村民</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——聚村民</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /villagers_rm_cot -->
+
+  <!-- villagers_a_cot -->
+  <swiper-item class="villagers_a_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_tcc/raiseDetails_tcc">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">村产共建</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——聚村民</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /villagers_a_cot -->
+
+  <!-- villagers_b_cot -->
+  <swiper-item class="villagers_b_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">乡村招商</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——聚村民</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /villagers_b_cot -->
+
+  <!-- villagers_c_cot -->
+  <swiper-item class="villagers_c_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">村产交易</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——聚村民</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /villagers_c_cot -->
+</swiper>
+<!-- /cont -->
+<!-- /swiper -->
+
+<!-- tip -->
+<view class="fixbtn">
+  <navigator class="my_message" url="/pages/myMessage/myMessage">
+    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/wd.png"></image>  
+  </navigator>
+</view>
+<!-- /tip -->

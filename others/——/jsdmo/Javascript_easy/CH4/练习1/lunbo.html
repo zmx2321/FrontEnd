@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+	<title></title>
+</head>
+
+ <style type="text/css">
+
+  #box{
+    width: 600px;
+    height: 300px;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  #box>#images{
+     width: 600px;
+     height: 300px;
+     border-radius: 10px;
+     box-shadow: 5px 5px 5px #3c3c3c;
+  }
+
+  #left{
+    position: absolute;
+    height:60px;
+    top: 120px;
+  }
+
+    #right{
+    position: absolute;
+    height:60px;
+    top: 120px;
+    right: 0px;
+  }
+
+ </style>
+<body>
+
+ <div id="box" onmouseenter="stop()" onmouseleave="play()">
+
+ 	<img src="left.png" id="left" onclick="back()">
+
+ 	<img src="img1.jpg" id="images">
+
+    <img src="right.png" id="right" onclick="go()">
+
+ </div>
+
+
+
+<script type="text/javascript">
+  
+  var num = 10;
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <script type="text/javascript">
+ //图片
+ var images = document.getElementById('images');
+ //左边按钮
+ var left = document.getElementById('left');
+ //右边按钮
+ var right = document.getElementById('right');
+ //图片数组
+ var imgArr = new Array('img1.jpg','img2.jpg','img3.jpg','img4.jpg','img5.jpg');
+ //当前图片小标
+ var index = 0;
+ //间歇定时器
+ var inTimes = null;
+ //间歇时间
+ var time = 2000;
+ 
+ 
+ //开启轮播
+  inTimes = setInterval(lunbo,time);
+ 
+  
+ 
+ //轮播
+ function lunbo() {
+   
+    if (index < imgArr.length-1) {
+       images.src = imgArr[++index];
+    }else{
+       index=0;
+       images.src = imgArr[index];
+    }
+ 
+ }
+ //后退
+ function back(){
+   
+   if (index>0) {
+     images.src = imgArr[--index];
+   }
+   
+ 
+ }
+ //前进
+ function go(){
+   
+   if (index<imgArr.length-1) {
+     images.src = imgArr[++index];
+   }
+ 
+ }
+ 
+ //鼠标移入时停止自动轮播
+ function stop(){
+   clearInterval(inTimes);
+     show();
+ }
+ //鼠标移出时开启自动轮播
+ function play(){
+  inTimes = setInterval(lunbo,time);
+  hiden();
+ }
+ 
+ function show(){
+   left.style.display='block';
+   right.style.display='block';
+ }
+ 
+ function hiden(){
+   left.style.display='none';
+   right.style.display='none';
+ }
+ 
+ 
+ 
+ 
+ </script> -->
+</body>
+</html>

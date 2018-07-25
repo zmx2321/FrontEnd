@@ -1,0 +1,468 @@
+﻿<Html>
+		<head>
+	<meta charset="UTF-8" >
+	
+
+
+    <script type="text/javascript">
+/*    	 function  NodeInfo(obj,level) {
+    	 return	getSpace(level)+"nodeName="+obj.nodeName+".....nodeType="+obj.nodeType+".......nodeValue="+obj.nodeValue+"<br>"; 		
+    	}
+    	var str = "";
+    	function nodeList (obj,level) {
+         var arr = obj.childNodes;
+        str +=NodeInfo(obj,level);
+        level++;
+    	for (var i = 0; i < arr.length; i++) {
+    		
+    		if(arr[i].hasChildNodes()){
+    			nodeList(arr[i],level);
+    		}else {
+    			str += NodeInfo(arr[i],level);
+    		}
+    	}
+    		}
+    	function getAll(){
+        nodeList (document,0);
+    	 document.write(str);
+    		}
+
+    		function getSpace(level){
+
+               var s="";
+
+               for (var i = 0; i < level; i++) {
+               	s += "|-----";
+               }
+
+               return s;
+
+    		}
+*/
+    	
+    		
+
+    		 
+
+    		  //绑定单击删除
+    	 function   AddRemove() {
+    		 	 //父容器
+    		 var node = document.getElementById("Grogs");
+         //获取子节点
+    		 	var nodes =  node.childNodes;
+    		 	//alert(nodes.length);
+    		 	for (var i = 0; i < nodes.length; i++) {
+    		 		 //可能会出现空节点，因此判断是否为元素节点再进行删除绑定
+    		 		 if(nodes[i].nodeType==1){
+    		 		 	nodes[i].onclick=remove;
+    		 	}
+    		 }
+    		}
+
+          //点击删除
+    		  function remove() {
+    		  var nodes = 	document.getElementById("Grogs");
+    		  var node = event.srcElement;
+    		 if(node!=="DIV"){
+    		 	node = node.parentNode;
+    		 	}
+    		 	 if(confirm("确定要删除这张图片么？")){
+    		 nodes.removeChild(node);}
+    		 }
+
+  //图片资源
+  var imgs  = new Array('../imgs/imgs1.png','../imgs/imgs2.png','../imgs/imgs3.png','../imgs/imgs4.png','../imgs/imgs5.png'); 
+  //名字信息
+  var names = ['香吉士','蒙奇D.路飞','明哥','娜美','乔巴','撒谎布']; 
+
+   //创建类
+  function LuFei(tuPian,name,price){
+   this.tuPian = tuPian;
+   this.name = name;
+   this.price = price;
+  }
+
+
+
+window.onload = function(){
+	//找ID
+	    window.toast = document.getElementById('toast');
+
+       window.black = document.getElementById('black');
+
+       window.titleImg = document.getElementById('titleImg');
+
+       window.edt = document.getElementById('edt');
+
+       window.gallery= document.getElementById('gallery');
+
+
+      var images =   gallery.getElementsByTagName('img');
+
+      for (var i = 0; i < images.length; i++) {
+               images[i].onclick = function(){
+                   
+                  gallery.style.display='none'; 
+
+                  titleImg.src = this.src;
+
+               }
+      }
+
+
+	//数据集合也就是对象集合
+  var arr = new Array();
+   //循环创建多个对象 
+  for (var i = 0; i < 30; i++) {
+    //生产随机图片
+  	var tuPian = imgs[parseInt(Math.random()*imgs.length)];
+  	var name = names[parseInt(Math.random()*names.length)];
+  	var price = Math.random()*100000;
+  	//将创建的对象存入集合
+   arr[i]=new LuFei(tuPian,name,price);
+   }
+ //找容器对象
+ var Grogs =  document.getElementById('Grogs');
+    //为容器对象循环添加内容（子节点）
+  for (var i = 0; i < arr.length; i++) {
+  	//创建div节点
+     var div = document.createElement('div');
+         div.className='div3';
+     //创建img节点    
+     var img  =  document.createElement('img');
+         img.src=arr[i].tuPian;
+     //创建p节点    
+     var p1  =  document.createElement('p'); 
+         p1.innerHTML= arr[i].name;
+      //给div添加内容   
+     div.appendChild(img);
+     div.appendChild(p1);
+     //给父容器添加子节点
+   Grogs.appendChild(div) ;
+
+ }
+ //绑定删除
+AddRemove();
+}
+
+
+function rem(){
+
+   var Grogs = document.getElementById('Grogs');
+      
+   var  Grogschild  =  Grogs.childNodes;
+
+//删除方式一 Grogs容器 --> Grogschild(子节点集合)
+//从最后删除防止删除不完全
+/*for (var i = Grogschild.length-1; i >= 0; i--) {
+	Grogs.removeChild(Grogschild[i]);	
+ } */
+//第二种 通过while循环 
+//Grogs.hasChildNodes()用于判断Grogs容器还有没有子节点
+while(Grogs.hasChildNodes()){
+	//Grogs.lastChild 获取对象的最后一个子节点
+	Grogs.removeChild(Grogs.lastChild);
+}
+
+}
+
+
+
+function add(){
+   
+   show();
+
+
+
+}
+
+function show(){
+
+	toast.style.display = 'block';
+	black.style.display = 'block';
+}
+
+function cancel(){
+
+	toast.style.display = 'none';
+	black.style.display = 'none';	
+}
+
+function sure(){
+   
+   var imgs = titleImg.src;
+
+   var name = edt.value;
+
+   if (name=='') {
+   	 return alert('请输入名字');
+   }
+   
+var div = document.createElement('div');
+         div.className='div3';
+     //创建img节点    
+     var img  =  document.createElement('img');
+         img.src=imgs;
+     //创建p节点    
+     var p1  =  document.createElement('p'); 
+         p1.innerHTML= name;
+      //给div添加内容   
+     div.appendChild(img);
+     div.appendChild(p1);
+     //给父容器添加子节点
+   Grogs.appendChild(div) ;
+
+    cancel();
+    edt.value = '';
+   alert('添加成功！');
+
+    AddRemove();
+
+
+}
+
+function selectImg(obj){
+  
+  gallery.style.display='block';
+
+}
+
+
+/*
+  上午知识总结,回顾怎么寻找我们DOM树(文档对象模型)中的节点
+    新知识 1.在指定对象创建节点   document.createElement('节点名称');
+           2.javascript面向对象知识与概念
+           3.在指定节点添加新节点 obj(对象名).appendChild(创建的节点名);
+    下午 1.如何删除指定节点。
+         2.商城小项目案列实战！
+    下次课程安排 属性节点对象等等
+*/
+
+
+
+    		 
+    </script>
+
+<style type="text/css">
+	
+	
+	body{
+		background:#B0E2FF;
+		}
+		
+		.div1{
+			background:#C6E2FF;
+			margin: 0 auto;
+			width:1000px;
+			padding: 50px 20px 50px 20px;
+			}
+			
+			.titles{
+				width:100px;
+				height:60px;
+				text-align:center;
+				display:inline-block;
+				text-decoration:none;
+				background:#ffffff;
+			  line-height:60px;
+			  border-bottom: 5px solid #C6E2FF;
+			}
+      .titles:hover{
+      	border-bottom: 5px solid #9C9C9C;
+      	}
+      	     .titles:active{
+      	border-bottom: 5px solid #9C9C9C;
+      	background:#E8E8E8;
+      	color:#00BFFF;
+      	}
+      
+      .bt{
+      	width:100px;
+				height:30px;
+				border-radius:5px;
+				border: 1px solid #fff;
+				background:#00BFFF;
+      	}
+    .bt:hover{
+    		border: 1px solid #878787;
+    	}
+    	
+    	    .bt:active{
+    		border: 1px solid #00BFFF;
+    	}
+
+            .bt2{
+      	width:100px;
+				height:30px;
+				background:#FFFAFA;
+				border: 1px solid #878787;
+      	}	
+      	
+      	.div2{
+      		height:30px;
+      		width:400px;
+      		line-height:30px;
+      		}
+      		
+      		.div3{
+      		height:250px;
+      		width:200px;
+      		background:#ffffff;
+      		display:inline-block;	
+      		margin:10px;
+      		}
+      		
+          .div3>img{
+		      margin:0px;
+		      margin:10px auto;
+		      display: block;
+		      height: 170px;
+		      width: 180px;
+	          }
+
+         .div3>p{
+         text-align:center;
+          }
+
+        #black{
+     	width: 100%;
+     	height: 10000px;
+     	position: fixed;
+     	top: 0px;
+     	left: 0px;
+     	background-color: black;
+     	opacity: 0.6;
+     	display: none;
+     }
+
+     #toast{
+     	position: fixed;
+     	width: 430px;
+     	height:450px;
+     	position: fixed;
+     	left:calc((100vw - 430px) / 2);
+     	top: calc((100vh - 450px) / 2);
+     	background-color: #fff;
+     	border-radius: 10px;
+     	display: none;
+     	box-shadow: 0 0 5px #31c4F5;
+     }
+     #toast>div>img{
+
+     	width:120px;
+     	display: block;
+     	margin: auto;
+     	border: 5px solid #31c4F5;
+     	padding: 0 20px;
+     }
+
+     #toast>h1{
+     	border-bottom: 3px solid #31c4F5;
+     	padding-bottom: 5px; 
+     }
+
+     #toast>input{
+     	width: 350px;
+     	margin-left: 40px;
+     	margin-right: 40px;
+     	height: 40px;
+     	padding: 5px;
+     	box-sizing: border-box;
+     	border:3px solid #31c4F5;
+     }
+          #btn{
+	     padding: 5px 40px;
+        }
+          #btn>button{
+           width: 100px;
+           height: 30px;
+           float: right;
+
+     }
+
+     #title{
+     	position: relative;
+     }
+#title>ul{
+	list-style: none;
+	position: absolute;
+	width:600px;
+	border: 5px solid #3c3c3c;
+	padding: 0;
+	left:-85px;
+	top: -20px;
+	display: none;
+}
+
+#title>ul>li>img{
+	width: 120px;
+	height: 200px;
+}
+
+#title>ul>li{
+	width: 120px;
+	float: left;
+	height: 200px;
+
+}
+#Grogs{
+margin-top:20px;margin-left:55px}
+
+	
+       </style>
+
+		
+	</head>
+	
+	<body>
+		 <audio src="../muisc/bgMuisc2.mp3"  autoplay=true  ></audio>
+		 <div  class="div1">
+		 	  <div style="background:#ffffff;margin-bottom:10px;background:#C6E2FF;">
+			  <img src="../imgs/lufei.jpg" width=140px height="130px" style="display:inline-block;border: 5px solid #fff;" >
+    </div>
+		 	<a class="titles" href="#">相册</a><a class="titles" href="">照片</a><a class="titles" href="">面孔墙</a><a class="titles" href="">视频</a>
+		 	<br>
+		 	<hr>
+		 	<div class="div2">
+		 <input class="bt" type="button" value="全部删除" onclick="rem()"> 
+		 <input class="bt2" type="button" value="创建相册" onclick="add()">
+		 <input class="bt2" type="button" value="展示设置"></div>
+     <!--容器-->
+		 <div id="Grogs">
+
+		 </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+         <!--黑幕-->
+         <div id="black"></div> 
+		 <div id="toast">
+		 <h1>人物头像选择</h1>
+		 <div id="title"><img src="../imgs/imgs1.png" id="titleImg" onclick="selectImg(this)">
+               <ul id="gallery">
+               <li><img src="../imgs/imgs1.png"></li>
+               <li><img src="../imgs/imgs2.png"></li>
+               <li><img src="../imgs/imgs3.png"></li>
+               <li><img src="../imgs/imgs4.png"></li>
+               <li><img src="../imgs/imgs5.png"></li>
+               </ul>
+		   </div>
+		  <h1>人物名称</h1>
+          <input type="text" name="" placeholder='请输入名字!' id="edt">
+
+           <div id="btn"><button onclick="cancel()">取消</button><button onclick="sure()" style="margin-right: 10px;">确认</button></div>
+		 </div>
+	</body>
+	
+</Html>

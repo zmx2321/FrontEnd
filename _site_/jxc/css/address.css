@@ -1,0 +1,170 @@
+.address_all{
+    background: #fff;
+    font-size: 0.24rem;
+}
+
+.address_wrap{
+    margin: 0 0.24rem;
+}
+
+/* senerch_top s */
+.address_top_searh{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    overflow: hidden;
+    border-bottom: solid 1px #ccc;
+}
+
+.address_top_point{
+    width: 100%;
+    min-height: 1.5rem;
+    background: #efefef;
+    border-bottom: solid 1px #e2e2e2;
+    border-top: solid 1px transparent;
+}
+
+.adstph_box{
+    width: 6.2rem;
+    height: 0.6rem;
+    background: #efefef;
+    border-radius: 0.07rem;
+    float: left;
+    overflow: hidden;
+    margin-top: 0.2rem;
+    line-height: 0.6rem;
+    position: relative;
+}
+
+a.adstph_rtn{
+    font-size: 0.28rem;
+    float: left;
+    margin-left: 0.2rem;
+}
+
+.adstph_box li{
+    float: left;
+}
+
+.adstph_box li:first-child{
+    width: 0.4rem;
+    height: 0.4rem;
+    position: absolute;
+    left: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: hidden;
+}
+
+.adstph_box li:first-child img{
+    margin: 0;
+}
+
+.adstph_box li:last-child{
+    margin-left: 0.85rem;
+}
+
+.adstph_box li:last-child input[type="text"]{
+    margin-left: 0.01rem;
+    padding: 0 0.12rem;
+    font-size: 0.28rem;
+    height: 0.45rem;
+    width: 4.5rem;
+    border: none;
+    background: #efefef;
+    color: #333;
+}
+
+.address_top_local{
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    overflow: hidden;
+}
+
+.address_top_local ul{
+    width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-pack: justify;
+}
+
+.address_top_local li:first-child{
+    font-size: 0.28rem;
+}
+
+.address_top_local select{
+    width: 1.35rem;
+    color: #999999;
+    border: none;
+    font-size: 0.24rem;
+}
+
+.address_top_point li{
+    margin: 0.16rem 0;
+}
+
+.address_top_point dt{
+    font-size: 0.28rem;
+    margin-bottom: 0.16rem;
+}
+
+.address_top_point dd{
+    display: inline-block;
+    font-size: 0.3rem;
+    background: #fff;
+    width: 2rem;
+    height: 0.62rem;
+    border: solid 1px #ccc;
+    line-height: 0.65rem;
+    text-align: center;
+    border-radius: 0.07rem;
+    overflow: hidden;
+    margin-right: 0.16rem;
+}
+/* senerch_top e */
+
+/* address_cot s */
+.address_cot{
+    width: 100%;
+}
+
+.address_cot dl{
+
+}
+
+.address_cot dt{
+    font-size: 0.28rem;
+    background: #efefef;
+    height: 0.45rem;
+    line-height: 0.45rem;
+}
+
+.address_cot dd{
+    font-size: 0.3rem;
+    border-bottom: solid 1px #e2e2e2;
+    height: 0.88rem;
+    line-height: 0.88rem;
+}
+
+.address_cot a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 0.28rem;
+}
+
+.navbar{
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.city-picker li{
+    width: 100%;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    border-bottom: solid 1px #e2e2e2;
+    font-size: 0.3rem;
+}
+/* address_cot e */

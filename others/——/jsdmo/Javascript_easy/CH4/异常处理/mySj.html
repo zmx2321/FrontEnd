@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+  <style type="text/css">
+  	
+
+    div{
+    	width: 200px;
+    	height: 200px;
+    	margin: auto;
+    	background: red;
+    }
+
+  </style>	
+</head>
+<body>
+
+   <div id="divs">454545</div>
+ 
+	<script type="text/javascript">
+		
+		var $ = function(val){
+
+           return new Base(val);
+		}
+      
+      function Base(val) {
+
+      	this.nodeList= [].concat(LookingForNode(val));
+      	
+      	this.css = function(attr,val){
+              for (var i = 0; i < this.nodeList.length; i++) {
+              	   this.nodeList[i].style[attr] = val;
+              }
+              return this;
+      	}
+
+      	this.click = function(Event,fun){ 
+
+      		  for (var i = 0; i < this.nodeList.length; i++) {
+              	 this.nodeList[i]['on'+Event] = fun;
+              }
+              return this;
+      	}
+
+      }
+
+
+      function LookingForNode(val){
+      	 var nodeList = new Array();
+         var key = val.charAt(0);
+         var _val= val.substring(1,val.length);
+           switch(key){
+            case  '#':
+             nodeList.push(document.getElementById(_val));
+             break;
+            case  '.':
+            var targ = document.getElementsByClassName(_val);
+            for (var i = 0; i < targ.length; i++) {
+            	nodeList.push(targ[i]);
+            }
+             break;
+
+            default :
+            var targ = document.getElementsByTagName(val);
+            for (var i = 0; i < targ.length; i++) {
+            	nodeList.push(targ[i]);
+            }
+             break;
+           }
+
+           return nodeList;
+
+      }
+
+
+      $('div').css('background','yellow').click('mouseover',function(){
+      	alert(1);
+      }).css('color','red');
+
+
+
+	</script>
+
+</body>
+</html>

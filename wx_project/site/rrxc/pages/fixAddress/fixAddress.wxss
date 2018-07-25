@@ -1,0 +1,91 @@
+/* address_wp */
+.address_wp{
+  min-height: 100rpx;
+  background: #fff;
+  margin-bottom: 16rpx;
+}
+
+.address_ct{
+  width: 720rpx;
+  margin: 0 auto;
+}
+
+.address_ct text, .address_ct input, .address_ct .select{
+  height: 100rpx;
+  line-height: 100rpx;
+  float: left;
+  font-size: 28rpx;
+  width: 500rpx;
+}
+
+.address_ct text{
+  width: 150rpx;
+}
+
+.address_ct .select{
+  width: 500rpx;
+  overflow: hidden;
+}
+
+/* select */
+.select .citypickers{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: red;
+}
+
+.select .citybody {
+  position:fixed;
+  bottom:0px;
+  z-index:4;
+  background:#fff;
+  left:0;
+}
+
+.select .cityheader {
+  position:absolute;
+  top:0px;
+  width:100%;
+  z-index:4;
+  background:#fff;
+}
+
+.select .city-cancel {
+  float: left;
+  margin: 20rpx;
+  color: #818181;
+}
+
+.select .city-true {
+  float: right;
+  margin: 20rpx;
+  color: #2FB42E
+}
+
+.select .section .picker {
+  background-color: #fff;
+  border-bottom: 1px #d9d9d9 solid;
+  border-top: 1px #d9d9d9 solid;
+  padding: 20rpx;
+}
+/* /select */
+
+/* txra */
+.txra{
+  padding-bottom: 10rpx;
+}
+
+.txra text{
+  float: initial;
+}
+
+.txra input{
+  float: initial;
+  height: initial;
+  line-height: initial;
+  margin-top: -22rpx;
+}
+/* /txra */
+/* /address_wp */

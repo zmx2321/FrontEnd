@@ -1,0 +1,66 @@
+.myinfo_all{
+	font-size: 0.24rem;
+}
+
+.myinfo_all > ul > li{
+	width: 100%;
+	height: 1.1rem;
+	background: #fff;
+	border-bottom: solid 1px #e5e5e5;
+	overflow: hidden;
+}
+
+.myinfo_all > ul > li > a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.myinfo_all > ul > li:last-child{
+	border: 0;
+}
+
+.myinfo_cont{
+    display: block;
+    width: 7.02rem;
+    height: 1.1rem;
+    margin: 0 auto;
+}
+
+.myinfo_cont dl{
+    width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-pack: justify;
+}
+
+.myinfo_cont dl dd:last-child{
+    line-height: 1.1rem;
+}
+
+.myinfo_cont dd > ul > li{
+    float: left;
+}
+
+.myinfo_cont dd > ul > li:first-child{
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 0.07rem;
+    margin: 0.15rem 0.15rem 0.15rem 0;
+    overflow: hidden;
+}
+
+.myinfo_cont dd > ul > li:last-child{
+    margin-top: 0.18rem;
+}
+
+.myinfo_cont dd > ul > li:last-child li:first-child{
+    font-size: 0.28rem;
+    font-weight: bold;
+}
+
+.empty{
+    color: #ccc;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.3rem;
+}

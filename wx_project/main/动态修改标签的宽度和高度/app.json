@@ -1,0 +1,13 @@
+{
+    "pages": [ 
+      "index"    
+    ],
+    "window": {
+      "navigationBarBackgroundColor": "#ffffff",
+      "navigationBarTextStyle": "black",
+      "navigationBarTitleText": "改变view标签的宽度和高度",
+      "backgroundColor": "#eeeeee",
+      "backgroundTextStyle": "light",
+      "enablePullDownRefresh": false
+    }
+}

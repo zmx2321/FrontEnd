@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var someClass = {
+
+				_singleton: null,
+
+				getSingleton: function() {
+
+					if(!this._singleton) {
+						this._singleton = {
+							// some code here
+						}
+					}
+
+					return this._singleton;
+				}
+			};
+
+			var instance = someClass.getSingleton();
+
+			Object.defineProperty(namespace, "singleton", {
+				writable: false,
+				configurable: false,
+				value: {...
+				}
+			});
+		</script>
+	</body>
+
+</html>

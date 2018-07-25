@@ -1,0 +1,382 @@
+<!-- busntail_top -->
+<view class='busntail_top'>
+  <view class='busntail_header'>
+    <view class='butl_pic'>
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>
+    </view>
+    <text>晴天雨后民宿</text>
+  </view>
+  <view class='busntail_address'>
+    <view class='main_wrap'>
+      <text>浙江省杭州市云和县坑根村</text>
+    </view>
+  </view>
+  <view class="busntail_nav">
+    <text data-num="1" class="{{_num==1 ? 'active':''}}" bindtap='jumpTo' data-opt="list0">详情</text>
+    <text data-num="2" class="{{_num==2 ? 'active':''}}" bindtap='jumpTo' data-opt="list1">活动&产品</text>
+    <text data-num="3" class="{{_num==3 ? 'active':''}}" bindtap='jumpTo' data-opt="list2">房间&预定</text>
+    <text data-num="4" class="{{_num==4 ? 'active':''}}" bindtap='jumpTo' data-opt="list3">周边推荐</text>
+  </view>
+</view>
+<!-- /busntail_top -->
+
+<!-- busntail_cont -->
+   <scroll-view  scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" class="busntail_cont">
+    <view class="btalcot">
+      <!-- btalcot_detail -->
+      <view id="list0" class='btalcot_detail'>
+        <view class='batil_top'>
+          <view class='main_wrap'>
+            <view class='baltp_pic'>
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>
+              <view class='baltp_bar'>
+                <text class='main_wrap'>山与水中的神秘地方</text>
+              </view>
+            </view>
+            <view class='baltp_txt'>
+              <p>
+								青苹果就是颜色是青的苹果，青的果酸含量高，有利于美容，苹果都一样。青苹果就是颜色是青的苹果，青的果酸含量高，有利于
+                美容，苹果都一样。青苹果就是颜色是青的苹果，青的果酸含量高，有利于美容，苹果都一样。
+              </p>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- /btalcot_detail -->
+
+      <!-- btalcot_product -->
+      <view id="list1" class='btalcot_product'>
+        <view class='bacprdt_top'>
+          <view class='batil_bot_title'>
+            <view class='main_wrap'>
+              <text>活动&产品</text>
+            </view>
+          </view>
+          <view class='main_wrap bacprdt_top_cot'>
+            <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+              <view class="poyctcnt_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+                <text class="tit_tab">亲子家庭</text>  
+              </view>
+              <view class="poyctcnt_txt">
+                <view class="poyctcnt_txt_nam">
+                  <text>晴天雨后——游主题</text>
+                  <text>已结束</text>
+                </view>
+                <view class="poyctcnt_txt_p">
+                      <p>
+                          云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                      </p>
+                </view>
+                <view class="poyctcnt_lab_bar">
+                      <view class="polabbar_result"></view>
+                  </view>
+                  <view class="poyctcnt_lab">
+                      <text>目标59人</text>
+                      <text>已参加59人</text>
+                      <text>剩余20天</text>
+                  </view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+        <view class='bacprdt_bot'>
+          <view class='poyctcnt_pth_cont main_wrap'>
+            <navigator url="/pages/productDetail_ms/productDetail_ms">
+              <view class="figtuo_prudct_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+              </view>
+              <view class="figtuo_prudct_txt">
+                <text class="title">天然野山菌[宁波]</text>
+                <view class="figtuo_prudct_tit">
+                  <text>休闲业主</text>
+                  <text>休闲业主</text>
+                </view>
+                <view class="figtuo_prudct_price">
+                  <view class="left">
+                    <text>¥68</text>
+                    <text>¥268</text>
+                    <text>剩余20件</text>
+                  </view>
+                  <view class="right">
+                    <button>秒杀</button>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+
+            <navigator url="/pages/productDetail_pt/productDetail_pt">
+              <view class="figtuo_prudct_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+              </view>
+              <view class="figtuo_prudct_txt">
+                <text class="title">天然野山菌[宁波]</text>
+                <view class="figtuo_prudct_tit">
+                  <text>休闲业主</text>
+                  <text>休闲业主</text>
+                </view>
+                <view class="figtuo_prudct_price">
+                  <view class="left">
+                    <text>¥68</text>
+                    <text>¥268</text>
+                    <text>2人团</text>
+                  </view>
+                  <view class="right">
+                    <button class="mor">2人团</button>
+                  </view>
+                </view>
+              </view>
+            </navigator> 
+
+            <navigator url="/pages/productDetail_ms/productDetail_ms">
+              <view class="figtuo_prudct_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+              </view>
+              <view class="figtuo_prudct_txt">
+                <text class="title">天然野山菌[宁波]</text>
+                <view class="figtuo_prudct_tit">
+                  <text>休闲业主</text>
+                  <text>休闲业主</text>
+                </view>
+                <view class="figtuo_prudct_price">
+                  <view class="left">
+                    <text>¥68</text>
+                    <text>¥268</text>
+                    <text>剩余20件</text>
+                  </view>
+                  <view class="right">
+                    <button>秒杀</button>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+
+            <navigator url="/pages/productDetail_pt/productDetail_pt">
+              <view class="figtuo_prudct_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+              </view>
+              <view class="figtuo_prudct_txt">
+                <text class="title">天然野山菌[宁波]</text>
+                <view class="figtuo_prudct_tit">
+                  <text>休闲业主</text>
+                  <text>休闲业主</text>
+                </view>
+                <view class="figtuo_prudct_price">
+                  <view class="left">
+                    <text>¥68</text>
+                    <text>¥268</text>
+                    <text>2人团</text>
+                  </view>
+                  <view class="right">
+                    <button class="mor">2人团</button>
+                  </view>
+                </view>
+              </view>
+            </navigator> 
+          </view>
+          <view class='clear'></view>
+        </view>
+      </view>
+      <!-- /btalcot_product -->
+
+      <!-- btalcot_reserve -->
+      <view id="list2" class='btalcot_reserve'>
+        <view class='follow_cont_wrap'>
+          <view class='batil_bot_title'>
+            <view class='main_wrap'>
+              <text>房间&预定</text>
+            </view>
+          </view>
+          <view class='baltreve_cot'>
+            <navigator url='/pages/freeExperience/freeExperience'>
+              <view class='fowcot_wrap clearfix'>
+                <view class='fowcot_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                </view>
+                <view class='fowcot_txt fowpudct_txt'>
+                  <view class='tit clearfix'>
+                    <text class='type'>成人票</text>
+                    <text class='price'>¥200</text>
+                  </view>
+                  <view class='lab'>
+                    <text>邀请10人获取免费券</text>
+                  </view>
+                  <view class='btn clearfix'>
+                    <text>共10张</text>
+                    <button>获取免费</button>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+
+            <navigator url='/pages/businessDetail_order/businessDetail_order'>
+              <view class='fowcot_wrap clearfix'>
+                <view class='fowcot_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                </view>
+                <view class='fowcot_txt fowpudct_txt'>
+                  <view class='tit clearfix'>
+                    <text class='type'>平湖秋月房</text>
+                    <text class='price'>¥200</text>
+                  </view>
+                  <view class='lab'>
+                    <text>平湖秋月房</text>
+                    <text>大床</text>
+                    <text>2-3层</text>
+                  </view>
+                  <view class='btn clearfix'>
+                    <text>共10张</text>
+                    <button>房间预定</button>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <!-- /btalcot_reserve -->
+
+      <!-- btalcot_periphery -->
+      <view id="list3" class='btalcot_periphery'>
+        <view class='batil_bot_title'>
+          <view class='main_wrap'>
+            <text>周边推荐</text>
+          </view>
+        </view>
+        <view class='neyred'>
+          <view class='neyred_cot scroll_box'>
+            <scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
+              <navigator url='/pages/businessDetail_jq/businessDetail_jq' class="item_list">
+                <view class='neyred_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/ys_img.jpg"></image>
+                </view>
+                <text>云尚</text>
+              </navigator>
+              <navigator url='/pages/businessDetail_jq/businessDetail_jq' class="item_list">
+                <view class='neyred_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/wh_img.jpg"></image>
+                </view>
+                <text>望湖别苑</text>
+              </navigator>
+              <navigator url='/pages/businessDetail_jq/businessDetail_jq' class="item_list">
+                <view class='neyred_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/kg_img.jpg"></image>
+                </view>
+                <text>坑根人家</text>
+              </navigator>
+              <navigator url='/pages/businessDetail_jq/businessDetail_jq' class="item_list">
+                <view class='neyred_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/ys_img.jpg"></image>
+                </view>
+                <text>云尚</text>
+              </navigator>
+              <navigator url='/pages/businessDetail_jq/businessDetail_jq' class="item_list">
+                <view class='neyred_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/ys_img.jpg"></image>
+                </view>
+                <text>云尚</text>
+              </navigator>
+              <navigator url='/pages/businessDetail_jq/businessDetail_jq' class="item_list">
+                <view class='neyred_pic'>
+                  <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/ys_img.jpg"></image>
+                </view>
+                <text>云尚</text>
+              </navigator>
+            </scroll-view>
+          </view>
+        </view>
+        <view class='bacprdt_cot'>
+           <view class="map_container">
+            <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap"></map>
+          </view>
+          <view class="place_info">
+            <text>{{placeData.title}}</text>
+            <text>{{placeData.address}}</text>
+            <text>{{placeData.telephone}}</text>
+            <text>123</text> 
+          </view> 
+        </view>
+      </view>
+      <!-- /btalcot_periphery -->
+    </view>
+  </scroll-view> 
+<!-- /busntail_cont -->
+
+<!-- busntail_btn -->
+<view class='busntail_btn'>
+  <navigator class='sjzy'>
+    <view class='busbtn_pic'>
+       <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-zy.png"></image>
+    </view>
+    <text>民宿主页</text>
+  </navigator>
+
+  <navigator class='vrqj'>
+    <view class='busbtn_pic'>
+       <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-qj.png"></image>
+    </view>
+    <text>VR全景</text>
+  </navigator>
+
+  <navigator>
+    <view class='busbtn_pic'>
+       <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-fx.png"></image>
+    </view>
+    <text>分享</text>
+  </navigator>
+
+  <navigator>
+    <view class='busbtn_pic'>
+       <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-sc-wxz.png"></image>
+    </view>
+    <text>收藏</text>
+  </navigator>
+
+  <view class='daohang' bindtap="powerDrawer" data-statu="open">
+    <view class='busbtn_pic'>
+       <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-dh.png"></image>
+    </view>
+    <text>导航</text>
+  </view>
+
+  <navigator url='/pages/index/index'>
+    <view class='busbtn_pic'>
+       <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-sy.png"></image>
+    </view>
+    <text>首页</text>
+  </navigator>
+</view>
+<!-- /busntail_btn -->
+
+<!--mask-->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view> 
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}"> 
+  
+ <!--drawer content-->
+ <view class="drawer_title">弹窗标题</view> 
+ <view class="drawer_content"> 
+ <view class="top grid"> 
+ <label class="title col-0">标题</label> 
+ <input class="input_base input_h30 col-1" name="rName" value="可自行定义内容"></input> 
+ </view> 
+ <view class="top grid"> 
+ <label class="title col-0">标题</label> 
+ <input class="input_base input_h30 col-1" name="mobile" value="110"></input> 
+ </view> 
+ <view class="top grid"> 
+ <label class="title col-0">标题</label> 
+ <input class="input_base input_h30 col-1" name="phone" value="拒绝伸手党"></input> 
+ </view> 
+ <view class="top grid"> 
+ <label class="title col-0">标题</label> 
+ <input class="input_base input_h30 col-1" name="Email" value="仅供学习使用"></input> 
+ </view> 
+ <view class="top bottom grid"> 
+ <label class="title col-0">备注</label> 
+ <input class="input_base input_h30 col-1" name="bz"></input> 
+ </view> 
+ </view> 
+ <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view> 
+</view>

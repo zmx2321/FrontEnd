@@ -1,0 +1,13 @@
+Elements	html+css
+
+Network		网络请求（调试接口）
+
+Sources		查看网站资源、断点调试
+
+Console		命令行工具，调试
+
+Resources	网站的本地数据资源（cookie、websql、localstorage……）
+
+Timeline -
+Profiles -	==>	调试页面的性能
+Audits	 -

@@ -1,0 +1,479 @@
+/*==== layout css s ====*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+::selection {
+    background-color: #35405f;
+    color: #fff;
+}
+
+*, *:active, *:focus, *:hover {
+    outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    font-size: 0.24rem;
+    font-weight: initial;
+}
+
+body {
+    font-family: "苹方";
+    font-size: 1.2rem;
+    background: #efefef;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: -0.4rem;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+button{
+    background: none;
+    border: none;
+    outline: none;
+    color: #333;
+}
+
+.clear {
+    clear: both;
+}
+/*==== layout css e ====*/
+
+/*==== public s ====*/
+/* poycty_footer s */
+.poycty_footer{
+    width: 100%;
+    height: 0.98rem;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    font-size: 0;
+    overflow: hidden;
+    margin-top: 0.24rem;
+    border-top: solid 1px #efefef;
+}
+
+.poycty_footer footer{
+    margin: 0.1rem 0.98rem;
+}
+
+.poycty_footer ul{
+    width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-pack: justify;
+    font-size: 0;
+}
+
+.poycty_footer a{
+    display: block;
+}
+
+.poycty_footer dt{
+    width: 0.6rem;
+}
+
+.poycty_footer dd{
+    text-align: center;
+    font-size: 0.2rem;
+    margin-top: 0.3rem;
+}
+
+.poycty_footer dd.active{
+    color: #00cd00;
+}
+/* poycty_footer e */
+
+/* mask s */
+.mask{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    opacity: 0.3;
+    display: none;
+}
+/* mask e */
+
+/* 暂无内容 s */
+
+/* 暂无内容 e */
+
+.poly_country_all + span{
+    display: none;
+}
+
+/* 冒泡(test_bubble) s */
+span.test_bubble{
+    width: 2.26rem;
+    height: 0.88rem;
+    background: #383838;
+    border-radius: 0.07rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 0.28rem;
+    color: #fff;
+    line-height: 0.88rem;
+    text-align: center;
+    display: none;
+}
+/* 冒泡(test_bubble) e */
+
+/* 我的 s */
+/* busetl_button s */
+.mymess_button{
+    width: 100%;
+    height: 0.98rem;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    margin-top: 0.16rem;
+}
+
+.mymess_button button{
+    font-size: 0.28rem;
+    width: 100%;
+    height: 100%;
+    color: #06c402;
+    font-weight: bold;
+}
+/* busetl_button e */
+/* 我的 e */
+
+/* 我的设置 s */
+.cont_wrap{
+    width: 7.2rem;
+    margin: 0 auto;
+    height: 1.02rem;
+    line-height: 1.02rem;
+}
+
+.cont_left{
+    float: left;
+    position: relative;
+}
+
+.cont_right{
+    float: right;
+}
+
+.cont_left_pic{
+    width: 0.5rem;
+    height: 0.5rem;
+    float: left;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cont_left_pic img{
+    margin-bottom: 0.4rem;
+}
+
+.cont_left_txt{
+    float: left;
+    margin-left: 0.8rem;
+}
+/* 我的设置 e */
+
+/* 猜你喜欢 s */
+.product_chartc{
+    width: 100%;
+    background: url(../images/btbj.png) top repeat-x;
+    min-height: 1rem;
+    border-top: solid 1px transparent;
+}
+
+.prodchat_wrap{
+    margin: 0.24rem;
+}
+
+.product_chartc h1{
+    font-size: 0.28rem;
+    font-weight: bold;
+}
+
+.product_chartc h1.price{
+    color: #f5560f;
+}
+
+.product_chartc h2{
+    font-size: 0.22rem;
+}
+
+.product_chartc h3{
+    font-size: 0.3rem;
+}
+
+.product_chartc h4{
+    font-size: 0.18rem;
+}
+
+.product_chartc h5{
+    font-size: 0.24rem;
+}
+
+.prochar_top{
+    width: 100%;
+    height: 0.48rem;
+}
+
+.prochar_top h1{
+    height: 0.28rem;
+    line-height: 0.28rem;
+    border-left: solid 3px #00cd00;
+    margin-top: 0.2rem;
+    padding-left: 0.2rem;
+    font-weight: bold;
+}
+
+.prochar_cont section{
+    width: 3.3rem;
+    min-height: 1rem;
+    background: #fff;
+    margin-bottom: 0.16rem;
+}
+
+.prochar_cont section a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.prochar_cont section:nth-child(odd){
+    float: left;
+    margin-right: 0.16rem;
+}
+
+.prochar_cont section:nth-child(even){
+    float: right;
+}
+
+.prochar_cont_pic{
+    width: 100%;
+    height: 2.34rem;
+    overflow: hidden;
+}
+
+.prochar_cont_txt{
+    margin-top: 0.16rem;
+}
+
+.prochar_cont_txt li{
+    margin-bottom: 0.16rem;
+}
+
+.prochar_cont_txt li:last-child{
+    margin-bottom: 0;
+}
+
+.prochar_cont_txt dd{
+    display: inline-block;
+}
+
+.prochar_cont_txt ul{
+    width: 3rem;
+    margin: 0 auto;
+    padding-bottom: 0.16rem;
+}
+
+.prochar_pritxt{
+    position: relative;
+}
+
+.prochar_pritxt dd:last-child{
+    position: absolute;
+    right: 0;
+    top: -0.08rem;
+}
+
+.prochar_pritxt dd:last-child button{
+    font-size: 0.24rem;
+    width: 0.96rem;
+    height: 0.46rem;
+    background: #f5560f;
+    color: #fff;
+    border-radius: 0.07rem;
+}
+/* 猜你喜欢 e */
+
+/* modrct_wrap s */
+.myorder_cont{
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.myorder_cont section{
+    display: none;
+}
+
+.modrct_cont a{
+    display: block;
+    width: 100%;
+    min-height: 4.8rem;
+    background: #fff;
+    overflow: hidden;
+    margin-bottom: 0.18rem;
+    border-bottom: solid 1px #eeeeee;
+}
+
+.modrct_cont a > div{
+    width: 100%;
+}
+
+.modrct_cont a:last-child{
+    margin-bottom: 0;
+}
+
+.modrct_cont {
+    width: 100%;
+}
+
+.modrct_title{
+    height: 0.85rem;
+}
+
+.modrct_body{
+    background: #f1f1f1;
+    min-height: 2.38rem;
+    border-top: solid 1px transparent;
+}
+
+.modrct_price{
+    min-height: 0.7rem;
+    border-bottom: solid 1px #ccc;
+}
+
+.modrct_wrap{
+    min-height: 4.8rem;
+    position: relative;
+}
+
+.modrct_juify{
+    width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-pack: justify;
+}
+
+.modrct_cot{
+    margin: 0 0.24rem;
+}
+
+.modrct_title ul li{
+    height: 0.85rem;
+    line-height: 0.85rem;
+    font-size: 0.28rem;
+}
+
+.modrct_cot dd{
+    display: inline-block;
+    font-size: 0.28rem;
+    float: left;
+}
+
+.modrct_cot dd:first-child{
+    margin-right: 0.24rem;
+}
+
+.modrct_title ul li:last-child{
+    color: #00cd00;
+}
+
+.modrct_sign{
+    width: 0.44rem;
+    height: 0.44rem;
+    overflow: hidden;
+    margin-top: 50%;
+}
+
+.modrct_sign img{
+    margin-bottom: 0.5rem;
+}
+
+.modrct_body_pic{
+    width: 2.5rem;
+    height: 1.88rem;
+    overflow: hidden;
+    margin-top: 0.24rem;
+    float: left;
+}
+
+.modrct_body_txt{
+    float: left;
+    margin-top: 0.35rem;
+    margin-left: 0.22rem;
+    width: 4.28rem;
+}
+
+.modrct_body_txt > ul > li{
+    margin-bottom: 0.24rem;
+}
+
+.modrct_body_txt > ul > li:last-child{
+    margin-bottom: 0;
+}
+
+.modrct_body_txt > ul > li:last-child li:last-child{
+    position: relative;
+    top: 0.15rem;
+}
+
+.modrct_body_txt dd{
+    float: initial;
+}
+
+.modrct_body_txt h1{
+    font-size: 0.3rem;
+    font-weight: bold;
+}
+
+.modrct_body_txt h2{
+    font-size: 0.24rem;
+    color: #555;
+}
+
+.modrct_body_txt h3{
+    font-size: 0.4rem;
+    color: #f5560f;
+}
+
+.modrct_body_txt h4{
+    font-size: 0.24rem;
+    text-decoration: line-through;
+}
+
+.modrct_price ul{
+    float: right;
+}
+
+.modrct_price li{
+    height: 0.7rem;
+    line-height: 0.7rem;
+    overflow: hidden;
+    display: inline-block;
+}
+/* modrct_wrap e */
+/*==== public e ====*/
+
+

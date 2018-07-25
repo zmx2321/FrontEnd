@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村-拼团</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/fightGroups.css"/>
+<link rel="stylesheet" type="text/css" href="css/lib/swiper.min.css"/>
+</head>
+
+<body>
+<!-- 
+
+	我为团长（我开团）（别人加入）
+		开始建团	  ==>	还差一人即可成团（按钮:还差1人成团）可以分享给别人链接
+		拼团成功	  ==>	拼团成功（按钮:更多拼团、我要开团）
+		拼团失败	  ==>	超过截止日期（按钮:更多拼团、我要开团）
+
+	别人为团长（别人开团）（我参团）
+		开始建团	  						  ==>	还差一人即可成团（按钮:我要参团）
+		拼团成功(人数到达上限，我无法加入)	  ==>	拼团成功（按钮:更多拼团、我要开团）
+		拼团成功(我为团员)	              ==>	拼团成功（按钮:更多拼团、我要开团）
+
+ -->
+<!-- body s -->
+<div class="main_all">
+	<div class="pudtal_cont">
+		<div class="main_cot">
+			<div class="modrct_wrap">
+                <div class="modrct_title">
+                    <div class="modrct_cot">
+                        <ul class="modrct_juify">
+                            <li>
+                                <dl>
+                                    <dd>
+                                        <div class="modrct_sign">
+                                            <img src="images/cs/my_photo.jpg">
+                                        </div>
+                                    </dd>
+                                    <dd>晴天雨后民宿</dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modrct_body">
+                    <div class="modrct_cot">
+                        <div class="modrct_body_pic">
+                            <img src="images/cs/272153.jpg">
+                        </div>
+                        <div class="modrct_body_txt">
+                            <ul>
+                                <li>
+                                    <h1>宁波青苹果</h1>
+                                </li>
+                                <li>
+                                    <dl>
+                                        <dd>
+                                            <h2>休闲业主</h2>
+                                        </dd>
+                                        <dd>
+                                            <h2>可现场游园</h2>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <ol class="modrct_juify">
+                                        <li>
+                                            <dl>
+                                                <dd>
+                                                    <h3>¥18</h3>
+                                                </dd>
+                                                <dd>
+                                                    <h4>¥268</h4>
+                                                </dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <h2>数量：1</h2>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>  
+	        </div>	
+		</div>
+
+		<div class="fight_groups_detail">
+			<div class="main_cot fight_groups_cont">
+				<div class="main_wrap">
+					<!-- 开始建团 s -->
+					<div class="fitgrup_wrap fitgrup_start" style="display: block;">
+						<div class="fitgrup_pic">
+							<ul class="fitgrup_cot">
+								<li>
+									<img src="images/cs/my_photo.jpg">
+									<b>团长</b>
+								</li>
+								<li>
+									<img src="images/cs/my_photo.jpg">
+								</li>
+							</ul>
+						</div>
+						<h1 class="fitgrup_txt">还差<span>1</span>人即可成团</h1>
+						<div class="fitgrup_countime">
+							<ul>
+								<span>剩余</span>
+								<li>1</li>
+								<li>60</li>
+								<li>60</li>
+								<span>结束</span>
+							</ul>
+						</div>
+					</div>
+					<!-- 开始建团 e -->
+
+					<!-- 拼团成功 s -->
+					<div class="fitgrup_wrap fitgrup_success" style="display: none;">
+						<div class="fitgrup_pic">
+							<ul class="fitgrup_cot">
+								<li>
+									<img src="images/cs/my_photo.jpg">
+									<b>团长</b>
+								</li>
+								<li>
+									<img src="images/cs/my_photo.jpg">
+								</li>
+							</ul>
+						</div>
+						<div class="fitgrup_result">
+							<img src="images/ptcg.png">
+						</div>
+					</div>
+					<!-- 拼团成功 e -->
+
+					<!-- 拼团失败 s -->
+					<div class="fitgrup_wrap fitgrup_fail" style="display: none;">
+						<div class="fitgrup_pic">
+							<ul class="fitgrup_cot">
+								<li>
+									<img src="images/cs/my_photo.jpg">
+									<b>团长</b>
+								</li>
+								<li>
+									<img src="images/default_photo.png">
+								</li>
+							</ul>
+						</div>
+						<h1 class="fitgrup_txt">还差<span>1</span>人即可成团</h1>
+						<div class="fitgrup_countime">
+							<ul>
+								<span>剩余</span>
+								<li>0</li>
+								<li>0</li>
+								<li>0</li>
+								<span>结束</span>
+							</ul>
+						</div>
+						<div class="fitgrup_result">
+							<img src="images/ptsb.png">
+						</div>
+					</div>					
+					<!-- 拼团失败 e -->
+				</div>
+			</div>
+
+			<!-- 开团 s -->
+			<div class="fight_groups_bar">
+				<div class="main_wrap">
+					<div class="fight_groups_name">
+						<ul>
+							<li>
+								<img src="images/cs/my_photo.jpg" />
+							</li>
+							<li>团长</li>
+							<li>张三</li>
+						</ul>
+					</div>
+					<div class="fight_groups_time">
+						<ul>
+							<li>2016-10-15 00:35:36</li>
+							<li>开团</li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- 开团 e -->
+
+			<!-- 参团 s -->
+			<div class="fight_groups_bar">
+				<div class="main_wrap">
+					<div class="fight_groups_name">
+						<ul>
+							<li>
+								<img src="images/cs/my_photo.jpg" />
+							</li>
+							<li>李四</li>
+						</ul>
+					</div>
+					<div class="fight_groups_time">
+						<ul>
+							<li>2016-10-15 00:35:36</li>
+							<li>参团</li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- 参团 e -->
+		</div>
+
+		<div class="product_chartc">
+			<div class="prodchat_wrap">
+				<div class="prochar_top">
+					<h1>热门推荐</h1>
+				</div>
+				<div class="prochar_cont">
+					<ul>
+						<li>
+						<div class="clear"></div>
+							<a href="productDetail_pt.html">
+								<div class="prochar_cont_pic">
+									<img src="images/cs/272153.jpg">
+								</div>
+								<div class="prochar_cont_txt">
+									<ul>
+										<li>
+											<h1>天然野山菌[宁波]</h1>
+										</li>
+										<li>
+											<dd>
+												<h2>休闲业主</h2>
+											</dd>
+											<dd>
+												<h2>可现场游园</h2>
+											</dd>
+										</li>
+										<li class="prochar_pritxt">
+											<dd>
+												<h1 class="price">¥68</h1>
+											</dd>
+											<dd>
+												<h2>可现场游园</h2>
+											</dd>
+											<dd>
+												<button>2人团</button>
+											</dd>
+										</li>
+									</ul>
+								</div>
+							</a>
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="pudtal_btn mt_pudtal_btn">
+		<ul>
+			<li class="shangjiazy">
+				<a href="businessDetail.html">
+					<div class="pudtal_btn_icon">
+						<img src="images/btn-sjzy.png" />
+					</div>
+					<span class="pudtal_btn_text">商家主页</span>
+				</a>
+			</li>
+			<!-- 还差1人成团 s -->
+			<li class="lj_button lj_button_pt0" style="display: inline-block;">
+				<a href="javascript:;">还差1人成团</a>
+			</li>
+			<!-- 还差1人成团 e -->
+
+			<!-- 我要参团 s -->
+			<li class="lj_button lj_button_pt0" style="display: none;">
+				<a href="#">我要参团</a>
+			</li>
+			<!-- 我要参团 e -->
+
+			<!-- 更多拼团/我要开团 s -->
+			<li class="lj_button lj_button_pt1" style="display: none;">
+				<dl>
+					<dd>
+						<a href="#">更多拼团</a>
+					</dd>
+					<dd>
+						<a href="#">我要开团</a>
+					</dd>
+				</dl>
+			</li>
+			<!-- 更多拼团/我要开团 e -->
+
+			<li class="shoucang">
+				<a href="#">
+					<div class="pudtal_btn_icon">
+						<img src="images/icon-gz.png" />
+					</div>
+					<span class="pudtal_btn_text">收藏</span>
+				</a>
+			</li>
+			<li class="fenxiang">
+				<a href="#">
+					<div class="pudtal_btn_icon">
+						<img src="images/btn-fx.png" />
+					</div>
+					<span class="pudtal_btn_text">分享</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- mask s -->
+<div class="mask">
+	<div class="sharing">
+		<div class="sharing_pic">
+			<img src="images/icon-ydjt.png">
+		</div>
+		<span>还差<b>1</b>人，邀请好友拼团</span>
+	</div>
+
+	<div class="share_success">
+		<div class="sharsuccess_title">
+			<div class="mask_wrap">
+				<h1>分享成功</h1>
+				<div class="sharsuccess_close">
+					<img src="images/icon-gb.png">
+				</div>
+			</div>
+		</div>
+		<div class="sharsuccess_cont">
+			<ul class="mask_wrap">
+				<li>继续分享提升成功率哦</li>
+				<li>
+					<button class="share_next">继续分享</button>
+				</li>
+				<li>
+					<button onclick="location.href='index.html'" class="share_return">回到首页</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="share_btn">
+		<div class="share_btn_cont">
+			<ul>
+				<li>
+					<a href="#">
+						<dl>
+							<dd>
+								<img src="images/icon-fe-ewm.png" />
+							</dd>
+							<dd>二维码</dd>
+						</dl>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<dl>
+							<dd>
+								<img src="images/icon-fx-wxhy.png" />
+							</dd>
+							<dd>微信好友</dd>
+						</dl>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<dl>
+							<dd>
+								<img src="images/icon-fx-pyq.png" />
+							</dd>
+							<dd>朋友圈</dd>
+						</dl>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<dl>
+							<dd>
+								<img src="images/icon-fx-xlwb.png" />
+							</dd>
+							<dd>新浪微博</dd>
+						</dl>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<dl>
+							<dd>
+								<img src="images/icon-fx-qqhy.png" />
+							</dd>
+							<dd>QQ好友</dd>
+						</dl>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<dl>
+							<dd>
+								<img src="images/icon-fx-qqkj.png" />
+							</dd>
+							<dd>QQ空间</dd>
+						</dl>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="share_btn_foot">
+			<button>取消</button>
+		</div>
+	</div>
+</div>
+<!-- mask e -->
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/lib/swiper.min.js"></script>
+<script src="js/basefont.js"></script>
+<script src="mockface/b-mock.js"></script>
+<script src="js/fightGroups.js"></script>
+<!-- js e -->
+</body>
+</html>

@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>聚乡村-全景</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/custom_tour.css">
+    <script type="text/javascript">
+        new function () {
+            var _self = this;
+            _self.width = 640; //设置默认最大宽度
+            _self.fontSize = 100; //默认字体大小
+            _self.widthProportion = function () {
+                var p = (document.body && document.body.clientWidth || document.getElementsByTagName("html")[0].offsetWidth) / _self.width;
+                return p > 1 ? 1 : p < 0.2 ? 0.2 : p;
+            };
+            _self.changePage = function () {
+                var a = _self.widthProportion() * _self.fontSize;
+                document.getElementsByTagName("html")[0].setAttribute("style", "font-size:" + a + "px !important");
+                if (a != parseFloat(window.getComputedStyle(document.documentElement)["fontSize"])) {
+                    document.getElementsByTagName("html")[0].setAttribute("style", "font-size:" + a / (parseFloat(window.getComputedStyle(document.documentElement)["fontSize"]) / a) + "px !important");
+                }
+            };
+            _self.changePage();
+            window.addEventListener('resize', function () {
+                _self.changePage();
+            }, false);
+        };
+
+
+    </script>
+</head>
+<body>
+
+<script src="tour.js"></script>
+<script src="../js/lib/jquery1.8.3.min.js"></script>
+<script src="js/custom_tour.js"></script>
+
+<div id="pano">
+    <noscript>
+        <ul>
+            <li>ERROR:</li>
+            <li>Javascript not activated</li>
+        </ul>
+    </noscript>
+</div>
+
+<!--场景选择-->
+<div class="vrshow_container_3_min">
+    <div class="img_desc_container_min scene-choose-width" onclick="showthumbs()">
+        <img src="image/cj.png" />
+        <div class="img_desc_min">场景列表</div>
+    </div>
+
+    <script>
+        $(function () {
+            var w = document.documentElement.clientWidth;
+            if(w>1200){
+                $(".vrshow_container_3_min").css({"left":"10px","bottom":"20px"});
+                $("#shapan").css({"right":"10px","bottom":"20px"});
+            }
+
+        })
+        function showthumbs(){
+            var krpano = document.getElementById('krpanoSWFObject');
+            krpano.call("skin_showthumbs();");
+        }
+    </script>
+
+</div>
+
+<!--语音介绍-->
+<div id="yuyin">
+    <div class="yuyin-img scene-choose-width">
+        <img id="sound-img" src="image/audio.png"/>
+        <div class="img_desc_min">语音介绍</div>
+    </div>
+</div>
+
+<!--标题-->
+<div id="title">
+    <p class="titlep">
+        123123
+    </p>
+</div>
+
+
+
+<!--场景介绍-->
+<div id="shapan">
+    <div class="img_desc_container_min scene-choose-width">
+        <img src="image/dw.png"/>
+        <div class="img_desc_min">场景简介</div>
+    </div>
+</div>
+<div id="box" style="display: none;">
+    <!--<p class="box-p1">白桦林</p>-->
+    <!--<p class="box-p2">白桦林位于贺斯格乌拉牧场场部东北50公里处。面积约5.5万亩，为典型原始次生林，林内植被茂密，树木主体为白桦，白桦树享有“纯情书”的美誉。枝叶扶疏、姿态优美，属桦木科乔木植物，最高可达27米，树皮灰白色，成层剥裂，树汁对人体健康大有益处，有抗疲劳、止咳等药理作用。-->
+        <!--</p>-->
+    <!--<p class="box-p2">林间野生植物主要有：以线叶菊、贝加尔针茅建群，其次为异燕麦、羊茅、轻叶棘豆等，杂类草极丰富。林间杂生灌木柳、山杏、山榆等等，也有野草莓等不知名的野果。</p>-->
+</div>
+<audio id="sound" style="display: none;" src=""></audio>
+<script>
+    console.log($('#title'));
+    var arr= new Array([17]);
+    arr[0] = '\t<p class="box-p1">白桦林</p><p class="box-p2">白桦林位于贺斯格乌拉牧场场部东北50公里处。面积约5.5万亩，为典型原始次生林，林内植被茂密，树木主体为白桦，白桦树享有“纯情书”的美誉。枝叶扶疏、姿态优美，属桦木科乔木植物，最高可达27米，树皮灰白色，成层剥裂，树汁对人体健康大有益处，有抗疲劳、止咳等药理作用。\n' +
+        '\t\t</p>\n' +
+        '\t<p class="box-p2">林间野生植物主要有：以线叶菊、贝加尔针茅建群，其次为异燕麦、羊茅、轻叶棘豆等，杂类草极丰富。林间杂生灌木柳、山杏、山榆等等，也有野草莓等不知名的野果。</p>';
+
+    arr[1] = '\t<p class="box-p1">九曲弯</p>\n' +
+        '\t<p class="box-p2">发源于大兴安岭宝格达山林区的乌拉盖河，全长360公里，如天河玉带飘落在乌拉盖草原，流淌着多彩而激情的旋律，它绕着如黛的青山蜿蜒流去，就像这片草原捧给世界的一条纯洁哈达！\n' +
+        '\t\t</p>\n' +
+        '\t<p class="box-p2">乌拉盖河贯穿乌拉盖草原，消失在东乌旗境内的大沼泽滩中。在位于乌拉盖湖上游南岸有一座丘陵山峰悄然矗立，早年当地牧民给这座山取了一个好听的名字叫“高尧乌拉山”。“高尧乌拉”系蒙语，是“美丽的山峰”之意。山下宽阔的河谷平原上，乌拉盖河蜿蜒曲折，河边的红柳随风飘摇，风姿绰约，河边绿草茵茵、野花丛生，牛羊成群，点缀其中。我们形象的把这段河谷叫做“九曲湾”，站在山坡上，九曲湾的壮观景象尽收眼底，你将叹服于大自然的鬼斧神工，沉醉于浑然天成的美妙画卷。</p>\n';
+
+    arr[2] = '\t<p class="box-p1">乌拉盖湖</p>\n' +
+        '\t<p class="box-p2">乌拉盖湖距哈拉盖图农牧场4公里，直连S101省道，地理位置和交通条件十分优越。水库始建于1977年，是锡林郭勒盟的一座大型水库。对防洪抗旱、人畜饮水、渔业生产及保护地区生态都起到了重要作用。这里水映白云，空气清新，景色宜人。由于水库水位较高，雾气缠绕，从远出看，水天一色，浑然一体；库区周围野花遍地，蘑菇、黄花、芍药随处可见；水库中流水平静，浩淼烟波中尽显博大、宽广，包容着周围的万物生灵；水面上群鱼跳跃，天鹅、大雁各种水鸟时起时落；它好比一幅清新亮丽的水彩画，处处体现着自然界的蓬勃朝气。\n' +
+        '\t\t</p>';
+
+    arr[3] = '\t<p class="box-p1">九曲弯</p>\n' +
+        '\t<p class="box-p2">发源于大兴安岭宝格达山林区的乌拉盖河，全长360公里，如天河玉带飘落在乌拉盖草原，流淌着多彩而激情的旋律，它绕着如黛的青山蜿蜒流去，就像这片草原捧给世界的一条纯洁哈达！\n' +
+        '\t\t</p>\n' +
+        '\t<p class="box-p2">乌拉盖河贯穿乌拉盖草原，消失在东乌旗境内的大沼泽滩中。在位于乌拉盖湖上游南岸有一座丘陵山峰悄然矗立，早年当地牧民给这座山取了一个好听的名字叫“高尧乌拉山”。“高尧乌拉”系蒙语，是“美丽的山峰”之意。山下宽阔的河谷平原上，乌拉盖河蜿蜒曲折，河边的红柳随风飘摇，风姿绰约，河边绿草茵茵、野花丛生，牛羊成群，点缀其中。我们形象的把这段河谷叫做“九曲湾”，站在山坡上，九曲湾的壮观景象尽收眼底，你将叹服于大自然的鬼斧神工，沉醉于浑然天成的美妙画卷。</p>\n';
+
+
+    arr[4] = '\t<p class="box-p1">北九曲</p>\n' +
+        '\t<p class="box-p2">北九曲位于乌拉盖湖上游十五公里，这里有原生态的自然风光，放眼望去，广阔的草原上，乌拉盖河蜿蜒流淌，河边的羊群就像天上的云掉落在了草原上。牧户催烟袅袅，是真是的草原写照。\n' +
+        '\t\t</p>';
+
+    arr[5] = '\t<p class="box-p1">油菜花</p>\n' +
+        '\t<p class="box-p2">每年的七、八月份是乌拉盖油菜花田盛开的季节，金黄色的花瓣在绿叶的衬托下显得格外耀眼，满山遍野的油菜花让人仿佛置身画中。微风吹过，油菜花在风中摇曳着曼妙的身姿，在阳光的照耀下，更加明艳璀璨，一片连着一片，一朵朵花像小女孩一样绽放着笑容，让人心旷神怡。油菜花不仅具有观赏性，还具有药用价值。能够止咳、防病，民间用油菜花配蜂蜜制成糖浆来解除春困、治疗肺结核，疗效很好，加之其价格低廉，油菜花也有“穷人医生”之称。\n' +
+        '\t\t</p>';
+
+    arr[6] = '\t<p class="box-p1">兵团小镇</p>\n' +
+        '\t<p class="box-p2">哈场场部所在地巴音陶海村，即兵团六师时期51团团部所在地，原兵团时期大礼堂并与原兵团邮局旧址形成了哈场文化、休闲、教育文化区域。整体设计突出兵团文化特点，兵团大礼堂总建筑面积近1000平米，已有四十多年的历史。2011年对礼堂和邮局按原貌进行修复，修复后的礼堂，不仅使兵团文化得到了充分保护，也成为展现兵团经济发展成就以及文化演出、会议办公为一体的综合性文化场馆。兵团招待所经翻修后投入使用，设置客房九间，内部装饰及陈列物品均仿制兵团时期物品特点。大礼堂、邮局、兵团招待所是兵团时期的文化、历史象征性建筑，具有重要的历史价值，对打造红色旅游基地意义重大，也已成为兵团知青回访故乡必访景观之一。\n' +
+        '\t\t</p>';
+
+    arr[7] = '\t<p class="box-p1">知青小镇</p>\n' +
+        '\t<p class="box-p2">知青小镇位于哈拉盖图农牧场东北22公里处，依托周围原生态草原自然景观和旅游资源，发挥地理位置和住房集中优势，有效结合兵团文化，把旧村落规划建设为集餐饮、住宿、观光、休闲、娱乐、军垦文化体验于一体的功能性旅游区，在保护原生态草原的前提下，构建以兵团文化为主题、功能设施完备的原生态草原休闲度假村，也作为乌拉盖草原一处独具特色的旅游接待综合体项目。\n' +
+        '\t\t</p>\n';
+
+    arr[8] = '\t<p class="box-p1">布林泉景区</p>\n' +
+        '\t<p class="box-p2">大家能够有幸来到这宁静而美丽的天边草原，不喝上一口布林泉水就算是白来一趟。下面我们即将到达的就是博力彦神泉度假村，也就是我们所说的布林泉景区，是国家AAA级旅游景区，位于乌拉盖牧场境内，位于巴镇正北11公里处的布林泉旁，因此而得名。是2005年开始投资兴建的集旅游、餐饮、娱乐为一体的综合旅游景区，景区占地面积约299万平方米，景区内景观独特，有原生态草原、布林古庙、泉水、木栈道、蒙古包群、额尔敦敖包和各种野生植物等自然景观。\n' +
+        '\t\t</p>\n';
+
+    arr[9] = '\t<p class="box-p1">布林古庙</p>\n' +
+        '\t<p class="box-p2">昔日又称“拜佛寺”。布林庙末代主持劳布曾·珠力嘎·元敦·隆敦（生于1912年，居蒙古国），于1989年从蒙古国前来布林庙遗址祭敖包、祭圣泉，曾形象的描绘了布林庙香火繁盛时的情景。康熙十一年（公元1672年），乌珠穆沁左翼旗色旺去西昭学佛经，回来后在登库尔（巴音胡硕镇）前建祭点开始祭祀。色旺去世后，来了一名神佛主管祭典。雍正十年（公元1732年）旺楚克贝勒执政后对此庙进行了扩建，由此而得名“拜佛寺”。乾隆五十五年（公元1790年）获清廷“拜佛寺”金匾，该庙鼎盛时期香火繁盛，僧侣众多，庙内僧众最多时达到170余人。民国三十三年，乙酉年（公元1945年）二战中被炸毁。历时273年，于2010年6月，再次将布林庙进行恢复修缮，工程占地10000平方米，建筑面积3000平方米。\n' +
+        '\t\t</p>';
+
+    arr[10] = '\t<p class="box-p1">狼图腾影视拍摄地</p>\n' +
+        '\t<p class="box-p2">位于布林泉景区东南方向两公里处，是电影《狼图腾》中陈阵插队的牧场场部所在地，是当时牧民生产生活、贸易集散中心，作为六十年代的蒙古草原小镇，建有供销社、邮局、诊所、收购站、饭馆、兽医站、理发铺、铁匠铺等设施。在剧中，小镇街道是联接整部影片的贯穿场景，小镇街道面貌的渐变意味作为草原发展和时代变迁的一个缩影，贯穿故事的始终，作为一条视觉感官线索带给人们思考，思考和审视现代文明带给草原发展的种种影响和变化。\n' +
+        '\t\t</p>';
+
+    arr[11] = '\t<p class="box-p1">狼图腾影视拍摄地</p>\n' +
+        '\t<p class="box-p2">位于布林泉景区东南方向两公里处，是电影《狼图腾》中陈阵插队的牧场场部所在地，是当时牧民生产生活、贸易集散中心，作为六十年代的蒙古草原小镇，建有供销社、邮局、诊所、收购站、饭馆、兽医站、理发铺、铁匠铺等设施。在剧中，小镇街道是联接整部影片的贯穿场景，小镇街道面貌的渐变意味作为草原发展和时代变迁的一个缩影，贯穿故事的始终，作为一条视觉感官线索带给人们思考，思考和审视现代文明带给草原发展的种种影响和变化。\n' +
+        '\t\t</p>';
+
+    arr[12] = '\t<p class="box-p1">贺斯格淖尔生态旅游区</p>\n' +
+        '\t<p class="box-p2">贺场地貌以低山丘陵和河谷平原为主，地势平坦，土壤肥沃，土壤主要是黑钙土、草甸土和栗钙土。草场类型属森林草原向草甸草原过渡带，草原植被较好，牧草种类优良，具有药用价值的野生植物也较为丰富，例如黄芪、麻黄、甘草、百合、芍药等。由于这里草木茂盛，水资源富集，适宜旅游休闲度假的自然景观也很丰富，有自治区级湿地自然保护区贺斯格淖尔湿地，有色香韵兼具的芍药花谷，有清澈甘甜的阿尔善泉、有原始次生白桦林，有曾经金戈铁马见证历史的成吉思汗边墙，还有候鸟钟爱的布日都淖尔，也有浑然天成的马鬃山以及神圣的固腊卜赛罕国际敖包等得天独厚的自然景观和人文历史资源。\n' +
+        '\t\t</p>';
+
+    arr[13] = '\t<p class="box-p1">马鬃山（电影拍摄外景地）</p>\n' +
+        '\t<p class="box-p2">马鬃山位于贺斯格乌拉牧场场部东北约26公里处，突兀的岩石就像被风吹起的马鬃一样耀眼，这里三面环山，周边岩石林立，地势比较平坦，从山上看整个环境像个小盆地。这里就是电影《狼图腾》的冬季营盘所在地，有很多情境都是在这里拍摄的，是最主要的取景地之一。\n' +
+        '\t\t</p>';
+
+    arr[14] = '\t<p class="box-p1">南湖公园</p>\n' +
+        '\t<p class="box-p2">南湖公园位于景观大街南侧，向里走有一条笔直的道路，两侧设有路灯，宽敞明亮，行人可沿着路灯散步。向外望去，满眼都是各色花朵，在花的围绕下公园看起来更有生机，空气中慢慢的香气。公园内有LED大屏幕，在闲暇时坐在旁边的座椅上看一会电影，吹着小凉风，无比惬意。\n' +
+        '\t\t</p>';
+
+    arr[15] = '\t<p class="box-p1">迎宾馆</p>\n' +
+        '\t<p class="box-p2">乌拉盖迎宾馆位于巴音胡硕镇，是乌拉盖管理区立足于发展草原特色旅游业、不断完善城镇功能而建设一家集住宿、餐饮、会议、娱乐于一体的全盟唯一一家四星级旅游宾馆。宾馆分为接待大厅、餐饮中心和1#、2#贵宾楼四部分组成，并设有游泳馆、康体中心、棋牌室、健身房等休闲设施；商务会议室可承办大型会议；  客房有豪华套件、商务套间及标准间146间。\n' +
+        '\t\t</p>';
+
+    arr[16] = '\t<p class="box-p1">迎宾馆</p>\n' +
+        '\t<p class="box-p2">乌拉盖迎宾馆位于巴音胡硕镇，是乌拉盖管理区立足于发展草原特色旅游业、不断完善城镇功能而建设一家集住宿、餐饮、会议、娱乐于一体的全盟唯一一家四星级旅游宾馆。宾馆分为接待大厅、餐饮中心和1#、2#贵宾楼四部分组成，并设有游泳馆、康体中心、棋牌室、健身房等休闲设施；商务会议室可承办大型会议；  客房有豪华套件、商务套间及标准间146间。\n' +
+        '\t\t</p>';
+
+
+    var mp3 = new Array([9]);
+    mp3[0] = 'mp3/1baihualin.mp3';
+    mp3[1] = 'mp3/2jiuquwan.mp3';
+    mp3[2] = 'mp3/3wulagaihu.mp3';
+    mp3[3] = 'mp3/7bingtuanxiaozhen.mp3';
+    mp3[4] = 'mp3/8zhiqingxiaozhen.mp3';
+    mp3[5] = 'mp3/9bulinquan.mp3';
+    mp3[6] = 'mp3/11langtuteng.mp3';
+    mp3[7] = 'mp3/13hesigezhuoer.mp3';
+    mp3[8] = 'mp3/14majishan.mp3';
+
+    var title = new Array([17]);
+        title[0] = '白桦林';
+        title[1] = '九曲弯航拍';
+        title[2] = '乌拉盖湖';
+        title[3] = '九曲弯';
+        title[4] = '北九曲';
+        title[5] = '油菜花';
+        title[6] = '兵团小镇';
+        title[7] = '知青小镇';
+        title[8] = '布林泉景区';
+        title[9] = '布林古庙';
+        title[10] = '狼图腾影视拍摄地';
+        title[11] = '狼图腾影视拍摄地';
+        title[12] = '贺斯格淖尔生态旅游区';
+        title[13] = '马鬃山';
+        title[14] = '南湖公园';
+        title[15] = '迎宾馆正门';
+        title[16] = '迎宾馆大厅';
+
+
+
+
+
+
+
+    var myaudio = document.getElementById('sound');
+    $(function(){
+        $("#box").click(function(){
+            $("#box").fadeOut(500);;
+
+        })
+        $("#shapan").click(function(){
+            show1();
+
+
+
+        })
+
+
+
+        //    语音
+
+
+
+
+        $("#yuyin").click(function () {
+
+
+
+            if(myaudio.paused){
+                myaudio.play();
+                $("#sound-img").addClass("sound");
+            }else{
+                myaudio.pause();
+                $("#sound-img").removeClass("sound");
+            }
+        })
+    });
+//文字替换
+    function changeText(a) {
+        $("#box").html(arr[a]);
+        $(".titlep").html(title[a]);
+    }
+//判断没有语音则图标消失 有语音则图标出现
+    function mp3src(b) {
+
+//        alert(b);
+        if(b == 99){
+            $("#yuyin").slideUp(300);
+            myaudio.pause();
+        }else {
+            $("#sound").attr("src",mp3[b]);
+            myaudio.pause();
+            $("#sound-img").removeClass("sound");
+            $("#yuyin").slideDown(300);
+
+        }
+
+    }
+
+
+
+
+
+
+    function show(obj){
+//        if(obj==2){
+//            $("#picshow img").css("width","90%");
+//            $("#picshow img").css("margin-top","12%");
+//        }else{
+//            $("#picshow img").css("width","90%");
+//            $("#picshow img").css("margin-top","20%");
+//        }
+        setTimeout(function(){
+//            $("#picshow img").attr("src","show/"+obj+".png");
+            $("#box").fadeIn(500);
+        },1000);
+    }
+
+    function show1(obj){
+//        if(obj==16){
+//            $("#picshow img").css("width","75%");
+//        }else{
+//            $("#picshow img").css("width","90%");
+//        }
+//        $("#picshow img").attr("src","show/"+obj+".png");
+        $("#box").fadeIn(500);
+    }
+
+
+
+
+</script>
+
+
+<!-- js s -->
+<script>
+    embedpano({swf:"tour.swf", xml:"tour.xml", target:"pano", html5:"auto", mobilescale:1.0, passQueryParameters:true});
+</script>
+<!-- js e -->
+</body>
+</html>

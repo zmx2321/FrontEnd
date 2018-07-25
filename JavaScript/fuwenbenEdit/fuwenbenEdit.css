@@ -1,0 +1,9 @@
+#editor{
+    float:left; width:380px;background:#D5F3F4;padding-left:10px;    
+}
+#editor span.button{
+    display:block;float:left;border: 1px solid  #CCC;margin:1px 5px 1px 0px ;color: #000;
+    background: #D0E8FC;width:40px;height:20px;text-align:center;
+}
+#editor select{ display:block; float:left;height:20px;width:60px;margin-right:5px;}
+#textarea {width:382px;height:100px;}

@@ -1,0 +1,33 @@
+{
+    "pages": [
+
+        "pages/home/home",
+
+        "pages/supMarket/supMarket"
+
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#FFCC33",
+        "navigationBarTitleText": "WeChatForQQ",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#fbf9fe"
+    },
+    "tabBar": {
+        "color": "#9B9DB1",
+        "selectedColor": "#66B3FF",
+        "borderStyle": "red",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/home/home",
+            "iconPath": "img/home.png",
+            "selectedIconPath": "img/homepressed.png",
+            "text": "首页"
+        }, {
+            "pagePath": "pages/supMarket/supMarket",
+            "iconPath": "img/Shopping.png",
+            "selectedIconPath": "img/Shoppingpressed.png",
+            "text": "xxx"
+        }]
+    }
+}

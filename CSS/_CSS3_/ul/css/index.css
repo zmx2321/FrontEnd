@@ -1,0 +1,29 @@
+.box1{
+	margin-bottom: 50px;
+}
+
+.box1 ul{
+	font-size: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.box1 li{
+    font-size: 12px;
+    border-right: solid 1px #fff;
+    text-align: center;
+    background: #ff0;
+    display: block;
+    width: 24.5%;
+}
+
+.box1 li:last-child{
+	border-right: 0;
+}
+
+.box2 ul{
+	width: 100%;
+	display: -webkit-inline-box;
+	-webkit-box-pack: justify;
+}

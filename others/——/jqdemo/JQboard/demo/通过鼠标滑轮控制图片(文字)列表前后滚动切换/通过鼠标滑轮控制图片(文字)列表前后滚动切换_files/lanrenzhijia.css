@@ -1,0 +1,11 @@
+﻿@charset "utf-8";
+/* 代码整理：懒人之家 www.lanrenzhijia.com */
+*{ margin:0; padding:0; list-style:none;}
+img{ border:0;}
+body{ background:#ccc;}
+
+.lanrenzhijia{ width:1050px; height:200px; overflow:hidden; margin:100px auto;}
+.lanrenzhijia2{ width:1050px; height:200px; overflow:hidden; position:relative;}
+.lanrenzhijia2 ul{ position:absolute; left:0; top:0;}
+.lanrenzhijia2 li{ float:left; width:200px; height:200px; padding:0px 5px;}
+.lanrenzhijia2 li span{ display:block;width:200px; height:200px;text-align:center; line-height:30px; color:#fff; display:block; background:#666;}

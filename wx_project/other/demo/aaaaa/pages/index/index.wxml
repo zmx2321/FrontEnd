@@ -1,0 +1,18 @@
+<import src="../tpl/tpl.wxml"/>
+<template is="navigator"></template>
+<swiper autoplay interval="2000" indicator-dots> 
+  <swiper-item>
+    <image src="../images/1.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="../images/2.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="../images/3.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="../images/4.jpg"></image>
+  </swiper-item>
+</swiper>
+<template is="navigator"></template>
+<template is="navigator"></template>

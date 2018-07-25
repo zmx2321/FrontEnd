@@ -1,0 +1,308 @@
+.person-container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.person-header {
+    box-sizing: border-box;
+    height: 170px;
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+    font-size: 0;
+}
+
+.person-header-img {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.person-header-content {
+    vertical-align: top;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 16px 0 0 30px;
+    min-height: 70px;
+    min-width: 400px;
+    font-size: 14px;
+}
+
+.person-header-content div {
+    box-sizing: border-box;
+    vertical-align: top;
+    display: inline-block;
+    width: 250px;
+    margin: 0 110px 0 0;
+}
+
+.person-header > a {
+    font-size: 14px;
+    margin: 70px 0 0 0;
+    float: right;
+}
+
+.person-header-content > div li {
+    box-sizing: border-box;
+    display: block;
+    margin: 0 0 20px 0;
+}
+
+.person-area li span {
+    margin: 0 0 0 12px;
+    color: #333333;
+}
+
+.person-info li span {
+    margin: 0 0 0 18px;
+    color: #333333;
+}
+
+.person-name {
+    font-size: 16px;
+
+}
+
+.person-name span {
+    color: #333333;
+    font-weight: 900;
+}
+
+.person-content {
+    box-sizing: border-box;
+    min-height: 400px;
+    background: white;
+    margin: 30px 0;
+    padding: 30px;
+}
+
+.person-content-tab {
+    box-sizing: border-box;
+    height: 34px;
+    width: 100%;
+    font-size: 16px;
+    border-bottom: 4px solid #E3E4E4;
+}
+
+.person-content-tab ul li {
+    margin: 0;
+    float: left;
+    width: 150px;
+    text-align: center;
+    padding: 0 0 12px 0;
+}
+
+.person-content-tab ul li:hover {
+    color: #EC2D4D;
+    cursor: pointer;
+}
+
+.person-content-tab-selected {
+    color: #EC2D4D;
+    border-bottom: 4px solid #EC2D4D;
+    cursor: pointer;
+}
+
+.person-content-score {
+    box-sizing: border-box;
+    padding: 60px 0 0 30px;
+    height: 960px;
+}
+
+.person-content-score > div {
+    margin: 0 0 60px 0;
+    min-height: 170px;
+}
+
+.person-content-score > div > p {
+    margin: 0 0 30px 0;
+    color: #000033;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.person-chart-box {
+    box-sizing: border-box;
+    min-height: 330px;
+    width: 960px;
+}
+
+.person-hero-list li {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 130px;
+    margin: 0 40px 0 0;
+}
+
+.person-hero-list li div {
+    margin: 8px 0 0 0;
+}
+
+.person-hero-list li div span {
+    margin: 0 0 0 8px;
+    color: #333333;
+}
+
+.person-type-list li {
+    margin: 0 0 18px 0;
+}
+
+.person-type-li span {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0 60px 0 0;
+}
+
+.person-content-footprint {
+    box-sizing: border-box;
+    padding: 60px 0 0 30px;
+    min-height: 960px;
+}
+
+.person-footprint-number {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 160px;
+    margin: 0 160px 0 10px;
+}
+
+.person-footprint-box {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 600px;
+}
+
+.person-footprint-number-li {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #f6f6f6;
+    margin: 0 0 30px 0;
+    text-align: center;
+}
+
+.person-footprint-number-li p {
+    margin: 40px 0 20px 0;
+    color: #666666;
+}
+
+.person-footprint-number-li div {
+    color: #EC2D4D;
+    font-size: 24px;
+}
+
+.person-footprint-number-li div span {
+    font-size: 14px;
+}
+
+.person-footprint-box > ul {
+}
+
+.person-footprint-box-li {
+    display: block;
+    box-sizing: border-box;
+    min-height: 30px;
+    border-left: 2px solid #cccccc;
+    position: relative;
+    padding: 0 0 30px 0;
+}
+
+.person-footprint-box-li:hover {
+    color: #333333;
+    cursor: pointer;
+}
+
+.person-footprint-box-li p {
+    position: absolute;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #cccccc;
+    border-radius: 50%;
+    top: 0;
+    left: -6.58px;
+    background: white;
+}
+
+.person-footprint-box-li div {
+    margin: -4px 0 0 0;
+}
+
+.person-footprint-box-li ul {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+
+}
+
+.person-footprint-box-li ul li {
+    margin: 0 0 16px 0;
+}
+
+.person-footprint-box span {
+    margin: 0 50px 0 60px;
+}
+
+.victory_defeat {
+    position: relative;
+}
+
+.victory_defeat li {
+    float: left;
+    margin: 0;
+}
+
+.victory_defeat li b {
+    color: #fff;
+    font-size: 12px;
+}
+
+.person-type-list li.vicdef_bar {
+    width: 480px;
+    background: #ec2d4d;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 12px;
+    height: 16px;
+}
+
+.victory {
+    position: absolute;
+    left: 20px;
+}
+
+.victory::after {
+    content: '胜';
+    margin-left: -56px;
+}
+
+.defeat {
+    position: absolute;
+    right: -10px;
+}
+
+.defeat::after {
+    content: '负';
+    margin-left: 15px;
+}
+
+.vicdef_bar0 {
+    /* width: 46%; */
+    height: 16px;
+    background: #00CAB9;
+}
+
+.person-hero-img {
+    height: 80px;
+    width: 80px;
+}

@@ -1,0 +1,104 @@
+<section>
+    <div class="home-container">
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="vsrmd">
+
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination" id="newpagination"></div>
+        </div>
+        <div class="service-menubar">
+            <section class="service-menubar-first">
+                <span ng-if="otoshowyu">可以预约一对一教学了</span>
+                <span ng-if="otoshowyi">已经预约一对一教学了</span>
+                <span ng-if="otoshowcd">cd中</span>
+
+                <a class="btn btn-big btn-white btn-big-a" ng-if="otoshowyu" href="index.html#/service">立即预约</a>
+                <a class="btn btn-big btn-white btn-big-a" ng-if="otoshowyi" href="index.html#/service">立即查看</a>
+                <a class="btn btn-big btn-white btn-big-a" ng-if="otoshowcd" href="index.html#/service">查看cd</a>
+            </section>
+            <section>
+                <span ng-if="ssjshowyu">有一个即将开始的生死局预约</span>
+                <span ng-if="ssjshowyi">有一个已经预约的生死局预约</span>
+                <span ng-if="ssjshowcd">cd中</span>
+                <a class="btn btn-big btn-white btn-big-a" ng-if="otoshowyu" href="index.html#/service">前往查看</a>
+                <a class="btn btn-big btn-white btn-big-a"  ng-if="otoshowyi" href="index.html#/service">立即查看</a>
+                <a class="btn btn-big btn-white btn-big-a"  ng-if="otoshowcd" href="index.html#/service">查看cd</a>
+            </section>
+        </div>
+        <div class="class-schedule">
+            <div class="home-title">BOOM课程表</div>
+            <div class="class-schedule-week">
+                <ul>
+                    <li class="class-schedule-week-li" ng-repeat="keb in keBiaos track by $index"
+                        ng-click="chose(keb,$index);"
+                        ng-class={"schedule-selected-li":thisIndex===$index}>
+                        <div class="li-date">
+                            {{keb.date}}
+                        </div>
+                        <div class="li-week">
+                            {{keb.day | weekDay}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="class-schedule-content">
+                <ul>
+                    <li ng-repeat="kb in selectKeBiao">
+                        <a href="#/live/{{(kb.data| evalText).liveId}}" class="content-box">
+                            <span class="home_cont_time">
+                                <ul>
+                                    <li><b>{{((kb.data| evalText).start) | HourText}}</b></li>
+                                    <li><span class="content-box-liveshow">{{((kb.data| evalText).start - now) > 0 ? "正在直播":"未开始" }}</span></li>
+                                </ul>
+                            </span>
+                            <div class="content-box-video">
+                                <div class="img-auto-container class-live-img">
+                                    <img src="http://static.iboom.tv/static/img/{{kb.img}}" alt="">
+                                </div>
+                            </div>
+                            <div class="content-box-span">
+                                <div>
+                                    <span class="content-box-title">{{kb.name}}</span>
+                                    <!-- <span class="content-box-liveshow">{{((kb.data| evalText).start - now) > 0 ? "XxX":"未开始" }}</span> -->
+                                    <span></span>
+                                </div>
+                                <div class="box-content">
+                                    缺少老师Id
+                                </div>
+                            </div>
+                            <span class="home_cont_txt">
+                                复盘课/AD
+                            </span>
+                        </a>
+                    </li>
+                    <div class="home-lack-course" ng-show="lackCourse">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>主人，今天没课，好好放松吧</span>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="last-class">
+            <div class="home-title"> BOOM最新课程 <span class="last-class-more"><a href="#/course">更多</a></span></div>
+            <div class="last-class-content">
+                <ul>
+                    <li ng-repeat="da in LatestCourse">
+                        <a href="#courseRecording/{{da.id}}">
+                            <div class="last-class-name">{{da.name}}</div>
+                            <div class="last-class-time">{{da.addTime | dayText}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+</script>

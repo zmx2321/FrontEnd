@@ -1,0 +1,15 @@
+    .test{
+            margin:900px auto 500px;
+            width:800px;
+            height:600px;
+            position: relative;
+            background-color: #00ac61;
+        }
+        .target{
+            position: absolute;
+            left:200px;
+            width:400px;
+            height:300px;
+            opacity: 0;
+            background-color: palevioletred;
+        }

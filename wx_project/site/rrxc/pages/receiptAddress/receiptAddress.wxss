@@ -1,0 +1,63 @@
+.reptadr_wrap{
+  margin-bottom: 120rpx;
+}
+
+/* rpdr_wp */
+.rpdr_ct{
+  width: 100%;
+  min-height: 220rpx;
+  background: #fff;
+  margin-bottom: 16rpx;
+}
+
+.rpdr_ct_top{
+  min-height: 120rpx;
+  border-bottom: solid 1px #e6e6e6;
+  border-top: solid 1px transparent;
+}
+
+.rpdr_ctp_wp{
+  width: 720rpx;
+  margin: 26rpx auto;
+}
+
+.rpdr_ctp_wp text{
+  display: block;
+  margin-bottom: 15rpx;
+  font-size: 26rpx;
+}
+
+.rpdr_cbm_wp{
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 720rpx;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.rpdr_cbm_wp .select{
+  float: left;
+}
+
+.rpdr_cbm_wp .operation{
+  float:right;
+  height:100rpx;
+}
+
+.operation .opan_dt{
+  display: inline-block;
+  margin-left:38rpx;
+}
+
+.opdit_pic{
+  width:52rpx;
+  height:55rpx;
+  float:left;
+  margin-top:15%;
+  margin-right:10rpx;
+}
+
+.opan_dt text{
+  float: left;
+}
+/* /rpdr_wp */

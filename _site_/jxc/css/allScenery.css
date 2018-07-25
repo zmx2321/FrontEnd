@@ -1,0 +1,347 @@
+.scenery_cont{
+    height: 10rem;
+    width: 100%;
+    overflow: hidden;
+    /*background: #fff;*/
+}
+
+.scenery_cont .swiper-container {
+    margin-top: 0.4rem;
+    width: 100%;
+    overflow: initial;
+}
+
+.scenery_cont .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 9.16rem;
+    background: #fff;
+    border-radius: 0.2rem;
+    overflow: hidden;
+    box-shadow: 4px 4px 5px 0px #ccc;
+}
+
+.scenery_cont .swiper-slide a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.scenery_cnpic{
+    width: 100%;
+    height: 7.66rem;
+    position: relative;
+}
+
+.scenery_cnpic_mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: #333;
+    opacity: 0.3;
+}
+
+.scenery_cnpic_cont{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.scenery_cnpic_cont ul{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.scenery_cnpic_cont ul li{
+    font-size: 0.24rem;
+    color: #fff;
+    margin-bottom: 0.1rem;
+}
+
+.scenery_cnpic_cont dd{
+    display: inline-block;
+}
+
+.scenery_cnpic_cont ul li:first-child{
+    font-size: 0.48rem;
+}
+
+.scenery_cnpic_cont ul li:nth-child(2){
+    font-size: 0.3rem;
+}
+
+.weather_ptic{
+    overflow: hidden;
+}
+
+.weather_ptic dd:first-child{
+    width: 0.5rem;
+    margin-left: -0.72rem;
+}
+
+.weather_ptic dd:first-child img{
+    margin: 0;
+}
+
+.weather_ptic dd:last-child{
+    position: absolute;
+    margin-left: 0.2rem;
+
+}
+
+@media only screen and (min-width: 641px){
+    .scenery_cont .swiper-slide{height: 6.66rem;width: 600px;}
+    .scenery_cnpic_cont ul{top: 42%;}
+    .scenery_cnpic{height: 5.26rem;}
+}
+
+.scenery_cnpic_cont ul li:last-child{
+    font-size: 0.24rem;
+}
+
+.scenery_cnpic_cont ul li:last-child dd:last-child{
+    margin-left: 0.1rem;
+}
+
+.scenery_cncont{
+    width: 100%;
+    height: 1.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.scenery_cncont ul{
+    width: 5.55rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.scenery_cncont li{
+    font-size: 0.22rem;
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+
+.scenery_cncont li:last-child{
+    border-bottom: 0;
+    margin-bottom: 0rem;
+    padding-bottom: 0rem;
+}
+
+.scenery_cncont dl{
+    width: 4.55rem;
+    margin: 0 auto;
+}
+
+.scenery_cncont dd{
+    display: inline-block;
+    position: relative;
+    width: 2.21rem;
+    text-align: center;
+}
+
+.scenery_cncont dd::before{
+    content: '';
+    width: 0.1rem;
+    height: 0.1rem;
+    background: #e2e2e2;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -0.16rem;
+    border-radius: 0.1rem;
+}
+
+.poycty_ban .swiper-slide{
+    overflow: hidden;
+    margin-top: 0.1rem;
+    height: 1rem;
+    /*border: solid 2px transparent;*/
+}
+
+.poycty_ban .swiper-slide a{
+    height: 88%;
+    overflow: hidden;
+    border: solid 2px transparent;
+}
+
+.poycty_ban_Mask{
+    /*border-radius: 0.07rem;*/
+}
+
+.poycty_ban .swiper-slide{
+    overflow: hidden;
+    margin-top: 0.1rem;
+}
+
+.poycty_ban .swiper-slide a{
+    /*border-radius: 0.07rem;*/
+    overflow: hidden;
+}
+
+.poycty_ban_Mask + span{
+    /*font-size: 0.2rem;*/
+}
+
+.vr_c{
+    position: absolute;
+    top: -0.1rem;
+    right: -0.27rem;
+    background: #f00;
+    color: #fff;
+    z-index: 1;
+    font-size: 0.2rem;
+    padding: 0 0.1rem;
+    transform: rotate(45deg);
+    width: 0.65rem;
+    height: 0.45rem;
+    overflow: hidden;
+}
+
+
+.vr_c b{
+    font-size: 0.2rem;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.17rem;
+    transform: rotate(-45deg);
+}
+
+.scenswp_wrap{
+    position: absolute;
+    bottom: 0;
+    /*display: flex;*/
+    width: 100%;
+    background: #fff;
+    height: 1.38rem;
+    border-top: solid 1px #efefef;
+}
+
+
+
+/**
+ * 2018.5.30
+ */
+.allScenery_all{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.scenery_top{
+    width: 100%;
+    height: 7rem;
+    background: #fff;
+}
+
+.scenery_botton{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 2rem;
+    background: #fff;
+}
+
+.poycty_ban .swiper-container{
+    margin: 0.02rem 0.1rem;
+    height: 1.2rem;
+}
+
+.poycty_ban .swiper-container img{
+    margin: 0;
+}
+
+.sen_city{
+    float: left;
+    height: 100%;
+    border-right: solid 1px #efefef;
+}
+
+.sen_swp{
+    float: left;
+    width: 86%;
+    height: 100%;
+}
+
+.sen_city ul{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sen_city li{
+    overflow: hidden;
+}
+
+.sen_city li:first-child{
+    height: 0.8rem;
+}
+
+.secy_pic{
+    width: 0.6rem;
+    height: 0.6rem;
+    margin: 0.1rem auto 0;
+}
+
+.sen_city li:last-child{
+    display: block;
+    width: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    margin: 0.05rem auto 0;
+    font-size: 0.28rem;
+}
+
+.sen_city li img{
+    margin: 0;
+    transition: 0.3s linear;
+}
+
+.addsel{
+    position: absolute;
+    width: 3rem;
+    height: 72%;
+    background: #fff;
+    bottom: 1.38rem;
+    z-index: 999;
+    overflow: auto;
+    display: none;
+    border-radius: 0 0.07rem 0 0;
+}
+
+.addsel li{
+    height: 0.7rem;
+    border-bottom: solid 1px #efefef;
+    color: #333;
+    font-size: 0.3rem;
+    line-height: 0.7rem;
+    text-align: center;
+}
+
+.addsel li:last-child{
+    border-bottom: none;
+}
+
+.addsel li.active{
+    background: #efefef;
+}
+
+.poycty_ban{
+    margin: 0;
+}
+
+.swiper-slide a.active{
+    border: solid 2px #ff0000;
+}

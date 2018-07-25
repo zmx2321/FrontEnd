@@ -1,0 +1,246 @@
+.info_box{
+    margin-bottom: 70px;
+}
+
+.business_box .title{
+	width: 100%;
+	height: 0.5rem;
+    background: #efefef;
+    overflow: hidden;
+}
+
+.business_box ul{
+	background: #fff;
+}
+
+.business_box li{
+    border-bottom: solid 1px #efefef;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    overflow: hidden;
+}
+
+.business_box dl{
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.business_box .title span{
+    display: block;
+    width: 90%;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    margin: 0 auto;
+    position: relative;
+}
+
+.business_box .title span::before{
+    content: '';
+    position: absolute;
+    width: 0.06rem;
+    height: 0.15rem;
+    background: #0457ec;
+    top: 50%;
+    left: -0.1rem;
+    transform: translateY(-50%);
+}
+
+.business_box dd:first-child{
+	width: 30%;
+}
+
+.business_box dd:last-child{
+	flex: 1;
+}
+
+.business_box input[type="text"], .business_box select{
+    border: none;
+    height: 0.6rem;
+    width: 100%;
+    background: none;
+    outline: none;
+    font-size: 0.25rem;
+}
+
+.info_btn{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+    border-top: solid 1px #efefef;
+}
+
+.info_btn button{
+    width: 100%;
+    height: 0.5rem;
+    text-align: center;
+    color: #0457ec;
+    font-size: 0.3rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    background: #fff;
+}
+
+input::-webkit-input-placeholder{
+    color: #a6a6a6;
+}
+
+.sub_service li{
+    height: initial;
+    line-height: initial;
+}
+
+.sub_service label{
+    display: block;
+    margin: 12px 0;
+    letter-spacing: 3px;
+}
+
+.sub_service li dd:first-child{
+    position: relative;
+}
+
+.sub_service li dd:first-child span{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sub_service p{
+    margin: 10px 0;
+}
+
+/* mask */
+.mask{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+}
+
+.oppup_tille{
+    position: relative;
+    background: -webkit-linear-gradient(65deg, #fe4f6e, #ff988f, #ffdaad);
+    background: -o-linear-gradient(65deg, #fe4f6e, #ff988f, #ffdaad);
+    background: linear-gradient(65deg, #fe4f6e, #ff988f, #ffdaad);
+    width: 100%;
+    height: 0.5rem;
+    overflow: hidden;
+}
+
+.oppup_tille span{
+    display: block;
+    text-align: center;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    color: #fff;
+}
+
+.oppup_tille b{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0.35rem;
+    height: 0.35rem;
+    text-align: center;
+    background: url(../images/close.png) top no-repeat;
+    background-size: 100% 100%;
+}
+
+.oppup1, .oppup2{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    min-height: 100px;
+    border-radius: 7px;
+    overflow: hidden;
+    background-color: #fff;
+    display: none;
+}
+
+.oppup_wrap{
+    padding: 16px 12px;
+}
+
+.inputbox{
+    width: 100%;
+}
+
+.inputbox li{
+    width: 100%;
+    margin-bottom: 16px;
+    height: 0.5rem;
+    overflow: hidden;
+}
+
+.oppup_btn ul, .inputbox dl{
+    display: flex;
+}
+
+.inputbox dd:first-child {
+    width: 3rem;
+}
+
+.inputbox dd:last-child{
+    flex: 1;
+    background: #fc5c38;
+    margin-left: 0.1rem;
+    position: relative;
+    line-height: 0.5rem;
+    text-align: center;
+    color: #fff;
+}
+
+.inputbox input[type="text"]{
+    width: 100%;
+    height: 0.5rem;
+    background: #ededed;
+    border: none;
+    overflow: hidden;
+    text-indent: 0.2rem;
+}
+
+.oppup_btn{
+    text-align: center;
+}
+
+.oppup_btn li{
+    flex: 1;
+    
+}
+
+.oppup_btn button{
+    width: 1rem;
+    height: 0.39rem;
+    text-align: center;
+    color: #fff;
+    box-shadow: 1px 1px 1px 1px #d7e0dd;
+}
+
+button.confirm, button.update{
+    background: -webkit-linear-gradient(65deg, #f95935, #ff261d);
+    background: -o-linear-gradient(65deg, #f95935, #ff261d);
+    background: linear-gradient(65deg, #f95935, #ff261d);
+    border-radius: 0.08rem;
+}
+
+.oppup1 .inputbox li{
+    background: #ededed;
+    color: #747474;
+    line-height: 0.5rem;
+    text-indent: 10px;
+}
+
+.oppup2{
+    width: 85%;
+}
+
+.oppup2 button{
+    width: 1.5rem;
+}

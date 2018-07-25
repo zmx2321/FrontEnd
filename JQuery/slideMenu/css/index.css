@@ -1,0 +1,114 @@
+body {
+    background: url(../images/slideMenu_bg_1.png) no-repeat;
+}
+
+#menu {
+    display: none;
+    width: 55%;
+    color: #fff;
+}
+
+#menu .logo, #menu .menu-show {
+    text-align: center;
+}
+
+#menu .logo {
+    margin-left: 20px;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+#menu .menu-show {
+    position: relative;
+    z-index: 3;
+    margin: 0 auto !important;
+    margin-top: 20px;
+    list-style: none;
+    font-size: 14px;
+}
+
+#menu .menu-show li {
+    position: relative;
+    left: -85%;
+    margin: 12px auto;
+    width: 60%;
+    padding: 5px;
+    border-radius: 2px;
+    /*-webkit-animation: content 1.5s .5s;*/
+}
+
+#menu .menu-show li:hover {
+    background-color: rgba(190,228,244,0.4);
+}
+
+.con-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.con {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    /*top: 18%;
+				bottom: 18%;
+				left: 55%;
+				margin: auto;
+				width: 82%;
+				height: 82%;*/
+    background-color: #fff;
+    background-size: cover;
+}
+
+#menu-btn,.return {
+    position: absolute;
+    left: 15px;
+    padding: 3px 0;
+    text-align: center;
+    border-radius: 2px;
+    color: #fff;
+    background-color: rgb(190,228,244);
+}
+
+#menu-btn {
+    top: 20px;
+    width: 60px;
+}
+
+.return {
+    top: 80px;
+    width: 100px;
+}
+
+/*定义动画*/
+@-webkit-keyframes menu {
+    0% {
+        left: -70%;
+    }
+
+    70% {
+        left: 18%;
+    }
+
+    100% {
+        left: 0
+    }
+}
+
+@-webkit-keyframes returnContent {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: -70%;
+    }
+}

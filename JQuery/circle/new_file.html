@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="tools.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="chouma.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="email=no,telephone=no" name="format-detection" />
+		<style type="text/css">
+			html {
+				font-size: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div style="width: 100px;height: 50px;line-height: 50px;text-align: center;border: 1px solid red;" onclick="phone.chouma.show()">
+			点击
+		</div>
+	</body>
+	<script type="text/javascript">
+		$("body").on("click", ".chouma_item", function(e) {
+			var x = e.clientX;
+			var y = e.clientY;
+			x = x - e.offsetX;
+			y = y - e.offsetY;
+			var cloneDom = $(this).clone();
+			cloneDom.removeClass("chouma_item").removeClass("cm_1")
+				.removeClass("cm_2")
+				.removeClass("cm_3")
+				.removeClass("cm_4")
+				.removeClass("cm_5")
+				.removeClass("cm_6")
+				.removeClass("cm_7")
+				.removeClass("cm_8")
+				.removeClass("cm_9")
+				.addClass("cm_selected").css({
+					"left": x,
+					"top": y
+				});
+			$("body").prepend(cloneDom);
+			$(".cm_selected").addClass("ani_cm_selected");
+			window.phone.chouma.close();
+			setTimeout(function(){
+				$(".cm_selected").remove();
+			},500);
+		});
+	</script>
+
+</html>

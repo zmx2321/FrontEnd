@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>对话框</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<h1>Overlay Demo</h1>
+<button id="runBtn" style="cursor: pointer;">点击运行</button>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/index.js"></script>
+<!-- js e -->
+<script>
+    "use strict";
+    // Your code here
+    var overlay = new Overlay({
+        target: '#runBtn',
+        title: '自定义标题',
+        content: '自定义内容...'
+    }).setWidth(460).setHeight(270);
+</script>
+</body>
+</html>

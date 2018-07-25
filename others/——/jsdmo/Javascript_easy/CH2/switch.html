@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+        
+
+        var score = 77;
+         //用else if 来做评分
+		if (score == 100) {
+           alert("A");
+		}else if (score<100 && score>=90) {
+           alert("B");
+		}else if (score<90 && score>=80) {
+		   alert("C");
+		}else if (score<80 && score>=70) {
+		   alert("D");
+		}else{
+		   alert("E"); 
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+        //用switch 方法来做
+        var Key = parseInt(score/10);//取整
+
+         var str = "";
+		     switch(Key){
+			     case 10:
+               str="A";
+              break;
+            case 9:
+              str="B";
+              break;
+            case 8:
+              str="C";
+              break;
+            case 7:
+              str="D";
+              break;
+            default:
+              str="E";
+              break;  
+		}
+
+          alert(str);
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

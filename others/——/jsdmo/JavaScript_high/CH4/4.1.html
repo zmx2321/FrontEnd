@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var add = new Function(
+				'x',
+				'y',
+				'return (x + y)'
+			);
+
+			// 等同于
+
+			function add(x, y) {
+				return(x + y);
+			}
+
+			var foo = new Function(
+				'return "hello world"'
+			);
+
+			// 等同于
+
+			function foo() {
+				return 'hello world';
+			}
+
+			function add(x, y) {
+				return x + y;
+			}
+
+			// 将函数赋值给一个变量
+			var operator = add;
+
+			// 将函数作为参数和返回值
+			function a(op) {
+				return op;
+			}
+			a(add)(1, 1)
+				// 2
+
+			var f = function() {
+				console.log('1');
+			}
+
+			function f() {
+				console.log('2');
+			}
+
+			f() // 1
+		</script>
+	</body>
+
+</html>

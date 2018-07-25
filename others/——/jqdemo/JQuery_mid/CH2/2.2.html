@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../lib/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<ul class="lang">
+			<li class="js dy">JavaScript</li>
+			<li class="dy">Python</li>
+			<li id="swift">Swift</li>
+			<li class="dy">Scheme</li>
+			<li name="haskell">Haskell</li>
+		</ul>
+		<script type="text/javascript">
+			var ul = $('ul.lang'); // 获得<ul>
+			var dy = ul.find('.dy'); // 获得JavaScript, Python, Scheme
+			var swf = ul.find('#swift'); // 获得Swift
+			var hsk = ul.find('[name=haskell]'); // 获得Haskell
+
+			var swf = $('#swift'); // 获得Swift
+			var parent = swf.parent(); // 获得Swift的上层节点<ul>
+			var a = swf.parent('div.red'); // 从Swift的父节点开始向上查找，直到找到某个符合条件的节点并返回
+
+			var swift = $('#swift');
+
+			swift.next(); // Scheme
+			swift.next('[name=haskell]'); // Haskell，因为Haskell是后续第一个符合选择器条件的节点
+
+			swift.prev(); // Python
+			swift.prev('.js'); // JavaScript，因为JavaScript是往前第一个符合选择器条件的节点
+
+			var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+			var a = langs.filter('.dy'); // 拿到JavaScript, Python, Scheme
+
+			var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+			langs.filter(function() {
+				return this.innerHTML.indexOf('S') === 0; // 返回S开头的节点
+			}); // 拿到Swift, Scheme
+		</script>
+	</body>
+
+</html>

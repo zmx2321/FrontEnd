@@ -1,0 +1,285 @@
+﻿<Html>
+		<head>
+	<meta charset="UTF-8" >
+	
+
+    <script type="text/javascript">
+    	
+    	/* function  NodeInfo(obj) {
+    		
+    	 return	"nodeName="+obj.nodeName+".....nodeType="+obj.nodeType+".......nodeValue="+obj.nodeValue+"\n";  		
+    	}
+    	
+    	var str = "";
+    	function nodeList (obj) {
+         var arr = obj.childNodes;
+        str += NodeInfo(obj);
+    	for (var i = 0; i < arr.length; i++) {
+    		
+    		if(arr[i].hasChildNodes()){
+    			nodeList(arr[i]);
+    		}else {
+    			str += NodeInfo(arr[i]);
+    		}
+    		
+    	}
+    	
+    	 
+    		}
+    		
+    	 window.onload =	function () {
+    			 var a = 1>0? "机智":"愚蠢";
+    		 var chil =  document.body;
+         nodeList (chil);
+    		 alert(str+a);}*/
+    		 
+
+    		 
+    		 window.onload = function () {
+    		 	
+    		 var node = document.getElementById("Grogs");
+    		 	var nodes =  node.childNodes;
+    		 	//alert(nodes.length);
+    		 	for (var i = 0; i < nodes.length; i++) {
+    		 		 
+    		 		 if(nodes[i].nodeType==1){
+    		 		 	nodes[i].onclick=remove;
+    		 		 	//alert(nodes[i].onclick);
+    		 	}
+    		 }
+    		}
+    		  function remove(node) {
+    		  var nodes = 	document.getElementById("Grogs");
+    		  var node = event.srcElement;
+    		 if(node!=="DIV"){
+    		 	node = node.parentNode;
+    		 	}
+    		 	 if(confirm("确定要删除这张图片么？")){
+    		 nodes.removeChild(node);}
+    		 }
+    		 
+    </script>
+
+<style type="text/css">
+	
+	
+	body{
+		background:#B0E2FF;
+		}
+		
+		.div1{
+			background:#C6E2FF;
+			margin: 0 auto;
+			width:1000px;
+			padding: 50px 20px 50px 20px;
+			}
+			
+			.titles{
+				width:100px;
+				height:60px;
+				text-align:center;
+				display:inline-block;
+				text-decoration:none;
+				background:#ffffff;
+			  line-height:60px;
+			  	border-bottom: 5px solid #C6E2FF;
+			}
+      .titles:hover{
+      	border-bottom: 5px solid #9C9C9C;
+      	}
+      	     .titles:active{
+      	border-bottom: 5px solid #9C9C9C;
+      	background:#E8E8E8;
+      	color:#00BFFF;
+      	}
+      
+      .bt{
+      	width:100px;
+				height:30px;
+				border-radius:5px;
+				border: 1px solid #fff;
+				background:#00BFFF;
+      	}
+    .bt:hover{
+    		border: 1px solid #878787;
+    	}
+    	
+    	    .bt:active{
+    		border: 1px solid #00BFFF;
+    	}
+
+            .bt2{
+      	width:100px;
+				height:30px;
+				background:#FFFAFA;
+				border: 1px solid #878787;
+      	}	
+      	
+      	.div2{
+      		height:30px;
+      		width:400px;
+      		line-height:30px;
+      		}
+      		
+      		.div3{
+      		height:250px;
+      		width:200px;
+      		background:#ffffff;
+      		display:inline-block;	
+      		margin:10px;
+      		}
+      		
+          img{
+		      margin:0px;
+		      margin:10px auto;
+	          }
+
+         p{
+         text-align:center;
+          }
+	
+       </style>
+
+		
+	</head>
+	
+	<body>
+		 <audio src="../muisc/bgMuisc2.mp3"  autoplay=true  ></audio>
+		 <div  class="div1">
+		 	  <div style="background:#ffffff;margin-bottom:10px;background:#C6E2FF;">
+			  <img src="../imgs/lufei.jpg" width=140px height="130px" style="display:inline-block;border: 5px solid #fff;" >
+    </div>
+		 	<a class="titles" href="">相册</a><a class="titles" href="">照片</a><a class="titles" href="">面孔墙</a><a class="titles" href="">视频</a>
+		 	<br>
+		 	<hr>
+		 	<div class="div2">
+		 <input class="bt" type="button" value="上传照片"> <input class="bt2" type="button" value="创建相册"> <input class="bt2" type="button" value="展示设置"></div>
+		 <div style="margin-top:20px;margin-left:55px" id="Grogs">
+    	<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+    		<div class="div3" align=center onclick="remove(this)">
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>    		<div class="div3" align=center>
+			<img src="../imgs/lufei.jpg" width=180px height="170px" >
+			<p>
+				蒙奇D.路飞
+			</p>
+    </div>
+		  </div> 
+		 </div>
+	</body>
+	
+</Html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="./font-awesome-4.5.0/css/font-awesome.css"/>
+    <link rel="stylesheet" href="css/首页.css"/>
+    <script src='./js/jquery-1.12.4.js'></script>
+    <script src='./js/ichartjs.release.v1.2-all-in-one-20130626/ichart.1.2.min.js'></script>
+    <script src="./js/echarts-2.2.7/build/dist/echarts.js"></script>
+    <script src='./js/首页.js'></script>
+</head>
+<body>
+    <!--业务相关-->
+    <div class="header">
+        <div class="business-header">
+            <div class="business-header-l fl">业务相关</div>
+            <div class="nian">2016年</div>
+            <ul class="business-header-ul">
+                <li>1月</li>
+                <li>2月</li>
+                <li>3月</li>
+                <li>4月</li>
+                <li>5月</li>
+                <li>6月</li>
+                <li>7月</li>
+                <li>8月</li>
+                <li>9月</li>
+                <li class="highlight">10月</li>
+            </ul>
+        </div>
+        <!-- 统计图-->
+        <div id="total">
+            <div id="main"></div>
+
+            <div id="sub"></div>
+
+            <div id="aside"></div>
+        </div>
+        <!-- 联动报表-->
+        <div class="link-table">
+            <table border=1>
+
+                    <tr>
+                        <td rowspan="2">统计项 <br/>(联动报表)</td>
+                        <td colspan="4">按年</td>
+                        <td colspan="4">按季度</td>
+                        <td colspan="4">按月份</td>
+                    </tr>
+
+                    <tr>
+                        <td>同比</td>
+                        <td>趋势</td>
+                        <td>环比</td>
+                        <td>趋势</td>
+                        <td>同比</td>
+                        <td>趋势</td>
+                        <td>环比</td>
+                        <td>趋势</td>
+                        <td>同比</td>
+                        <td>趋势</td>
+                        <td>环比</td>
+                        <td>趋势</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>总收入</td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-up"></i></td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-up"></i></td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-up"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-up"></i></td>
+                    </tr>
+                    <tr>
+                        <td>总支出</td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-up"></i></td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-up"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-up"></i></td>
+                    </tr>
+                    <tr>
+                        <td>总利润(税前)</td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td> <i class="fa fa-long-arrow-up"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-down"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-up"></i></td>
+                        <td></td>
+                        <td><i class="fa fa-long-arrow-down"></i></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--流程相关-->
+    <div class="main-flow">
+        <div class="business-header">
+            <div class="business-header-l fl">流程相关</div>
+            <div class="nian">2016年</div>
+            <ul class="business-header-ul">
+                <li>1月</li>
+                <li>2月</li>
+                <li>3月</li>
+                <li>4月</li>
+                <li>5月</li>
+                <li>6月</li>
+                <li>7月</li>
+                <li>8月</li>
+                <li>9月</li>
+                <li class="highlight">10月</li>
+            </ul>
+        </div>
+        <div class="map">
+            <div class="map-l fl" id="map-l">
+            </div>
+            <div class="map-r fl">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>流程名称</th>
+                            <th>在途</th>
+                            <th>已完成</th>
+                            <th>已作废</th>
+                            <th>退回过</th>
+                            <th>平均耗时</th>
+                        </tr>
+                    </thead>
+                    <tbody id="map-r-tbody">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

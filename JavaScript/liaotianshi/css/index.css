@@ -1,0 +1,16 @@
+#log {  
+    width: 440px;  
+    height: 200px;  
+    border: 1px solid #7F9DB9;  
+    overflow-y: scroll;
+    
+    background-color: yellow;   
+    padding-left: 0;    
+    position: relative;  
+    word-wrap: break-word;   
+    text-align:left;  
+}  
+
+#msg {  
+    width: 330px;  
+}  

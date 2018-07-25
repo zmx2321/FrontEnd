@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			new Date('2013-2-15')
+			new Date('2013/2/15')
+			new Date('02/15/2013')
+			new Date('2013-FEB-15')
+			new Date('FEB, 15, 2013')
+			new Date('FEB 15, 2013')
+			new Date('Feberuary, 15, 2013')
+			new Date('Feberuary 15, 2013')
+			new Date('15 Feb 2013')
+			new Date('15, Feberuary, 2013')
+
+			new Date(2013, 0)
+				// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)
+
+			new Date(2013, 0, 1)
+				// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)
+
+			new Date(2013, 0, 1, 0)
+				// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)
+
+			new Date(2013, 0, 1, 0, 0, 0, 0)
+				// Tue Jan 01 2013 00:00:00 GMT+0800 (CST)
+
+			var r = /x/g;
+			var s = '_x_x';
+
+			r.lastIndex // 0
+			r.test(s) // true
+
+			r.lastIndex // 2
+			r.test(s) // true
+
+			r.lastIndex // 4
+			r.test(s) // false
+
+			var r = /a(b+)a/g;
+
+			var a1 = r.exec('_abbba_aba_');
+			a1 // ['abbba', 'bbb']
+			a1.index // 1
+			r.lastIndex // 6
+
+			var a2 = r.exec('_abbba_aba_');
+			a2 // ['aba', 'b']
+			a2.index // 7
+			r.lastIndex // 10
+
+			var a3 = r.exec('_abbba_aba_');
+			a3 // null
+			a3.index // TypeError: Cannot read property 'index' of null
+			r.lastIndex // 0
+
+			var a4 = r.exec('_abbba_aba_');
+			a4 // ['abbba', 'bbb']
+			a4.index // 1
+			r.lastIndex // 6
+		</script>
+	</body>
+
+</html>

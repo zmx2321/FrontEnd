@@ -1,0 +1,144 @@
+/*** odlogts_cont ***/
+.odlogts_cont{
+  margin-bottom: 160rpx;
+}
+
+/* odlogts_state */
+.odlogts_state {
+    width: 100%;
+    height: 195rpx;
+    background: #fff;
+    margin-bottom: 16rpx;
+    overflow: hidden;
+}
+
+.odlogts_state_pic{
+  width: 135rpx;
+  height: 135rpx;
+  float: left;
+  margin-top: 30rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.odlogts_state_pic text{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    text-align: center;
+    height: 40rpx;
+    line-height: 40rpx;
+    background: rgba(0,0,0,.3);
+    font-size: 24rpx;
+    color: #fff;
+}
+
+.odlogts_state_txt {
+    float: left;
+    margin-top: 22rpx;
+    margin-left: 30rpx;
+    width: 300rpx;
+}
+
+.odlogts_state_txt > text{
+  display: block;
+  margin-bottom: 8rpx;
+  color: #666666;
+}
+
+.odlogts_state_txt text.tit{
+  font-size:30rpx;
+  color:#000;
+}
+
+.odlogts_state_txt text.stu{
+  font-size: 30rpx;
+  color: #00cd00;
+}
+/* /odlogts_state */
+
+/* odlogts_body */
+.odlogts_body {
+  width: 100%;
+  min-height: 200rpx;
+  background: #fff;
+  margin-bottom: 24rpx;
+  padding-top: 32rpx;
+}
+
+ul.odlogts_mcont{
+    width: 100%;
+    min-height: 2rem;
+    border-left: solid 1px #ccc;
+    display: block;
+}
+
+.odlogts_mcont li{
+    margin-left: 50rpx;
+    margin-bottom: 50rpx;
+    position: relative;
+    min-height: 100rpx;
+}
+
+.odlogts_mcont li:last-child{
+    margin-bottom: 0;
+}
+
+.odlogts_mcont li::before{
+    content: '';
+    width: 22rpx;
+    height: 22rpx;
+    background: #ccc;
+    position: absolute;
+    left: -62rpx;
+    border-radius: 11rpx;
+}
+
+.odlogts_mcont li.active::before{
+    background: #00cd00;
+    box-shadow: 0px 0px 1px 4px #b4eab4;
+}
+
+.odlogts_mcont dd{
+    color: #999999;
+    display: block;
+    margin-left:36rpx;
+}
+
+.odlogts_mcont li.active dd{
+    color: #00cd00;
+}
+/* /odlogts_body */
+
+
+
+/*** /odlogts_cont ***/
+
+/*** odlogts_bottom ***/
+.odlogts_bottom {
+    width: 100%;
+    height: 98rpx;
+    line-height: 98rpx;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    text-align: right;
+}
+
+.odlogts_wrap {
+    width: 680rpx;
+    margin: 0 auto;
+}
+
+.odlogts_wrap button{
+  border: solid 1px #ccc;
+  background: none;
+  font-size: 24rpx;
+  float: right;
+  margin-top: 20rpx;
+  color: #000;
+  height:55rpx;
+  line-height:55rpx;
+}
+/*** /odlogts_bottom ***/

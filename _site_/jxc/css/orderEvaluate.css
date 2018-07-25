@@ -1,0 +1,133 @@
+.odeval_all{
+    font-size: 0.24rem;
+}
+/* evaluate_wrap s */
+/* public s */
+.evaluate_wrap{
+	width: 100%;
+}
+
+.evaluate_cont{
+    width: 6.8rem;
+	margin: 0 auto;
+}
+
+.evaluate_cont ul, .evaluate_cont dl{
+	font-size: 0;
+}
+
+.evaluate_cont li, .evaluate_cont dd{
+	font-size: 0.24rem;
+}
+
+span{
+	color: #b0abab;
+}
+/* public e */
+
+/* star_evaluate s */
+.star_evaluate{
+	height: 1.02rem;
+	line-height: 1.02rem;
+	background: #fff;
+	margin-bottom: 0.24rem;
+	overflow: hidden;
+}
+
+.star_evaluate li{
+	display: inline-block;
+}
+
+.star_evaluate li:first-child{
+    width: 0.9rem;
+}
+
+.star_evaluate li:last-child{
+	position: relative;
+}
+
+.total_points{
+    width: 5.5rem !important;
+    position: absolute;
+    top: -0.6rem;
+    height: 1.02rem;
+}
+
+.total_points img{
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0;
+    margin-top: 0.25rem;
+}
+/* star_evaluate e */
+
+/* text_evaluate s */
+.text_evaluate{
+	height: 3.36rem;
+	background: #fff;
+	overflow: hidden;
+}
+
+.texteval_top{
+	height: 2.46rem;
+	overflow: hidden;
+	border-bottom: solid 1px #e5e5e5;
+}
+
+.texteval_top ul{
+    margin: 0.16rem 0;
+}
+
+.texteval_top li:first-child{
+    margin-bottom: 0.15rem;
+}
+
+.texteval_top dd{
+    display: inline-block;
+    border: solid 1px #ccc;
+    padding: 0.1rem 0.2rem;
+    margin-right: 0.3rem;
+    margin-bottom: 0.24rem;
+}
+
+.texteval_top dd.active{
+    background: url(../images/btn-xzk.png) top no-repeat;
+    background-size: 97.5%;
+    border: 0;
+}
+
+.texteval_top dd:first-child{
+   /*  margin-left: 0; */
+}
+
+.texteval_bottom{
+    height: 0.9rem;
+    line-height: 0.9rem;
+}
+
+.texteval_bottom label{
+	float: right;
+	position: relative;
+}
+
+.texteval_bottom label input[type="checkbox"]{
+    opacity: 0;
+    margin-left: 0.2rem;
+}
+
+.texteval_bottom label b{
+    position: absolute;
+    top: 0.29rem;
+    background: url(../images/btn-fxk-wxz.png) top no-repeat;
+    background-size: 100% !important;
+    width: 0.38rem;
+    height: 0.38rem;
+    right: -0.18rem;
+}
+
+.texteval_bottom label b.active{
+    background: url(../images/btn-fxk-xz.png) top no-repeat;
+}
+/* text_evaluate e */
+
+/* evaluate_wrap e */

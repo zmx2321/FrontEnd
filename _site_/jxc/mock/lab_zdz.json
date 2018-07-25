@@ -1,0 +1,33 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id": 1,
+      "lab": "定制茶园",
+      "clsN": "landlord_a"
+    },
+    {
+      "id": 2,
+      "lab": "私家菜园",
+      "clsN": "landlord_b"
+    },
+    {
+      "id": 3,
+      "lab": "缤纷果园",
+      "clsN": "landlord_c"
+    },
+    {
+      "id": 4,
+      "lab": "生态土畜",
+      "clsN": "landlord_d"
+    },
+    {
+      "id": 6,
+      "lab": "cmcc",
+      "clsN": "landlord_e"
+    }
+  ],
+  "length":null,
+  "rtCode":null
+}

@@ -1,0 +1,14 @@
+<view >
+   <view  id="top">
+    <view id="scan">
+    <image id="scan_logo" style="" mode="widthFix" src="../../../image/scan.png" binderror="" bindload=""></image>
+    </view>
+
+    <input id="input_style" placeholder-style="color:gray" placeholder="手动输入条码" />
+    <view id="sub">提交</view> 
+   	
+   	
+   </view>
+ 
+
+</view>

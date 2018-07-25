@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title></title>
+
+	<script type="text/javascript">
+
+	/*
+      用while计算1-100之间的奇数之和与偶数之和  并 分别统计个数
+	*/
+		var number = 1;
+		//奇数之和
+		var oddSum = 0;
+		//偶数之和
+		var evenSum = 0;
+		//奇数个数
+        var oddNumber = 0;
+		//偶数个数
+        var evenNumber = 0;
+
+		while(number<=100){
+
+             if (number%2==0) {
+                
+              evenSum += number;
+
+               oddNumber++;
+
+             }else{
+
+             	oddSum += number;
+
+                evenNumber++;
+             }
+
+             number++;
+		}
+
+        // '\n' 换行   '\t' 空格   在html中会被忽略
+		alert("奇数之后为oddSum="+oddSum+"\n个数为oddNumber="+oddNumber+"\n偶数之和为evenSum="+evenSum+"\n个数为evenNumber="+evenNumber);
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

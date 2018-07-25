@@ -1,0 +1,58 @@
+/* QRCode_all */
+.QRCode_all {
+    font-size: 0.24rem;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/scenery_cnpic1.jpg) top no-repeat;
+    background-size: 100% 100%;
+}
+
+/* QRCode_top */
+.QRCode_top {
+  width: 100%;
+  height: 700rpx;
+  overflow: hidden;
+  margin-bottom: 55rpx;
+}
+
+.QRCode_top::after{
+  display:block;
+  clear:both;
+  visibility:hidden;
+  height:0;
+  overflow:hidden;
+  content:".";
+}
+
+.QRCode_pic{
+  width: 450rpx;
+  height: 450rpx;
+  margin: 130rpx 0 0 100rpx;
+}
+/* /QRCode_top */
+
+/* QRCode_bottom */
+.QRCode_btm_cot{
+  margin: 0 100rpx;
+  color: #fff;
+  font-size: 40rpx;
+}
+
+.qdbmt_top text{
+   float: left; 
+}
+
+.qdbmt_top_pic{
+  float: right;
+  width: 150rpx;
+  height: 150rpx;
+  border: solid 3px #fff;
+  overflow: hidden;
+}
+
+.qdbmt_bom{
+  margin-top: 55rpx;
+}
+/* /QRCode_bottom */
+/* /QRCode_all */

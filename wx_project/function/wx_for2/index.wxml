@@ -1,0 +1,5 @@
+<!-- 默认数组的当前项的下标变量名默认为index，数组当前项的变量名默认为item，当然也可以通过 wx:for-item 和 wx:for-index 指定。 -->
+
+<view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+ {{idx}}: {{itemName.message}}
+</view>

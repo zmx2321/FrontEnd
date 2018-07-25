@@ -1,0 +1,278 @@
+{
+  "pages":[
+
+    "pages/index/index",
+
+    "pages/myMessage/myMessage",
+
+    
+
+    "pages/receiptAddress/receiptAddress",
+    
+    "pages/raiseDetails_zdz/raiseDetails_zdz",
+    "pages/raiseDetails_tcc/raiseDetails_tcc",
+    
+    
+
+    "pages/raiseDetails_wzt/raiseDetails_wzt",
+
+
+
+
+    "pages/businessDetail/businessDetail",
+
+    "pages/productDetail_ms/productDetail_ms",
+
+    
+
+    
+
+
+    "pages/businessDetail_order/businessDetail_order",
+
+    
+
+    "pages/experienceGroup/experienceGroup",
+
+    "pages/freeExperience/freeExperience",
+    
+
+    "pages/classify/zdz/zdz",
+
+    
+
+    
+
+    
+
+    
+
+    "pages/kxt_payment/kxt_payment",
+
+    "pages/zc_payment/zc_payment",
+
+    "pages/productDetail_pt/productDetail_pt",
+    
+    
+    
+
+    "pages/fightGroups/fightGroups",
+
+    
+
+    
+
+    "pages/evaluateDetail/evaluateDetail",
+
+    
+
+    
+    
+
+    
+
+    "pages/payment/payment",
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    "pages/test/index3/index3",
+
+    "pages/test/test4/test4",
+
+    "pages/test/test5/test5",
+
+    "pages/test/test6/test6",
+    
+    
+
+    "pages/test/u/u",
+
+    "pages/test/t/t",
+
+    
+
+    "pages/test/tt/tt",
+
+    
+
+    
+
+    
+
+    
+
+    
+    "pages/classify/tcc/tcc",
+    
+    "pages/classify/pth/pth",
+
+    "pages/classify/wzt/wzt",
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    "pages/orderState/orderState",
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    "pages/test/index1/index",
+    "pages/test/index2/index2",
+    
+    "pages/test/index4/index",
+
+    "pages/test/test1/test1",
+    
+
+    "pages/test/test/test",
+    "pages/test/suggestion/suggestion",
+    "pages/test/weather/weather",
+    
+    "pages/test/search/search",
+    "pages/test/regeocoding/regeocoding",
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    "pages/test/test2/test2",
+    
+
+    
+
+    
+    
+
+    
+
+    
+    "pages/businessDetail_jq/businessDetail_jq",
+
+    
+
+    
+
+    
+    
+
+   
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    "pages/myInfo/myInfo",
+    "pages/follow/follow",
+    "pages/myOrder/myOrder",
+    "pages/QRCode/QRCode",
+    "pages/businessSettled/businessSettled",
+    "pages/mySettings/mySettings",
+    "pages/personalInfo/personalInfo",
+    "pages/bindphone/bindphone",
+    "pages/bindthree/bindthree",
+    
+    "pages/fixAddress/fixAddress",
+    "pages/orderLogistics/orderLogistics",
+    "pages/orderEvaluate/orderEvaluate"
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+    
+  ],
+  "window":{
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "人人乡村",
+    "navigationBarTextStyle":"#fff"
+  },
+  "debug": false
+}

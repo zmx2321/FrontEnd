@@ -1,0 +1,37 @@
+.dowebok .hd { height: 125px; background: url(http://cdn.dowebok.com/131/images/i2/hd.png) 50% 0 no-repeat;}
+.dowebok .slide { height: 622px; background: url(http://cdn.dowebok.com/131/images/i2/slide.jpg) 50% 0 no-repeat;}
+.dowebok .area1 { background-color: #f2f2f2;}
+.dowebok .area1 h2 { height: 130px; background: url(http://cdn.dowebok.com/131/images/i2/h2-1.png) 50% 0 no-repeat;}
+.dowebok .area1 .box { padding: 35px 0 60px;}
+.dowebok .area1 .bg1 { width: 1180px; height: 565px; margin: 0 auto; background: url(http://cdn.dowebok.com/131/images/i2/bg1.jpg) 0 0 no-repeat;}
+
+.dowebok .area2 { padding-bottom: 50px; border-bottom: 3px solid #d9d9d9; background-color: #f6f6f6;}
+.dowebok .area2 h2 { height: 140px; background: url(http://cdn.dowebok.com/131/images/i2/h2-2.png) 50% 0 no-repeat;}
+.dowebok .area2 .list1 { position: relative; width: 1180px; height: 880px; margin: 0 auto; list-style-type: none;}
+.dowebok .list1 .item { position: absolute;}
+.dowebok .list1 .item1 { left: 0; top: 0; width: 280px; height: 580px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-1.jpg);}
+.dowebok .list1 .item2 { left: 300px; top: 0; width: 280px; height: 280px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-2.jpg);}
+.dowebok .list1 .item3 { left: 300px; top: 300px; width: 280px; height: 280px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-3.jpg);}
+.dowebok .list1 .item4 { left: 0; bottom: 0; width: 580px; height: 280px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-4.jpg);}
+.dowebok .list1 .item5 { left: 600px; top: 0; width: 580px; height: 280px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-5.jpg);}
+.dowebok .list1 .item6 { left: 600px; top: 300px; width: 280px; height: 580px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-6.jpg);}
+.dowebok .list1 .item7 { right: 0; top: 300px; width: 280px; height: 280px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-7.jpg);}
+.dowebok .list1 .item8 { right: 0; bottom: 0; width: 280px; height: 280px; background-image: url(http://cdn.dowebok.com/131/images/i2/list1-8.jpg);}
+
+.dowebok .area3 { padding-bottom: 60px; background-color: #eaeaea;}
+.dowebok .area3 h2 { height: 130px; background: url(http://cdn.dowebok.com/131/images/i2/h2-3.png) 50% 0 no-repeat;}
+.dowebok .area3 .list2 { position: relative; width: 1180px; height: 560px; margin: 0 auto; list-style-type: none;}
+.dowebok .list2 .item { position: absolute; width: 380px; height: 270px;}
+.dowebok .list2 .item1 { left: 0; top: 0; background-image: url(http://cdn.dowebok.com/131/images/i2/list2-1.jpg);}
+.dowebok .list2 .item2 { left: 400px; top: 0; background-image: url(http://cdn.dowebok.com/131/images/i2/list2-2.jpg);}
+.dowebok .list2 .item3 { left: 0; bottom: 0; background-image: url(http://cdn.dowebok.com/131/images/i2/list2-3.jpg);}
+.dowebok .list2 .item4 { left: 400px; bottom: 0; background-image: url(http://cdn.dowebok.com/131/images/i2/list2-4.jpg);}
+.dowebok .list2 .item5 { height: 560px; right: 0; top: 0; background-image: url(http://cdn.dowebok.com/131/images/i2/list2-5.jpg);}
+
+.dowebok .ft-service { width: 1180px; height: 125px; margin: 0 auto; list-style-type: none; font-size: 0; overflow: hidden;}
+.dowebok .ft-service .item { display: inline-block; width: 236px; height: 125px; background-image: url(http://cdn.dowebok.com/131/images/i2/ft-service.png); background-repeat: no-repeat; *display: inline; zoom: 1;}
+.dowebok .ft-service .item2 { background-position: -236px 0;}
+.dowebok .ft-service .item3 { background-position: -472px 0;}
+.dowebok .ft-service .item4 { background-position: -708px 0;}
+.dowebok .ft-service .item5 { background-position: right 0;}
+.dowebok .ft-links { height: 316px; background: url(http://cdn.dowebok.com/131/images/i2/ft-links.png) 50% 0 no-repeat;}

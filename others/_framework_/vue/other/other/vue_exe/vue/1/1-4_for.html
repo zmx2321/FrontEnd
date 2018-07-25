@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>for</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<style>
+#box{
+	margin: 20px;
+}
+
+li{
+	display: inline-block;
+	margin-right: 30px;
+	padding: 15px;
+}
+</style>
+</head>
+<body>
+	<!-- body s -->
+	<div id="box">
+		<span>循环数组</span>
+		<ul>
+			<li v-for="value in arr">
+				{{ $index }} {{ value }}
+			</li>
+		</ul>
+		
+		<hr />
+		
+		<span>循环json</span>
+		<ul>
+			<li v-for="item in json">
+				{{ $index }} {{ item }} {{ $key }}
+			</li>
+		</ul>
+		
+		<hr />
+		
+		<ul>
+			<li v-for="(k, v) in json">
+				{{ k }} {{ v }} {{ $index }} {{ $key }}
+			</li>
+		</ul>
+	</div>
+	<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/jquery-1.8.3.min.js"></script>
+<script src="js/lib/vue.js"></script>
+<script>
+window.onload = function(){
+	new Vue({
+		el: '#box',
+		data:{
+			arr:['apple','banana','orange','pear'],
+			json:{a:'apple',b:'banana',c:'orange'}
+		}
+	});
+};
+</script>
+<!-- js e -->
+</body>
+</html>

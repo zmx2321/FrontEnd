@@ -1,0 +1,80 @@
+<section>
+    <div class="all-teacher-container">
+        <div class="all-teacher-header">
+            <p>全部老师</p> <span class="all-teacher-header-span">一对一服务</span>
+            <div class="header-search">
+                <input class="search-input" type="text" placeholder="老师姓名" id="teacher_name">
+                <div class="search-button" ng-click="clickQueryBtn()">
+                    <!--<img src="static/images/icon/search_normal.png" alt="">-->
+                </div>
+            </div>
+        </div>
+
+        <div class="all-teacher-tab">
+            <ul>
+                <li>近期可约</li>
+                <li class="all-teacher-tab-selected">最积极</li>
+            </ul>
+            <div class="bestcourse-select" >
+                
+                <ul>
+                    <li>
+                        <span>类型:</span>
+                        <b><img src="static/images/icon/arrow_normal.png" alt=""></b>
+                        <dl style="z-index:2">
+                            <dd ng-repeat="ele in fenlu.labInfos" ng-click="clickLabTab(ele)">{{ele.labName}}
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="all-teacher-list">
+            <ul class="all-teacher-list-container">
+                <li class="all-teacher-list-li" ng-class={"all-teacher-li-active":teacher.showButton}
+                    ng-repeat="teacher in allTeachers" ng-mouseenter="teacher.showButton = true"
+                    ng-mouseleave="teacher.showButton = false">
+                    <p class="all-teacher-list-li-header">{{teacher.teachRange}}</p>
+                    <div class="service-recommend-teacher">
+                        <div class="teacher-header">
+                            <div class="img-auto-container service-teacher-header">
+                                <img src="http://static.iboom.tv/static/img/{{teacher.head}}" alt="">
+                            </div>
+                            <div class="teacher-name">{{teacher.name}}</div>
+                            <div class="teacher-area">
+                                <img src="static/images/service/wangzhe.png" alt="">
+                                电一王者
+                            </div>
+                        </div>
+                        <div class="teacher-info">
+                            <div class="teacher-info-line"><span>授课:</span><span>{{teacher.num}}次</span></div>
+                            <div class="teacher-info-line"><span>好评:</span><span>{{teacher.wellPrecent*100}}%</span>
+                            </div>
+                            <div class="teacher-info-line">
+                                <span>擅长:</span>
+                                <span class="hero-list">
+                                        <span class="LOL-hero-header" ng-repeat="goodAt in teacher.goodAtChampions">
+                                         <div class="img-auto-container">
+                                                <img src="http://static.iboom.tv/static/img/{{goodAt | championImg}}"
+                                                     alt="">
+                                         </div>
+                                        </span>
+                                    </span>
+                            </div>
+                            <div class="teacher-reservation" ng-show="!teacher.showButton">
+                                预计授课：{{teacher.canApplyDate | dayText}}
+                            </div>
+                            <div class="teacher-reservation-button" ng-show="teacher.showButton">
+                                <a class="btn btn-sm btn-red btn-sm-a"
+                                   href="#/serviceTime/{{serviceType}}/{{teacher.userId}}">立即预约</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="all-teacher-list">
+
+            </div>
+        </div>
+    </div>
+</section>

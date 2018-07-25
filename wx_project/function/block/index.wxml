@@ -1,0 +1,7 @@
+<!-- block wx:for 
+类似block wx:if，也可以将wx:for用在<block/>标签上，以渲染一个包含多节点的结构块。例如： -->
+
+<block wx:for="{{[1, 2, 3]}}">
+ <view> {{index}}: </view>
+ <view> {{item}} </view>
+</block>

@@ -1,0 +1,33 @@
+{"name":"部门","children":[
+  {"name":"系统","children":[
+    {"name":"a系统","children":[
+      {"name":"a系统分支1","closed":"false"},{"name":"a系统分支2","closed":"false"}
+    ],"closed":"true"
+    },
+    {"name":"b系统","children":[
+      {"name":"b系统分支1","closed":"false"},{"name":"b系统分支2","closed":"false"}
+    ],"closed":"true"
+    }
+  ],"closed":"true"},
+  {"name":"需求","children":[
+    {"name":"a需求","children":[
+      {"name":"a需求分支1","closed":"false"},{"name":"a需求分支2","closed":"false"}
+    ],"closed":"true"
+    },
+    {"name":"b需求","children":[
+      {"name":"b需求分支1","closed":"false"},{"name":"b需求分支2","closed":"false"}
+    ],"closed":"true"
+    }
+  ],"closed":"true"},
+  {"name":"业务","children":[
+    {"name":"a业务","children":[
+      {"name":"a业务分支1","closed":"false"},{"name":"a业务分支2","closed":"false"}
+    ],"closed":"true"
+    },
+    {"name":"b业务","children":[
+      {"name":"b业务分支1","closed":"false"},{"name":"b业务分支2","closed":"false"}
+    ],"closed":"true"
+    }
+  ],"closed":"true"}
+  ]
+}

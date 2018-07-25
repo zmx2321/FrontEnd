@@ -1,0 +1,29 @@
+/* .clear{
+	clear: both;
+} */
+
+.side, .main {
+	float: left;
+}
+
+.side {
+	width: 200px;
+	height: 110px;
+	margin-right: 10px;
+	background: #c00000;
+}
+
+.main {
+	width: 600px;
+	height: 110px;
+	background: #4f81bd;
+}
+
+.clearfix::after{
+	content: '.';
+	display: block;
+	clear: both;
+	height: 0;
+	overflow: hidden;
+	visibility: hidden;
+}

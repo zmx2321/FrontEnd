@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript">
+		//轮播图片数组
+		var image = new Array('images/meinv6.jpg','images/meinv7.jpg','images/meinv8.jpg','images/meinv9.jpg');
+		//当前图标下标
+		var index = 0
+        //轮播方法
+        function lunbo() {
+
+        	index++;
+             if (index==image.length) {
+             	index=0;
+             }
+        var imgs =	document.getElementById('imgs');
+
+          imgs.src = image[index];
+
+
+        }
+
+
+
+	</script>
+</head>
+<body>
+
+ <div id="box">
+    <input type="button" onclick="lunbo()" value="上一张">
+ 	 <img src="images/meinv6.jpg" id="imgs" width="200px" height="200px">
+ 	<input type="button" onclick="lunbo()" value="下一张">
+ </div>
+
+</body>
+</html>

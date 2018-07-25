@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>获取城市天气</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div id="weather">
+    <div class="cur-temp">
+        <img id="weather-img" src=""/>
+        <div>
+            <span id="temperature"></span>
+            ℃ &nbsp;&nbsp;&nbsp;<span id="city"></span>
+        </div>
+    </div>
+    <ul class="cur-detail">
+        <li id="type"></li>
+        <li>
+            <span id="low"></span>
+            ~<span id="high"></span>
+        </li>
+        <li id="wind-power"></li>
+    </ul>
+    <div class="nearday"></div>
+</div>
+<div class="aqi-show">
+    <span class="title">空气质量</span>
+    <span id="aqi"></span>
+</div>
+<div class="aqi-box">
+    <div id="pot-1"></div>
+    <div id="pot-2"></div>
+    <div class="aqi-num" id="aqi-num">51</div>
+    <div class="aqi-e">AQI</div>
+    <div class="aqi-c">空气质量指数</div>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

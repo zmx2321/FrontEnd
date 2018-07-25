@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="css/list.css" rel="stylesheet">
+</head>
+<body>
+<div class="list_box">
+    <div class="list"><span class="sum">金额:</span><span class="num">10</span><span  class="money">万元</span></div>
+
+    <div class="money_list">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    $(".list").click(function(){
+        $(".money_list").slideToggle();
+    });
+
+    $(".money_list ul li").mouseover(function() {
+        $(this).css({background:"#abcdef"}).siblings().css({background:"none"})
+    });
+
+    $(".money_list ul li").click(function() {
+        var listVal = $(this).html();
+        $(".num").html(listVal);
+        $(".money_list").hide();
+    });
+
+</script>
+</html>

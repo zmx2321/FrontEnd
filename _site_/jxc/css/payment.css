@@ -1,0 +1,241 @@
+.payment_all{
+    font-size: 0.24rem;
+}
+
+.modrct_cot dd{
+    color: #333;
+}
+/* payment_top s */
+.payment_top{
+    width: 100%;
+    height: 1.65rem;
+    background: #fff;
+    margin-bottom: 0.24rem;
+    overflow: hidden;
+}
+
+.payment_top a{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.payment_top ul{
+	margin-top: 0.24rem;
+}
+
+.payment_top ul > li{
+	float: left;
+    padding-bottom: 0.24rem;
+}
+
+.payment_top ul > li:first-child{
+	width: 0.7rem;
+    height: 0.7rem;
+    overflow: hidden;
+    margin-right: 0.22rem;
+}
+
+.payment_top ul > li:last-child{
+    width: 5.5rem;
+}
+
+.payment_top dd{
+    margin-bottom: 0.15rem;
+    font-size: 0.28rem;
+}
+
+.payment_top dd:last-child{
+	margin-bottom: 0;
+}
+
+.payment_top ol li{
+	display: inline-block;
+}
+
+.payment_top b{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.payment_top b img{
+	margin: 0;
+}
+/* payment_top e */
+
+/* payment_cont s */
+.payment_count{
+    border-bottom: solid 1px #e2e2e2;
+    height: 1rem;
+    line-height: 1rem;
+    overflow: hidden;
+    font-size: 0.28rem;
+}
+
+.payment_count li:first-child{
+	float: left;
+}
+
+.payment_count .count{
+    float: right;
+    position: absolute;
+    right: 0;
+    border: solid 1px #ccc;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.count_down, .count_up{
+    width: 0.6rem;
+    height: 0.6rem;	
+} 
+
+.count_down{
+	border-right: solid 1px #ccc;
+}
+
+.count_num{
+	min-width: 0.76rem;
+}
+
+.count_up{
+	border-left: solid 1px #ccc;
+}
+
+.payment_count dd{
+	display: inline-block;
+	text-align: center;
+}
+
+.modrct_btn{
+	height: 1rem;
+	line-height: 1rem;
+	font-size: 0.28rem;
+}
+
+.modrct_btn ul{
+    width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-pack: justify;
+}
+
+.modrct_btn a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.modrct_btn li:last-child{
+    margin-right: 0.5rem;
+    position: relative;
+}
+
+.modrct_btn li:last-child::after{
+    content: '';
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url(../images/icon-wdzk.png) top no-repeat;
+    left: 1.30rem;
+    position: absolute;
+    background-size: 100%;
+    top: 48%;
+    transform: translateY(-50%);
+}
+
+.payment_way{
+	line-height: 1rem;
+	font-size: 0.28rem;
+}
+
+.payment_way ul{
+    width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-pack: justify;
+}
+
+.payment_way img{
+    margin-bottom: -0.1rem;
+    width: 0.48rem;
+}
+
+.payment_way li:first-child{
+	margin-left: 0.5rem;
+	position: relative;
+}
+
+.payment_way li:first-child::before{
+    content: '';
+    width: 0.48rem;
+    height: 0.48rem;
+    background: url(../images/icon-wxzf.png) top no-repeat;
+    right: 1.30rem;
+    position: absolute;
+    background-size: 100%;
+    top: 48%;
+    transform: translateY(-50%);
+}
+/* payment_cont e */
+
+/* payment_botton s */
+.payment_botton{
+	height: 1rem;
+	line-height: 1rem;
+	overflow: hidden;
+}
+
+.payment_botton_cont{
+	 float: right; 
+}
+
+.payment_botton_txt{
+    margin-right: 0.6rem;
+}
+
+.payment_botton_txt dd{
+	display: inline-block;
+}
+
+.payment_botton_txt dd:last-child{
+	color: #f5560f;
+}
+
+.payment_botton_cont li{
+    display: inline-block;
+}
+
+.payment_botton_btn{
+    width: 2rem;
+    height: 100%;
+    background: #f5560f;
+}
+
+.payment_botton_btn button{
+	font-size: 0.28rem;
+	color: #fff;
+	width: 100%;
+	height: 100%;
+}
+
+.address_select{
+    border-top: solid 1px #efefef;
+}
+
+.address_select li:last-child::after{
+    left: initial;
+}
+
+/* .payment_botton_txt{
+	width: 1rem;
+	background: #f00;
+}
+
+.payment_botton_btn{
+	width: 1rem;
+	background: #f00;
+} */
+/* payment_botton e */
+

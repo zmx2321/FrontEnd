@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src='dome.js'></script>
+
+  <script type="text/javascript">
+  
+  var box= null;
+
+  var btn = null;
+//在浏览器加载完后去做一些事情
+window.onload  = function(){
+  
+   box = document.getElementById('box');
+    
+   btn = document.getElementById('btn');
+     
+
+   btn.onclick = function(){
+
+    document.createAttribute('bbb');
+
+    box.setAttribute('bbb','aaa');
+   
+
+   alert(box.getAttribute('bbb'))
+
+   alert(box.hasAttribute('id'));
+
+}
+
+
+}
+
+  </script>
+
+  <style type="text/css">
+    
+   .dome{
+      width: 200px;
+      height: 200px;
+      line-height: 200px;
+      font-size: 20px;
+      font-family: "宋体";
+      border: 1px solid red;
+      background-color: #666;
+      color: #fff;
+      text-align: center;
+   }
+
+
+      .dome2{
+      width: 200px;
+      height: 200px;
+      line-height: 200px;
+      font-size: 20px;
+      font-family: "微软雅黑";
+      border: 1px solid blue;
+      background-color: #fff;
+      color: #3c3c3c;
+      text-align: center;
+   }
+
+   
+  </style>
+
+</head>
+<body>
+    
+  <div id="box" class="aaa">你好世界！</div>
+  <button id="btn">隐藏</button>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+1、目前仅实现了拖拽移动和改变大小功能而且仍然有问题，问题如下：
+
+1、拖拽是拖元素左半边实现移动，拖拽右半边实现改变大小和需求有些差别。
+2、div中不画图表的时候，移动和改变尺寸都比较顺利，画了图表之后就有很多意想不到的bug。
+（拖拽的时候div里面的echart 也响应了鼠标，估计是这个原因引起的，是否能做到在编辑状态下，屏蔽所以Echart对鼠标的响应，发布的时候才恢复）
+
+
+
+在test2.html中，将下列恢复了就是在div中画echart
+//drawChart('div1',pieOption);
+//drawChart('div2',ringOption);
+//drawChart('div3',rankOption);
+//drawChart('div4',lineOption);
+//drawChart('div5',chinaOption);
+
+
+仍然有很多功能没有实现：
+
+1、动态添加div和echart
+2、发布网页
+3、保存设置。
+
+详细需求见doc文档

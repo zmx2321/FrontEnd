@@ -1,0 +1,50 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    { 
+		"id": 1,
+		"licenseNum": "浙A&nbsp;00000",
+		"username": "张三",
+		"carType": "小型汽车",
+		"frameNum": 888
+	},
+	{ 
+		"id": 2,
+		"licenseNum": "浙A&nbsp;00001",
+		"username": "李四",
+		"carType": "大型汽车",
+		"frameNum": 444
+	},
+	{ 
+		"id": 3,
+		"licenseNum": "浙A&nbsp;00002",
+		"username": "王五",
+		"carType": "小型汽车",
+		"frameNum": 666
+	},
+	{ 
+		"id": 4,
+		"licenseNum": "浙A&nbsp;00003",
+		"username": "赵六",
+		"carType": "摩托车",
+		"frameNum": 888
+	},
+	{ 
+		"id": 5,
+		"licenseNum": "浙A&nbsp;00004",
+		"username": "小明",
+		"carType": "小型汽车",
+		"frameNum": 444
+	},
+	{ 
+		"id": 6,
+		"licenseNum": "浙A&nbsp;00005",
+		"username": "小李",
+		"carType": "小型汽车",
+		"frameNum": 333
+	}
+  ],
+  "length":null,
+  "rtCode":null
+}

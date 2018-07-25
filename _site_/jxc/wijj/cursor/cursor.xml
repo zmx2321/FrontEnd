@@ -1,0 +1,5 @@
+<krpano version="1.0.8">
+<action name="cursor">
+set(cursors.url, %SWFPATH%/cursor/cursor.png); set(cursors.type, 8way); set(cursors.move, 0|0|16|16); set(cursors.drag, 16|0|16|16); set(cursors.arrow_u, 32|0|16|16); set(cursors.arrow_d, 48|0|16|16); set(cursors.arrow_l, 64|0|16|16); set(cursors.arrow_r, 80|0|16|16); set(cursors.arrow_lu, 96|0|16|16); set(cursors.arrow_ru, 112|0|16|16); set(cursors.arrow_rd, 128|0|16|16); set(cursors.arrow_ld, 144|0|16|16);
+</action>
+</krpano>

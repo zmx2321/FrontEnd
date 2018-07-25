@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村-支付</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/jq_payment.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="jq_payment_all">
+	<div class="main_body">
+		<div class="main_cot payment_cont">
+			<div class="modrct_wrap">
+		        <div class="modrct_title">
+		            <div class="modrct_cot">
+		                <ul class="modrct_juify">
+		                    <li>
+		                        <dl>
+		                            <dd>
+		                                <div class="modrct_sign">
+		                                    <img src="images/cs/my_photo.jpg">
+		                                </div>
+		                            </dd>
+		                            <dd>晴天雨后民宿</dd>
+		                        </dl>
+		                    </li>
+		                </ul>
+		            </div>
+		        </div>
+		        <div class="modrct_body">
+		            <div class="modrct_cot">
+		                <div class="modrct_body_pic">
+		                    <img src="images/cs/272153.jpg">
+		                </div>
+		                <div class="modrct_body_txt">
+		                    <ul>
+		                        <li>
+		                            <h1>宁波青苹果</h1>
+		                        </li>
+		                        <li>
+		                            <dl>
+		                                <dd>
+		                                    <h2>休闲业主</h2>
+		                                </dd>
+		                                <dd>
+		                                    <h2>可现场游园</h2>
+		                                </dd>
+		                            </dl>
+		                        </li>
+		                        <li>
+		                            <ol class="modrct_juify">
+		                                <li>
+		                                    <dl>
+		                                        <dd>
+		                                            <h3>¥18</h3>
+		                                        </dd>
+		                                        <dd>
+		                                            <h4>¥268</h4>
+		                                        </dd>
+		                                    </dl>
+		                                </li>
+		                                <li>
+		                                    <h2>数量：1</h2>
+		                                </li>
+		                            </ol>
+		                        </li>
+		                    </ul>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="syrq">
+		            <div class="main_wrap clearfix">
+		                <span>使用日期</span>
+
+		                <div class="syrq_r">
+		                	<ul>
+		                		<li class="active">今天</li>
+		                		<li>明天</li>
+		                		<li>更多日期</li>
+		                	</ul>
+		                </div>
+		            </div>
+		        </div>
+			</div>
+		</div>
+
+		<div class="main_cot payment_count">
+			<div class="main_wrap">
+				<ul>
+                    <li>购买数量</li>
+                    <li class="count">
+                    	<dl>
+                    		<dd class="count_down">-</dd>
+                    		<dd class="count_num">1</dd>
+                    		<dd class="count_up">+</dd>
+                    	</dl>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="main_cot jqpay_phone">
+			<ul class="intxt">
+				<li>
+					<dl class="main_wrap">
+						<dd>取票人</dd>
+						<dd>
+							<input type="text" placeholder="只需填写一个取票人">
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<dl class="main_wrap">
+						<dd>手机号</dd>
+						<dd>
+							<input type="text" placeholder="接收确认短信">
+						</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+
+		<div class="main_cot jqpay_bx">
+			<ul class="intxt clearfix">
+				<li>
+					<h3 class="main_wrap">选择保险</h3>
+				</li>
+				<li>
+					<label for="bxy">
+						<dl class="main_wrap">
+							<dd>不需要</dd>
+							<dd>将不享受任何安全保障</dd>
+							<dd>
+								<input type="radio" name="bx" id="bxy">
+								<b></b>
+							</dd>
+						</dl>
+					</label>
+				</li>
+				<li>
+					<label for="bx1">
+						<dl class="main_wrap">
+							<dd>￥2.0/份</dd>
+							<dd>意外事故10万，医疗1万</dd>
+							<dd>
+								<input type="radio" name="bx" id="bx1" checked="checked">
+								<b class="active"></b>
+							</dd>
+						</dl>
+					</label>
+				</li>
+				<li>
+					<label for="bx2">
+						<dl class="main_wrap">
+							<dd>￥10.0/份</dd>
+							<dd>意外事故10万，医疗1万，含高风险运动</dd>
+							<dd>
+								<input type="radio" name="bx" id="bx2">
+								<b></b>
+							</dd>
+						</dl>
+					</label>
+				</li>
+			</ul>
+			<div class="bxxq">
+				<div class="bx_info">
+					<div class="main_wrap">
+						<ul>
+							<li>
+								<input type="checkbox" id="bx" name="bxsm" />
+							</li>
+							<li>
+								<label for="bx">我已阅读并同意<a id="bxsm" href="bx.html">景区意外险</a>服务条款</label>
+								<b></b>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<ul class="intxt">
+					<li>
+						<h3 class="main_wrap">被保人</h3>
+					</li>
+					<li>
+						<dl class="main_wrap">
+							<dd>姓名</dd>
+							<dd>
+								<input type="text" placeholder="需与证件上的名字一致">
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl class="main_wrap">
+							<dd>身份证</dd>
+							<dd>
+								<input type="text" placeholder="需填写证件号码">
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="main_cot">
+			<div class="modrct_btn">
+		    	<a href="#">
+			        <div class="modrct_cot">
+			            <ul>
+			                <li>店铺优惠券</li>
+			                <li>无优惠券</li>
+			            </ul>
+			        </div>
+		        </a>
+		    </div>
+		</div>
+
+		<div class="main_cot payment_way">
+			<div class="main_wrap">
+				<ul>
+					<li>微信支付</li>
+					<li>
+						<img src="images/icon-spxq-tb.png" />
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="main_botton payment_botton">
+		<div class="payment_botton_cont">
+			<ul>
+				<li class="payment_botton_txt">
+					<dl>
+						<dd>实付款：</dd>
+						<dd>￥18</dd>
+					</dl>
+				</li>
+				<li class="payment_botton_btn">
+					<button onclick="location.href='orderState.html'">立即付款</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!-- test_bubble s -->
+<span class="test_bubble">支付未完成，请重新支付</span>
+<!-- test_bubble e -->
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/basefont.js"></script>
+<script src="mockface/b-mock.js"></script>
+<script src="js/jq_payment.js"></script>
+<!-- js e -->
+</body>
+</html>

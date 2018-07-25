@@ -1,0 +1,55 @@
+body {
+    background-color: #e2e2e2;
+}
+
+.box {
+    width: 250px;
+    height: 300px;
+    margin: 30px auto;
+    background-color: #f2f2f2;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+/*计算器大盒子样式*/
+p {
+    margin: 0 0 0 20px;
+}
+
+/*文字：‘计算器’*/
+#input {
+    width: 212px;
+    height: 30px;
+    margin-left: 19px;
+    text-align: right;
+    border: 0;
+    outline: none;
+    margin-top: 5px;
+}
+
+/*输入框样式*/
+.button {
+    width: 214px;
+    height: 171px;
+    border: 1px white solid;
+    list-style: none;
+    padding: 0;
+    margin: 30px auto;
+}
+
+/*键盘样式*/
+.button li {
+    width: 32px;
+    height: 27px;
+    background-color: #e2e2e2;
+    float: left;
+    margin: 5px;
+    text-align: center;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+/*键盘按键样式*/
+.button li:hover {
+    background-color: white;
+}

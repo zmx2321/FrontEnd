@@ -1,0 +1,82 @@
+{
+  "error": false,
+  "msg": "",
+  "data": {
+    "id": 4673,
+    "project": "lol",
+    "model": "kebiao",
+    "name": "lol课程表",
+    "sName": null,
+    "img": null,
+    "date": null,
+    "targetDate": null,
+    "carouselDtos": null,
+    "childs": [
+      {
+        "id": 4674,
+        "project": null,
+        "model": null,
+        "name": "2016-12-02 11:27:47",
+        "sName": null,
+        "img": null,
+        "date": null,
+        "targetDate": 1480649267000,
+        "carouselDtos": null,
+        "childs": null,
+        "now": 1480908783320
+      },
+      {
+        "id": 4675,
+        "project": null,
+        "model": null,
+        "name": "2016-12-02 11:31:26",
+        "sName": null,
+        "img": null,
+        "date": null,
+        "targetDate": 1480649486000,
+        "carouselDtos": [
+          {
+            "id": 8,
+            "img": null,
+            "name": "start",
+            "title": "start",
+            "url": null,
+            "carouselGroupId": 4675,
+            "data": null
+          }
+        ],
+        "childs": null,
+        "now": 1480908783320
+      },
+      {
+        "id": 4676,
+        "project": null,
+        "model": null,
+        "name": "2016-12-02 11:37:38",
+        "sName": null,
+        "img": null,
+        "date": null,
+        "targetDate": 1482213600000,
+        "carouselDtos": null,
+        "childs": null,
+        "now": 1480908783320
+      },
+      {
+        "id": 4677,
+        "project": null,
+        "model": null,
+        "name": "2016-12-02 11:43:47",
+        "sName": null,
+        "img": null,
+        "date": null,
+        "targetDate": 1481695200000,
+        "carouselDtos": null,
+        "childs": null,
+        "now": 1480908783320
+      }
+    ],
+    "now": 1480908783320
+  },
+  "length": null,
+  "rtCode": null
+}

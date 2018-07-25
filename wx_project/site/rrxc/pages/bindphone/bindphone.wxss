@@ -1,0 +1,66 @@
+/* bde_wp */
+.bde_wp{
+  width: 100%;
+  height: 102rpx;
+  background: #fff;
+  margin-bottom: 16rpx;
+  overflow: hidden;
+}
+
+.bde_ct{
+  width: 720rpx;
+  margin: 0 auto;
+  height: 102rpx;
+}
+
+.bde_ct::after{
+  display:block;
+  clear:both;
+  visibility:hidden;
+  height:0;
+  overflow:hidden;
+  content:".";
+}
+
+.bde_left{
+  float:left;
+  margin-top:28rpx;
+}
+
+.bde_left_pic{
+  width: 50rpx;
+  height: 50rpx;
+  float: left;
+}
+
+.bde_left input{
+  margin-left: 25rpx;
+  float: left;
+  margin-top: 4rpx;
+}
+
+.bde_right{
+  float: right;
+  margin-top:28rpx;
+}
+
+.bde_right button{
+  background: initial;
+  border: none;
+  font-size: 28rpx;
+  color: #00cd00;
+}
+
+.bde_left text{
+  font-size: 28rpx;
+}
+
+.bde_right text{
+  font-size: 32rpx;
+  color: #999999;
+}
+
+.bindphone_ald{
+  display: none;
+}
+/* /bde_wp */

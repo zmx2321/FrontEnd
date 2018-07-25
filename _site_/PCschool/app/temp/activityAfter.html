@@ -1,0 +1,71 @@
+<section>
+    <div class="activity-container">
+        <div class="activity-after-header">
+            <div class="img-normal-container activity-after-head">
+                <img src="http://static.iboom.tv/static/img/{{match.img?v.match.img:'videoDefault.png'}}" alt="">
+            </div>
+        </div>
+        <div class="activity-header-after">
+            <div class="activity-header-after-title">
+                {{match.name}}
+                <span>(已结束)</span>
+            </div>
+            <div class="activity-header-after-content">
+                <span ng-show="winTeam[1]!=null">
+                    <div class="activity-header-after-winner">
+                        <img src="static/images/champion.png" alt="">
+                        <span>
+                            <p>NO.1</p>
+                            <div>{{winTeam[1]?winTeam[1].teamName:""}}</div>战队
+                        </span>
+                    </div>
+                </span>
+                <span ng-show="winTeam[2]!=null">
+                    <div class="activity-header-after-winner">
+                        <img src="static/images/second.png" alt="">
+                        <span>
+                             <p>NO.2</p>
+                            <div>{{winTeam[2]?winTeam[2].teamName:""}}</div>战队
+                        </span>
+                    </div>
+                </span>
+                <span ng-show="winTeam[3]!=null">
+                    <div class="activity-header-after-winner">
+                        <img src="static/images/third.png" alt="">
+                        <span>
+                            <p>NO.3</p>
+                            <div>{{winTeam[3]?winTeam[3].teamName:""}}</div>战队
+                        </span>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div class="activity-content">
+            <header>录像回放</header>
+            <article>
+                <div class="activity-list">
+                    <ul>
+                        <li ng-repeat="v in videos">
+                            <a href="#activityBefore" class="activity-list-info">
+                                <div class="img-auto-container img-size-big">
+                                    <img src="http://static.iboom.tv/static/img/{{v.photo?v.photo:'videoDefault.png'}}"
+                                         alt="">
+                                </div>
+                                <div class="activity-list-info-name" ng-bind="v.videoName"></div>
+                                <span>开始时间:{{v.addTime | dateText}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="activity-after-lack" ng-show="lackVideo">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>此次赛事还未上传录像，请耐心等待</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>

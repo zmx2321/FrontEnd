@@ -1,0 +1,49 @@
+    .g-mn{
+        position: relative;
+        width: 1224px;
+        height: 300px;
+        overflow: hidden;
+        background: #f00;
+    }
+
+    .imgwrap{
+        position: absolute;
+        width: 6120px;
+        height: 200px;
+        background: #fcc;
+        font-size: 0;
+    }
+
+    .banner{
+        width: 1224px;
+        height: 200px;
+        display: inline-block;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .banner-0{
+        background: url(../images/1.jpg) no-repeat top;
+        background-size: 100%;
+    }
+
+    .banner-1{
+        background: url(../images/2.jpg) no-repeat top;
+        background-size: 100%;
+    }
+
+    .banner-2{
+        background: url(../images/3.jpg) no-repeat top;
+        background-size: 100%;
+    }
+
+    .banner-3{
+        background: url(../images/4.jpg) no-repeat top;
+        background-size: 100%;
+    }
+
+    .banner-4{
+        background: url(../images/1.jpg) no-repeat top;
+        background-size: 100%;
+
+    }

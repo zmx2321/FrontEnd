@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>二维数组</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+	<select onchange="provinceChanged(this);"> 
+		<!--this的含义：是指select对象调用provinceChanged(this),并且在此方法中 
+		把对象本身作为参数传递，以便对其进行操作。 --> 
+		<option>请选择省份</option> 
+		<option>安徽</option> 
+		<option>河北</option> 
+		<option>河南</option> 
+	</select>
+	
+	<select id="select_city"> 
+		<option>请选择城市</option> 
+	</select> 
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

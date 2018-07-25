@@ -1,0 +1,22 @@
+label{
+    position: relative;
+}
+
+label input[type="checkbox"]{
+    opacity: 0;
+    margin-left: 0.2rem;
+}
+
+label b{
+    position: absolute;
+    top: 0;
+    background: url(../images/btn-fxk-wxz.png) top no-repeat;
+    background-size: 100% !important;
+    width: 12px;
+    height: 12px;
+    right: 0;
+}
+
+label b.active{
+    background: url(../images/btn-fxk-xz.png) top no-repeat;
+}

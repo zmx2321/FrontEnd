@@ -1,0 +1,82 @@
+{
+  "error": false,
+  "msg": "获取活动详情成功",
+  "data": {
+    "match": {
+      "match": {
+        "id": 2,
+        "groupType": 6,
+        "name": "第四节布姆联赛",
+        "title": "第四节布姆联赛",
+        "content": "第四节布姆联赛第四节布姆联赛第四节布姆联赛",
+        "matchRule": "第四节布姆联赛第四节布姆联赛第四节布姆联赛",
+        "img": null,
+        "bgImg": null,
+        "exDate": "{\"signUrl\":\"http://www.baidu.com\",\"labViewId\":39}",
+        "startTime": 1480910400000,
+        "endTime": 1481619600000,
+        "signEndTime": 1481785200000
+      },
+      "players": [
+        {
+          "id": 1,
+          "userKey": "111",
+          "userName": "zhanzhan",
+          "header": null,
+          "addTime": 1480916698000
+        },
+        {
+          "id": 2,
+          "userKey": "112",
+          "userName": "zzzzzz",
+          "header": null,
+          "addTime": 1480916698000
+        }
+      ],
+      "matchTeams": [
+        {
+          "id": 1,
+          "matchId": 2,
+          "teamName": "hahaha",
+          "header": "Jax.png",
+          "leaderKey": null,
+          "win": false,
+          "rank": 1
+        },
+        {
+          "id": 2,
+          "matchId": 2,
+          "teamName": "zzzzzz",
+          "header": "Jax.png",
+          "leaderKey": null,
+          "win": false,
+          "rank": 2
+        }
+      ]
+    },
+    "videos": [
+      {
+        "id": 6,
+        "videoName": "111333",
+        "title": "444444",
+        "photo": "Jax.png",
+        "url": null,
+        "addTime": 1480754887000,
+        "videoUin": "e3f2407c02",
+        "videoId": "38167352"
+      },
+      {
+        "id": 7,
+        "videoName": "1111",
+        "title": "33333333",
+        "photo": "Jax.png",
+        "url": null,
+        "addTime": 1480919249000,
+        "videoUin": "e1477176f8",
+        "videoId": "38229869"
+      }
+    ]
+  },
+  "length": null,
+  "rtCode": null
+}

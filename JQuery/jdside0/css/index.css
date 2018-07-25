@@ -1,0 +1,58 @@
+#Nav{
+    width:210px;
+    height:445px;
+    border:2px solid #CD2A2C;
+    margin-left:50px;
+}
+#Nav .title{
+    width:100%;
+    height:40px;
+    background:#e4393c;
+    color:#fff;
+    font-size:14px;
+    font-family: 微软雅黑;
+    font-weight: bold;
+    line-height: 40px;
+    text-indent:10px;
+}
+#Nav ul li{
+    height:30px;
+    border-bottom: 1px solid #fff;
+    list-style: none;
+    background:#fafafa;
+    color:#fff;
+    font-size: 14px;
+    line-height: 30px;
+    text-indent: 10px;
+    position:relative;
+}
+#Nav ul li a{
+    color:#666;
+    text-decoration: none;
+}
+#Nav ul li a:hover{
+    color:#e4393c;
+    font-weight: bold;
+    text-decoration: underline;
+}
+#Nav ul li .menu{
+    border:1px solid red;
+    position:absolute;
+    left:200px;
+    top:0px;
+    z-index: 33;
+    background:#fff;
+    display: none;
+}
+#Nav ul li.bor{
+    background:#fff;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+}
+#Nav ul li.bor p{
+    height:30px;
+    background:#fff;
+    position: absolute;
+    z-index: 333;
+    width:100%;
+}

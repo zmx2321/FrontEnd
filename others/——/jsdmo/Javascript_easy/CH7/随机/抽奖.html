@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+	<title></title>
+
+
+  <style type="text/css">
+    
+    #box{margin: 0 auto;margin-left: 150px;}
+    .poto1{width: 150px;height: 200px;box-shadow: 0 0 5px #3c3c3c;border: 5px solid #ccc;border-radius: 20px;overflow: hidden;background: #f0f0f0;float: left;margin: 5px;}
+     img{width: 150px;height: 170px;display: block;}
+     p{text-align: center;font-family: 微软雅黑;font-weight: bold;font-size: 20px;margin:0px;}
+     .inputs{width: 100px;height: 100px;position: fixed;top: 45%;left: 10px;font-size: 20px;font-weight: bold;background-color: #9c9c9c;border: 5px solid #84D4F7;color: #84D4F7;}
+
+  </style>
+	<script type="text/javascript">
+
+	  var kai = true;
+		//随机排序
+		function shorts() {
+			//创建新数组
+               var newArr = [];
+            //得到原始数值的大小   
+               var len  = this.length;
+            //通过for循环随机给数组添加元素
+               for (var i = 0; i < len; i++) {
+               	//随机产生当前数组元素下标
+                  var index = parseInt(Math.random()*this.length);
+                  //将得到的值付给新数组
+                  newArr[i]=this[index];
+                  //删除当前数组随机产生的元素
+                  this.splice(index,1);
+               }
+
+               //返回新数组
+               return newArr;
+		}
+  
+
+   //原形链
+    Array.prototype.shorts = shorts;
+
+
+
+  //图片对象
+   var  imgs = new Array('imgs/蔡小爱.jpg','imgs/陈龙威.jpg','imgs/陈天旸.jpg','imgs/陈熙.jpg','imgs/范丁天.jpg','imgs/李然然.png','imgs/李阳.jpg','imgs/刘灵斌.jpg','imgs/卢俊.jpg','imgs/毛晔颋.jpg','imgs/沈文彬.jpg','imgs/王瑞阳.jpg','imgs/徐垚鑫.jpg','imgs/叶樟渭.jpg','imgs/於佳胜.jpg','imgs/张楠.jpg','imgs/周静雯.jpg','imgs/竺士晟.jpg','imgs/张顺祥.jpg','imgs/杜昊天.jpg','imgs/焉卓群.png');
+
+   var stusdentName = new Array('蔡小爱','陈龙威','陈天旸','陈熙','范丁天','李然然','李阳','刘灵斌','卢俊','毛晔颋','沈文彬','王瑞阳','徐垚鑫','叶樟渭','於佳胜','张楠','周静雯','竺士晟','张顺祥','杜昊天','焉卓群');
+
+ //类
+ function Student(name,imgs){
+   this.name = name;
+   this.imgs = imgs;
+
+ }
+
+  var stusents = new Array();
+
+ //添加学员
+ for (var i =0;i<imgs.length;i++) {
+     
+     var img  = imgs[i];
+     var name = stusdentName[i];
+    var student = new Student(name,img);
+    stusents[i]=student;
+ }
+
+
+     //随机排序
+ var stusents =  stusents.shorts();
+
+//事件装载
+        window.onload=function(){
+
+   //盒子
+       var box =  document.getElementById('box');
+  //循环添加人物
+       for (var i = 0; i < imgs.length; i++) {
+  //创建div节点   
+          var div =   document.createElement('div');
+  //添加样式
+              div.className = 'poto1';
+  //添加img节点
+          var img =   document.createElement('img'); 
+  //加载图片资源        
+              img.src = stusents[i].imgs;
+          var p =   document.createElement('p');          
+              p.innerHTML = stusents[i].name;
+//添加节点
+              div.appendChild(img);
+              div.appendChild(p);
+//添加节点     
+              box.appendChild(div);
+       }
+
+
+
+     }
+
+ var times = null;
+
+   function  begin(obj){
+
+   	if (!kai) {
+
+   		return;
+   	}
+
+   	kai = false;
+
+
+
+//定时器
+   times =  setInterval(function(){
+
+
+           var divList =  document.getElementById('box').getElementsByTagName('div');
+        
+            var index = parseInt(Math.random()*divList.length);
+
+
+      
+           for (var i = 0; i < divList.length; i++) {
+
+              if (index==i) {
+
+              divList[i].style.borderColor = 'red';
+              var p = divList[i].getElementsByTagName('p')[0];
+                  p.style.color="red";
+              }else{
+
+              divList[i].style.borderColor = '#ccc';
+                  var p = divList[i].getElementsByTagName('p')[0];
+                  p.style.color="black";
+              }
+               
+
+           }
+
+  },100);
+
+        for (var i = 1; i <= Time; i++) {
+
+         setTimeout("daoJiShi("+i+")",i*1000);
+
+         }
+
+
+ }
+ //倒计时时间
+ var Time = 5;
+            
+function daoJiShi(i){
+
+  var inputs = document.getElementsByClassName('inputs')[0];
+
+   inputs.value = Time - i;
+   if (i==Time) {
+   
+     clearInterval(times);
+
+     inputs.value = '开始';
+
+     kai= true;
+
+   }
+
+
+
+}
+           
+
+
+	</script>
+
+
+</head>
+<body>
+
+  <div id="top">
+    
+    <input type="button" value="开始" onclick="begin(this)" class="inputs">
+     
+  </div>
+
+
+
+  <div id="box">
+
+  </div>
+
+</body>
+</html>

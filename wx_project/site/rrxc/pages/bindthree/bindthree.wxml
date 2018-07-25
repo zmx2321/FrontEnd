@@ -1,0 +1,31 @@
+<view class="bindthree_wrap">
+  <navigator>
+    <view class="cont_wrap">
+      <view class="cont_left">
+        <view class="cont_left_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-qq.png"></image>
+        </view>
+        <text>腾讯QQ</text>
+        <view class="cont_left_txt"></view>
+      </view>
+      <view class="cont_right">
+        <text>123456789</text>
+      </view>
+    </view>
+  </navigator>
+
+  <navigator>
+    <view class="cont_wrap">
+      <view class="cont_left">
+        <view class="cont_left_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wb.png"></image>
+        </view>
+        <text>新浪微博</text>
+        <view class="cont_left_txt"></view>
+      </view>
+      <view class="cont_right">
+        <text class="green">未绑定</text>
+      </view>
+    </view>
+  </navigator>
+</view>

@@ -1,0 +1,15 @@
+.slide{
+	width: 300px;
+	height: 400px;
+	overflow: hidden;
+}
+
+ul li{
+    list-style: none;
+    float:left;
+    margin-right:5px;
+    position:relative;
+    top:-45px;
+    left:40px;
+    color:#9ea0a2;
+}

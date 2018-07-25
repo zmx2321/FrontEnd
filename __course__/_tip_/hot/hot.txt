@@ -1,0 +1,14 @@
+﻿http://www.browsersync.cn/
+
+
+
+npm install -g browser-sync
+browser-sync start --server --files "**/*.css, **/*.html"
+
+
+
+
+
+
+Puer是一个可以实时编辑刷新的前端服务器，我们在后续课程的演示中会经常用到他。当你修改文件保存后，你不再需要切到浏览器中手动刷新。
+Puer相关文档：https://github.com/leeluolee/puer

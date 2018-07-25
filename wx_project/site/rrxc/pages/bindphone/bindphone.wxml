@@ -1,0 +1,59 @@
+<!-- bindphone_cont -->
+<view class="bindphone_cont">
+  <!-- bindphone_yet -->
+  <view class="bindphone_yet">
+    <!-- 手机号 -->
+    <view class="bde_wp">
+      <view class="bde_ct">
+        <view class="bde_left">
+          <view class="bde_left_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sj.png"></image>  
+          </view>
+          <input class="input" name="bid_phone" placeholder="请输入手机号码" />
+        </view>
+        <view class="bde_right">
+          <button>获取验证码</button>
+        </view>
+      </view>
+    </view>
+    <!-- /手机号 -->
+
+    <!-- 验证码 -->
+    <view class="bde_wp">
+      <view class="bde_ct">
+        <view class="bde_left">
+          <view class="bde_left_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-yzm.png"></image>  
+          </view>
+          <input class="input" name="bid_phone" placeholder="请输入手机验证码" />
+        </view>
+      </view>
+    </view>
+    <!-- /验证码 -->
+  </view>
+  <!-- /bindphone_yet -->
+
+  <!-- bindphone_ald -->
+  <view class="bindphone_ald">
+    <!-- 手机号 -->
+    <view class="bde_wp">
+      <view class="bde_ct">
+        <view class="bde_left">
+          <text>绑定手机号</text>
+        </view>
+        <view class="bde_right">
+          <text>188****8888</text>
+        </view>
+      </view>
+    </view>
+    <!-- /手机号 -->
+  </view>
+  <!-- /bindphone_ald -->
+</view>
+<!-- /bindphone_cont -->
+
+<!-- mymess_button -->
+<view class="mymess_button">
+  <button>确认提交</button>
+</view>
+<!-- /mymess_button -->

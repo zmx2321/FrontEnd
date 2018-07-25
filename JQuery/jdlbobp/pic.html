@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul li{
+            list-style:none;
+            float:left;
+            margin-right:5px;
+            position:relative;
+            top:-45px;
+            left:40px;
+            color:#9ea0a2;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="image/1.jpg" width="250px" height="400px">
+    <ul>
+        <li id="1">●</li>
+        <li id="2">●</li>
+        <li id="3">●</li>
+        <li id="4">●</li>
+        <li id="5">●</li>
+        <!--JS数组 下标  从零开始  0 1 2 3 4-->
+    </ul>
+</body>
+</html>
+<script src="jQuery/jquery-3.1.1.min.js"></script>
+<script>
+    var i = 0;//变量
+    var timer = null;
+    window.onload=function(){
+        if(i>=5){
+            i=0;
+        }
+        i++;//1 2 3 4 5 1 2 3 4 5...
+        var imgSrc = "image/"+i+".jpg";//JS引号里 字符串 不是变量 JS双引号不解析变量  （PHP可以）
+        $("ul li").css("color","#9ea0a2");
+        $("img").attr("src",imgSrc);//i i-1
+        $("ul li:eq("+(i-1)+")").css("color","white");
+        //对应着第i张图片的li    i   and   li(index)  联系？   index = i-1
+    }
+    timer = setInterval(window.onload,1000);//setTimeout
+    $("ul li").hover(function(){
+        clearInterval(timer);
+        var $id = this.id;
+        var imgUrl = "image/"+$id+".jpg";
+        $("ul li").css("color","#9ea0a2");
+        $(this).css("color","white");
+        $("img").attr("src",imgUrl);
+    },function(){
+        i = this.id;
+        timer = setInterval(window.onload,1000);
+    })
+</script>

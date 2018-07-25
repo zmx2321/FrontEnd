@@ -1,0 +1,36 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+		{
+		  "id":1,
+		  "city":"北京",
+		  "img":"images/cs/scenery_cnpic2.jpg",
+		  "label": ["26个美丽乡村","13个景区乐园","316个特色民宿","158个生态农场"],
+		  "url":"businessDetail_xs.html"
+		},
+		{
+		  "id":2,
+		  "city":"杭州",
+		  "img":"images/cs/scenery_cnpic1.jpg",
+		  "label": ["2y个美丽乡村","13个景区乐园","hh个特色民宿","ll8个生态农场"],
+		  "url":"businessDetail_xs.html"
+		},
+		{
+		  "id":3,
+		  "city":"上海",
+		  "img":"images/cs/scenery_cnpic3.jpg",
+		  "label": ["11个美丽乡村","113个景区乐园","31个特色民宿","118个生态农场"],
+		  "url":"businessDetail_xs.html"
+		},
+		{
+		  "id":3,
+		  "city":"广州",
+		  "img":"images/cs/scenery_cnpic3.jpg",
+		  "label": ["11个美丽乡村","113个景区乐园","31个特色民宿","118个生态农场"],
+		  "url":"businessDetail_xs.html"
+		}
+	],
+  "length":null,
+  "rtCode":null
+}

@@ -1,0 +1,33 @@
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 1900px;
+            height: 749px;
+            background:url(images/bg.jpg) no-repeat;
+        }
+        #n_box{
+            width: 600px;
+            height: 307px;
+            line-height: 307px;
+            text-align: center;
+            font-size: 86px;
+            margin: 0 auto;
+            margin-top: 330px;
+        }
+        #btn{
+            display: block;
+            width: 420px;
+            height: 120px;
+            outline: none;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            background: -webkit-linear-gradient(#b064fc, #7222d3);
+            margin: 0 auto;
+            margin-top: 215px;
+            font-size: 66px;
+            color: #c598f7;
+
+        }

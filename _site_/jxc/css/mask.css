@@ -1,0 +1,48 @@
+.userinfo_wrap{
+    position: absolute;
+    width: 5.5rem;
+    min-height: 3rem;
+    background: #fff;
+    border-radius: 0.1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.3rem;
+    display: none; 
+}
+
+.userinfo_wrap li{
+    margin: 0.24rem 0.24rem 0.24rem 0;
+}
+
+.userinfo_wrap dl{
+	display: flex;
+}
+
+.userinfo_wrap dt{
+	flex: 0.4;
+}
+
+.userinfo_wrap dd{
+	flex: 1.6;
+}
+
+.userinfo_btn{
+    width: 50%;
+    height: 0.6rem;
+    background: #00cd00;
+    border-radius: 0.07rem;
+    color: #fff;
+    font-size: 0.28rem;
+    margin: 0 auto;
+    display: block;
+}
+
+.userinfo_wrap input{
+	width: 100%;
+    border: solid 1px #ccc;
+    padding: 0 0.1rem;
+    height: 0.5rem;
+    font-size: 0.28rem;
+    color: #000;
+}

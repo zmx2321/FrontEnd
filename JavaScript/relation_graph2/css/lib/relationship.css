@@ -1,0 +1,130 @@
+.relationship-modal .modal-body {
+    padding-bottom: 30px !important;
+}
+.modal-content .close{
+    line-height: 20px !important;
+}
+.atlas-cont {
+    position: relative;
+    margin-top: 10px;
+    width: 638px;
+    height: 380px;
+}
+/*d3*/
+.node text {
+    font-size: 46px;
+    fill: #1C7CDF;
+    width: 300px;
+    text-anchor: left;
+}
+
+circle {
+    /*fill:#A9E3A6;*/
+    /*stroke:#2DBDE5;*/
+    stroke-width: 2px;
+}
+
+.node--internal text {
+    font-size: 46px;
+}
+
+.node--leaf text {
+    cursor: pointer;
+}
+
+.link {
+    fill: none;
+    stroke-width: 2px;
+    width: 8px;
+}
+
+path[data-id='1'] {
+    stroke: #1E88F5;
+}
+
+path[data-id='2'] {
+    stroke: #F46C9E;
+}
+
+path[data-id='3'] {
+    stroke: #9B7FFF;
+}
+
+path[data-id='4'] {
+    stroke: #FFB74D;
+}
+
+path[data-id='5'] {
+    stroke: #bbe523;
+}
+
+circle[data-id='0'], .node--leaf text[data-id='0'] {
+    fill: #1E88F5;
+}
+
+circle[data-id='1'], .node--leaf text[data-id='1'] {
+    fill: #0DD1A7;
+}
+
+circle[data-id='2'], .node--leaf text[data-id='2'] {
+    fill: #F46C9E;
+}
+
+circle[data-id='3'], .node--leaf text[data-id='3'] {
+    fill: #9B7FFF;
+}
+
+circle[data-id='4'], .node--leaf text[data-id='4'] {
+    fill: #FFB74D;
+}
+
+circle[data-id='5'], .node--leaf text[data-id='5'] {
+    fill: #bbe523;
+}
+
+svg {
+    zoom: .3;
+    -moz-transform: scale(0.3);
+    -moz-transform-origin: left top 0;
+}
+
+#hover-box{
+    display: none;
+    padding-bottom: 8px;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 1000;
+    width: 190px;
+    text-align: left;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.8);
+    color: #fff;
+    box-shadow: 1px 1px 4px rgba(0,0,0,.4),-1px -1px 4px rgba(0,0,0,.4);
+}
+.hover-title{
+    padding:4px 8px;
+    height: 32px;
+    line-height: 32px;
+}
+.hover-item{
+    padding:0 8px;
+    line-height: 26px;
+    font-size: 12px;
+}
+/*
+.hover-msg{
+    height: 130px;
+    overflow-y: scroll;
+}
+
+.hover-msg::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+}
+.hover-msg::-webkit-scrollbar-thumb
+{
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,.3);
+    background-image: linear-gradient(90deg, #eee 0%, #ccc 100%);
+}*/

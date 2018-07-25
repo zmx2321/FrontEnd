@@ -1,0 +1,19 @@
+.pudtal_eval_nav {
+    width: 100%;
+    border-bottom: solid 1px #e2e2e2;
+}
+
+.pudtal_eval_nav .main_wrap{
+      margin-top:30rpx;
+}
+
+.pudtal_eval_nav .main_wrap text{
+    display: inline-block;
+    width: 122rpx;
+    border: solid 1px #f5560f;
+    color: #f5560f;
+    text-align: center;
+    padding: 5rpx 0;
+    margin-right: 30rpx;
+    margin-bottom: 30rpx;
+}

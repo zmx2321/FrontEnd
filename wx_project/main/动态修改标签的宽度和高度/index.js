@@ -1,0 +1,25 @@
+var pageData={}
+pageData.data={
+    view:{
+        Width:100,
+        Height:100
+    }
+}
+pageData['viewWidth']=function(e){
+    this.setData({
+        view:{
+           Width:e.detail.value,
+           Height:this.data.view.Height
+        }
+    })
+}
+pageData['viewHeight']=function(e){
+    console.log(e.detail.value);
+    this.setData({
+        view:{
+           Width:this.data.view.Width, 
+           Height:e.detail.value 
+        }
+    })
+}
+Page(pageData)

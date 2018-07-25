@@ -1,0 +1,76 @@
+<!-- busetl_top -->
+<view class="busetl_top">
+  <text>商家入驻信息填写</text>
+</view>
+<!-- /busetl_top -->
+
+<!-- busetl_body -->
+<view class="busetl_body">
+  <!-- busus_bis -->
+  <view class="busus_inlin busus_bis">
+    <view class="bstld_wp">
+      <view class="bstld_ct">
+        <text>商家名称</text>
+        <input class="input" name="userName" placeholder="请输入商家名称" />
+      </view>
+    </view>
+  </view>
+  <!-- /busus_bis -->
+
+  <!-- busus_usr -->
+  <view class="busus_inlin busus_usr">
+    <view class="bstld_wp">
+      <view class="bstld_ct">
+        <text>联系人</text>
+        <input class="input" name="userName" placeholder="请输入姓名" />
+      </view>
+    </view>
+    <view class="bstld_wp">
+      <view class="bstld_ct">
+        <text>联系电话</text>
+        <input class="input" name="userName" placeholder="请输入联系电话" />
+      </view>
+    </view>
+  </view>
+  <!-- /busus_usr -->
+  
+  <!-- busus_typ -->
+  <view class="busus_inlin busus_typ">
+    <view class="bstld_wp">
+      <view class="bstld_ct">
+        <text>选择商家类型</text>
+      </view>
+    </view>
+
+    <!-- select_bussis_cot -->
+    <radio-group bindchange="listenerRadioGroup">
+      <view class="bstld_wp select_bussis_cot" wx:for-items="{{array}}" wx:key="key">
+          <view class="bstld_ct">
+            <text>{{item.value}}</text>
+            <view class="select">
+              <radio value="{{item.name}}" checked="{{item.checked}}" />
+            </view>
+          </view>
+      </view>
+    </radio-group>
+    <!-- /select_bussis_cot -->
+  </view>
+  <!-- /busus_typ -->
+
+  <!-- busus_info -->
+  <view class="busus_inlin busus_info">
+    <view class="bstld_wp">
+      <view class="bstld_ct">
+        <text>感谢您对聚乡村的支持，工作人员会在24小时内和您取得联系！</text>
+      </view>
+    </view>
+  </view>
+  <!-- /busus_info -->
+</view>
+<!-- /busetl_body -->
+
+<!-- mymess_button -->
+<view class="mymess_button">
+  <button>确认提交</button>
+</view>
+<!-- /mymess_button -->

@@ -1,0 +1,15 @@
+.canvas-box {
+    width: 500px;
+    margin: 20px auto;
+}
+
+#btn {
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    padding: 8px 15px;
+    border-radius: 3px;
+    background-color: #fec60c;
+    color: #fff;
+    border: none;
+}

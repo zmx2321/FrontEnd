@@ -1,0 +1,241 @@
+<section ng-show="showSection === 0">
+    <div class="person-edit-container">
+
+        <div class="person-edit-header">
+            <a class="btn btn-big btn-white" href="#/person">返回我的主页</a>
+            <div class="person-header-img editPer-img" ng-mouseenter="isEdshow = true" ng-mouseleave="isEdshow = false">
+                <img src="http://static.iboom.tv/static/img/{{personStatue.student.header?personStatue.student.header:'videoDefault.png'}}" id="im" ng-hide="isEdshow" >
+                <img src="static/images/editPro.gif" ng-class="{editPer:isEdshow}"  ng-click="editPerson()">
+            </div>
+            <div class="person-header-content">
+                <div class="person-area">
+                    <ul>
+                        <li>昵称:<span>{{personStatue.student.summoner}}</span></li>
+                        <li>我的学号:<span>{{personStatue.student.studentNum}}</span></li>
+                        <li>绑定的召唤师账号:<span>{{personStatue.student.summoner}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="person-edit-content">
+            <div class="person-edit-input-group">
+                <input type="text" disabled class="person-edit-input" ng-model="personStatue.userInfo.qq"
+                       ng-class={"person-edit-selected":editNum===0} id="editQQ">
+                <p>QQ:</p>
+                <span ng-click="editInfo(0)">编辑</span>
+                <div class="person-edit-active" ng-show="editNum===0">
+                    <button class="btn btn-red btn-sm" ng-click="updateInfo()">保存</button>
+                    <button class="btn btn-white btn-sm" ng-click="editInfo(4)">取消</button>
+                </div>
+            </div>
+            <div class="person-edit-input-group">
+                <input type="text" disabled value="未填写" class="person-edit-input" ng-model="personStatue.userInfo.wx"
+                       ng-class={"person-edit-selected":editNum===1} id="editWX">
+                <p>微信:</p>
+                <span ng-click="editInfo(1)">编辑</span>
+                <div class="person-edit-active" ng-show="editNum===1">
+                    <button class="btn btn-red btn-sm" ng-click="updateInfo()">保存</button>
+                    <button class="btn btn-white btn-sm" ng-click="editInfo(4)">取消</button>
+                </div>
+            </div>
+            <div class="person-edit-input-group">
+                <input type="text" disabled class="person-edit-input" ng-model="personStatue.userInfo.phone"
+                       ng-class={"person-edit-selected":editNum===2} id="editPhone">
+                <p>手机:</p>
+                <span ng-click="editInfo(2)">编辑</span>
+                <div class="person-edit-active" ng-show="editNum===2">
+                    <button class="btn btn-red btn-sm" ng-click="updateInfo()">保存</button>
+                    <button class="btn btn-white btn-sm" ng-click="editInfo(4)">取消</button>
+                </div>
+            </div>
+        </div>
+        <div class="person-edit-footer">
+            <button class="btn btn-big btn-white" ng-click="changeSection(1)">修改密码</button>
+            <button class="btn btn-big btn-white" ng-click="changeSection(2)">找回密码</button>
+            <button class="btn btn-big btn-white" ng-click="changeSection(3)">更改召唤师账号</button>
+        </div>
+    </div>
+</section>
+
+<section ng-show="showSection === 1">
+    <div class="person-edit-container">
+        <div class="person-edit-info-header">修改密码</div>
+        <div class="person-edit-info-body">
+            <div class="person-edit-info-pwd">
+                <div class="person-edit-info-input">
+                    <input type="text" placeholder="请输入原密码" ng-model="oldPwd">
+                    <input type="text" placeholder="请设置新密码" ng-model="newPwd">
+                    <input type="text" placeholder="再次输入新密码" ng-model="newPwd_2">
+                </div>
+            </div>
+        </div>
+        <div class="person-edit-info-footer">
+            <button class="btn btn-big btn-red" ng-click="updatePwd()">修改完成</button>
+        </div>
+    </div>
+</section>
+
+<section ng-show="showSection === 2">
+    <div class="person-edit-container">
+        <div class="person-edit-info-header">找回密码</div>
+        <div class="person-edit-info-body">
+            <div class="person-edit-info-list">
+                <ul>
+                    <li ng-class={"person-edit-info-list-selected":!isNext}>1.验证手机号</li>
+                    <li ng-class={"person-edit-info-list-selected":isNext}>2.输入新密码</li>
+                </ul>
+            </div>
+            <div class="person-edit-info-find">
+                <div class="person-edit-info-input" ng-show="!isNext">
+                    <div class="phone-code-input">
+                        <div class="phone-code-input-span" ng-click="sendMessage()">
+                            <span ng-show="sendStatue===0" ng-click="sendCode()">获取验证码</span>
+                            <span ng-show="sendStatue===1" class="phone-code-input-span-read">重新发送(59)</span>
+                        </div>
+                        <input type="text" placeholder="请输入手机号" ng-model="findModel.findPwdPhone">
+                    </div>
+                    <input type="text" placeholder="请输入短信验证码" ng-model="findModel.findPwdCode">
+                </div>
+                <div class="person-edit-info-input" ng-show="isNext">
+                    <input type="text" placeholder="请设置新密码" ng-model="newPwd">
+                    <input type="text" placeholder="再次输入密码" ng-model="newPwd_2">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="person-edit-info-footer">
+            <button class="btn btn-big btn-red" ng-click="tempKeyLogin()" ng-show="!isNext">下一步</button>
+            <button class="btn btn-big btn-red" ng-click="updatePwd()" ng-show="isNext">修改完成</button>
+        </div>
+    </div>
+</section>
+
+<section ng-show="showSection === 3">
+    <div class="person-edit-container">
+        <div class="person-edit-info-header">更改召唤师账号</div>
+        <div class="person-edit-info-body">
+            <div class="person-edit-info-ZHS">
+                <div class="person-edit-info-input">
+                    请输入召唤师名称
+                    <input type="text" ng-model="summoner">
+                    请选择服务器
+                    <div class="person-edit-info-area" ng-click="chooseArea()">
+                        <span>{{selectedArea.net}}</span>
+                        <span>{{selectedArea.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="person-edit-info-footer">
+            <button class="btn btn-big btn-red" ng-click="bindSummoner()">修改完成</button>
+        </div>
+    </div>
+</section>
+
+
+<div class="mask-layer" ng-if="isShowMask">
+    <div class="mask-layer-content-middel mask-layer-edit" ng-show="isShoweditPerson">
+        <div class="mask-layer-close" ng-click="closeeditPerson()">
+            <img src="static/images/icon/icon_close_normal.png">
+        </div>
+        <div class="mask-layer-body mask-layer-edit-body">
+            <div class="mask-layer-body mask-layer-edit-head">
+                <h3>编辑头像</h3>
+                <p>调整头像和尺寸</p>
+                <input type="file" id="file">
+                <!--<button id="clipBtn">截取图片</button>-->
+            </div>
+            <div id="clipArea"></div>
+            <!--图片缩放-->
+            <!--<div class="suofang">-->
+            <!--<span>-</span>-->
+            <!--<span>+</span>-->
+            <!--</div>-->
+            <!--<div id="view"></div>-->
+            <div class="clipreg">
+                <span id="btnReg" ng-click="closeeditPerson()">保存头像</span>
+            </div>
+
+            <script>
+                $(function () {
+
+                    $(".suofang span:first-child").click(function () {
+                        $("#clipArea img").width($("#clipArea img").width() * 0.9)
+                        $("#clipArea img").height($("#clipArea img").height() * 0.9)
+                    })
+                    $(".suofang span:last-child").click(function () {
+                        $("#clipArea img").width($("#clipArea img").width() * 1.1)
+                        $("#clipArea img").height($("#clipArea img").height() * 1.1)
+                    })
+
+//                    $("#im")[0].src="localStorage.getItem('photo')";
+//
+
+                })
+            </script>
+            <script>
+                var clipArea = new PhotoClip("#clipArea", {
+                    size: [200, 200],
+                    adaptive: null,
+                    outputSize: [640, 640],
+                    outputType: "jpg",
+                    outputQuality: .8,
+                    file: "#file",
+//                    source: "static/img/mm.jpg",
+//                    view: "#view",
+                    ok: "#btnReg",
+                    loadStart: function (file) {
+                    },
+                    loadError: function (event) {
+                    },
+                    clipFinish: function (dataURL) {
+                        localStorage.setItem('photo', dataURL);
+                    }
+                });
+
+            </script>
+
+        </div>
+    </div>
+    <div class="mask-layer-content-height" ng-show="isChooseArea">
+        <div class="mask-layer-close" ng-click="closeChooseArea()">
+            <img src="static/images/icon/icon_close_normal.png" alt="">
+        </div>
+        <div class="mask-layer-body">
+            <div class="selectarea">
+                <header>请选择大区</header>
+                <article>
+                    <div class="selectarea_cont">
+                        <ul>
+                            <ul>
+                                <li>
+                                    <dl>
+                                        <dt>电信</dt>
+                                        <dd ng-repeat="qu in DXArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl>
+                                        <dt>联通</dt>
+                                        <dd ng-repeat="qu in WTArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl>
+                                        <dt>其他</dt>
+                                        <dd ng-repeat="qu in JJArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="mask-layer-footer">
+            <button class="btn btn-red btn-big" ng-click="closeChooseArea()">关闭</button>
+        </div>
+    </div>
+    <!-- selectarea（选择大区） e -->
+</div>

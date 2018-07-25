@@ -1,0 +1,47 @@
+{
+  "error": false,
+  "msg": "",
+  "data": {
+    "id": 4696,
+    "project": "lol-pc",
+    "model": "pcÊ×Ò³ÂÖ²¥",
+    "name": "pcÊ×Ò³ÂÖ²¥",
+    "sName": "pcÊ×Ò³ÂÖ²¥",
+    "img": "337508bf77b6fd2469ba3ade1fa3d8aa.jpg",
+    "date": null,
+    "targetDate": null,
+    "carouselDtos": [
+      {
+        "id": 22,
+        "img": "337508bf77b6fd2469ba3ade1fa3d8aa.jpg",
+        "name": "11111",
+        "title": "22222",
+        "url": "33333",
+        "carouselGroupId": 4696,
+        "data": "44444"
+      },
+      {
+        "id": 23,
+        "img": "337508bf77b6fd2469ba3ade1fa3d8aa.jpg",
+        "name": "1",
+        "title": "1",
+        "url": "1",
+        "carouselGroupId": 4696,
+        "data": "1"
+      },
+      {
+        "id": 24,
+        "img": "337508bf77b6fd2469ba3ade1fa3d8aa.jpg",
+        "name": "1",
+        "title": "1",
+        "url": "1",
+        "carouselGroupId": 4696,
+        "data": "1"
+      }
+    ],
+    "childs": null,
+    "now": 1480907198441
+  },
+  "length": null,
+  "rtCode": null
+}

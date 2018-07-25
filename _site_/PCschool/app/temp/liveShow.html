@@ -1,0 +1,122 @@
+<section>
+    <div class="live-container">
+        <div class="live-show-container">
+            <div class="live-show-box">
+                <div class="live-show-box-header">
+                    <div class="img-auto-container teacher-header-img-fang">
+                        <img src="http://static.iboom.tv/static/img/{{thisTeacherHeader}}" alt="">
+                    </div>
+
+                    <div class="live-show-box-header-title">
+                        <p>{{liveInfo.desc}}</p>
+                        <span>{{thisTeacherName}}</span>
+                    </div>
+
+                </div>
+                <div class="live-show-box-screen">
+                    <div id="player" class="live-show-box-screen-content">
+                    </div>
+                </div>
+            </div>
+            <div class="live-show-chat">
+                <div class="live-show-chat-container" id="contentBox">
+                    <div class="live-show-chat-list" id="inner">
+                        <span id="chatInfo">正在连接直播聊天室</span>
+                        <ul>
+                            <li ng-repeat="chat in chats" class="live-show-chat-li">
+                                <span>{{chat.speaker.name}}:</span>
+                                {{chat.content}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="live-show-chat-footer">
+                    <input type="text" ng-model="data" ng-keyup="myKeyup($event)">
+                    <span ng-click="say()">发送</span>
+                </div>
+            </div>
+            <div class="live-table-container">
+                <div class="course-container">
+                    <div class="courselist-content">
+                        <header>BOOM课程表</header>
+                        <article>
+                            <div class="class-course-week">
+                                <div class="arr_left" ng-click="JumpLeftbtn()">
+                                    <img src="static/images/icon/arrow_onpress.png">
+                                </div>
+
+                                <ul>
+                                    <li ng-class={"all-course-tab-selected":isWeekCurriculumShow===$index||isWeekdong==="xian"+$index}
+                                        ng-repeat="keb in CurriculumKeBiaos track by $index"
+                                        ng-click="getWeekCurriculumShow($index);Exhibition(keb)">
+                                        <div class="li-date">
+                                            {{keb.date}}
+                                        </div>
+                                        <div class="li-week">
+                                            {{keb.day | weekDay}}
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="arr_right" ng-click="JumpRightbtn()">
+                                    <img src="static/images/icon/arrow_onpress.png" ng-if="!imgshow">
+                                    <img src="static/images/prohibit.png" ng-if="imgshow">
+                                </div>
+                            </div>
+                            <div class="course-list">
+                                <ul>
+                                    <li ng-repeat="kb in CurriculumeSlectKeBiao">
+                                        <a href="#/live/{{(kb.data| evalText).liveId}}"
+                                           class="course_video_live">
+                                            <div class="img-auto-container kebiao-img-big">
+                                                <img src="http://static.iboom.tv/static/img/{{kb.img}}" alt="">
+                                            </div>
+                                            <div class="course-list-txt">
+                                                <ul>
+                                                    <li>
+                                                        <dl>
+                                                            <dt>
+                                                            <ul>
+                                                                <li>{{kb.name}}</li>
+                                                                <li>{{((kb.data | evalText).start - now) > 0 ?
+                                                                    "正在直播":"未开始" }}
+                                                                </li>
+                                                            </ul>
+                                                            </dt>
+                                                            <dd>
+                                                                <ul>
+                                                                    <li>类型<span></span></li>
+                                                                    <li>{{kb.title}}</li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li>教学老师<span></span></li>
+                                                                    <li>兰洋老师</li>
+                                                                </ul>
+                                                                <ul>
+                                                                    <li>时间<span></span></li>
+                                                                    <li>{{((kb.data| evalText).start)|date:'hh :mm' }}
+                                                                    </li>
+                                                                </ul>
+                                                            </dd>
+                                                        </dl>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="course-lack-course" ng-show="lackCourse">
+                                    <div class="lack-statue">
+                                        <div class="img-auto-container">
+                                            <img src="static/images/icon_roobot.png" alt="">
+                                        </div>
+                                        <span>主人，今天没课，好好放松吧</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

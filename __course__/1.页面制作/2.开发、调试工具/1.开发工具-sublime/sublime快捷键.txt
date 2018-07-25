@@ -1,0 +1,16 @@
+ctrl + G	定位行号
+
+ctrl + R	定位函数名
+
+ctrl + ;	定位关键字
+
+ctrl + shift + p	side	关闭侧栏
+命令面板
+
+多行选择
+选择一个元素 => ctrl + D
+	如果要跳过 => ctrl + K -> ctrl + D
+alt + f3	选择所有当前选择的元素
+
+注释
+/** -> 按回车

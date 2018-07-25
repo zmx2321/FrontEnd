@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+div {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    margin: 10px;
+    float: left;
+    padding: 30px;
+    text-align: center;
+    background-color: lightgray;
+}
+
+p {
+    background-color: white;
+}
+</style>
+<script type="text/javascript">
+  /**
+   * students类
+   * 构造函数首字母必须大写
+   */
+  
+  function Student(name,age,tel,password){
+     this.name = name;
+     this.age = age;
+     this.tel = tel;
+     this.password = password;
+  }
+  /**
+   * 学生集合
+   */
+  var sList = new Array();
+
+  //开启程序
+  home();
+
+ 
+  function home(){
+
+  var key = prompt('请选择你要进行的操作！\n1.登录\n2.注册\n3.退出');
+
+  switch(key){
+
+    case '1':
+    //登录
+    login();
+    break;
+ 
+    case '2':
+     //注册
+     register();
+    break;
+
+    case '3':
+    return;
+    default:
+    alert('输入有误');
+    break;
+
+  }
+  
+
+     home();
+
+  }
+
+  /**
+   * 1.确认密码 
+   * 2.为空判断,注册失败
+   * 3.注册重复的判断
+   */
+
+
+  function register(){
+
+   var names = prompt('请输入你的名字！');
+   var age =  prompt('请输入你的性别！');
+   var tel =  prompt('请输入你的电话号码！');
+   var password =  prompt('请输入你的密码！');
+   var password2 = prompt('请确认密码！');
+  
+
+/*  if (names==''||age==''||tel==''||password=='') {
+    alert('你输入的信息不完整,请重新注册！');
+    return;
+  }
+
+    if (password!=password2) {
+    alert('两次密码输入不匹配,请重新注册！');
+    return;
+  }
+
+  if (chenckName(tel)) {
+    alert('您已经注册,直接去登录吧！');
+      return;
+  }*/
+
+  try
+{ 
+  
+  if (names==''||age==''||tel==''||password=='') {throw '你输入的信息不完整,请重新注册！';}
+  if(password!=password2) {throw '两次密码输入不匹配,请重新注册！';}
+  if (chenckName(tel)) {throw '您已经注册,直接去登录吧！';}
+
+     var student = new Student(names,age,tel,password);
+       sList.push(student);
+       alert('恭喜您,注册成功！');
+}
+catch(err)
+{
+  alert(err);
+}
+
+
+
+
+   
+  }
+
+
+   function chenckName(tel){
+
+    for (var i = 0; i < sList.length; i++) {
+
+             if (tel==sList[i].tel) {
+
+              return true;
+             }
+
+    }
+
+    return false;
+   }
+
+
+  function login(){
+
+   var tel = prompt('请输入你的号码！');
+   var password =  prompt('请输入你的密码！');
+
+   for (var i = 0; i < sList.length; i++) {
+
+        if (tel==sList[i].tel&&password==sList[i].password) {
+
+            alert('登录成功!');
+
+               return;
+        }
+     
+   }
+
+   alert('登录失败!');
+
+  }
+</script>
+</head>
+<body>
+
+
+
+</body>
+</html>

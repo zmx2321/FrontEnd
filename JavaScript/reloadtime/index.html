@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>页面加载顺序</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<script>
+	function fn1 () {
+		alert(1); 
+	}
+</script>
+</head>
+
+<body>
+<!-- body s -->
+<span>判断alert执行顺序</span>
+<script>
+	window.onload = function(){
+		alert(2);// 该事件在最后执行。
+	}
+	var timer = setTimeout(function(){
+			alert(3);
+	},0);
+</script>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>
+<script>
+	alert(4);
+	fn1();
+	timer='';
+</script>
+
+<!-- 正确答案 4132 -->

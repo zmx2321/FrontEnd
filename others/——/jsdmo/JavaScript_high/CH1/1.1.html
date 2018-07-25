@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<div id="div">
+			你好
+			<p id="p">你好</p>
+		</div>
+		
+		<!--异常-->
+		<script type="text/javascript">
+			function log(msg) {
+				console.log(msg);
+			}
+			var err = new Error('出错了');
+			log(err.message);
+
+			function throwit() {
+				throw new Error('');
+			}
+
+			function catchit() {
+				try {
+					throwit();
+				} catch(e) {
+					console.log(e.stack);
+				}
+			}
+
+			catchit();
+
+			function f() {
+				try {
+					console.log(0);
+					throw 'bug';
+				} catch(e) {
+					console.log(1);
+					return true; // 这句原本会延迟到finally代码块结束再执行
+					console.log(2); // 不会运行
+				} finally {
+					console.log(3);
+					return false; // 这句会覆盖掉前面那句return
+					console.log(4); // 不会运行
+				}
+
+				console.log(5); // 不会运行
+			}
+
+			var result = f();
+			// 0
+			// 1
+			// 3
+
+			log(result);
+		</script>
+
+		<!--事件-->
+
+		<script type="text/javascript">
+			// 使用格式
+			//			target.addEventListener(type, listener[, useCapture]);
+			//
+			//			// 实例
+			//			window.addEventListener('load', function() {...
+			//			}, false);
+			//			request.addEventListener('readystatechange', function() {...
+			//			}, false);
+
+			function hello() {
+				console.log('Hello world');
+			}
+
+			document.addEventListener('click', hello, false);
+			document.addEventListener('click', hello, false);
+
+			var phases = {
+				1: 'capture',
+				2: 'target',
+				3: 'bubble'
+			};
+
+			var div = document.querySelector('div');
+			var p = document.querySelector('p');
+
+			div.addEventListener('click', callback, true);
+			p.addEventListener('click', callback, true);
+			div.addEventListener('click', callback, false);
+			p.addEventListener('click', callback, false);
+
+			function callback(event) {
+				var tag = event.currentTarget.tagName;
+				var phase = phases[event.eventPhase];
+				console.log("Tag: '" + tag + "'. EventPhase: '" + phase + "'");
+			}
+		</script>
+	</body>
+
+</html>

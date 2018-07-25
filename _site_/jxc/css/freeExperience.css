@@ -1,0 +1,38 @@
+/* lj_button s */
+.lj_button dl{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lj_button dd{
+    line-height: 0.38rem;
+}
+
+.lj_button dd:last-child span{
+	font-size: 0.24rem;
+}
+
+.lj_button span{
+	color: #fff;
+	font-size: 0.34rem;
+}
+/* lj_button e */
+
+.zhijiect{
+	margin-bottom: 0.24rem;
+	background: #fff;
+}
+
+.free_experience_txt{
+    margin-bottom: 0.1rem;
+}
+
+.pudtal_ptwf img{
+	margin: 0;
+}
+
+.free_experience_txt{
+    margin-bottom: 0.25rem;
+}

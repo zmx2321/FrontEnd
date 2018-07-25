@@ -1,0 +1,60 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id":1,
+      "imgs":"images/cs/shilietupain1.png",
+      "imglab": "禅学瑜伽",
+      "url":"raiseDetails_wzt.html",
+      "title": "晴天雨后——玩主题",
+      "statu": "已结束",
+      "price": 8888,
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，",
+      "targetPerson": 59,
+      "alreadyParticipated": 59,
+      "surplusDay": 20
+    },
+    {
+      "id":2,
+      "imgs":"images/cs/shilietupian2.png",
+      "imglab": "bbbbb",
+      "url":"http://www.baidu.com",
+      "title": "qqq",
+      "statu": "未开始",
+      "price": "9999",
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，666666",
+      "targetPerson": 77,
+      "alreadyParticipated": 22,
+      "surplusDay": 33
+    },
+    {
+      "id":2,
+      "imgs":"images/cs/shilietupian2.png",
+      "imglab": "bbbbb",
+      "url":"http://www.baidu.com",
+      "title": "qqq",
+      "statu": "未开始",
+      "price": "9999",
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，666666",
+      "targetPerson": 77,
+      "alreadyParticipated": 22,
+      "surplusDay": 33
+    },
+    {
+      "id":2,
+      "imgs":"images/cs/shilietupian2.png",
+      "imglab": "bbbbb",
+      "url":"http://www.baidu.com",
+      "title": "qqq",
+      "statu": "未开始",
+      "price": "9999",
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，666666",
+      "targetPerson": 77,
+      "alreadyParticipated": 22,
+      "surplusDay": 33
+    }
+  ],
+  "length":12,
+  "rtCode":null
+}

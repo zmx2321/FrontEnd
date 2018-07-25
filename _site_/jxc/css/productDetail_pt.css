@@ -1,0 +1,142 @@
+.product_detail_all{
+    font-size: 0.24rem;
+}
+
+/* lj_button s */
+.lj_button dl{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lj_button dd{
+    line-height: 0.38rem;
+}
+
+.lj_button dd:last-child span{
+	font-size: 0.24rem;
+}
+
+.lj_button span{
+	color: #fff;
+	font-size: 0.34rem;
+}
+/* lj_button e */
+
+.zhijiect{
+	margin-bottom: 0.24rem;
+	background: #fff;
+}
+
+.pudtal_text_bottom{
+	padding-bottom: 0.3rem;
+}
+
+.pudtal_expntest li{
+	width: 100%;
+	height: 0.72rem;
+	line-height: 0.72rem;
+	background: #fff;
+}
+
+.pudtal_expntest li p{
+    font-size: 0.24rem;
+    padding-bottom: 0;
+}
+
+.pudtal_expntest li:last-child{
+	background: #efefef;
+}
+
+.pudtal_expntest li:last-child p{
+	position: relative;
+	margin-left: 0.4rem;
+}
+
+.pudtal_expntest li:last-child p::before{
+    content: '';
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url(../images/icon-spxq-xx.png) top no-repeat;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -0.4rem;
+    background-size: 100%;
+}
+
+.pudtal_ptwf img{
+	margin: 0;
+}
+
+/* zhijiect s */
+ul.zhijiect_cont > li{
+    height: 1.32rem;
+    overflow: hidden;
+    border-bottom: solid 1px #e2e2e2;
+    position: relative;
+}
+
+ul.zhijiect_cont > li:last-child{
+    border-bottom: 0;
+}
+
+.zhijiect_left{
+    float: left;
+}
+
+.zhijiect_left li:first-child{
+    position: absolute;
+    width: 0.68rem;
+    height: 0.68rem;
+    line-height: initial;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 0.34rem;
+    overflow: hidden;
+}
+
+.zhijiect_left li:last-child{
+    line-height: 1.32rem;
+    margin-left: 0.88rem;
+    font-size: 0.28rem;
+}
+
+.zhijiect_right{
+    float: right;
+}
+
+.zhijiect_right dl{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 1.8rem;
+    text-align: right;
+}
+
+.zhijiect_right dd:first-child{
+    color: #f5560f;
+}
+
+.zhijiect_right li{
+    display: inline-block;4
+}
+
+.zhijiect_right li:first-child{
+
+}
+
+.zhijiect_right li:last-child{
+    line-height: 1.32rem;
+}
+
+.zhijiect_right button{
+    width: 1.4rem;
+    height: 0.6rem;
+    background: #f5560f;
+    color: #fff;
+    border-radius: 0.07rem;
+    font-size: 0.24rem;
+}
+/* zhijiect e */

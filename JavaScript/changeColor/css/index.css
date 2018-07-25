@@ -1,0 +1,29 @@
+.changColor{
+    width: 60%;
+    margin: 50px auto 0;
+    background: #ccc;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.changColor li{
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.changColor li:last-child{
+    margin-bottom: 0;
+}
+
+.c1{
+    background: #f96;
+}
+
+.c2{
+    background: #f78;
+}
+
+.c3{
+    background: #896;
+}

@@ -1,0 +1,402 @@
+<!-- product_banner -->
+<view class="product_banner">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="#fff" indicator-active-color="#00cd00">  
+    <block wx:for="{{imgUrls}}" wx:key="key">  
+      <swiper-item>  
+        <image src="{{item}}" />
+      </swiper-item>  
+    </block>
+  </swiper>
+</view>
+<!-- /product_banner -->
+
+<!-- raise_detail_tit -->
+<view class="raise_detail_tit main_cot">
+  <view class="main_wrap">
+    <view class="raise_detail_top">
+      <text class="left">晴天雨后——做地主</text>
+      <text class="right">已结束</text>
+    </view>
+
+    <!-- <view class="poyctcnt_lab_bar">
+      <view class="polabbar_result"></view>
+    </view> -->
+
+    <progress class='poyctcnt_bar' 
+              percent="25" 
+              stroke-width="2" 
+              activeColor="#00cd00"
+              backgroundColor="#efefef"
+              active  />
+
+    <view class="poyctcnt_lab">
+      <text>目标59人</text>
+      <text>已参加59人</text>
+      <text>剩余0天</text>
+    </view>
+  </view>
+</view>
+
+<view class='main_cot clearfix'>
+  <view class="main_wrap">
+    <view class="raise_detail_txt">
+      <view class="rasdaltxt_title">
+        <text>特别提示</text>
+      </view>
+      <view class="rasdaltxt_cont">
+        <p>
+          有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。小时候在家里，在田野里老
+          婆还用吴伯萧的《菜园小记》。吴伯萧的《菜园小记》劝我。有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝
+          我。吴伯萧的《菜园小记》劝我。小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》。吴伯萧的《菜园小记》劝我。
+        </p>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='main_cot'>
+  <view class='main_wrap'>
+    <view class='cxxz_title clearfix'>
+      <text class='tit'>出行选择</text>
+      <text class='time'>07-05出发 07-07回程</text>
+    </view>
+    <view class='cxxz_cot clearfix'>
+      <scroll-view class="scroll-view_x" scroll-x>
+        <view class='cxxz_dtal cxxz_active'>
+          <text>出发\t07-05</text>
+          <text>回程\t07-07</text>
+        </view>
+        <view class='cxxz_dtal'>
+          <text>出发\t07-05</text>
+          <text>回程\t07-07</text>
+        </view>
+        <view class='cxxz_dtal'>
+          <text>出发\t07-05</text>
+          <text>回程\t07-07</text>
+        </view>
+        <view class='cxxz_dtal'>
+          <text>出发\t07-05</text>
+          <text>回程\t07-07</text>
+        </view>
+        <view class='cxxz_dtal'>
+          <text>出发\t07-05</text>
+          <text>回程\t07-07</text>
+        </view>
+        <view class='cxxz_dtal'>
+          <text>出发\t07-05</text>
+          <text>回程\t07-07</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="raise_detail_nav">
+  <text data-num="1" class="{{_num==1 ? 'active':''}}" bindtap='jumpTo' data-opt="list0">产品详情</text>
+  <text data-num="2" class="{{_num==2 ? 'active':''}}" bindtap='jumpTo' data-opt="list1">类型选择</text>
+  <text data-num="3" class="{{_num==3 ? 'active':''}}" bindtap='jumpTo' data-opt="list2">参加情况</text>  
+</view>
+<!-- /raise_detail_tit -->
+
+<!-- raise_detail_cont -->
+<scroll-view  scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" class="raise_detail_cont">
+  <view class="rascot">
+    <!-- cpxq -->
+    <view id="list0" class="cpxq">
+      <view class="cpxq_txt main_wrap">
+        <p>
+          青苹果就是颜色是青的苹果，青的果酸含量高，有利于美容，苹果都一样，不管是红的青的黄的都是一样的，它的颜色不同是因为它
+          们的品种不同，不同的品种有不同的口味和特点，像是：”果实色泽鲜艳，不同的品种有不同的口味；果肉黄白色，肉质细脆、多汁，
+          风味甜酸浓郁。这说的是红将军"也很美味。
+        </p>        
+      </view>
+      <view class="cpxq_pic">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/poyctyt_banner_cs1.png"></image>
+      </view>
+    </view>
+    <!-- /cpxq -->
+
+    <!-- xzhb -->
+    <view id="list1" class="xzhb">
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <checkbox checked='checked'></checkbox>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+							  有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+							</p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <checkbox></checkbox>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+							  有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+							</p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <checkbox></checkbox>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+							  有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+							</p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <checkbox></checkbox>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+							  有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+							</p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <checkbox></checkbox>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+							  有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+							</p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </view>
+    <!-- /xzhb -->
+
+    <!-- xmjz -->
+    <view id="list2" class="xmjz">
+      <view class="table">
+        <view class="tr">
+            <view class="th">支持者</view>
+            <view class="th">支持金额</view>
+            <view class="th">支持时间</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+        <view class="tr">
+            <view class="td">张三</view>
+            <view class="td price">38元</view>
+            <view class="td">2016-11-25</view>
+        </view>
+      </view>
+    </view>
+    <!-- /xmjz -->
+  </view>
+</scroll-view>
+<!-- /raise_detail_cont -->
+
+<!-- mt_pudtal_btn -->
+<view class="pudtal_btn mt_pudtal_btn">
+  <navigator url="/pages/businessDetail/businessDetail" class="shangjiazy">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sjzy.png"></image>
+    </view>
+    <text class="pudtal_btn_text">商家主页</text>
+  </navigator>
+  <!-- <navigator url="/pages/payment/payment" class="lj_button">
+    <button>我要支持</button>
+  </navigator> -->
+  <view class='lj_button'>
+    <navigator url='/pages/kxt_payment/kxt_payment' class='kgxt'>开个小团</navigator>
+    <navigator url='/pages/zc_payment/zc_payment' class='ljcj'>立即参加</navigator>
+  </view>
+  <navigator class="shoucang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-sc-wxz.png"></image>
+    </view>
+    <text class="pudtal_btn_text">收藏</text>
+  </navigator>
+  <navigator class="fenxiang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-fx.png"></image>
+    </view>
+    <text class="pudtal_btn_text">分享</text>
+  </navigator>
+</view>
+<!-- /mt_pudtal_btn -->
+
+<view class='mask'>
+  <view class='kt_wrap'>
+    <text class='kt_close'></text>
+    <view class='kt_n'>
+      <view class='kt_top'>
+        <text>晴天雨后-玩主题</text>
+      </view>
+      <view class='kt_cot'>
+        <text>出发日期：07-05</text>
+        <text>回程日期：07-07</text>
+        <text>总名额：59人</text>
+        <text>剩余名额：20人</text>
+      </view>
+      <view class='kt_cot1'>
+        <input placeholder='请输入开团人数' class="kt_num"></input>
+      </view>
+      <view class='kt_fot'>
+        <button id="kt_btn">点击开个小团</button>
+        <text>
+					注：预定之后在24小时之内将为您保存名额，到期未付款的名额将自动放出。
+				</text>
+      </view>
+    </view>
+  </view>
+</view>

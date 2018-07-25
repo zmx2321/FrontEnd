@@ -1,0 +1,317 @@
+        .resume-box {
+            position: relative;
+            width: 100%;
+            color: #555;
+            overflow: hidden;
+        }
+
+        .main-footer {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            margin-left: -15px;
+            width: 29px;
+            height: 26px;
+            animation: footer 1.5s infinite;
+            -webkit-animation: footer 1.5s infinite;
+            animation-fill-mode: forwards;
+            -webkit-animation-fill-mode: forwards;
+        }
+
+        .main-resume {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            transition: transform 1.2s;
+            -webkit-transition: -webkit-transform 1.2s;
+        }
+
+        .main-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+        .main-resume-0 .main-wrap {
+            width: 180px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 36px;
+        }
+
+        .main-resume-2 .main-wrap,
+        .main-resume-3 .main-wrap,
+        .main-resume-4 .main-wrap {
+            width: 82%;
+        }
+
+        .main-resume-0 {
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+        }
+
+        .main-resume-1,
+        .main-resume-2,
+        .main-resume-3,
+        .main-resume-4 {
+            transform: translateY(100%);
+            -webkit-transform: translateY(100%);
+        }
+
+        .main-resume-1 .main-wrap {
+            width: 100%;
+        }
+
+        .late-show {
+            position: absolute;
+        }
+
+        .late-show-1 {
+            top: -40px;
+            left: -200px;
+            animation: lateShow1 .8s;
+            -webkit-animation: lateShow1 .8s;
+            animation-fill-mode: forwards;
+            -webkit-animation-fill-mode: forwards;
+            font-size: 26px;
+            color: #7ac23c;
+            font-weight: bold;
+        }
+
+        .late-show-2 {
+            top: 400px;
+            left: 58px;
+            animation: lateShow2 1.5s .5s;
+            -webkit-animation: lateShow2 1.5s .5s;
+            animation-fill-mode: forwards;
+            -webkit-animation-fill-mode: forwards;
+            font-size: 30px;
+            color: #777;
+        }
+
+        /*.late-msg{
+            display: none;
+        }*/
+        @keyframes lateShow1 {
+            from {
+                left: -200px;
+                transform: rotate(-180deg);
+                -webkit-transform: rotate(-180deg);
+            }
+            to {
+                left: 0;
+                transform: rotate(-15deg);
+                -webkit-transform: rotate(-15deg);
+            }
+        }
+
+        @keyframes lateShow2 {
+            from {
+                top: 400px;
+                transform: scale(1.5, 1.5);
+                -webkit-transform: scale(1.5, 1.5);
+            }
+            to {
+                top: 46px;
+                transform: scale(1.0, 1.0);
+                -webkit-transform: scale(1.0, 1.0);
+            }
+        }
+
+        @keyframes footer {
+            0% {
+                bottom: 25px;
+            }
+            25% {
+                bottom: 15px;
+            }
+            50% {
+                bottom: 25px;
+            }
+            75% {
+                bottom: 15px;
+            }
+        }
+
+        .table {
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .table, tr, td {
+            border-collapse: collapse;
+            border: 1px solid #f2f2f2;
+        }
+
+        .table > tbody > tr > td {
+            height: 35px;
+            line-height: 35px;
+            padding-left: 10px;
+            font-size: 12px;
+        }
+
+        .table > tbody > tr.tr-bg {
+            color: #fff;
+            border-bottom-color: #7ac23c;
+            box-shadow: 1px 3px 2px rgba(33, 103, 0, .4);
+            background-color: #7ac23c;
+        }
+
+        .table > tbody > tr.tr-bg > td {
+            border-color: #7ac23c;
+            border-rigth-color: #f2f2f2;
+            font-size: 16px;
+        }
+
+        /*子标题样式*/
+        .title {
+            width: 100%;
+            height: 24px;
+            line-height: 24px;
+            font-size: 16px;
+            color: #7ac23c;
+            font-weight: bold;
+        }
+
+        .title:before {
+            content: '';
+            padding-left: 4px;
+            margin-right: 8px;
+            height: 24px;
+            background-color: #7ac23c;
+        }
+        /*专业技能*/
+
+        ul.ul-skill {
+            padding-top: 12px;
+            padding-left: 14px;
+        }
+
+        ul.ul-skill li {
+            line-height: 24px;
+            list-style: disc;
+            word-break: break-all;
+        }
+
+        /*乘法表样式*/
+        .con {
+            margin: 12px auto;
+        }
+
+        .border-ele {
+            height: 26px;
+        }
+
+        .border-ele span {
+            opacity: 0;
+            display: inline-block;
+            margin-left: -1px;
+            margin-bottom: -1px;
+            width: 70px;
+            height: 26px;
+            line-height: 26px;
+            border: 1px solid #f8f8f8;
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .border-ele span:nth-child(1) {
+            background-color: rgba(194, 194, 194, .6);
+        }
+
+        .border-ele span:nth-child(2) {
+            background-color: rgba(210, 210, 210, .6);
+        }
+
+        .border-ele span:nth-child(3) {
+            background-color: rgba(226, 226, 226, .6);
+        }
+
+        .border-ele span:nth-child(4) {
+            background-color: rgba(242, 242, 242, .6);
+        }
+
+        /*实战项目*/
+        .work-con {
+            padding: 12px 0;
+        }
+
+        .work-con > ul > li {
+            line-height: 35px;
+        }
+
+        .company-name,
+        .work-start,
+        .project-name-title {
+            padding-left: 12px;
+        }
+
+        .project-name-title {
+            background-color: #7ac23c;
+            color: #fff;
+        }
+
+        .work-con > ul > li.sub-li {
+            border: 1px solid #f2f2f2;
+            margin-top: -1px;
+        }
+
+        .work-con > ul > li.sub-li > .project-name {
+            padding-left: 12px;
+        }
+
+        .work-con > ul > li.sub-li > .project-name.active {
+            background-color: #64b3f9;
+            color: #fff;
+        }
+
+        .sub-ul-project {
+            padding: 8px 12px;
+            display: none;
+            line-height: 28px;
+        }
+
+        .work-con>ul>li.sub-li>.project-name.active~.sub-ul-project{
+            display: block;
+        }
+        /*.over-height {
+            height: 110px;
+            overflow-y: scroll;
+        }
+
+        .over-height::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .over-height::-webkit-scrollbar-thumb {
+            border-radius: 8px;
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, .1);
+            -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1);
+            background-image: linear-gradient(90deg, #f0f0f0 0%, #eee 100%);
+        }*/
+
+        .download-box {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .download{
+            padding: 6px 0;
+            color: #7ac23c;
+            font-weight: bold;
+        }
+
+        .my-pic {
+            width: 130px;
+            height: 100%;
+            background: #ccc;
+            background-size: cover;
+        }
+        .project-url{
+            word-break: break-all;
+        }

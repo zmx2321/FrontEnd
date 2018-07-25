@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="css/css.css" type="text/css"/>
+<script type="text/javascript" src='js/jquery-1.10.2.min.js'></script>
+
+<script type="text/javascript">
+	$(function(){
+		$('li').click(function(){
+			$('#wenzi').show();
+			var this_mark=$(this).attr('mark_txt');
+			$('#pop_txt').text(this_mark);
+		});
+		$('#close').click(function(){
+			$('#wenzi').hide();
+		});
+	});
+</script>
+</head>
+<body>
+<div id="box">
+	<div id="main">
+    	<ul>
+        	<li mark_txt='文案1'><img src="images/dietica.png" width="166" height="144"/></li>
+            <li mark_txt='文案2'><img src="images/fuxin.png" width="166" height="144"/></li>
+            <li mark_txt='文案3'><img src="images/montagut.png" width="166" height="144"/></li>
+            <li mark_txt='文案4'><img src="images/mosaic.png" width="166" height="144"/></li>
+            <li mark_txt='文案5'><img src="images/montagut.png" width="166" height="144"/></li>
+            <li mark_txt='文案6'><img src="images/mosaic.png" width="166" height="144"/></li>
+            <li mark_txt='文案7'><img src="images/mosaic.png" width="166" height="144"/></li>
+            <li mark_txt='文案8'><img src="images/montagut.png" width="166" height="144"/></li>
+            <li mark_txt='文案9'><img src="images/mosaic.png" width="166" height="144"/></li>
+        </ul>
+    
+		<div id="wenzi">
+			<p id='pop_txt'>sss</p>
+			<div id="close">X</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

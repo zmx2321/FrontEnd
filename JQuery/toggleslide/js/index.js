@@ -1,0 +1,10 @@
+$(function(){
+    $('.title').toggle(
+        function(){
+            $('.cont').slideDown();
+        },
+        function(){
+            $('.cont').slideUp();
+        }
+    );
+});

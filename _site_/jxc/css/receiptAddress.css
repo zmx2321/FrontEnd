@@ -1,0 +1,159 @@
+.receiptAddress_all{
+    font-size: 0.24rem;
+}
+
+/* reptadr_cont s */
+.reptadr_cont{
+    overflow: auto;
+}
+
+.reptadr_cont section{
+	width: 100%;
+	min-height: 2.20rem;
+	background: #fff;
+	margin-bottom: 0.16rem;
+}
+
+.reptadr_top{
+	min-height: 1.2rem;
+	border-bottom: solid 1px #e6e6e6;
+	border-top: solid 1px transparent;
+} 
+
+.reptadr_top ul{
+	width: 7.2rem;
+	margin: 0.26rem auto;
+}
+
+.reptadr_top li{
+	margin-bottom: 0.16rem;
+}
+
+.reptadr_top li:last-child{
+	margin-bottom: 0;
+}
+
+.reptadr_top dd{
+	display: inline-block;
+}
+
+.reptadr_bottom{
+	height: 1rem;
+	line-height: 1rem;
+	width: 7.2rem;
+	margin: 0 auto;
+}
+
+h1{
+	font-size: 0.28rem;
+}
+
+.reptadr_bottom_left{
+	float: left;
+	position: relative;
+}
+
+.reptadr_bottom_left h1{
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    width: 1.45rem;
+}
+
+.reptadr_bottom_left input[type="radio"]{
+    position: absolute;
+    top: 0.38rem;
+    z-index: 5;
+    opacity: 0;
+}
+
+.reptadr_bottom_left b{
+    position: absolute;
+    top: 0.29rem;
+    background: url(../images/btn-fxk-wxz.png) top no-repeat;
+    background-size: 100% !important;
+    width: 0.38rem;
+    height: 0.38rem;
+    left: -0.08rem;
+}
+
+.active h1{
+	color: #00cd00;	
+}
+
+.active b{
+    background: url(../images/btn-fxk-xz.png) top no-repeat;
+}
+
+.reptadr_bottom_right{
+	float: right;
+}
+
+.reptadr_bottom_right li{
+    display: inline-block;
+    margin-left: 0.7rem;
+}
+
+.reptadr_edit, .reptadr_delete{
+	position: relative;
+}
+
+.reptadr_edit::before, .reptadr_delete::before{
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background-size: 100% !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -0.5rem;
+}
+
+.reptadr_edit::before{
+    background: url(../images/btn-bj.png) top no-repeat;
+}
+
+.reptadr_delete::before{
+    background: url(../images/btn-sc.png) top no-repeat;
+}
+
+.reptadr_delete_wrap{
+    width: 6rem;
+    height: 3rem;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.07rem;
+    font-size: 0.3rem;
+    overflow: hidden;
+}
+
+.reptdel_top{
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.reptdel_bottom{
+    height: 1rem;
+    line-height: 1rem;
+}
+
+.reptdel_bottom ul{
+    font-size: 0;
+}
+
+.reptdel_bottom li{
+    display: inline-block;
+    font-size: 0.3rem;
+    width: 2.99rem;
+    text-align: center;
+}
+
+.reptdel_bottom li:first-child{
+    border-right: solid 1px #e5e5e5;
+}
+/* reptadr_cont e */

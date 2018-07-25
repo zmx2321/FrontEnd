@@ -1,0 +1,25 @@
+body {
+    font: 12px/1.8 arial;
+}
+
+a,a:visited {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.tip {
+    width: 200px;
+    border: 2px solid #ddd;
+    padding: 8px;
+    background: #f1f1f1;
+    color: #666;
+}
+
+img {
+    border: none;
+}

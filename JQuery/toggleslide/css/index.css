@@ -1,0 +1,17 @@
+.title{
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.cont{
+    border: solid 1px #ccc;
+    background: #fff;
+    display: none;
+    font-size: 1.6rem;
+    border-bottom: 0
+}
+
+.cont li{
+    border-bottom: solid 1px #ccc;
+}

@@ -1,0 +1,113 @@
+/* nav */
+.zcl dt {
+     background-image: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-zcl-xz.png); 
+}
+
+.zcl dd{
+  color: #00CD00;
+}
+/* /nav */
+
+/* map */
+.map_container{
+  height: 670rpx;
+  width: 100%;
+} 
+
+.map {
+  height: 100%;
+  width: 100%;
+} 
+
+.place_info {
+  width: 100%;
+  position:absolute;
+  padding:0 5px;
+  background: #efefef;
+}
+/* /map */
+
+.tip{
+  width:300rpx;
+  height:120rpx;
+  position:absolute;
+  background:#f00;
+  top:100px;
+  z-index:999999;
+}
+
+/* map_scroll */
+.scroll_box{
+  width:95%;
+  overflow:hidden;
+  background:#fff;
+  white-space:nowrap;
+  position:absolute;
+  padding:18rpx;
+  bottom: -7rpx;
+  z-index: 9999;
+}
+
+.item_list{
+  width: 200rpx;
+  height: 150rpx;
+  margin-right: 10rpx;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.mpsol_pic{
+  /* width: 120rpx; */
+  height: 150rpx;
+}
+
+.poycty_ban_Mask{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.item_list text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #fff;
+    z-index: 2;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    font-size: 22rpx;
+}
+
+.vr_c{
+  position:absolute;
+  top:-19rpx;
+  right:-26rpx;
+  background:#f00;
+  color:#fff;
+  z-index:1;
+  font-size:20rpx;
+  padding:0 10rpx;
+  transform:rotate(45deg);
+  width:65rpx;
+  height:45rpx;
+  overflow:hidden;
+  display:block;
+  text-align:center;
+}
+
+.vr_c text {
+  font-size:20rpx;
+  position:absolute;
+  right:29rpx;
+  top:24rpx;
+  transform:rotate(-45deg);
+}
+/* /map_scroll */

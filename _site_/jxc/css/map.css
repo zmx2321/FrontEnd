@@ -1,0 +1,298 @@
+.myorder_all{
+    font-size: 0.24rem;
+}
+
+body, html, div#allmap {
+    width: 100%;
+    height:100%;
+}
+
+#allmap{
+    height: 81.8% !important;
+}
+
+ .anchorBL{display:none;}
+
+img.BMapLib_trans{
+    width: initial;
+    height: initial;
+    margin: initial;
+ }
+
+ .info_box{
+    margin:0;
+    padding:2px;
+ }
+
+ .info_box img{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+ }
+
+ .BMapLib_sendToPhone{
+    /*display: none;*/
+ }
+
+ .inbx_l{
+    float: left;
+    width: 96px;
+    overflow: hidden;
+    margin-left: 10px;
+ }
+
+  .inbx_l p{
+    word-wrap: break-word;
+    overflow:hidden;/*超出隐藏*/
+    text-overflow:ellipsis;/*文本溢出时显示省略标记*/
+    display:-webkit-box;/*设置弹性盒模型*/
+    -webkit-line-clamp:3;/*文本占的行数,如果要设置2行加...则设置为2*/
+    -webkit-box-orient:vertical;/*子代元素垂直显示*/
+    line-height: 0.36rem;
+  }
+
+  .inbx_l h3{
+    display: inline;
+    font-weight: bold;
+}
+
+ .inbx_r{
+    float: left;
+    width: 88px;
+    overflow: hidden;
+    position: relative;
+    height: 86px;
+ }
+
+ .inbx_r b{
+    width: 100%;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    background: rgba(0, 0, 0, 0.39);
+    position: absolute;
+    bottom: 0;
+    font-size: 0.12rem;
+    text-align: center;
+    color: #c5c5c5;
+    overflow: hidden;
+ }
+
+  .inbx_r b span{
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    margin: 0 auto;
+  }
+
+ .BMapLib_SearchInfoWindow .BMapLib_bubble_content{
+    overflow-y: initial !important;
+ }
+
+ .BMapLib_SearchInfoWindow .BMapLib_bubble_top, .BMapLib_SearchInfoWindow .BMapLib_bubble_title {
+    height: 25px !important;
+}
+
+ .search{
+	width: 87%;
+    z-index: 6;
+    position: absolute;
+    top: 1.65rem;
+    left: 1rem;
+}
+
+.search li{
+    float: left;
+}
+
+.search_box{
+    width: 4.6rem;
+    height: 0.6rem;
+    background: #fff;
+    border-radius: 0.07rem;
+    overflow: hidden;
+}
+
+.search_box b{
+    float: left;
+    width: 0.46rem;
+    overflow: hidden;
+    margin-top: 0.06rem;
+    margin-left: 0.1rem;
+}
+
+.search_box b img{
+    margin: 0;
+}
+
+.search_box input{
+    margin-left: 0.1rem;
+    height: 100%;
+    width: 80%;
+    border: none;
+}
+
+.search_box a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+.map_btn{
+    width: 1.14rem;
+    height: 0.6rem;
+    background: #fff;
+    margin-left: 0.1rem;
+    border-radius: 0.07rem;
+    overflow: hidden;
+    padding: 0 0.1rem;
+    color: #00cd00;
+    line-height: 0.6rem;
+    text-align: center;
+}
+
+.map_btn a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.map_btn b{
+    float: left;
+    width: 0.46rem;
+    overflow: hidden;
+    margin-top: 0.06rem;
+    margin-right: 0.01rem;
+}
+
+.map_btn b img{
+    margin: 0;
+}
+
+.map_btn span{
+    color: #00cd00;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+}
+
+.vr_c {
+    position: absolute;
+    top: -0.1rem;
+    right: -0.27rem;
+    background: #f00;
+    color: #fff;
+    z-index: 1;
+    font-size: 0.2rem;
+    padding: 0 0.1rem;
+    transform: rotate(45deg);
+    width: 0.65rem;
+    height: 0.45rem;
+    overflow: hidden;
+}
+
+.vr_c b {
+    font-size: 0.2rem;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.17rem;
+    transform: rotate(-45deg);
+}
+
+.map_swiper {
+    position: absolute;
+    bottom: 0;
+    height: 1.38rem;
+    width: 100%;
+    background: #fff;
+    z-index: 3;
+    padding-top: 0.12rem;
+    overflow: hidden;
+}
+
+.map_swiper img{
+    margin-bottom: -0.1rem;
+}
+
+.map_swiper span{
+    display: block;
+    text-align: center;
+    font-size: 0.22rem;
+}
+
+.map_swiper .swiper-container {
+    margin: 0 0.13rem;
+}
+
+.myMessage{
+    bottom: 2.41rem;
+}
+
+.sys {
+    bottom: 3.51rem;
+}
+
+.map_swiper .swiper-slide{
+    overflow: hidden;
+	height: 63px;
+	margin-right: 5px !important;
+}
+
+.map_lst{
+    position: absolute;
+    right: 0.1rem;
+    top: 28%;
+    z-index: 1;
+}
+
+.map_lst li{
+    width: 1.82rem;
+    height: 0.56rem;
+    margin-bottom: 0.18rem;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 0.06rem;
+    box-shadow: 0.03rem 0.05rem 0.05rem #ccc;
+}
+
+.map_lst li::after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+
+.map_lst dd{
+    float: left;
+    font-size: 0.2rem;
+}
+
+.map_lst dd:first-child{
+    background: #4f4f4f;
+    color: #fff;
+    width: 0.35rem;
+    height: 0.35rem;
+    line-height: 0.45rem;
+    border-radius: 0.2rem;
+    text-align: center;
+    margin: 0.1rem 0.08rem 0;
+}
+
+.map_lst dd:last-child{
+    height: 0.56rem;
+    line-height: 0.66rem;
+
+}
+
+.map_lst li.active dd:first-child{
+    background: #00cd00;
+}
+
+.map_lst li.active dd:last-child{
+    color: #00cd00;
+}
+
+

@@ -1,0 +1,8 @@
+<krpano>
+<!--  多边形透明特效  -->
+<style name="hotspot_dbx_style" capture="true" handcursor="true" fillcolor="0xffffff" fillalpha="0.0" bordercolor="0xffffff" borderalpha="0.0" onout="hotspot_dbx_style_animation();" onloaded="hotspot_dbx_style_animation()"/>
+<action name="hotspot_dbx_style_animation">
+tween(fillalpha,0.6,3.0); delayedcall(3.0, tween(fillalpha,0.0,3.0)); delayedcall(6.5, ifnot(hovering, hotspot_dbx_style_animation() ) );
+</action>
+<!--  多边形透明特效  -->
+</krpano>

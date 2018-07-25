@@ -1,0 +1,64 @@
+<krpano>
+<!--  样式  -->
+<style name="krpanocms_skin" url="%SWFPATH%/thumb/images/gongneng.png" keep="true" zorder="1" align="leftbottom" y="32" scale="0.7"/>
+<!--  文本样式  -->
+<style name="krpanocms_text" url="%SWFPATH%/plugins/textfield.swf" keep="true" align="bottom" x="22" oy="25" vcenter="true" backgroundcolor="0xFFFFFF" backgroundalpha="0.0" roundedge="0" css="font-family:微软雅黑; font-size:13px; color:#FFFFFF;" width="100" autoheight=""/>
+<!--  pc端显示比例 垂直间距75个像素 -->
+<layer name="skin_btn_thumbs" style="krpanocms_skin" crop="0|189|63|63" x="20" onhover="showtext(选择场景,skintext)" onclick="showthumbs();"/>
+<layer name="cms_suoluetu_html" style="krpanocms_text" parent="skin_btn_thumbs" html="选择场景"/>
+<layer name="skin_btn_tel" style="krpanocms_skin" crop="0|63|63|63" x="100" onhover="showtext(get(skin_settings.showtel),skintext)" visible="get:skin_settings.opetel" onclick="get:skin_settings.tel"/>
+<layer name="skin_btn_tel_html" style="krpanocms_text" parent="skin_btn_tel" html="联系电话"/>
+<layer name="skin_btn_http" style="krpanocms_skin" crop="0|0|63|63" x="180" onhover="showtext(官方网站,skintext)" visible="get:skin_settings.opehttp" onclick="get:skin_settings.http"/>
+<layer name="skin_btn_http_html" style="krpanocms_text" parent="skin_btn_http" html="官方网站"/>
+<layer name="skin_btn_cmsmap" style="krpanocms_skin" crop="0|126|63|63" x="260" onhover="showtext(地图导航,skintext)" visible="get:skin_settings.opedaohang" onclick="get:skin_settings.daohang"/>
+<layer name="skin_btn_cmsmap_html" style="krpanocms_text" parent="skin_btn_cmsmap" html="地图导航"/>
+<!--  pc端显示比例  -->
+<!-- 全屏按钮 -->
+<layer name="skin_btn_fs" style="krpanocms_skin" crop="63|0|63|63" align="righttop" x="9" y="35" onclick="switch(fullscreen);" devices="fullscreensupport"/>
+<layer name="skin_btn_fs_html" style="krpanocms_text" parent="skin_btn_fs" html="窗口模式"/>
+<layer name="skin_btn_gyro" style="krpanocms_skin" crop="63|63|63|63" align="righttop" x="9" y="35" devices="html5" visible="false" onloaded="if(plugin[skin_gyro].enabled ,set(crop,63|63|63|63);,set(crop,126|63|63|63););" onclick="switch(plugin[skin_gyro].enabled);switch(crop, 63|63|63|63, 126|63|63|63);"/>
+<layer name="skin_btn_gyro_html" style="krpanocms_text" parent="skin_btn_gyro" html="重力感应"/>
+<layer name="skin_btn_vr" style="krpanocms_skin" crop="0|252|63|63" align="righttop" x="9" y="110" onhover="showtext(VR模式,skintext)" visible="get:skin_settings.webvr" onclick="webvr.enterVR();webvr_enterVR();"/>
+<layer name="skin_btn_vr_html" style="krpanocms_text" parent="skin_btn_vr" ox="5" html="VR模式"/>
+<layer name="skin_btn_muisc" style="krpanocms_skin" crop="126|127|63|63" align="righttop" x="9" y="185" visible="get:skin_settings.bgmusic" onclick="switch(crop, 63|127|63|63, 126|127|63|63);pausesoundtoggle(bgmusic);"/>
+<layer name="cms_skin_muisc_html" style="krpanocms_text" parent="skin_btn_muisc" html="背景音乐"/>
+<layer name="skin_btn_yuyin" style="krpanocms_skin" crop="63|189|63|63" align="righttop" x="9" y="260" visible="get:skin_settings.bgyunyin" onclick="pausesoundtoggle(bgyunyin); switch(crop, 63|189|63|63, 63|252|63|63); if(layer[cms_yuyin_html].html==开启语音, set(layer[cms_yuyin_html].html,关闭语音); , set(layer[cms_yuyin_html].html,开启语音); )"/>
+<layer name="cms_yuyin_html" style="krpanocms_text" parent="skin_btn_yuyin" html="关闭语音"/>
+<!--  项目说明  -->
+<style name="panoinfo" keep="true" url="%SWFPATH%/thumb/images/panoinfo.png" scale="0.7"/>
+<layer name="panoinfo_skin" style="panoinfo" align="righttop" x="9" y="335" visible="get:skin_settings.panoinfo" onclick="show_text_action(testtext_xiangmu,testtext);"/>
+<layer name="panoinfo_skin_html" style="krpanocms_text" parent="panoinfo_skin" html="项目说明"/>
+<!--  手机端显示比例  -->
+<krpano devices="mobile">
+<style name="krpanocms_skin" scale="1.0"/>
+<style name="krpanocms_text" x="-6" oy="33" css="font-family:微软雅黑; font-size:23px; color:#FFFFFF;"/>
+<!--  X坐标间距110个像素  -->
+<layer name="skin_btn_thumbs" x="30"/>
+<layer name="skin_btn_thumbs_html"/>
+<layer name="skin_btn_tel" x="140"/>
+<layer name="skin_btn_tel_html"/>
+<layer name="skin_btn_http" x="250"/>
+<layer name="skin_btn_http_html"/>
+<layer name="skin_btn_cmsmap" x="360"/>
+<layer name="skin_btn_cmsmap_html"/>
+<!--  y坐标间距100个像素  -->
+<layer name="skin_btn_fs" y="55"/>
+<layer name="skin_btn_fs_html"/>
+<layer name="skin_btn_gyro" y="55"/>
+<layer name="skin_btn_gyro_html"/>
+<layer name="skin_btn_vr" y="155"/>
+<layer name="skin_btn_vr_html" ox="15"/>
+<layer name="skin_btn_muisc" y="255"/>
+<layer name="skin_btn_muisc_html"/>
+<layer name="skin_btn_yuyin" y="355"/>
+<layer name="skin_btn_yuyin_html"/>
+<!--  项目说明  -->
+<style name="panoinfo" scale="1.0"/>
+<layer name="panoinfo_skin" y="455"/>
+<layer name="panoinfo_skin_html"/>
+</krpano>
+<!--  如果项目中使用到 网页分享插件  请将这个插件引用 包括腾讯/新浪微博 QQ空间 以及二维码插件  -->
+<!--
+ <include url="%SWFPATH%/thumb/krpanocms/fenxiang.xml" />	 
+-->
+</krpano>

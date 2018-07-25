@@ -1,0 +1,470 @@
+.cpxq{
+  min-height: 100rpx;
+}
+
+.xzhb{
+  min-height: 100rpx;
+}
+
+.xmjz{
+  min-height: 60rpx;
+}
+
+
+page{
+    height: 100%;
+}
+
+ .raise_detail_tit {
+  margin-bottom: 16rpx;
+  padding-bottom: 20rpx;
+  min-height: initial;
+}
+
+.main_cot {
+    padding-bottom: 15rpx;
+}
+
+.cxxz_title text{
+  height: 28rpx;
+  line-height: 28rpx;
+  margin-top: 15rpx;
+}
+
+.cxxz_title .tit{
+  float: left;
+  border-left: solid 3px #00cd00;
+  margin-top: 15rpx;
+  padding-left: 20rpx;
+  font-weight: bold;
+}
+
+.cxxz_title .time{
+  float: right;
+  color: #00cd00;
+}
+
+.cxxz_cot {
+    margin-top: 20rpx;
+}
+
+.cxxz_active {
+    border-color: #00cd00;
+}
+
+.cxxz_dtal {
+    border: solid 1px #ccc;
+    border-radius: 15rpx;
+    padding: 12rpx 0 12rpx 15rpx;
+    width: 180rpx;
+    height: 70rpx;
+    display: inline-block;
+    margin-right: 15rpx;
+}
+
+.cxxz_dtal text{
+  display: block;
+  float: left;
+}
+
+.cxxz_cot .scroll-view_x{
+  width: auto;
+  overflow:hidden;
+  height: 100rpx; 
+  white-space: nowrap;
+}
+
+.lj_button{
+  float: left;
+}
+
+.lj_button navigator{
+    width: 50%;
+    float: left;
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.kgxt {
+  background: #f98450;
+}
+
+.batil_bot_title {
+    height: 60rpx;
+    line-height: 60rpx;
+    background: #fff;
+    border-bottom: solid 1px #efefef;
+}
+
+.baltp_bar {
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: rgba(0, 0, 0, 0.39);
+    position: absolute;
+    bottom: 0;
+}
+
+.baltp_bar text {
+    font-size: 32rpx;
+    color: #fff;
+}
+
+.batil_bot_title text {
+    height: 28rpx;
+    line-height: 28rpx;
+    border-left: solid 3px #00cd00;
+    margin-top: 15rpx;
+    padding-left: 20rpx;
+    font-weight: bold;
+}
+
+.bacprdt_top{
+    background: #fff;
+}
+
+.bacprdt_top_cot {
+    margin: 20rpx 15rpx 24rpx;
+    min-height: 114px;
+    border-radius: 6px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.follow_cont_wrap navigator {
+    font-size: 24rpx;
+    min-height: 230rpx;
+    background: #fff;
+    position: relative;
+    border: solid 1px transparent;
+    margin-bottom: 15rpx;
+}
+
+.baltreve_cot navigator {
+    margin-bottom: 0;
+    border-bottom: solid 1px #efefef;
+}
+
+.fowcot_wrap{
+    margin: 22rpx;
+}
+
+.fowcot_pic {
+    width: 250rpx;
+    height: 188rpx;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.fowcot_txt {
+    float: left;
+    margin-left: 22rpx;
+    margin-top: 6rpx;
+    width: 423rpx;
+    overflow: hidden;
+}
+
+.fowcot_txt .tit .type {
+    font-size: 30rpx;
+    font-weight: bold;
+    float: left; 
+}
+
+.fowcot_txt .tit .price {
+  color: #f5560f;
+  font-size: 30rpx;
+  font-weight: bold;
+  float: right; 
+}
+
+.fowpudct_txt > view{
+  margin-bottom: 16rpx;
+}
+
+.fowcot_txt .btn text{
+  float: left;
+  height:60rpx;
+}
+
+.fowcot_txt .lab text{
+  display: inline-block;
+  margin-right: 10rpx;
+}
+
+.fowcot_txt .btn button{
+  float: right;
+  font-size: 30rpx;
+  padding: 10rpx 20rpx;
+  height: initial;
+}
+
+.busdakod_data_left{
+  float: left;
+}
+
+.busdakod_data_left > view{
+  float: left;
+}
+
+.busdl_tim text{
+  display: block;
+}
+
+.busdl_tit{
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-right: 60rpx;
+}
+
+.busdl_tim{
+  margin-top: 20rpx;
+}
+
+.busdl_tim text:first-child{
+  margin-bottom: 16rpx;
+}
+
+.busdakod_data_right{
+  float:right;
+  width:10px;
+  height:10px;
+  margin-top:30rpx;
+}
+
+.btn .count{
+  position: absolute;
+  right: 0;
+  border: solid 1px #ccc;
+  height: 60rpx;
+  line-height: 60rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.btn .count text{
+  display: inline-block;
+  text-align: center;
+}
+
+.count_down {
+    border-right: solid 1px #ccc;
+}
+
+.count_down, .count_up {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.count_num {
+    min-width: 76rpx;
+}
+
+.count_up {
+    border-left: solid 1px #ccc;
+}
+
+.btalcot_reserve{
+  background: #fff;
+  padding: 10rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.fowpudct_txt .btn{
+  position: relative;
+}
+
+.modrct_btn {
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
+}
+
+.payment_way {
+    line-height: 100rpx;
+    font-size: 28rpx;
+}
+
+.modrct_body_txt > view{
+  margin-bottom: 20rpx;
+}
+
+.modrct_body_txt .tittle text{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.modrct_body_txt .lab text{
+  margin-right: 20rpx;
+}
+
+.modrct_body_txt .price_l{
+  float: left;
+}
+
+.modrct_body_txt .price_l .nor{
+  font-size: 40rpx;
+  color: #f5560f;
+}
+
+.modrct_body_txt .price_l text{
+  margin-right: 20rpx;
+}
+
+.modrct_body_txt .price_l .old{
+  font-size: 24rpx;
+  text-decoration: line-through;
+}
+
+.modrct_body_txt .price_r{
+  float: right;
+  margin-top: 22rpx;
+}
+
+.modrct_btn_r{
+  display: block;
+  float: right;
+  margin-right: 50rpx; 
+  position: relative;
+}
+
+.modrct_btn_r::after{
+  content: '';
+  width: 30rpx;
+  height: 30rpx;
+  background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png) top no-repeat;
+  left: 130rpx;
+  position: absolute;
+  background-size: 100%;
+  top: 48%;
+  transform: translateY(-50%);
+}
+
+.payment_way {
+    line-height: 100rpx;
+    font-size: 28rpx;
+}
+
+.payment_way_l{
+    margin-left: 50rpx;
+    position: relative;
+}
+
+.payment_way_l::before{
+    content: '';
+    width: 48rpx;
+    height: 48rpx;
+    background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wxzf.png) top no-repeat;
+    left: -50rpx;
+    position: absolute;
+    background-size: 100%;
+    top: 48%;
+    transform: translateY(-50%);
+}
+
+.payment_way_r{
+  width: 35rpx;
+  height: 35rpx;
+  float: right;
+  margin-top: 10rpx;
+}
+
+.phone text, .phone input{
+  float: left;
+}
+
+.phone text{
+  line-height: 100rpx;
+  margin-right: 15rpx;
+}
+
+.phone input{
+  margin-top: 24rpx;
+}
+
+.busdakod_hf_pt .top{
+  height: 80rpx;
+  line-height: 100rpx;
+}
+
+.busdakod_hf_pt .cot{
+  margin-bottom: 10rpx;
+}
+
+.busdakod_hf_pt .cot text{
+    display: inline-block;
+    width: 120rpx;
+    height: 40rpx;
+    color: #f5560f;
+    border: solid 1px #f5560f;
+    line-height: 40rpx;
+    text-align: center;
+    margin-top: 24rpx;
+    margin-right: 24rpx;
+}
+
+.busdakod_ord {
+    position: absolute;
+    width: 100%;
+    min-height: 350rpx;
+    background: #fff;
+    bottom: 0;
+    overflow: hidden;
+     display: none; 
+}
+
+.busdakod_ord_top {
+    height: 80rpx;
+    border-bottom: solid 1px #efefef;
+    line-height: 80rpx;
+}
+
+.busdakod_ord_foot {
+    position: absolute;
+    width: 100%;
+    height:88rpx;
+    line-height: 88rpx;
+    background: #f5560f;
+    bottom: 0;
+    overflow: hidden;
+    border-top: solid 1px #ccc;
+}
+
+.busdakod_ord_foot button{
+      height:88rpx;
+    line-height: 88rpx;
+}
+
+.busdakod_ord_cot .num{
+  display: flex;
+}
+
+.busdakod_ord_cot .num text{
+  flex: 1;
+}
+
+.busdakod_ord_cot .num text.price{
+    color: #f5560f;
+    font-size: 30rpx;
+    font-weight: bold;
+    text-align: right;
+}
+
+.busdakod_ord_cot{
+  margin-top: 24rpx;
+}
+
+.busdakod_ord_cot .tit, .busdakod_ord_cot .cot{
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.busdakod_ord_cot .cot text{
+  margin-right: 10rpx;
+}
+
+.busdakod_hf_pt .cott text{
+  display: block;
+  margin-top: 10rpx;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>微信红包面向对象算法</title>
+	<script src="gift.js"></script>
+</head>
+<body>
+<div>
+   金额:<input id="money" type="number" name="">
+   数量:<input id="num" type="number" name="">
+   相差最大倍数:<input id="multiple" type="number" name="">
+   <button onclick="submit()">确定</button>
+</div>
+   
+  <script type="text/javascript">
+  	 var lists=new Lists();
+    //lists.startCal(红包金额,红包数量,红包最大值不得超过最小值的倍数{0的话不做限制});
+  function submit() {
+    var m=document.getElementById('money').value;//红包金额
+    var n=document.getElementById('num').value;//红包数量
+    var t=document.getElementById('multiple').value;//红包最大值不得超过最小值的倍数
+    m<=0&&n<=0?alert("别闹输金额,数量"):lists.startCal(m,n,t);;
+     
+   } 
+  </script>
+</body>
+</html>

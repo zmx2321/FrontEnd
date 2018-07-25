@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var s1 = 'abc';
+			var s2 = new String('abc');
+
+			typeof s1 // "string"
+			typeof s2 // "object"
+
+			s2.valueOf() // "abc"
+
+			'a|b|c'.split('|', 0) // []
+			'a|b|c'.split('|', 1) // ["a"]
+			'a|b|c'.split('|', 2) // ["a", "b"]
+			'a|b|c'.split('|', 3) // ["a", "b", "c"]
+			'a|b|c'.split('|', 4) // ["a", "b", "c"]
+		</script>
+	</body>
+
+</html>

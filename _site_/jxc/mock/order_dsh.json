@@ -1,0 +1,56 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id":1,
+      "portrait":"images/cs/my_photo.jpg",
+      "name": "晴天雨后民宿",
+      "paystatus": "待付款",
+      "img": "images/cs/272153.jpg",
+      "title": "宁波青苹果",
+      "url":"orderState.html",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "18",
+      "lastprice": "268",
+      "number": "1",
+      "viewLogistics_btn": ["查看物流", "orderLogistics.html"],
+      "receipt_btn": ["确认收货", "http://www.baidu.com"],
+      "freight": "0.00"
+    },
+    {
+      "id":2,
+      "portrait":"images/cs/my_photo.jpg",
+      "name": "晴天雨后111民宿",
+      "paystatus": "待付款",
+      "img": "images/cs/272153.jpg",
+      "title": "宁波青苹果",
+      "url":"orderState.html",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "18",
+      "lastprice": "268",
+      "number": "1",
+      "viewLogistics_btn": ["查看物流", "orderLogistics.html"],
+      "receipt_btn": ["确认收货", "http://www.baidu.com"],
+      "freight": "0.00"
+    },
+    {
+      "id":2,
+      "portrait":"images/cs/my_photo.jpg",
+      "name": "晴天雨后111民宿",
+      "paystatus": "待付款",
+      "img": "images/cs/272153.jpg",
+      "title": "宁波青苹果",
+      "url":"orderState.html",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "18",
+      "lastprice": "268",
+      "number": "1",
+      "viewLogistics_btn": ["查看物流", "orderLogistics.html"],
+      "receipt_btn": ["确认收货", "http://www.baidu.com"],
+      "freight": "0.00"
+    }
+  ],
+  "length":28,
+  "rtCode":null
+}

@@ -1,0 +1,150 @@
+.orderLogistics_all{
+    font-size: 0.24rem;
+    margin-bottom: 1.1rem;
+}
+
+.odlogts_wrap{
+	width: 6.8rem;
+	margin: 0 auto;
+}
+
+h1{
+	font-size:0.28rem;
+}
+
+h1.green{
+	color: #00cd00;
+}
+
+h2{
+	font-size: 0.24rem;
+}
+
+h2.green{
+	color: #00cd00;
+}
+
+/* odlogts_cont s */
+.odlogts_cont{
+	width: 100%;
+	overflow: auto;
+}
+
+/* odlogts_state s */
+.odlogts_state{
+	width: 100%;
+	height: 1.95rem;
+	background: #fff;
+	margin-bottom: 0.16rem;
+	overflow: hidden;
+}
+
+.odlogts_state_pic{
+    width: 1.35rem;
+    height: 1.35rem;
+    background: #f00;
+    float: left;
+    margin-top: 0.3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.odlogts_state_pic span{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    background: rgba(0,0,0,.3);
+    font-size: 0.24rem;
+    color: #fff;
+}
+
+.odlogts_state_txt{
+    float: left;
+    margin-top: 0.2rem;
+    margin-left: 0.3rem;
+}
+
+.odlogts_state_txt dd{
+    display: inline-block;
+    margin-bottom: 0.05rem;
+}
+
+.odlogts_state_txt dd h2{
+	color: #666666;
+}
+/* odlogts_state e */
+
+/* odlogts_body s */
+
+/* odlogts_body e */
+.odlogts_body{
+	width: 100%;
+	min-height: 2rem;
+	background: #fff;
+	margin-bottom: 0.24rem;
+    padding-top: 0.32rem;
+}
+
+ul.odlogts_mcont{
+    width: 100%;
+    min-height: 2rem;
+    border-left: solid 1px #ccc;
+}
+
+.odlogts_mcont li{
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    min-height: 1rem;
+}
+
+.odlogts_mcont li:last-child{
+    margin-bottom: 0;
+}
+
+.odlogts_mcont li::before{
+    content: '';
+    width: 0.22rem;
+    height: 0.22rem;
+    background: #ccc;
+    position: absolute;
+    left: -0.62rem;
+    border-radius: 0.11rem;
+}
+
+.odlogts_mcont li.active::before{
+    background: #00cd00;
+    box-shadow: 0px 0px 1px 4px #b4eab4;
+}
+
+.odlogts_mcont dd{
+    color: #999999
+}
+
+.odlogts_mcont li.active dd{
+    color: #00cd00;
+}
+/* odlogts_cont e */
+
+/* odlogts_bottom s */
+.odlogts_bottom{
+    width: 100%;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    text-align: right;
+    margin-top: 0.16rem;
+}
+
+.odlogts_bottom button{
+    border: solid 1px #ccc;
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.07rem;
+    font-size: 0.24rem;
+}
+/* odlogts_bottom e */

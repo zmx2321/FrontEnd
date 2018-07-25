@@ -1,0 +1,465 @@
+<section>
+    <div class="service-time-container">
+        <div class="service-time-content">
+            <header>
+                <span ng-if="serviceType==0">选择学习时间和内容</span>
+                <span ng-if="serviceType==1">选择助阵时间和大区</span>
+            </header>
+            <div class="service-time-article">
+                <div class="service-time-section">
+                    <span>
+                        学习时间:
+                    </span>
+                    <div>
+                        <div>
+                            <ul class="service-time-day-list">
+                                <li ng-click="chooseTeachDay(0)">
+                                    <button class="btn-service-time "
+                                            ng-class={"btn-service-time-selected":dayNumber===0}>
+                                        {{thisTimeToday.monthTime}}
+                                    </button>
+                                </li>
+                                <li ng-click="chooseTeachDay(1)">
+                                    <button class="btn-service-time"
+                                            ng-class={"btn-service-time-selected":dayNumber===1}>
+                                        {{thisTimetomorrow.monthTime}}
+                                    </button>
+                                </li>
+                                <li ng-click="chooseTeachDay(2)">
+                                    <button class="btn-service-time "
+                                            ng-class={"btn-service-time-selected":dayNumber===2}>
+                                        {{thisTimeAfter.monthTime}}
+                                    </button>
+                                </li>
+
+                            </ul>
+                            <div class="service-time-hour">
+                                <div class="service-time-hour-afternoon">
+                                    <div>下午</div>
+                                    <span class="service-time-hour-afternoon-span" ng-click="chooseTeachHour(0)"
+                                          ng-class={"btn-service-time-selected":HourNumber===0,"btn-service-time-forbid":HourForbid===0}>13:30-15:00</span>
+                                    <span class="service-time-hour-afternoon-span" ng-click="chooseTeachHour(1)"
+                                          ng-class={"btn-service-time-selected":HourNumber===1,"btn-service-time-forbid":HourForbid===1}>15:00-16:30</span>
+                                    <span class="service-time-hour-afternoon-span" ng-click="chooseTeachHour(2)"
+                                          ng-class={"btn-service-time-selected":HourNumber===2,"btn-service-time-forbid":HourForbid===2}>16:30-18:00</span>
+                                </div>
+                                <div class="service-time-hour-afternoon">
+                                    <div>晚上</div>
+                                    <span class="service-time-hour-afternoon-span" ng-click="chooseTeachHour(3)"
+                                          ng-class={"btn-service-time-selected":HourNumber===3,"btn-service-time-forbid":HourForbid===3}>18:00-19:30</span>
+                                    <span class="service-time-hour-afternoon-span" ng-click="chooseTeachHour(4)"
+                                          ng-class={"btn-service-time-selected":HourNumber===4,"btn-service-time-forbid":HourForbid===4}>19:30-21:00</span>
+                                    <span class="service-time-hour-afternoon-span" ng-click="chooseTeachHour(5)"
+                                          ng-class={"btn-service-time-selected":HourNumber===5,"btn-service-time-forbid":HourForbid===5}>21:00-22:30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-area" ng-show="serviceType==1">
+                    <span>选择大区:</span>
+                    <div>
+                        <button class="btn btn-white btn-sm service-choose-area-button" ng-click="chooseArea()">
+                            <div class="service-choose-area">
+                                <span>{{selectedArea.net}}</span>
+                                <span>{{selectedArea.name}}</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="service-evidence" ng-show="serviceType==1">
+                    <span>上传凭证:</span>
+                    <div>
+                        请上传生死局凭证截图。如未上传或者凭证不符合生死局标准，老师有权取消预约。
+                        <div class="ssj_screenshot_cont">
+                            <!--class="service-evidence-upload"-->
+                            <div class="sss_picbox">
+                                <input id="file0" name="file0" type="file"/>
+                                <div class="sss_picot">
+                                    <img id="img0" src="static/images/ssjpros_xl.png"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-mode" ng-show="serviceType==0">
+                    <span>
+                        教学模式:
+                    </span>
+                    <div>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachStyle===0}
+                                ng-click="chooseTeachStyle(0)">不限
+                        </button>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachStyle===1}
+                                ng-click="chooseTeachStyle(1)">SOLO
+                        </button>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachStyle===2}
+                                ng-click="chooseTeachStyle(2)">实战教学
+                        </button>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachStyle===3}
+                                ng-click="chooseTeachStyle(3)">录像教学
+                        </button>
+                    </div>
+                </div>
+                <div class="service-position" ng-show="serviceType==0">
+                    <span>
+                        学习位置:
+                    </span>
+                    <div>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachRoute===0}
+                                ng-click="chooseTeachRoute(0)">不限
+                        </button>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachRoute===1}
+                                ng-click="chooseTeachRoute(1)">中单
+                        </button>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachRoute===2}
+                                ng-click="chooseTeachRoute(2)">打野
+                        </button>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachRoute===3}
+                                ng-click="chooseTeachRoute(3)">ADC
+                        </button>
+                        <button class="btn btn-white btn-sm" ng-class={"service-time-selected":teachRoute===4}
+                                ng-click="chooseTeachRoute(4)">辅助
+                        </button>
+                    </div>
+                </div>
+                <div class="service-hero" ng-show="serviceType==0">
+                    <span>
+                        学习英雄:
+                    </span>
+                    <div>
+                        <button class="btn btn-white btn-sm service-time-selected">全部</button>
+                        <button class="btn btn-white btn-sm service-choose-hero-button" ng-click="ishero()">
+                            <span class="service-choose-hero">选择英雄</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="service-remark">
+                    <span>
+                        预约备注:
+                    </span>
+                    <div>
+                        <textarea ng-model="serviceRemark"></textarea>
+                    </div>
+                </div>
+                <div>
+                </div>
+                <button class="btn btn-big btn-red" ng-if="serviceType==0" ng-click="submit()">
+                    完成选择
+                </button>
+                <button class="btn btn-big btn-red" ng-if="serviceType==1" ng-click="submit2()">
+                    完成选择
+                </button>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--英雄弹窗-->
+<div class="mask-layer" ng-show="isheroshow">
+    <!-- choosehreo（选择英雄）s -->
+    <div class="mask-layer-content-bu" style="display: block;">
+        <div class="choicehreo_cont">
+            <div class="choicehreo_close" ng-click="closehreo()">
+                <img src="static/images/icon/icon_close_normal.png" alt="">
+            </div>
+            <div class="choicehreo_radio">
+                <ul>
+                    <li ng-repeat="heroType in yinxiong.childs track by $index">
+                        <dl>
+                            <dd>
+                                <input type="radio" id="{{'radioBtn' + $index}}" ng-value="heroType"
+                                       ng-model="heroList.data" name="grouphero"/>
+                                <b></b>
+                            </dd>
+                            <dd><label for="{{'radioBtn' + $index}}">{{heroType.name}}</label></dd>
+                        </dl>
+                    </li>
+                    <!--<li>-->
+                    <!--<dl>-->
+                    <!--<dd>-->
+                    <!--<input type="radio" id="warrior" name="grouphero" />-->
+                    <!--<b class="hero_checked"></b>-->
+                    <!--</dd>-->
+                    <!--<dd><label for="warrior">战士</label></dd>-->
+                    <!--</dl>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<dl>-->
+                    <!--<dd>-->
+                    <!--<input type="radio" id="master" name="grouphero" />-->
+                    <!--<b></b>-->
+                    <!--</dd>-->
+                    <!--<dd><label for="master">法师</label></dd>-->
+                    <!--</dl>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<dl>-->
+                    <!--<dd>-->
+                    <!--<input type="radio" id="assassin" name="grouphero" />-->
+                    <!--<b></b>-->
+                    <!--</dd>-->
+                    <!--<dd><label for="assassin">刺客</label></dd>-->
+                    <!--</dl>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<dl>-->
+                    <!--<dd>-->
+                    <!--<input type="radio" id="tank" name="grouphero" />-->
+                    <!--<b></b>-->
+                    <!--</dd>-->
+                    <!--<dd><label for="tank">坦克</label></dd>-->
+                    <!--</dl>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<dl>-->
+                    <!--<dd>-->
+                    <!--<input type="radio" id="shooter" name="grouphero" />-->
+                    <!--<b></b>-->
+                    <!--</dd>-->
+                    <!--<dd><label for="shooter">射手</label></dd>-->
+                    <!--</dl>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="choicehreo_body">
+                <ul>
+                    <li ng-repeat="hero in heroList.data.labInfos">
+                        <dl ng-click="clickHero(hero) ">
+                            <dd >
+                                <img src="http://static.iboom.tv/static/img/{{hero.eName}}.png" >
+                            </dd>
+                            <dd >{{hero.labName}}</dd>
+                        </dl>
+                    </li>
+                    <!--<li>-->
+                    <!--<dl>-->
+                    <!--<dd>-->
+                    <!--<img src="static/images/tc_cs.jpg" alt="">-->
+                    <!--</dd>-->
+                    <!--<dd>aaa</dd>-->
+                    <!--</dl>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div class="choicehreo_footer">
+                <button class="btn btn-red btn-big" ng-click="queryCourse(heroChoosen.queryRequest);closehreo()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--预约成功弹窗-->
+<div class="mask-layer" ng-show="isShowappointmento">
+    <div class="mask-layer-content-middel">
+        <div class="mask-layer-close" ng-click="appointmentComo()">
+            <img src="static/images/icon/icon_close_normal.png" alt="">
+        </div>
+        <div class="mask-layer-body">
+            <div class="reservation-success">
+                <header>恭喜！预约成功</header>
+                <article>
+                    <img src="static/images/service/course.png" alt="">
+                    <div class="reservation-success-info">
+                        <div>预约时间:<span>{{isAppontssj|date:'MM月dd日 hh:mm'}}</span></div>
+                        <div>预约课程:<span>{{apRangessj}}</span></div>
+                        <div>预约老师:<span>{{apnamessj}}</span></div>
+                    </div>
+                </article>
+                <footer>
+                    <ul>
+                        <li>我们的教学老师会主动联系您</li>
+                        <li>请准备好在预约的时间内进行游戏</li>
+                        <li>如果无法按时上课，请至少提前3小时以上登录后台点击【我的预约】— 【更多】按钮 取消预约。否则将照常消耗您的CD时间。（3小时以内取消，消耗一半的CD时间）</li>
+                    </ul>
+                </footer>
+            </div>
+        </div>
+        <div class="mask-layer-footer">
+            <button class="btn btn-red btn-big" ng-click="appointmentComo()">OK</button>
+        </div>
+    </div>
+</div>
+<div class="mask-layer" ng-show="isShowappointments">
+    <div class="mask-layer-content-middel">
+        <div class="mask-layer-close" ng-click="appointmentComs()">
+            <img src="static/images/icon/icon_close_normal.png" alt="">
+        </div>
+        <div class="mask-layer-body">
+            <div class="reservation-success">
+                <header>恭喜！预约成功</header>
+                <article>
+                    <img src="static/images/service/course.png" alt="">
+                    <div class="reservation-success-info">
+                        <div>预约时间:<span>{{isAppont|date:'MM月dd日 hh:mm'}}</span></div>
+                        <div>预约课程:<span>{{apRange}}</span></div>
+                        <div>预约老师:<span>{{apname}}</span></div>
+                    </div>
+                </article>
+                <footer>
+                    <ul>
+                        <li>我们的教学老师会主动联系您</li>
+                        <li>请准备好在预约的时间内进行游戏</li>
+                        <li>如果无法按时上课，请至少提前3小时以上登录后台点击【我的预约】— 【更多】按钮 取消预约。否则将照常消耗您的CD时间。（3小时以内取消，消耗一半的CD时间）</li>
+                    </ul>
+                </footer>
+            </div>
+        </div>
+        <div class="mask-layer-footer">
+            <button class="btn btn-red btn-big" ng-click="appointmentComs()">OK</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="mask-layer" ng-show="isShowMask">
+    <!-- selectarea（选择大区） s -->
+    <div class="mask-layer-content-height" ng-show="isChooseArea">
+        <div class="mask-layer-close" ng-click="closeChooseArea()">
+            <img src="static/images/icon/icon_close_normal.png" alt="">
+        </div>
+        <div class="mask-layer-body">
+            <div class="selectarea">
+                <header>请选择大区</header>
+                <article>
+                    <div class="selectarea_cont">
+                        <ul>
+                            <li>
+                                <dl>
+                                    <dt>电信</dt>
+                                    <dd ng-repeat="qu in DXArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>联通</dt>
+                                    <dd ng-repeat="qu in WTArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>其他</dt>
+                                    <dd ng-repeat="qu in JJArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="mask-layer-footer">
+            <button class="btn btn-red btn-big" ng-click="closeChooseArea()">关闭</button>
+        </div>
+    </div>
+    <!-- selectarea（选择大区） e -->
+
+    <!-- subfeed（提交反馈）s -->
+    <div class="mask-layer-content-small" style="display: none;">
+        <div class="mask-layer-close">
+            <img src="static/images/icon/icon_close_normal.png" alt="">
+        </div>
+        <div class="mask-layer-body">
+            <div class="tetmser subfeed">
+                <header>确认提交反馈</header>
+                <p>请查看QQ留言和未接来电后，确认是否没有任何老师联系记录</p>
+            </div>
+        </div>
+        <div class="mask-layer-footer tetmser_btn">
+            <ul>
+                <li>
+                    <button class="btn btn-tetmser btn-big">提交</button>
+                </li>
+                <li>
+                    <button class="btn btn-red btn-big">我再看看</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- subfeed（提交反馈）e -->
+
+    <!-- canvatn_a（取消预约）s -->
+    <div class="mask-layer-content-small" style="display: none;">
+        <div class="mask-layer-close">
+            <img src="static/images/icon/icon_close_normal.png" alt="">
+        </div>
+        <div class="mask-layer-body">
+            <div class="tetmser canvatn_a">
+                <header>确认取消？</header>
+                <p>取消预约后有7天CD时间</p>
+            </div>
+        </div>
+        <div class="mask-layer-footer tetmser_btn">
+            <ul>
+                <li>
+                    <button class="btn btn-tetmser btn-big">我确定</button>
+                </li>
+                <li>
+                    <button class="btn btn-red btn-big">暂不取消</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- canvatn_a（取消预约）e -->
+
+    <!-- canvatn_b（取消预约）s -->
+    <div class="mask-layer-content-small" style="display: none;">
+        <div class="mask-layer-close">
+            <img src="static/images/icon/icon_close_normal.png" alt="">
+        </div>
+        <div class="mask-layer-body">
+            <div class="tetmser canvatn_b">
+                <header>确认取消？</header>
+                <p>取消后可立即进行下一次预约</p>
+            </div>
+        </div>
+        <div class="mask-layer-footer tetmser_btn">
+            <ul>
+                <li>
+                    <button class="btn btn-tetmser btn-big">我确定</button>
+                </li>
+                <li>
+                    <button class="btn btn-red btn-big">暂不取消</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- canvatn_b（取消预约）e -->
+
+    <!-- SSJ-CD（生死局助阵说明）s -->
+    <div class="mask-layer-content-middel" style="display: none;">
+        <div class="mask-layer-close">
+            <img src="static/images/icon/icon_close_normal.png" >
+        </div>
+        <div class="mask-layer-body">
+            <div class="SSJ-CD">
+                <header>生死局助阵说明</header>
+                <article>
+                    <ul>
+                        <li>生死局是晋级赛关键的一局，赢了则可以晋级，输了就失去晋级赛资格；一胜一负或两胜两负。其他情况将不予接受。</li>
+                        <li>学员预约后需要上传凭证截图，不符合条件的截图老师有权取消该预约；</li>
+                        <li>一对一服务CD只针对一对一服务，CD期间可以正常使用布姆学院其他服务</li>
+                        <li>该服务完成后需要等待3天CD才可以预约下一次；</li>
+                        <li>布姆学院前5000名学员终身享有生死局导师助阵的服务。</li>
+                        <li>只有跟学院系统绑定的账号才有资格进行生死局助阵预约服务，其他账号学院不予受理。</li>
+                        <li>我们的老师将会尽全力帮助学员获得比赛胜利，但因为演员、车队等众所周知的因素，我们无法保证100%晋级成功，请同学们理解。</li>
+                        <li>截止11月，已经完成7777次生死局助阵，胜率97%</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+        <div class="mask-layer-footer">
+            <button class="btn btn-red btn-big">OK</button>
+        </div>
+    </div>
+    <!-- SSJ-CD（生死局助阵说明）e -->
+
+
+    <!--<script>-->
+    <!--$(".choicehreo_radio input[type='radio']").change(function () {-->
+    <!--$(this).parent().find("b").addClass("hero_checked");-->
+    <!--$(this).parent().parent().parent().siblings().find("b").removeClass("hero_checked");-->
+    <!--});-->
+    <!--</script>-->
+    <!-- choosehreo（选择英雄）e -->
+</div>

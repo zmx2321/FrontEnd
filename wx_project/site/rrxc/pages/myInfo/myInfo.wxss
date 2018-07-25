@@ -1,0 +1,61 @@
+/* myinfo_all */
+.myinfo_all navigator{
+    width: 100%;
+    height: 110rpx;
+    background: #fff;
+    border-bottom: solid 1px #e5e5e5;
+    overflow: hidden;
+}
+
+.myinfo_cont{
+  width: 702rpx;
+  height: 110rpx;
+  margin: 0 auto;
+}
+
+.myinfo_all navigator::after{
+  display:block;
+  clear:both;
+  visibility:hidden;
+  height:0;
+  overflow:hidden;
+  content:".";
+}
+
+.myinfo_all .myinfo_left{
+  float:left;
+  width:75%;
+}
+
+.myinfo_all .myinfo_right{
+  float: right;
+  line-height: 110rpx;
+}
+
+.miolt_pic{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 10rpx;
+    margin: 15rpx 15rpx 15rpx 0;
+    overflow: hidden;
+    float: left;
+}
+
+.miolt_txt{
+  float:left;
+  width:75%;
+  margin-top:18rpx;
+}
+
+.miolt_txt text{
+  font-size: 28rpx;
+}
+
+.miolt_txt p{
+  display:block;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+font-size: 23rpx;
+}
+/* /myinfo_all */

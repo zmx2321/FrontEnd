@@ -1,0 +1,22 @@
+#mainMenuBar {
+  width: 100%;
+  z-index: 100;
+  height: 50px;
+  background: #f00;
+}
+ 
+
+#content {
+height: 10000px
+}
+ 
+.stick {
+  position: fixed;
+  top: 0;
+}
+
+#top_intro{
+  height: 180px;
+  width: 100%;
+  background: #f0f;
+}

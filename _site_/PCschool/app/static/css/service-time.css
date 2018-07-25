@@ -1,0 +1,537 @@
+.service-time-container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.service-time-content {
+    box-sizing: border-box;
+    height: 800px;
+    padding: 40px 60px;
+    background: white;
+}
+
+.service-time-content header {
+    width: 100%;
+    height: 36px;
+    border-bottom: 2px solid #EC2D4D;
+    color: #333333;
+    font-size: 18px;
+}
+
+.service-time-article {
+    padding: 50px 0 0 0;
+}
+
+.service-time-article > div {
+    margin: 0 0 23px 0;
+}
+
+.service-time-article > div > span {
+    display: inline-block;
+    margin: 4px 30px 0 0;
+}
+
+.service-time-article > div > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.service-time-article button {
+    margin: 0 12px 0 0;
+}
+
+.service-time-selected {
+    color: #EC2D4D;
+    border: 1px solid #EC2D4D;
+}
+
+.service-time-hour {
+    box-sizing: border-box;
+    background: #f8f8f8;
+    height: 100px;
+    margin: 16px 0 0 0;
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    width: 450px;
+}
+
+.service-time-hour-afternoon {
+    margin: 0 0 14px 0;
+}
+
+.service-time-hour-afternoon div {
+    display: inline-block;
+    margin: 0 20px 0 0;
+}
+
+.service-time-hour-afternoon-span {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 104px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+.service-time-hour-afternoon-span:hover {
+    border: 1px solid #EC2D4D;
+    color: #EC2D4D;
+}
+
+#service-time-hour-selected {
+    border: 1px solid #EC2D4D;
+    color: #EC2D4D;
+}
+
+#service-time-hour-forbid {
+    border: 1px dashed #cccccc;
+    color: #cccccc;
+    cursor: default;
+}
+
+.service-choose-hero-button {
+    width: 110px;
+    position: relative;
+}
+
+.service-choose-hero {
+    display: inline-block;
+    padding: 0 12px 0 0;
+}
+
+.service-choose-hero:after {
+    position: absolute;
+    content: url("../images/icon/arrow_normal.png");
+    top: 3px;
+    right: 10px;
+    /*padding: 0 10px;*/
+}
+
+.service-choose-hero:hover:after {
+    content: url("../images/icon/arrow_onpress.png");
+}
+
+.service-remark textarea {
+    box-sizing: border-box;
+    margin: 4px 0 0 0;
+    display: block;
+    width: 860px;
+    height: 140px;
+    outline: none;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 20px;
+    line-height: 200%;
+}
+
+.service-time-article > button {
+    margin: 0 0 0 90px;
+}
+
+.service-choose-area-button {
+    width: 190px;
+    position: relative;
+}
+
+.service-choose-area :last-child {
+    margin: 0 30px 0 12px;
+}
+
+.service-choose-area:after {
+    content: url("../images/icon/arrow_normal.png");
+    position: absolute;
+    top: 4px;
+    right: 14px;
+}
+
+.service-choose-area:hover:after {
+    content: url("../images/icon/arrow_onpress.png");
+}
+
+.service-evidence-upload {
+    width: 80px;
+    height: 80px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    margin: 10px 0 0 0;
+    background-image: url("../images/icon/icon_add.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    cursor: pointer;
+}
+
+.service-evidence > div {
+    margin: 3px 0 0 0;
+}
+
+.reservation-success {
+    padding: 40px;
+}
+
+.reservation-success header {
+    font-size: 16px;
+    color: #222222;
+    text-align: center;
+    font-weight: 900;
+}
+
+.reservation-success article {
+    box-sizing: border-box;
+    background: #f6f6f6;
+    height: 150px;
+    width: 100%;
+    margin: 50px 0 60px 0;
+    border-radius: 5px;
+}
+
+.reservation-success-info {
+    vertical-align: top;
+    display: inline-block;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 30px 0 0 50px;
+}
+
+.reservation-success-info > div {
+    margin: 0 0 24px 0;
+}
+
+.reservation-success-info > div > span {
+    margin: 0 0 0 20px;
+    color: #666666;
+}
+
+.reservation-success footer {
+    margin: 0 0 0 18px;
+}
+
+.reservation-success footer li {
+    text-indent: -16px;
+    margin: 0 0 12px 0;
+}
+
+.reservation-success footer li:before {
+    content: "️";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: rgb(153, 153, 153);
+    margin: 0 10px 0 0;
+    vertical-align: sub;
+    transform: rotate(45deg);
+}
+
+.service-time-day-list {
+    display: inline-block;
+}
+
+.service-time-day-list li {
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+.btn-service-time {
+    outline: none;
+    border-radius: 20px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    /*vertical-align: middle;*/
+    /*appearance: none;*/
+    cursor: pointer;
+    width: 86px;
+    height: 28px;
+    background: white;
+    border: 1px #999999 solid;
+    color: #999999;
+}
+
+.btn-service-time:hover {
+    border: 1px #eb2e4e solid;
+    color: #eb2e4e;
+}
+
+.btn-service-time-selected {
+    border: 1px solid #EC2D4D;
+    color: #EC2D4D;
+}
+
+.btn-service-time-forbid {
+    border: 1px dashed #cccccc;
+    color: #cccccc;
+    cursor: default;
+}
+
+/* selectarea（选择大区）s */
+.selectarea {
+    border-top: solid 1px transparent;
+}
+
+.selectarea header {
+    width: 90%;
+    margin: 22px auto;
+    font-size: 16px;
+}
+
+.selectarea article {
+    width: 100%;
+    height: 422px;
+    background: #f5f5f5;
+    border-top: solid 1px transparent;
+}
+
+.selectarea_cont {
+    width: 99%;
+    height: 530px;
+    background: #f5f5f5;
+    overflow: auto;
+    margin: 10px auto;
+}
+
+.selectarea_cont ul {
+    width: 90%;
+    margin: 25px auto;
+}
+
+.selectarea_cont li {
+    margin-bottom: 30px;
+}
+
+.selectarea_cont dt {
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #333;
+    font-size: 15px;
+}
+
+.selectarea_cont dd {
+    display: inline-block;
+    width: 120px;
+    height: 32px;
+    border: solid 1px #999;
+    border-radius: 22px;
+    overflow: hidden;
+    text-align: center;
+    line-height: 32px;
+    margin-right: 15px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: 0.2s linear;
+}
+
+.selectarea_cont dd:hover {
+    border-color: #ec2d4d;
+    color: #ec2d4d;
+    transition: 0.3s linear;
+}
+
+.selectarea_cont dd.selectarea_on {
+    border-color: #ec2d4d;
+    color: #ec2d4d;
+}
+
+.selectarea_cont::-webkit-scrollbar {
+    width: 8px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.selectarea_cont::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+.selectarea_cont::-webkit-scrollbar-thumb {
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: rgba(183, 177, 177, 0.73);
+}
+
+/* selectarea（选择大区）e */
+
+/*
+    -- subfeed（提交反馈）s --
+    -- canvatn_a（取消预约）s --
+    -- canvatn_b（取消预约）s --
+*/
+.tetmser {
+    border-top: solid 1px transparent;
+}
+
+.tetmser header {
+    width: 100%;
+    margin: 38px 0 60px 0;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.tetmser p {
+    font-size: 15px;
+    text-align: center;
+}
+
+.tetmser_btn {
+    width: 100%;
+    right: 0;
+    text-align: center;
+}
+
+.tetmser_btn li {
+    display: inline-block;
+    margin: 0 28px;
+}
+
+.btn-tetmser {
+    border: 1px #eb2e4e solid;
+    color: #eb2e4e;
+    background: none;
+}
+
+.btn-tetmser:hover {
+    border: 1px #ff8196 solid;
+    color: #ff8196;
+}
+
+/*
+    --  subfeed（提交反馈）e --
+    -- canvatn_a（取消预约）e --
+    -- canvatn_b（取消预约）e --
+*/
+
+/* SSJ-CD（生死局助阵说明） s */
+.SSJ-CD article::-webkit-scrollbar {
+    width: 8px;
+    height: 16px;
+    background-color: #f5f5f5;
+}
+
+.SSJ-CD article::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+.SSJ-CD article::-webkit-scrollbar-thumb {
+    /*width: 10px;*/
+    height: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: rgba(183, 177, 177, 0.73);
+}
+
+.SSJ-CD {
+    padding: 40px 0 0 0;
+}
+
+.SSJ-CD header {
+    font-size: 16px;
+    color: #222222;
+    text-align: center;
+    font-weight: 900;
+}
+
+.SSJ-CD article {
+    box-sizing: border-box;
+    height: 370px;
+    width: 100%;
+    background: #f6f6f6;
+    margin: 40px 0 0 0;
+    padding: 30px 0 0 40px;
+    overflow: auto;
+}
+
+.SSJ-CD li {
+    margin: 20px 0 30px 0;
+}
+
+.SSJ-CD ul {
+    margin: 0 0 30px 0;
+}
+
+.SSJ-CD article > ul > li {
+    list-style-type: decimal;
+    margin: 0 0 13px 8px;
+    text-indent: 10px;
+    line-height: 28px;
+}
+
+/* SSJ-CD（生死局助阵说明） e */
+
+
+
+/*文件上传*/
+.ssj_screenshot_cont {
+    width: 93%;
+    margin-top: 15px ;
+}
+
+.ssj_screenshot_cont p{
+    width: 100%;
+    line-height: 18px;
+    color: #666;
+}
+
+.sss_picbox{
+    width: 80px;
+    /*margin: 12px auto 0;*/
+    height: 80px;
+    border: solid 1px #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.sss_picbox:before{
+    content: "";
+    width: 50%;
+    height: 6px;
+    background: #ccc;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: inset 1px 1px 1px 1px #b3b2b2;
+    z-index: 1;
+}
+
+.sss_picbox:after{
+    content: "";
+    width: 50%;
+    height: 6px;
+    background: #ccc;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(90deg);
+    box-shadow: inset 1px 1px 1px 1px #b3b2b2;
+}
+
+.sss_picbox input[type="file"]{
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.sss_picot{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #fff;
+    z-index: 1;
+    display: none;
+}

@@ -1,0 +1,34 @@
+<view class="myset_cont_wrap">
+  <!-- 绑定手机号 -->
+  <navigator url="/pages/bindphone/bindphone">
+    <view class="myset_cot">
+      <text>绑定手机号</text>
+      <view class="myset_cont_pic">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <!-- /绑定手机号 -->
+
+  <!-- 绑定第三方账户 -->
+  <navigator url="/pages/bindthree/bindthree">
+    <view class="myset_cot">
+      <text>绑定第三方账户</text>
+      <view class="myset_cont_pic">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <!-- /绑定第三方账户 -->
+
+  <!-- 收货地址 -->
+  <navigator url="/pages/receiptAddress/receiptAddress">
+    <view class="myset_cot">
+      <text>收货地址</text>
+      <view class="myset_cont_pic">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+      </view>
+    </view>
+  </navigator>
+  <!-- /收货地址 -->
+</view>

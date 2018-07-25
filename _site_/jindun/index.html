@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>金盾车管家服务平台</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<link rel="stylesheet" type="text/css" href="css/lib/swiper.min.css"/>
+</head>
+
+<body>
+<!-- g-box -->
+<div class="g-box">
+	<!-- m-banner -->
+	<div class="m-banner">
+		  <!-- Swiper -->
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<!-- <div class="swiper-slide">
+                    <a href="http://www.baidu.com">
+                        <img src="images/img1.jpg" />
+                    </a>            
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://www.baidu.com">
+                        <img src="images/img2.jpg" />
+                    </a>            
+                </div>
+                <div class="swiper-slide">
+                    <a href="http://www.baidu.com">
+                        <img src="images/img3.jpg" />
+                    </a>            
+                </div> -->
+			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<!-- /m-banner -->
+
+    <!-- m-notice -->
+    <div class="m-notice" style="display: block;">
+        <marquee>
+            热烈祝贺金盾车管家服务平台正式上线！！！
+        </marquee>
+    </div>
+    <!-- /m-notice -->
+
+	<!-- m-info -->
+	<div class="m-info">
+        <div class="info_l">
+            <p>
+                金盾车管家服务平台提供第一时间的机动车违章信息告知服务，并实时以手机短信方式提醒您。仅需3元/月。
+            </p>
+        </div>
+        <div class="info_r">
+            <ul>
+                <li>
+                    <button onclick="location.href='vehicle.html'">立即办理</button>
+                </li>
+                <li>
+                    <button>推荐好友</button>
+                </li>
+            </ul>
+        </div>   
+    </div>
+	<!-- /m-info -->
+
+	<!-- m-tab -->
+	<div class="m-tab">
+        <div class="tab_list">
+            <!-- 用于顶部固定 -->
+            <div class="nav_bar"></div>
+            <nav>
+                <ul>
+                    <li class="active" id="load_illegal">我的违章信息</li>
+                    <li id="load_vehicle">我的车辆信息</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="tab_content">
+            <article>
+                <!-- 违章信息 -->
+                <section  class="tab_illegal" style="display: block;">
+                    <ul style="display: block;">
+                        <!-- <li>
+                            <dl>
+                                <dd>
+                                    <p>
+                                        【杭州市交通警察局】您的小型汽车浙AA5S18于2018-01-11 16:14在杭州市[杭州]滨文路_滨文路火炬大道(滨文路火炬大道)，被交通技术监控设备记录了‘不按所需行进方向驶入导向车道的’的违法行为(记2分)。请于收到本告知之日起30日内接受处理。
+                                    </p>
+                                </dd>
+                                <dd>
+                                    <a href="http://www.baidu.com">详情</a>
+                                </dd>
+                            </dl>
+                        </li> -->
+                    </ul>
+
+                    <p class="tab_empty">
+                        您还未订阅任何服务，请<a href="vehicle.html">立即办理</a>。
+                    </p>
+                </section>
+                <!-- /违章信息 -->
+
+                <!-- 车辆信息 -->
+                <section class="tab_vehicle">
+                    <div class="vehicle_cot">
+                        <!-- <dl>
+                            <dt>浙A&nbsp;00000</dt>
+                            <dd>
+                                <ul>
+                                    <li>车主姓名：</li>
+                                    <li>张三</li>
+                                </ul>
+                                <ul>
+                                    <li>车辆类型：</li>
+                                    <li>小型汽车</li>
+                                </ul>
+                                <ul>
+                                    <li>车架号后三位：</li>
+                                    <li>888</li>
+                                </ul>
+                            </dd>
+                        </dl> -->
+                    </div>
+                    <div class="vehicle_btn">
+                        <button onclick="location.href='vehicle.html'">添加车辆</button>
+                    </div>
+
+                    <p class="tab_empty">
+                        您还没有车辆，快来<a href="vehicle.html">添加</a>您的爱车吧。
+                    </p>               
+                </section>
+                <!-- /车辆信息 -->
+            </article>
+        </div>
+    </div>
+	<!-- /m-tab -->
+</div>
+<!-- /g-box -->
+
+<!-- js s -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/lib/swiper.min.js"></script>
+<script src="js/lib/underscore-min.js"></script>
+<script src="js/rem.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

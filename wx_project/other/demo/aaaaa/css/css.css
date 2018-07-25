@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+*{padding:0; margin:0;}
+body{font-size:14px; font-family:"微软雅黑";}
+.clear{clear:both; height:0; font-size:0; line-height:0; font:12px 'sans-serif';}
+h1, h2, h3, h4, h5, h6, hr, blockquote, form, ul, ol, li, p, pre, dl, dt, dd, fieldset, legend, button, input, textarea{margin:0; padding:0;}
+ul,ol,li{list-style:none;}
+img{border:0;vertical-align:middle;}
+a:link{color:#000; text-decoration:none;}
+a:visited{color:#000; text-decoration:blink;}
+a:hover{color:#000; text-decoration:blink;}
+
+
+#box{width:100%; height:900px; background:url(../images/beijing.jpg) no-repeat center; overflow:hidden;}
+#main{width:800px; height:500px; margin:225px auto 0; position:relative;}
+#main ul{overflow:hidden; width:800px; height:500px; position:relative;}
+#main ul li{width:166px; height:144px;}
+#main ul li:first-child{top:180px; left:0; position:absolute;}
+#main ul li:nth-child(2){top:90px; left:155px; position:absolute;}
+#main ul li:nth-child(3){top:272px; left:155px; position:absolute;}
+#main ul li:nth-child(4){top:0px; left:312px; position:absolute;}
+#main ul li:nth-child(5){top:180px; left:312px; position:absolute;}
+#main ul li:nth-child(6){top:359px; left:312px; position:absolute;}
+#main ul li:nth-child(7){top:272px; right:155px; position:absolute;}
+#main ul li:nth-child(8){top:90px; right:155px; position:absolute;}
+#main ul li:last-child{top:180px; right:0; position:absolute;}
+
+#wenzi{display:none;width:300px; height:200px; background:#b7719c;font-size:16px; color:#fff; line-height:26px;  padding:30px; position:absolute; left:0; right:0; bottom:0; top:0; margin:auto;}
+#wenzi p{font-size:16px; color:#fff; line-height:26px; }
+#close{position:absolute; top:0; right:10px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

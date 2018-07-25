@@ -1,0 +1,18 @@
+<!--pages/new/new.wxml-->
+<import src="../templates/tpl.wxml"/>
+<template is="nav"></template>
+<swiper autoplay="ture" interval="1500" indicator-dots="ture">
+  <swiper-item>
+    <image src="../images/1.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="../images/2.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="../images/3.jpg"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="../images/4.jpg"></image>
+  </swiper-item>
+</swiper>
+<template is="nav"></template>

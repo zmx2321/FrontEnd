@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.js"></script>
+    <link rel="stylesheet" href="vue/index.css">
+</head>
+<body>
+    <div id="app">
+        msg<hr/>
+        <!--双向绑定  数据-->
+        {{msg}}<br/>
+        <input v-model.lazy="msg">
+        <hr>
+        <p>
+            原价：￥{{prevPrice}}
+        </p>
+        <p>
+            折扣：{{sale}}
+        </p>
+        <p>
+            现价：{{newPrice}}
+        </p>
+        <button @click="add">调价+</button>
+        <button @click="min">调价-</button>
+    </div>
+</body>
+</html>
+<script>
+    var vName = new Vue({
+        el:'#app',//选择器
+        data:{
+            msg:'Hello Vue!',
+            prevPrice:10,
+            sale:0.85
+        },
+        methods:{
+            add:function(){
+                this.prevPrice++;
+            },
+            min:function(){
+                this.prevPrice--;
+            }
+        },
+        computed:{
+            newPrice:function(){
+                return '￥'+this.prevPrice*this.sale;
+            }
+        },
+        watch:{
+            prevPrice:function(newVal,oldVal){
+                if(newVal < 1){
+                    this.prevPrice=1;
+                }
+            }
+        }
+    })
+</script>

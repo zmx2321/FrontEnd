@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>tab</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+
+<link rel="stylesheet" type="text/css" href="lib/simditor-2.3/[style path]/simditor.css" />
+
+<script type="text/javascript" src="lib/simditor-2.3/[script path]/jquery.min.js"></script>
+<script type="text/javascript" src="lib/simditor-2.3/[script path]/module.js"></script>
+<script type="text/javascript" src="lib/simditor-2.3/[script path]/hotkeys.js"></script>
+<script type="text/javascript" src="lib/simditor-2.3/[script path]/uploader.js"></script>
+<script type="text/javascript" src="lib/simditor-2.3/[script path]/simditor.js"></script>
+</head>
+
+<body>
+<!-- body s -->
+<textarea id="editor" placeholder="Balabala" autofocus></textarea>
+
+<div class="row cl">
+    <label class="form-label col-xs-4 col-sm-2">文章内容：&nbsp;
+    </label>
+    <div class="formControls col-xs-8 col-sm-9">
+        <textarea id="editor" type="text/plain" name="content" style="width:100%;height:400px;"autofocus>
+        </textarea>
+    </div>
+</div>
+
+<script>
+	var editor = new Simditor({
+	  textarea: $('#editor')
+	  //optional options
+	});
+
+	$(function(){
+        Simditor.locale = 'zh-CN';//设置中文
+        var editor = new Simditor({
+            textarea: $('#editor'),  //textarea的id
+            placeholder: '这里输入文字...',
+            toolbar:  ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'], //工具条都包含哪些内容
+            pasteImage: true,//允许粘贴图片
+            defaultImage: '/res/simditor/images/image.png',//编辑器插入的默认图片，此处可以删除
+            upload : {
+                url : 'richtext_img_upload.do', //文件上传的接口地址
+                params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                fileKey: 'upload_file', //服务器端获取文件数据的参数名
+                connectionCount: 3,
+                leaveConfirm: '正在上传文件'
+            }
+        });
+</script>
+<!-- body e -->
+
+<!-- js s -->
+<!-- <script src="js/lib/jquery1.8.3.min.js"></script> -->
+<!-- <script src="js/index.js"></script> -->
+<!-- js e -->
+</body>
+</html>

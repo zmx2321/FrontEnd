@@ -1,0 +1,51 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+h3{
+	font-size: 14px;
+	font-family: "微软雅黑";
+	line-height: 16px;
+	margin-bottom: 15px;
+}
+
+.text dl{
+	margin-bottom: 15px;
+	font-size: 0;
+}
+
+.text dt, .text dd{
+	display: inline-block;
+}
+
+.text dt{
+	width: 60px;
+	font-size: 12px;
+	font-family: "宋体";
+	height: 20px;
+	line-height: 20px;
+}
+
+.text input[type="text"]{
+	outline: none;
+	height: 20px;
+	border: solid 1px #ddd;
+	font-size: 12px;
+}
+
+.btn{
+	width: 100%;
+}
+
+.btn button{
+	margin-left: 60px;
+	width: 40px;
+	height: 20px;
+	color: #fff;
+	border: none;
+	font-size: 12px;
+	font-family: "宋体";
+	outline: none;
+	background: #54b0e3;
+}

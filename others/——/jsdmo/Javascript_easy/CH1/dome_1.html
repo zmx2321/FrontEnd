@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>第一堂课</title>
+  <style type="text/css">
+#box{ width:600px;margin:0 auto; margin-bottom: 200px;}
+
+  </style>
+
+</head>
+<body>
+<div id="box">
+<!--输出-->
+<h1>JavaScript：直接写入 HTML 输出流</h1>
+ <input type="text" name="" id="edt" style="width: 500px;height: auto;"><button onclick="wirte()">提交</button>
+ 
+  <script>
+    function wirte(){
+    var edt =  document.getElementById('edt');
+    var val = edt.value;
+    if (val!=null) {   
+        document.write(val);  
+    }else{
+      alert('没有输入哟！');
+    }
+}
+  </script>
+  <!--事件-->
+<h1>JavaScript：对事件的反应</h1>
+<button type="button" onclick="alert('欢迎来到小黑科技!')">点我!</button>
+<!--JavaScript：改变 HTML 内容-->
+<h1>JavaScript：改变 HTML 内容</h1>
+<p id="hello">hello,word!</p>
+<button onclick="gai()">改变</button>
+<script>
+function gai(){
+ document.getElementById('hello').innerHTML="你好世界！";
+   }
+</script>
+<!--JavaScript：改变 HTML 图像-->
+<h1>JavaScript：改变 HTML 图像</h1>
+<img src="meinv9.jpg" id="imgs"><br/>
+<button onclick="add()">见证奇迹</button>
+<script type="text/javascript">
+ function add(){
+  document.getElementById('imgs').src='92.jpg';
+ }
+ </script>
+ <!--JavaScript：改变 HTML 样式-->
+ <h1>JavaScript：改变 HTML 样式</h1>
+ <p id="color" style="color: red;">我是红色的！我想变黄！</p>
+ <button onclick="bian()">变身</button>
+ <script type="text/javascript">
+   function bian(){
+    document.getElementById('color').style.color='yellow';
+   }
+
+ </script>
+
+ <!--JavaScript：验证输入 -->
+ <h1>JavaScript：验证输入 </h1>
+
+  <input type="text" name="" id="tel" placeholder="请输入电话码,么么哒!"><button onclick="yan()">提交</button>
+  <script type="text/javascript">
+   function yan(){
+   var reg = /^1[3578][0-9]{9}$/;
+   var tel = document.getElementById('tel').value;
+   if (tel!=""&&tel!=null) {
+      if (reg.test(tel)) {
+        alert('输入正确');
+      } else{
+        alert('输入有误');
+      }
+   }else{
+        alert('请输入');
+   }
+
+}
+
+  </script>
+</div>
+</body>
+</html>
+

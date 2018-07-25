@@ -1,0 +1,116 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="utf-8">
+    <title>WebSocket</title>  
+  
+    <style> 
+        html{  
+            font: normal 0.9em arial, helvetica;  
+        }  
+  
+        #log {  
+            width: 440px;  
+            height: 200px;  
+            border: 1px solid #7F9DB9;  
+            overflow-y: scroll;
+			
+			background-color: yellow;   
+			padding-left: 0;    
+			position: relative;  
+			word-wrap: break-word;   
+			text-align:left;  
+        }  
+  
+        #msg {  
+            width: 330px;  
+        }  
+    </style>  
+  
+    <script>  
+        var socket;  
+  
+        function init() {  
+            var host = "ws://123.207.11.105:9999/";  
+            try {  
+                socket = new WebSocket(host);  
+                socket.onopen = function (msg) {  
+                    log('Connected');  
+                };  
+                socket.onmessage = function (msg) {  
+                    log(msg.data);  
+                };  
+                socket.onclose = function (msg) {  
+                    log("Lose Connection!");  
+                };  
+            }  
+            catch (ex) {  
+                log(ex);  
+            }  
+            $("msg").focus();  
+        }  
+  
+        function send() {  
+            var txt, msg;  
+            txt = $("msg");  
+            msg = txt.value;  
+            if (!msg) {  
+                alert("Message can not be empty");  
+                return;  
+            }  
+            txt.value = "";  
+            txt.focus();  
+            try {  
+                socket.send(msg);  
+            } catch (ex) {  
+                log(ex);  
+            }  
+			window.scrollTo(100,document.body.scrollHeight)
+        }  
+  
+        window.onbeforeunload = function () {  
+            try {  
+                socket.send('quit');  
+                socket.close();  
+                socket = null;  
+            }  
+            catch (ex) {  
+                log(ex);  
+            }  
+        };  
+  
+  
+        function $(id) {  
+            return document.getElementById(id);  
+        }  
+        function log(msg) {  
+            $("log").innerHTML += "<br>" + msg;  
+        }  
+        function onkey(event) {  
+            if (event.keyCode == 13) {  
+                send();  
+            }  
+        }
+    </script> 
+	<script>
+	var test = document.getElementById("log");
+    var div = document.getElementById("msg");
+    test.onclick = function () {
+        div.innerHTML = div.innerHTML+"js实现将div等滚动条(scrollbar)保持在最底部的方法.--By <a href=\'http://www.shenlanit.com\' target=\'_blank\'>www.shenlanit.com[深蓝IT]</a>.<br/><br/>";
+        div.scrollTop = div.scrollHeight;
+    }
+	</script>
+  
+</head>  
+  
+  
+<body onload="init()">  
+<h3>近在咫尺的梦想</h3>  
+<br><br>  
+  
+<div id="log"></div>  
+<input id="msg" type="textbox" onkeypress="onkey(event)"/>  
+<button onclick="send()">发送</button>  
+</body>  
+  
+</html>  

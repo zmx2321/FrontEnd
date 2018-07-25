@@ -1,0 +1,49 @@
+<view class="weui-flex titles">
+    <block wx:for="{{text_title}}" wx:key="*this">
+        <text  style="width: {{titleSlider.width}}%; left: {{titleSlider.left}}%;" class="{{index === swiperSelected.index ? 'selected' : ''}}" data-id="{{index}}" bindtap="bindTitleTap">{{item}}</text>
+    </block>
+    <view class="title-slider" style="width: {{titleSlider.width}}%; left: {{titleSlider.left}}%;"></view>
+</view>
+<swiper class="outer" current="{{swiperSelected.outer}}">
+    <swiper-item class="outer" catchtouchmove="forbidSwiperMove">
+        <view class="weui-cells">
+            <view class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">共享标题</view>
+            </view>
+        </view>
+        <view class="swiper-wrap">
+            <swiper class="inner" current="{{swiperSelected.inner}}">
+                <swiper-item catchtouchmove="forbidSwiperMove">
+                    <scroll-view scroll-y="true" enable-back-to-top="true">
+                        <view class="placeholder"></view>
+                        <view class="weui-cells">
+                            <view class="weui-cell">
+                                <view class="weui-cell__bd">测试1</view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </swiper-item>
+                <swiper-item catchtouchmove="forbidSwiperMove">
+                    <scroll-view scroll-y="true" enable-back-to-top="true">
+                        <view class="placeholder"></view>
+                        <view class="weui-cells">
+                            <view class="weui-cell">
+                                <view class="weui-cell__bd">测试2</view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </swiper-item>
+            </swiper>
+        </view>
+    </swiper-item>
+    <swiper-item class="outer" catchtouchmove="forbidSwiperMove">
+        <scroll-view scroll-y="true" enable-back-to-top="true">
+            <view class="placeholder"></view>
+            <view class="weui-cells">
+                <view class="weui-cell">
+                    <view class="weui-cell__bd">测试3</view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+</swiper>

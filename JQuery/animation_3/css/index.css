@@ -1,0 +1,60 @@
+            /*body{
+                width: 100%;
+                height: 800px;
+                background: url(../image/bg.JPG) no-repeat center;
+                background-size: cover;
+            }*/
+
+            /*中间小黄块的样式*/
+            .center-top {
+                position: relative;
+                /*top: 40px;*/
+                width: 1040px;
+                height: 600px;
+                margin:0 auto;
+            }
+            
+            .center-top .yellow-box {
+                display: none;
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: #ffaf00;
+                -webkit-transition:top 1s,left 2s; /* Safari 和 Chrome */
+            }
+            
+            .center-top .yellow-box:nth-child(7) {
+                top: 300px;
+                left: 320px;
+            
+            }
+            
+            .center-top .yellow-box:nth-child(6) {
+                top: 200px;
+                left: 400px;
+            }
+            
+            .center-top .yellow-box:nth-child(5) {
+                top: 330px;
+                left: 430px;
+            }
+            
+            .center-top .yellow-box:nth-child(4) {
+                top: 520px;
+                left: 450px;
+            }
+            
+            .center-top .yellow-box:nth-child(3) {
+                top: 300px;
+                left: 500px;
+            }
+            
+            .center-top .yellow-box:nth-child(2) {
+                top: 490px;
+                left: 520px;
+            }
+            
+            .center-top .yellow-box:nth-child(1) {
+                top: 170px;
+                left: 620px;
+            }

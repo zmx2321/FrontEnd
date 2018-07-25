@@ -1,0 +1,60 @@
+/* ==========================================================================
+   module: m-house_cot
+============================================================================ */
+.house_img {
+    position: relative;
+    width: 2.5rem;
+    height: 1.88rem;
+}
+
+.house_txt {
+    position: relative;
+    width: 4.15rem;
+    height: 1.88rem;
+    margin-left: 0.22rem;
+    overflow: hidden;
+}
+
+.house_txt > ul {
+    display: flex;
+    width: 100%;
+}
+
+.house_txt li.tit {
+    width: 3rem;
+    margin-right: 0.15rem;
+}
+
+.house_txt li.pri{
+  width: 2rem;
+  margin-right: 0.1rem;
+}
+
+.house_txt .edit_box{
+  margin-top: 0.3rem;
+}
+
+.house_txt input[type="text"]{
+  width: 85%;
+}
+
+/*edit_house_active*/
+
+/* ==========================================================================
+   module: m-house_info
+============================================================================ */
+.houifo_ul{
+  
+}
+
+.houifo_ul li{
+
+}
+
+.edit_house_info textarea{
+    padding: 0.2rem;
+    text-align: justify;
+    color: #666;
+    width: 93%;
+    min-height: 1.4rem;
+}

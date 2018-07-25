@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+<title>防止闪烁出现花括号</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    <!-- 属性选择器 防止闪烁出现花括号 -->
+</head>
+<body>
+	<!-- body s -->
+    <div id="box">
+        <span v-cloak>{{ msg }}</span>
+        <!-- 用在比较大的段落 -->
+        <!-- { xx }  ==>  v-text="xxx" [ v-html="xx" ] (也可以防止花括号闪烁) -->
+    </div>
+	<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/jquery-1.8.3.min.js"></script>
+<script src="js/lib/vue.js"></script>
+<script>
+window.onload = function(){
+    new Vue({
+        el:'#box',
+        data:{
+            msg:'well'
+        }
+    });
+};
+</script>
+<!-- js e -->
+</body>
+</html>

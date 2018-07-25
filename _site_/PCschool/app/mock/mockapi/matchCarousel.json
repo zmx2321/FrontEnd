@@ -1,0 +1,29 @@
+{
+  "error": false,
+  "msg": "",
+  "data": {
+    "id": 4697,
+    "project": "lol-pc",
+    "model": "活动页轮播图",
+    "name": "活动页轮播图",
+    "sName": "活动页轮播图",
+    "img": "337508bf77b6fd2469ba3ade1fa3d8aa.jpg",
+    "date": null,
+    "targetDate": null,
+    "carouselDtos": [
+      {
+        "id": 25,
+        "img": "337508bf77b6fd2469ba3ade1fa3d8aa.jpg",
+        "name": "活动页轮播图项",
+        "title": "活动页轮播图项",
+        "url": "21",
+        "carouselGroupId": 4697,
+        "data": "活动页轮播图项"
+      }
+    ],
+    "childs": null,
+    "now": 1480917662209
+  },
+  "length": null,
+  "rtCode": null
+}

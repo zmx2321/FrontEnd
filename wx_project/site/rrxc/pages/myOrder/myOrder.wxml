@@ -1,0 +1,385 @@
+<!-- swiper -->
+<!-- tab -->
+<view class="swp_tab">
+  <!-- all -->
+  <view class="all swiper-tab-list {{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav">全部</view>
+  <!-- /all  -->
+
+  <!-- dfk -->
+  <view class="dfk swiper-tab-list {{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
+  <!-- /dfk  -->
+
+  <!-- jxz -->
+  <view class="jxz swiper-tab-list {{currentTab==2 ? 'active' : ''}}" data-current="2" bindtap="swichNav">进行中</view>
+  <!-- /jxz -->
+
+  <!-- dsh -->
+  <view class="dsh swiper-tab-list {{currentTab==3 ? 'active' : ''}}" data-current="3" bindtap="swichNav">待收货</view>
+  <!-- /dsh -->
+
+  <!-- dpj -->
+  <view class="dpj swiper-tab-list {{currentTab==4 ? 'active' : ''}}" data-current="4" bindtap="swichNav">待评价</view>
+  <!-- /dpj -->
+
+  <!-- tk -->
+  <view class="tk swiper-tab-list {{currentTab==5 ? 'active' : ''}}" data-current="5" bindtap="swichNav">退款</view>
+  <!-- /tk -->
+</view>
+<!-- /tab -->
+
+<!-- cont -->
+<swiper current="{{currentTab}}" class="tab_cont" duration="300" style="height:{{winHeight}}px" bindchange="bindChange"> 
+    <!-- myorder_all -->  
+    <swiper-item class="myorder_all">
+      <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">交易成功</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+          <view class="modrct_btn">
+            <view class="modrct_cot">
+              <view class="modrct_btn_del">
+                <button>删除订单</button>
+                <button bindtap="jumpToLogics">查看物流</button>
+              </view>
+            </view>
+          </view>
+      </view>
+    </swiper-item>
+    <!-- /myorder_all -->
+
+    <!-- myorder_dfk -->  
+    <swiper-item class="myorder_dfk">  
+      <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">待付款</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+          <view class="modrct_btn">
+            <view class="modrct_cot">
+              <view class="modrct_btn_del">
+                <button>取消订单</button>
+                <button class="pay">立即付款</button>
+              </view>
+            </view>
+          </view>
+      </view>
+    </swiper-item>
+    <!-- /myorder_dfk -->
+
+    <!-- myorder_jxz -->  
+    <swiper-item class="myorder_jxz">  
+      <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">待付款</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+          <view class="modrct_btn">
+            <view class="modrct_cot">
+              <view class="modrct_btn_del">
+                <button bindtap="jumpToLogics">查看物流</button>
+              </view>
+            </view>
+          </view>
+      </view>
+    </swiper-item>
+    <!-- /myorder_jxz -->
+
+    <!-- myorder_dsh -->  
+    <swiper-item class="myorder_dsh">  
+      <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">待收货</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+          <view class="modrct_btn">
+            <view class="modrct_cot">
+              <view class="modrct_btn_del">
+                <button>取消订单</button>
+                <button class="red">确认收货</button>
+              </view>
+            </view>
+          </view>
+      </view>
+    </swiper-item>
+    <!-- /myorder_dsh -->
+
+    <!-- myorder_dpj -->  
+    <swiper-item class="myorder_dpj">  
+      <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">待评价</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+          <view class="modrct_btn">
+            <view class="modrct_cot">
+              <view class="modrct_btn_del">
+                <button>删除订单</button>
+                <button class="red" bindtap="jumpToJudge">点击评价</button>
+              </view>
+            </view>
+          </view>
+      </view>
+    </swiper-item>
+    <!-- /myorder_dpj -->
+
+    <!-- myorder_tk -->  
+    <swiper-item class="myorder_tk">  
+      <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">退款</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+          <view class="modrct_btn">
+            <view class="modrct_cot">
+              <view class="modrct_btn_del">
+                <button bindtap="jumpToDetail">查看详情</button>
+              </view>
+            </view>
+          </view>
+      </view>
+    </swiper-item>
+    <!-- /myorder_tk -->
+</swiper>
+<!-- /cont -->
+<!-- /swiper -->

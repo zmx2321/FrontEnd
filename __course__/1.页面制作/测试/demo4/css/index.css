@@ -1,0 +1,49 @@
+/* layout s */
+*{
+	padding: 0;
+	margin: 0;
+}
+
+li, dd{
+	list-style: none;
+}
+/* layout e */
+
+.slide{
+    width: 75px;
+}
+
+.slide button, .slide dd{
+	font-size: 12px;
+	font-family: "宋体";
+}
+
+.slide dl{
+	border: solid 1px #ddd;
+	margin-top: 1px;
+	display: none;
+}
+
+.slide li:hover dl{
+	display: block;
+}
+
+.slide button{
+	width: 50px;
+	height: 28px;
+	background: #eee;
+	border: solid 1px #ddd;
+}
+
+.slide dd{
+	height: 30px;
+	line-height: 30px;
+	transition: 0.3s linear;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.slide dd:hover{
+	background: #ddd;
+	transition: 0.3s linear;
+}

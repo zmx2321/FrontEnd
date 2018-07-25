@@ -1,0 +1,15 @@
+.cpxq{
+  min-height: 100rpx;
+}
+
+.xzhb{
+  min-height: 100rpx;
+}
+
+.xmjz{
+  min-height: 60rpx;
+}
+
+page{
+    height: 100%;
+}

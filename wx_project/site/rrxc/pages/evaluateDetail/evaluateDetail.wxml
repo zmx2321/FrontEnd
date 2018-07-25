@@ -1,0 +1,57 @@
+<!-- pudtal_eval -->
+<view class='pudtal pudtal_eval'>
+  <navigator url='/pages/evaluateDetail/evaluateDetail'>
+    <view class='main_wrap'>
+      <text>宝贝评价</text>
+      <text class='eval_num'>共688条评论</text>
+    </view>
+  </navigator>
+
+  <view class='pudtal_eval_nav'>
+    <view class='main_wrap'>
+      <text>环境不错</text>
+      <text>环境不错</text>
+      <text>环境不错</text>
+      <text>环境不错</text>
+      <text>环境不错</text>
+      <text>环境不错</text>
+      <text>环境不错</text>
+    </view>
+  </view>
+
+  <view class='pudtal_eval_cont'>
+    <view class='main_wrap'>
+      <view class='pdalt_tit clearfix'>
+        <view class='pdalt_tit_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <view class='pdalt_tit_txt'>
+          <text class='name'>徐某某</text>
+          <text class='time'>2016.10.01</text>
+        </view>
+      </view>
+      <text>
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+      </text>
+    </view>
+  </view>
+
+  <view class='pudtal_eval_cont'>
+    <view class='main_wrap'>
+      <view class='pdalt_tit clearfix'>
+        <view class='pdalt_tit_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <view class='pdalt_tit_txt'>
+          <text class='name'>徐某某</text>
+          <text class='time'>2016.10.01</text>
+        </view>
+      </view>
+      <text>东西很好，快递很快。</text>
+    </view>
+  </view>
+</view>
+<!-- /pudtal_eval -->

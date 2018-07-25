@@ -1,0 +1,11 @@
+/**index.wxss**/
+.pic_1{
+  width:300px;
+  height:300px;
+  border-radius: 20%;
+}
+.pic_2{
+  width:300px;
+  height:300px;
+  border-radius: 50%;
+}

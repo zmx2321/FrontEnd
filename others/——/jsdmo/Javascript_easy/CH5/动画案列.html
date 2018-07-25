@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript">
+
+	window.onload = function () {
+
+		var rights = document.getElementById('rights');
+		var liList = rights.getElementsByTagName('li');
+		for (var i = 0; i < liList.length; i++) {
+			//定时器对象
+			//aList[i].times=null;
+			liList[i].onmouseover = function(){
+
+				   startMove(this,-90);
+			}
+			
+			liList[i].onmouseout = function(){
+				startMove(this,0);
+			}
+		}
+		
+	}
+   
+	function startMove(obj,iTarget){
+		//清除定时器
+		clearInterval(obj.times);
+		//获取san标签对象
+		var objs = obj.getElementsByTagName('span')[0];
+		console.log(objs);
+		
+        obj.times = setInterval(function(){
+        	//console.log(objs.style.left);
+        	var speed = (iTarget-objs.offsetLeft)/5;
+        	console.log('speed='+speed);
+          speed = speed>0?Math.ceil(speed):Math.floor(speed); 
+          console.log('iTarget='+iTarget+'offsetLeft='+objs.offsetLeft+'speed='+speed);
+    	if (objs.offsetLeft==iTarget) {
+         clearInterval(obj.times);
+      }else{
+      	objs.style.left = objs.offsetLeft+speed+'px';
+      }
+     },30);
+
+	}
+
+
+
+		
+	</script>
+	<style type="text/css">
+	*{margin: 0px;padding: 0px;}
+		#box{height: 100%;position: fixed;right: 0px;width: 10px;background: #7A6E6E;}
+	    #rights{position: fixed;top: 40%;right: 0px;}
+	#rights ul li{position: relative;list-style: none;height: 40px;width: 40px;margin-bottom:1px;}
+	#rights ul li a{height: 40px;width: 40px;line-height: 40px;background: #7A6E6E;text-align: center;color: #fff;border-radius:5px 0px 0px 5px;display: block;position: absolute;z-index: 2;left: 0px;top:0px;}
+
+	#rights ul li span{height: 40px;width: 100px;background: #7A6E6E;border-radius:5px 0px 0px 5px;position: absolute;left: 0px;top:0px;text-align: center;line-height: 40px;color: #fff;z-index: 1;}
+	#rights ul li a:hover{background: #c81623;}
+	#rights ul li a:hover~span{background: #c81623;}
+	</style>
+</head>
+<body>
+
+ <div id="box"></div>
+ <div id="rights">
+ 	<ul>
+ 	<li><a>1</a><span>东京会员</span></li>
+ 	<li><a>1</a><span>东京会员</span></li>
+ 	<li><a>1</a><span>东京会员</span></li>
+ 	<li><a>1</a><span>东京会员</span></li>
+ 	<li><a>1</a><span>东京会员</span></li>
+ 	<li><a>1</a><span>东京会员</span></li>
+ 	</ul>
+ </div>
+
+</body>
+</html>

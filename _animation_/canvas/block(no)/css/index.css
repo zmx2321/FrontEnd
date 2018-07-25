@@ -1,0 +1,8 @@
+body{
+	overflow: hidden;
+}
+
+#canv{
+	background: #000;
+	overflow: hidden;
+}

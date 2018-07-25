@@ -1,0 +1,7 @@
+a{ color:#0a8cd2; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+.clearfix:after{ content:"."; display:block; height:0; clear:both; visibility:hidden; }
+.clearfix{ display:inline-block; }
+.clearfix{ display:block; }
+.clear{ clear:both; height:0; font:0/0 Arial; visibility:hidden; }
+.none{ display:none }

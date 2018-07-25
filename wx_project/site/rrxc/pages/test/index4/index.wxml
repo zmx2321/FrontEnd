@@ -1,0 +1,73 @@
+<!-- main_tab -->
+<view class="main_tab">
+  <!-- poyctyt_nav -->
+  <view class="poyctyt_nav">
+    <view class="ptnv_cot">
+      <!-- zcl -->
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+        123
+      </view>
+      <!-- /zcl -->
+
+      <!-- wzt -->
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+        游主题
+      </view>
+      <!-- /wzt -->
+
+      <!-- zdz -->
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="2" bindtap="swichNav">
+        做地主
+      </view>
+      <!-- zdz -->
+
+      <!-- dcm -->
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="3" bindtap="swichNav">
+        投村产
+      </view>
+      <!-- /dcm -->
+
+      <!-- pth -->
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="4" bindtap="swichNav">
+        拼土货
+      </view>
+      <!-- /pth -->
+    </view>
+  </view>
+  <!-- /poyctyt_nav -->
+
+  <!-- poycty_body -->
+  <view class="poycty_body">
+    <!-- find_village_wrap -->
+    <view class="weui-cells__title" hidden="{{!isShow}}">
+      找村落
+    </view>
+    <!-- /find_village_wrap -->
+
+    <!-- play_theme_wrap -->
+    <view class="weui-cells__title" hidden="{{!isShow}}">
+      游主题
+    </view>
+    <!-- /play_theme_wrap -->
+
+    <!-- be_landlord_wrap -->
+    <view class="weui-cells__title" hidden="{{!isShow}}">
+      做地主
+    </view>
+    <!-- /be_landlord_wrap -->
+
+    <!-- be_villagers_wrap -->
+    <view class="weui-cells__title" hidden="{{!isShow}}">
+      投村产
+    </view>
+    <!-- /be_villagers_wrap -->
+
+    <!-- fight_tuhuo_wrap -->
+    <view class="weui-cells__title" hidden="{{!isShow}}">
+      拼土货
+    </view>
+    <!-- /fight_tuhuo_wrap -->
+  </view>
+  <!-- /poycty_body -->
+</view>
+<!-- /main_tab -->

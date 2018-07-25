@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">	
+
+
+  window.onload = function() {
+    //保存之前操作的 ul对象
+    var last=null; 
+    //全局变量 
+    window.ulone = document.getElementById('ulone');
+    //ulone下面所有的A标签
+        var aList = ulone.getElementsByTagName('a');
+         
+          for (var i = 0; i < aList.length; i++) {
+                
+                 aList[i].onclick = function(){
+
+                   //this代表当前对象 也就是事件触发者 
+
+                   if (last !=null) {
+                        if (last!=this.nextSibling.nextSibling) {
+                        last.style.display = 'none';
+                      }
+                   }
+                       
+                       last = this.nextSibling.nextSibling;
+
+                       if (last.style.display !='block') {
+
+                             last.style.display = 'block';
+
+                       }else{
+
+                         last.style.display = 'none';
+                       }
+                       
+                 }
+
+          }
+
+
+  }
+
+
+
+
+
+
+	</script>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style: none;}
+		.ulone{border: 1px solid #3c3c3c;width: 160px;}
+		ul li{width: 150px;}
+		ul li a{display: block;width: 149px;height: 40px;text-decoration: none;text-align: center;line-height: 40px;background: #f0f0f0;margin: 5px;border: 1px solid red;}
+		ul li ul{display: none;}
+		div{width: 600px;margin: 0 auto;}
+		ul li ul a{width: 120px;height: 30px;border: 1px solid yellow;margin-left: 20px;text-align: center;line-height: 30px;}
+	</style>
+</head>
+<body>
+<div>
+   <ul id="ulone" class="ulone">
+  <li><a>第一</a>
+   <ul>
+  <li><a href="#">第一</a></li>
+  <li><a href="#">第二</a></li>
+  <li><a href="#">第三</a></li>
+  <li><a href="#">第四</a></li>
+  <li><a href="#">第五</a></li>
+  </ul>
+  </li>
+  <li><a>第二</a>
+         <ul>
+  <li><a href="#">第一</a></li>
+  <li><a href="#">第二</a></li>
+  <li><a href="#">第三</a></li>
+  <li><a href="#">第四</a></li>
+  <li><a href="#">第五</a></li>
+  </ul>
+  </li>
+  <li><a>第三</a>
+         <ul>
+  <li><a href="#">第一</a></li>
+  <li><a href="#">第二</a></li>
+  <li><a href="#">第三</a></li>
+  <li><a href="#">第四</a></li>
+  <li><a href="#">第五</a></li>
+  </ul>
+  </li>
+  <li><a>第四</a>
+      <ul>
+  <li><a href="#">第一</a></li>
+  <li><a href="#">第二</a></li>
+  <li><a href="#">第三</a></li>
+  <li><a href="#">第四</a></li>
+  <li><a href="#">第五</a></li>
+  </ul>
+  </li>
+  <li><a>第五</a>
+   <ul>
+  <li><a href="#">第一</a></li>
+  <li><a href="#">第二</a></li>
+  <li><a href="#">第三</a></li>
+  <li><a href="#">第四</a></li>
+  <li><a href="#">第五</a></li>
+  </ul>
+  </li>
+  </ul>
+ </div>
+
+</body>
+</html>

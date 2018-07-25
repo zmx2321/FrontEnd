@@ -1,0 +1,182 @@
+@charset "UTF-8";
+body{
+	font-size:13px;
+}
+h5 {
+	margin:0px;
+	font-size: 14px;
+	color:#134a85;
+	line-height:40px;
+}
+
+hr{
+	border: 0;
+	border-top: 1px solid #eeeeee;
+	border-bottom: 1px solid #ffffff;
+	height:2px;
+	margin-top:0px;
+	margin-bottom:3px;
+	display:none;
+}
+/**/
+.text-info {
+  color: #343434;
+}
+.text-infos {
+  color: #3a87ad;
+}
+.text-success {
+  color: #468847;
+}
+.text-error {
+  color: #b94a48;
+}
+.text-warning {
+  color: #c09853;
+}
+/**/
+.center {
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-center {
+  text-align: center;
+}
+
+/**/
+input[type="button"],
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 1px 0px 0px 0px;
+  line-height: normal;
+  width: auto;
+}
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.radio,
+.checkbox {
+  min-height: 20px;
+  padding-left: 10px;
+  cursor:pointer;
+}
+
+.radio input[type="radio"],
+.checkbox input[type="checkbox"] {
+  float: left;
+  margin-left: -20px;
+}
+
+.textarea{
+	height:60px;
+	width:95%;
+	resize:none;
+	font-size: 13px;
+	vertical-align: middle;
+	overflow: auto;
+	vertical-align: top;
+
+
+}
+
+/* 填空题 和 问答题 */
+.ask{
+	clear:both;
+	margin-bottom:5px;
+}
+.ask input{
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+    box-shadow:none;
+    transition:none;
+	padding:0px;
+	margin:0px;
+	background-color:transparent;
+	border:0px;
+	border-bottom:1px solid #999;
+	width:100px;
+}
+.ask blockquote{
+	border-left: 5px solid #b5b25c;
+	border-top:1px dotted #b5b25c;
+	border-right:1px dotted #b5b25c;
+	border-bottom:1px dotted #b5b25c;
+	margin:0px 0px 5px 0px;
+	padding:5px 8px 5px 13px;
+	background-color:#F8F8F8;
+	line-height:22px;
+}
+.ask-title{
+	line-height:23px;
+	padding-left:8px;
+	margin-bottom:5px;
+	background-color:#F0F0F0;
+}
+.fill-title{
+	line-height:23px;
+	padding-left:8px;
+	margin-bottom:5px;
+}
+.ask-ans{
+	width:95%;
+	margin-bottom:3px;
+}
+
+/* end 填空题 和 问答题 */
+
+/* 选择题 */
+.pro{
+	clear:both;
+	margin-bottom:0px;
+}
+.pro ul{
+	padding:0px;
+	margin:10px 0;
+}
+.pro ul li{
+	list-style:none;
+	line-height:22px;
+	padding-left:40px;
+}
+.pro-title{
+	line-height:23px;
+	padding-left:8px;
+	margin-bottom:5px;
+	background-color:#F0F0F0;
+}
+.pro-ans{
+	width:93%;
+}
+
+.prom{
+	float:left;
+}
+.ans{
+	float:right;
+}
+/* end 选择题 */
+
+.tishi{
+	border:2px solid #C03;
+	padding:8px;
+	margin-bottom:5px;
+	width:95%
+}
+
+.hidden{
+	display:none;
+}
+.show{
+	display:block;
+}

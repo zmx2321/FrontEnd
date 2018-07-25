@@ -1,0 +1,8 @@
+#gamepanel{
+    width: 320px;
+    margin: 0 auto;
+    height: 568px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc
+}

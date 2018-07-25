@@ -1,0 +1,141 @@
+<view class="reptadr_wrap">
+  <!-- rpdr_wp -->
+  <view class="rpdr_wp">
+    <view class="rpdr_ct">
+      <view class="rpdr_ct_top">
+        <view class="rpdr_ctp_wp">
+          <text>张三\t13888888888</text>
+          <text>浙江省杭州市下城区体育场路545号浙江省杭州市下城区体育场路545号</text>
+        </view>
+      </view>
+      <view class="rpdr_ct_bottom">
+        <view class="rpdr_cbm_wp">
+          <view class="select">
+            <radio value="mr_t" checked="checked" />
+            <text>已设为默认</text>
+          </view>
+          <view class="operation">
+            <navigator class="opan_dt edit" url="/pages/fixAddress/fixAddress">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-bj.png"></image>
+              </view>
+              <text>编辑</text>
+            </navigator>
+            <view class="opan_dt delt">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sc.png"></image>
+              </view>
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="rpdr_wp">
+    <view class="rpdr_ct">
+      <view class="rpdr_ct_top">
+        <view class="rpdr_ctp_wp">
+          <text>张三\t13888888888</text>
+          <text>浙江省杭州市下城区体育场路545号浙江省杭州市下城区体育场路545号</text>
+        </view>
+      </view>
+      <view class="rpdr_ct_bottom">
+        <view class="rpdr_cbm_wp">
+          <view class="select">
+            <radio value="mr_f" checked="" />
+            <text>设为默认</text>
+          </view>
+          <view class="operation">
+            <navigator class="opan_dt edit" url="/pages/fixAddress/fixAddress">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-bj.png"></image>
+              </view>
+              <text>编辑</text>
+            </navigator>
+            <view class="opan_dt delt">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sc.png"></image>
+              </view>
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="rpdr_wp">
+    <view class="rpdr_ct">
+      <view class="rpdr_ct_top">
+        <view class="rpdr_ctp_wp">
+          <text>张三\t13888888888</text>
+          <text>浙江省杭州市下城区体育场路545号浙江省杭州市下城区体育场路545号</text>
+        </view>
+      </view>
+      <view class="rpdr_ct_bottom">
+        <view class="rpdr_cbm_wp">
+          <view class="select">
+            <radio value="mr_f" checked="" />
+            <text>设为默认</text>
+          </view>
+          <view class="operation">
+            <navigator class="opan_dt edit" url="/pages/fixAddress/fixAddress">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-bj.png"></image>
+              </view>
+              <text>编辑</text>
+            </navigator>
+            <view class="opan_dt delt">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sc.png"></image>
+              </view>
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="rpdr_wp">
+    <view class="rpdr_ct">
+      <view class="rpdr_ct_top">
+        <view class="rpdr_ctp_wp">
+          <text>张三\t13888888888</text>
+          <text>浙江省杭州市下城区体育场路545号浙江省杭州市下城区体育场路545号</text>
+        </view>
+      </view>
+      <view class="rpdr_ct_bottom">
+        <view class="rpdr_cbm_wp">
+          <view class="select">
+            <radio value="mr_f" checked="" />
+            <text>设为默认</text>
+          </view>
+          <view class="operation">
+            <navigator class="opan_dt edit" url="/pages/fixAddress/fixAddress">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-bj.png"></image>
+              </view>
+              <text>编辑</text>
+            </navigator>
+            <view class="opan_dt delt">
+              <view class="opdit_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sc.png"></image>
+              </view>
+              <text>删除</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- /rpdr_wp -->
+</view>
+
+<!-- mymess_button -->
+<view class="mymess_button">
+  <button bindtap="jumpToMyAdd">点击添加</button>
+</view>
+<!-- /mymess_button -->

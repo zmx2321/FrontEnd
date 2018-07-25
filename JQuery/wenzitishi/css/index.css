@@ -1,0 +1,14 @@
+p{
+    clear:both;
+    margin:0;
+    padding:.5em 0;
+}
+/* tooltip */
+#tooltip{
+    position:absolute;
+    border:1px solid #333;
+    background:#f7f5d1;
+    padding:1px;
+    color:#333;
+    display:none;
+}

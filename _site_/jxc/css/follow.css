@@ -1,0 +1,64 @@
+.follow_all{
+	width: 100%;
+}
+
+/* follow_top s */
+.follow_top{
+    width: 100%;
+    height: 1.02rem;
+    background: #fff;
+    overflow: hidden;
+    border-bottom: solid 1px #efefef;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.follow_top nav{
+    width: 3.6rem;
+    height: 0.66rem;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 0.1rem;
+    overflow: hidden;
+    border: solid 1px #00cd00;
+}
+
+.follow_top ul{
+	font-size: 0;
+}
+
+.follow_top li{
+    display: inline-block;
+    font-size: 0.28rem;
+    width: 1.8rem;
+    height: 0.66rem;
+    line-height: 0.66rem;
+    text-align: center;
+    background: #fff;
+    color: #00cd00;
+    overflow: hidden;
+}
+
+.follow_top li.active{
+	background: #00cd00;
+	color: #fff;
+}
+
+.follow_cont {
+    width: 100%;
+    margin-top: 1.2rem;
+}
+
+.scrolltop {
+    bottom: 0.28rem;
+}
+
+.follow_cont_wrap > ul {
+    font-size: 0.24rem;
+}
+/* follow_top e */
+
+

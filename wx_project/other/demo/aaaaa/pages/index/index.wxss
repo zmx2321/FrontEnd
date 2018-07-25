@@ -1,0 +1,16 @@
+.nav{
+  display: flex;
+  background-color:#01204f;
+  color:white;
+  height:30px;
+  line-height: 30px;
+  margin:5px auto;
+}
+.nav view{
+  flex:1;
+  text-align: center;
+  transition: 0.5s;
+}
+.nav view:hover{
+  background-color: #c00;
+}

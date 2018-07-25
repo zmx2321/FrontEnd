@@ -1,0 +1,29 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/tab1/tab1"
+  ],
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#f00",
+    "borderStyle": "#000",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "tab1"
+      },
+      {
+        "pagePath": "pages/tab1/tab1",
+        "text": "tab2"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "tab",
+    "navigationBarTextStyle":"#fff"
+  },
+  "debug": false
+}

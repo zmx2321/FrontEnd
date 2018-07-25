@@ -1,0 +1,136 @@
+.zsxq_cot{
+	margin-bottom: 0.16rem;
+}
+
+.zsxq_cot img{
+	margin: 0;
+}
+
+.zsxq_tit h3{
+    width: 100%;
+    text-align: center;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    font-weight: initial;
+    font-size: 0.28rem;
+    position: relative;
+    background: #fff;
+    color: #666666;
+}
+
+.zsxq_tit h3::before, .zsxq_tit h3::after{
+	content: '';
+    height: 0.01rem;
+    width: 0.5rem;
+    background: #666666;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.zsxq_tit h3::before{
+	margin-left: -0.63rem;
+}
+
+.zsxq_tit h3::after{
+	margin-left: 0.1rem;
+}
+
+.fjzs{
+	background: url(../images/btbj.png) top repeat-x;
+    width: 100%;
+    min-height: 2rem;
+}
+
+.fjzs_tit{
+	height: 0.6rem;
+    background: #fff;
+}
+
+.fjzs_tit h3{
+    height: 0.28rem;
+    line-height: 0.28rem;
+    border-left: solid 3px #00cd00;
+    margin-top: 0.15rem;
+    padding-left: 0.2rem;
+    font-weight: bold;
+}
+
+.fjzs_cot{
+	margin-bottom: 1.4rem;
+}
+
+.fjzs_cot img{
+	margin: 0;
+}
+
+.fjzs_cot dt{
+	position: relative;
+}
+
+.fjzs_cot dt span{
+    position: absolute;
+    top: 0.33rem;
+    left: -3px;
+    background: #f5560f;
+    width: 1.55rem;
+    text-align: center;
+    height: 0.45rem;
+    border-radius: 3px;
+    line-height: 0.46rem;
+    color: #fff;
+    font-size: 0.22rem;
+    letter-spacing: 1px;
+}
+
+.fjzs_cot li{
+    margin: 0.24rem 0.15rem;
+    min-height: 114px;
+    border-radius: 6px;
+    background: #fff;
+    overflow: hidden;
+    padding-bottom: 0.2rem;
+}
+
+.fjzs_cot li:first-child{
+	margin-top: 0;
+}
+
+.fjzs_cot a{
+	display: block;
+}
+
+.fjzs_cot_t{
+    font-size: 0.28rem;
+    margin: 0.1rem 0.24rem;
+}
+
+.fjzs_cot_d {
+	margin: 0 0.24rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.zsxq_btn{
+    position: fixed;
+    bottom: 0;
+    height: 1rem;
+    overflow: hidden;
+    width: 100%;
+    background: #fff;
+    border-top: solid 1px #efefef;
+}
+
+.zsxq_btn a{
+	width: 100%;
+	height: 1rem;
+	line-height: 1rem;
+	text-align: center;
+	color: #00cd00;
+	font-size: 0.3rem;
+	text-align: center;
+	display: block;
+}

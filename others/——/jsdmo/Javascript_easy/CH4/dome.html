@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+	<title></title>
+
+	<style type="text/css">
+      
+      #box{
+
+      }
+
+	</style>
+   
+
+
+
+</head>
+<body>
+
+ <button onclick="back()">上一张</button><img src="images/3.jpg" id="imgs"><button onclick="go()">下一张</button> 
+  <script type="text/javascript">
+/*     var imgs = document.getElementById('imgs');
+     //声明资源
+    var imgList = ['images/3.jpg','images/10.jpg','images/35.jpg','images/92.jpg'];
+    //数组下标
+    var index = 0;
+
+   function back(){
+
+      if (index<imgList.length-1) { //3
+
+     imgs.src=imgList[++index];
+
+     } else{
+        index = 0;
+     	imgs.src=imgList[index];
+     }
+
+  }
+
+  function go(){
+    
+    if (index>0) {
+
+     imgs.src=imgList[--index];
+     
+    }else{
+     index = imgList.length-1;
+     imgs.src=imgList[index];
+     }
+
+  }*/
+      //声明资源
+    var imgList = ['images/3.jpg','images/10.jpg','images/35.jpg','images/92.jpg'];
+    //数组下标
+    var index = 0;
+
+    var imgs = document.getElementById('imgs');
+
+    function star(){
+
+    imgs.src=imgList[++index];
+
+    }
+    
+   var time =  setInterval(star,2000);//间隔时间单位为毫秒  1秒等于1000毫秒
+   
+   clearInterval(time);//清除定时器。
+
+   //onmouseover 鼠标移入事件
+   //onmouseout   鼠标移出事件
+
+  //setInterval  clearInterval
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id":1,
+      "portrait":"images/cs/my_photo.jpg",
+      "name": "晴天雨后民宿",
+      "status": {
+        "jycg": "交易成功",
+        "jygb": "交易关闭",
+        "zzjxz": "正在进行中",
+        "dfk": "待付款",
+        "dsh": "待收货",
+        "dpj": "待评价"
+      },
+      "imgs": "images/cs/272153.jpg",
+      "title": "宁波青苹果",
+      "url":"orderState.html",
+      "lab0": ["休闲业主","可现场游园"],
+      "price": "￥18",
+      "lastprice": "￥268",
+      "number": "1",
+      "order_btn": {
+        "viewLogistics_btn": ["查看物流", "orderLogistics.html"],
+        "del_btn": ["删除订单", ""],
+        "view_btn": ["查看详情", ""],
+        "cancel_btn": ["取消订单", ""],
+        "pay_btn": ["立即付款", ""],
+        "receipt_btn": ["确认收货", ""],
+        "del_btn": ["删除订单", ""],
+        "evaluate_btn": ["点击评价", "orderEvaluate.html"]
+      },
+      "freight": "￥0.00"
+    },
+    {
+      "id":2,
+      "portrait":"images/cs/my_photo.jpg",
+      "name": "晴天雨后民宿",
+      "status": {
+        "jycg": "交易成功",
+        "jygb": "交易关闭",
+        "zzjxz": "正在进行中",
+        "dfk": "待付款",
+        "dsh": "待收货",
+        "dpj": "待评价"
+      },
+      "imgs": "images/cs/272153.jpg",
+      "title": "宁波青苹果",
+      "url":"orderState.html",
+      "lab0": ["休闲业主","可现场游园"],
+      "price": "￥18",
+      "lastprice": "￥268",
+      "number": "1",
+      "order_btn": {
+        "viewLogistics_btn": ["查看物流", "orderLogistics.html"],
+        "del_btn": ["删除订单", ""],
+        "view_btn": ["查看详情", ""],
+        "cancel_btn": ["取消订单", ""],
+        "pay_btn": ["立即付款", ""],
+        "receipt_btn": ["确认收货", ""],
+        "del_btn": ["删除订单", ""],
+        "evaluate_btn": ["点击评价", "orderEvaluate.html"]
+      },
+      "freight": "￥0.00"
+    }
+  ],
+  "length":28,
+  "rtCode":null
+}

@@ -1,0 +1,8 @@
+<krpano>
+	<!--  核心文件引用  -->
+	<include url="%SWFPATH%/thumb/krpanocms/object.xml"/>
+	<include url="%SWFPATH%/thumb/krpanocms/tuwen.xml"/>
+	<include url="%SWFPATH%/thumb/krpanocms/xiangce.xml"/>
+	<include url="%SWFPATH%/thumb/krpanocms/videoplayer.xml"/>
+	<!--  核心文件引用  -->
+</krpano>

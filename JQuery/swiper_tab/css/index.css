@@ -1,0 +1,91 @@
+.swiper-container {
+    width: 100%;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+/* poyctyt_nav s */
+.poyctyt_nav{
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 1px 1px 1px #dedede;
+    font-size: 0;
+}
+
+.poyctyt_nav nav{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.poyctyt_nav ul{
+	width: 100%;
+	display: -webkit-inline-box;
+	-webkit-box-pack: justify;
+}
+
+.poyctyt_nav ul li{
+	position: relative;
+    height: 1.38rem;
+    line-height: 1.38rem;
+}
+
+.poyctyt_nav ul li.active dd{
+	color: #00cd00;
+}
+
+.poyctyt_nav dd{
+	text-align: center;
+    font-size: 0.24rem;
+}
+
+.poyctyt_nav_offtop{
+    position: fixed;
+    top: 0;
+    z-index: 11;
+}
+/* poyctyt_nav e */
+/*===== poycty_top e =====*/
+
+/*===== poycty_body s =====*/
+.poycty_body{
+	width: 100%;
+}
+
+.poycty_cont section{
+	display: none;
+    margin-top: 20px;
+}
+/* play_theme(玩主题) s */
+
+/* play_theme(玩主题) e */
+
+/* be_landlord(做地主) s */
+/* be_landlord(做地主) e */
+
+/* be_villagers(当村民) s */
+/* be_villagers(当村民) e */
+
+/* fight_tuhuo(拼土货) s */
+/* fight_tuhuo(拼土货) e */
+/*===== poycty_body e =====*/
+

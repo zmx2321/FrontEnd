@@ -1,0 +1,29 @@
+<!-- swiper -->
+<!-- tab -->
+<view class="swp_tab">
+  <!-- business -->
+  <view class="business swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">商家</view>
+  <!-- /business -->
+
+  <!-- product -->
+  <view class="product swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">产品</view>
+  <!-- /product -->
+</view>  
+<!-- /tab -->
+
+<!-- cont -->
+<swiper class="tab_cont" current="{{currentTab}}" duration="300" bindchange="bindChange" style="height:{{winHeight-140}}px">
+    <!-- business_cot -->
+    <swiper-item class="follow_cont business_cot">
+      <view>商家</view>  
+    </swiper-item> 
+    <!-- /business_cot  -->
+
+    <!-- product_cot -->  
+    <swiper-item class="follow_cont product_cot">  
+      <view>产品</view>  
+    </swiper-item>  
+    <!-- /product_cot -->  
+</swiper>
+<!-- /cont -->
+<!-- /swiper -->

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {
+	width: 1000px;
+	height: 100px;
+	background: red;
+	position: absolute;
+	left:-800px;
+	text-align:center;
+}
+ 
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="draftingAddSpeed1.js"></script>
+<script>
+window.onload=function ()
+{
+	var obj=document.getElementById('div1');
+	draggingGravity(obj,{startSpeed:7,friction:0.9});
+}
+
+ 
+ 
+</script>
+</head>
+
+<body>
+  <div id="div1"> 高仿app滑动加速缓冲效果</div>
+</body>
+</html>

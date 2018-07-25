@@ -1,0 +1,95 @@
+/* star_evaluate */
+.star_evaluate {
+    height: 102rpx;
+    line-height: 102rpx;
+    background: #fff;
+    margin-bottom: 24rpx;
+    overflow: hidden;
+}
+
+.evaluate_cont{
+  width: 680rpx;
+  margin: 0 auto;
+}
+
+.star_evaluate text{
+  float: left;
+  width: 90rpx;
+}
+
+.evaluate_cont .star{
+  float: left;
+   position: relative; 
+}
+
+.star-image {
+  position: absolute;
+  top: 16rpx;
+  width: 60rpx;
+  height: 60rpx;
+  src: "../../images/normal.png";
+}
+
+.item {
+  position: absolute;
+  top: 16rpx;
+  width: 30rpx;
+  height: 60rpx;
+}
+/* /star_evaluate */
+
+/* text_evaluate */
+.text_evaluate {
+  width: 100%;
+  min-height: 336rpx;
+  background: #fff;
+}
+
+.texteval_top {
+  min-height: 246rpx;
+  border-bottom: solid 1px #e5e5e5;
+  padding-top:20rpx
+}
+
+.texteval_top_ct{
+    margin: 16rpx 0;
+}
+
+.texteval_top_ct text{
+  display: inline-block;
+  border: solid 1px #ccc;
+  padding: 10rpx 20rpx;
+  margin-right: 30rpx;
+  margin-bottom: 24rpx;
+  color: #b0abab;
+}
+
+.texteval_top_ct text.active{
+    background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-xzk.png) top no-repeat;
+    background-size: 97.5%;
+    border: 0;
+}
+
+.texteval_top_txt text{
+  color: #b0abab;
+  padding-bottom: 20rpx;
+  display: block;
+}
+
+.texteval_bottom {
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+/* /text_evaluate */
+
+/* mymess_button */
+.elve_check{
+  float: right;
+}
+
+.elve_check text{
+  margin-right: 20rpx;
+}
+/* /mymess_button */
+

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村-地图</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/map.css"/>
+<link rel="stylesheet" type="text/css" href="css/lib/swiper.min.css" />
+
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css">
+<link rel="stylesheet" type="text/css" href="http://api.map.baidu.com/res/12/bmap_autocomplete.css">
+
+</head>
+
+<body>
+<!-- body s -->
+<div class="poyctyt_nav">
+    <nav>
+        <ul class="poyctyt_nav_btn">
+            <li class="zcl active" onclick="location.href='index.html'">
+                <dl>
+                    <dt></dt>
+                    <dd>找村落</dd>
+                </dl>
+            </li>
+            <li class="wzt" onclick="location.href='index.html'">
+                <dl>
+                    <dt></dt>
+                    <dd>玩主题</dd>
+                </dl>
+            </li>
+            <li class="zdz" onclick="location.href='index.html'">
+                <dl>
+                    <dt></dt>
+                    <dd>做地主</dd>
+                </dl>
+            </li>
+            <li class="dcm" onclick="location.href='index.html'">
+                <dl>
+                    <dt></dt>
+                    <dd>投村产</dd>
+                </dl>
+            </li>
+            <li class="pth" onclick="location.href='index.html'">
+                <dl>
+                    <dt></dt>
+                    <dd>拼土货</dd>
+                </dl>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- searchs -->
+<div class="search">
+    <ul class="main_wrap">
+        <li class="search_box clearfix">
+            <a class="clearfix" href="javascript:;">
+                <b>
+                    <img src="images/ss.png">
+                </b>
+                <input type="text" placeholder="村落/景区/民宿/农场" />
+            </a>
+        </li>
+        <li class="map_btn">搜索</li>
+    </ul>
+</div>
+<!-- searche -->
+
+<!-- swiper s -->
+<div class="map_swiper">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="businessDetail.html">
+                    <img src="images/cs/ys_img.jpg">
+                    <b class="poycty_ban_Mask"></b>
+                    <span>云尚</span>
+                    <span class="vr_c">
+                        <b>VR</b>
+                    </span>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="businessDetail.html">
+                    <img src="images/cs/wh_img.jpg">
+                    <b class="poycty_ban_Mask"></b>
+                    <span>望湖别苑</span>
+                    <span class="vr_c">
+                        <b>VR</b>
+                    </span>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="businessDetail.html">
+                    <img src="images/cs/kg_img.jpg">
+                    <b class="poycty_ban_Mask"></b>
+                    <span>坑根人家</span>
+                    <span class="vr_c">
+                        <b>VR</b>
+                    </span>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="businessDetail.html">
+                    <img src="images/cs/kg_img.jpg">
+                    <b class="poycty_ban_Mask"></b>
+                    <span>坑根人家</span>
+                    <span class="vr_c">
+                        <b>VR</b>
+                    </span>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="businessDetail.html">
+                    <img src="images/cs/kg_img.jpg">
+                    <b class="poycty_ban_Mask"></b>
+                    <span>坑根人家</span>
+                    <span class="vr_c">
+                        <b>VR</b>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- swiper e -->
+
+<!-- map_lst -->
+<div class="map_lst">
+    <ul>
+        <li class="active">
+            <dl>
+                <dd>宿</dd>
+                <dd>特色民宿</dd>
+            </dl>
+        </li>
+        <li>
+             <dl>
+                <dd>村</dd>
+                <dd>美丽乡村</dd>
+            </dl>
+        </li>
+        <li>
+             <dl>
+                <dd>景</dd>
+                <dd>景区乐园</dd>
+            </dl>
+        </li>
+        <li>
+             <dl>
+                <dd>农</dd>
+                <dd>生态农场</dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+<!-- /map_lst -->
+
+<div id="allmap"></div>
+
+<a class="fixbtn sys" href="#">
+    <img src="images/sys.png">   
+</a>
+
+<a class="fixbtn myMessage" href="myMessage.html">
+    <img src="images/wd.png">   
+</a>
+<!-- body e -->
+
+<!-- js s -->
+<!-- 百度地图 -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wgOuFDPx7axqgWBnORNpPOLtesYbGcpV"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/CityList/1.2/src/CityList_min.js"></script>
+<!-- 百度地图 -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/lib/swiper.min.js"></script>
+<script src="js/basefont.js"></script>
+<script src="mockface/b-mock.js"></script>
+<script src="js/lib/MarkerClusterer.js"></script>
+<script src="js/map.js"></script>
+<!-- js e -->
+</body>
+</html>             

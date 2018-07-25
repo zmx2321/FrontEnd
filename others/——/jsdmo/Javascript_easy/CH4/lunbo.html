@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+	<title></title>
+</head>
+
+ <style type="text/css">
+ 	 #box{margin: 0 auto;width: 500px;height: 300px;position: relative;}
+     img{display: block;}
+     #images{width: 500px;height: 300px;box-shadow: 0px 0px 10px #3c3c3c;border-radius: 30px;}
+     #left{width: auto;height: 60px; position: absolute;left: -80px;top:120px; }
+     #right{width: auto;height: 60px; position: absolute;right: -80px;top:120px; }
+ </style>
+<body>
+
+ <div id="box" onmouseenter="stop()" onmouseleave="play()">
+ 	<img src="left.png" id="left" onclick="back()">
+ 	<img src="img1.jpg" id="images">
+    <img src="right.png" id="right" onclick="go()">
+   <!--  <div id="dots"></div> -->
+ </div>
+ <script type="text/javascript">
+ //图片
+ var images = document.getElementById('images');
+ //图片数组
+ var imgArr = new Array('images/img1.jpg','images/img2.jpg','images/img3.jpg','images/img4.jpg','images/img5.jpg');
+ //当前图片小标
+ var index = 0;
+ //间歇定时器
+ var inTimes = null;
+ //间歇时间
+ var time = 2000;
+ //轮播
+ function lunbo() {
+ 	
+    if (index < imgArr.length-1) {
+
+       images.src = imgArr[++index];
+
+    }else{
+       index=0;
+       images.src = imgArr[index];
+    }
+
+ }
+
+ inTimes = setInterval(lunbo,time);
+ //后退
+ function back(){
+   
+   if (index>0) {
+   	images.src = imgArr[--index];
+   }
+   
+
+ }
+//前进
+ function go(){
+   
+   if (index<imgArr.length-1) {
+   	images.src = imgArr[++index];
+   }
+
+ }
+
+ //鼠标移入时停止自动轮播
+ function stop(){
+ 	clearInterval(inTimes);
+ }
+ //鼠标移出时开启自动轮播
+ function play(){
+  inTimes = setInterval(lunbo,time);
+ }
+
+ </script>
+</body>
+</html>

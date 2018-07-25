@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+
+
+  
+  *{margin:0px; padding:0px;}
+  body{background:url("images/bg3.jpg");}
+  
+  /*Con begin*/
+  #Con{width:1000px; height:600px; margin:50px auto;}
+  #Con .ConL{width:250px; height:600px; float:right; background:rgba(0,0,0,0.5);color:#ccc;}
+  #Con .ConR{width:750px; height:600px;background:rgba(0,0,0,0.3);float:left;background:url("images/music.gif"); }
+
+  #Con .ConL dl{width:135px; height:135px; margin:50px auto;}
+  #Con .ConL dl dt img{border-radius:10px;}
+  #Con .ConL dl dd{font-size:14px; text-align:center; line-height:35px; border-bottom:1px solid #ddd;}
+  #Con .ConL .Txt{overflow-y:scroll; height:350px;}
+  #Con .ConL .Txt p{font-size:12px; text-align:Center; line-height:30px; }
+  #Con .ConL .Txt p.hover{color:red;}
+  #Con .ConR ul li{height:30px;  list-style-type:None;text-indent:20px; font-size:14px;
+					font-family:"微软雅黑"; line-height:30px; color:#fff; margin:5px 0px;
+					}
+
+  /*Footer begin*/
+  #Footer{width:100%; height:76px; background:url("images/fbg.png"); position:fixed; bottom:0px;}
+  #Footer .but{width:30px;height:45px; cursor:pointer;float:left; margin:20px 0px 0px 20px;}
+  #Footer .play{background:url("images/play.png") no-repeat center;float:left;}
+  #Footer .next{background:url("images/next.png") no-repeat center;float:left;}
+  #Footer .prev{background:url("images/prev.png") no-repeat center;float:left; margin:20px 0px 0px 250px;}
+
+  /*进度条*/
+  .jd {height:30px; margin-top:35px; width:700px; float:left; margin-left:50px;position:relative;}
+  .jd .bar1{height:7px; width:100%; border:1px solid #000; border-radius:5px;background:#606060;}
+  .jd .bar2{height:7px; width:30%; background:#2a94d9; position:absolute; top:1px;left:1px;border-radius:5px; }
+  .jd .bar3{width:16px; height:16px; background:#fff; border-radius:8px; box-shadow:0px 0px 3px #000;position:absolute; left:29%; top:-4px;}
+/*滚动条*/
+.Txt::-webkit-scrollbar{width:5px;background:#ccc;}
+.Txt::-webkit-scrollbar-button{background-color:#e5e5e5;}
+.Txt::-webkit-scrollbar-thumb{background:#999;}
+
+  </style>
+ </head>
+ <body>
+  
+<!--<div id="Top"><div class="TopCon"><img src="images/logo.png" /></div></div>-->
+
+<div id="Con">
+	<div class="ConL">
+		<dl>
+			<dt><img src="images/xxpic.jpg" width="135" height="135" /></dt>
+			<dd>《梦的翅膀受了伤》</dd>
+		</dl>
+		<!--歌词开始-->
+		<div class="Txt">
+
+			
+		</div>
+		<!--歌词结束-->
+	</div>
+	<div class="ConR">
+		<textarea style="width:600px;height:300px;display:none;" id="lrc">
+[ar:梦的翅膀受了伤 蒋雪儿]
+[ti:梦的翅膀受了伤 蒋雪儿 ]
+[00:00.50]梦的翅膀受了伤 - 蒋雪儿
+[00:28.27]隐隐坠下季节的落叶
+[00:34.42]阵阵秋风吹得好凄凉
+[00:40.56]我的忧伤飘散在远方
+[00:47.12]没有你我感觉好孤单
+[00:53.37]思念已经化成了眼泪
+[00:59.81]一滴一滴刺痛我的心
+[01:06.00]梦的翅膀已经受了伤
+[01:12.35]我飞不到有你的地方
+[01:18.66]每次想你我都会心痛
+[01:24.23]我的思念转过寂静的天空
+[01:31.24]我的记忆里有你的痕迹
+[01:37.60]我的爱在寂寞世界里
+[01:43.96]天空飘过流浪的白云
+[01:49.36]就像我们已经破碎的爱情
+[01:56.54]爱得太累心已憔悴
+[02:02.97]让风吹干受伤的眼泪
+[02:34.16]思念已经化成了眼泪
+[02:40.82]一滴一滴刺痛我的心
+[02:47.07]梦的翅膀已经受了伤
+[02:53.38]我飞不到有你的地方
+[02:59.78]每次想你我都会心痛
+[03:05.20]我的思念转过寂静的天空
+[03:12.27]我的记忆里有你的痕迹
+[03:18.67]我的爱在寂寞世界里
+[03:25.02]天空飘过流浪的白云
+[03:30.17]就像我们已经破碎的爱情
+[03:37.60]爱得太累心已憔悴
+[03:43.96]让风吹干受伤的眼泪
+[03:50.31]让风吹干受伤的眼泪
+[03:56.57]让风吹干受伤的眼泪
+		</textarea>
+	</div>
+</div>
+
+<div id="Footer">
+	<div class="prev but"></div>
+	<div class="play but"></div>
+	<div class="next but"></div>
+
+	<div class="jd">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+</div>
+
+<audio id="myMusic" src="mp3/1.mp3"></audio>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+<script type="text/javascript">
+	
+	$("#myMusic").get(0).autoplay = "autoplay";
+
+	// 获取textarea的歌词
+	var lrc = $("#lrc").val();
+
+	// 把时间和歌词分离出来，
+	var lrcArr = lrc.split("[");
+	var html = "";
+	for(var i=0;i<lrcArr.length;i++){
+
+		// 第二次分割“]”
+		var arr = lrcArr[i].split("]");
+		console.log("==="+arr);
+		// 取到时间
+		var timer = arr[0].split(".");
+		// 取歌词
+		var message = arr[1];
+		// 拿到分钟和秒
+		var stime = timer[0].split(":");
+		// 转换成秒数
+		var ms = stime[0]*60 + stime[1]*1;
+		if(message){
+				html += "<p id='"+ms+"'>"+message+"</div>";
+			}
+		// 把解析好的歌词放入div中	
+		$(".Txt").html(html);
+	}
+
+
+
+	// 当音乐播放的时候，会调用timeupdate,时间发生变化的时候会一只调用事件
+	$("#myMusic").get(0).addEventListener("timeupdate",function(){
+		// 获取当前播放的时间
+			var timer = this.currentTime;
+		// 通过时间来驱动歌词
+			var s = parseInt(timer);
+			for(var i = 0; i < s; i++){
+				$("#"+i).addClass("hover");
+			}
+	});
+	
+	var i=0;
+	$(".play").click(function(){
+		if(i==0){
+			$(this).css("background-image","url(images/pause.png)");
+			$("#myMusic").get(0).pause();
+			i=1;
+		}else{
+			$(this).css("background-image","url(images/play.png)");
+			$("#myMusic").get(0).play();
+			i=0;
+		}
+	});
+</script>
+ </body>
+</html>

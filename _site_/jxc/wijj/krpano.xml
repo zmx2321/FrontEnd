@@ -1,0 +1,53 @@
+<!--
+本项目多度鹰漫游管理系统自动生成 无需任何代码基础 一键操作 购买与定制请联系 qq:1905755303 
+-->
+<krpano version="1.19" title="" showerrors="false">
+<include url="%SWFPATH%/cursor/cursor.xml"/>
+<progress showwait="false" showreloads="false" showload="none"/>
+<include url="%SWFPATH%/plugins/showtext.xml"/>
+<include url="%SWFPATH%/thumb/duobingxing.xml"/>
+<include url="%SWFPATH%/thumb/plugin.xml"/>
+<include url="%SWFPATH%/thumb/thumb.xml"/>
+<include url="%SWFPATH%/thumb/krpanocms/html.xml"/>
+<include url="%SWFPATH%/thumb/krpanocms/hongbao.xml"/>
+<include url="%SWFPATH%/thumb/krpanocms/html5_vr.xml"/>
+<events onxmlcomplete="set(control.mousetype, moveto);action(cursor);"/>
+<!--  自定义属性 供全局调用  -->
+<skin_settings krpanocms="true" loading="场景加载中" groupid="1" littleplanetintro="true" littleplanet_qs="2" webvr="true" bgmusic="false" bgyunyin="false" opennews="false" news="" opetel="false" tel="openurl('tel://',_blank)" showtel="TEL:" opehttp="false" http="openurl('',_blank )" opedaohang="false" daohang="openurl('http://360pano.net/map/index.html?marker=coord:;title:;addr:',_blank )" ope_bdmap="" bd_map="" music_id="0" password="" panoinfo="false" grid_title=""/>
+<autorotate enabled="true" waittime="3" speed="5" accel="1.0" horizon="0.0" tofov="off"/>
+<lensflareset name="DEFAULT" url="%SWFPATH%/plugins/flares.jpg"/>
+<action name="startup" autorun="onstart">
+if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[scene1].name); ); loadscene(get(startscene), null, MERGE); if(startactions !== null, startactions() );
+</action>
+<!--  当前场景 1 开始  -->
+<scene name="scene1" title="5亿像素上帝视角" title_hover="" title_top="" thumb_display="true" album="" title_area="" music_id="" group_id="1" thumburl="%SWFPATH%/images/scene1/thumb.jpg" onstart="groupscene(1);groupalpha(group1);" nadir="true">
+<view hlookat="-174.10900015558755" vlookat="13.844072280299445" fov="120" fovmin="70" fovmax="130" maxpixelzoom="1" fovtype="MFOV" limitview="range" hlookatmin="-180" hlookatmax="180" vlookatmin="-90" vlookatmax="90"/>
+<include url="%SWFPATH%/images/scene1/image.xml"/>
+<!--  场景热点信息开始 多度鹰管理系统自动生成 无需手动添加  -->
+<lensflare name="flare1" ath="105.31773650077037" atv="-0.7321470806266924" set="DEFAULT" size="0.8" blind="0.6" blindcurve="4" keep="False"/>
+<events name="sound1" onnewpano="playsound(bgyunyin, '%SWFPATH%/images/scene1/sound.mp3', 0);if(layer[skin_btn_yuyin].crop == 63|252|63|63,pausesoundtoggle(bgyunyin););" onremovepano="stopsound(bgyunyin);"/>
+<hotspot name="spot1" title="我" devices="all" scale.mobile="1.5" normal="false" url="%SWFPATH%/spot/spot10.png" ath="-147.15821348227126" atv="30.309751989672314" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" framespeed="0.03" frameoff="0" lastframe="24" onloaded="hotspot_animate();" onclick="open_tuwen(showpic30)" onhover="showtext('我',skintext);" onover="" onout=""/>
+<imginfo name="showpic30" title="那一天我站在上帝的位置" pic="%SWFPATH%/showpic/14881164402296.jpg" text="终于这一天我站在上帝的位置，你们都在我的眼下。。。" musicon="false" music="%SWFPATH%/showpic/" linkon="false" link=""/>
+<hotspot name="spot2" title="家" devices="all" scale.mobile="1.5" linkedscene="scene2" hlookat="360.694518511711" vlookat="0.4530205943374822" linkedscene_lookat="360.694518511711 0 120" url="%SWFPATH%/spot/spot13.png" ath="-132.96033395088443" atv="2.339284587915129" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" framespeed="0.03" frameoff="0" lastframe="24" onloaded="hotspot_animate();" onclick="skin_hotspotstyle_click();" onhover="showtext('家',skintext);" onover="" onout=""/>
+<!--  场景地图属性  多度鹰漫游管理系统自动生成 无需任何代码基础  -->
+<action name="dituscene"></action>
+</scene>
+<!--  场景 1 结束  -->
+<!--  当前场景 2 开始  -->
+<scene name="scene2" title="家里看看" title_hover="" title_top="" thumb_display="true" album="" title_area="" music_id="2" group_id="2" thumburl="%SWFPATH%/images/scene2/thumb.jpg" onstart="groupscene(2);groupalpha(group2);" nadir="true">
+<view hlookat="0" vlookat="0" fov="120" fovmin="70" fovmax="130" maxpixelzoom="1" fovtype="MFOV" limitview="range" hlookatmin="-180" hlookatmax="180" vlookatmin="-90" vlookatmax="90"/>
+<include url="%SWFPATH%/images/scene2/image.xml"/>
+<!--  场景热点信息开始 多度鹰管理系统自动生成 无需手动添加  -->
+<hotspot name="spot1" title="景" devices="all" scale.mobile="1.5" linkedscene="scene1" hlookat="0" vlookat="0" linkedscene_lookat="0 0 120" url="%SWFPATH%/spot/spot13.png" ath="41.06232885828251" atv="5.163213109822867" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" framespeed="0.03" frameoff="0" lastframe="24" onloaded="hotspot_animate();" onclick="skin_hotspotstyle_click();" onhover="showtext('景',skintext);" onover="" onout=""/>
+<!--  场景地图属性  多度鹰漫游管理系统自动生成 无需任何代码基础  -->
+<action name="dituscene"></action>
+</scene>
+<!--  场景 2 结束  -->
+<!--  鼠标右键版权信息内容 多度鹰漫游管理系统自动生成 无需任何代码基础  -->
+<contextmenu fullscreen="true" versioninfo="false" enterfs="全屏模式" exitfs="窗口模式">
+<item caption="左尔右东" onclick="openurl(13599013400,_blank);"/>
+<item name="nv_view" caption="正常视角模式" onclick="skin_view_normal();" showif="view.vlookatrange == 180" separator="true"/>
+<item name="nv_lp" caption="小行星模式" onclick="skin_view_littleplanet();" showif="view.vlookatrange == 180" devices="flash|webgl"/>
+</contextmenu>
+<!--  简易UI设置内容区 多度鹰漫游管理系统自动生成 无需任何代码基础  -->
+</krpano>

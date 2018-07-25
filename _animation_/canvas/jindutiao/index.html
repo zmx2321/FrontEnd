@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="canvas" width="120" height="30" style="cursor: pointer"></canvas>
+</body>
+</html>
+<script>
+    var canvas = document.querySelector('#canvas');
+    var ctx = canvas.getContext('2d');
+    draw();
+    canvas.onclick=function(){
+        ctx.clearRect(0,0,120,30);
+        draw();
+    }
+    function draw(){
+        /*绘制一个矩形   颜色随机*/
+        ctx.fillStyle=randColor(170,250);
+        ctx.fillRect(0,0,120,30);
+        var data = 'qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM1234567890';
+        for(var i = 0;i<=90;i+=30){
+            var c = data[randNum(0,data.length-1)];//index 随机数 ===>>>[0,data.length-1]
+            ctx.fillStyle = randColor(60,160);
+            ctx.font = randNum(15,40)+'px SimHei';
+            ctx.fillText(c,i+randNum(0,15),randNum(15,30));
+            //0+[0,15] 30+[0,15] 60+[0,15] 90+[0,15]
+        }
+        /*绘制干扰线*/
+        for(var i = 0;i<10;i++){
+            ctx.beginPath();
+            ctx.moveTo(randNum(0,120),randNum(0,120));
+            ctx.lineTo(randNum(0,120),randNum(0,120));
+            ctx.strokeStyle=randColor(60,160);
+            ctx.stroke();
+        }
+        /*绘制干扰点*/
+        for(var i = 0;i<10;i++){
+            ctx.beginPath();
+            ctx.arc(randNum(0,120),randNum(0,30),randNum(1,5),0,2*Math.PI);
+            ctx.strokeStyle = randColor(60,160);
+            ctx.stroke()
+        }
+    }
+
+    function randColor(min,max){
+        var r = Math.floor(Math.random()*(max-min+1)+min);//170+[0,80)
+        var g = Math.floor(Math.random()*(max-min+1)+min);
+        var b = Math.floor(Math.random()*(max-min+1)+min);
+        return 'rgb('+r+','+g+','+b+')';
+    }
+    function randNum(min,max){
+        var num = Math.floor(Math.random()*(max-min+1)+min);
+        return num;
+    }
+</script>

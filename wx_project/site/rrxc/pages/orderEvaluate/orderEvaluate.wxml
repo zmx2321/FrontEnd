@@ -1,0 +1,54 @@
+<!-- evaluate_wrap -->
+<view class="evaluate_wrap">
+  <view class="star_evaluate">
+    <view class="evaluate_cont">
+      <text>总分</text>
+      <view class="star">
+        <block wx:for="{{stars}}" wx:key="key">
+          <image class="star-image" style="left: {{item*80}}rpx" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+            <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+            <view class="item" style="left:30rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+          </image>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- evaluate_wrap -->
+
+<!-- text_evaluate -->
+<view class="text_evaluate">
+  <view class="texteval_top">
+    <view class="evaluate_cont">
+      <view class="texteval_top_ct">
+        <text data-num="1" class="{{_num==1 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="2" class="{{_num==2 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="3" class="{{_num==3 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="4" class="{{_num==4 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="5" class="{{_num==5 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="6" class="{{_num==6 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="7" class="{{_num==7 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="8" class="{{_num==8 ? 'active':''}}" bindtap="click">环境不错</text>
+        <text data-num="9" class="{{_num==9 ? 'active':''}}" bindtap="click">环境不错</text>
+      </view>
+      <view class="texteval_top_txt">
+        <text>您的评价是对我们最大的支持!</text>
+      </view>
+    </view>
+  </view>
+  <view class="texteval_bottom">
+    <view class="evaluate_cont">
+      <label class="elve_check">
+        <text>匿名评价</text>
+        <checkbox value="cb" checked="true" />
+      </label>
+    </view>
+  </view>
+</view>
+<!-- /text_evaluate -->
+
+<!-- mymess_button -->
+<view class="mymess_button">
+  <button bindtap="startRating">提交评价</button>
+</view>
+<!-- /mymess_button -->

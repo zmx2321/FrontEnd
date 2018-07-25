@@ -1,0 +1,130 @@
+/* swp_tab */
+.swp_tab{
+  width: 100%;
+  height: 102rpx;
+  margin: 0;
+  background: #fff;
+  border-bottom: 2rpx solid #efefef;
+  text-align: center;
+  line-height: 102rpx;
+  margin-bottom: 12rpx;
+}
+
+.swp_tab_cot{
+    position: relative;
+    width: 360rpx;
+    height: 66rpx;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 10rpx;
+    overflow: hidden;
+    border: solid 1px #00cd00;
+}
+
+.swiper-tab-list {
+    float: left;
+    font-size: 28rpx;
+    width: 180rpx;
+    height: 66rpx;
+    line-height: 66rpx;
+    text-align: center;
+    background: #fff;
+    color: #00cd00;
+    overflow: hidden;
+}
+
+.active {
+  background: #00cd00;
+  color: #fff;
+}
+/* /swp_tab */
+
+/* tab_cont */
+.follow_cont navigator{
+    font-size: 24rpx;
+    height: 230rpx;
+    background: #fff;
+    position: relative;
+    border: solid 1px transparent;
+    margin-bottom: 15rpx;
+}
+
+.fowcot_wrap{
+  margin: 22rpx;
+}
+
+fowcot_wrap::after{
+  display:block;
+  clear:both;
+  visibility:hidden;
+  height:0;
+  overflow:hidden;
+  content:".";
+}
+
+.fowcot_pic {
+  width:250rpx;
+  height: 188rpx;
+  float: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.fowcot_txt{
+  float:left;
+  margin-left:22rpx;
+  margin-top: -5rpx;
+  width:423rpx;
+  overflow:hidden;
+}
+
+.fowcot_title{
+  font-size:36rpx;
+  font-weight:bold;
+  margin-bottom:13rpx;
+  display:block;
+}
+
+.fowcot_lab1{
+  margin-bottom:13rpx;
+}
+
+.fowcot_lab1 text{
+  font-size: 26rpx;
+  border: solid 1px #f5560f;
+  color: #f5560f;
+  width: 128rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  text-align: center;
+  margin-right: 10rpx;
+}
+
+.fowcot_lab2{
+  margin-bottom:6rpx;
+}
+
+.fowcot_lab2 text{
+  font-size: 22rpx;
+  color: #565555;
+  margin-right: 10rpx;
+}
+
+.fowcot_atrbue .price{
+  float: left;
+  color: #f5560f;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.fowcot_atrbue .addr{
+  float: right;
+}
+
+.fowcot_atrbue .addr .addr_name{
+  border-right: solid 1px #ccc;
+  margin-right: 10rpx;
+  padding-right: 10rpx;
+}
+/* /tab_cont */

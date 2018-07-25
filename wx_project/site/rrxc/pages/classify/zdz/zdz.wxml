@@ -1,0 +1,235 @@
+<!-- import -->
+<import src="../../../common/nav.wxml" />
+<!-- /import -->
+
+<!-- nav_wrap -->
+<template is="nav" />
+<!-- /nav_wrap -->
+
+<!-- swiper -->
+<!-- tab -->
+<view class="swp_tab zdz_tab">
+  <!-- landlord_rm -->
+  <view class="landlord_rm tab_item {{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav">热门</view>
+  <!-- /landlord_rm  -->
+
+  <!-- landlord_a -->
+  <view class="landlord_a tab_item {{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav">定制茶园</view>
+  <!-- /landlord_a  -->
+
+  <!-- landlord_b -->
+  <view class="landlord_b tab_item {{currentTab==2 ? 'active' : ''}}" data-current="2" bindtap="swichNav">私家菜园</view>
+  <!-- /landlord_b   -->
+
+  <!-- landlord_c -->
+  <view class="landlord_c tab_item {{currentTab==3 ? 'active' : ''}}" data-current="3" bindtap="swichNav">缤纷果园</view>
+  <!-- /landlord_c   -->
+
+  <!-- landlord_d -->
+  <view class="landlord_d tab_item {{currentTab==4 ? 'active' : ''}}" data-current="4" bindtap="swichNav">生态土畜</view>
+  <!-- /landlord_d   -->
+</view>
+<!-- /tab -->
+
+<!-- cont -->
+<swiper class="tab_cont" current="{{currentTab}}" duration="300" bindchange="bindChange" style="height:{{winHeight-140}}px">
+  <!-- landlord_rm_cot -->
+  <swiper-item class="landlord_rm_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_zdz/raiseDetails_zdz">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">私家茶园</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——做地主</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /landlord_rm_cot -->
+
+  <!-- landlord_a_cot -->
+  <swiper-item class="landlord_a_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_zdz/raiseDetails_zdz">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">定制茶园</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——做地主</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /landlord_a_cot -->
+
+  <!-- landlord_b_cot -->
+  <swiper-item class="landlord_b_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">私家菜园</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——做地主</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /landlord_b_cot -->
+
+  <!-- landlord_c_cot -->
+  <swiper-item class="landlord_c_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">缤纷果园</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——做地主</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /landlord_c_cot -->
+
+  <!-- landlord_d_cot -->
+  <swiper-item class="landlord_d_cot">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">生态土畜</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——做地主</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标￥20000</text>
+                  <text>已筹￥40000</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+  </swiper-item>
+  <!-- /landlord_d_cot -->
+</swiper>
+<!-- /cont -->
+<!-- /swiper -->
+
+<!-- tip -->
+<view class="fixbtn">
+  <navigator class="my_message" url="/pages/myMessage/myMessage">
+    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/wd.png"></image>  
+  </navigator>
+</view>
+<!-- /tip -->

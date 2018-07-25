@@ -1,0 +1,38 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+		{
+		  "id":1,
+		  "img":"images/cs/find_village_ban1.png",
+		  "name": "156民宿",
+		  "url":"http://baidu.com"
+		},
+		{
+		  "id":2,
+		  "img":"images/cs/find_village_ban2.png",
+		  "name": "美丽乡村",
+		  "url":"http://baidu.com"
+		},
+		{
+		  "id":3,
+		  "img":"images/cs/find_village_ban3.png",
+		  "name": "景区乐园",
+		  "url":"http://baidu.com"
+		},
+		{
+		  "id":4,
+		  "img":"images/cs/find_village_ban1.png",
+		  "name": "生态农场",
+		  "url":"http://baidu.com"
+		},
+		{
+		  "id":5,
+		  "img":"images/cs/find_village_ban3.png",
+		  "name": "3333",
+		  "url":"http://http://www.cnblogs.com"
+		}
+	],
+  "length":null,
+  "rtCode":null
+}

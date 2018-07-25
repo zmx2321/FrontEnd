@@ -1,0 +1,411 @@
+<krpano>
+<!-- <krpano onstart="initiate_menu(); loadscene(scene_1,null,MERGE);"> -->
+
+	<!-- //调用皮肤 -->
+	<include url="skin/vtourskin.xml" />
+	<!-- <include url="%SWFPATH%/plugins/auto_thumbs.xml" /> -->
+	<!-- <include url="%SWFPATH%/plugins/tooltip.xml" /> -->
+
+
+	<!-- <group name="level_0">
+		<group name="object_1"  value="1. GROUP"             link="switch_menu(1);" />
+		<group name="object_2"  value="2. GROUP"             link="switch_menu(2);" />
+		<group name="object_3"  value="3. GROUP"             link="switch_menu(3);" />
+	</group>
+
+	<group name="level_1">
+		<group name="object_1"  value="GROUP 1 - element 1"  link="loadscene(scene_1,null,MERGE,BLEND(0.5))" />
+	</group>
+
+	<group name="level_2">
+		<group name="object_1"  value="GROUP 2 - element 1"  link="loadscene(scene_2,null,MERGE,BLEND(0.5))" />
+	</group>
+
+	<group name="level_3">
+		<group name="object_1"  value="GROUP 3 - element 1"  link="loadscene(scene_3,null,MERGE,BLEND(0.5))" />
+	</group> -->
+
+
+
+	<!-- //场景分组 -->
+	<!-- <skin_settings loadingtext="" />
+	<style name="textfield" url="%SWFPATH%/plugins/textfield.swf" background="false" css="font-size:14px; color:#FFFFFF; font-style:italic;" />
+	<style name="scrollarea" url.flash="%SWFPATH%/plugins/scrollarea.swf" url.html5="%SWFPATH%/plugins/scrollarea.js" />
+	<style name="button" url="%SWFPATH%/plugins/textfield.swf" background="true" backgroundalpha="0.2" css="font-size:14px; color:#FFFFFF;" border="true" bordercolor="0xFFFFFF" padding="2 4" /> -->
+
+	<!-- <layer name="blenddemo" keep="true" type="container" width="100%" height="300" align="center" bgcolor="get:skin_settings.design_bgcolor" bgalpha="get:skin_settings.design_bgalpha" bgborder="get:skin_settings.design_bgborder" bgroundedge="get:skin_settings.design_bgroundedge" bgshadow="get:skin_settings.design_bgshadow" bgcapture="true" x="0" y="0">
+		<layer name="bd_title" style="textfield" html="Select Blend Mode" align="top" y="4" background="false" enabled="false" />
+		<layer name="bd_scroller_container" type="container" align="top" y="30" width="-20" height="-40">
+			<layer name="bd_scroller" style="scrollarea" direction="v" width="100%" height="100" align="top" y="0" onclick="plugin[tip].aa();" /> 
+		</layer>
+	</layer> -->
+
+	<!-- <blendmodes name="no blending"          blend="NOBLEND"  />
+	<blendmodes name="simple crossblending" blend="BLEND(1.0, easeInCubic)" />
+	<blendmodes name="zoom blend"           blend="ZOOMBLEND(2.0, 2.0, easeInOutSine)" />
+	<blendmodes name="black-out"            blend="COLORBLEND(2.0, 0x000000, easeOutSine)" />
+	<blendmodes name="white-flash"          blend="LIGHTBLEND(1.0, 0xFFFFFF, 2.0, linear)" />
+	<blendmodes name="right-to-left"        blend="SLIDEBLEND(1.0, 0.0, 0.2, linear)" />
+	<blendmodes name="top-to-bottom"        blend="SLIDEBLEND(1.0, 90.0, 0.01, linear)" />
+	<blendmodes name="diagonal"             blend="SLIDEBLEND(1.0, 135.0, 0.4, linear)" />
+	<blendmodes name="circle open"          blend="OPENBLEND(1.0, 0.0, 0.2, 0.0, linear)" />
+	<blendmodes name="vertical open"        blend="OPENBLEND(0.7, 1.0, 0.1, 0.0, linear)" />
+	<blendmodes name="horizontal open"      blend="OPENBLEND(1.0, -1.0, 0.3, 0.0, linear)" />
+	<blendmodes name="elliptic + zoom"      blend="OPENBLEND(1.0, -0.5, 0.3, 0.8, linear)" />
+	<action name="add_blendmodes" autorun="onstart">
+		for(set(i,0), i LT blendmodes.count, inc(i),
+			set(ln, calc('bd_blend_'+i));
+			addlayer(get(ln));
+			copy(lr, layer[get(ln)]);
+			set(lr.parent, bd_scroller);
+			set(lr.keep, true);
+			lr.loadstyle(button);
+			copy(lr.html, blendmodes[get(i)].name);
+			copy(lr.blend, blendmodes[get(i)].blend);
+			set(lr.align, left);
+			set(lr.onclick, 'aa(get(blend))');
+			set(lr.y, calc(8+i*30));
+		  );
+		set(layer[bg_scroller].height, calc((blendmodes.count)*30+8));
+	</action> -->
+
+	<!-- <action name="aa">
+		set(layer[skin_layer].visible,false);
+	</action> -->
+
+	<action name="do_blending">
+		<!-- save current blending settings -->
+		push(skin_settings.loadscene_blend_prev);
+		push(skin_settings.loadscene_blend_next);
+		
+		<!-- overwrite the skin blending settings -->
+		set(skin_settings.loadscene_blend_prev, %1);
+		set(skin_settings.loadscene_blend_next, %1);
+		
+		<!-- load the next pano in the tour -->
+		skin_nextscene_loop(+1);
+		
+		<!-- restore the saved blending settings -->
+		pop(skin_settings.loadscene_blend_next);
+		pop(skin_settings.loadscene_blend_prev);
+	</action>
+
+	<!-- //自动旋转 -->
+	<autorotate enabled="true"         
+			    waittime="1.0"         
+			    speed="10.0"         
+			    horizon="0.0"         
+			    tofov="120.0" />
+
+	<!-- //浏览量/标题 s -->
+	<plugin name="tip"
+		    keep="true"
+	        url="js/custom_tour.js"
+	        onloaded="initial('plugin');"
+	        />
+
+	<!-- 浏览量 s -->
+	<layer name="view_num" 
+		   url="%SWFPATH%/plugins/textfield.swf"
+		   keep="true"
+		   y="70" 
+		   x="6"
+		   align="lefttop"
+           background="false"
+	       html="转发/浏览量 4848"
+	       css="color:#fff;font-size:8px;"
+  	/>
+	<!-- 浏览量 e -->
+
+	<!-- //标题 s -->
+		<!-- //场景名称 -->
+	<action  name="set_title">
+		set(layer[sen_title_txt].html,%1);
+	</action>
+
+	<layer name="sen_title_txt" 
+		   url="%SWFPATH%/plugins/textfield.swf"
+		   keep="true"
+		   y="10" 
+		   align="centertop"
+           background="false"
+	       css="color:#fff;font-size:10px;"
+  	/>
+
+		<!-- //跳转 -->
+	<action  name="">
+		
+	</action>
+
+    <layer name="sen_title_url" 
+   		   url="%SWFPATH%/plugins/textfield.swf" 
+   		   keep="true"  
+   		   y="30" 
+   		   align="centertop" 
+   		   background="false"
+   	       onclick="plugin[tip].set_url();"
+   	       html="立即进入"
+   	       css="color:#fff;font-size:10px;"
+	/>
+	<!-- //标题 e -->
+	<!-- //浏览量/标题 s -->
+
+<!-- 	<action  name="set_agree_view">
+		set(layer[agree_num_txt].html,%1);
+		set(layer[view_num_txt].html,%2);
+		
+		set(layer[agree_num].visible,true);
+		set(layer[view_num].visible,true);
+	</action>
+	
+	<action  name="set_agree">
+		set(layer[agree_num_txt].html,%1);
+	</action>
+	
+	<action  name="set_view">
+		set(layer[view_num_txt].html,%1);
+	</action>
+	
+	
+	<layer keep="true" name="agree_num" url="agree1.png"  x="120" y="20" align="righttop" scale="0.5" maskchildren="false" visible="false" onclick="plugin[va].add_agree();">
+		<layer name="agree_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0" x="-5" edge="left" align="right" y="0" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html=""  width="65"/>
+	</layer>
+	
+	<layer keep="true"  name="view_num" url="view.png" crop="0|704|64|64"  x="220" y="20" align="righttop" scale="0.5" onclick="" visible="false">
+		<layer name="view_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0"  x="-5" y="0" edge="left" align="right" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html="" width="65"/>
+	</layer> -->
+
+
+	<!-- <action  name="initial">
+		plugin[tip].initial_plugin());
+	</action> -->
+
+
+
+	<!-- <plugin name="tip"
+		    keep="true"
+	        url="js/custom_tour.js"
+	        align="center" y="-150"
+	        mode="testing"
+	        value="200.0"
+	        onclick="dosomething('hello', 'plugin');"
+	        /> -->
+
+	<!-- <plugin name="va" keep="true"
+	        url="js/custom_tour.js"
+			uid="test" 
+			onloaded="initial();"
+	/>
+	
+	<action  name="initial">
+		plugin[va].initial_plugin(get(uid));
+	</action>
+	
+	<action  name="set_agree_view">
+		set(layer[agree_num_txt].html,%1);
+		set(layer[view_num_txt].html,%2);
+		
+		set(layer[agree_num].visible,true);
+		set(layer[view_num].visible,true);
+	</action>
+	
+	<action  name="set_agree">
+		set(layer[agree_num_txt].html,%1);
+	</action>
+	
+	<action  name="set_view">
+		set(layer[view_num_txt].html,%1);
+	</action>
+	
+	
+	<layer keep="true" name="agree_num" url="agree1.png"  x="120" y="20" align="righttop" scale="0.5" maskchildren="false" visible="false" onclick="plugin[va].add_agree();">
+		<layer name="agree_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0" x="-5" edge="left" align="right" y="0" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html=""  width="65"/>
+	</layer>
+	
+	<layer keep="true"  name="view_num" url="view.png" crop="0|704|64|64"  x="220" y="20" align="righttop" scale="0.5" onclick="" visible="false">
+		<layer name="view_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0"  x="-5" y="0" edge="left" align="right" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html="" width="65"/>
+	</layer> -->
+<!-- 	<plugin name="va" keep="true"
+	        url="js/custom_tour.js"
+			uid="test" 
+			onloaded="initial();"
+	/>
+	
+
+	<action  name="initial">
+		plugin[va].initial_plugin(get(uid));
+	</action>
+	
+	<action  name="set_agree_view">
+		set(layer[agree_num_txt].html,%1);
+		set(layer[view_num_txt].html,%2);
+		
+		set(layer[agree_num].visible,true);
+		set(layer[view_num].visible,true);
+	</action>
+	
+	<action  name="set_agree">
+		set(layer[agree_num_txt].html,%1);
+	</action>
+	
+	<action  name="set_view">
+		set(layer[view_num_txt].html,%1);
+	</action>
+	
+	
+	<layer keep="true" name="agree_num" url="agree1.png"  x="120" y="20" align="righttop" scale="0.5" maskchildren="false" visible="false" onclick="plugin[va].add_agree();">
+		<layer name="agree_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0" x="-5" edge="left" align="right" y="0" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html=""  width="65"/>
+	</layer>
+	
+	<layer keep="true"  name="view_num" url="view.png" crop="0|704|64|64"  x="220" y="20" align="righttop" scale="0.5" onclick="" visible="false">
+		<layer name="view_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0"  x="-5" y="0" edge="left" align="right" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html="" width="65"/>
+	</layer> -->
+
+	<!-- //进入第一个场景 -->
+	<!-- startup action - load the first scene -->
+	<action name="startup" autorun="onstart">
+		if(startscene === null, 
+		copy(startscene,scene[0].name));               
+		loadscene(get(startscene), null, MERGE);               
+		<!-- playsound(bgsnd, 'zc.mp3', 0);                -->
+		if(autorotate.enabled,bombtimer(0));  
+	</action>
+
+	<!-- //在用户交互动作之后重置bombtimer -->
+	<events onmousedown="set(bt,0); " /> 
+	<!-- 这个名为bombtimer的action是一个计时器函数，它先接受一个传递来的参数，也就是从第几秒开始计算，假设我们是从0开始，接着增加这个action，使bt（bombtimer）的变量增加1，直到我们设定的值然后“引爆”，delayedcall指的是延迟执行，延迟执行什么呢，bombtimer(get(bt)，设置延迟执行的主要目的是为了我们之前加入的关闭（开启）旋转按钮能够继续生效。  那么当这个bombtimer的变量增加到多少时“引爆”呢，div(bt_2,405,bt_1);  这个代码中的405指的是当画面旋转405度的时候“引爆”然后进入下一个场景nextscene()，为什么是405度而不是360，因为在这个全景漫游中，我们默认的开场视角是90度，而旋转
+开始的角度是从视角的最右边开始计算，也就是说，旋转开始时计数器中的参数是45度而不是我们视场中心所处的0度，这样我们增加45度以便旋转一周后能够让视场的中心回到0度 -->
+	<action name="bombtimer">                
+		set(autorotate.enabled,true);                
+		set(bt,%1);                
+		add(bt,1);                 
+		delayedcall(1,bombtimer(get(bt)));                
+		copy(bt_1,autorotate.speed);                
+		Math.abs(bt_1);               
+		div(bt_2,405,bt_1);                 
+		add(bt_2,autorotate.waittime);                
+		if(bt GE bt_2, set(bt,0); nextscene(););         
+	</action> 
+
+	<!-- 这个action是为ns变量载入当前场景的序号，为maxs载入场景总数，每当ns增加1时，检查它是否是最后一个场景，如果是的话，就将ns重置为0，因为第一个场景的序号index就是0，请注意Krpano中，许多系统变量都是从0开始计算，而不是1 -->
+	<action name="nextscene">                 
+		set(ns, get(scene[get(xml.scene)].index));                
+		set(maxs, get(scene.count));                
+		add(ns,1);                 
+		if(ns == maxs, set(ns,0));                 
+		loadscene(get(scene[get(ns)].name), null, MERGE, BLEND(1.5));         
+	</action>
+	
+	<!-- //场景 -->
+	<scene name="scene_3" album="Áreas" title="3楼大床房 " onstart="" thumburl="panos/3.tiles/thumb.jpg" lat="" lng="" heading="">
+		<view hlookat="24.137" vlookat="15.452" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/3.tiles/preview.jpg" />
+		<image type="CUBE" multires="true" tilesize="512">
+			<level tiledimagewidth="4352" tiledimageheight="4352">
+				<cube url="panos/3.tiles/%s/l3/%0v/l3_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="2176" tiledimageheight="2176">
+				<cube url="panos/3.tiles/%s/l2/%0v/l2_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="1152" tiledimageheight="1152">
+				<cube url="panos/3.tiles/%s/l1/%0v/l1_%s_%0v_%0h.jpg" />
+			</level>
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="104.659" atv="16.672" linkedscene="scene_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-76.542" atv="28.234" linkedscene="scene_1" />
+	</scene>
+
+	<scene name="scene_1" title="外景" onstart="" thumburl="panos/1.tiles/thumb.jpg" lat="" lng="" heading="">
+		<view hlookat="-336.185" vlookat="8.990" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/1.tiles/preview.jpg" />
+		<image type="CUBE" multires="true" tilesize="512">
+			<level tiledimagewidth="4352" tiledimageheight="4352">
+				<cube url="panos/1.tiles/%s/l3/%0v/l3_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="2176" tiledimageheight="2176">
+				<cube url="panos/1.tiles/%s/l2/%0v/l2_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="1152" tiledimageheight="1152">
+				<cube url="panos/1.tiles/%s/l1/%0v/l1_%s_%0v_%0h.jpg" />
+			</level>
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="49.810" atv="7.899" linkedscene="scene_3" />
+	</scene>
+
+	<scene name="scene_2" title="顶楼活动室 " onstart="" thumburl="panos/2.tiles/thumb.jpg" lat="" lng="" heading="">
+		<view hlookat="-1128.473" vlookat="23.183" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/2.tiles/preview.jpg" />
+		<image type="CUBE" multires="true" tilesize="512">
+			<level tiledimagewidth="4352" tiledimageheight="4352">
+				<cube url="panos/2.tiles/%s/l3/%0v/l3_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="2176" tiledimageheight="2176">
+				<cube url="panos/2.tiles/%s/l2/%0v/l2_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="1152" tiledimageheight="1152">
+				<cube url="panos/2.tiles/%s/l1/%0v/l1_%s_%0v_%0h.jpg" />
+			</level>
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-137.873" atv="22.296" linkedscene="scene_3" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="75.915" atv="19.274" linkedscene="scene_1" />
+	</scene>
+<!--   <scene album="Áreas comunes" name="scene_10" title="Piscina exterior y fachada" thumburl="panos/10.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/10.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_9" title="Recepción" thumburl="panos/9.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/9.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_14" title="Patio interior del hotel" thumburl="panos/14.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/14.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_17" title="Spa, sauna seco, gimnasio y piscina interior" thumburl="panos/17.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/17.tiles/preview.jpg" />
+  </scene>
+
+  <scene album="River Suite" name="scene_2" title="Habitación" thumburl="panos/2.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/2.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_1" title="Living" thumburl="panos/1.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/1.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_3" title="River Suite - Toilette" thumburl="panos/3.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/3.tiles/preview.jpg" />
+  </scene>
+
+  <scene album="River Loft" name="scene_7" title="Habitación" thumburl="panos/7.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/7.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_8" title="Toilette" thumburl="panos/8.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/8.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_12" title="River Loft II - Toilette" thumburl="panos/12.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/12.tiles/preview.jpg" />
+  </scene>
+
+  <scene album="Super Loft" name="scene_15" title="Terraza" thumburl="panos/15.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/15.tiles/preview.jpg" />
+  </scene>
+
+  <scene name="scene_18" title="Interior" thumburl="panos/18.tiles/thumb.jpg" >
+    <view fovmin="50" fovmax="110" />
+    <preview url="panos/18.tiles/preview.jpg" />
+  </scene> -->
+</krpano>

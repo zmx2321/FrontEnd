@@ -1,0 +1,14 @@
+{
+  "pages":[
+   
+    "pages/swiper/swiper",
+    "pages/assembly/control",
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  }
+}

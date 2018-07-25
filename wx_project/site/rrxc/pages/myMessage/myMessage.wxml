@@ -1,0 +1,128 @@
+<!-- my_message_top -->
+<view class="my_message_top">
+  <!-- my_photo -->
+  <view class="my_photo">
+    <view class="my_photo_cot">
+      <view class="photo">
+        <image src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <text class="nickname">{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <!-- /my_photo -->
+
+  <!-- my_list -->
+  <view class="my_list">
+    <navigator class="myinfo" url="/pages/myInfo/myInfo">
+      <view class="myinfo_pic">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdxx.png"></image>
+      </view>
+      <text>我的消息</text>
+    </navigator>
+    <navigator class="follow" url="/pages/follow/follow">
+      <view class="follow_pic">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-gz.png"></image>
+      </view>
+      <text>关注</text>
+    </navigator>
+  </view>
+  <!-- /my_list -->
+</view>
+<!-- /my_message_top -->
+
+<!-- my_message_cont -->
+<view class="my_message_cont">
+  <!-- my_order -->
+  <view class="mymsgc my_order">
+    <!-- my_order_top -->
+    <navigator class="my_order_top" url="/pages/myOrder/myOrder">
+      <view class="my_order_top_cot">
+        <text>我的订单</text>
+        <text class="my_arror">查看全部</text>
+      </view>
+    </navigator>
+    <!-- /my_order_top -->
+
+    <!-- my_order_detail -->
+    <view class="my_order_detail">
+      <view class="modtc_cot">
+        <navigator class="dfk" url="/pages/myOrder/myOrder">
+           <view class="modtc_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-dfk.png"></image>
+          </view> 
+          <text>待付款</text>
+        </navigator>
+        <navigator class="jxz" url="/pages/myOrder/myOrder">
+          <view class="modtc_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-jxz.png"></image>
+          </view> 
+          <text>进行中</text>
+        </navigator>
+        <navigator class="dsh" url="/pages/myOrder/myOrder">
+          <view class="modtc_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-dsh.png"></image>
+          </view> 
+          <text>待收货</text>
+        </navigator>
+        <navigator class="dpj" url="/pages/myOrder/myOrder">
+          <view class="modtc_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-dpj.png"></image>
+          </view> 
+          <text>待评价</text>
+        </navigator>
+        <navigator class="tksh" url="/pages/myOrder/myOrder">
+          <view class="modtc_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-dfk.png"></image>
+          </view> 
+          <text>退款/售后</text>
+        </navigator>
+      </view>
+    </view>
+    <!-- /my_order_detail -->
+  </view>
+  <!-- /my_order -->
+
+  <!-- my_voucher -->
+  <view class="mymsgc my_voucher">
+    <!-- 个人推广二维码 -->
+    <navigator url="/pages/QRCode/QRCode">
+      <view class="mymsgc_ct">
+        <text>个人推广二维码</text>
+        <view class="mymsgc_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <!-- /个人推广二维码 -->
+  </view>
+  <!-- /my_voucher -->
+
+  <!-- my_setting -->
+  <!-- 商家入驻 -->
+  <view class="mymsgc mymsgc_wp">
+    <navigator url="/pages/businessSettled/businessSettled">
+      <view class="mymsgc_ct">
+        <text>商家入驻</text>
+        <view class="mymsgc_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <!-- /商家入驻 -->
+
+  <!-- 设置 -->
+  <view class="mymsgc mymsgc_wp">
+    <navigator url="/pages/mySettings/mySettings">
+      <view class="mymsgc_ct">
+        <text>设置</text>
+        <view class="mymsgc_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+  <!-- /设置 -->
+  <!-- /my_setting -->
+</view>
+<!-- /my_message_cont -->

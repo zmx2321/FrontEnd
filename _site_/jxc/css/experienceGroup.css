@@ -1,0 +1,52 @@
+/* lj_button s */
+.lj_button_pt0 a{
+    color: #fff;
+    font-size: 0.3rem;
+}
+
+.lj_button_pt1 dl{
+    font-size: 0;
+}
+
+.lj_button_pt1 dd{
+    display: inline-block;
+    width: 50%;
+}
+
+.lj_button_pt1 dd:first-child{
+    background: #f98450;
+}
+
+.lj_button_pt1 dd:last-child{
+    background: #f5560f;
+}
+
+.lj_button_pt1 dd a{
+    color: #fff;
+    font-size: 0.3rem;
+}
+/* lj_button e */
+
+/* modrct_wrap  s */
+.modrct_wrap{
+    min-height: initial;
+}
+
+.main_cot{
+    margin-bottom: 0;
+}
+
+.modrct_body{
+    background: initial;
+}
+
+.modrct_title{
+    border-bottom: solid 1px #efefef;
+}
+
+.modrct_cot dd{
+    color: #333;
+}
+/* modrct_wrap  e */
+
+

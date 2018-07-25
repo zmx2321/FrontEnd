@@ -1,0 +1,18 @@
+#newtime, #timeLine{
+    width: 800px;
+    height: 50px;
+    line-height: 50px;
+    margin: 50px auto 0;
+    border: solid 1px #333;
+    background: #fff;
+    text-align: center;
+}
+
+#newtime p, #timeLine p{
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+}
+
+#timeLine{
+    margin-top: 50px;
+}

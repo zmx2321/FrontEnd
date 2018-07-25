@@ -1,0 +1,253 @@
+/* odste_top_wrap */
+.odste_top_wrap {
+  width: 100%;
+  height: 210rpx;
+  overflow: hidden;
+  background: #00cd00;
+  margin-bottom: 16rpx;
+}
+
+.odste_top{
+  width: 78%;
+  height: 210rpx;
+  margin: 0 auto;
+}
+
+.odste_txt{
+  float: left;
+  margin-top: 50rpx;
+}
+
+.odste_txt text{
+  display: block;
+  color: #fff;
+}
+
+.odste_txt text.title{
+  font-size: 36rpx;
+}
+
+.odste_txt text.detail{
+  margin-top: 10rpx;
+}
+
+.odste_txt .title.sin{
+  margin-top: 30rpx;
+}
+
+.odste_pic{
+  float: right;
+  width: 120rpx;
+  height: 120rpx;
+  margin-top: 38rpx;
+  overflow: hidden;
+}
+/* /odste_top_wrap */
+
+/* odste_cot_wrap */
+/* odste_cot */
+.odste_list{
+  width: 100%;
+  min-height: 200rpx;
+  margin-bottom: 16rpx; 
+}
+
+.odste_list > .modrct_wrap:not(:last-child){
+  margin-bottom: 16rpx;
+}
+
+.ordstat_info text{
+  display: block;
+  margin-bottom: 10rpx;
+  font-size: 26rpx;
+}
+
+.ordstat_info .main_wrap{
+    padding: 20rpx 0;
+}
+/* /odste_cot */
+
+/* zc_odste_cot */
+.zc_odste_cot{
+  margin-top: -16rpx;
+}
+
+.zc_ordstat_tit{
+  width: 100%;
+  height: 60rpx;
+  background: #fff;
+  overflow: hidden;
+  border-bottom: solid 1px #efefef;
+  line-height: 60rpx;
+}
+
+.zc_od_s{
+  float: right;
+  color: #00cd00;
+}
+
+.zc_od_t{
+  float: left;
+  margin-left: 60rpx;
+  position: relative;
+}
+
+.zc_od_t::before{
+  content: '';
+  width: 44rpx;
+  height: 44rpx;
+  position: absolute;
+  top: 8rpx;
+  left: -50rpx;
+  overflow: hidden;
+  background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sjzy.png) top no-repeat;
+  background-size: 100%;
+}
+
+.zc_ordstat_list {
+  min-height: 100rpx;
+  border-bottom: solid 1px #efefef;
+  padding-bottom: 20rpx;
+  background: #fff;
+}
+
+.zc_ordstat_num{
+  border-bottom: solid 1px #efefef;
+  min-height: 80rpx;
+  padding-bottom: 20rpx;
+}
+
+.zc_odi_l {
+    float: left;
+    margin-top: 10rpx;
+}
+
+.zc_ordstat_num text{
+  display: block;
+  color: #666;
+}
+
+.zc_odi_l .price {
+    color: #00cd00;
+    font-size: 30rpx;
+}
+
+.zc_odi_r {
+    float: right;
+    margin-top: 45rpx;
+}
+
+.zc_odt_pic, .zc_odt_txt {
+    float: left;
+    margin-top: 16rpx;
+}
+
+.zc_odt_pic {
+    width: 110rpx;
+    height: 110rpx;
+    overflow: hidden;
+}
+
+.zc_odt_txt {
+    width: 560rpx;
+    margin-left: 15rpx;
+}
+
+.zc_odste_cot .ordstat_info{
+  margin-top: 16rpx;
+}
+/* /zc_odste_cot */
+
+/* jq_odste_cot */
+.jqtip {
+    border-top: solid 1px transparent;
+}
+
+.jqtip_txt, .jqtip_num, jqtip_rul{
+  border-bottom: solid 1px #efefef;
+}
+
+.jqtip_txt {
+    min-height: 240rpx;
+}
+
+.jqtip_num {
+    min-height: 150rpx;
+}
+
+.jqtip_rul {
+    min-height: 324rpx;
+}
+
+.jqtip_wrp {
+    margin-top: 30rpx;
+}
+
+.jqtip_lit text{
+  display: inline-block;
+  margin-bottom: 20rpx;
+}
+
+.jqtip_lit text:first-child{
+    color: #999;
+    width: 150rpx;
+    margin-right: 0;
+    font-size: 30rpx;
+}
+
+.jqtip_lit text:last-child{
+    font-size: 26rpx;
+}
+
+.jqtip_rul text{
+  float: left;
+}
+
+.jqtip_rul text:last-child{
+  width: 550rpx;
+}
+
+.jqtip_num_l {
+  float: left;
+  margin-top: 35rpx;
+}
+
+.jqtip_num_l text{
+  display: block;
+}
+
+.jqtip_num_l text:first-child{
+  margin-bottom: 12rpx;
+}
+
+.jqtip_num_l text:last-child{
+    color: #000;
+    font-weight: bold;
+    font-size: 30rpx;
+}
+
+.jqtip_num_r {
+    float: right;
+    width: 150rpx;
+    height: 70rpx;
+    margin-top: 35rpx;
+    border-left: solid 1px #efefef;
+    position: relative;
+}
+
+.jptip_pic{
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.jqtip_num_r text{
+  font-size: 20rpx;
+  text-align: center;
+  display: block;
+  margin-top: 45rpx;
+}
+/* /jq_odste_cot */
+/* /odste_cot_wrap */

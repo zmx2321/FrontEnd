@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/lib/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--对象迭代 v-for-->
+			<ul id="repeat-object" class="demo">
+				<li v-for="(key , value ) in object">
+					{{ key }} : {{ value }}
+				</li>
+			</ul>
+			<script type="text/javascript">
+				new Vue({
+					el:'#repeat-object',
+					data:{
+						object:{
+							FirstName:'John',
+							LastName:'Doe',
+							Age:30,
+						}
+					}
+				})
+			</script>
+	</body>
+</html>

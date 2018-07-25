@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>商品评分案例</title>
+  <style>
+  *{margin:0; padding:0;font-family: "微软雅黑";}
+ /*阿里图标库字体申明*/
+	@font-face {font-family: 'iconfont';
+		src: url('./iconfont/iconfont.eot'); /* IE9*/
+		src: url('./iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('./iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+		url('./iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		url('./iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+	}
+	.iconfont{
+		font-family: "iconfont" !important;
+		font-size: 20px;
+		line-height: 30px;
+		cursor: pointer;
+		color: #ccc;
+		}
+	.pinl{width:261px; height:30px; margin:250px auto 0}
+	.pinl i{font-style:normal}
+	.pinl i.hover{color: #fe5f56}
+	.pinl strong{line-height: 30px; font-size:14px;}
+  </style>
+ </head>
+ <body>
+      <div class="pinl">
+		  <span>商品评分：</span>
+		  <b class="fen">
+			  <i class="iconfont hover">&#xe754;</i>
+			  <i class="iconfont hover">&#xe754;</i>
+			  <i class="iconfont hover">&#xe754;</i>
+			  <i class="iconfont hover">&#xe754;</i>
+			  <i class="iconfont">&#xe754;</i>
+		  </b>
+		  <strong>&nbsp;&nbsp;4分</strong>
+      </div>
+ </body>
+ <script src="js/jquery-1.8.3.min.js"></script>
+ <script>
+      $('.iconfont').click(function(){
+    	var $xs = $(this).index()+1; 
+    	$('.pinl strong').html('&nbsp;&nbsp;'+$xs+'分');
+    	$(this).addClass('hover');
+    	$(this).prevAll().addClass('hover')
+    	$(this).nextAll().removeClass('hover');
+    });
+ </script>
+</html>

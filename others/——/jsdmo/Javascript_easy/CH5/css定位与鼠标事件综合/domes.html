@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <title></title>
+      <meta charset="utf-8">
+<style type="text/css">
+      
+      #Box{ width: 600px;position: relative;border: 1px solid black;height: 600px;}
+      .Box_Child{ width:100px;height:100px;border:1px solid red;position: absolute;box-shadow: 0 0 5px #3c3c3c;}
+      #Imgs{width: 240px;height: 240px;position: absolute;top: 349px;left: 349px;border: 1px solid blue;}
+
+</style>
+<script type="text/javascript">
+      //div集合
+      var divList;
+      var maxIndex=100;
+      var imgss = new Array('imgs1.png','imgs2.png','imgs3.png','imgs4.png','imgs5.png','imgs6.png','imgs7.png','imgs8.png','imgs9.png','imgs10.png');
+      window.onload=function () {
+        
+      var box = document.getElementById('Box');
+      
+      for (var i = 0; i < 10; i++) {
+
+            var img  = document.createElement('img');
+                img.className='Box_Child';
+                img.style.top=(i+1)*30+"px";
+                img.style.left=(250-(i+1)*10)+"px";
+                img.style.zIndex=(i+1);
+                img.src=imgss[i];
+                img.onmouseover=QBox;
+            box.appendChild(img);
+      }
+
+       divList = box.getElementsByTagName('img');
+            
+      }
+
+      function QBox(){
+            var Imgs = document.getElementById('Imgs');
+       for (var i = 0; i < divList.length; i++) {
+      
+                       if (divList[i]==this) {
+                         divList[i].style.zIndex=maxIndex;
+                         divList[i].style.border="1px solid black";
+                         Imgs.style.backgroundImage='url('+imgss[i]+')';
+                       }else{
+                        divList[i].style.zIndex=(i+1);
+                         divList[i].style.border="1px solid red";
+                       }
+       }
+
+      }
+
+</script>
+</head>
+<body>
+
+ <div id="Box">
+       
+<div id="Imgs"></div>
+ </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!-- payment_body -->
+<view class="main_body payment_body">
+  <!-- xzhb -->
+  <view class='main_cot payment_cont'>
+    <view class='modrct_title'>
+      <text class='modrct_cot'>类型选择</text>
+    </view>
+    <view class="xzhb">
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <button class='count_down'>-</button>
+              <input class='count_num' value='1'></input>
+              <button class='count_up'>+</button>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+                有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+              </p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <button class='count_down'>-</button>
+              <input class='count_num' value='1'></input>
+              <button class='count_up'>+</button>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+                有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+              </p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <button class='count_down'>-</button>
+              <input class='count_num' value='1'></input>
+              <button class='count_up'>+</button>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+                有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+              </p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <button class='count_down'>-</button>
+              <input class='count_num' value='1'></input>
+              <button class='count_up'>+</button>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+                有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+              </p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+
+      <view class="xzhb_list">
+        <view class="xzhb_top">
+          <view class="main_wrap">
+            <view class="xzhb_top_left">
+              <text class="price">¥8</text>
+              <text class="num">支持135份/无限制</text>
+            </view>
+            <view class="xzhb_top_select">
+              <button class='count_down'>-</button>
+              <input class='count_num' value='1'></input>
+              <button class='count_up'>+</button>
+            </view>
+          </view>
+        </view>
+        <view class="xzhb_cot">
+          <view class="main_wrap">
+            <view class="xzhb_cot_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="xzhb_cot_txt">
+              <p>
+                有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+              </p>
+            </view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- /xzhb -->
+
+  <view class="main_cot payment_cont">
+    <view class="modrct_btn">
+      <navigator class="modrct_cot">
+        <text class="modrct_btn_l">店铺优惠券</text>
+        <text class="modrct_btn_r">无优惠券</text>
+      </navigator>
+    </view> 
+  </view>
+  <view class="main_cot payment_way">
+    <view class="main_wrap">
+      <text class="payment_way_l">微信支付</text>
+      <view class="payment_way_r">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-spxq-tb.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- /payment_body -->
+
+<!-- payment_botton -->
+<view class="main_botton payment_botton">
+  <view class="payment_botton_cont">
+    <view class="payment_botton_txt">
+      <text>实付款：</text>
+      <text class="price">￥18</text>
+    </view>
+    <view class="payment_botton_btn">
+      <button bindtap="jumpToOrder">立即付款</button>
+    </view>
+  </view>
+</view>
+<!-- /payment_botton -->

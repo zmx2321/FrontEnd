@@ -1,0 +1,35 @@
+.slide {
+	width: 200px;
+	height: 100px;
+	position: relative;
+	background: #f00;
+}
+
+.pointer {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.pointer i {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
+	background: #000;
+	border-radius: 5px;
+	transition: 0.2s linear;
+}
+
+.pointer i:last-child {
+	margin-right: 0;
+}
+
+.pointer i.current, .pointer i:hover {
+	background: #fff;
+}
+
+.pointer i:hover {
+	transition: 0.2s linear;
+	cursor: pointer;
+}

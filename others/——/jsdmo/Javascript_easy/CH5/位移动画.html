@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		var box = null;
+		window.onload = function () {
+			    box = document.getElementById('box');	
+				box.onmouseover =startMove;	
+				//box.onmouseout =startMove1;
+				
+		}
+        
+        var times=null;
+		function startMove(){
+			clearInterval(times);
+			times = setInterval(function(){
+            if (box.offsetLeft==0) {
+            clearInterval(times);
+            }else{
+         	box.style.left = box.offsetLeft+1+'px';
+              }
+
+			},30);
+		}
+
+				function startMove1(){
+			clearInterval(times);
+			var box = document.getElementById('box');
+
+			times = setInterval(function(){
+            if (box.offsetLeft==-200) {
+            clearInterval(times);
+            }else{
+            	//alert('尼玛嗨');
+         	box.style.left = box.offsetLeft-10+'px';
+              }
+
+			},30);
+
+
+		}
+
+	</script>
+</head>
+<style type="text/css">
+    *{margin: 0px;padding: 0px;}
+	#box{width: 200px;height: 100px;background: red;position: relative;left: -200px;top: 200px;}
+	#onBox{width: 30px;height: 60px;background: blue;position: absolute;left: 200px;top: 20px;text-align: center;line-height: 30px;color: #fff;}
+
+</style>
+<body>
+  <div id="box">
+  	<div id="onBox">走你</div>
+  </div>
+
+</body>
+</html>

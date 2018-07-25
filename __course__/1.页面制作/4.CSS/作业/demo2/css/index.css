@@ -1,0 +1,12 @@
+span {
+	font:bold 16px/25px simsun;
+	color: #000;
+	width: 200px;
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;	
+}
+
+
+/*顺序：font-style | font-variant | font-weight | font-size | line-height | font-family*/

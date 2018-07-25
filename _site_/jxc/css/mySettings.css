@@ -1,0 +1,46 @@
+.mySettings_all{
+    font-size: 0.24rem;
+}
+
+.myset_cont a{
+	display: block;
+	width: 100%;
+	height: 1.02rem;
+	background: #fff;
+	margin-bottom: 0.16rem;
+	overflow: hidden;
+}
+
+.myset_cont_mar{
+	width: 7.2rem;
+	margin: 0 auto;
+	height: 1.02rem;
+	line-height: 1.02rem;
+}
+
+.myset_cont_mar ul{
+    width: 100%;
+    display: -webkit-inline-box;
+    -webkit-box-pack: justify;
+}
+
+.myset_cont_mar li{
+	height: 1.02rem;
+	line-height: 1.02rem;
+}
+
+.myset_cont_mar li:last-child{
+	position: relative;
+}
+
+.myset_cont_mar li:last-child img{
+	margin: 0;
+}
+
+.myset_cont_pic {
+    margin-top: 0.1rem;
+}
+
+h2{
+	font-size: 0.28rem;
+}

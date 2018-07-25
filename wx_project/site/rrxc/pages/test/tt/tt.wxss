@@ -1,0 +1,19 @@
+/* map */
+.map_container{
+  height: 670rpx;
+  width: 100%;
+} 
+
+.map {
+  height: 100%;
+  width: 100%;
+} 
+
+.place_info {
+  width: 100%;
+  position:absolute;
+  padding:0 5px;
+  bottom:166px; 
+  background: #efefef;
+}
+/* /map */

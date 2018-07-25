@@ -1,0 +1,58 @@
+{
+  "error": false,
+  "msg": "获取活动详情成功.",
+  "data": {
+    "match": {
+      "id": 2,
+      "groupType": 7,
+      "name": "啊啊啊",
+      "title": "阿斯顿",
+      "content": "比赛开始时间为11月19号星期六。报名截止时间为推延至11月13号下午三点。由于比赛服的版本更新问题，在比赛前三到五天提供下载地址。账号由学院提供。同学们抓紧时间报名，超过报名时间不予受理。",
+      "matchRule": "联赛队伍最多允许一个钻石以上段位，两个白金段位存在（也就是最多三个白金），剩下的队员必须是青铜白银黄金选手。",
+      "img": "82c00f29fc52180e30d6e0d4c8235a5a.png",
+      "bgImg": "82c00f29fc52180e30d6e0d4c8235a5a.png",
+      "exDate": "{'signUrl':'http://www.baidu.com','labViewId':'6'}",
+      "startTime": 1480762800000,
+      "endTime": 1480849200000,
+      "signEndTime": 1480590000000
+    },
+    "players": [
+      {
+        "id": 1,
+        "userKey": "1",
+        "userName": "zhanzhan",
+        "header": "Jax.png",
+        "addTime": 1480916698000
+      },
+      {
+        "id": 2,
+        "userKey": "1",
+        "userName": "zzzzzz",
+        "header": "Jax.png",
+        "addTime": 1480916698000
+      }
+    ],
+    "matchTeams": [
+      {
+        "id": 1,
+        "matchId": 2,
+        "teamName": "hahaha",
+        "header": null,
+        "leaderKey": null,
+        "win": false,
+        "rank": null
+      },
+      {
+        "id": 2,
+        "matchId": 2,
+        "teamName": "zzzzzz",
+        "header": null,
+        "leaderKey": null,
+        "win": false,
+        "rank": null
+      }
+    ]
+  },
+  "length": null,
+  "rtCode": null
+}

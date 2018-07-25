@@ -1,0 +1,73 @@
+<!-- main_tab -->
+<view class="main_tab">
+  <!-- poyctyt_nav -->
+  <view class="poyctyt_nav" bindtap="tabFun">
+    <view class="ptnv_cot">
+      <!-- zcl -->
+      <view class="zcl {{tabArr.curHdIndex=='0'? 'active' : ''}}" data-id="0">
+        <text>123</text>
+      </view>
+      <!-- /zcl -->
+
+      <!-- wzt -->
+      <view class="wzt {{tabArr.curHdIndex=='1'? 'active' : ''}}" data-id="1">
+        游主题
+      </view>
+      <!-- /wzt -->
+
+      <!-- zdz -->
+      <view class="zdz {{tabArr.curHdIndex=='2'? 'active' : ''}}" data-id="2">
+        做地主
+      </view>
+      <!-- zdz -->
+
+      <!-- dcm -->
+      <view class="dcm {{tabArr.curHdIndex=='3'? 'active' : ''}}" data-id="3">
+        投村产
+      </view>
+      <!-- /dcm -->
+
+      <!-- pth -->
+      <view class="pth {{tabArr.curHdIndex=='4'? 'active' : ''}}" data-id="4">
+        拼土货
+      </view>
+      <!-- /pth -->
+    </view>
+  </view>
+  <!-- /poyctyt_nav -->
+
+  <!-- poycty_body -->
+  <view class="poycty_body">
+    <!-- find_village_wrap -->
+    <view class="find_village_wrap {{tabArr.curBdIndex=='0'? 'active' : ''}}">
+      找村落
+    </view>
+    <!-- /find_village_wrap -->
+
+    <!-- play_theme_wrap -->
+    <view class="play_theme_wrap {{tabArr.curBdIndex=='1'? 'active' : ''}}">
+      游主题
+    </view>
+    <!-- /play_theme_wrap -->
+
+    <!-- be_landlord_wrap -->
+    <view class="be_landlord_wrap {{tabArr.curBdIndex=='2'? 'active' : ''}}">
+      做地主
+    </view>
+    <!-- /be_landlord_wrap -->
+
+    <!-- be_villagers_wrap -->
+    <view class="be_villagers_wrap {{tabArr.curBdIndex=='3'? 'active' : ''}}">
+      投村产
+    </view>
+    <!-- /be_villagers_wrap -->
+
+    <!-- fight_tuhuo_wrap -->
+    <view class="fight_tuhuo_wrap {{tabArr.curBdIndex=='4'? 'active' : ''}}">
+      拼土货
+    </view>
+    <!-- /fight_tuhuo_wrap -->
+  </view>
+  <!-- /poycty_body -->
+</view>
+<!-- /main_tab -->

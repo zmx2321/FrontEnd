@@ -1,0 +1,177 @@
+﻿<krpano>
+
+	<include url="skin/vtourskin.xml" />
+
+
+
+	<!-- //点赞/浏览量/文字显示 -->
+		<!-- <preview type="grid()" /> -->
+	
+	<plugin name="test"
+		    keep="true"
+	        url="js/custom_tour.js"
+	        align="center" y="-150"
+	        mode="testing"
+	        value="200.0"
+	        onclick="dosomething('hello', 'plugin');"
+	        />
+	<!-- <plugin name="va" keep="true"
+	        url="js/custom_tour.js"
+			uid="test" 
+			onloaded="initial();"
+	/>
+	
+
+	<action  name="initial">
+		plugin[va].initial_plugin(get(uid));
+	</action>
+	
+	<action  name="set_agree_view">
+		set(layer[agree_num_txt].html,%1);
+		set(layer[view_num_txt].html,%2);
+		
+		set(layer[agree_num].visible,true);
+		set(layer[view_num].visible,true);
+	</action>
+	
+	<action  name="set_agree">
+		set(layer[agree_num_txt].html,%1);
+	</action>
+	
+	<action  name="set_view">
+		set(layer[view_num_txt].html,%1);
+	</action>
+	
+	
+	<layer keep="true" name="agree_num" url="agree1.png"  x="120" y="20" align="righttop" scale="0.5" maskchildren="false" visible="false" onclick="plugin[va].add_agree();">
+		<layer name="agree_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0" x="-5" edge="left" align="right" y="0" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html=""  width="65"/>
+	</layer>
+	
+	<layer keep="true"  name="view_num" url="view.png" crop="0|704|64|64"  x="220" y="20" align="righttop" scale="0.5" onclick="" visible="false">
+		<layer name="view_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0"  x="-5" y="0" edge="left" align="right" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html="" width="65"/>
+	</layer> -->
+<!-- 	<plugin name="va" keep="true"
+	        url="js/custom_tour.js"
+			uid="test" 
+			onloaded="initial();"
+	/>
+	
+
+	<action  name="initial">
+		plugin[va].initial_plugin(get(uid));
+	</action>
+	
+	<action  name="set_agree_view">
+		set(layer[agree_num_txt].html,%1);
+		set(layer[view_num_txt].html,%2);
+		
+		set(layer[agree_num].visible,true);
+		set(layer[view_num].visible,true);
+	</action>
+	
+	<action  name="set_agree">
+		set(layer[agree_num_txt].html,%1);
+	</action>
+	
+	<action  name="set_view">
+		set(layer[view_num_txt].html,%1);
+	</action>
+	
+	
+	<layer keep="true" name="agree_num" url="agree1.png"  x="120" y="20" align="righttop" scale="0.5" maskchildren="false" visible="false" onclick="plugin[va].add_agree();">
+		<layer name="agree_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0" x="-5" edge="left" align="right" y="0" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html=""  width="65"/>
+	</layer>
+	
+	<layer keep="true"  name="view_num" url="view.png" crop="0|704|64|64"  x="220" y="20" align="righttop" scale="0.5" onclick="" visible="false">
+		<layer name="view_num_txt" url="%SWFPATH%/plugins/textfield.swf" backgroundalpha="0"  x="-5" y="0" edge="left" align="right" css="calc:skin_settings.design_text_css + ' text-align:left; font-size:' + (device.mobile ? 12 : 16) + 'px;'" textshadow="get:skin_settings.design_text_shadow" html="" width="65"/>
+	</layer> -->
+
+	<!-- //进入第一个场景 -->
+	<!-- startup action - load the first scene -->
+	<action name="startup" autorun="onstart">
+		if(startscene === null, 
+		copy(startscene,scene[0].name));               
+		loadscene(get(startscene), null, MERGE);               
+		<!-- playsound(bgsnd, 'zc.mp3', 0);                -->
+		if(autorotate.enabled,bombtimer(0));  
+	</action>
+
+	<!-- //在用户交互动作之后重置bombtimer -->
+	<events onmousedown="set(bt,0); " /> 
+	<!-- 这个名为bombtimer的action是一个计时器函数，它先接受一个传递来的参数，也就是从第几秒开始计算，假设我们是从0开始，接着增加这个action，使bt（bombtimer）的变量增加1，直到我们设定的值然后“引爆”，delayedcall指的是延迟执行，延迟执行什么呢，bombtimer(get(bt)，设置延迟执行的主要目的是为了我们之前加入的关闭（开启）旋转按钮能够继续生效。  那么当这个bombtimer的变量增加到多少时“引爆”呢，div(bt_2,405,bt_1);  这个代码中的405指的是当画面旋转405度的时候“引爆”然后进入下一个场景nextscene()，为什么是405度而不是360，因为在这个全景漫游中，我们默认的开场视角是90度，而旋转
+开始的角度是从视角的最右边开始计算，也就是说，旋转开始时计数器中的参数是45度而不是我们视场中心所处的0度，这样我们增加45度以便旋转一周后能够让视场的中心回到0度 -->
+	<action name="bombtimer">                
+		set(autorotate.enabled,true);                
+		set(bt,%1);                
+		add(bt,1);                 
+		delayedcall(1,bombtimer(get(bt)));                
+		copy(bt_1,autorotate.speed);                
+		Math.abs(bt_1);               
+		div(bt_2,405,bt_1);                 
+		add(bt_2,autorotate.waittime);                
+		if(bt GE bt_2, set(bt,0); nextscene(););         
+	</action> 
+
+	<!-- 这个action是为ns变量载入当前场景的序号，为maxs载入场景总数，每当ns增加1时，检查它是否是最后一个场景，如果是的话，就将ns重置为0，因为第一个场景的序号index就是0，请注意Krpano中，许多系统变量都是从0开始计算，而不是1 -->
+	<action name="nextscene">                 
+		set(ns, get(scene[get(xml.scene)].index));                
+		set(maxs, get(scene.count));                
+		add(ns,1);                 
+		if(ns == maxs, set(ns,0));                 
+		loadscene(get(scene[get(ns)].name), null, MERGE, BLEND(1.5));         
+	</action>
+	
+	<!-- //场景 -->
+	<scene name="scene_3" title="3楼大床房 " onstart="" thumburl="panos/3.tiles/thumb.jpg" lat="" lng="" heading="">
+		<view hlookat="24.137" vlookat="15.452" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/3.tiles/preview.jpg" />
+		<image type="CUBE" multires="true" tilesize="512">
+			<level tiledimagewidth="4352" tiledimageheight="4352">
+				<cube url="panos/3.tiles/%s/l3/%0v/l3_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="2176" tiledimageheight="2176">
+				<cube url="panos/3.tiles/%s/l2/%0v/l2_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="1152" tiledimageheight="1152">
+				<cube url="panos/3.tiles/%s/l1/%0v/l1_%s_%0v_%0h.jpg" />
+			</level>
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="104.659" atv="16.672" linkedscene="scene_2" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-76.542" atv="28.234" linkedscene="scene_1" />
+	</scene>
+
+	<scene name="scene_1" title="外景" onstart="" thumburl="panos/1.tiles/thumb.jpg" lat="" lng="" heading="">
+		<view hlookat="-336.185" vlookat="8.990" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/1.tiles/preview.jpg" />
+		<image type="CUBE" multires="true" tilesize="512">
+			<level tiledimagewidth="4352" tiledimageheight="4352">
+				<cube url="panos/1.tiles/%s/l3/%0v/l3_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="2176" tiledimageheight="2176">
+				<cube url="panos/1.tiles/%s/l2/%0v/l2_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="1152" tiledimageheight="1152">
+				<cube url="panos/1.tiles/%s/l1/%0v/l1_%s_%0v_%0h.jpg" />
+			</level>
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="49.810" atv="7.899" linkedscene="scene_3" />
+	</scene>
+
+	<scene name="scene_2" title="顶楼活动室 " onstart="" thumburl="panos/2.tiles/thumb.jpg" lat="" lng="" heading="">
+		<view hlookat="-1128.473" vlookat="23.183" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/2.tiles/preview.jpg" />
+		<image type="CUBE" multires="true" tilesize="512">
+			<level tiledimagewidth="4352" tiledimageheight="4352">
+				<cube url="panos/2.tiles/%s/l3/%0v/l3_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="2176" tiledimageheight="2176">
+				<cube url="panos/2.tiles/%s/l2/%0v/l2_%s_%0v_%0h.jpg" />
+			</level>
+			<level tiledimagewidth="1152" tiledimageheight="1152">
+				<cube url="panos/2.tiles/%s/l1/%0v/l1_%s_%0v_%0h.jpg" />
+			</level>
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-137.873" atv="22.296" linkedscene="scene_3" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="75.915" atv="19.274" linkedscene="scene_1" />
+	</scene>
+</krpano>

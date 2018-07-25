@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村-绑定手机号</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/bindphone.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="bindphone_all">
+	<div class="bindphone_cont">
+		<ul>
+			<!-- 未绑定 s -->
+			<div class="bindphone_yet">
+				<li>
+					<div class="cont_wrap">
+						<div class="cont_left">
+							<div class="cont_left_pic">
+								<img src="images/icon-sj.png" />
+							</div>
+							<div class="cont_left_txt">
+								<input type="text" name="bid_phone" placeholder="请输入手机号码" />
+							</div>
+						</div>
+						<div class="cont_right">
+							<button>获取验证码</button>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="cont_wrap">
+						<div class="cont_left">
+							<div class="cont_left_pic">
+								<img src="images/icon-yzm.png" />
+							</div>
+							<div class="cont_left_txt">
+								<input type="text" name="bid_identcode" placeholder="请输入手机验证码" />
+							</div>
+						</div>
+					</div>
+				</li>
+			</div>
+			<!-- 未绑定 e -->
+
+			<!-- 已绑定 s -->
+			<div class="bindphone_ald" style="display: none;">
+				<li>
+					<div class="cont_wrap">
+						<div class="cont_left">
+							<div class="cont_left_txt">
+								<span>绑定手机号</span>
+							</div>
+						</div>
+						<div class="cont_right">
+							<span class="green">188****8888</span>
+						</div>
+					</div>
+				</li>
+			</div>
+			<!-- 已绑定 e -->
+		</ul>
+	</div>
+	
+	<div class="mymess_button">
+		<button>确认提交</button>
+		<!-- <button>更换手机号</button> -->
+	</div>
+</div>
+
+<!-- test_bubble s -->
+<span class="test_bubble">请输入验证码</span>
+<!-- test_bubble e -->
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/basefont.js"></script>
+<script src="mockface/b-mock.js"></script>
+<script src="js/bindphone.js"></script>
+<!-- js e -->
+</body>
+</html>

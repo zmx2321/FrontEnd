@@ -1,0 +1,16 @@
+.box{
+	width: 100px;
+	height: 100px;
+	background: #f00;
+	cursor: pointer;
+}
+
+.aa{
+	width: 100px;
+	height: 100px;
+	background: #f00;
+	position: absolute;
+	left: 300px;
+	top: 200px;
+	display: none;
+}

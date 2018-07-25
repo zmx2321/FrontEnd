@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>数组</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+
+<!-- body e -->
+
+<!-- js s -->
+<script>
+/*5.看下splice()方法
+
+用于插入、删除或替换数组的元素。
+
+语法
+arrayObject.splice(index,howmany,element1,.....,elementX)
+
+参数描述：
+
+index 必需。规定从何处添加/删除元素。
+该参数是开始插入和（或）删除的数组元素的下标，必须是数字。
+howmany 必需。规定应该删除多少元素。必须是数字，但可以是 "0"。
+如果未规定此参数，则删除从 index 开始到原数组结尾的所有元素。
+element1 可选。规定要添加到数组的新元素。从 index 所指的下标处开始插入。
+elementX 可选。可向数组添加若干元素。
+
+返回值
+如果从 arrayObject 中删除了元素，则返回的是含有被删除的元素的数组。*/
+
+
+
+
+ // var a=[11,22,33];
+ // b=a.splice(0,1,"x","y",[6,7,8]);
+ // document.write(b+"<br/>");//返回被删除的元素的数组 //11
+ // a=a.join("|");
+ // document.write(a);//splice()不能将它的参数展开，concat()可以``  //x|y|6,7,8|22|33
+ 
+
+
+
+
+ // splice() 方法可删除从 index处开始的零个或多个元素，并且用参数列表中声明的一个或多个值来替换那些被删除的元素。    splice会直接对数组进行修改
+ 
+ // var a=[99,8,2,6,4,4,6];
+ // b=a.splice(1,4,"x","y");
+ // document.write(b+"<br/>"); //8,2,6,4
+ // document.write(a); //99,x,y,4,6
+ 
+
+
+
+ var a  = [1,2,3];
+ a = a.splice(0,2);
+ alert(a);  // 输出 1，2   这里a=[1,2]
+ a = a.splice(1,2);
+ alert(a);  // 输出 2   这里a=[2]
+ a = a.splice(1,2);
+ alert(a);  // 没有删除任何数组 ， 输出 空 数组
+
+ /*
+ 
+ 更好的说明了splice会直接对数组进行修改
+
+注意：和concat()不同，splice并不将他插入的参数展开。也就是如果插入一个数组，他就是插入数组本身，还不是数组的元素。
+而concat()插入数组的话，就会把数组展开，插入数组中的元素，不过当插入的数组里
+还有数组的时候，就不会展开了。
+
+  */
+</script>
+<!-- js e -->
+</body>
+</html>

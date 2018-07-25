@@ -1,0 +1,277 @@
+<view class='fight_groups'>
+  <view class="modrct_wrap">
+      <navigator url="/pages/orderState/orderState">
+        <view class="modrct_title">
+          <view class="modrct_cot">
+            <view class="mdte_left">
+              <view class="mdte_left_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+              </view>
+              <text>晴天雨后民宿</text>
+            </view>
+          </view>
+        </view>
+        <view class="modrct_body">
+          <view class="mdcdy_detil">
+            <view class="modrct_cot">
+              <view class="mdcdy_detil_pic">
+                <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+              </view>
+              <view class="mdcdy_detil_txt">
+                <text class="mdydktx_title">宁波青苹果</text>
+                <view class="mdydktx_lab">
+                  <text>休闲业主</text>
+                  <text>可现场游园</text>
+                </view>
+                <view class="mdydktx_atbe">
+                  <view class="price">
+                    <text class="nor">¥18</text>
+                    <text class="old">¥268</text>
+                  </view>
+                  <text class="num">数量：1</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+  </view>
+  <view class='fight_groups_cont'>
+    <view class='main_wrap'>
+      <!-- 开始建团 -->
+      <view class='fitgrup_wrap fitgrup_start' style='display:none'>
+        <view class='fitgrup_pic'>
+          <view>
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+            <b>团长</b>
+          </view>
+          <view>
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+          </view>
+        </view>
+        <view class='fitgrup_txt'>
+          <text>还差1人即可成团</text>
+        </view>
+        <view class='fitgrup_countime'>
+          <view class='figptm_cot'>
+            <text>剩余</text>
+            <text class='time'>0</text>
+            <text class='time'>0</text>
+            <text class='time'>9</text>
+            <text>结束</text>
+          </view>
+        </view>
+      </view>
+      <!-- /开始建团 -->
+
+      <!-- 拼团成功 -->
+      <view class='fitgrup_wrap fitgrup_success' style='display:none'>
+        <view class='fitgrup_pic'>
+          <view>
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+            <b>团长</b>
+          </view>
+          <view>
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+          </view>
+        </view>
+
+        <view class='fitgrup_result'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/ptcg.png"></image>
+        </view>
+      </view>
+      <!-- /拼团成功 -->
+
+      <!-- 拼团失败 -->
+      <view class='fitgrup_wrap fitgrup_fail' style='display:block'>
+        <view class='fitgrup_pic'>
+          <view>
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+            <b>团长</b>
+          </view>
+          <view>
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/default_photo.png"></image>
+          </view>
+        </view>
+
+        <view class='fitgrup_txt'>
+          <text>还差1人即可成团</text>
+        </view>
+
+        <view class='fitgrup_countime'>
+          <view class='figptm_cot'>
+            <text>剩余</text>
+            <text class='time'>0</text>
+            <text class='time'>0</text>
+            <text class='time'>9</text>
+            <text>结束</text>
+          </view>
+        </view>
+
+        <view class='fitgrup_result'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/ptsb.png"></image>
+        </view>
+      </view>
+      <!-- /拼团失败 -->
+    </view>
+  </view>
+
+  <view class='fight_groups_bar'>
+    <view class='main_wrap clearfix'>
+      <view class='fight_groups_name'>
+        <view class='figp'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <text>团长\t张三</text>
+      </view>
+      <view class='fight_groups_time'>
+        <text>2016-10-15 00:35:36\t开团</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='fight_groups_bar'>
+    <view class='main_wrap clearfix'>
+      <view class='fight_groups_name'>
+        <view class='figp'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <text>李四</text>
+      </view>
+      <view class='fight_groups_time'>
+        <text>2016-10-15 00:35:36\t参团</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- product_chartc -->
+<view class="product_chartc">
+  <view class="prodchat_wrap">
+    <view class="prochar_top">
+      <text>热门推荐</text>
+    </view>
+    <view class="prochar_cont">
+      <view class="poyctcnt_pth_cont clearfix">
+        <navigator url="/pages/productDetail_ms/productDetail_ms">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>剩余20件</text>
+              </view>
+              <view class="right">
+                <button>秒杀</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+
+        <navigator url="/pages/productDetail_pt/productDetail_pt">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>2人团</text>
+              </view>
+              <view class="right">
+                <button class="mor">2人团</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+
+        <navigator url="/pages/productDetail_ms/productDetail_ms">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>剩余20件</text>
+              </view>
+              <view class="right">
+                <button>秒杀</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+
+        <navigator url="/pages/productDetail_pt/productDetail_pt">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>2人团</text>
+              </view>
+              <view class="right">
+                <button class="mor">2人团</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- /product_chartc -->
+
+<!-- mt_pudtal_btn -->
+<view class="pudtal_btn mt_pudtal_btn">
+  <navigator url="/pages/businessDetail/businessDetail" class="shangjiazy">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sjzy.png"></image>
+    </view>
+    <text class="pudtal_btn_text">商家主页</text>
+  </navigator>
+  <navigator url="/pages/payment/payment" class="lj_button">
+    <button>还差1人成团</button>
+  </navigator>
+  <navigator class="shoucang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-sc-wxz.png"></image>
+    </view>
+    <text class="pudtal_btn_text">收藏</text>
+  </navigator>
+  <navigator class="fenxiang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-fx.png"></image>
+    </view>
+    <text class="pudtal_btn_text">分享</text>
+  </navigator>
+</view>
+<!-- /mt_pudtal_btn -->

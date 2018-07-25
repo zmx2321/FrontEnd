@@ -1,0 +1,125 @@
+/* payment_body */
+.modrct_title{
+  height: 85rpx;
+  line-height:85rpx;
+}
+
+.modrct_title_pic, .modrct_title text{
+  float: left;
+}
+
+.modrct_title text{
+  font-size: 30rpx;
+}
+
+.modrct_btn {
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 28rpx;
+}
+
+.payment_way {
+    line-height: 100rpx;
+    font-size: 28rpx;
+}
+
+.modrct_btn_r{
+  display: block;
+  float: right;
+  margin-right: 50rpx; 
+  position: relative;
+}
+
+.modrct_btn_r::after{
+  content: '';
+  width: 30rpx;
+  height: 30rpx;
+  background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png) top no-repeat;
+  left: 130rpx;
+  position: absolute;
+  background-size: 100%;
+  top: 48%;
+  transform: translateY(-50%);
+}
+
+.payment_way_l{
+    margin-left: 50rpx;
+    position: relative;
+}
+
+.payment_way_l::before{
+    content: '';
+    width: 48rpx;
+    height: 48rpx;
+    background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wxzf.png) top no-repeat;
+    left: -50rpx;
+    position: absolute;
+    background-size: 100%;
+    top: 48%;
+    transform: translateY(-50%);
+}
+
+.payment_way_r{
+  width: 35rpx;
+  height: 35rpx;
+  float: right;
+  margin-top: 10rpx;
+}
+
+.modrct_title{
+  border-bottom: solid 1px #efefef;
+}
+
+.payment_body{
+  margin-bottom: 150rpx;
+}
+
+.xzhb_list{
+  border-bottom: solid 1px #efefef;
+}
+
+.xzhb_top .main_wrap{
+  border-bottom: solid 1px #efefef;
+}
+
+.xzhb_top{
+  border: none;
+  overflow:initial;
+}
+
+.count_up, .count_down, .count_num{
+  display: inline-block;
+}
+
+.xzhb_top_select  button{
+  border:solid 1px #00cd00;
+  color:#00cd00;
+  width: 45rpx;
+  height: 45rpx;
+  line-height: 35rpx;
+  background:#fff;
+  border-radius: 23rpx;
+  text-align:center;
+  font-size:30rpx;
+  padding: initial;
+  margin-left: 40rpx;
+}
+
+.xzhb_top_select input{
+  position:absolute;
+  width:26rpx;
+  height:50rpx;
+  top:50%;
+  transform:translateY(-50%);
+  left:100rpx;
+}
+
+.xzhb_top_select {
+  line-height:132rpx;
+  height:100%;
+  overflow:hidden;
+  width: 175rpx;
+}
+
+/* /payment_body */
+

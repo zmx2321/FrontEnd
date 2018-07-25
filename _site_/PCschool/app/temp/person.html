@@ -1,0 +1,188 @@
+<section>
+    <div class="person-container">
+        <div class="person-header">
+            <a class="btn btn-big btn-white btn-big-a" href="#/editPerson">编辑资料</a>
+            <div class="person-header-img">
+                <img src="http://static.iboom.tv/static/img/{{personStatue.student.header?personStatue.student.header:'default.png'}}"
+                     alt="">
+            </div>
+            <div class="person-header-content">
+                <div class="person-area">
+                    <ul>
+                        <li class="person-name">晚上好, <span>{{personStatue.student.summoner}}</span></li>
+                        <li>我的学号:<span>{{personStatue.student.studentNum}}</span></li>
+                        <li>绑定的召唤师账号:<span>{{personStatue.student.summoner}}</span></li>
+                    </ul>
+                </div>
+                <div class="person-info">
+                    <ul>
+                        <li>QQ:<span>{{personStatue.userInfo.qq}}</span></li>
+                        <li>微信:<span>{{personStatue.userInfo.wx}}</span></li>
+                        <li>手机:<span>{{personStatue.userInfo.phone}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="person-content">
+            <div class="person-content-tab">
+                <ul>
+                    <li class="person-content-tab-selected" ng-class={"person-content-tab-selected":isChooseTab===0}
+                        ng-click="chooseTab(0)">我的战绩
+                    </li>
+                    <li ng-class={"person-content-tab-selected":isChooseTab===1}
+                        ng-click="chooseTab(1)">布姆足迹
+                    </li>
+
+                </ul>
+            </div>
+            <div class="person-content-score" ng-show="isChooseTab===0">
+                <div class="person-content-score-chart">
+                    <p>竞技能力曲线</p>
+                    <div class="person-chart-box" id="chart">
+
+                    </div>
+                </div>
+                <div class="person-content-score-hero">
+                    <p>常用英雄</p>
+                    <div class="person-hero-list">
+                        <ul>
+                            <li ng-repeat="hero in useHeroList">
+                                <div class="img-auto-container person-hero-img">
+                                    <img src="{{imgRoot}}{{hero.championId | championImg}}" alt="">
+                                </div>
+                                <div>场次:<span>{{hero.useNum}}</span></div>
+                                <div>胜率:<span>{{null | calcPercent:hero.winNum:hero.useNum}}</span></div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="person-content-score-type">
+                    <p>常用类型</p>
+                    <div>
+                        <ul class="person-type-list">
+                            <li class="person-type-li">
+                                <span>下路</span>
+                                <span>{{playStatistic.adcUseNum}}场</span>
+                                <span>
+                                    <div class="victory_defeat">
+                                        <ul>
+                                            <li class="victory"><b>{{playStatistic.adcWinNum}}</b></li>
+                                            <li class="vicdef_bar">
+                                                <div class="vicdef_bar0"
+                                                     ng-style="{'width': (null | calcPercent:playStatistic.adcWinNum:playStatistic.adcUseNum)}"></div>
+                                            </li>
+                                            <li class="defeat"><b>{{playStatistic.adcUseNum - playStatistic.adcWinNum}}</b></li>
+                                        </ul>
+                                    </div>
+                                </span>
+                                <span>胜率{{null | calcPercent:playStatistic.adcWinNum:playStatistic.adcUseNum}}</span>
+                            </li>
+                            <li class="person-type-li">
+                                <span>中路</span>
+                                <span>{{playStatistic.midUseNum}}场</span>
+                                <span>
+                                    <div class="victory_defeat">
+                                        <ul>
+                                            <li class="victory"><b>{{playStatistic.midWinNum}}</b></li>
+                                            <li class="vicdef_bar">
+                                                <div class="vicdef_bar0"
+                                                     ng-style="{'width': (null | calcPercent:playStatistic.midWinNum:playStatistic.midUseNum)}"></div>
+                                            </li>
+                                            <li class="defeat"><b>{{playStatistic.midUseNum - playStatistic.midWinNum}}</b></li>
+                                        </ul>
+                                    </div>
+                                </span>
+                                <span>胜率{{null | calcPercent:playStatistic.midWinNum:playStatistic.midUseNum}}</span>
+                            </li>
+                            <li class="person-type-li">
+                                <span>打野</span>
+                                <span>{{playStatistic.jungleUseNum}}场</span>
+                                <span>
+                                    <div class="victory_defeat">
+                                        <ul>
+                                            <li class="victory"><b>{{playStatistic.jungleWinNum}}</b></li>
+                                            <li class="vicdef_bar">
+                                                <div class="vicdef_bar0"
+                                                     ng-style="{'width': (null | calcPercent:playStatistic.jungleWinNum:playStatistic.jungleUseNum)}"></div>
+                                            </li>
+                                            <li class="defeat"><b>{{playStatistic.jungleUseNum - playStatistic.jungleWinNum}}</b></li>
+                                        </ul>
+                                    </div>
+                                </span>
+                                <span>胜率{{null | calcPercent:playStatistic.jungleWinNum:playStatistic.jungleUseNum}}</span>
+                            </li>
+                            <li class="person-type-li">
+                                <span>辅助</span>
+                                <span>{{playStatistic.auxUseNum}}场</span>
+                                <span>
+                                    <div class="victory_defeat">
+                                        <ul>
+                                            <li class="victory"><b>{{playStatistic.auxWinNum}}</b></li>
+                                            <li class="vicdef_bar">
+                                                <div class="vicdef_bar0"
+                                                     ng-style="{'width': (null | calcPercent:playStatistic.auxWinNum:playStatistic.auxUseNum)}"></div>
+                                            </li>
+                                            <li class="defeat"><b>{{playStatistic.auxUseNum - playStatistic.auxWinNum}}</b></li>
+                                        </ul>
+                                    </div>
+                                </span>
+                                <span>胜率{{null | calcPercent:playStatistic.auxWinNum:playStatistic.auxUseNum}}</span>
+                            </li>
+                            <li class="person-type-li">
+                                <span>上路</span>
+                                <span>{{playStatistic.upUseNum}}场</span>
+                                <span>
+                                    <div class="victory_defeat">
+                                        <ul>
+                                            <li class="victory"><b>{{playStatistic.upWinNum}}</b></li>
+                                            <li class="vicdef_bar">
+                                                <div class="vicdef_bar0"
+                                                     ng-style="{'width': (null | calcPercent:playStatistic.upWinNum:playStatistic.upUseNum)}"></div>
+                                            </li>
+                                            <li class="defeat"><b>{{playStatistic.upUseNum - playStatistic.upWinNum}}</b></li>
+                                        </ul>
+                                    </div>
+                                </span>
+                                <span>胜率{{null | calcPercent:playStatistic.upWinNum:playStatistic.upUseNum}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="person-content-footprint" ng-show="isChooseTab===1">
+                <div class="person-footprint-number">
+                    <ul>
+                        <li class="person-footprint-number-li">
+                            <p>课程</p>
+                            <div>{{courseCount}}<span>次</span></div>
+                        </li>
+                        <li class="person-footprint-number-li">
+                            <p>生死局</p>
+                            <div>{{ssjCount}}<span>次</span></div>
+                        </li>
+                        <li class="person-footprint-number-li">
+                            <p>一对一</p>
+                            <div>{{otoCount}}<span>次</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="person-footprint-box">
+                    <ul>
+                        <li class="person-footprint-box-li" ng-repeat="da in StudyRecords">
+                            <p></p>
+                            <span>{{da.date}}</span>
+                            <ul>
+                                <li ng-repeat="dar in da.record track by $index">{{dar}}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <button ng-click="showHistory()">获取历史记录</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>

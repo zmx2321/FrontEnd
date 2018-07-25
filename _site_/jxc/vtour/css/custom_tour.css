@@ -1,0 +1,109 @@
+/* reset s */
+@-ms-viewport { 
+	width:device-width; 
+}
+
+@media only screen and (min-device-width:800px) { 
+	html { overflow:hidden; } 
+}
+
+html { 
+	height:100%; 
+}
+
+body { 
+	height:100%; 
+	background:#000000; 
+}
+/* reset e */
+
+/* pano s */
+#pano{
+	width: 100%;
+	height: 100%;
+}
+/* pano e */
+
+/* noscript s */
+noscript{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+noscript ul{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    text-align: center;
+}
+
+noscript li{
+	color: #fff;
+	font-size: 18px;
+}
+/* noscript e */
+
+/* title s */
+#title{
+    position: absolute;
+    top: 0.3rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#title li{
+	color: #FFFFFF;
+	text-align: center;
+	margin-bottom: -0.01rem;
+}
+
+.titlep{
+	text-align: center;
+	font-size: 0.3rem;
+}
+
+.titbtn{
+	font-size: 0.2rem;
+}
+/* title e */
+
+/* nav s */
+#nav{
+    position: absolute;
+    top: 2.3rem;
+    right: 0.3rem;
+    background: rgba(0, 0, 0, 0.33);
+}
+
+#nav li{
+    padding: 0.1rem 0.15rem;
+    border-bottom: solid 1px #c6c8c9;
+    color: #8d8d8d;
+    font-size: 0.2rem;
+}
+
+#nav li:last-child{
+	border: none;
+}
+
+#nav .active{
+	color: #fff;
+}
+/* nav e */
+
+/* side s */
+#side{
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: block;
+    background: #f00;
+    z-index: 1;
+    display:none;
+}
+/* side e */

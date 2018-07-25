@@ -1,0 +1,15 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/form/form"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "black",
+    "navigationBarTitleText": "WeXin",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh": "true",
+    "backgroundColor": "#ccc"
+  }
+}

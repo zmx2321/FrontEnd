@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="school">
+<head>
+    <meta charset="utf-8">
+    <title>布姆电竞学院</title>
+    <!--忽略电话号码和email识别-->
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <!--当网站添加到主屏幕快速启动方式，将网站添加到主屏幕快速启动方式-->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!--隐藏ios上的浏览器地址栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+
+
+    <!--网站图标-->
+    <link rel="icon" href="static/images/boom.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="static/images/boom.ico" type="image/x-icon"/>
+
+    <!--模拟数据-->
+    <script src="mock/mockface/b-mock.js"></script>
+    <script src="mock/mockapi/api.js"></script>
+
+    <!--swiper-->
+
+    <link rel="stylesheet" href="static/css/swiper-3.4.0.min.css">
+
+    <!--样式文件-->
+    <link rel="stylesheet" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/home.css">
+    <link rel="stylesheet" href="static/css/service.css">
+    <link rel="stylesheet" href="static/css/allTeacher.css">
+    <link rel="stylesheet" href="static/css/service-time.css">
+    <link rel="stylesheet" href="static/css/activity.css">
+    <link rel="stylesheet" href="static/css/person.css">
+    <link rel="stylesheet" href="static/css/editPerson.css">
+    <link rel="stylesheet" href="static/css/course.css">
+    <link rel="stylesheet" href="static/css/courseRecording.css">
+    <link rel="stylesheet" href="static/css/live.css">
+
+    <!--e-chart-->
+    <script src="static/js/echarts.js"></script>
+
+    <!--直播接口-->
+    <script src="static/js/socket/socket.js" sync></script>
+    <script src="static/js/socket/boomUtil.js"></script>
+    <script src="static/js/socket/SpeakerJs.js" sync></script>
+    <script src="static/js/socket/stomp.js" sync></script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="container-menu" ng-controller="menuController">
+        <div class="menu-logo">
+            <img src="static/images/logo_boom.png" alt="">
+
+            <div>BOOM GAME</div>
+        </div>
+        <div class="menu-client" ng-mouseenter="isShowHeaderIcon = true"
+             ng-mouseleave="isShowHeaderIcon = false">
+            <a href="#/person" class="menu-header-icon" ng-show="isShowHeaderIcon">
+                <img src="static/images/icon_personal.png" alt="">
+            </a>
+            <a href="#/person" class="menu-client-a">
+                <div class="img-auto-container menu-header-img">
+                    <img src="http://static.iboom.tv/static/img/{{userStatueInfo.student.header?userStatueInfo.student.header:'videoDefault.png'}}"
+                         alt="">
+                </div>
+                <div ng-bind="userStatueInfo.student.summoner?userStatueInfo.student.summoner:'暂未绑定'"></div>
+            </a>
+        </div>
+        <div class="menu-navigation">
+            <ul>
+                <li ng-click="menuSelected(0)">
+                    <a href="#/home" class="menu-navigation-a menu-icon-home"
+                       ng-class={"menu-icon-home-selected":$root.isMenuSelected===0}>首页</a>
+                </li>
+                <li ng-click="menuSelected(1)">
+                    <a href="#/course" class="menu-navigation-a menu-icon-course"
+                       ng-class={"menu-icon-course-selected":$root.isMenuSelected===1}>课程中心</a>
+                </li>
+                <li ng-click="menuSelected(2)">
+                    <a href="#/service" class="menu-navigation-a menu-icon-service"
+                       ng-class={"menu-icon-service-selected":$root.isMenuSelected===2}>服务中心</a>
+                </li>
+                <li ng-click="menuSelected(3)">
+                    <a href="#/activity" class="menu-navigation-a menu-icon-activity"
+                       ng-class={"menu-icon-activity-selected":$root.isMenuSelected===3}>活动中心</a>
+                </li>
+                <li ng-click="menuSelected(4)">
+                    <a href="#/UI" class="menu-navigation-a"
+                       ng-class={"menu-selected":$root.isMenuSelected===4}>UI规范</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div ng-view class="container-content">
+
+    </div>
+</div>
+
+<script src="corejs/DateExtends.js"></script>
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/angular.js"></script>
+<script src="static/js/angular-route.min.js"></script>
+
+<script src="main.js"></script>
+<script src="router/routStart.js"></script>
+
+
+<!--头像截取-->
+<script src="static/js/photoclip/jquery-1.10.2.min.js"></script>
+<script src="static/js/photoclip/hammer.js"></script>
+<script src="static/js/photoclip/iscroll-zoom.js"></script>
+<script src="static/js/photoclip/lrz.all.bundle.js"></script>
+<script src="static/js/photoclip/PhotoClip.min.js"></script>
+
+
+<!--filter-->
+<script src="filter/Filters.js"></script>
+
+<!--swiper-->
+<script src="static/js/swiper-3.4.0.jquery.min.js"></script>
+
+<!--layer-->
+<script src="static/js/layer/layer.js"></script>
+<script src="static/js/layer/extend/layer.ext.js"></script>
+
+
+<!--自定义标签-->
+<script src="directive/StudentHeader.js"></script>
+<script src="directive/scrollWatch.js"></script>
+
+
+<!--公共服务功能-->
+<script src="service/HttpService.js"></script>
+<script src="service/CheckService.js"></script>
+<script src="service/UserStatueService.js"></script>
+<script src="service/StudentService.js"></script>
+<script src="service/LabService.js"></script>
+<script src="service/TeacherService.js"></script>
+<script src="service/ChampionService.js"></script>
+<script src="service/KeBiaoService.js"></script>
+<script src="service/StorageService.js"></script>
+<script src="service/VideoService.js"></script>
+<script src="service/AreaService.js"></script>
+
+<!--控制器-->
+
+<script src="controller/menuController.js"></script>
+<script src="controller/serviceController.js"></script>
+<script src="controller/courseController.js"></script>
+<script src="controller/activityController.js"></script>
+<script src="controller/activityBeforeController.js"></script>
+<script src="controller/activityAfterController.js"></script>
+<script src="controller/homeController.js"></script>
+<script src="controller/allTeacherController.js"></script>
+<script src="controller/serviceTimeController.js"></script>
+<script src="controller/personController.js"></script>
+<script src="controller/editPersonController.js"></script>
+<script src="controller/liveController.js"></script>
+<script src="controller/courseRecordingController.js"></script>
+
+<!--乐视云直播接口-->
+<script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/live/blive.js " async></script>
+
+
+<!--乐视云视频播放接口-->
+<script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/vod/bcloud.js" async></script>
+
+</body>
+</html>

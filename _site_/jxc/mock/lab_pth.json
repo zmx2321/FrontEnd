@@ -1,0 +1,33 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id": 1,
+      "lab": "同城配送",
+      "clsN": "tuhuo_a"
+    },
+    {
+      "id": 2,
+      "lab": "家乡味道",
+      "clsN": "tuhuo_b"
+    },
+    {
+      "id": 3,
+      "lab": "生态干货",
+      "clsN": "tuhuo_c"
+    },
+    {
+      "id": 4,
+      "lab": "土蛋土禽",
+      "clsN": "tuhuo_d"
+    },
+    {
+      "id": 5,
+      "lab": "cmcc",
+      "clsN": "tuhuo_e"
+    }
+  ],
+  "length":null,
+  "rtCode":null
+}

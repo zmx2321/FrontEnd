@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript">
+		
+		var times=null;
+		var Kai = true;
+		function flicker(){
+        var box  =  document.getElementById('box');
+        var btn  =  document.getElementById('btn');
+        var Flicker = true;
+        if (Kai) {
+        	btn.value='关闭';
+         times = setInterval(function(){
+           if (Flicker) {
+             box.style.opacity = 0.1;
+             Flicker = false;
+           }else{
+           	 box.style.opacity = 1;
+           	  Flicker = true;
+           }
+         },100);
+
+         Kai= false;
+     }else{
+     	clearInterval(times);
+     	btn.value='开启';
+     	box.style.opacity = 1;
+     	Kai = true;
+     }
+
+		}
+
+	</script>
+	<style type="text/css">
+		.case{width: 400px;margin: 0 auto;text-align: center;}
+		#box{width: 200px;height: 200px;background: red;margin: 0 auto;opacity:0;box-shadow:0 0 10px #3c3c3c;}
+	</style>
+</head>
+<body>
+
+  <div class="case">
+  	 <input id="btn" type="button" value="开启" onclick="flicker()">
+  	<div id="box"></div>
+  </div>
+  
+ 
+
+</body>
+</html>

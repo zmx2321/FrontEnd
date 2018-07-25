@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村-选择地址</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/address.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="address_all">
+    <div class="senerch_top">
+        <div class="address_top_searh">
+            <div class="address_wrap">
+                <div class="adstph_box">
+                    <ul>
+                        <li>
+                            <img src="images/icon-ss.png" />
+                        </li>
+                        <li>
+                            <input type="text" placeholder="请输入城市名或拼音查询" class="city" />
+                        </li>
+                    </ul>
+                </div>
+                <a href="allScenery.html" class="adstph_rtn">取消</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="address_top_local">
+            <div class="address_wrap">
+                <ul>
+                    <li>当前：<span class="localaddress">杭州</span></li>
+                    <li>
+                        <select>
+                            <option>切换县区</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="address_top_point">
+            <div class="address_wrap">
+                <ul>
+                    <li>
+                        <dl>
+                            <dt>当前定位城市</dt>
+                            <dd><span class="localaddress">宁波</span></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>最近访问的城市</dt>
+                            <dd>宁波</dd>
+                            <dd>宁波</dd>
+                            <dd>宁波</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>热门城市</dt>
+                            <dd>宁波</dd>
+                            <dd>宁波</dd>
+                            <dd>宁波</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="address_cot">
+        <dl>
+            <dt>
+                <span class="address_wrap">A</span>
+            </dt>
+            <dd>
+                <a href="#">
+                    <span class="address_wrap">鞍山</span>
+                </a>
+            </dd>
+            <dd>
+                <a href="#">
+                    <span class="address_wrap">安阳</span>
+                </a>
+            </dd>
+        </dl>
+    </div>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="http://api.map.baidu.com/api?v=2.0&ak=abcs"></script>
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/lib/city.js"></script>
+<script src="js/basefont.js"></script>
+<script src="mockface/b-mock.js"></script>
+<script src="js/address.js"></script>
+<!-- js e -->
+</body>
+</html>

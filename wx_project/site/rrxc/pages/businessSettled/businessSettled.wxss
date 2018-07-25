@@ -1,0 +1,84 @@
+/* busetl_top */
+.busetl_top {
+    width: 100%;
+    height: 100rpx;
+    background: #fff;
+    overflow: hidden;
+}
+
+.busetl_top text{
+  display: block;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  text-align: center;
+  font-size:32rpx;
+}
+/* /busetl_top */
+
+/* busetl_body */
+.busetl_body{
+  margin-top: 16rpx;
+  margin-bottom:150rpx;
+}
+
+.bstld_wp{
+  width: 100%;
+  background: #fff;
+  min-height: 102rpx;
+border-bottom: solid 1px #efefef;
+}
+
+.bstld_ct{
+  width: 680rpx;
+  margin: 0 auto;
+  height: 102rpx;
+  line-height: 102rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+}
+
+.bstld_ct text{
+  float: left;
+  width: 165rpx;
+}
+
+.bstld_ct input{
+  color: #000;
+  font-size: 28rpx;
+  border: 0;
+  height: 102rpx;
+  line-height: 102rpx;
+}
+
+/* busus_inlin */
+.busus_inlin{
+  margin-bottom: 16rpx;
+}
+/* /busus_inlin */
+
+/* busus_info */
+.busus_info text{
+  width: 100%;
+  font-size: 25rpx;
+}
+/* /busus_info */
+
+/* busus_typ */
+.select_bussis_cot{
+  border: none;
+}
+
+.select_bussis_cot .bstld_ct{
+  border-bottom:solid 1px #efefef;
+  margin-left:38rpx;
+  width:708rpx;
+}
+
+.select_bussis_cot .select{
+  float:right;
+  margin-right:20rpx;
+}
+/* /busus_typ */
+/* /busetl_body */
+

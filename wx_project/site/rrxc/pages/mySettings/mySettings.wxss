@@ -1,0 +1,29 @@
+/* myset_cont */
+.myset_cont_wrap navigator{
+    width: 100%;
+    height: 102rpx;
+    background: #fff;
+    margin-bottom: 16rpx;
+    overflow: hidden;
+}
+
+.myset_cot{
+  width: 720rpx;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.myset_cot text{
+  line-height: 102rpx;
+  font-size: 32rpx;
+}
+
+.myset_cont_pic{
+  float:right;
+  width:30rpx;
+  height:30rpx;
+  margin-top:36rpx;
+  overflow:hidden;
+}
+
+/* /myset_cont */

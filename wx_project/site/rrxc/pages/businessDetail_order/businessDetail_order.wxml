@@ -1,0 +1,236 @@
+<view class='pudtal_cont'>
+  <!-- product_banner -->
+  <view class="product_banner">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="#fff" indicator-active-color="#00cd00">  
+      <block wx:for="{{imgUrls}}" wx:key="key">  
+        <swiper-item>  
+          <image src="{{item}}" />
+        </swiper-item>  
+      </block>
+    </swiper>
+  </view>
+  <!-- /product_banner -->
+
+  <!-- raise_detail_tit -->
+  <view class="raise_detail_tit main_cot">
+    <view class="main_wrap">
+      <view class="raise_detail_top">
+        <text class="left">晴天雨后——做地主</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='main_cot clearfix'>
+    <view class="main_wrap">
+      <view class="raise_detail_txt">
+        <view class="rasdaltxt_title">
+          <text>特别提示</text>
+        </view>
+        <view class="rasdaltxt_cont">
+          <p>
+            有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。小时候在家里，在田野里老
+            婆还用吴伯萧的《菜园小记》。吴伯萧的《菜园小记》劝我。有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝
+            我。吴伯萧的《菜园小记》劝我。小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》。吴伯萧的《菜园小记》劝我。
+          </p>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='main_cot'>
+    <view class='main_wrap clearfix'>
+      <view class='busdakod_data_left'>
+        <view class='busdl_tit'>日期</view>
+        <view class='busdl_tim'>
+          <text>06-06入住</text>
+          <text>07-07离店</text>
+        </view>
+      </view>
+      <view class='busdakod_data_right'>
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- btalcot_reserve -->
+  <view class='btalcot_reserve'>
+    <view class='follow_cont_wrap'>
+      <view class='baltreve_cot'>
+          <view class='fowcot_wrap clearfix'>
+            <view class='fowcot_pic'>
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class='fowcot_txt fowpudct_txt'>
+              <view class='tit clearfix'>
+                <text class='type'>平湖秋月房</text>
+                <text class='price'>¥200</text>
+              </view>
+              <view class='lab'>
+                <text>平湖秋月房</text>
+                <text>大床</text>
+                <text>2-3层</text>
+              </view>
+              <view class='btn clearfix'>
+                <text>可以马上入住</text>
+                <view class="count">
+                  <text class="count_down">-</text>
+                  <text class="count_num">1</text>
+                  <text class="count_up">+</text>
+                </view>
+              </view>
+            </view>
+          </view>
+      </view>
+    </view>
+  </view>
+  <!-- /btalcot_reserve -->
+
+  <view class='main_cot busdakod_hf_pt'>
+   <view class='main_wrap'>
+    <view class='top'>
+      <text>订房须知</text>
+    </view>
+    <view class='cott'>
+      <text>1.有一天和老婆说起小时候在家里</text>
+      <text>2.有一天和老婆说起小时候在家里</text>
+      <text>3.有一天和老婆说起小时候在家里</text>
+    </view>
+   </view>
+  </view>
+
+  <view class="modrct_btn">
+    <navigator class="modrct_cot">
+      <text class="modrct_btn_l">店铺优惠券</text>
+      <text class="modrct_btn_r">无优惠券</text>
+    </navigator>
+  </view>
+
+  <view class="main_cot payment_way">
+    <view class="main_wrap">
+      <text class="payment_way_l">微信支付</text>
+      <view class="payment_way_r">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-spxq-tb.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='main_cot phone clearfix'>
+    <view class='main_wrap'>
+      <text>手机号</text>
+      <input placeholder='请输入手机号'></input>
+    </view>
+  </view>
+
+  <view class='main_cot busdakod_hf_pt'>
+   <view class='main_wrap'>
+    <view class='top'>
+      <text>配套设施</text>
+    </view>
+    <view class='cot'>
+      <text>WiFi</text>
+      <text>WiFi</text>
+      <text>WiFi</text>
+      <text>WiFi</text>
+      <text>WiFi</text>
+      <text>WiFi</text>
+    </view>
+   </view>
+  </view>
+</view>
+
+<!-- mt_pudtal_btn -->
+<view class="pudtal_btn mt_pudtal_btn">
+  <navigator url="/pages/businessDetail/businessDetail" class="shangjiazy">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sjzy.png"></image>
+    </view>
+    <text class="pudtal_btn_text">商家主页</text>
+  </navigator>
+  <navigator class="lj_button">
+    <button>免费预订</button>
+  </navigator>
+  <navigator class="shoucang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-sc-wxz.png"></image>
+    </view>
+    <text class="pudtal_btn_text">收藏</text>
+  </navigator>
+  <navigator class="fenxiang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-fx.png"></image>
+    </view>
+    <text class="pudtal_btn_text">分享</text>
+  </navigator>
+</view>
+<!-- /mt_pudtal_btn -->
+
+<!-- mask -->
+<view class='mask'>
+  <view class='busdakod_ord'>
+    <view class='busdakod_ord_top'>
+      <text class='main_wrap'>您预订了</text>
+    </view>
+    <view class='busdakod_ord_cot'>
+      <view class='main_wrap'>
+        <text class='tit'>晴天雨后民宿</text>
+        <view class='cot'>
+          <text>入住时间：06月07日</text>
+          <text>入住时间：06月07日</text>
+          <text>1晚</text>
+        </view>
+        <view class='num'>
+          <text>1间</text>
+          <text class='price'>¥200</text>
+        </view>
+      </view>
+    </view>
+    <view class='busdakod_ord_foot'>
+      <button class="mfyd_btn">确定</button>
+    </view>
+  </view>
+
+  <view class='share_btn'>
+    <view class='share_btn_cont'>
+      <navigator>
+        <view class='share_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-fe-ewm.png"></image>
+        </view>
+        <text>二维码</text>
+      </navigator>
+      <navigator>
+        <view class='share_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-fx-wxhy.png"></image>
+        </view>
+        <text>微信好友</text>
+      </navigator>
+      <navigator>
+        <view class='share_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-fx-pyq.png"></image>
+        </view>
+        <text>朋友圈</text>
+      </navigator>
+      <navigator>
+        <view class='share_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-fx-xlwb.png"></image>
+        </view>
+        <text>新浪微博</text>
+      </navigator>
+      <navigator>
+        <view class='share_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-fx-qqhy.png"></image>
+        </view>
+        <text>QQ好友</text>
+      </navigator>
+      <navigator>
+        <view class='share_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-fx-qqkj.png"></image>
+        </view>
+        <text>QQ空间</text>
+      </navigator>
+    </view>
+    <view class='share_btn_foot'>
+      <button>取消</button>
+    </view>
+  </view>
+</view>
+<!-- /mask -->

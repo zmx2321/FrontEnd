@@ -1,0 +1,30 @@
+.maple-tab{
+    width: 100%;
+    background: #fff;
+    border-bottom: solid 1px #efefee;
+}
+
+.maple-tab ul{
+    display: flex;
+}
+
+.maple-tab li{
+    flex: 1;
+    height: 1rem;
+    line-height: 1rem;
+    text-align: center;
+    color: #333
+}
+
+.maple-tab li:first-child{
+    border-right: solid 1px #ccc;
+}
+
+.maple-tab li.active{
+    color: #f00;
+    background: #d1cccc;;
+}
+
+.tabswp_cont{
+    background: #fff;
+}

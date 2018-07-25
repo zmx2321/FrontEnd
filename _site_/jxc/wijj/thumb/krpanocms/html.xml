@@ -1,0 +1,5 @@
+<krpano>
+<!--  弹出网页窗口函数  -->
+<action name="openwindow">js(zlqj(%1,%2,%3));</action>
+<!--  弹出网页窗口函数  -->
+</krpano>

@@ -1,0 +1,32 @@
+<form bindsubmit="frmSubmit" bindreset="frmReset">
+  <view>
+    Name:
+    <input type="text" placeholder="请输入姓名" />
+  </view>
+  <view>
+    Age:
+    <input type="number" placeholder="请输入年龄" />
+  </view>
+  <view>
+  Pass：
+    <input type="text" password placeholder="请输入密码"/>
+  </view>
+  <view>
+    Addr:
+    <checkbox-group>
+        <!-- <checkbox value="ShangHai" checked/>上海 -->
+        <label wx:for="{{address}}">
+          <!-- {{item.value}} {{item.name}} {{index}} -->
+          <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+    </checkbox-group>
+  </view>
+  <button>提交</button>
+  <button type="primary">提交</button>
+  <button type="warn">删除</button>
+</form>
+<!-- {{teacher}}
+<view>
+数据 单向绑定
+  {{age}}--------{{age+10}}---------{{age+10}}
+</view> -->

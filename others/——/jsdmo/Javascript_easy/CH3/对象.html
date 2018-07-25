@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title></title>
+
+
+  <script type="text/javascript">
+
+
+
+
+
+
+/*
+         
+            //第一步创建构造函数
+             function Goods(goodsName,price,number,brand){
+
+                  
+                  this.goodsName = goodsName;
+                  this.price = price;
+                  this.number = number;
+                  this.brand = brand;
+
+
+             }
+
+            Goods.prototype.getInfo = function(){
+
+            	return '商品名字:'+this.goodsName+',价格:'+this.price+',数量:'+this.number+',品牌:'+this.brand;
+            }
+
+             //第二步创建对象
+
+             var apple = new Goods('苹果',12.8,100,'红富士');
+            
+             var xiaomi = new Goods('note2',1200,250,'小米');
+             
+             var freezer = new Goods('冰箱',2200,200,'海尔');
+
+             var apple1 = new Goods('苹果',50,100,'红富士');
+
+             var xiaomi1 = new Goods('note2',10,250,'小米');
+             
+             var freezer1 = new Goods('冰箱',20,200,'海尔');
+
+             //第三步 将对象存入我们的数组之中
+             var goodsList = new Array();//0 1 2
+
+             //给数组开头添加元素
+             goodsList.unshift(apple,xiaomi,freezer,apple1,xiaomi1,freezer1);
+
+             
+             //要求按价格来排序或者按数量来排序   
+            function sort(){
+            var  key = prompt('请选择你要排序的方式.\n1.按价格\n2.按数量\n3.退出系统');
+                    
+                    switch(key){
+                       case '1':
+                      //按价格排序
+                       shot(goodsList,'price');
+                      //输出
+                        input();
+                       break;
+                       case '2':
+                      //按数量
+                      shot(goodsList,'number');
+                      //输出
+                       input();
+
+                       break;
+                      case '3':
+                      //通过 return 结束函数
+                       return;
+                      default:
+                       alert('输入有误！');
+                       break;
+
+                    }
+
+                    //回调
+                     sort();
+             }
+  
+         
+        /**
+         * 函数名: shot
+         * arr 对象数组
+         * str 对象属性的字符串
+         */
+        
+/*     function shot(arr,str){
+
+        for (var i = 0; i < arr.length; i++) {
+        	
+             for (var j  = 0; j < arr.length-i-1; j++) {
+             
+                    if (arr[j][str]>arr[j+1][str]) {
+                         
+                         var obj = arr[j];//交换的是对象
+                         
+                         arr[j] = arr[j+1];
+
+                         arr[j+1] = obj;
+                       
+                    }
+
+             }
+
+        }
+
+
+     }*/
+
+ /**
+  * 循环遍历数组
+  */
+     /*function input(){
+     	var str= '';
+
+        for (var i = 0; i < goodsList.length; i++) {
+                           
+             str+= goodsList[i].getInfo()+'\n';
+                       	 
+           }
+
+        alert(str);
+     }*/
+
+         
+
+  //开启程序
+  //sort();
+  //
+  
+  function dome(obj) {
+    alert(1);
+  }
+ 
+  </script>
+
+</head>
+<body>
+
+<div id="box" onclick="dome(this)">点我吧！</div>
+
+</body>
+</html>

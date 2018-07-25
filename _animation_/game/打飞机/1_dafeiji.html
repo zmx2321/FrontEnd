@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1_dafeiji</title>
+
+    <link rel="stylesheet" href="css/dafeiji.css">
+
+    <script src="js/1_common.js"></script>
+    <script src="js/2_gameEngine.js"></script>
+    <script src="js/3_myPlane.js"></script>
+    <script src="js/4_bullet.js"></script>
+    <script src="js/5_enemy.js"></script>
+
+    <script>
+
+        onload = function() {
+
+
+            var oList = document.getElementById('list');
+            var aLi = oList.getElementsByTagName('li');
+
+            for (var i = 0; i < aLi.length; i++) {
+
+                aLi[i].onclick = function() {
+
+                    // 清除困难度选择的节点元素
+                    oList.parentNode.removeChild(oList);
+
+                    // 困难度--子弹创建速度
+                    var fireInterval = this.value;
+                    myPlane.fireInterval = fireInterval;
+
+
+                    // console.log(fireInterval);
+
+                    // 游戏引擎 (对象-个)   -- 导演
+                    // 游戏开始，游戏停止，碰撞检测，是否加分，是否失败，加载游戏
+
+                    // 游戏开始
+                    gameEngine.init().start();
+
+                    // 敌机 （类  构造函数）-- 演员
+                    // 子弹 （类  构造函数）-- 演员
+                    // 飞机  (对象一个) -- 演员
+
+
+                }
+            }
+
+
+
+        }
+    </script>
+</head>
+<body>
+
+    <!-- 游戏区域 -->
+    <div id="main_body" class="main">
+
+        <ul id="list">
+            <li value="1000">超级困难</li>
+            <li value="500">非常困难</li>
+            <li value="250">比较困难</li>
+            <li value="80">春哥附体</li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

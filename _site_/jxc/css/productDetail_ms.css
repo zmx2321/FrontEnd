@@ -1,0 +1,129 @@
+.product_detail_all{
+    font-size: 0.24rem;
+}
+
+.specifications{
+    display: none; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    min-height: 6rem;
+}
+
+.spec_b{
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	height: 1rem;
+	background: #f5560f;
+	line-height: 1rem;
+	text-align: center;
+	font-size: 0.3rem;
+	color: #fff;
+	display: block;
+}
+
+.spec_t{
+	width: 100%;
+	height: 1.7rem;
+	border-bottom: solid 1px #efefef;
+}
+
+.spec_tp{
+    width: 1.88rem;
+    height: 1.88rem;
+    margin-top: -0.5rem;
+    float: left;
+    border-radius: 0.07rem;
+    overflow: hidden;
+}
+
+.spec_tp img{
+	margin: 0;
+}
+
+.spec_tt{
+	float: left;
+	margin-left: 0.5rem;
+	margin-top: 0.1rem;
+}
+
+.spec_t b{
+    position: absolute;
+    width: 0.24rem;
+    height: 0.24rem;
+    background: url(../images/icon-gb.png) top no-repeat;
+    background-size: 100%;
+    right: 0;
+    top: 0.2rem;
+}
+
+.spectt_p{
+	color: #f5560f;
+	font-size: 0.3rem;
+}
+
+.specm_g li{
+    margin-bottom: 0.03rem;
+    min-width: 1.32rem;
+    height: 0.6rem;
+    margin-right: 0.2rem;
+    background: #efefef;
+    line-height: 0.6rem;
+    text-align: center;
+    border-radius: 0.07rem;
+    overflow: hidden;
+}
+
+.specm_g{
+	height: 1.6rem;
+	border-bottom: solid 1px #efefef;
+}
+
+.specm_n{
+	height: 1.6rem;
+}
+
+.specm_g li{
+	display: inline-block;
+}
+
+.specm_g h3 {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.specm_g .active{
+	background: #f5560f;
+	color: #fff;
+}
+
+.specm_n li{
+    height: 1.6rem;
+    line-height: 1.6rem;
+}
+
+.specm_n h3{
+	font-size: 0.3rem;
+}
+
+.specm_n span{
+	display: inline-block;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	text-align: center;
+	background: #efefef;
+}
+
+.num_down, .num_up{
+	width: 0.8rem;
+}
+
+.num{
+	min-width: 1.2rem;
+}
+
+.specm_n .active{
+	background: #d9d9d9;
+}

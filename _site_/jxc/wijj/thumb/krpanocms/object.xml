@@ -1,0 +1,38 @@
+<krpano>
+<style name="frame" keep="true" visible="false" align="center" zorder="91" onloaded="updateframesize(get(name));set(plugin[loading_360].visible,false);" ondown="copy(oldmousex,mouse.x);domouserotate();"/>
+<style name="object" zorder="100" url="%SWFPATH%/thumb/images/object.png"/>
+<!--  loading  -->
+<plugin name="loading_360" url="%SWFPATH%/plugins/textfield.swf" keep="true" zorder="100" enabled="false" preload="true" align="center" autoheight="true" autowidth="true" background="false" visible="false" html="[p]···图像加载中···[/p]" css="p {color:#FFFFFF; font-family:arial; font-size:16px }"/>
+<action name="removelayer_action">
+removelayer(get(fname)); removelayer(object_bg); removelayer(object_close); removelayer(object_bot); removelayer(object_next); removelayer(object_prev); set(layer[loading_360].visible,false);
+</action>
+<action name="buildframes">
+<!--  自动添加一个背景层  -->
+addlayer(object_bg); set(layer[object_bg].type, container);	set(layer[object_bg].zorder, 90); set(layer[object_bg].keep, true); set(layer[object_bg].align, center); set(layer[object_bg].width, 100%); set(layer[object_bg].height, 100%); set(layer[object_bg].bgcolor, 0x000000); set(layer[object_bg].bgalpha, 0.8); set(layer[object_bg].bgcapture, true); set(layer[object_bg].handcursor, false); set(layer[object_bg].onclick,removelayer_action(););
+<!--  继续添加一个关闭按钮  -->
+addlayer(object_close); layer[object_close].loadstyle(object);	set(layer[object_close].crop,80|0|40|60); set(layer[object_close].onovercrop,80|60|40|60);	set(layer[object_close].align,righttop); set(layer[object_close].keep, true); set(layer[object_close].x,5); set(layer[object_close].y,0); if(device.mobile == true,set(layer[object_close].scale,1.5);); set(layer[object_close].onclick,removelayer_action(););
+<!--  继续添加一个拖动按钮  -->
+addlayer(object_bot); layer[object_bot].loadstyle(object); set(layer[object_bot].crop,0|120|120|31);	set(layer[object_bot].align,bottom); set(layer[object_bot].keep, true);	set(layer[object_bot].y,10); if(device.mobile == true,set(layer[object_bot].scale,1.5);); set(layer[object_bot].enabled,false);
+<!--  继续添加下一个按钮  -->
+addlayer(object_next); layer[object_next].loadstyle(object); set(layer[object_next].crop,40|0|40|60); set(layer[object_next].onovercrop,40|60|40|60);	set(layer[object_next].align,right); set(layer[object_next].keep, true); set(layer[object_next].x,10); set(layer[object_next].y,0); if(device.mobile == true,set(layer[object_next].scale,1.5););	set(layer[object_next].ondown,set(y,1);dorotate();); set(layer[object_next].onup,set(y,0)); set(layer[object_next].direction,1);
+<!--  继续添加上一个按钮  -->
+addlayer(object_prev); layer[object_prev].loadstyle(object); set(layer[object_prev].crop,0|0|40|60); set(layer[object_prev].onovercrop,0|60|40|60);	set(layer[object_prev].align,left); set(layer[object_prev].keep, true); set(layer[object_prev].x,10); set(layer[object_prev].y,0); if(device.mobile == true,set(layer[object_prev].scale,1.5););	set(layer[object_prev].ondown,set(y,1);dorotate();); set(layer[object_prev].onup,set(y,0)); set(layer[object_prev].direction,-1);
+<!--  循环图像属性  -->
+for(set(i,0), i LT %2, inc(i), txtadd(fname,frame,get(i)); txtadd(furl,%1,get(i),.jpg); addplugin(get(fname)); plugin[get(fname)].loadstyle(frame); copy(plugin[get(fname)].url,furl); ); set(currentframe,0); set(framecount,%2); showframe(0);
+</action>
+<action name="updateframesize">
+if(plugin[%1].imagewidth GT stagewidth, set(plugin[%1].width,100%); set(plugin[%1].height,prop); , if(plugin[%1].imageheight GT stageheight, set(plugin[%1].width,prop); set(plugin[%1].height,100%); , plugin[%1].resetsize(); ); );
+</action>
+<action name="updateframes">
+for(set(i,0), i LT framecount, inc(i), txtadd(fname,frame,get(i)); updateframesize(get(fname)); );
+</action>
+<action name="showframe">
+txtadd(fname,frame,get(currentframe)); txtadd(tempstr,'set(plugin[',get(fname),'].visible,false);'); ifnot(%1 == 0, delayedcall(0.03,get(tempstr)); ); add(currentframe,%1); if(currentframe LT 0, sub(currentframe,framecount,1); ); if(currentframe == framecount, set(currentframe,0); ); txtadd(fname,frame,get(currentframe)); set(plugin[get(fname)].visible,true); ifnot(plugin[get(fname)].loaded, set(plugin[loading_360].visible,true);, set(plugin[loading_360].visible,false); );
+</action>
+<action name="dorotate">
+if(pressed, showframe(get(direction)); delayedcall(0.03,dorotate();); );
+</action>
+<action name="domouserotate">
+if(pressed, sub(temp,oldmousex,mouse.x); if(temp GT 0, set(temp,1); ); if(temp LT 0, set(temp,-1); ); showframe(get(temp)); copy(oldmousex,mouse.x); delayedcall(0.03,domouserotate();); );
+</action>
+</krpano>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>99乘法表</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<form name="myform">   
+    <div>   
+        <label for="cookie_name">   
+            名称   
+        </label>   
+        <input type="text" name="cookie_name" />   
+    </div>   
+    <div>   
+        <label for="cookie_value">   
+        值   
+        </lable>   
+        <input type="text" name="cookie_value" />   
+    </div>   
+    <div>   
+        <label for="cookie_expireHours">   
+        多少个小时过期   
+        </lable>   
+        <input type="text" name="cookie_expiresHours" />   
+    </div>   
+    <div>   
+        <input type="button" value="添加该cookie" onclick="add_()"/><input type="button" value="读取所有cookie" onclick="allCookie()"/><input type="button" value="读取该名称cookie" onclick="get_()"/><input type="button" value="删除该名称cookie" onclick="del_()"/>   
+    </div>   
+</form>   
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

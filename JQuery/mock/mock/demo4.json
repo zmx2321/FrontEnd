@@ -1,0 +1,11 @@
+{
+  "error":false,
+  "msg":"",
+  "data":{
+      "id":1,
+      "imgs":["images/cs/poyctyt_banner_cs2.png","images/cs/poyctyt_banner_cs3.png"],
+      "urls":["http://baidu.com","https://segmentfault.com"]
+  },
+  "length":null,
+  "rtCode":null
+}

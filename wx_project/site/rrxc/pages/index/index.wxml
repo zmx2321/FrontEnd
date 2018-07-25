@@ -1,0 +1,103 @@
+<!-- import -->
+<import src="../../common/nav.wxml" />
+<!-- /import -->
+
+<!-- nav_wrap -->
+<template is="nav" />
+<!-- /nav_wrap -->
+
+<!-- <view class="tip">
+  <navigator class="myinfo" url="/pages/myInfo/myInfo">123123</navigator>
+</view> -->
+
+<!-- map -->
+ <view class="map_container" style='display:block'>
+  <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap"></map>
+</view>
+<view class="place_info">
+  <text>{{placeData.title}}</text>
+  <text>{{placeData.address}}</text>
+  <text>{{placeData.telephone}}</text>
+</view> 
+<!-- /map -->
+
+<!-- map_scroll -->
+  <!-- <view class='map_scroll'>
+
+  </view>  -->
+<view class="scroll_box"> 
+    <scroll-view class="scroll-view_x" scroll-x style="width: auto;overflow:hidden;">
+      <navigator url='/pages/businessDetail/businessDetail' class="item_list">
+        <view class='mpsol_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/ys_img.jpg" class="item_book_img"></image>
+        </view>
+        <view class='poycty_ban_Mask'></view>
+        <text>云尚</text>
+        <view class='vr_c'>
+          <text>VR</text>
+        </view>
+      </navigator>
+      
+      <navigator url='/pages/businessDetail/businessDetail' class="item_list">
+        <view class='mpsol_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/wh_img.jpg" class="item_book_img"></image>
+        </view>
+        <view class='poycty_ban_Mask'></view>
+        <text>望湖别苑</text>
+        <view class='vr_c'>
+          <text>VR</text>
+        </view>
+      </navigator>
+
+      <navigator url='/pages/businessDetail/businessDetail' class="item_list">
+        <view class='mpsol_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/kg_img.jpg" class="item_book_img"></image>
+        </view>
+        <view class='poycty_ban_Mask'></view>
+        <text>坑根人家</text>
+        <view class='vr_c'>
+          <text>VR</text>
+        </view>
+      </navigator>
+
+      <navigator url='/pages/businessDetail/businessDetail' class="item_list">
+        <view class='mpsol_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/kg_img.jpg" class="item_book_img"></image>
+        </view>
+        <view class='poycty_ban_Mask'></view>
+        <text>坑根人家</text>
+        <view class='vr_c'>
+          <text>VR</text>
+        </view>
+      </navigator>
+
+      <navigator url='/pages/businessDetail/businessDetail' class="item_list">
+        <view class='mpsol_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/kg_img.jpg" class="item_book_img"></image>
+        </view>
+        <view class='poycty_ban_Mask'></view>
+        <text>坑根人家</text>
+        <view class='vr_c'>
+          <text>VR</text>
+        </view>
+      </navigator>
+
+      <navigator url='/pages/businessDetail/businessDetail' class="item_list">
+        <view class='mpsol_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/kg_img.jpg" class="item_book_img"></image>
+        </view>
+        <view class='poycty_ban_Mask'></view>
+        <text>坑根人家</text>
+        <view class='vr_c'>
+          <text>VR</text>
+        </view>
+      </navigator>
+    </scroll-view>
+  </view>
+<!-- /map_scroll -->
+
+<!-- modal -->
+<!-- <modal class="modal" hidden="{{modalHidden}}" no-cancel bindconfirm="modalChange">
+  <view class="show">{{show}}</view> 
+</modal> -->
+<!-- /modal -->

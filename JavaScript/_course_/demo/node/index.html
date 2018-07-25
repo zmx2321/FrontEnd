@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>节点</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<ul id="names">
+	<li id="n1">zhangsan</li>
+	<li id="n2">lisi</li>
+	<li id="n3">wangwu</li>
+	<li id="n4">zhaoliu</li>
+	<li id="n5">xiaoming</li>
+	<li id="n6">xiaohong</li>
+</ul>
+
+<!-- 所有兄弟元素 -->
+<input type="button" value="父节点" onclick="showContent(curr.parentNode)" />
+
+<!-- 谷歌换行算空 -->
+<input type="button" value="第一个子节点" onclick="showContent(curr.parentNode.firstChild.nextSibling)" />
+<input type="button" value="上一个节点" onclick="showContent(curr.previousSibling.previousSibling)" />
+<input type="button" value="下一个节点" onclick="showContent(curr.nextSibling.nextSibling)" />
+<input type="button" value="最后一个子节点" onclick="showContent(curr.parentNode.lastChild.previousSibling)" />
+<input type="button" value="得到所有li元素的个数" onclick="showCount()" />
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

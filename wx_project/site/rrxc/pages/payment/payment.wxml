@@ -1,0 +1,95 @@
+<!-- payment_body -->
+<view class="main_body payment_body">
+  <navigator class="payment_top">
+    <view class="main_wrap">
+      <view class="paytpl">
+        <view class="paytpl_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/ordste_jl.png"></image>
+        </view>
+        <view class="paytpl_txt">
+          <text>张三\n</text>
+          <text>13888888888</text>
+        </view>
+      </view>
+      <view class="paytpr">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-wdzk.png"></image>
+      </view>
+    </view>
+    <view class="clear"></view>
+  </navigator>
+
+  <view class="main_cot payment_cont">
+    <view class="modrct_wrap">
+      <view class="modrct_cot">
+        <view class="modrct_title">
+          <view class="modrct_title_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+          </view>
+          <text>晴天雨后民宿</text>
+        </view>
+      </view>
+      <view class="modrct_body">
+        <view class="modrct_cot">
+          <view class="modrct_body_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="modrct_body_txt">
+            <view class="tittle">
+              <text>宁波青苹果</text>
+            </view>
+            <view class="lab">
+              <text>休闲业主</text>
+              <text>可现场游园</text>
+            </view>
+            <view class="price">
+              <view class="price_l">
+                <text class="nor">¥18</text>
+                <text class="old">¥268</text>
+              </view>
+              <text class="price_r">数量：1</text>
+            </view>
+          </view>
+        </view>
+      </view>  
+      <view class="payment_count">
+        <view class="main_wrap">
+          <text class="pytut_l">购买数量</text>
+          <view class="count">
+            <text class="count_down">-</text>
+            <text class="count_num">1</text>
+            <text class="count_up">+</text>
+          </view>
+        </view>
+      </view>
+      <view class="modrct_btn">
+        <navigator class="modrct_cot">
+          <text class="modrct_btn_l">店铺优惠券</text>
+          <text class="modrct_btn_r">无优惠券</text>
+        </navigator>
+      </view> 
+    </view>
+  </view>
+  <view class="main_cot payment_way">
+    <view class="main_wrap">
+      <text class="payment_way_l">微信支付</text>
+      <view class="payment_way_r">
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-spxq-tb.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- /payment_body -->
+
+<!-- payment_botton -->
+<view class="main_botton payment_botton">
+  <view class="payment_botton_cont">
+    <view class="payment_botton_txt">
+      <text>实付款：</text>
+      <text class="price">￥18</text>
+    </view>
+    <view class="payment_botton_btn">
+      <button bindtap="jumpToOrder">立即付款</button>
+    </view>
+  </view>
+</view>
+<!-- /payment_botton -->

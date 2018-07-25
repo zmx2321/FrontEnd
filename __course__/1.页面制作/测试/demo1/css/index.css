@@ -1,0 +1,35 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.img{
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin-right: 15px;
+	float: left;
+}
+
+.text h3{
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	font-size: 16px;
+}
+
+.text h3, .text p{
+	font-family: "宋体";
+	line-height: 25px;
+}
+
+.text p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	font-size: 14px;
+	color: #666;
+}

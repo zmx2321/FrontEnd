@@ -1,0 +1,10 @@
+<krpano>
+<action name="hongbao_action">
+<!-- 红包出现ath随机数 -->
+mul(num_x,random,200); roundval(num_x); add(num_x,100); if(num_x == 0,set(num_x,1););
+<!-- 红包出现atv随机数 -->
+mul(num_y,random,300); roundval(num_y); add(num_y,100); if(num_y == 0,set(num_y,1););
+<!-- 红包出现ath，atv随机坐标 -->
+set(hotspot[wx_hongbao].ath,get(num_x)); set(hotspot[wx_hongbao].atv,get(num_y)); set(hotspot[wx_hongbao].visible,true); tween(hotspot[wx_hongbao].width,100,0.3); tween(hotspot[wx_hongbao].height,100,0.3);
+</action>
+</krpano>

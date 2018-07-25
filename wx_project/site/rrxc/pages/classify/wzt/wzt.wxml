@@ -1,0 +1,453 @@
+<!-- import -->
+<import src="../../../common/nav.wxml" />
+<!-- /import -->
+
+<!-- nav_wrap -->
+<template is="nav" />
+<!-- /nav_wrap -->
+
+<!-- swiper -->
+<!-- tab -->
+<view class="swp_tab wzt_tab">
+  <!-- theme_rm -->
+   <!-- <view class="theme_rm tab_item {{currentTab==0 ? 'active' : ''}}" mer_type_id="1" data-current="0" bindtap="swichNav">
+    热门
+  </view>  -->
+  <!-- /theme_rm  -->
+
+  <!-- <block wx:for="{{tabData}}" wx:key="key">
+    <view class="tab_item {{currentTab==index+1 ? 'active' : ''}}" 
+          data-mer_type_id="{{item.id}}" 
+          data-current="{{index+1}}" 
+          bindtap="swichNav">
+      {{item.name}}
+    </view>
+  </block> -->
+
+<!-- tab假数据注释 -->
+  <!-- theme_rm -->
+    <view class="theme_rm tab_item {{currentTab==0 ? 'active' : ''}}" mer_type_id="1" data-current="0" bindtap="swichNav">
+    热门
+  </view>  
+  <!-- /theme_rm  -->
+
+  <!-- theme_a -->
+   <view class="theme_a tab_item {{currentTab==1 ? 'active' : ''}}" mer_type_id="1" data-current="1" bindtap="swichNav">
+    亲子家庭
+  </view>  
+  <!-- /theme_a  -->
+
+  <!-- theme_b -->
+   <view class="theme_b tab_item {{currentTab==2 ? 'active' : ''}}" mer_type_id="1" data-current="2" bindtap="swichNav">
+    党团建设
+  </view> 
+  <!-- /theme_b   -->
+
+  <!-- theme_c -->
+   <view class="theme_c tab_item {{currentTab==3 ? 'active' : ''}}" mer_type_id="1" data-current="3" bindtap="swichNav">
+    禅学瑜伽
+  </view> 
+  <!-- /theme_c   -->
+
+  <!-- theme_d -->
+   <view class="theme_d tab_item {{currentTab==4 ? 'active' : ''}}" mer_type_id="1" data-current="4" bindtap="swichNav" >
+    养生养老
+  </view> 
+  <!-- /theme_d   -->
+
+  <!-- theme_e -->
+   <view class="theme_e tab_item {{currentTab==5 ? 'active' : ''}}" mer_type_id="1" data-current="5" bindtap="swichNav">
+    国学书画
+  </view> 
+  <!-- /theme_e -->
+<!-- /tab假数据注释 -->
+</view>
+<!-- /tab -->
+
+<!-- cont -->
+<swiper class="tab_cont" current="{{currentTab}}" duration="300" bindchange="bindChange" style="height: {{clientHeight-diffHeight-25}}px">
+  <!-- theme_rm_cot -->
+  <swiper-item class="theme_rm_cot">
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight-diffHeight-25}}px">
+      <!-- <view class="poyctcnt_cont">
+      <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+        <view class="poyctcnt_pic">
+          <image src="../../../images/cs/shilietupain1.png"></image>  
+          <text class="tit_tab">亲子家庭</text>  
+        </view>
+        <view class="poyctcnt_txt">
+          <view class="poyctcnt_txt_nam">
+            <text>晴天雨后——游主题</text>
+            <text>已结束</text>
+          </view>
+          <view class="poyctcnt_txt_p">
+            <p>
+                云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古
+                村落，宿座落在800多年的古村落，
+            </p>
+          </view>
+          <view class="poyctcnt_lab_bar">
+              <view class="polabbar_result"></view>
+          </view>
+          <view class="poyctcnt_lab">
+              <text>目标59人</text>
+              <text>已参加59人</text>
+              <text>剩余20天</text>
+          </view>
+        </view>
+      </navigator>
+    </view> -->
+      <block wx:for="{{listData}}" wx:key="key">
+        <view class="poyctcnt_cont" data-product_id="{{item.id}}" bindtap='getProductId'>
+          <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+            <view class="poyctcnt_pic">
+              <image src="{{item.img_url}}"></image>  
+              <text class="tit_tab">{{item.product_type2_name}}</text>  
+            </view>
+            <view class="poyctcnt_txt">
+              <view class="poyctcnt_txt_nam">
+                <text>{{item.name}}</text>
+                <text>{{statu}}</text>
+              </view>
+              <view class="poyctcnt_txt_p">
+                <p>{{item.product_title}}</p>
+              </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>{{time}}</text>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+    </scroll-view>
+  </swiper-item> 
+  <!-- /theme_rm_cot -->
+
+  <!-- theme_a_cot -->
+  <swiper-item class="theme_a_cot">
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight-diffHeight-25}}px">
+      <block wx:for="{{listData}}" wx:key="key">
+        <view class="poyctcnt_cont" data-product_id="{{item.id}}" bindtap='getProductId'>
+          <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+            <view class="poyctcnt_pic">
+              <image src="{{item.img_url}}"></image>  
+              <text class="tit_tab">{{item.product_type2_name}}</text>  
+            </view>
+            <view class="poyctcnt_txt">
+              <view class="poyctcnt_txt_nam">
+                <text>{{item.name}}</text>
+                <text>已结束</text>
+              </view>
+              <view class="poyctcnt_txt_p">
+                <p>{{item.product_title}}</p>
+              </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>{{time}}</text>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+    </scroll-view>
+  </swiper-item> 
+  <!-- /theme_a_cot -->
+
+  <!-- theme_b_cot -->
+   <swiper-item class="theme_b_cot">
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight-diffHeight-25}}px">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">党团建设</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——游主题</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+             <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+  </swiper-item> 
+  <!-- /theme_b_cot -->
+
+  <!-- theme_c_cot -->
+  <swiper-item class="theme_c_cot">
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight-diffHeight-25}}px">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">禅学瑜伽</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——游主题</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">禅学瑜伽</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——游主题</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view> 
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">禅学瑜伽</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——游主题</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view> 
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">禅学瑜伽</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——游主题</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view> 
+    </scroll-view>
+  </swiper-item> 
+  <!-- /theme_c_cot -->
+
+  <!-- theme_d_cot -->
+  <swiper-item class="theme_d_cot">
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight-diffHeight-25}}px">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">养生养老</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——游主题</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view>
+    </scroll-view>
+  </swiper-item> 
+  <!-- /theme_d_cot -->
+
+  <!-- theme_e_cot -->
+  <swiper-item class="theme_e_cot">
+    <scroll-view scroll-y="{{true}}" style="height: {{clientHeight-diffHeight-25}}px">
+      <view class="poyctcnt_cont">
+        <navigator url="/pages/raiseDetails_wzt/raiseDetails_wzt">
+          <view class="poyctcnt_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/shilietupain1.png"></image>  
+            <text class="tit_tab">国学书画</text>  
+          </view>
+          <view class="poyctcnt_txt">
+            <view class="poyctcnt_txt_nam">
+              <text>晴天雨后——游主题</text>
+              <text>已结束</text>
+            </view>
+            <view class="poyctcnt_txt_p">
+                  <p>
+                      云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，
+                  </p>
+            </view>
+              <!-- <view class="poyctcnt_lab_bar">
+                  <view class="polabbar_result"></view>
+              </view>  -->
+              <progress class='poyctcnt_bar' 
+                        percent="25" 
+                        stroke-width="2" 
+                        activeColor="#00cd00"
+                        backgroundColor="#efefef"
+                        active  />
+              <view class="poyctcnt_lab">
+                  <text>目标59人</text>
+                  <text>已参加59人</text>
+                  <text>剩余20天</text>
+              </view>
+          </view>
+        </navigator>
+      </view> 
+    </scroll-view>
+  </swiper-item> 
+  <!-- /theme_e_cot -->
+</swiper>
+<!-- /cont -->
+<!-- /swiper -->
+
+<!-- tip -->
+<view class="fixbtn">
+  <navigator class="my_message" url="/pages/myMessage/myMessage">
+    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/wd.png"></image>  
+  </navigator>
+</view>
+<!-- /tip -->
+
+<!-- popup -->
+<view class='popup'>
+  <text>{{title}}</text>
+</view>
+<!-- /popup -->
+
+  

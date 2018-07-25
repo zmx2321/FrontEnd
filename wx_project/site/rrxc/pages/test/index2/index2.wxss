@@ -1,0 +1,34 @@
+/* main_tab */
+/* poyctyt_nav */
+.poyctyt_nav{
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 1px 1px 1px #dedede;
+}
+
+.ptnv_cot{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.ptnv_cot > view{
+  display: inline-block;
+}
+
+.ptnv_cot .ptnv_pic{
+
+}
+/* /poyctyt_nav */
+
+/* poycty_body */
+.poycty_body > view{
+  display: none; 
+}
+
+.poycty_body .active{
+  display: block; 
+  background: initial;
+  color: #000;
+}
+/* /poycty_body */
+/* /main_tab */

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>test - MUST run in http or https</title>
+    </head>
+    <body>
+        <script src="hieroglyphy.js"></script>
+        <script>
+            var i,
+                c,
+                encoded,
+                evaled,
+                script;
+
+            for (i = 0; i < 127; i += 1) {
+                c = String.fromCharCode(i);
+                encoded = hieroglyphy.hieroglyphyString(c);
+                evaled = eval(encoded);
+
+                if (c !== evaled) {
+                    throw new Error("Error at char %s", c);
+                }
+            }
+
+            for (i = 0; i < 1000; i += 1) {
+                encoded = hieroglyphy.hieroglyphyNumber(i);
+                evaled = eval(encoded);
+
+                if (i !== evaled) {
+                    throw new Error("Error at number %d", i);
+                }
+            }
+
+            //a script doing something (with some unicode)
+            script = "document.body.innerHTML =\r\n" +
+                "\"<h1>Testing λ</h1>\"";
+
+            eval(hieroglyphy.hieroglyphyScript(script));
+
+            if (document.body.innerHTML !== "<h1>Testing λ</h1>") {
+                throw new Error("Error with the script");
+            }
+
+            document.body.innerHTML = "<h1>It Works ☺!</h1>";
+
+        </script>
+    </body>
+</html>

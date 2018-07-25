@@ -1,0 +1,63 @@
+<section>
+    <div class="activity-container">
+        <div class="activity-header" ng-show="hasHeader">
+            <div class="activity-header-img">
+                <div class="img-normal-container">
+                    <img src="http://static.iboom.tv/static/img/{{matchCarsouel.img?matchCarsouel.img:'videoDefault.png'}}" alt="">
+                </div>
+            </div>
+            <div class="activity-notice">
+                <header ng-bind="matchCarsouel.name"></header>
+                <article>
+                    {{matchCarsouel.title}}
+                </article>
+                <footer>
+                    <a class="btn btn-dark btn-big btn-big-a" href="#activityBefore/{{matchCarsouel.data}}">查看详情</a>
+                    <a class="btn btn-red btn-big btn-big-a" href="http://{{matchCarsouel.url}}" target="_blank">我要报名</a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="activity-content">
+            <header>全部赛事</header>
+            <article>
+                <div class="all-activity-tab">
+                    <ul>
+                        <li ng-class={"all-activity-tab-selected":!isSelectEnd} ng-click="getAllMatches()">进行中</li>
+                        <li ng-class={"all-activity-tab-selected":isSelectEnd} ng-click="getEndMatches()">已结束</li>
+                    </ul>
+                </div>
+                <div class="activity-list">
+                    <ul>
+                        <li ng-repeat="m in matches">
+                            <a href="#activityBefore/{{m.id}}" class="activity-list-info" ng-show="!isSelectEnd">
+                                <div class="img-auto-container img-size-big">
+                                    <img src="http://static.iboom.tv/static/img/{{m.img}}" alt="活动图片">
+                                </div>
+                                <div class="activity-list-info-name">{{m.name}}</div>
+                                <span>开始时间:{{m.startTime | dateText}}</span>
+                            </a>
+                            <a href="#activityAfter/{{m.id}}" class="activity-list-info" ng-show="isSelectEnd">
+                                <div class="img-auto-container img-size-big">
+                                    <img src="http://static.iboom.tv/static/img/{{m.img}}" alt="活动图片">
+                                </div>
+                                <div class="activity-list-info-name">{{m.name}}</div>
+                                <span>开始时间:{{m.startTime | dateText}}</span>
+                            </a>
+                        </li>
+                        <!--<li>-->
+                            <!--<a href="#activityBefore" class="activity-list-info">-->
+                                <!--<div class="img-auto-container img-size-big">-->
+                                    <!--<img src="static/images/mainbg02.png" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="activity-list-info-name">守望王者联赛</div>-->
+                                <!--<span>开始时间:2016年10月23日</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>

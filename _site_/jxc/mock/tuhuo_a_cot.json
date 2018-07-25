@@ -1,0 +1,85 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id":1,
+      "imgs": "images/cs/272153.jpg",
+      "url":"productDetail_ms.html",
+      "title": "天然野山菌[宁波]",
+      "imglab": ["休闲业主","可现场游园"],
+      "price": 68,
+      "lastPrice": 268,
+      "surplusDay": "剩余20件",
+      "sale": "秒杀"
+    },
+    {
+      "id":2,
+      "imgs": "images/cs/272153.jpg",
+      "url":"productDetail_pt.html",
+      "title": "天然野山菌[广州]",
+      "imglab": ["休闲业主","可现场游园"],
+      "price": 68,
+      "lastPrice": 268,
+      "surplusDay": "2人团",
+      "sale": "2人团"
+    },
+    {
+      "id":2,
+      "imgs": "images/cs/272153.jpg",
+      "url":"productDetail_pt.html",
+      "title": "天然野山菌[广州]",
+      "imglab": ["休闲业主","可现场游园"],
+      "price": 68,
+      "lastPrice": 268,
+      "surplusDay": "2人团",
+      "sale": "2人团"
+    },
+    {
+      "id":2,
+      "imgs": "images/cs/272153.jpg",
+      "url":"productDetail_pt.html",
+      "title": "天然野山菌[广州]",
+      "imglab": ["休闲业主","可现场游园"],
+      "price": 68,
+      "lastPrice": 268,
+      "surplusDay": "2人团",
+      "sale": "2人团"
+    },
+    {
+      "id":2,
+      "imgs": "images/cs/272153.jpg",
+      "url":"productDetail_pt.html",
+      "title": "天然野山菌[广州]",
+      "imglab": ["休闲业主","可现场游园"],
+      "price": 68,
+      "lastPrice": 268,
+      "surplusDay": "2人团",
+      "sale": "2人团"
+    },
+    {
+      "id":2,
+      "imgs": "images/cs/272153.jpg",
+      "url":"productDetail_pt.html",
+      "title": "天然野山菌[广州]",
+      "imglab": ["休闲业主","可现场游园"],
+      "price": 68,
+      "lastPrice": 268,
+      "surplusDay": "2人团",
+      "sale": "2人团"
+    },
+    {
+      "id":2,
+      "imgs": "images/cs/272153.jpg",
+      "url":"productDetail_pt.html",
+      "title": "天然野山菌[广州]",
+      "imglab": ["休闲业主","可现场游园"],
+      "price": 68,
+      "lastPrice": 268,
+      "surplusDay": "2人团",
+      "sale": "2人团"
+    }
+  ],
+  "length":22,
+  "rtCode":null
+}

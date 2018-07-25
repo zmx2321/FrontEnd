@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="resilience.js"></script>
+<style>
+*{
+	padding:0; margin:0;}
+    ul{
+		width:400px;
+		 height:30px;
+		 position:relative; 
+		 margin:100px auto 0px ;
+		list-style:none;
+		cursor:pointer;
+		z-index:1;
+ }
+ ul li{
+	 float:left;
+	 height:28px;
+	 line-height:28px;
+	 border:solid 1px gray;
+	 z-index:2;
+	 position:relative;
+	 text-align:center;
+	 width:98px;
+	 z-index:2;
+	 
+	
+	  
+	 }
+	 .bg{
+		 width:100px;
+		 height:5px;
+ 		 z-index:3;
+		 border:none;
+		 position:absolute;
+		 background:red;
+		 bottom:0px;
+		 left:0px;
+		 }
+</style>
+</head>
+ <body>
+  <ul id="ul1">
+     <li>首页</li>
+     <li>关于我们</li>
+     <li>联系方式</li>
+     <li>产品</li>
+     <li class='bg'></li>
+  </ul>
+  <script>
+
+      var oUl=document.getElementById('ul1');
+	  var aLis=oUl.getElementsByTagName('li');
+	  var oBg=aLis[aLis.length-1];
+	  for(var i=0; i<aLis.length-1; i++)
+	    {
+			  aLis[i].onmouseover=function(){
+ 					  resilience(oBg,{left:this.offsetLeft});
+				  } 
+			}
+		 
+		 
+			 
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+.lottery_cm_item_sel.selected,
+.lottery_cm_item_sel1.selected {
+	background-image: url(img/red_gou.png);
+}
+
+.icon_cm_5 {
+	background-image: url(img/cm_1.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_10 {
+	background-image: url(img/cm_2.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_50 {
+	background-image: url(img/cm_3.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_1000 {
+	background-image: url(img/cm_1.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_5000 {
+	background-image: url(img/cm_2.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_10000 {
+	background-image: url(img/cm_3.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_100 {
+	background-image: url(img/cm_4.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_500 {
+	background-image: url(img/cm_5.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.icon_cm_more {
+	background-image: url(img/cm_more.png);
+	background-size: 100% 100%;
+	font-weight: bold;
+}
+
+.cm_1 {
+	left: .5rem;
+}
+
+.cm_2 {
+	left: 6.5rem;
+}
+
+.cm_3 {
+	left: 12.5rem;
+}
+
+.cm_4 {
+	left: 18.5rem;
+}
+
+.cm_5 {
+	left: 24.5rem;
+}
+
+.cm_6 {
+	left: 30.5rem;
+}
+
+.cm_7 {
+	left: 36.5rem;
+}
+
+.cm_8 {
+	left: 42.5rem;
+}
+
+.cm_9 {
+	left: 48.5rem;
+}
+
+.chouma_mask{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.3);
+	z-index: 99;
+	opacity: 0;
+	-webkit-transition: all 0.5s;
+}
+
+.chouma_mask.show{
+	opacity: 1;
+}
+
+.chouma_mask.show ~ .main,
+.chouma_mask.show ~ .menu{
+	filter: blur(3px);
+}
+
+
+.chouma_content{
+	-webkit-transition: all 0.5s;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 6rem;
+	height: 6rem;
+	border: 2px solid #0090ff;
+	-webkit-transform: translate3d(-50%,-50%,0);
+	z-index: 100;background-color: white;
+	border-radius: 10px;
+	overflow: auto;
+	opacity: 0;
+}
+
+.chouma_mask.show ~ .chouma_content{
+	width: 90%;
+	opacity: 1;
+}
+
+.chouma_content_main{
+	height: 100%;
+	position: relative;
+	border-radius: 3rem;
+}
+
+.chouma_item{
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	top: .3rem;
+	text-align: center;
+	line-height: 5rem;
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: all 0.5s;
+	cursor: pointer;
+	font-size: 1.6rem;
+	font-weight: bolder;
+}
+
+.cm_hide{
+	opacity: 0;
+	visibility: hidden;
+	left: -6rem;
+}
+
+
+.cm_selected{
+	position: fixed !important;
+	z-index: 101 !important;
+	width: 5rem !important;
+	height: 5rem !important;
+	text-align: center;
+	line-height: 5rem;
+	-webkit-transition: all 0.5s;
+}
+
+.ani_cm_selected{
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-play-state: running;
+	-webkit-animation-timing-function: initial;
+	-webkit-animation-name: ani_cm;
+}
+
+@-webkit-keyframes ani_cm{
+	0%{
+		
+	}
+	100%{
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translate3d(-50%,-50%,0) scale(3);
+		opacity: 0;
+	}
+}

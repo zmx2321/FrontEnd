@@ -1,0 +1,197 @@
+<section>
+    <!-- BOOM课程表 s -->
+    <div class="course-container">
+        <div class="courselist-content">
+            <header>BOOM课程表</header>
+            <article>
+                <div class="class-course-week">
+                    <div class="arr_left" ng-click="JumpLeftbtn()">
+                        <img src="static/images/icon/arrow_onpress.png">
+                    </div>
+
+                    <ul>
+                        <li ng-class={"all-course-tab-selected":isWeekCurriculumShow===$index||isWeekdong==="xian"+$index}
+                            ng-repeat="keb in CurriculumKeBiaos track by $index"
+                            ng-click="getWeekCurriculumShow($index);Exhibition(keb)">
+                            <div class="li-date">
+                                {{keb.date}}
+                            </div>
+                            <div class="li-week">
+                                {{keb.day | weekDay}}
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="arr_right" ng-click="JumpRightbtn()">
+                        <img src="static/images/icon/arrow_onpress.png" ng-if="!imgshow">
+                        <img src="static/images/prohibit.png" ng-if="imgshow">
+                    </div>
+                </div>
+                <div class="course-list">
+                    <ul>
+                        <li ng-repeat="kb in CurriculumeSlectKeBiao">
+                            <a href="#/live/{{(kb.data| evalText).liveId}}"
+                               class="course_video_live">
+                                <div class="img-auto-container kebiao-img-big">
+                                    <img src="http://static.iboom.tv/static/img/{{kb.img}}" alt="">
+                                </div>
+                                <div class="course-list-txt">
+                                    <ul>
+                                        <li>
+                                            <dl>
+                                                <dt>
+                                                <ul>
+                                                    <li>{{kb.name}}</li>
+                                                    <li>{{((kb.data | evalText).start - now) > 0 ? "正在直播":"未开始" }}</li>
+                                                </ul>
+                                                </dt>
+                                                <dd>
+                                                    <ul>
+                                                        <li>类型<span></span></li>
+                                                        <li>{{kb.title}}</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li>教学老师<span></span></li>
+                                                        <li>兰洋老师</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li>时间<span></span></li>
+                                                        <li>{{((kb.data| evalText).start)|date:'hh :mm' }}</li>
+                                                    </ul>
+                                                </dd>
+                                            </dl>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="course-lack-course" ng-show="lackLive">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>主人，今天没课，好好放松吧</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <!-- BOOM课程表 e -->
+
+    <!-- BOOM精品课程 s -->
+    <div class="course-best-container">
+        <div class="course-best-cont">
+            <header>
+                <span>BOOM精品课程</span>
+                <div class="course_search">
+                    <input class="search-input" type="text" ng-model="inputQueryStr" placeholder="请输入课程名称">
+
+                    <div class="search-button" ng-click="clickQueryBtn()">
+                        <!--<img src="static/images/icon/search_normal.png" alt="">-->
+                    </div>
+                </div>
+            </header>
+
+            <article>
+                <div class="all-bestcourse-tab">
+                    <ul>
+                        <li ng-class={"all-bestcourse-tab-selected":thisCourseType===0} ng-click="getHotCourse()">最多播放
+                        </li>
+                        <li ng-click="getLatestCourse()" ng-class={"all-bestcourse-tab-selected":thisCourseType===1}>
+                            最新发布
+                        </li>
+                    </ul>
+                    <div class="bestcourse-select">
+                        <ul>
+                            <li>
+                                <span>{{fenlu.name}}</span>
+                                <b>
+                                    <img src="static/images/icon/arrow_normal.png" alt="">
+                                </b>
+                                <dl>
+                                    <dd ng-repeat="ele in fenlu.labInfos" ng-click="clickLabTab(ele)">{{ele.labName}}
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li class="bestcourse-select-hreo" ng-click="showchoicehreo()">
+                                <b><img src="static/images/icon/arrow_normal.png" alt=""></b>
+                                <span>{{yinxiong.name}}</span>
+                            </li>
+                            <li>
+                                <b><img src="static/images/icon/arrow_normal.png" alt=""></b>
+                                <span>{{dafa.name}}</span>
+                                <dl>
+                                    <dd ng-repeat="ele in dafa.labInfos" ng-click="clickLabTab(ele)">{{ele.labName}}
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bestcourse-list">
+                    <ul>
+                        <li ng-repeat="course in courseList track by $index">
+                            <a href="#courseRecording/{{course.id}}" class="bestcourse-list-info">
+                                <div class="img-auto-container all-course-img">
+                                    <img src="http://static.iboom.tv/static/img/{{course.img}}" alt="">
+                                </div>
+                                <div>{{course.name}}</div>
+                                <span>{{course.teacherInfo.name}}老师&nbsp;&nbsp;&nbsp;{{course.watchTimes}}次播放</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="course-lack-course" ng-show="lackCourse">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>主人，暂无此课程哦，请查看其它课程</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <!-- BOOM精品课程 s -->
+
+    <!-- 弹出框 s -->
+    <!-- <div class="popup_box" ng-if="isShowMask"> -->
+    <div class="popup_box" ng-show="isShowMask">
+        <div class="choicehreo_cont">
+            <div class="choicehreo_close" ng-click="closechoicehreo()">
+                <img src="static/images/icon/icon_close_normal.png" alt="">
+            </div>
+            <div class="choicehreo_radio">
+                <ul>
+                    <li ng-repeat="heroType in yinxiong.childs track by $index">
+                        <dl>
+                            <dd>
+                                <input type="radio" id="{{'radioBtn' + $index}}" ng-value="heroType"
+                                       ng-model="heroList.data" name="grouphero"/>
+                                <b></b>
+                            </dd>
+                            <dd><label for="{{'radioBtn' + $index}}">{{heroType.name}}</label></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="choicehreo_body">
+                <ul>
+                    <li ng-repeat="hero in heroList.data.labInfos track by $index">
+                        <dl ng-click="clickHero(hero,$index)" ng-class={"hero-choiced":thisIndex===$index}>
+                            <dd>
+                                <img src="http://static.iboom.tv/static/img/{{hero.eName}}.png" alt="">
+                            </dd>
+                            <dd>{{hero.labName}}</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="choicehreo_footer">
+                <button class="btn btn-red btn-big" ng-click="queryCourse(heroChoosen.queryRequest)">确定</button>
+            </div>
+        </div>
+    </div>
+    <!-- 弹出框 e -->
+</section>

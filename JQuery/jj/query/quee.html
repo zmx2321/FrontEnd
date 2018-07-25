@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        body{
+            margin:0;
+            padding:0;
+        }
+        #con{
+            width:600px;
+            height:200px;
+            border:1px solid #A9ADFA;
+            overflow:hidden;
+        }
+        #marquee{
+            width:2300px;
+            height:200px;
+            background:#ccc;
+        }
+        #marquee ul{
+            padding:0;
+            margin:0;
+            list-style: none;
+        }
+        #marquee ul li{
+            float:left;
+            width:200px;
+            height:196px;
+            padding:2px;
+        }
+        #marquee ul li img{
+            width:200px;
+            height:194px;
+            border:none;
+        }
+        #demo,#demo1{
+            float:left;
+        }
+    </style>
+</head>
+<body>
+    <div id="con">
+        <div id="marquee">
+            <ul id="demo">
+                <li><img src="images/1.jpg"></li>
+                <li><img src="images/2.jpg"></li>
+                <li><img src="images/3.jpg"></li>
+                <li><img src="images/4.jpg"></li>
+                <li><img src="images/5.png"></li>
+            </ul>
+            <ul id="demo1"></ul>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function(){//window.onload
+        var con = $('#con');//document.getElementById();
+        var demo= $('#demo');
+        var demo1=$('#demo1');
+        demo1.html(demo.html());
+        function scrollDiv(){
+            if(con.scrollLeft()>demo.width()){
+                con.scrollLeft(0);
+            }else{
+                cLeft=con.scrollLeft()+2;
+                con.scrollLeft(cLeft);
+            }
+        }
+        var marquee = setInterval(scrollDiv,100);
+    });
+</script>

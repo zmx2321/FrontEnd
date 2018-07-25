@@ -1,0 +1,34 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id":1,
+      "imgs":"images/cs/shilietupain1.png",
+      "imglab": "定制茶园",
+      "url":"raiseDetails_zdz.html",
+      "title": "晴天雨后——做地主",
+      "statu": "已结束",
+      "price": 8888,
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，",
+      "targetPrice": 20000,
+      "alreadyPrice": 40000,
+      "surplusDay": 20
+    },
+    {
+      "id":2,
+      "imgs":"images/cs/shilietupian2.png",
+      "imglab": "bbbbb",
+      "url":"http://www.baidu.com",
+      "title": "小安",
+      "statu": "未开始",
+      "price": "9999",
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，666666",
+      "targetPrice": 23333,
+      "alreadyPrice": 99999,
+      "surplusDay": 666
+    }
+  ],
+  "length":33,
+  "rtCode":null
+}

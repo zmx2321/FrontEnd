@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="school">
+<head>
+    <meta charset="utf-8">
+    <title>布姆电竞学院</title>
+    <!--忽略电话号码和email识别-->
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <!--当网站添加到主屏幕快速启动方式，将网站添加到主屏幕快速启动方式-->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!--隐藏ios上的浏览器地址栏-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- UC默认竖屏 ，UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!-- QQ强制竖屏 QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+
+
+    <!--网站图标-->
+    <link rel="icon" href="app/static/images/boom.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="app/static/images/boom.ico" type="image/x-icon"/>
+
+
+    <!--模拟数据-->
+    <script src="app/mock/mockface/b-mock.js"></script>
+    <script src="app/mock/mockapi/api.js"></script>
+
+
+    <!--样式文件-->
+    <link rel="stylesheet" href="app/static/css/normalize.css">
+    <link rel="stylesheet" href="app/static/css/style.css">
+    <link rel="stylesheet" href="app/static/css/login.css">
+    <link rel="stylesheet" href="app/static/css/editPerson.css">
+    <link rel="stylesheet" href="app/static/css/service-time.css">
+    <link rel="stylesheet" href="app/static/css/course.css">
+
+    <!--登录页背景-->
+    <script src="app/static/js/particles.min.js"></script>
+
+</head>
+<body ng-controller="loginController">
+
+<div class="login-container" id="particles-js">
+    <div class="login-container-content" ng-show="isLogin">
+        <div class="login-container-header">
+            <div class="login-logo">
+                <img src="app/static/images/login_logo.png" alt="logo">
+            </div>
+            <div class="login-container-header-img">
+                <div class="img-auto-container login-container-header-img-content">
+                    <img src="{{header}}" alt="header">
+                </div>
+            </div>
+        </div>
+        <div class="login-container-body">
+            <div class="input-group">
+                <span class="input-group-icon">
+                    <img src="app/static/images/icon/people_icon.png" alt="">
+                </span>
+                <input type="text" placeholder="请输入注册的手机号" ng-model="loginModel.qq">
+            </div>
+            <div class="input-group">
+                <span class="input-group-icon">
+                    <img src="app/static/images/icon/pwd.png" alt="">
+                </span>
+                <input type="password" placeholder="请输入密码" ng-model="loginModel.pwd">
+            </div>
+            <button class="btn btn-red btn-big btn-login" ng-click="login()">登录</button>
+        </div>
+        <div class="login-container-footer">
+            <span>
+                <a href="" ng-click="toRegistered()">注册账号</a>
+            </span>
+            <span>
+                <a href="" ng-click="toFind()">忘记密码</a>
+            </span>
+        </div>
+    </div>
+    <div class="login-other-container" ng-class={"dis-block":!isLogin}>
+        <div class="registered-container" ng-show="isRegistered">
+            <header>BOOM账号注册
+                <div class="img-auto-container small-logo">
+                    <img src="app/static/images/login_logo.png" alt="logo">
+                </div>
+            </header>
+            <article>
+                <div class="registered-input-group necessary-input">
+                    <input type="text" placeholder="请输入手机号" ng-model="registerModel.phone">
+
+                    <p class="registered-wrong-statue" ng-show="!checkResult.phone && end">请输入正确的手机号</p>
+
+                    <p class="registered-right-statue" ng-show="checkResult.phone && end"></p>
+                </div>
+                <div class="registered-input-group necessary-input">
+                    <input type="text" placeholder="请输入邀请码" ng-model="registerModel.code">
+                    <span>请输入付费成功后收到的短信验证码。没有购买课程的同学请去【布姆电竞学院】官网联系客服购买</span>
+                    <!--<p class="registered-wrong-statue">请输入正确的邀请码</p>-->
+                    <!--<p class="registered-right-statue"></p>-->
+                </div>
+                <div class="registered-input-group necessary-input">
+                    <input type="text" placeholder="请设置您的密码" ng-model="registerModel.pwd">
+                    <span>密码长度8-20位，包含任意数字和字母</span>
+
+                    <p class="registered-wrong-statue" ng-show="!checkResult.pwd && end">密码格式设置有误</p>
+
+                    <p class="registered-right-statue" ng-show="checkResult.pwd && end"></p>
+                </div>
+                <div class="registered-input-group necessary-input">
+                    <input type="text" placeholder="请再次输入密码" ng-model="registerModel.newPwd">
+
+                    <p class="registered-wrong-statue" ng-show="!checkResult.tPwd && end">两次密码输入不一致</p>
+
+                    <p class="registered-right-statue" ng-show="checkResult.tPwd && end"></p>
+                </div>
+                <div class="registered-input-group necessary-input">
+                    <input type="text" placeholder="请输入您在游戏中的召唤师账号" ng-model="registerModel.summoner">
+                    <span>您所有的服务将和这个账号绑定，请使用您最常用的账号</span>
+                </div>
+                <div class="registered-input-group area-input necessary-input" ng-click="chooseArea()">
+                    <!--<input type="text" placeholder="请选择您所在的服务器" ng-model="registerModel.areaCode">-->
+                    <div class="area-input-no-choose" ng-show="isFirstChooseArea">
+                        请选择您所在的服务器
+                    </div>
+                    <div class="area-input-choose" ng-show="!isFirstChooseArea">
+                        <div>{{selectedArea.net}}</div>
+                        <div>{{selectedArea.name}}</div>
+                    </div>
+                </div>
+                <div class="registered-input-group">
+                    <input type="text" placeholder="请填写您的QQ账号" ng-model="registerModel.qq">
+                    <span>填写QQ号可以让老师更有效的和您联系，提高教学效率，节省沟通成本</span>
+                </div>
+                <div class="registered-input-group">
+                    <input type="text" placeholder="请填写您的微信号" ng-model="registerModel.wx">
+                </div>
+            </article>
+            <footer>
+                <button class="btn btn-red btn-big" ng-click="register()">完成注册</button>
+                <a class="login-backLogin" ng-click="backLogin()">登录</a>
+            </footer>
+        </div>
+        <div class="find-container" ng-show="isFind">
+            <header>
+                忘记密码
+                <div class="img-auto-container small-logo">
+                    <img src="app/static/images/login_logo.png" alt="logo">
+                </div>
+            </header>
+            <article>
+                <div class="find-container-box">
+                    <p>请通过以下步骤来找回密码</p>
+
+                    <div ng-show="isFirstStep">
+                        <div class="phone-code-input">
+                            <div class="phone-code-input-span" timer>
+                                <span>获取验证码</span>
+                            </div>
+                            <input type="text" placeholder="请输入手机号" ng-model="findModel.findPwdPhone">
+                        </div>
+                        <input type="text" placeholder="请输入短信验证码" ng-model="findModel.findPwdCode">
+                        <button class="btn btn-big btn-red" ng-click="tempKeyLogin()">下一步</button>
+                    </div>
+                    <div ng-show="!isFirstStep">
+                        <input type="text" placeholder="请设置新密码" ng-model="newPwd">
+                        <input type="text" placeholder="请再次输入密码" ng-model="newPwd_2">
+                        <button class="btn btn-big btn-red" ng-click="updatePwd()">完成</button>
+                    </div>
+                </div>
+
+            </article>
+            <footer>
+                <a class="login-backLogin" ng-click="backLogin()">返回登录</a>
+            </footer>
+        </div>
+    </div>
+
+</div>
+
+<div class="login-choose-area" ng-class={"dis-block":isShowMask}>
+    <div class="mask-layer">
+        <div class="mask-layer-content-height" ng-show="isChooseArea">
+            <div class="mask-layer-close" ng-click="closeChooseArea()">
+                <img src="app/static/images/icon/icon_close_normal.png" alt="">
+            </div>
+            <div class="mask-layer-body">
+                <div class="selectarea">
+                    <header>请选择大区</header>
+                    <article>
+                        <div class="selectarea_cont">
+                            <ul>
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt>电信</dt>
+                                            <dd ng-repeat="qu in DXArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>联通</dt>
+                                            <dd ng-repeat="qu in WTArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>其他</dt>
+                                            <dd ng-repeat="qu in JJArea" ng-click="confirmArea(qu)">{{qu.name}}</dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="mask-layer-footer">
+                <button class="btn btn-red btn-big" ng-click="closeChooseArea()">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="app/static/js/jquery.min.js"></script>
+<script src="app/static/js/angular.js"></script>
+<script src="app/static/js/angular-route.min.js"></script>
+
+<script src="app/main.js"></script>
+
+<!--layer-->
+
+<script src="app/static/js/layer/layer.js"></script>
+<script src="app/static/js/layer/extend/layer.ext.js"></script>
+
+<!--公共服务功能-->
+<script src="app/service/HttpService.js"></script>
+<script src="app/service/CheckService.js"></script>
+<script src="app/service/AreaService.js"></script>
+<script src="app/service/StorageService.js"></script>
+
+<!--定时器-->
+<script src="app/directive/timer.js"></script>
+
+<!--控制器-->
+<script src="app/controller/loginController.js"></script>
+</body>
+</html>

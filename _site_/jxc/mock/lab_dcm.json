@@ -1,0 +1,28 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id": 1,
+      "lab": "村产共建",
+      "clsN": "villagers_a"
+    },
+    {
+      "id": 2,
+      "lab": "乡村招商",
+      "clsN": "villagers_b"
+    },
+    {
+      "id": 3,
+      "lab": "村产交易",
+      "clsN": "villagers_c"
+    },
+    {
+      "id": 3,
+      "lab": "cmcc",
+      "clsN": "villagers_d"
+    }
+  ],
+  "length":null,
+  "rtCode":null
+}

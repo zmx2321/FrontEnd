@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+<style type="text/css">
+*{margin:0px;padding:0px;}
+#Logo{width:100%;/*宽*/ height:50px;/*高*/ }
+#Logo .Nav{width:1200px;height:50px; background:#404144; margin:0px auto;}
+#Logo .Nav ul li{width:95px;height:50px;list-style-type:none;/*去掉圆点*/ float:left;/*左浮动*/ color:#fff;font-size:14px;
+		font-family:"微软雅黑"; text-align:center;/*水平居中*/line-height:50px;/*竖直居中*/}
+#Logo .Nav ul li.first{width:214px; background:#ff4a00; position:relative;}
+#Logo .Nav ul li a{color:#fff; text-decoration:none;/*去掉下划线*/display:block;}
+#Logo .Nav ul li a:hover{background:#333;}
+#Logo .Nav ul li.first .menu{width:214px; height:400px; background:#ccff33; position:absolute; top:50px; left:0px; display:none;/*隐藏*/}
+
+.gd{position:fixed;/*固定定位*/ top:0px;background:#404144;/*背景颜色*/}
+</style>
+
+ </head>
+ <body>
+
+<div style="height:200px"></div>
+
+<!-- div盒子模型，高度，宽度，放内容的长方形 姓名="代码女神"-->  
+<div id="Logo">
+	<div class="Nav">
+		<ul>
+			<li class="first">全部商品分类
+				<div class="menu"></div>
+			</li>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">小米手机</a></li>
+			<li><a href="#">红米</a></li>
+			<li><a href="#">小米平板</a></li>
+			<li><a href="#">小米电视</a></li>
+			<li><a href="#">盒子</a></li>
+			<li><a href="#">路由器</a></li>
+			<li><a href="#">合约机</a></li>
+			<li><a href="#">服务</a></li>
+			<li><a href="#">社区</a></li>
+		</ul>
+	</div>
+</div>
+
+
+
+<div style="height:2000px"></div>
+
+<!--引用外部jquery 文件-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	var _top=0;
+	$(window).scroll(function(){
+
+		_top=$(window).scrollTop();//获取到滚动的高度
+		document.title=_top;
+		if(_top>200){//当滚动的高度，超过200时，就给了加上 class="gd"
+			$("#Logo").addClass("gd"); //class="gd"
+		}else{
+			$("#Logo").removeClass("gd"); 
+		}
+	});
+
+	$(".Nav ul li.first").hover(function(){
+		$(this).find(".menu").slideDown();//向下慢慢展开
+	},function(){
+		$(this).find(".menu").slideUp();//向上收缩
+	});
+</script>
+
+
+
+
+
+
+<!--
+	1、如何在页面当中，构建一个有宽度，高度的长方形(div盒子模型)
+	2、讲到了外边距的概念 margin,同时还解决了外边距的兼容型问题 *{margin:0px;} 
+	3、利用外边距来控制长方形Nav 在水平距中 margin:上下(0px) 左右(auto);
+	4、讲到了ul无序列表标签  结构 <ul>
+										<li>1111</li>
+										<li>1111</li>
+								  </ul>  给每个 li添加宽度和高度 去掉Li前面的圆点
+								  list-style-type:none;
+	5、讲到了内边距的概念 padding，ul会有自带的左内边距　，解决内边距的兼容型问题
+	*｛padding:0px;｝
+	6、利用左浮动把li小长方形，从竖直变成水平的 float:left;
+	7、如何控制文字的样式（大小  颜色 字体类型 水平居中 竖直居中）
+	8、讲到了 a标签超链接标签 <a href="网址"></a>， 页面当中的文字加了 a，文字颜色会变成蓝色，并且还会加有下划线（text-decoration:none）
+	9、要使a标签有宽度和高度，要给他加上display:block;
+-->
+
+ </body>
+</html>

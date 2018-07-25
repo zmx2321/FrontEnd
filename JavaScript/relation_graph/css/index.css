@@ -1,0 +1,30 @@
+.atlas-cont{
+    position: relative;
+    margin: 60px;
+    width: 638px;
+    height: 380px;
+}
+#hover-box{
+    display: none;
+    padding-bottom: 8px;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 1000;
+    width: 150px;
+    text-align: left;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.8);
+    color: #fff;
+    box-shadow: 1px 1px 4px rgba(0,0,0,.4),-1px -1px 4px rgba(0,0,0,.4);
+}
+.hover-title{
+    padding:4px 8px;
+    height: 32px;
+    line-height: 32px;
+}
+.hover-item{
+    padding:0 8px;
+    line-height: 26px;
+    font-size: 12px;
+}

@@ -1,0 +1,4 @@
+Chrome 调试器文档	https://developer.chrome.com/devtools
+https://www.cnblogs.com/moonvan/archive/2011/12/09/2282710.html
+Firefox调试器文档，也可以用Firebug来调试	https://developer.mozilla.org/zh-CN/docs/Tools/Debugger
+IE调试器文档	https://msdn.microsoft.com/library/bg182326(v=vs.85).aspx

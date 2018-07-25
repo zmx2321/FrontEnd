@@ -1,0 +1,49 @@
+<view id="page">
+     <view class="section">
+     <view class="section_title">商品详情</view>
+     <view class="img_info" wx:for-items="{{shopList}}">
+      <image class="shop_img" style="" mode="" src="{{item.photo}}" binderror="" bindload=""></image> 
+      <text>{{item.name}}*{{item.count}}</text>
+    </view>
+    </view>
+
+   <view class="section">
+  <view class="section_title">选择送货地址</view>
+  <picker bindchange="addressChange" value="{{index}}" range="{{addressList}}">
+    <view class="picker">
+      当前选择：<label>{{addressList[index]}}</label>
+    </view>
+  </picker>
+</view>
+<view class="section">
+  <view class="section_title">选择送货时间段</view>
+  <picker  value="{{time}}" range="{{timeList}}" bindchange="timeChange">
+    <view class="picker">
+      当前选择: <label>{{timeList[time]}}</label>
+    </view>
+  </picker>
+</view>
+<view class="section">
+   <view class="section_title">请填写备注</view>
+   <input class="notes" placeholder-style="color:#d8d8d8" maxlength="50" placeholder="请填写备注,最多输入50字" />
+</view>
+<view class="section">
+   <view class="section_title">支付信息</view>
+    <div>商品总价<span>¥11</span></div>
+    <div>优惠<span>¥1</span></div>
+    <div>实付款<span>¥10</span></div>
+</view>
+<view class="section">
+   <view class="section_title">选择支付方式</view>
+    <div><image style="" mode="" src="../../../img/weinxin_logo.png" binderror="" bindload=""></image><text>微信支付</text> <icon type="success" size="20" color="{{weipay}}" data-name="wei" bindtap="chooseAction" /></div>
+    <div><image style="" mode="" src="../../../img/money.png" binderror="" bindload=""></image><text>货到付款</text><icon type="success" size="20" color="{{nopay}}" data-name="no" bindtap="chooseAction"/></div>
+    
+</view>
+<view class="section">
+   <view class="section_title">配送方式</view>
+   <div>免费配送</div>
+</view>
+<view style="width: 100px;height: 60px;"></view>
+<view id="submit" bindtap="turnAction">提交订单</view>
+</view>
+ 

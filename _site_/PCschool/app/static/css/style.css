@@ -1,0 +1,322 @@
+/*@font-face {*/
+/*font-family: 'PingFangRegular';*/
+/*src: url('../fonts/PingFang-Regular.ttf');*/
+/*src: url('../fonts/PingFang-Regular.ttf?#iefix') format('embedded-opentype'),*/
+/*url('../fonts/PingFang-Regular.ttf') format('woff'),*/
+/*url('../fonts/PingFang-Regular.ttf') format('truetype'),*/
+/*url('../fonts/PingFang-Regular.ttf#NeuesBauenDemo') format('svg');*/
+/*font-weight: normal;*/
+/*font-style: normal;*/
+/*}*/
+/*@font-face {*/
+/*font-family: 'LTXH';*/
+/*src: url('../fonts/LTXH.TTF');*/
+/*src: url('../fonts/LTXH.TTF?#iefix') format('embedded-opentype'),*/
+/*url('../fonts/LTXH.TTF') format('woff'),*/
+/*url('../fonts/LTXH.TTF') format('truetype'),*/
+/*url('../fonts/LTXH.TTF#NeuesBauenDemo') format('svg');*/
+/*font-weight: normal;*/
+/*font-style: normal;*/
+/*}*/
+
+html {
+    font-size: 62.5%; /*10 ÷ 16 × 100% = 62.5%*/
+    height: 100%;
+}
+
+body {
+    font-family: "Microsoft YaHei";
+    font-weight: 100;
+    font-size: 1.4rem;
+    height: 100%;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*按钮样式*/
+.btn {
+    outline: none;
+    border-radius: 20px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    /*vertical-align: middle;*/
+    /*appearance: none;*/
+    cursor: pointer;
+}
+
+.btn-big {
+    width: 134px;
+    height: 38px;
+}
+
+.btn-sm {
+    width: 86px;
+    height: 28px;
+}
+
+.btn-white {
+    background: white;
+    border: 1px #999999 solid;
+    color: #999999;
+}
+
+.btn-white:active {
+    border: 1px #eb2e4e solid;
+    color: #eb2e4e;
+}
+
+.btn-white:hover {
+    border: 1px #eb2e4e solid;
+    color: #eb2e4e;
+}
+
+.btn-wr {
+    background: white;
+    border: 1px #EC2D4D solid;
+    color: #EC2D4D;
+}
+
+.btn-wr:active {
+    /*background: white;*/
+    border: 1px #EC2D4D solid;
+    background: #ffe7eb;
+}
+
+.btn-wr:hover {
+    /*background: white;*/
+    border: 1px #EC2D4D solid;
+    background: #ffe7eb;
+}
+
+.btn-red {
+    background: #EC2D4D;
+    border: 1px #EC2D4D solid;
+    color: white;
+}
+
+.btn-red:active {
+    background: #ff8196;
+    border: 1px #ff8196 solid;
+}
+
+.btn-red:hover {
+    background: #ff8196;
+    border: 1px #ff8196 solid;
+}
+
+.btn-dark {
+    background: #313439;
+    border: 1px #999999 solid;
+    color: #999999;
+}
+
+.btn-dark:hover {
+    border: 1px #fff solid;
+    color: #fff;
+}
+
+.btn-dashed {
+    border: 1px dashed #cccccc;
+    color: #cccccc;
+    background: white;
+    cursor: default;
+}
+
+.mask-layer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 100;
+}
+
+.mask-layer-content-middel {
+    box-sizing: border-box;
+    margin: 180px auto;
+    background: white;
+    width: 650px;
+    height: 590px;
+    opacity: 1;
+    border-radius: 5px;
+    position: relative;
+    /*padding: 40px;*/
+}
+
+.mask-layer-content-big {
+    box-sizing: border-box;
+    margin: 180px auto;
+    background: white;
+    width: 970px;
+    height: 590px;
+    opacity: 1;
+    border-radius: 5px;
+    position: relative;
+}
+
+.mask-layer-content-height {
+    box-sizing: border-box;
+    margin: 120px auto;
+    background: white;
+    width: 850px;
+    height: 730px;
+    opacity: 1;
+    border-radius: 5px;
+    position: relative;
+}
+
+.mask-layer-content-small {
+    box-sizing: border-box;
+    margin: 220px auto;
+    background: white;
+    width: 510px;
+    height: 270px;
+    opacity: 1;
+    border-radius: 5px;
+    position: relative;
+}
+
+.mask-layer-close {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    cursor: pointer;
+}
+
+.mask-layer-footer {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+    height: 54px;
+    width: 100%;
+    padding: 0 0 0 88px;
+}
+
+.input-group input:hover {
+    border: 1px solid #999999;
+}
+
+.input-group-icon {
+    display: inline-block;
+    position: absolute;
+    box-sizing: border-box;
+    width: 36px;
+    height: 20px;
+    border-right: 1px solid #e8e8e8;
+    top: 16px;
+    left: 22px;
+}
+
+.img-normal-container {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.img-auto-container {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 5px;
+}
+
+.img-auto-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.img-size-normal {
+    height: 136px;
+    width: 232px;
+}
+
+.img-size-big {
+    height: 142px;
+    width: 232px;
+    overflow: hidden;
+}
+
+.img-size-sm {
+    height: 116px;
+    width: 190px;
+    overflow: hidden;
+}
+
+.test-box {
+    width: 190px;
+    height: 116px;
+    background: #666666;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.test-corner {
+    width: 0;
+    height: 0;
+    border-top: 54px solid #48ca45;
+    border-right: 54px solid transparent;
+    display: block;
+    position: absolute;
+}
+
+.btn-big-a {
+    line-height: 38px;
+}
+
+.btn-sm-a {
+    line-height: 28px;
+}
+
+.lack-statue {
+    height: 80px;
+    max-width: 500px;
+    box-sizing: border-box;
+    min-width: 450px;
+    margin: 0 auto;
+}
+
+.lack-statue span {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #999999;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin: 20px 0 0 16px;
+    position: relative;
+}
+
+.lack-statue span:before {
+    content: url("../images/icon_line.png");
+    position: absolute;
+    top: -1px;
+    left: -10px;
+}
+
+.course-evaluate-lack {
+    margin: 100px 0 0 0;
+}

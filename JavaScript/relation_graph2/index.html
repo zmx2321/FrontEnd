@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>关系图</title>
+<link rel="stylesheet" type="text/css" href="css/lib/relationship.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="atlas-cont">
+    <svg id="svg" width="2080" height="1265"></svg>
+    <div id="hover-box">
+        <div class="hover-title">关系详情</div>
+        <div class="hover-item hover-name">姓名：<span class="fill-data" data-name="name"></span></div>
+        <div class="hover-item hover-tag">年龄：<span class="fill-data" data-name="age"></span></div>
+        <div class="hover-item hover-organization">从事职业：<span class="fill-data" data-name="work"></span></div>
+        <div class="hover-item hover-msg">工作经验：<span class="fill-data" data-name="work-year"></span></div>
+    </div>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/d3.v4.js"></script>
+<!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

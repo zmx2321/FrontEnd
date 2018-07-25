@@ -1,0 +1,32 @@
+body{
+	background: #000;
+}
+
+li{
+	color: #fff;
+	margin: 20px;
+}
+
+ul li:first-child{
+	width: 55px;
+}
+
+ul{
+	border-bottom: solid 1px #ccc;
+}
+
+ul:last-child{
+	border-bottom: 0;
+}
+
+.local {
+    border-bottom: solid 1px #ccc;
+}
+
+span{
+	color: #fff;
+}
+
+.local img{
+	width: 88px;
+}

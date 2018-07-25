@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sb大战</title>
+	<style>
+		body{
+			font-size: 50px;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		(function(){
+			var num1 = parseInt(Math.random()*3),
+				num2 = parseInt(Math.random()*3);
+
+			var arr1 = [
+				"10086","cmcc","植物大战僵尸"
+			];
+		  
+			var	arr2 = [
+				"聪明","多金","漂亮"
+			];
+
+			str = arr1[num1] + arr2[num2];
+
+			document.write(str);
+		})();
+	</script>
+</body>
+</html>

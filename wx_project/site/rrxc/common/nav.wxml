@@ -1,0 +1,55 @@
+<!-- nav_wrap -->
+<template name="nav">
+ <view class="nav_wrap">
+  <view class="nav">
+    <ul>
+        <li class="zcl">
+          <navigator url="/pages/index/index">
+              <dl>
+                  <dt></dt>
+                  <dd>找村落</dd>
+              </dl>
+            </navigator>
+        </li>
+        <li class="wzt">
+            <navigator url="/pages/classify/wzt/wzt">
+              <dl>
+                  <dt></dt>
+                  <dd>游主题</dd>
+              </dl>
+            </navigator>
+        </li>
+        <li class="zdz">
+          <navigator url="/pages/classify/zdz/zdz">
+              <dl>
+                  <dt></dt>
+                  <dd>做地主</dd>
+              </dl>
+            </navigator>
+        </li>
+        <li class="tcc">
+          <navigator url="/pages/classify/tcc/tcc">
+              <dl>
+                  <dt></dt>
+                  <dd>投村产</dd>
+              </dl>
+            </navigator>
+        </li>
+        <li class="pth">
+          <navigator url="/pages/classify/pth/pth">
+              <dl>
+                  <dt></dt>
+                  <dd>拼土货</dd>
+              </dl>
+            </navigator>
+        </li>
+      </ul>
+    </view>
+</view> 
+</template >
+<!-- /nav_wrap -->
+
+
+<!-- <template name="listTemp">
+<view >我是模板</view>
+</template> -->

@@ -1,0 +1,90 @@
+.popup_wrap{
+	position: fixed;
+	width: 302px;
+	min-height: 40px;
+	border-radius: 5px;
+	border: solid 1px #ccc;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
+}
+
+/* popup_title s */
+.popup_title {
+	width: 100%;
+	height: 40px;
+	background: #eee;
+	overflow: hidden;
+	position: relative;
+}
+
+.popup_title h3{
+	font: 14px/40px Microsoft YaHei;
+	margin: 0 20px;
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;	
+}
+
+.popup_title i.close {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    cursor: pointer;
+}
+
+.popup_title i.close::before, .popup_title i.close::after{
+    content: '';
+    width: 10px;
+    height: 1px;
+    background: #a9abaa;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+}
+
+.popup_title i.close::before {
+    transform: rotate(45deg);
+}
+
+.popup_title i.close::after {
+    transform: rotate(-45deg);
+}
+/* popup_title e */
+
+/* popup_content s */
+.popup_content {
+	font: 14px/1.5em simsun;
+    width: 100%;
+    min-height: 80px;
+    background: #fff;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.popup_content p {
+    padding: 20px;
+}
+/* popup_content e */
+
+/* popup_bottom s */
+.popup_bottom {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.popup_bottom button{
+	width: 80px;
+	height: 30px;
+	background: #4f81bd;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	color: #fff;
+}
+/* popup_bottom e */

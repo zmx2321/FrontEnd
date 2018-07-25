@@ -1,0 +1,260 @@
+.busdakod{
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.24rem;
+}
+
+.raise_detail_top{
+    border-bottom: solid 1px #efefef;
+}
+
+.raise_detail_top h1{
+	font-size: 0.28rem;
+}
+
+.busdakod_data{
+	width: 100%;
+	height: 1.6rem;
+	background: #fff;
+	margin-bottom: 0.24rem;
+}
+
+.busdakod_cot{
+	width: 100%;
+	min-height: 1.6rem;
+	background: #fff;
+	margin-bottom: 0.24rem;
+}
+
+.busdakod_txt{
+	width: 100%;
+	min-height: 1.6rem;
+	background: #fff;
+	margin-bottom: 0.24rem;
+	padding-bottom: 0.16rem;
+}
+
+.busdakod_txt dt, .busdakod_txt dd{
+	margin-top: 0.16rem;
+}
+
+.busdakod_txt dt{
+	font-size: 0.3rem;
+}
+
+.busdakod_txt dd{
+	font-size: 0.22rem;
+}
+
+.busdakod_hf > ul > li{
+	height: 1.08rem;
+	background: #fff;
+	margin-bottom: 0.16rem;
+}
+
+.busdakod_hf > ul > li a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.busdakod_hf > ul > li:last-child{
+	margin-bottom: 0;
+}
+
+.busdakod_data_left{
+	float: left;
+}
+
+.busdakod_data_right{
+    float: right;
+    margin-top: 0.3rem;
+}
+
+.busdakod_data a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.busdakod_data_left li{
+    float: left;
+}
+
+.busdakod_data_left li:first-child{
+	line-height: 1.6rem;
+	/*margin-right: 0.24rem;*/
+	font-size: 0.3rem;
+}
+
+.busdakod_data_left li:last-child{
+	margin-top: 0.55rem;
+}
+
+.busdakod_data_left li:last-child dd{
+	margin-bottom: 0.16rem;
+	font-size: 0.3rem;
+}
+
+.busdakod_data_left li:last-child span{
+	margin-left: 0.24rem;
+	font-size: 0.3rem;
+}
+
+.busdakod_cot_wrap > ul > li{
+	border-bottom: solid 1px #efefef;
+}
+
+.fowpudct_txt span{
+    text-decoration: initial;
+    width: 0.6rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    border: solid 1px #efefef;
+    display: inline-block;
+    font-size: 0.24rem;
+}
+
+.fowpudct_txt dd.count{
+	font-size: 0;
+}
+
+.fowpudct_txt span.num{
+	width: 0.76rem;
+}
+
+.busdakod_hf_left{
+	float: left;
+	line-height: 1.08rem;
+	font-size: 0.28rem;
+}
+
+.busdakod_hf_right{
+    float: right;
+    line-height: 1.08rem;
+    font-size: 0.28rem;
+    position: relative;
+    margin-right: 0.5rem;
+}
+
+.busdakod_hf_right::after{
+    content: '';
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url(../images/icon-wdzk.png) top no-repeat;
+    left: 1.30rem;
+    position: absolute;
+    background-size: 100%;
+    top: 48%;
+    transform: translateY(-50%);
+}
+
+.busdakod_hf_right_wx{
+	float: right;
+}
+
+.busdakod_hf_right_wx input[type="radio"]{
+    margin-top: 0.4rem;
+    position: absolute;
+	right: 0;
+}
+
+.busdakod_hf_right_wx b{
+    position: absolute;
+    right: 0;
+    width: 0.38rem;
+    height: 0.38rem;
+    margin-top: 0.4rem;
+    background: url(../images/icon-spxq-tb.png) top no-repeat;
+    overflow: hidden;
+    background-size: 100%;
+}
+
+.busdakod_hf_left_wx{
+	float: left;
+	line-height: 1.08rem;
+	font-size: 0.28rem;
+	margin-left: 0.5rem;
+}
+
+.busdakod_hf_left_wx::before{
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    background: url(../images/icon-wxzf.png) top no-repeat;
+    left: 0rem;
+    position: absolute;
+    background-size: 100%;
+    top: 48%;
+    transform: translateY(-50%);
+}
+
+.busdakod_hf_sj dd{
+	display: inline-block;
+	line-height: 1.08rem;
+}
+
+.busdakod_hf_sj dd:first-child{
+	font-size: 0.28rem;
+}
+
+.busdakod_hf_sj input[type="text"]{
+    border: none;
+    font-size: 0.28rem;
+    margin-left: 0.28rem;
+}
+
+.busdakod_hf > ul > li.busdakod_hf_pt{
+	height: initial;
+	min-height: 1rem;
+	padding-bottom: 0.24rem;
+}
+
+.busdakod_hf_pt dt{
+	margin-top: 0.24rem;
+}
+
+.busdakod_hf_pt dd{
+    display: inline-block;
+    width: 1.2rem;
+    height: 0.4rem;
+    font-size: 0.24rem;
+    color: #f5560f;
+    border: solid 1px #f5560f;
+    line-height: 0.4rem;
+    text-align: center;
+    margin-top: 0.24rem;
+    margin-right: 0.24rem;
+}
+
+.busdakod_ord_foot li{
+    display: inline-block;
+    width: 45%;
+    height: 0.88rem;
+}
+
+.busdakod_ord_foot li:first-child{
+    background: #ccc;
+}
+
+.ta_calendar{
+    left: 0 !important;
+}
+
+.booktime{
+    background: #fff
+}
+
+.busdakod_data_left li:last-child span{
+    margin: initial;
+    letter-spacing: 0.03rem;
+}
+
+.ta_date{
+    background: initial;
+    border: none;
+}
+
+.ta_date .date_title{
+    border: none;
+}

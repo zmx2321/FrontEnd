@@ -1,0 +1,135 @@
+<!-- swiper -->
+<!-- tab -->
+<view class="swp_tab">
+  <view class="swp_tab_cot">
+    <!-- business -->
+    <view class="business swiper-tab-list {{currentTab==0 ? 'active' : ''}}" data-current="0" bindtap="swichNav">商家</view>
+    <!-- /business -->
+
+    <!-- product -->
+    <view class="product swiper-tab-list {{currentTab==1 ? 'active' : ''}}" data-current="1" bindtap="swichNav">产品</view>
+    <!-- /product -->
+  </view>  
+</view>  
+<!-- /tab -->
+
+<!-- cont -->
+<swiper class="tab_cont" current="{{currentTab}}" duration="300" bindchange="bindChange" style="height:{{winHeight-140}}px">
+    <!-- business_cot -->
+    <swiper-item class="follow_cont business_cot">
+      <navigator url="/pages/businessDetail/businessDetail">
+        <view class="fowcot_wrap">
+          <view class="fowcot_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="fowcot_txt">
+            <text class="fowcot_title">晴天雨后民宿</text>
+            <view class="fowcot_lab1">
+              <text>美丽乡村</text>
+              <text>免费活动</text>
+            </view>
+            <view class="fowcot_lab2">
+              <text>天然氧吧</text>
+              <text>养生温泉</text>
+              <text>农家土菜</text>
+            </view>
+            <view class="fowcot_atrbue">
+              <text class="price">￥8298</text>
+              <view class="addr">
+                <text class="addr_name">云和县</text>
+                <text class="addr_dist">112.8km</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+
+      <navigator url="/pages/businessDetail/businessDetail">
+        <view class="fowcot_wrap">
+          <view class="fowcot_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="fowcot_txt">
+            <text class="fowcot_title">晴天雨后民宿</text>
+            <view class="fowcot_lab1">
+              <text>美丽乡村</text>
+              <text>免费活动</text>
+            </view>
+            <view class="fowcot_lab2">
+              <text>天然氧吧</text>
+              <text>养生温泉</text>
+              <text>农家土菜</text>
+            </view>
+            <view class="fowcot_atrbue">
+              <text class="price">￥8298</text>
+              <view class="addr">
+                <text class="addr_name">云和县</text>
+                <text class="addr_dist">112.8km</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator> 
+    </swiper-item> 
+    <!-- /business_cot  -->
+
+    <!-- product_cot -->  
+    <swiper-item class="follow_cont product_cot">  
+      <navigator url="/pages/businessDetail/businessDetail">
+        <view class="fowcot_wrap">
+          <view class="fowcot_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="fowcot_txt">
+            <text class="fowcot_title">晴天雨后民宿</text>
+            <view class="fowcot_lab1">
+              <text>美丽乡村</text>
+              <text>免费活动</text>
+            </view>
+            <view class="fowcot_lab2">
+              <text>天然氧吧</text>
+              <text>养生温泉</text>
+              <text>农家土菜</text>
+            </view>
+            <view class="fowcot_atrbue">
+              <text class="price">￥8298</text>
+              <view class="addr">
+                <text class="addr_name">云和县</text>
+                <text class="addr_dist">112.8km</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator> 
+
+      <navigator url="/pages/businessDetail/businessDetail">
+        <view class="fowcot_wrap">
+          <view class="fowcot_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="fowcot_txt">
+            <text class="fowcot_title">晴天雨后民宿</text>
+            <view class="fowcot_lab1">
+              <text>美丽乡村</text>
+              <text>免费活动</text>
+            </view>
+            <view class="fowcot_lab2">
+              <text>天然氧吧</text>
+              <text>养生温泉</text>
+              <text>农家土菜</text>
+            </view>
+            <view class="fowcot_atrbue">
+              <text class="price">￥8298</text>
+              <view class="addr">
+                <text class="addr_name">云和县</text>
+                <text class="addr_dist">112.8km</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator> 
+    </swiper-item>  
+    <!-- /product_cot -->  
+</swiper>
+<!-- /cont -->
+<!-- /swiper -->

@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "recent_champion_list": [
+        {
+          "champion_id": 127,
+          "use_num": 1222,
+          "win_num": 746
+        },
+        {
+          "champion_id": 117,
+          "use_num": 239,
+          "win_num": 113
+        },
+        {
+          "champion_id": 134,
+          "use_num": 33,
+          "win_num": 14
+        },
+        {
+          "champion_id": 112,
+          "use_num": 41,
+          "win_num": 20
+        },
+        {
+          "champion_id": 4,
+          "use_num": 104,
+          "win_num": 62
+        }
+      ],
+      "continuousKillInfo": {
+        "godLike": 46,
+        "threeKill": 68,
+        "fiveKill": 2,
+        "fourKill": 11}
+    }
+  ]
+
+}

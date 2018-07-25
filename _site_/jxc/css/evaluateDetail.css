@@ -1,0 +1,32 @@
+.evaluate_detail_all{
+    font-size: 0.24rem;
+}
+
+.pudtal_eval_top li:last-child{
+	margin: 0;
+}
+
+.pudtal_eval_top li:last-child::after{
+	display: none;
+}
+
+.pudtal_eval_nav{
+	width: 100%;
+	border-bottom: solid 1px #e2e2e2;
+}
+
+.pudtal_eval_nav ul{
+    margin-top: 0.3rem;
+}
+
+.pudtal_eval_nav li{
+	display: inline-block;
+    width: 1.22rem;
+    border: solid 1px #f5560f;
+    color: #f5560f;
+    text-align: center;
+    padding: 0.05rem 0;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+

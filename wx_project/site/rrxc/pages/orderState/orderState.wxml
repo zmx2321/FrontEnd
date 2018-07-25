@@ -1,0 +1,521 @@
+  <!-- odste_top_wrap -->
+  <view class='odste_top_wrap'>
+    <!-- 待付款 -->
+    <view class='odste_top clearfix' style='display:block'>
+      <view class='odste_txt'>
+        <text class='title'>等待买家付款</text>
+        <text class='detail'>剩余2天23小时自动关闭</text>
+      </view>
+      <view class='odste_pic'>
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-ddxq-dfk.png"></image>
+      </view>
+    </view>
+    <!-- /待付款 -->
+
+    <!-- 已付款 -->
+    <view class='odste_top clearfix' style='display:none'>
+      <view class='odste_txt'>
+        <text class='title sin'>买家已付款</text>
+      </view>
+      <view class='odste_pic'>
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-ddxq-yfk.png"></image>
+      </view>
+    </view>
+    <!-- /已付款 -->
+
+    <!-- 退款成功 -->
+    <view class='odste_top clearfix' style='display:none'>
+      <view class='odste_txt'>
+        <text class='title sin'>退款成功</text>
+      </view>
+      <view class='odste_pic'>
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-ddxq-tk.png"></image>
+      </view>
+    </view>
+    <!-- /退款成功 -->
+
+    <!-- 待评价 -->
+    <view class='odste_top clearfix' style='display:none'>
+      <view class='odste_txt'>
+        <text class='title sin'>交易成功</text>
+      </view>
+      <view class='odste_pic'>
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-ddxq-ddcg.png"></image>
+      </view>
+    </view>
+    <!-- /待评价 -->
+
+    <!-- 取消订单 -->
+    <view class='odste_top clearfix' style='display:none'>
+      <view class='odste_txt'>
+        <text class='title sin'>订单已取消</text>
+      </view>
+      <view class='odste_pic'>
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-ddxq-ddqx.png"></image>
+      </view>
+    </view>
+    <!-- /取消订单 -->
+
+    <!-- 待收货 -->
+    <view class='odste_top clearfix' style='display:none'>
+      <view class='odste_txt'>
+        <text class='title'>卖家已发货</text>
+        <text class='detail'>还剩9天23小时自动确认</text>
+      </view>
+      <view class='odste_pic'>
+        <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-ddxq-dsh.png"></image>
+      </view>
+    </view>
+    <!-- /待收货 -->
+  </view>
+  <!-- /odste_top_wrap -->
+
+  
+  <view class='odste_cot_wrap'>
+    <!-- odste_cot_wrap(通用订单列表) -->
+    <view class='odste_cot' style='display:none'>
+      <view class='odste_list'>
+        <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">交易成功</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+
+        <view class='ordstat_info main_cot'>
+          <view class='main_wrap'> 
+            <text>订单编号\t402398228748</text>
+            <text>交易单号\t2016111612345678987654321</text>
+            <text>交易时间\t2016-11-16 15:31</text>
+          </view>
+        </view>
+      </view>
+
+      <view class='odste_list'>
+        <view class="modrct_wrap">
+            <navigator url="/pages/orderState/orderState">
+              <view class="modrct_title">
+                <view class="modrct_cot">
+                  <view class="mdte_left">
+                    <view class="mdte_left_pic">
+                      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                    </view>
+                    <text>晴天雨后民宿</text>
+                  </view>
+                  <text class="mdte_right">交易成功</text>
+                </view>
+              </view>
+              <view class="modrct_body">
+                <view class="mdcdy_detil">
+                  <view class="modrct_cot">
+                    <view class="mdcdy_detil_pic">
+                      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                    </view>
+                    <view class="mdcdy_detil_txt">
+                      <text class="mdydktx_title">宁波青苹果</text>
+                      <view class="mdydktx_lab">
+                        <text>休闲业主</text>
+                        <text>可现场游园</text>
+                      </view>
+                      <view class="mdydktx_atbe">
+                        <view class="price">
+                          <text class="nor">¥18</text>
+                          <text class="old">¥268</text>
+                        </view>
+                        <text class="num">数量：1</text>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="mdcdy_price">
+                  <view class="modrct_cot">
+                    <view class="mdcdy_price_txt">
+                      <text class="num">共1件商品</text>
+                      <text class="pri">合计：￥18（含运费￥0.00)</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+        </view>
+
+        <view class="modrct_wrap">
+            <navigator url="/pages/orderState/orderState">
+              <view class="modrct_title">
+                <view class="modrct_cot">
+                  <view class="mdte_left">
+                    <view class="mdte_left_pic">
+                      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                    </view>
+                    <text>晴天雨后民宿</text>
+                  </view>
+                  <text class="mdte_right">交易成功</text>
+                </view>
+              </view>
+              <view class="modrct_body">
+                <view class="mdcdy_detil">
+                  <view class="modrct_cot">
+                    <view class="mdcdy_detil_pic">
+                      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                    </view>
+                    <view class="mdcdy_detil_txt">
+                      <text class="mdydktx_title">宁波青苹果</text>
+                      <view class="mdydktx_lab">
+                        <text>休闲业主</text>
+                        <text>可现场游园</text>
+                      </view>
+                      <view class="mdydktx_atbe">
+                        <view class="price">
+                          <text class="nor">¥18</text>
+                          <text class="old">¥268</text>
+                        </view>
+                        <text class="num">数量：1</text>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="mdcdy_price">
+                  <view class="modrct_cot">
+                    <view class="mdcdy_price_txt">
+                      <text class="num">共1件商品</text>
+                      <text class="pri">合计：￥18（含运费￥0.00)</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+        </view>
+
+        <view class='ordstat_info main_cot'>
+          <view class='main_wrap'> 
+            <text>订单编号\t402398228748</text>
+            <text>交易单号\t2016111612345678987654321</text>
+            <text>交易时间\t2016-11-16 15:31</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- /odste_cot_wrap(通用订单列表) -->
+
+    <!-- zc_odste_cot(众筹订单列表) -->
+    <view class='zc_odste_cot' style='display:none'>
+      <view class='zc_ordstat_tit'>
+        <view class='main_wrap clearfix'>
+          <text class='zc_od_t'>晴天雨后民宿</text>
+          <text class='zc_od_s'>交易成功</text>
+        </view>
+      </view>
+
+      <view class='zc_ordstat_list'>
+        <view class='main_wrap'>
+          <view class='zc_ordstat_num clearfix'>
+            <view class='zc_odi_l'>
+              <text class='price'>¥ 8</text>
+              <text class='total'>支持135份/无限制</text>
+            </view>
+            <text class='zc_odi_r'>份数：5</text>
+          </view>
+          <view class='zc_ordstat_det clearfix'>
+            <view class='zc_odt_pic'>
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class='zc_odt_txt'>
+              <p>
+            			有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+              </p>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='zc_ordstat_list'>
+        <view class='main_wrap'>
+          <view class='zc_ordstat_num clearfix'>
+            <view class='zc_odi_l'>
+              <text class='price'>¥ 8</text>
+              <text class='total'>支持135份/无限制</text>
+            </view>
+            <text class='zc_odi_r'>份数：5</text>
+          </view>
+          <view class='zc_ordstat_det clearfix'>
+            <view class='zc_odt_pic'>
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class='zc_odt_txt'>
+              <p>
+            			有一天和老婆说起小时候在家里，在田野里老婆还用吴伯萧的《菜园小记》劝我。吴伯萧的《菜园小记》劝我。
+              </p>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='ordstat_info main_cot'>
+        <view class='main_wrap'> 
+          <text>订单编号\t402398228748</text>
+          <text>交易单号\t2016111612345678987654321</text>
+          <text>交易时间\t2016-11-16 15:31</text>
+        </view>
+      </view>
+    </view>
+    <!-- /zc_odste_cot(众筹订单列表) -->
+
+    <!-- jq_odste_cot(景区订单列表) -->
+    <view class='jq_odste_cot odste_cot' style='display:block'>
+      <view class='odste_list'>
+        <view class="modrct_wrap">
+          <navigator url="/pages/orderState/orderState">
+            <view class="modrct_title">
+              <view class="modrct_cot">
+                <view class="mdte_left">
+                  <view class="mdte_left_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+                  </view>
+                  <text>晴天雨后民宿</text>
+                </view>
+                <text class="mdte_right">交易成功</text>
+              </view>
+            </view>
+            <view class="modrct_body">
+              <view class="mdcdy_detil">
+                <view class="modrct_cot">
+                  <view class="mdcdy_detil_pic">
+                    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+                  </view>
+                  <view class="mdcdy_detil_txt">
+                    <text class="mdydktx_title">宁波青苹果</text>
+                    <view class="mdydktx_lab">
+                      <text>休闲业主</text>
+                      <text>可现场游园</text>
+                    </view>
+                    <view class="mdydktx_atbe">
+                      <view class="price">
+                        <text class="nor">¥18</text>
+                        <text class="old">¥268</text>
+                      </view>
+                      <text class="num">数量：1</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="mdcdy_price">
+                <view class="modrct_cot">
+                  <view class="mdcdy_price_txt">
+                    <text class="num">共1件商品</text>
+                    <text class="pri">合计：￥18（含运费￥0.00)</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+
+        <view class='jqtip main_cot'>
+          <view class='jqtip_txt'>
+            <view class='main_wrap jqtip_wrp'>
+              <view class='jqtip_lit'>
+                <text>使用日期</text>
+                <text>2017-07-06 周四</text>
+              </view>
+              <view class='jqtip_lit'>
+                <text>换票时间</text>
+                <text>09:00-18:00</text>
+              </view>
+              <view class='jqtip_lit'>
+                <text>入园方式</text>
+                <text>先换票再入园，换票请持商家短信</text>
+              </view>
+              <view class='jqtip_lit'>
+                <text>入园地址</text>
+                <text>景区验票处</text>
+              </view>
+            </view>
+          </view>
+
+          <view class='jqtip_num'>
+            <view class='main_wrap clearfix'>
+              <view class='jqtip_num_l'>
+                <text>入园凭证</text>
+                <text>3974 7382</text>
+              </view>
+              <view class='jqtip_num_r'>
+                <view class='jptip_pic'>
+                  <image src='http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/ewm.png'></image>
+                </view>
+                <text>查看二维码</text>
+              </view>
+            </view>
+          </view>
+
+          <view class='jqtip_rul clearfix'>
+            <view class='main_wrap jqtip_wrp'>
+              <view class='jqtip_lit'>
+                <text>退改规则</text>
+                <text>游玩日后30天的4点前可免费取消；逾期不可退；多张票的订单，不支持部分退款</text>
+              </view>
+              <view class='jqtip_lit'>
+                <text>费用包含</text>
+                <text>门票1张；杭州开元酒店住宿一晚；双人早餐；价值128元宫庭下午茶一份：中西式套餐二选一（中式套餐：绿茶2杯或红茶2壶+中式点心4选3+水果1份，西式套餐：咖啡或鲜榨果汁任选2杯+西式点心4选3+水果1份）</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class='ordstat_info main_cot'>
+          <view class='main_wrap'> 
+            <text>订单编号\t402398228748</text>
+            <text>交易单号\t2016111612345678987654321</text>
+            <text>交易时间\t2016-11-16 15:31</text>
+          </view>
+        </view>
+      </view>
+      <!-- <view class='odste_list'></view> -->
+    </view>
+    <!-- /jq_odste_cot(景区订单列表) -->
+  </view>
+  
+  <!-- product_chartc -->
+  <view class="product_chartc">
+    <view class="prodchat_wrap">
+      <view class="prochar_top">
+        <text>热门推荐</text>
+      </view>
+      <view class="prochar_cont">
+        <view class="poyctcnt_pth_cont">
+          <navigator url="/pages/productDetail_ms/productDetail_ms">
+            <view class="figtuo_prudct_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="figtuo_prudct_txt">
+              <text class="title">天然野山菌[宁波]</text>
+              <view class="figtuo_prudct_tit">
+                <text>休闲业主</text>
+                <text>休闲业主</text>
+              </view>
+              <view class="figtuo_prudct_price">
+                <view class="left">
+                  <text>¥68</text>
+                  <text>¥268</text>
+                  <text>剩余20件</text>
+                </view>
+                <view class="right">
+                  <button>秒杀</button>
+                </view>
+              </view>
+            </view>
+          </navigator>
+
+          <navigator url="/pages/productDetail_pt/productDetail_pt">
+            <view class="figtuo_prudct_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="figtuo_prudct_txt">
+              <text class="title">天然野山菌[宁波]</text>
+              <view class="figtuo_prudct_tit">
+                <text>休闲业主</text>
+                <text>休闲业主</text>
+              </view>
+              <view class="figtuo_prudct_price">
+                <view class="left">
+                  <text>¥68</text>
+                  <text>¥268</text>
+                  <text>2人团</text>
+                </view>
+                <view class="right">
+                  <button class="mor">2人团</button>
+                </view>
+              </view>
+            </view>
+          </navigator>
+
+          <navigator url="/pages/productDetail_ms/productDetail_ms">
+            <view class="figtuo_prudct_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="figtuo_prudct_txt">
+              <text class="title">天然野山菌[宁波]</text>
+              <view class="figtuo_prudct_tit">
+                <text>休闲业主</text>
+                <text>休闲业主</text>
+              </view>
+              <view class="figtuo_prudct_price">
+                <view class="left">
+                  <text>¥68</text>
+                  <text>¥268</text>
+                  <text>剩余20件</text>
+                </view>
+                <view class="right">
+                  <button>秒杀</button>
+                </view>
+              </view>
+            </view>
+          </navigator>
+
+          <navigator url="/pages/productDetail_pt/productDetail_pt">
+            <view class="figtuo_prudct_pic">
+              <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+            </view>
+            <view class="figtuo_prudct_txt">
+              <text class="title">天然野山菌[宁波]</text>
+              <view class="figtuo_prudct_tit">
+                <text>休闲业主</text>
+                <text>休闲业主</text>
+              </view>
+              <view class="figtuo_prudct_price">
+                <view class="left">
+                  <text>¥68</text>
+                  <text>¥268</text>
+                  <text>2人团</text>
+                </view>
+                <view class="right">
+                  <button class="mor">2人团</button>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      <view class="clear"></view>
+    </view>
+  </view>
+  <!-- /product_chartc -->

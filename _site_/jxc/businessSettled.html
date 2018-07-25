@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村-商家入驻</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/businessSettled.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="busetl_all">
+	<div class="busetl_top">
+		<h1>商家入驻信息填写</h1>
+	</div>
+
+	<div class="busetl_body">
+		<article>
+			<section>
+				<ul class="busus_inlin">
+					<li>
+						<dl>
+							<dd>
+								<h1>商家名称</h1>
+							</dd>
+							<dd>
+								<input type="text" name="buss_name" placeholder="请输入商家名称" value="" />
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<ul class="busus_inlin">
+					<li>
+						<dl>
+							<dd>
+								<h1>联系人</h1>
+							</dd>
+							<dd>
+								<input type="text" name="buss_person" placeholder="请输入姓名" />
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dd>
+								<h1>联系电话</h1>
+							</dd>
+							<dd>
+								<input type="text" name="buss_phone" placeholder="请输入联系电话" />
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</section>
+			<section class="select_bussis">
+				<ul>
+					<li>
+						<div class="select_bussis_cot">
+							<dl>
+								<dd>
+									<h1>选择商家类型</h1>
+								</dd>
+							</dl>
+						</div>
+					</li>
+					<li>
+						<div class="select_bussis_cot">
+							<dl>
+								<dd>
+									<h1>特色民宿</h1>
+								</dd>
+								<dd>
+									<div class="select_cont">
+										<input type="radio" value="tsms" name="busstyle" checked="checked" />
+									</div>
+									<b class="active"></b>
+								</dd>
+							</dl>
+						</div>
+					</li>
+					<li>
+						<div class="select_bussis_cot">
+							<dl>
+								<dd>
+									<h1>生态农场</h1>
+								</dd>
+								<dd>
+									<div class="select_cont">
+										<input type="radio" value="stnc" name="busstyle" />
+									</div>
+									<b></b>
+								</dd>
+							</dl>
+						</div>
+					</li>
+					<li>
+						<div class="select_bussis_cot">
+							<dl>
+								<dd>
+									<h1>景区乐园</h1>
+								</dd>
+								<dd>
+									<div class="select_cont">
+										<input type="radio" value="jqly" name="busstyle" />
+									</div>
+									<b></b>
+								</dd>
+							</dl>
+						</div>
+					</li>
+					<li>
+						<div class="select_bussis_cot">
+							<dl>
+								<dd>
+									<h1>美丽村落</h1>
+								</dd>
+								<dd>
+									<div class="select_cont">
+										<input type="radio" value="mlcl" name="busstyle" />
+									</div>
+									<b></b>
+								</dd>
+							</dl>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<p>感谢您对聚乡村的支持，工作人员会在24小时内和您取得联系！</p>
+			</section>
+			
+			<section>
+				<div class="settle_map">
+					<div class="search">
+			            <ul class="main_wrap">
+			                <li class="search_box clearfix">
+			                    <a class="clearfix" href="javascript:;">
+			                        <b>
+			                            <img src="images/ss.png">
+			                        </b>
+			                        <input type="text" placeholder="村落/景区/民宿/农场">
+			                    </a>
+			                </li>
+			                <li class="map_btn">搜索</li>
+			            </ul>
+			        </div>
+					<div class="map_cot" id="allmap"></div>
+				</div>
+			</section>
+		</article>
+	</div>
+
+	<div class="mymess_button">
+		<button>确认提交</button>
+	</div>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<!-- IP定位获取当前城市 -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wgOuFDPx7axqgWBnORNpPOLtesYbGcpV"></script>
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/basefont.js"></script>
+<script src="mockface/b-mock.js"></script>
+<script src="js/businessSettled.js"></script>
+<!-- js e -->
+</body>
+</html>

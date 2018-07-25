@@ -1,0 +1,129 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id":1,
+      "imgs": "images/cs/272153.jpg",
+	    "info": "2人团",
+      "url":"productDetail_pt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+	     "lastprice": "¥268",
+      "btn": "我要2人团"
+    },
+	{
+      "id":2,
+      "imgs": "images/cs/272153.jpg",
+	    "info": "剩余20件",
+      "url":"productDetail_ms.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+	    "lastprice": "¥268",
+      "btn": "我要秒杀"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+	  "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+	    "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    },
+    {
+      "id":3,
+      "imgs": "images/cs/272153.jpg",
+    "info": "2人团",
+      "url":"raiseDetails_wzt.html",
+      "title": "宁波青苹果",
+      "lab": ["休闲业主","可现场游园"],
+      "price": "￥8888",
+      "lastprice": "",
+      "btn": "我要参加"
+    }
+  ],
+  "length":33,
+  "rtCode":null
+}

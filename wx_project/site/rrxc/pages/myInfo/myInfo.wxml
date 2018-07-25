@@ -1,0 +1,31 @@
+<view class="myinfo_all">
+  <navigator url="/pages/personalInfo/personalInfo">
+    <view class="myinfo_cont">
+      <view class="myinfo_left">
+        <view class="miolt_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/poyctyt_banner_cs4.png"></image>
+        </view>
+        <view class="miolt_txt">
+          <text>晴天雨后民宿</text>
+          <p>消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息</p>
+        </view>
+      </view>
+      <text  class="myinfo_right">2017-1-3</text>
+    </view>
+  </navigator>
+  
+  <navigator url="/pages/personalInfo/personalInfo">
+    <view class="myinfo_cont">
+      <view class="myinfo_left">
+        <view class="miolt_pic">
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/poyctyt_banner_cs4.png"></image>
+        </view>
+        <view class="miolt_txt">
+          <text>晴天雨后民宿</text>
+          <p>消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息消息</p>
+        </view>
+      </view>
+      <text  class="myinfo_right">2017-1-3</text>
+    </view>
+  </navigator>
+</view>

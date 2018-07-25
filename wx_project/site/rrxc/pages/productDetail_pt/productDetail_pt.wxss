@@ -1,0 +1,121 @@
+.cpxq{
+  min-height: 100rpx;
+}
+
+.xzhb{
+  min-height: 100rpx;
+}
+
+.xmjz{
+  min-height: 60rpx;
+}
+
+page{
+    height: 100%;
+}
+
+.pudtal_expntest > view{
+  width: 100%;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: #fff;
+}
+
+.pudtal_expntest .info2{
+  background: #efefef;
+}
+
+.pudtal_expntest .info2 text{
+    position: relative;
+    margin-left: 40rpx;
+}
+
+.pudtal_expntest .info2 text::before{
+    content: '';
+    width: 30rpx;
+    height: 30rpx;
+    background: url(http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-spxq-xx.png) top no-repeat;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -40rpx;
+    background-size: 100%;
+}
+
+.pudtal_ptwf{
+  width: 100%;
+  height: 200rpx;
+  background: #fff;
+  margin-bottom: 24rpx;
+  border-top: solid 1px transparent;
+}
+
+.zhijiect_left {
+    float: left;
+}
+
+.zhijiect_right {
+  float:right;
+  margin-top: 35rpx;
+}
+
+.zjtl_pic{
+    position: absolute;
+    width: 68rpx;
+    height: 68rpx;
+    line-height: initial;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 34rpx;
+    overflow: hidden;
+}
+
+.zhijiect_left text{
+    line-height: 132rpx;
+    margin-left: 88rpx;
+    font-size: 28rpx;
+}
+
+.zhijiect_cont{
+  border-bottom: solid 1px #efefef;
+}
+
+.zjtr_txt{
+  margin-right: 22rpx;
+}
+
+.zjtr_txt text:first-child{
+    color: #f5560f;
+    text-align: right;
+}
+
+.zjtr_txt text{
+  display: block;
+}
+
+.zjtr_txt, .zjtr_btn{
+  display: inline-block;
+}
+
+.pudtaltxb_pic {
+    width: 100%;
+    height: 360rpx;
+    margin-bottom: 10rpx;
+}
+
+.pudtal_text_bottom .main_wrap{
+  padding-bottom: 10rpx;
+}
+
+.lj_button text{
+  display: block;
+  height: 30rpx;
+  line-height: 30rpx;
+  color: #fff;
+  font-size: 22rpx;
+}
+
+.lj_button text:first-child{
+  margin: 20rpx 0 5rpx 0;
+  font-size: 30rpx;
+}

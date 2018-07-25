@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src='jsAnim.js'></script>
+	<script type="text/javascript">
+    
+    var time =null;
+
+	window.onload = function () {
+   
+		var rights = document.getElementById('rights');
+	    var LiList = rights.getElementsByTagName('li');
+
+	    for (var i = 0; i < LiList.length; i++) {
+            
+        
+	    	LiList[i].onmouseenter = inAnim; 
+
+	    	 LiList[i].onmouseleave = outAnim;
+	    }
+		
+	}
+
+	        function outAnim(){
+	        	clearTimeout(time);
+	    		var div = this.getElementsByTagName('div')[0];;
+	    		startMove(div,{left:-140,opacity:0},function(){
+	    			div.style.display = 'none';
+	    		});
+
+
+
+	    	}
+
+		    	function inAnim(){
+		    	var obj = this;
+	        time =	setTimeout(function(){
+            var div = obj.getElementsByTagName('div')[0];
+	    	div.style.display ='block';
+            /*div.style.left = -140+'px';
+            div.style.opacity = 1;*/
+	        startMove(div,{left:-100,opacity:100});     
+
+
+	        	},500);
+
+
+	    	}
+   
+
+
+
+
+		
+	</script>
+	<style type="text/css">
+	*{margin: 0px;padding: 0px;}
+   #box{height: 100%;position: fixed;right: 0px;width: 10px;background: #7A6E6E;}
+	#rights>ul>li{position: relative;list-style: none;height: 40px;width: 40px;margin-bottom:1px;background: red;}
+	#rights>ul>li>a{height: 40px;width: 40px;line-height: 40px;background: #7A6E6E;text-align: center;color: #fff;display: block;position: absolute;left: 0px;top:0px;z-index: 1;}
+	#rights{position: fixed;top: 200px;right: 0px;}
+	#rights>ul>li>div{height: 40px;width: 100px;background: #7A6E6E;position: absolute;left: -140px;top:0px;text-align: center;line-height: 40px;color: #fff;opacity: 1;z-index: 2;display: none;}
+ 	#rights>ul>li:hover>a{background: #c81623; }
+	#rights>ul>li>div>span{position: absolute;right: -8px;top:12px;width: 16px;height: 16px;line-height: 16px;text-align: center;font-size: 16px;font-family: "宋体","\5b8b\4f53";color:#7A6E6E; }
+
+	</style>
+</head>
+ <body>
+ dsfsdf 
+ 
+ <div id="box"></div>
+ <div id="rights">
+ 	<ul>
+ 	<li><a>1</a><div>东京会员<span>◆</span></div></li>
+ 	<li><a>1</a><div>东京会员<span>◆</span></div></li>
+ 	<li><a>1</a><div>东京会员<span>◆</span></div></li>
+ 	<li><a>1</a><div>东京会员<span>◆</span></div></li>
+ 	<li><a>1</a><div>东京会员<span>◆</span></div></li>
+ 	<li><a>1</a><div>东京会员<span>◆</span></div></li>
+ 	</ul>
+ </div>
+
+</body> 
+</html>

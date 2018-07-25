@@ -1,0 +1,50 @@
+{
+  "error": false,
+  "msg": "获取进行中的活动列表成功.",
+  "data": [
+    {
+      "id": 3,
+      "groupType": 6,
+      "name": "水电费水电费",
+      "title": "阿斯顿",
+      "content": "啊啊",
+      "matchRule": "啊啊啊",
+      "img": "Jax.png",
+      "bgImg": "Jax.png",
+      "exDate": "111",
+      "startTime": 1480762800000,
+      "endTime": 1481022000000,
+      "signEndTime": 1480590000000
+    },
+    {
+      "id": 4,
+      "groupType": 6,
+      "name": "又去",
+      "title": "是是是",
+      "content": "千万",
+      "matchRule": "驱蚊器翁",
+      "img": "Jax.png",
+      "bgImg": "Jax.png",
+      "exDate": "{xxx:xxx}",
+      "startTime": 1480762800000,
+      "endTime": 1481626800000,
+      "signEndTime": 1481108400000
+    },
+    {
+      "id": 6,
+      "groupType": 6,
+      "name": "第四节布姆联赛",
+      "title": "第四节布姆联赛",
+      "content": "第四节布姆联赛第四节布姆联赛第四节布姆联赛",
+      "matchRule": "第四节布姆联赛第四节布姆联赛第四节布姆联赛",
+      "img": "Jax.png",
+      "bgImg": "Jax.png",
+      "exDate": "http://www.baidu.com",
+      "startTime": 1480910400000,
+      "endTime": 1481619600000,
+      "signEndTime": 1481785200000
+    }
+  ],
+  "length": 3,
+  "rtCode": null
+}

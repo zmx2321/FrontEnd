@@ -1,0 +1,149 @@
+.dialogue_all{
+    font-size: 0.24rem;
+}
+
+/* dialogue_cont s */
+/* public s */
+.dialogue_cont{
+	width: 100%;
+	overflow: auto;
+}
+
+.dialogue_text_wrap{
+    width: 7rem;
+    margin: 0.24rem auto 0;
+}
+
+.dialogue_text{
+	margin-bottom: 0.3rem;
+}
+
+.dialogue_text ul{
+	font-size: 0;
+}
+
+.dialogue_text li{
+	display: inline-block;
+	font-size: 0.24rem;
+}
+
+.dialogue_text_pic{
+	width: 0.8rem;
+	height: 0.8rem;
+	overflow: hidden;
+}
+
+.dialogue_text_rev{
+    min-width: 1rem;
+    max-width: 3.16rem;
+    min-height: 0.8rem;
+    background: #fff;
+    border-radius: 0.07rem;
+    position: relative;
+    border-top: solid 1px transparent;
+    border-bottom: solid 1px transparent;
+}
+
+.dialogue_text_rev p{
+    margin-top: 0.21rem;
+    margin-left: 0.25rem;
+    margin-right: 0.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.text_odd .dialogue_text_rev::before, .text_even .dialogue_text_rev::after{
+    content: '';
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 0.3rem;
+    transform: rotate(45deg);
+}
+/* public e */
+
+/* text_odd(奇数) s */
+.text_odd{
+	float: left;
+}
+
+.text_odd li{
+	float: left;
+}
+
+.text_odd li:first-child{
+	margin-right: 0.3rem;
+}
+
+.text_odd .dialogue_text_rev::before{
+    left: -5px;
+    background: #fff;
+}
+/* text_odd(奇数) e */
+
+/* text_even(偶数) s */
+.text_even{
+	float: right;
+}
+
+.text_even li{
+	float: right;
+}
+
+.text_even li:first-child{
+	margin-left: 0.3rem;
+}
+
+.text_even .dialogue_text_rev{
+	background: #00cd00;
+	color: #333;
+}
+
+.text_even .dialogue_text_rev::after{
+    right: -5px;
+    background: #00cd00;
+}
+/* text_even(偶数) e */
+/* dialogue_cont e */
+
+/* dialogue_bottom s */
+.dialogue_bottom{
+	width: 100%;
+	height: 0.98rem;
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+    margin-top: 0.24rem;
+}
+
+.dialogue_btncot{
+    width: 7.02rem;
+    height: 0.66rem;
+    margin: 0.16rem 0.24rem;
+}
+
+.dialogue_btncot li:first-child{
+	float: left;
+}
+
+.dialogue_btncot li:last-child{
+	float: right;
+}
+
+.dialogue_btncot input[type="text"]{
+    width: 5.2rem;
+    height: 0.62rem;
+    border: solid 1px #ccc;
+    border-radius: 0.07rem;
+    padding: 0 0.3rem;
+    font-size: 0.24rem;
+}
+
+.dialogue_btncot button{
+	width: 1rem;
+	height: 0.66rem;
+	background: #00cd00;
+	border-radius: 0.07rem;
+	color: #fff;
+	font-size: 0.24rem;
+}
+/* dialogue_bottom e */

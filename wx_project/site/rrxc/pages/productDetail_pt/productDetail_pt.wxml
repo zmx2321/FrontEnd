@@ -1,0 +1,308 @@
+<!-- product_banner -->
+<view class="product_banner">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="#fff" indicator-active-color="#00cd00">  
+    <block wx:for="{{imgUrls}}" wx:key="key">  
+      <swiper-item>  
+        <image src="{{item}}" />
+      </swiper-item>  
+    </block>
+  </swiper>
+</view>
+<!-- /product_banner -->
+
+<!-- pudtal_text -->
+<view class='pudtal pudtal_text'>
+  <view class='pudtal_text_top'>
+    <view class='main_wrap'>
+      <view class='price clearfix'>
+        <view class='left'>
+          <text class='new'>¥68</text>
+          <text class='old'>￥128</text>
+        </view>
+        <text class='right'>剩余20份</text>
+      </view>
+      <text class='title'>宁波青苹果[宁波]</text>
+      <view class='detil'>
+        <text>青苹果就是颜色是青的苹果，青的果酸含量高，有利于美容，苹果都一样，不管是红的青的黄的都是一样的，它的颜色不同是因为它们的品种不同，不同的品种有不同的口味和特点，像是：”果实色泽鲜艳，不同的品种有不同的口味；果肉黄白色，肉质细脆、多汁，风味甜酸浓郁。这说的是红将军"也很美味。
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class='pudtal_text_lio'>
+    <view class='main_wrap'>
+      <text>包邮</text>
+      <text>24小时发货</text>
+      <text>假一赔十</text>
+      <text>包退包换</text>
+    </view>
+  </view>
+  <view class='pudtal_expntest'>
+    <view class='info1'>
+      <view class='main_wrap'>
+        <text>支付开团并邀请1人参团，24小时人数不足自动退款</text>
+      </view>
+    </view>
+    <view class='info2'>
+      <view class='main_wrap'>
+        <text>以下小伙伴正在发起团购，您可以直接参与</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='pudtal_ptwf'>
+    <view class='main_wrap'>
+      <image src='http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/ptwf.png'></image>
+    </view>
+  </view>
+</view>
+<!-- /pudtal_text -->
+
+<view class='pudtal zhijiect'>
+  <view class='main_wrap'>
+    <view class='zhijiect_cont clearfix'>
+      <view class='zhijiect_left'>
+        <view class='zjtl_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <text>张三</text>
+      </view>
+      <view class='zhijiect_right'>
+        <view class='zjtr_txt'>
+          <text>还差1人成团</text>
+          <text>剩余23：59：21</text>
+        </view>
+        <view class='zjtr_btn'>
+          <button bindtap='jumpToFightGroup'>直接参团</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='main_wrap'>
+    <view class='zhijiect_cont clearfix'>
+      <view class='zhijiect_left'>
+        <view class='zjtl_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <text>张三</text>
+      </view>
+      <view class='zhijiect_right'>
+        <view class='zjtr_txt'>
+          <text>还差1人成团</text>
+          <text>剩余23：59：21</text>
+        </view>
+        <view class='zjtr_btn'>
+          <button bindtap='jumpToFightGroup'>直接参团</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='main_wrap'>
+    <view class='zhijiect_cont clearfix'>
+      <view class='zhijiect_left'>
+        <view class='zjtl_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <text>张三</text>
+      </view>
+      <view class='zhijiect_right'>
+        <view class='zjtr_txt'>
+          <text>还差1人成团</text>
+          <text>剩余23：59：21</text>
+        </view>
+        <view class='zjtr_btn'>
+          <button bindtap='jumpToFightGroup'>直接参团</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='pudtal pudtal_text_bottom'>
+  <view class='pudtaltxb_pic'>
+    <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/poyctyt_banner_cs4.png"></image>
+  </view>
+  <view class='main_wrap'>
+    <text>青苹果就是颜色是青的苹果，青的果酸含量高，有利于美容，苹果都一样，不管是红的青的黄的都是一样的，它的颜色不同是因为它们的品种不同，不同的品种有不同的口味和特点，像是：”果实色泽鲜艳，不同的品种有不同的口味；果肉黄白色，肉质细脆、多汁，风味甜酸浓郁。这说的是红将军"也很美味.</text>
+  </view>
+</view>
+
+<!-- pudtal_eval -->
+<view class='pudtal pudtal_eval'>
+  <navigator url='/pages/evaluateDetail/evaluateDetail'>
+    <view class='main_wrap'>
+      <text>宝贝评价</text>
+      <text class='eval_num'>共688条评论</text>
+    </view>
+  </navigator>
+
+  <view class='pudtal_eval_cont'>
+    <view class='main_wrap'>
+      <view class='pdalt_tit clearfix'>
+        <view class='pdalt_tit_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <view class='pdalt_tit_txt'>
+          <text class='name'>徐某某</text>
+          <text class='time'>2016.10.01</text>
+        </view>
+      </view>
+      <text>
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+        东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。东西很好，快递很快。
+      </text>
+    </view>
+  </view>
+
+  <view class='pudtal_eval_cont'>
+    <view class='main_wrap'>
+      <view class='pdalt_tit clearfix'>
+        <view class='pdalt_tit_pic'>
+          <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/my_photo.jpg"></image>
+        </view>
+        <view class='pdalt_tit_txt'>
+          <text class='name'>徐某某</text>
+          <text class='time'>2016.10.01</text>
+        </view>
+      </view>
+      <text>东西很好，快递很快。</text>
+    </view>
+  </view>
+</view>
+<!-- /pudtal_eval -->
+
+<!-- product_chartc -->
+<view class="product_chartc">
+  <view class="prodchat_wrap">
+    <view class="prochar_top">
+      <text>热门推荐</text>
+    </view>
+    <view class="prochar_cont">
+      <view class="poyctcnt_pth_cont">
+        <navigator url="/pages/productDetail_ms/productDetail_ms">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>剩余20件</text>
+              </view>
+              <view class="right">
+                <button>秒杀</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+
+        <navigator url="/pages/productDetail_pt/productDetail_pt">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>2人团</text>
+              </view>
+              <view class="right">
+                <button class="mor">2人团</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+
+        <navigator url="/pages/productDetail_ms/productDetail_ms">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>剩余20件</text>
+              </view>
+              <view class="right">
+                <button>秒杀</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+
+        <navigator url="/pages/productDetail_pt/productDetail_pt">
+          <view class="figtuo_prudct_pic">
+            <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/cs/272153.jpg"></image>
+          </view>
+          <view class="figtuo_prudct_txt">
+            <text class="title">天然野山菌[宁波]</text>
+            <view class="figtuo_prudct_tit">
+              <text>休闲业主</text>
+              <text>休闲业主</text>
+            </view>
+            <view class="figtuo_prudct_price">
+              <view class="left">
+                <text>¥68</text>
+                <text>¥268</text>
+                <text>2人团</text>
+              </view>
+              <view class="right">
+                <button class="mor">2人团</button>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+    <view class="clear"></view>
+  </view>
+</view>
+<!-- /product_chartc -->
+
+<!-- mt_pudtal_btn -->
+<view class="pudtal_btn mt_pudtal_btn">
+  <navigator url="/pages/businessDetail/businessDetail" class="shangjiazy">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-sjzy.png"></image>
+    </view>
+    <text class="pudtal_btn_text">商家主页</text>
+  </navigator>
+  <navigator url="/pages/payment/payment" class="lj_button">
+    <text>¥68</text>
+    <text>2人团</text>
+  </navigator>
+  <navigator class="shoucang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/icon-sjzy-sc-wxz.png"></image>
+    </view>
+    <text class="pudtal_btn_text">收藏</text>
+  </navigator>
+  <navigator class="fenxiang">
+    <view class="pudtal_btn_icon">
+      <image src="http://jxc-admin.oss-cn-hangzhou.aliyuncs.com/images/btn-fx.png"></image>
+    </view>
+    <text class="pudtal_btn_text">分享</text>
+  </navigator>
+</view>
+<!-- /mt_pudtal_btn -->

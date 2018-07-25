@@ -1,0 +1,15 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/new/new",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "black",
+    "navigationBarTitleText": "我的小程序",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh": "true",
+    "backgroundColor": "#ccc"
+  }
+}

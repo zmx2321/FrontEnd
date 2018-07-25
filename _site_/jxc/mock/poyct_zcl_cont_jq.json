@@ -1,0 +1,32 @@
+{
+  "error":false,
+  "msg":"",
+  "data":[
+    {
+      "id":1,
+      "imgs":"images/cs/shilietupain1.png",
+      "url":"businessDetail_jq.html",
+      "imglab": "本期景区",
+      "title": "晴天雨后景区",
+      "price": 8888,
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，bhdskcnjdskcnsjkcnsjk宿座落在800多年的古村落，宿座落在800多年的古村落，",
+      "productlab": ["天天天天","然氧然氧","吧吧吧吧"],
+      "addresss": "浙江省云和县坑根村",
+      "distance": "10086km"
+    },
+    {
+      "id":2,
+      "imgs":"images/cs/shilietupian2.png",
+      "url":"businessDetail_jq.html",
+      "imglab": "本期景区",
+      "title": "qqqqqq",
+      "price": "9999",
+      "introduction": "云和晴天雨后民宿座落在800多年的古村落，村子四周被满山遍野的翠竹，666666",
+      "productlab": ["吧吧吧吧","天天天天","吧吧吧吧"],
+      "addresss": "nnnnnnnnnnnnnnnn",
+      "distance": "10088km"
+    }
+  ],
+  "length":null,
+  "rtCode":null
+}

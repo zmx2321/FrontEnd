@@ -1,0 +1,97 @@
+<section>
+    <div class="activity-container">
+        <div class="activity-before-header">
+            <div class="img-normal-container activity-before-head">
+                <img src="http://static.iboom.tv/static/img/{{detail.bgImg?detail.bgImg:'videoDefault.png'}}" alt="">
+            </div>
+        </div>
+        <div class="activity-header-before">
+            <div class="activity-header-before-title" ng-bind="detail.name"></div>
+            <div class="activity-header-before-start">
+                开始时间: {{detail.startTime | dayText}}
+            </div>
+            <div class="activity-header-before-content">
+                <ul>
+                    <li>参赛方法:学员以班级为单位自行组织五人战队进行报名，五人一组（替补可以三到五个，最多五个）。自选队长代表全队联系我们，队长须负责比赛时间全部队员到位，以及比赛服账号的分发。</li>
+                    <li>队伍规则:{{detail.matchRule}}</li>
+                    <li ng-bind="detail.content">
+                    </li>
+                </ul>
+            </div>
+            <div class="activity-header-before-footer">
+                <a class="btn btn-big btn-red btn-big-a" href="http://{{(detail.exDate | evalText).signUrl}}"
+                   target="_blank">我要报名</a>
+            </div>
+        </div>
+
+        <div class="activity-before-content">
+            <div class="activity-before-evaluation">
+                <header>评论
+                    <button class="btn btn-white btn-big" ng-click="openSend()">发表评论</button>
+                </header>
+                <article>
+                    <div class="activity-before-sendDiscusses" ng-show="isOpensend">
+                        <div class="activity-before-sendDiscusses-header">
+                            <div class="img-auto-container">
+                                <img src="http://static.iboom.tv/static/img/{{userInfo.student.header}}"
+                                     alt="">
+                            </div>
+                        </div>
+                        <div class="activity-before-sendDiscusses-content">
+                            <article>
+                                <textarea class="activity-discusses-textarea" ng-model="activityDiscuss"></textarea>
+                            </article>
+                            <footer>
+                                <button class="btn btn-red btn-sm" ng-click="sendDiscuss()">发表</button>
+                            </footer>
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="activity-evaluation-list" ng-repeat="d in discusses">
+                            <div class="activity-evaluation-list-header">
+                                <div class="img-auto-container">
+                                    <img src="" alt="" studentheader="d-who">
+                                </div>
+                            </div>
+                            <div class="activity-evaluation-list-content">
+                                <header ng-bind="(d.who | studentInfo).summoner"></header>
+                                <article ng-bind="d.content">
+
+                                </article>
+                                <footer>{{d.addDate | dateText}}</footer>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="activity-evaluation-lack" ng-show="lackDiscuss">
+                        <div class="lack-statue">
+                            <div class="img-auto-container">
+                                <img src="static/images/icon_roobot.png" alt="">
+                            </div>
+                            <span>此次赛事还未有人发表评论，快来抢沙发</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="activity-before-apply">
+                <header>已报名</header>
+                <article>
+                    <ul>
+                        <li ng-repeat="player in players">
+                            <div class="activity-before-apply-header">
+                                <div class="img-auto-container">
+                                    <img src="" alt="" studentheader="player-userKey">
+                                </div>
+                            </div>
+                            <div class="activity-before-apply-name">
+                                {{player.userName}}
+                                <div>{{player.addTime | dateText}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

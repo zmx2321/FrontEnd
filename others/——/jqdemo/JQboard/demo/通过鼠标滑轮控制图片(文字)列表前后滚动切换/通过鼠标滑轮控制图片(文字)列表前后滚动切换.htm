@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://demo.lanrenzhijia.com/2014/scroll0821/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>通过鼠标滑轮控制图片(文字)列表前后滚动切换</title>
+<link href="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/lanrenzhijia.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<style>
+.baidu_ads{ width:960px; height:90px; position:absolute; left:50%; bottom:0; margin-left:-480px; overflow:hidden;}
+</style>
+
+
+
+
+<div class="baidu_ads">
+<script type="text/javascript">
+var sogou_ad_id=395091;
+var sogou_ad_height=90;
+var sogou_ad_width=960;
+</script>
+<script type="text/javascript" src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/c.js"></script><script src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/ask"></script><div style="display:none">-</div> <div id="starIframe_wrapper_1" style="height:90px;"><iframe id="starIframe1" onload="document.sogou_ads1_loaded=true;" src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/union" width="960" height="90" align="center,center" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div>
+</div>
+
+<span style="display:none;">
+<script src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/stat.php" language="JavaScript"></script><script src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=4106941" target="_blank" title="站长统计">站长统计</a>
+</span><!-- 代码 -->
+<div class="lanrenzhijia">
+	<div class="lanrenzhijia2" id="objDiv">
+		<ul style="width: 4200px; left: -2100px;">
+			<li><span>1代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>2代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>3代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>4代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>5代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>6代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>7代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>8代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>9代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>10代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>11代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>12代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>13代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>14代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>15代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>16代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>17代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>18代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>19代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+            <li><span>20代码整理：懒人之家<br>www.lanrenzhijia.com</span></li>
+		</ul>
+	</div>
+    <input type="hidden" value="-2" class="ddw">
+	<input type="hidden" value="0" class="ddw2">
+</div>
+
+<script src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/jquery.min.js"></script>
+<script src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/jquery.mousewheel.js"></script>
+<script src="./通过鼠标滑轮控制图片(文字)列表前后滚动切换_files/lanrenzhijia.js"></script>
+<script>
+$('.lanrenzhijia2').join_qh({
+	box:".lanrenzhijia2",
+	num1:".ddw",//记录当前屏数
+	num2:".ddw2",//记录鼠标滚轮延时执行
+	objDiv:"objDiv",//在这个区域内，浏览器滚动条失效
+	pic_num:5,//当前显示图片数量(li个数)
+	time:700//切换一屏时间
+})
+</script>
+
+
+</body></html>
