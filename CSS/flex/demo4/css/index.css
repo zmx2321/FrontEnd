@@ -1,0 +1,16 @@
+.demo{
+  display: flex;                /*设置为flex布局*/
+  justify-content: space-around;
+}
+.demo > div{
+  flex: none;
+}
+.left{
+  width: 200px;
+  height: 200px;
+  background: #d4cdcd;
+}
+.right{
+  width: 380px;
+  height: 200px;
+}

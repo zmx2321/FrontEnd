@@ -1,0 +1,30 @@
+.head{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	background: #ccc;
+}
+
+.body{
+	position: absolute;
+	top: 100px;
+	left: 0;
+	bottom: 100px;
+	right: 0;
+	overflow: auto;
+}
+
+.content{
+	height: 2000px;
+}
+
+.foot{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	background: #ccc;
+}

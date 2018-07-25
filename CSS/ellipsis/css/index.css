@@ -1,0 +1,29 @@
+.box1{
+	width: 50px;
+	margin-bottom: 50px;
+}
+
+.box1 span{
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.box2{
+	width: 50px;
+}
+
+.box2 span{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+
+/* display:block;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis; */

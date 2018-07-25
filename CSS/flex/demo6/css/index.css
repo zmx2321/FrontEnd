@@ -1,0 +1,39 @@
+.demo{
+  display: flex;             
+}
+
+.item{
+  background: #ccc;
+  margin: 0 3px;
+}
+
+/* 等分布局 */
+.item{
+  flex: 1;
+}
+
+/* 某一个固定 */
+/* .item2{
+  flex: 0 0 50%;
+} */
+
+/* 某两个固定 */
+/* .item2{
+  flex: 0 0 50%;
+}
+
+.item4{
+  flex: 0 0 20%;
+} */
+
+
+/* 某三个固定 */
+.item1{
+  flex: 0 0 10%;
+}
+.item2{
+  flex: 0 0 50%;
+}
+.item4{
+  flex: 0 0 20%;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        @font-face {
+            font-family: 'LaoYang';
+            src:url('XingKai/xingkai.ttf');
+        }
+        body{
+            font-family: LaoYang;
+        }
+        .box{
+            width:300px;
+            height:280px;
+            margin:5px 0 0 5px;
+            display: inline-block;
+            position:relative;
+        }
+        .box-img , .box-content{
+            width:100%;
+            height:100%;
+            position:absolute;
+            left:0;
+            top:0;
+            transition:all .5s ease-in-out;/*规定以慢速开始和结束的过度效果*/
+        }
+        .box-content{
+            text-align: center;
+            color:#fff;
+            background:rgba(0,0,0,0.7)
+        }
+        .title{
+            font-size:25px;
+            animation: color 2s infinite;
+        }
+        @keyframes color {
+            0%   {color:#fff;}
+            30%  {color:green;}
+            60%  {color:red;}
+            100% {color:blue;}
+        }
+        .box-content .desc{
+            font-size:20px;
+            letter-spacing: 5px;
+            line-height:24px;
+        }
+        .box-content .links{
+            list-style:none;
+            font-size:20px;
+        }
+        .box-content .links li{
+            display: inline-block;
+            margin:10px;
+        }
+        .box-content .links li a{
+            animation: color 1s infinite;
+        }
+        .rotate-img{
+            transform:rotateY(0deg);
+        }
+        .rotate-content{
+            transform:rotateY(90deg);
+        }
+        .box:hover .rotate-img{
+            transform:rotateY(-90deg);
+        }
+        .box:hover .rotate-content{
+            transform:rotateY(0deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box-img rotate-img"><img src="images/1.jpg"></div>
+        <div class="box-content rotate-content">
+            <h1 class="title">春江花月夜</h1>
+            <p class="desc">
+                春江潮水连海平<br/>
+                海上明月共潮生<br/>
+                滟滟随波千万里<br/>
+                何处春江无月明<br/>
+                江流宛转绕芳甸<br/>
+                月照花林皆似霰<br/>
+                空里流霜不觉飞<br/>
+                江上白沙听不见
+            </p><hr/>
+            <ul class="links">
+                <li><a href="#">QQ</a></li>
+                <li><a href="#">微信</a></li>
+                <li><a href="#">微博</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-img rotate-img"><img src="images/2.jpg"></div>
+        <div class="box-content rotate-content">
+            <h1 class="title">春江花月夜</h1>
+            <p class="desc">
+                春江潮水连海平<br/>
+                海上明月共潮生<br/>
+                滟滟随波千万里<br/>
+                何处春江无月明<br/>
+                江流宛转绕芳甸<br/>
+                月照花林皆似霰<br/>
+                空里流霜不觉飞<br/>
+                江上白沙听不见
+            </p><hr/>
+            <ul class="links">
+                <li><a href="#">QQ</a></li>
+                <li><a href="#">微信</a></li>
+                <li><a href="#">微博</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-img rotate-img"><img src="images/3.jpg"></div>
+        <div class="box-content rotate-content">
+            <h1 class="title">春江花月夜</h1>
+            <p class="desc">
+                春江潮水连海平<br/>
+                海上明月共潮生<br/>
+                滟滟随波千万里<br/>
+                何处春江无月明<br/>
+                江流宛转绕芳甸<br/>
+                月照花林皆似霰<br/>
+                空里流霜不觉飞<br/>
+                江上白沙听不见
+            </p><hr/>
+            <ul class="links">
+                <li><a href="#">QQ</a></li>
+                <li><a href="#">微信</a></li>
+                <li><a href="#">微博</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

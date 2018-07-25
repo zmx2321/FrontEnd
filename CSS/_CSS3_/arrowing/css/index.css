@@ -1,0 +1,28 @@
+.footer_img {  
+    position: absolute;  
+    bottom: 8%;  
+    left: 45%;  
+    animation:arrowing 3s infinite;  
+}  
+  
+  
+  
+@keyframes arrowing {  
+    0% {  
+        transform: translateY(-5px);  
+        opacity: .8  
+    }  
+  
+    50% {  
+        transform: translateY(10px);  
+        opacity: 1  
+    }  
+  
+    to {  
+        transform: translateY(-5px)  
+    }  
+}  
+  
+.footer_img img{  
+    width:40px;   
+}  

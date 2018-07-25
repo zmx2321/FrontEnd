@@ -1,0 +1,4 @@
+ul{ width:50%;}
+li{ background:#f5f5f5; border-bottom:1px solid #ddd; padding:5px 0; }
+ul li:nth-child(-n+7){ background:#F90}
+ul li:nth-child(-n+3){ background:#f5f5f5}

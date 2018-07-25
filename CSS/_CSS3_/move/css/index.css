@@ -1,0 +1,72 @@
+.box{
+    width:100px;
+    height:100px;
+    position: absolute;
+    background:red;
+    animation:myfirst 3s linear 0s infinite alternate;  
+    -moz-animation:myfirst 3s linear 0s infinite alternate; /* Firefox */
+    -webkit-animation:myfirst 3s linear 0s infinite alternate; /* Safari and Chrome */
+    -o-animation:myfirst 3s linear 0s infinite alternate; /* Opera */
+}
+
+@keyframes myfirst
+{
+    0%{left:0;top:0;}
+    25%{left:100px;top:0;}
+    50%{left:100px;top:100px;}
+    75%{left:0;top:100px;}
+    100%{left:0;top:0;}
+}
+
+@-moz-keyframes myfirst Firefox
+{
+    0%{left:0;top:0;}
+    25%{left:100px;top:0;}
+    50%{left:100px;top:100px;}
+    75%{left:0;top:100px;}
+    100%{left:0;top:0;}
+}
+
+@-webkit-keyframes myfirst Safari and Chrome
+{
+    0%{left:0;top:0;}
+    25%{left:100px;top:0;}
+    50%{left:100px;top:100px;}
+    75%{left:0;top:100px;}
+    100%{left:0;top:0;}
+}
+
+@-o-keyframes myfirst Opera
+{
+    0%{left:0;top:0;}
+    25%{left:100px;top:0;}
+    50%{left:100px;top:100px;}
+    75%{left:0;top:100px;}
+    100%{left:0;top:0;}
+} 
+
+.box p{
+    /*display: none;*/
+    position: absolute;
+    /*transition: 1s linear;*/
+}
+
+.box:hover p{
+    color: #fff;
+    animation:aa 0.5s forwards;
+    /*transition: 1s linear;*/
+}
+
+/* .box:hover p{
+    display: block;
+} */
+
+@keyframes aa{
+    0%{
+        left: 0;
+    }
+    
+    100%{
+        left: 10px;
+    }
+}

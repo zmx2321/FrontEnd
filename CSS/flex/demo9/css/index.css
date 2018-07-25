@@ -1,0 +1,13 @@
+.demo{
+    width: 258px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.item{
+    flex: 0 0 33.333333%;
+    height: 80px;
+    box-sizing: border-box;
+    border: solid 1px #f00;
+}

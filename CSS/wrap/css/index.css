@@ -1,0 +1,67 @@
+/* ==========================================================================
+   layout: g-contant
+============================================================================ */
+.g-container{
+    min-height: 500px;
+    display: flex;
+    background: #af0;
+}
+
+.g-main {
+  width: 60%;
+  background: #fcc;
+}
+
+.g-left {
+  flex: 1;
+  background: #cfc;
+}
+
+.g-right {
+  flex: 2;
+  background: #ccf;
+}
+
+
+/* ==========================================================================
+   module: m-test
+============================================================================ */
+.m-test{
+    width: 84%;
+    margin: 36px auto 0;
+}
+
+.m-test li{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background: #ccc;
+}
+
+/* ==========================================================================
+   module: m-nav
+============================================================================ */
+.m-nav{
+    position: absolute;
+    width: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.m-nav ul{
+    display: flex;
+}
+
+.m-nav li{
+    flex: 1;
+    height: 50px;
+    background: #464242;
+    transition: 0.2s linear;
+}
+
+.m-nav li:hover{
+    cursor: pointer;
+    background: #f00;
+    transition: 0.3s linear;
+}

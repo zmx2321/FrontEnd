@@ -1,0 +1,24 @@
+.arrow{
+	position: absolute;
+    right: 15px;
+    top: 33px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #333 #fff #fff;
+    -moz-transition: -moz-transform .2s ease-in;
+    -webkit-transition: -webkit-transform .2s ease-in;
+    -o-transition: -o-transform .2s ease-in;
+    transition: transform .2s ease-in;
+    -moz-transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
+}
+
+.arrow:hover{
+	transform: rotate(180deg);
+}

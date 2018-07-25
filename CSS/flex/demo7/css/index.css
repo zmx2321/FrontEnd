@@ -1,0 +1,25 @@
+.demo{
+  display: flex;
+  flex-direction: column;            
+}
+.demo div{
+  flex: 1;
+}
+.body{
+  display: flex;  
+} 
+.header,.footer,.left,.right{
+  flex: 0 0 20%!important;
+}
+
+.header, .footer{
+  background: #ccc;
+}
+
+.left, .right{
+  background: #f00;
+}
+
+.center{
+  background: #0f0;
+}
