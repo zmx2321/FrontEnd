@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<link href="images/icon/favicon.ico" rel="shortcut icon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>聚乡村活动</title>
+<link rel="stylesheet" href="css/lib/swiper3.4.0.min.css">
+
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/honor.css"/>
+</head>
+
+<body>
+
+<div class="f-fx g-box">
+	<!-- activity_top -->
+	<div class="activity_top f-pr">
+		<!-- 点击背景链接 -->
+		<a class="act_ban_hf" href="###"></a>
+		<!-- /点击背景链接 -->
+		
+		<!-- 二维码 -->
+		<div class="f-ps QRCode" id="QRCode">
+			<img src="images/ewm.png" alt="QRCode">
+		</div>
+		<!-- /二维码 -->
+
+		<!-- 党员 -->
+		<div class="f-pxr f-ib party_member">
+			<ul>
+				<li>你是否是中共党员：</li>
+				<li>
+					<label class="f-pr" for="isPartyMember">
+						<input name="partyMember" id="isPartyMember" type="checkbox" checked="checked">
+						<b class="f-ps active"></b>
+						<span>是</span>
+					</label>
+				</li>
+				<li>
+					<label class="f-pr" for="notPartyMember">
+						<input name="partyMember" id="notPartyMember" type="checkbox">
+						<b class="f-ps"></b>
+						<span>否</span>
+					</label>
+				</li>
+			</ul>
+		</div>
+		<!-- /党员 -->
+
+		<!-- name_info -->
+		<div class="name_info f-pxr l-bdru">
+			<ul>
+				<li>我是<span class="f-fs3">xxx</span>,</li>
+				<li>我为美丽乡村代言</li>
+			</ul>
+		</div>
+		<!-- /name_info -->
+	</div>
+	<!-- /activity_top -->
+
+	<!-- activity_nav -->
+	<div class="activity_nav">
+		<ul class="felx_ul">
+			<li class="active">我的代言</li>
+			<li>乡村排行</li>
+			<li>代理排行</li>
+		</ul>
+	</div>
+	<!-- /activity_nav -->
+
+	<!-- activity_cont -->
+	<div class="swiper-container activity_cont l-box1 activity_list f-pr">
+		<div class="swiper-wrapper activity_wrap">
+			<!-- 推荐 -->
+			<div class="swiper-slide act_slide act_recommend">
+				<div class="act_tabitm">
+					推荐
+					<button class="btn btn1">下一批</button>
+				</div>
+			</div>
+			<!-- /推荐 -->
+			
+			<!-- 本地 -->
+			<div class="swiper-slide act_slide act_local">
+				<div class="act_tabitm">
+					本地
+					<button class="btn btn1">下一批</button>
+				</div>
+			</div>
+			<!-- /本地 -->
+
+			<!-- 家乡 -->
+			<div class="swiper-slide act_slide act_home">
+				<div class="act_tabitm">
+					家乡
+					<button class="btn btn1">下一批</button>
+				</div>
+			</div>
+			<!-- /家乡 -->
+		</div>
+	</div>
+	<!-- /activity_cont -->
+</div>
+
+<!-- m-modal -->
+<div class="m-modal f-dn" id="Modal"></div>
+<div class="QRCodeModal f-dn f-ptr" id="QRCodeModal">
+	<img src="images/ewm.png" alt="QRCode">
+</div>
+<!-- /m-modal -->
+
+<!-- js -->
+<!-- 库和插件 -->
+<script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/lib/swiper3.4.0.min.js"></script>
+
+<!-- 业务 -->
+<script src="js/common.js"></script>
+
+<script src="js/honor.js"></script>
+<!-- /js -->
+</body>
+</html>

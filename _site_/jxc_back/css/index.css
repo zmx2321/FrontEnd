@@ -1,0 +1,1337 @@
+
+/**
+	1.位置属性(position, top, right, z-index, display, float等)
+	2.大小(width, height, padding, margin)
+	3.文字系列(font, line-height, letter-spacing, color- text-align等)
+	4.背景(background, border等)
+	5.其他(animation, transition等)
+ */
+
+
+/* ==========================================================================
+   layout: g-bsd_tp
+============================================================================ */
+.g-bsd_tp{
+	position: relative;
+	width: 100%;
+	min-height: 1.66rem;
+	background: #fff;
+}
+
+/* ==========================================================================
+   layout: g-bsd_nav
+============================================================================ */
+.g-bsd_nav{
+	width: 100%;
+	min-height: 0.88rem;
+    background: #fff;
+}
+
+/* ==========================================================================
+   module: pon_info
+============================================================================ */
+.pnfo_flow{
+	display: flex;
+	align-items: center;
+	position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+}
+
+.pnfo_flow span{
+	width: 1rem;
+}
+
+.pfow_pic{
+    width: 0.34rem;
+    height: 0.34rem;
+    margin-right: 0.1rem;
+    overflow: hidden;
+}
+
+.pnfo_wrap{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    width: 6rem;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0.1rem;
+    overflow: hidden;
+}
+
+.pnfo_prtifo{
+	display: flex;
+	align-items: center;
+	width: 55%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.edit_name_active{
+	position: relative;
+    width: 65%;
+}
+
+.edit_name_active .edit{
+    position: absolute;
+    bottom: 0;
+    left: 1.36rem;
+}
+
+.edit_name_active input[type="text"]{
+	position: absolute;
+    top: 0.3rem;
+    width: 2.1rem;
+}
+
+.pnfo_pic{
+	position: relative;
+	width: 1.2rem;
+    height: 1.2rem;
+    border: solid 1px #d0d0d0;
+    border-radius: 0.8rem;
+    overflow: hidden;
+}
+
+.pnfo_pic .img_mask h3{
+    left: 54%;
+    top: 52%;
+}
+
+/* .pnfo_pic input[type="file"]{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+} */
+
+.pnfo_nickname{
+	margin-left: 0.1rem;
+	width: 1.5rem;
+}
+
+.pnfo_nickname b{
+	display: block;
+}
+
+.edit_name_active{
+	margin-top: 0.1rem;
+}
+
+.pnfo_brfino{
+	position: relative;
+	min-width: 1rem;
+	margin-top: 0.05rem;
+	text-align: center;
+}
+
+.pnfo_brfino span, .pnfo_brfino b{
+	display: inline-block;
+}
+
+.pnfo_brfino b{
+	margin-left: 0.1rem;
+}
+
+.pnfo_brfino span{
+	max-width: 72%;
+}
+
+.pnfo_brfino input[type="text"]{
+    width: 66%;
+}
+
+.pnfo_brfino .edit{
+    position: absolute;
+    right: -0.1rem;
+    top: 0;
+}
+
+.edit_brfino_active{
+	margin-top: 0.15rem;
+}
+
+/* ==========================================================================
+   module: pon_address
+============================================================================ */
+.m-pon_address{
+	width: 100%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    background: #e2e2e2;
+    overflow: hidden;
+}
+
+.pnadr_wrap {
+	position: relative;
+	height: 100%;
+}
+
+.pnadr_wrap > ul{
+	height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.adrdt{
+	width: 100%;
+}
+
+.adrdt input[type="text"]{
+    width: 85%;
+}
+
+.edtdr dl.edit{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: 0.4rem;
+    overflow: hidden;
+    transform: translateY(-50%);
+}
+
+.edit_address_active{
+	margin-top: 0.15rem;
+}
+
+.addressModal{
+	top: 2.5rem;
+}
+
+/**
+ * m-select_address
+ */
+.m-select_address{
+    position: fixed;
+    z-index: 100000;
+    top: 2.5rem;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: #fff;
+    overflow: auto;
+}
+
+.m-select_address ul{
+	width: 100%;
+	overflow: hidden;
+}
+
+.m-select_address li{
+	width: 100%;
+    height: 0.66rem;
+    line-height: 0.66rem;
+    border-bottom: solid 1px #efefef;
+    transition: 0.35s linear;
+}
+
+.m-select_address dl{
+	padding: 0 0.2rem;
+	transition: 0.2s linear;
+}
+
+.m-select_address dd{
+	color: #8c8c8c;
+	font-size: 0.26rem;
+}
+
+.m-select_address li.active{
+	background: #cdcdcd;
+}
+
+.m-select_address li.active dl{
+	padding-left: 0.35rem;
+}
+
+/* ==========================================================================
+   module: bsdnav
+============================================================================ */
+.m-bsdnav{
+	height: 0.88rem;
+	overflow: hidden;
+	border-bottom: solid 1px #efefef;
+}
+
+.m-bsdnav ul{
+	display: flex;
+}
+
+.m-bsdnav li{
+	flex: 1;
+	height: 0.88rem;
+	line-height: 0.88rem;
+	color: #333;
+	text-align: center;
+    overflow: hidden;
+}
+
+.m-bsdnav li.active{
+    background: #00CD00;
+    color: #fff;
+}
+
+.navfix{
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+}
+
+/* ==========================================================================
+   module: merchant_info
+============================================================================ */
+.mrifo_wrap{
+	width: 100%;
+	min-height: 3rem;
+	transition: 0.2s linear;
+}
+
+.moftab_itm{
+    width: 100%;
+}
+
+.mrctdl_add{
+	position: relative;
+	width: 100%;
+	height: 0.88rem;
+	border-bottom: solid 1px #efefef;
+	background: #e2e2e2;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.mrctdl_add_img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.title, .price{
+	font-size: 0.3rem;
+    font-weight: bold;
+}
+
+.price{
+	color: #f5560f;
+}
+
+.hict_txt dl{
+	display: flex;
+	width: 100%;
+}
+
+.hict_txt dd{
+    margin-right: 0.15rem;
+}
+
+.hict_txt dd.title{
+	width: 2rem;
+}
+
+/* .hict_txt .edit_btn dd.edittxt_btn{
+	height: 0.35rem;
+} */
+
+.pro_bottom h3{
+	font-size: 0.2rem;
+	text-align: center;
+	font-weight: initial;
+	color: #ccc;
+}
+
+/**
+ * mfotb_estlifo
+ */
+.buino_cot{
+    width: 92%;
+    margin: 0.2rem auto 0;
+}
+
+.buino_cot ul{
+	display: flex;
+	flex-wrap: wrap; 
+}
+
+.buino_cot li{
+	flex-grow: 1;
+    margin: 0.08rem 0.05rem;
+    padding: 0.2rem 0.15rem;
+    text-align: center;
+    border: solid 1px #efefef;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.buino_cot li.active{
+	color: #00cd00;
+	border-color: #00cd00;
+	transition: 0.3s linear;
+}
+
+/**
+ * hult_wrap
+ */
+.hult_wrap{
+	margin-bottom: 0.24rem;
+}
+
+.hult_list{
+	height: 2.3rem;
+	overflow: hidden;
+	cursor: pointer;
+	transition: 0.2s linear;
+}
+
+.hult_list:not(:last-child){
+	border-bottom: solid 1px #efefef;
+}
+
+.hulist_cot{
+
+}
+
+.hict_img{
+	position: relative;
+    width: 2.5rem;
+    height: 1.88rem;
+}
+
+.hict_txt{
+    position: relative;
+	width: 4.15rem;
+	height: 1.88rem;
+	margin-left: 0.22rem;
+	overflow: hidden;
+}
+
+/* .hict_img, .hict_txt{
+	margin-top: 0.05rem;
+} */
+
+/* .hict_img input[type="file"]{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+} */
+
+.hict_txt > ul > li{
+	width: 80%;
+}
+
+.hict_txt li.lab{
+    margin: 0.28rem 0 0.5rem 0;
+}
+
+.hict_txt li.lab dl{
+	justify-content: flex-start;
+}
+
+.hict_txt li.lab dl dd{
+	flex: initial;
+	width: 0.8rem;
+}
+
+/* .hict_txt li.info dd:not(:last-child){
+	margin-right: 0.3rem;
+} */
+
+
+.hict_txt dd.price{
+    width: 0.9rem;
+    margin: 0;
+    /*overflow: hidden;*/
+}
+
+.hict_txt .edit_btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: inherit;
+}
+
+.hict_txt .edit_btn dl{
+	flex-direction: column;
+}
+
+.hict_txt .edit_btn dd{
+	margin: 0 0 0.25rem;
+    width: 0.9rem;
+    height: 0.45rem;
+}
+
+.hict_txt .edit_btn dd button{
+    width: 0.9rem;
+    height: 0.45rem;
+}
+
+/* .edit_btn li{
+	display: inline-block;
+} */
+
+/* .edit_hict_txt input[type='text']{
+    width: 83%;
+    padding: 0.03rem 0.1rem;
+}
+
+.edit_hict_txt dd.title{
+    width: 1.6rem;
+}
+
+.edit_hict_txt li.lab{
+    margin: 0.3rem 0 0.3rem 0;
+}
+
+.edit_hict_txt .edit_btn dd:not(:last-child){
+    margin: 0 0 0.29rem;
+}
+
+.edit_hict_txt textarea{
+    padding: 0.15rem 0.2rem;
+    width: 88%;
+    height: 1.5rem;
+} */
+
+.house_list_title{
+	background: #fff;
+}
+
+/**
+ * product_box
+ */
+.product_box{
+	padding-bottom: 0;
+}
+
+.product_list{
+	margin-bottom: 0.24rem;
+	padding-bottom: 0.24rem;
+	overflow: hidden;
+}
+
+.product_list dl{
+	display: flex;
+}
+
+.product_list dd{
+	flex: 1;
+	text-align: center;
+}
+
+.product_img{
+	position: relative;
+	width: 100%;
+    height: 4rem;
+    overflow: hidden;
+}
+
+/* .product_img input[type="file"]{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+} */
+
+.product_txt{
+    padding: 0.22rem 0 0;
+}
+
+.product_txt .title{
+	font-size: 0.28rem;
+	font-weight: initial;
+}
+
+.product_txt p{
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* .product_txt .edit_btn dd:not(:last-child){
+	margin: 0;
+} */
+
+/* .edit_hict_txt.product_txt p{
+	margin: 0.2rem 0;
+}
+
+.product_txt .edittxt_btn li{
+    width: 0.42rem;
+    height: 0.42rem;
+    margin: 0 0.1rem;
+} */
+
+
+/**
+ * Theme_wrap
+ */
+.Theme_wrap{
+	
+}
+
+/**
+ * localpodt_wrap
+ */
+.localpodt_wrap{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0.2rem auto 0;
+}
+
+.localpodt_wrap .product_list{
+    width: 3.48rem;
+    min-height: 4.1rem;
+    margin-bottom: 0.16rem;
+    padding-bottom: 0.16rem;
+    background: #fff;
+    overflow: hidden;
+}
+
+.localpodt_list .mrctdl_add{
+	height: 100%;
+}
+
+.localpodt_list .product_img{
+	height: 2.34rem;
+}
+
+.localpodt_txt{
+    width: 93%;
+    margin: 0 auto 0;
+}
+
+.localpodt_txt .title{
+	font-size: 0.28rem;
+}
+
+.localpodt_txt ul.label{
+    margin: 0.22rem 0 0.09rem;
+}
+
+.localpodt_txt ul.priinfo li:not(:last-child){
+	margin-right: 0.2rem;
+}
+
+.localpodt_txt li{
+	display: inline-block;
+}
+
+.localpodt_txt li:not(:first-child){
+	color: #292828;
+}
+
+.localpodt_txt .edittxt_btn li{
+	margin: 0;
+}
+
+.priinfo .old_price{
+	text-decoration: line-through;
+}
+
+.localpodt_wrap .edit_btn{
+	width: 100%;
+	margin-top: 0.2rem;
+	overflow: hidden;
+}
+
+.localpodt_wrap .edit_btn dd .btn1{
+	width: 0.9rem;
+}
+
+/* .localpodt_txt.edit_hict_txt .label li, .localpodt_txt.edit_hict_txt .priinfo li{
+	overflow: inherit;
+}
+
+.localpodt_txt.edit_hict_txt .label li{
+    width: 1.25rem;
+    margin-right: 0.1rem;
+    
+}
+
+.localpodt_txt.edit_hict_txt .priinfo li{
+	width: 0.8rem;
+}
+
+.localpodt_txt.edit_hict_txt ul.label{
+    margin: 0.1rem 0 0.09rem;
+} */
+
+/**
+ * mrifo_form
+ */
+/* .mrifo_form{
+    position: fixed;
+    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 97%;
+    background: #fff;
+    overflow: hidden;
+}
+
+.mrifo_edit_txt{
+    position: fixed;
+    z-index: 99999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 97%;
+    background: #fff;
+    overflow: hidden;
+}
+
+.mrfm_cot{
+	position: relative;
+	height: 100%;
+}
+
+.from_cot{
+	width: 95%;
+    max-height: 80%;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+.from_cot li{
+    min-height: 0.6rem;
+    line-height: 0.6rem;
+    margin-left: 0.2rem;
+}
+
+.from_cot li:last-child{
+	margin-bottom: 0;
+}
+
+.from_cot dl{
+	display: flex;
+}
+
+.from_cot dt{
+	flex: 0.45;
+}
+
+.from_cot dd{
+	flex: 1.55;
+}
+
+.form_edit dl{
+	display: initial;
+}
+
+.form_edit dt{
+	margin: 0.2rem 0;
+}
+
+.from_cot input[type='text'], .from_cot textarea{
+    padding: 0.05rem 0.1rem;
+    width: 4.5rem;
+}
+
+.from_cot  .reslinh{
+    line-height: initial;
+    margin: 0.1rem 0 0.06rem 0.2rem;
+}
+
+.form_btn{
+	position: fixed;
+	bottom: 0;
+}
+
+.form_btn ul{
+    position: absolute;
+    right: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form_btn li{
+	display: inline-block;
+}
+
+.form_btn button{
+	position: initial;
+	transform: initial;
+}
+
+.from_cot dd label{
+    float: left;
+    width: 2.3rem;
+    height: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.from_cot dd label input[type='checkbox'], .from_cot dd label span{
+	float: left;
+}
+
+.from_cot dd label input[type='checkbox']{
+	float: left;
+    margin: 0.15rem 0.05rem 0 0.05rem;
+}
+
+.from_cot dd label span{
+	display: block;
+    width: 75%;
+} */
+
+/* ==========================================================================
+   module: graphic_text
+============================================================================ */
+.grcxt_cot{
+	padding: 0.2rem 0.18rem 0;
+}
+
+.grcxt_btn{
+	text-align: right;
+}
+
+/**
+ * editor
+ */
+.toolbar {
+    border: 1px solid #ccc;
+}
+.text {
+    border: 1px solid #ccc;
+    height: 400px;
+}
+
+.w-e-toolbar{
+	flex-wrap: wrap;
+}
+
+.middle_space{
+	padding: 5px 0; 
+	color: #ccc
+}
+
+.editor_text img{
+	width: 100%;
+	height: 3rem;
+}
+
+/* ==========================================================================
+   @media
+============================================================================ */
+@media screen and (min-width: 1025px){
+	/* ==========================================
+	   module: pon_info
+	========================================== */
+	.g-bsd_tp{
+		min-height: 150px;
+	}
+
+	.pnfo_wrap{
+		padding: 12px;
+		width: 90%;
+	}
+
+	.pnfo_flow{
+	    left: 6px;
+	    top: 6px;
+	}
+
+	.pnfo_flow span{
+		width: 45px;
+	}
+
+	.pfow_pic{
+	    width: 20px;
+	    height: 20px;
+	    margin-right: 5px;
+	}
+
+	.pnfo_pic{
+		width: 85px;
+    	height: 85px;
+	}
+
+	.pnfo_nickname{
+		margin-left: 6px;
+	}
+
+	.pnfo_nickname {
+	    width: 118px;
+	}
+
+	.pnfo_prtifo{
+		width: 230px;
+	}
+
+	.edit_name_active{
+		width: 370px;
+	}
+
+	.edit_name_active input[type="text"]{
+		width: 250px;
+		top: 20px;
+	}
+
+	.edit_name_active .edit{
+		left: 93px;
+	} 
+
+	.pnfo_brfino .edit{
+		right: 72px;
+	}
+
+	.edit_name_active{
+		margin-top: 9px;
+	}
+
+	.edit_brfino_active {
+	    margin-top: 9px;
+	}
+
+	.pnfo_brfino b{
+		margin-left: 3px;
+	}
+	/* ==========================================
+			module: pon_address
+	========================================== */
+	.m-pon_address{
+		height: 42px;
+		line-height: 42px;
+	}
+
+	.edtdr dl.edit{
+		height: 25px;
+	}
+
+	.edit_address_active{
+		margin-top: 9px;
+	}
+
+	.addressModal{
+		top: 192px;
+	}
+
+	/**
+	 * m-select_address
+	 */
+	.m-select_address{
+		left: 50%;
+    	transform: translateX(-50%);
+		width: 1024px;
+		top: 192px;
+		height: 500px;
+	}
+
+	.m-select_address li{
+		height: 36px;
+		line-height: 36px;
+	}
+
+	.m-select_address dl{
+		padding-left: 25px;
+	}
+
+	.m-select_address dd{
+		font-size: 16px;
+	}
+
+	.m-select_address li:hover{
+		transition: 0.4s linear;
+		background: #cdcdcd;
+	}
+
+	.m-select_address li:hover dl, .m-select_address li.active dl{
+		transition: 0.3s linear;
+		padding-left: 35px;
+	}
+
+	.m-select_address li:hover dd, .m-select_address li.active dd{
+		transition: 1s linear;
+		color: #4a4949;
+	}
+
+	/* ==========================================
+			module: bsdnav
+	========================================== */
+	.g-bsd_nav{
+		width: 1024px;
+	    min-height: 45px;
+	}
+
+	.m-bsdnav{
+		height: 45px;
+	}
+
+	.m-bsdnav li{
+		height: 45px;
+		line-height: 45px;
+		cursor: pointer;
+	}
+
+	/* ==========================================
+			module: merchant_info
+	========================================== */
+	.mrifo_wrap{
+		min-height: 50px;
+	}
+
+	.mrctdl_add{
+    	height: 42px;
+	}
+
+	.mrctdl_add_img{
+	    width: 20px;
+	    height: 20px;
+	}
+
+	.title, .price{
+		font-size: 22px;
+	}
+
+	/**
+	 * mrctdl_wrap
+	 */
+	.mrctdl_wrap{
+		width: 97%;
+		min-height: 100px;
+		padding: 10px;
+	}
+
+	.buino_cot{
+		width: 97%;
+		margin-top: 13px;
+	}
+
+	.buino_cot ul{
+		display: flex;
+		padding: 0 5px;
+    	flex-wrap: wrap; 
+	}
+
+	.buino_cot li{
+	    margin: 4px 5px;
+	    padding: 6px 35px;
+	}
+
+	.buino_cot li:hover{
+		transition: 0.3s linear;
+		color: #7fd987;
+    	border-color: #7fd987;
+	}
+
+	/**
+	 * hult_wrap
+	 */
+	.hult_wrap{
+		margin-bottom: 16px;
+	}
+
+	.hult_list{
+    	height: 158px;
+		overflow: hidden;
+	}
+
+	.hult_list:hover{
+		background: #e2e2e2;
+		transition: 0.3s linear;
+	}
+
+	.hict_img{
+	    width: 193px;
+	    height: 133px;
+	}
+
+	.hict_txt{
+    	width: 760px;
+    	height: 133px;
+		margin-left: 15px;
+	}
+
+	/* .hict_img, .hict_txt{
+	    	margin-top: 3px;
+	} */
+
+	.hict_txt li.lab{
+	    margin: 18px 0 52px 0;
+	}
+
+	.hict_txt li.lab dl dd{
+	    width: 62px;
+	}
+
+	.hict_txt .edit_btn dd{
+		margin-bottom: 16px;
+		width: 95px;
+	    height: 30px;
+	    text-align: center;
+	}
+
+	.hict_txt .edit_btn dd button{
+		width: 80px;
+    	height: 28px;
+	}
+
+	/* .edit_hict_txt li.lab{
+		margin: 18px 0 28px 0;
+	}
+	
+	.edit_hict_txt .edit_btn dd:not(:last-child){
+		margin: 0 0 15px;
+	} */
+
+	.pro_bottom h3{
+		font-size: 16px;
+	}
+
+	/**
+	 * product_box
+	 */
+	.product_list{
+    	margin-bottom: 16px;
+		border: solid 2px #efefef;
+		transition: 0.2s linear;
+		cursor: pointer;
+	}
+
+	.product_list:hover{
+		opacity: 0.8;
+		border: solid 2px #00CD00;
+		transition: 0.3s linear;
+	}
+
+	.product_pc .product_list{
+		height: 156px;
+		overflow: hidden;
+	}
+
+	.product_pc::after{
+		content:".";
+		display:block;
+		clear:both;
+		height:0;
+		visibility:hidden;
+		overflow:hidden;
+	}
+
+	.product_pc .product_img, .product_pc .product_txt{
+		float: left;
+	}
+
+	.product_pc .product_img{
+	    height: 195px;
+    	width: 325px;
+	}
+
+	.product_pc .product_txt{
+	    width: 646px;
+	    margin: 18px 0 0 15px;
+	    padding: 0;
+	}
+
+	.product_pc .title{
+	    font-size: 22px;
+	}
+
+	.product_pc p{
+		font-size: 16px;
+	    -webkit-line-clamp: 6;
+	}
+
+	/* .product_pc .edit_hict_txt.product_txt p{
+		margin: 10px 0;
+	}
+	
+	.product_pc .edit_hict_txt textarea{
+		padding: 10px;
+	    height: 66px;
+	} */
+
+	.product_txt .edit_btn dd:not(:last-child){
+	    margin: 0;
+	}
+
+	.product_txt .edittxt_btn li{
+	    width: 30px;
+	    height: 30px;
+	    margin: 0 15px;
+	}
+
+	.product_pc .product_txt ul{
+		margin-top: 60px;
+	}
+
+	/* .product_pc .edit_hict_txt{
+		margin-top: 10px;
+	}
+	
+	.product_pc .edit_hict_txt ul{
+		margin-top: 0;
+	}
+	
+	.product_txt.localpodt_txt .edittxt_btn li{
+	    margin: 0 2px;
+	} */
+
+
+
+	/**
+	 * Theme_wrap
+	 */
+	
+	
+	/**
+	 * localpodt_wrap
+	 */
+	.localpodt_wrap{
+		justify-content: flex-start;
+	    width: 100%;
+	    margin: 16px auto 0;
+	}
+
+	.localpodt_wrap .product_list{
+	    width: 248px;
+	    min-height: 270px;
+	    margin: 0 5px 16px 0;
+	    padding-bottom: 18px;
+	}
+
+	.localpodt_wrap .product_list:nth-child(4n){
+		margin-right: 0;
+	}
+
+	.localpodt_list .mrctdl_add .mrctdl_add_img{
+		width: 56px;
+    	height: 56px;
+	}
+
+	.localpodt_list .product_img{
+		height: 160px;
+	}
+
+	.localpodt_txt{
+	    margin: 10px auto 0;
+	    padding: 0;
+	}
+
+	.localpodt_txt .title{
+		font-size: 14px;
+	}
+
+	.localpodt_txt ul.label{
+        margin: 13px 0 10px;
+	}
+
+	.localpodt_txt ul.priinfo li:not(:last-child){
+	    margin-right: 12px;
+	}
+
+	.localpodt_wrap .edit_btn dd .btn1{
+		width: 56px;
+	}
+
+	.localpodt_wrap .edit_btn{
+		margin-top: 10px;
+	}
+
+	.localpodt_list {
+	    padding-bottom: 18px;
+	}
+
+	.localpodt_wrap .edit_btn dd{
+		height: 29px;
+		overflow: hidden;
+	}
+
+	/* .localpodt_txt.edit_hict_txt ul.label{
+	    margin: 5px 0 0;
+	}
+	
+	.localpodt_txt.edit_hict_txt .label li{
+	    width: 68px;
+	    	margin-right: 28px;
+	}
+	
+	.localpodt_txt.edit_hict_txt ul.priinfo li{
+		width: 45px;
+	} 
+	
+	.localpodt_txt.edit_hict_txt ul.priinfo li:not(:last-child){
+		margin-right: 25px;
+	} */
+		
+
+	/**
+	 * mrifo_form
+	 */
+	/* .mrifo_form{
+		width: 98%;
+	}
+	
+	.from_cot{
+		width: 95%;
+		max-height: 612px;
+	}
+	
+	.from_cot li{
+	    min-height: 40px;
+	    line-height: 40px;
+	    margin-left: 10px;
+	}
+	
+	.from_cot  .reslinh{
+	    	margin: 6px 0 6px 10px;
+	}
+	
+	.from_cot dl{
+		display: flex;
+	}
+	
+	.form_edit{
+	    margin: 12px 0 -8px 10px !important;
+	}
+	
+	.form_edit dl {
+	    width: 98%;
+	}
+	
+	.from_cot dt{
+		margin: 0;
+	    flex: 0.16;
+	}
+	
+	.from_cot dd{
+	    flex: 1.84;
+	}
+	
+	.from_cot input[type='text'], .from_cot textarea{
+	    padding: 6px 10px;
+	    width: 893px;
+	}
+	
+	.from_cot dd label input[type='checkbox']{
+	    margin: 14px 5px 0 0;
+	}
+	
+	.from_cot dd label{
+		width: 225px;
+	    height: 40px;
+	} */
+
+	/* ==========================================
+	   module: graphic_text
+	========================================== */
+	.grcxt_cot{
+		margin: 15px;
+	}
+
+}
