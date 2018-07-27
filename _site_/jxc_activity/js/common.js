@@ -58,8 +58,8 @@ var util = {
         function tabAutoHeight(){
             list.each(function(){
                 if($(this).hasClass('active')){
-                    wrapper.css("height", list_cot.eq($(this).index()).css("height"));
-                    container.css("height", list_cot.eq($(this).index()).css("height"));
+                    wrapper.css("height", list_cot.eq($(this).index()).css("height") + 120);
+                    container.css("height", list_cot.eq($(this).index()).css("height") + 120);
 
                     return false;
                 }
@@ -75,20 +75,20 @@ var util = {
      * swiper高度自适应
      * [mirAutoHeight swiper高度自适应]
      * @param  {[type]} i       [索引]
-     * @param  {[type]} mribtn  [选项卡按钮]
+     * @param  {[type]} list  [选项卡按钮]
      * @param  {[type]} tabitm  [内容主体部分]
      * @param  {[type]} slide   [内容主体外部盒子]
      * @param  {[type]} swipwap [swiper盒子]
      * @param  {[type]} swipcot [swiper主体部分]
      * @return {[type]}         [description]
      */
-    swpAutoHeight: function(i, mribtn, tabitm, slide, swipwap, swipcot){
-        mribtn.removeClass('active').eq(i).addClass('active');
+    swpAutoHeight: function(i, list, tabitm, slide, swipwap, swipcot){
+        list.removeClass('active').eq(i).addClass('active');
 
         var tabitm = tabitm.eq(i);
 
-        swipwap.css("height", tabitm.height());  //swiper-wrapper高度
-        swipcot.css("height", tabitm.height());  //swiper-container高度
+        swipwap.css("height", tabitm.height() + 15);  //swiper-wrapper高度
+        swipcot.css("height", tabitm.height() + 15);  //swiper-container高度
     }
 }
 
@@ -105,14 +105,6 @@ var QRCode = function(){
     });
 }
 
-//是否为党员
-var isPartyMember = function(){
-    $('input[name="partyMember"]').click(function(){
-        $(this).prop({checked:true}).parent().parent().siblings().find('input[name="partyMember"]').prop({checked:false});
-        $(this).next('b').addClass('active').parent().parent().siblings().find('b').removeClass('active');
-    });
-}
-
 //选项卡自适应高度
 var actAutoHeight = function(){
     util.tabAutoHeight($('.activity_nav li'), $(".activity_cont"), $(".activity_wrap"), $('.act_tabitm'));
@@ -120,7 +112,7 @@ var actAutoHeight = function(){
 
 //选项卡
 var actTab = function(){
-    //actAutoHeight();  //选项卡自适应高度
+    actAutoHeight();  //选项卡自适应高度
 
     // 滑动
     var actTabSwiper = new Swiper('.activity_cont', {
@@ -147,6 +139,5 @@ $(window).on('resize', function(){
 $(function(){
     util.resizeWindow();  //根据font自适应
     QRCode();  //二维码
-    isPartyMember();  //是否为党员
     actTab();  //选项卡
 });

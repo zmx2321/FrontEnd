@@ -88,11 +88,13 @@ label{cursor: pointer;}
 /* 文本不能被选择 */
 .f-usn{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none;}
 
+
 /* ==========================================================================
    layout
  ============================================================================ */
 /* 下间距 */
 .l-mgab1{margin-bottom: 0.24rem}
+.l-mgab2{margin-bottom: 0.16rem}
 /* 内容宽度 */
 .l-wrap1{width: 90%;margin: 0 auto;}
 .l-wrap2{width: 92%;margin: 0 auto;}

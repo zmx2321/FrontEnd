@@ -78,6 +78,14 @@ var indexUtil = {
     }
 }
 
+//是否为党员
+var isPartyMember = function(){
+    $('input[name="partyMember"]').click(function(){
+        $(this).prop({checked:true}).parent().parent().siblings().find('input[name="partyMember"]').prop({checked:false});
+        $(this).next('b').addClass('active').parent().parent().siblings().find('b').removeClass('active');
+    });
+}
+
 //获取地址
 var sel_address = function(){
 	$('.local_btn').click(function(){
@@ -109,8 +117,134 @@ var closeActlit = function(){
     });
 }
 
+//操作list
+var opactionAct = function(){
+    var avshowArr = new Array();  //指定一个长度为4的数组
+    console.log($('.activity_show li').eq(1).attr("actId"));
+   
+    //推荐
+    $('.act_recommend .actm_cot li').each(function(){
+        $(this).find('input[type="checkbox"]').change(function(){
+            var thisLi = $(this).parent().parent();
+            var actImg = thisLi.find('.actlit_img img')[0].src;
+            var actName = thisLi.find('.actlit_name').text();
+            var avshowLi = $('.activity_show li');
+            //console.log(avshowLi.attr("actId"));
+            
+            var actId = thisLi.attr("actId");
+            var item = {
+                    id: actId,
+                    img: actImg,
+                    name: actName,
+                }
+
+            for(var i=0; i<avshowLi.length; i++){
+                /*var avshowCot = avshowLi.eq(i).find('.actlit_cot');
+
+                if(isEmpty.test(avshowCot.text())){
+                    avshowCot.html(`
+                        <div class="actlit_img">
+                            <img src="${actImg}" alt="actlit_img">
+                        </div>
+                        <span class="actlit_name f-ps f-tac">${actName}</span>
+                        <b class="actlit_close f-ps"></b>
+                    `);
+                    return false;
+                }*/
+            }
+
+            
+            /*$('.activity_show li').each(function(){
+                var actId = $(this).attr("actId");
+
+                var item = {
+                    id: actId,
+                    img: actImg,
+                    name: actName,
+                }
+
+                console.log(actId);
+            });*/
+
+            //var isEmpty = /^\s*?$/;
+
+            
+
+            
+
+            
+            /*for(var i=0; i<avshowArr.length; i++){
+
+            }*/
+
+            if($(this).is(':checked')){
+                //addAct();  //添加活动到list
+
+                avshowArr.push(item);
+                console.log(avshowArr);
+             }else{
+                //removeAct();  //删除活动到list
+                
+                avshowArr.pop();
+                console.log(avshowArr);
+             }
+
+            /*for(var i=0; i<avshowLi.length; i++){
+                var avshowCot = avshowLi.eq(i).find('.actlit_cot');
+
+                if(isEmpty.test(avshowCot.text())){
+                    avshowCot.html(`
+                        <div class="actlit_img">
+                            <img src="${actImg}" alt="actlit_img">
+                        </div>
+                        <span class="actlit_name f-ps f-tac">${actName}</span>
+                        <b class="actlit_close f-ps"></b>
+                    `);
+                    return false;
+                }
+            }*/
+
+            /*//添加活动到list
+            function addAct(){
+                for(var i=0; i<avshowLi.length; i++){
+                    var avshowCot = avshowLi.eq(i).find('.actlit_cot');
+
+                    if(isEmpty.test(avshowCot.text())){
+                        avshowCot.html(`
+                            <div class="actlit_img">
+                                <img src="${actImg}" alt="actlit_img">
+                            </div>
+                            <span class="actlit_name f-ps f-tac">${actName}</span>
+                            <b class="actlit_close f-ps"></b>
+                        `);
+
+                        return false;
+                    }
+                }
+            }
+
+            //删除活动到list
+            function removeAct(){
+                for(var i=0; i<avshowLi.length; i++){
+                    var avshowCot = avshowLi.eq(-i).find('.actlit_cot');
+
+                    if(!isEmpty.test(avshowCot.text())){
+                        avshowCot.html("");
+
+                        return false;
+                    }
+                }
+            }*/
+
+            
+        });
+    });
+}
+
 //load
 $(function(){
+    isPartyMember();  //是否为党员
 	sel_address();  //获取地址
     closeActlit();  //关闭
+    opactionAct();  //操作list
 });
