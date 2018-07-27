@@ -54,6 +54,18 @@
     
 }
 
+.act_slide_btn{
+    width: 100%;
+    height: 0.3rem;
+}
+
+.act_slide_img{
+    right: 0;
+    width: 0.35rem;
+    height: 0.35rem;
+    top: -0.1rem;
+}
+
 .actm_cot{
 	overflow: auto;
 }
@@ -66,7 +78,7 @@
 }
 
 .actm_cot ul{
-	max-height: 6.5rem;
+	max-height: 5.2rem;
 }
 
 .actm_cot li{

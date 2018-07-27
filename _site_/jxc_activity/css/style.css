@@ -105,29 +105,12 @@ label{cursor: pointer;}
 /* 待编辑文本框 */
 .l-waitedit input[type="text"]{display: none;height: 0.35rem;padding: 0 0.1rem;border-radius: 0.07rem;}
 /* 盒子 */
-.l-box1, .l-box2{width: 100%;min-height: 0.75rem;background: #fff;}
-/* 盒子标题 */
-.l-box1_title, .l-box2_title{overflow: hidden;border-bottom: solid 1px #efefef;}
-/* 盒子标题1内容 */
-.l-box1_title h3{height: 0.88rem;line-height: 0.88rem;text-align:center;font-weight: initial;}
-/* 盒子标题2内容 */
-.l-box2_title h3, .l-box2_title h4{height: 0.66rem;line-height: 0.66rem;position: relative;}
-.l-box2_title h3::before, .l-box2_title h4::before{content:"";position:absolute;top:50%;transform:translateY(-50%);background: #00cd00;}
-.l-box2_title h3::before{left:-0.15rem;width:0.05rem;height:0.2rem;}
-.l-box2_title h4::before{left: -0.21rem;width: 0.1rem;height: 0.1rem;border-radius: 0.05rem;}
-/* 盒子1内容 */
-.l-box1_wrap{min-height: 3rem;border-top: solid 1px transparent;}
-.l-box1_cot{padding: 0.2rem;}
+.l-box1{width: 100%;min-height: 0.75rem;background: #fff;}
 /* 盒子3 */
 .l-box3{width: 92%;min-height: 0.45rem;padding: 0.15rem 0;margin: 0 auto;}
 /* 按钮 */
-.btn_wrap1{position: relative;width: 100%;height: 0.8rem;border-top: solid 1px #efefef;overflow: hidden;}
-.btn_wrap1 button{position: absolute;right: 0.2rem;top: 50%;transform: translateY(-50%);}
 .btn{color:#fff;border-radius: 0.07rem;background: #00cd00;}
 .btn1{width: 1.2rem;height: 0.5rem;}
-.btn_wrap2{height: 0.8rem;line-height: 0.8rem;overflow: hidden;}
-.btn_wrap2 ul{height:100%;}
-.btn_wrap2 li{display:inline-block; margin: 0 0.12rem;}
 
 /* felx_ul */
 .felx_ul{display: flex;}

@@ -120,122 +120,43 @@ var closeActlit = function(){
 //操作list
 var opactionAct = function(){
     var avshowArr = new Array();  //指定一个长度为4的数组
-    console.log($('.activity_show li').eq(1).attr("actId"));
+    //console.log($('.activity_show li').eq(1).attr("actId"));
    
     //推荐
     $('.act_recommend .actm_cot li').each(function(){
         $(this).find('input[type="checkbox"]').change(function(){
             var thisLi = $(this).parent().parent();
             var actImg = thisLi.find('.actlit_img img')[0].src;
-            var actName = thisLi.find('.actlit_name').text();
+            var actName = thisLi.find('.act_name').text();
             var avshowLi = $('.activity_show li');
-            //console.log(avshowLi.attr("actId"));
             
             var actId = thisLi.attr("actId");
+
             var item = {
-                    id: actId,
-                    img: actImg,
-                    name: actName,
-                }
-
-            for(var i=0; i<avshowLi.length; i++){
-                /*var avshowCot = avshowLi.eq(i).find('.actlit_cot');
-
-                if(isEmpty.test(avshowCot.text())){
-                    avshowCot.html(`
-                        <div class="actlit_img">
-                            <img src="${actImg}" alt="actlit_img">
-                        </div>
-                        <span class="actlit_name f-ps f-tac">${actName}</span>
-                        <b class="actlit_close f-ps"></b>
-                    `);
-                    return false;
-                }*/
+                id: actId,
+                img: actImg,
+                name: actName,
             }
 
-            
-            /*$('.activity_show li').each(function(){
-                var actId = $(this).attr("actId");
+            function addbox(){
 
-                var item = {
-                    id: actId,
-                    img: actImg,
-                    name: actName,
-                }
-
-                console.log(actId);
-            });*/
-
-            //var isEmpty = /^\s*?$/;
-
-            
-
-            
-
-            
-            /*for(var i=0; i<avshowArr.length; i++){
-
-            }*/
+            }
 
             if($(this).is(':checked')){
                 //addAct();  //添加活动到list
 
                 avshowArr.push(item);
-                console.log(avshowArr);
+                
+
+                for(var i=0; i<avshowArr.length; i++){
+                    console.log(avshowArr[i]);
+                }
              }else{
                 //removeAct();  //删除活动到list
                 
                 avshowArr.pop();
                 console.log(avshowArr);
              }
-
-            /*for(var i=0; i<avshowLi.length; i++){
-                var avshowCot = avshowLi.eq(i).find('.actlit_cot');
-
-                if(isEmpty.test(avshowCot.text())){
-                    avshowCot.html(`
-                        <div class="actlit_img">
-                            <img src="${actImg}" alt="actlit_img">
-                        </div>
-                        <span class="actlit_name f-ps f-tac">${actName}</span>
-                        <b class="actlit_close f-ps"></b>
-                    `);
-                    return false;
-                }
-            }*/
-
-            /*//添加活动到list
-            function addAct(){
-                for(var i=0; i<avshowLi.length; i++){
-                    var avshowCot = avshowLi.eq(i).find('.actlit_cot');
-
-                    if(isEmpty.test(avshowCot.text())){
-                        avshowCot.html(`
-                            <div class="actlit_img">
-                                <img src="${actImg}" alt="actlit_img">
-                            </div>
-                            <span class="actlit_name f-ps f-tac">${actName}</span>
-                            <b class="actlit_close f-ps"></b>
-                        `);
-
-                        return false;
-                    }
-                }
-            }
-
-            //删除活动到list
-            function removeAct(){
-                for(var i=0; i<avshowLi.length; i++){
-                    var avshowCot = avshowLi.eq(-i).find('.actlit_cot');
-
-                    if(!isEmpty.test(avshowCot.text())){
-                        avshowCot.html("");
-
-                        return false;
-                    }
-                }
-            }*/
-
             
         });
     });

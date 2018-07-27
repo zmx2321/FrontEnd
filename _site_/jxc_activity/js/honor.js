@@ -4,8 +4,8 @@
  * data 2018/6/8
  */
 
-//indexUtil
-var indexUtil = {
+//honorUtil
+var honorUtil = {
 
 }
 
