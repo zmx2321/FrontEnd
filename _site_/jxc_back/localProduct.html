@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link href="images/icon/favicon.ico" rel="shortcut icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-<title>聚乡村后台-主题活动</title>
+<title>聚乡村后台-土特产品</title>
 <link rel="stylesheet" href="css/lib/webuploader.css">
 
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
@@ -28,7 +28,65 @@
 		</div>
 		<!-- /banner -->
 
-		<div class="l-box1"></div>
+		<div class="l-box1">
+			<div class="l-box3 pudtal_wrap">
+				<div class="pudtal_top f-cb">
+					<div class="pudtal_top_l f-fl f-ib">
+						<ul>
+							<li class="price">¥0.01</li>
+							<li class="oldprice">￥20</li>
+							<li class="pudtal_ico">
+								<b class="f-csp l-icsiz" id="editPudtalPrice">
+									<img src="images/icon/edit.png" />
+								</b>
+							</li>
+						</ul>
+					</div>
+					<div class="pudtal_top_r f-fr f-pr">
+						<span>剩余0份</span>
+
+						<b class="f-csp l-icsiz" id="editPudtalNum">
+							<img src="images/icon/edit.png" />
+						</b>
+					</div>
+				</div>
+				<div class="pudtal_bottom f-pr">
+					<h1 class="pudtal_tit f-fs2 l-mgab1">青苹果</h1>
+					<b class="f-csp l-icsiz" id="editPudtalCot">
+						<img src="images/icon/edit.png" />
+					</b>
+					<div class="pudtal_cot">
+						<p>
+							青苹果就是颜色是青的苹果，青的果酸含量高，有利于美容，苹果都一样，不管是红的青的黄的都是一样的，它的颜色不同是因为它们的品种不同，不同的品种有不同的口味和特点，像是：”果实色泽鲜艳，不同的品种有不同的口味；果肉黄白色，肉质细脆、多汁，风味甜酸浓郁。这说的是红将军"也很美味。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- m-graphic_text 图文详情 -->
+		<div class="l-box2 m-graphic_text">
+			<div class="l-box2_title">
+				<h3 class="l-wrap1">图文详情</h3>
+			</div>
+			
+			<div class="l-box1_wrap grcxt_wrap">
+				<div class="grcxt_cot">
+					<div id="editorToolbar" class="toolbar"></div>
+				    <div class="middle_space">wangEditor3</div>
+				    <div id="editorContent" class="text editor_text f-fs2"> 可使用 min-height 实现编辑区域自动增加高度
+				        <p>https://www.kancloud.cn/wangfupeng/wangeditor3/332599  ==>  wangEditor3 api</p>
+				    </div>
+				</div>
+				<div class="btn_wrap2 l-wrap2 grcxt_btn">
+					<ul>
+						<li><button class="btn btn1" id="editorTextPreview">预览</button></li>
+						<li><button class="btn btn1" id="editorTextSave">保存</button></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /m-graphic_text 图文详情 -->
 	</div>
 	<!-- /product_wrap -->
 
@@ -132,6 +190,7 @@
 <!-- js -->
 <!-- 库和插件 -->
 <script src="js/lib/jquery1.8.3.min.js"></script>
+<script src="js/lib/wangEditor.min.js"></script>
 <script src="js/lib/webuploader.html5only.min.js"></script>
 <script src="js/lib/diyUpload.js"></script>
 

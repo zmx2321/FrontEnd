@@ -14,6 +14,26 @@
     color: #f5560f;
 }
 
+.oldprice{
+    text-decoration: line-through;
+}
+
+.pudtal_ico{
+    width: 0.39rem;
+    height: 0.39rem;
+}
+
+.pudtal_top_r b{
+    position: absolute;
+    left: -0.7rem;
+    top: 0;
+}
+
+.pudtal_bottom b{
+    position: absolute;
+    top: 0;
+    left: 1.2rem;
+}
 /* ==========================================================================
    module: product_ul
 ============================================================================ */

@@ -1,0 +1,35 @@
+/* ==========================================================================
+   module: graphic_text
+============================================================================ */
+.grcxt_cot{
+	padding: 0.2rem 0.18rem 0;
+}
+
+.grcxt_btn{
+	text-align: right;
+}
+
+/**
+ * editor
+ */
+.toolbar {
+    border: 1px solid #ccc;
+}
+.text {
+    border: 1px solid #ccc;
+    height: 400px;
+}
+
+.w-e-toolbar{
+	flex-wrap: wrap;
+}
+
+.middle_space{
+	padding: 5px 0; 
+	color: #ccc
+}
+
+.editor_text img{
+	width: 100%;
+	height: 3rem;
+}
