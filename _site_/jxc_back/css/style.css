@@ -144,7 +144,7 @@ label{cursor: pointer;}
 .img_cot .diyButton{text-align: right;margin-top: 0.2rem;}
 .img_cot .diyStart{padding: 0.1rem 0.3rem;}
 /* bootom */
-.bootom{position: fixed;bottom: 0;border-top: solid 1px #efefef;}
+.bootom{position: fixed;bottom: 0;border-top: solid 1px #efefef;z-index: 1;}
 .bootom ul{display: flex;}
 .bootom li{flex: 1;height: 0.75rem;line-height: 0.75rem;overflow: hidden;text-align: center;}
 .bootom li:not(:last-child){border-right: solid 1px #efefef;}
@@ -156,6 +156,8 @@ label{cursor: pointer;}
 .proname input[type="text"]{padding:0.15rem; width:90%;}
 /* 提示框 */
 .bubble{z-index: 100000;height: 0.88rem;line-height: 0.88rem;padding: 0 0.26rem;text-align: center;color: #fff;background: #383838;}
+
+.navfix{position: fixed;top: 0;z-index: 99999;}
 
 /* ==========================================================================
    function

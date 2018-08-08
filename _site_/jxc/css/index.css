@@ -628,7 +628,7 @@ div#allmap {
     text-align: center;
     background: #fff;
     border-radius: 0.6rem;
-    margin-right: 0.22rem;
+    margin: 0 0.14rem;
     margin-bottom: 0.2rem;
     cursor: pointer;
 }
