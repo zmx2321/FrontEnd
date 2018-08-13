@@ -94,7 +94,7 @@ label{cursor: pointer;}
 .l-wrap1{width: 90%;margin: 0 auto;}
 .l-wrap2{width: 92%;margin: 0 auto;}
 /* icon大小 */
-.l-icsiz{cursor: pointer;width:0.39rem;height:0.39rem;overflow: hidden;}
+.l-icsiz{cursor: pointer;width:0.39rem;height:0.39rem;overflow: hidden;display: block;}
 /* 边框圆角 */
 .l-bdru{border-radius: 0.1rem;}
 /* 待编辑文本框 */

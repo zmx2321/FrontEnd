@@ -38,6 +38,15 @@
 	width: 1.2rem;
 }
 
+.pudtal_tit_edit, .pudtal_cot_edit, .pudtal_tit h1{
+	float: left;
+}
+
+.pudtal_tit_edit, .pudtal_cot_edit{
+    width: 1.85rem;
+    margin-left: 0.3rem;
+    height: 0.4rem;
+}
 /* ==========================================================================
    module: graphic_text
 ============================================================================ */
