@@ -32,23 +32,69 @@
 		<div class="l-box1">
 			<div class="l-box3 pudtal_wrap">
 				<div class="pudtal_top f-cb">
-					<div class="pudtal_top_l f-fl f-ib">
-						<ul>
-							<li class="price">¥0.01</li>
-							<li class="oldprice">￥20</li>
-							<li class="pudtal_ico">
-								<b class="f-csp l-icsiz" id="editPudtalPrice">
-									<img src="images/icon/edit.png" />
-								</b>
+					<div class="pudtal_top_l f-fl f-ib f-cb"><!-- edit_price_active -->
+						<ul class="f-cb l-waitedit">
+							<li class="price">
+								<span class="f-db">¥0.01</span>
+								<input class="f-fs2" type="text" id="price" placeholder="价格">
+							</li>
+							<li class="oldprice">
+								<span class="f-db">¥20</span>
+								<input class="f-fs2" type="text" id="oldprice" placeholder="原价">
 							</li>
 						</ul>
-					</div>
-					<div class="pudtal_top_r f-fr f-pr">
-						<span>剩余0份</span>
+						<div class="priedt_box f-fl">
+							<b class="f-csp l-icsiz f-db" id="editPrice">
+								<img src="images/icon/edit.png" />
+							</b>
 
-						<b class="f-csp l-icsiz" id="editPudtalNum">
+							<div class="edit f-ib f-dn">
+								<ul class="f-ib">
+									<li class="l-icsiz" id="comfirmPrice">
+										<img src="images/icon/comfirm.png" />
+									</li>
+									<li class="l-icsiz" id="closePrice">
+										<img src="images/icon/close.png" />
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="old_priedt_box f-fl">
+							<b class="f-csp l-icsiz f-db" id="editOldPriedt">
+								<img src="images/icon/edit.png" />
+							</b>
+
+							<div class="edit f-ib f-dn">
+								<ul class="f-ib">
+									<li class="l-icsiz" id="comfirmOldPriedt">
+										<img src="images/icon/comfirm.png" />
+									</li>
+									<li class="l-icsiz" id="closeOldPriedt">
+										<img src="images/icon/close.png" />
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="editprodnum pudtal_top_r f-fr f-pr l-waitedit"> <!-- edit_num_active -->
+						<span class="f-db">剩余0份</span>
+
+						<input class="f-fs2" type="text" id="prodnum" placeholder="份数">
+
+						<b class="f-csp l-icsiz f-db" id="editProdNum">
 							<img src="images/icon/edit.png" />
 						</b>
+
+						<div class="edit f-ib f-dn">
+							<ul>
+								<li class="l-icsiz" id="comfirmProdNum">
+									<img src="images/icon/comfirm.png" />
+								</li>
+								<li class="l-icsiz" id="closeProdNum">
+									<img src="images/icon/close.png" />
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="pudtal_bottom f-pr">

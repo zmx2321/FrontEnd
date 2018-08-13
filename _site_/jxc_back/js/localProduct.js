@@ -35,7 +35,31 @@ var submitEditor = function (){
     });   
 }
 
+//编辑价格
+var priedt = function(){
+    util.fixInfo($('#editPrice'), $('.price span'), $('#price'), 
+        $('.priedt_box .edit'), $('#comfirmPrice'), $('#closePrice'), 
+        $('.pudtal_top_l'), 'edit_price_active');
+}
+
+//编辑原价
+var oldPriedt = function(){
+    util.fixInfo($('#editOldPriedt'), $('.oldprice span'), $('#oldprice'), 
+            $('.old_priedt_box .edit'), $('#comfirmOldPriedt'), $('#closeOldPriedt'), 
+            $('.pudtal_top_l'), 'edit_price_active');
+}
+
+//编辑份数
+var prodnum = function(){
+    util.fixInfo($('#editProdNum'), $('.editprodnum span'), $('#prodnum'), 
+            $('.editprodnum .edit'), $('#comfirmProdNum'), $('#closeProdNum'), 
+            $('.editprodnum'), 'edit_num_active');
+}
+
 //load
 $(function(){
 	submitEditor();  // 提交图文详情 (富文本 wangEditor)
+    priedt();  //编辑价格
+    oldPriedt();  //编辑原价
+    prodnum();  //编辑份数
 });

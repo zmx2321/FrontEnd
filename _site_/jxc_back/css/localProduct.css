@@ -1,8 +1,9 @@
 /* ==========================================================================
    module: pudtal_wrap
 ============================================================================ */
-.pudtal_top_l li{
+.pudtal_top_l > ul > li{
 	margin-right: 0.24rem;
+    width: 1.2rem;
 }
 
 .pudtal_bottom{
@@ -12,6 +13,29 @@
 .pudtal_cot p {
     font-size: 0.28rem;
     padding-bottom: 0.3rem;
+}
+
+.priedt_box, .old_priedt_box{
+    width: 1.4rem;
+    height: 0.45rem;
+    overflow: hidden;
+}
+
+.priedt_box{
+	
+}
+
+.old_priedt_box{
+
+}
+
+.edit_price_active input[type="text"]{
+	width: 0.8rem;
+}
+
+.edit_num_active input[type="text"]{
+	display: block;
+	width: 1.2rem;
 }
 
 /* ==========================================================================
@@ -49,3 +73,8 @@
 	width: 100%;
 	height: 3rem;
 }
+
+
+/* ==========================================================================
+   module: repay_box
+============================================================================ */

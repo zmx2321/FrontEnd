@@ -5,23 +5,14 @@
     margin-bottom: 1rem;
 }
 
-.title, .price {
-    font-size: 0.3rem;
-    font-weight: bold;
-}
-
-.price {
-    color: #f5560f;
-}
-
 .oldprice{
     text-decoration: line-through;
 }
 
-.pudtal_ico{
-    width: 0.39rem;
+/* .pudtal_ico{
+    width: 1.49rem;
     height: 0.39rem;
-}
+} */
 
 .pudtal_top_r b{
     position: absolute;

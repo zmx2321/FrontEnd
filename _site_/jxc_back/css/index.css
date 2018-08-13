@@ -286,34 +286,6 @@
     width: 100%;
 }
 
-.mrctdl_add{
-	position: relative;
-	width: 100%;
-	height: 0.88rem;
-	border-bottom: solid 1px #efefef;
-	background: #e2e2e2;
-	overflow: hidden;
-	cursor: pointer;
-}
-
-.mrctdl_add_img{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-    width: 0.5rem;
-    height: 0.5rem;
-}
-
-.title, .price{
-	font-size: 0.3rem;
-    font-weight: bold;
-}
-
-.price{
-	color: #f5560f;
-}
-
 .hict_txt dl{
 	display: flex;
 	width: 100%;
@@ -326,10 +298,6 @@
 .hict_txt dd.title{
 	width: 2rem;
 }
-
-/* .hict_txt .edit_btn dd.edittxt_btn{
-	height: 0.35rem;
-} */
 
 .pro_bottom h3{
 	font-size: 0.2rem;
