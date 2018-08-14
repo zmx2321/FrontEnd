@@ -41,12 +41,14 @@
    edut_ranklist
 ========================== */
 .edut_ranklist{
+    position: relative;
     height: 2.12rem;
 }
 
 .etrklt_img{
     width: 3.8rem;
     height: 1.8rem;
+    margin-left: 0.2rem;
 }
 
 .seal_img{
@@ -67,6 +69,17 @@
     margin-bottom: 0.16rem;
 }
 
+.edut_ranklist label{
+    position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+}
+
+.edut_ranklist a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
 
 /* =======================
    agcy_ranklist
@@ -102,4 +115,51 @@
     text-align: center;
     padding: 0.24rem 0;
     color: #333;
+}
+
+.seladd_box{
+    position: fixed;
+    height: 6.5rem;
+    z-index: 1;
+}
+
+.seladd_box ul{
+    position: absolute;
+    height: 100%;
+    overflow: auto;
+    background: #fff;
+    border-right: solid 1px #efefef;
+}
+
+.seladd_box ul.province{
+    left: 0;
+}
+
+.seladd_box li{
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    border-bottom: solid 1px #efefef;
+}
+
+.activity_nav li{
+    position: relative;
+}
+
+.activity_nav li::after{
+    content: '';
+    position: absolute;
+    width: 0.16rem;
+    height: 0.1rem;
+    overflow: hidden;
+    background: url(../images/icon/xl.png) top no-repeat;
+    background-size: 100% 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    /*transform: translateY(-50%) rotate(180deg);*/
+    margin-left: 0.1rem;
+}
+
+.activity_nav li.on::after{
+    /*transform: translateY(-50%) rotate(0deg);*/
 }

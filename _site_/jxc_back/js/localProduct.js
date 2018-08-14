@@ -56,10 +56,18 @@ var prodnum = function(){
             $('.editprodnum'), 'edit_num_active');
 }
 
+//编辑产品名称
+var pudtal = function(){
+    util.fixInfo($('#editPudtal'), $('.pudtal_tit h1'), $('#pudtal'), 
+            $('.pudtal_tit_edit .edit'), $('#comfirmPudtal'), $('#closePudtal'), 
+            $('.pudtal_tit'), 'edit_pudtal_active');
+}
+
 //load
 $(function(){
 	submitEditor();  // 提交图文详情 (富文本 wangEditor)
     priedt();  //编辑价格
     oldPriedt();  //编辑原价
     prodnum();  //编辑份数
+    pudtal();  //编辑产品名称
 });
