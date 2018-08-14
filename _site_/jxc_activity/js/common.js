@@ -105,31 +105,6 @@ var QRCode = function(){
     });
 }
 
-//选项卡自适应高度
-var actAutoHeight = function(){
-    util.tabAutoHeight($('.activity_nav li'), $(".activity_cont"), $(".activity_wrap"), $('.act_tabitm'));
-}
-
-//选项卡
-var actTab = function(){
-    actAutoHeight();  //选项卡自适应高度
-
-    // 滑动
-    var actTabSwiper = new Swiper('.activity_cont', {
-        onTransitionEnd: function (swiper) {
-            util.swpAutoHeight(actTabSwiper.activeIndex, $('.activity_nav li'), $(".act_tabitm"), $(".act_slide"), 
-                $(".activity_cont"), $(".activity_wrap"));
-        }
-    })
-    
-    // 列表切换
-    $('.activity_nav li').on('click', function (e) {
-        util.swpAutoHeight($(this).index(), $('.activity_nav li'), $(".act_tabitm"), $(".act_slide"), 
-                $(".activity_cont"), $(".activity_wrap"));
-        actTabSwiper.slideTo($(this).index(), 200, false);
-    });
-}
-
 //窗口大小改变时加载
 $(window).on('resize', function(){
     util.resizeWindow();  //根据font自适应
@@ -139,5 +114,4 @@ $(window).on('resize', function(){
 $(function(){
     util.resizeWindow();  //根据font自适应
     QRCode();  //二维码
-    actTab();  //选项卡
 });

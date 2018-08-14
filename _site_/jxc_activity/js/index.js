@@ -162,10 +162,36 @@ var opactionAct = function(){
     });
 }
 
+//选项卡自适应高度
+var actAutoHeight = function(){
+    util.tabAutoHeight($('.activity_nav li'), $(".activity_cont"), $(".activity_wrap"), $('.act_tabitm'));
+}
+
+//选项卡
+var actTab = function(){
+    actAutoHeight();  //选项卡自适应高度
+
+    // 滑动
+    var actTabSwiper = new Swiper('.activity_cont', {
+        onTransitionEnd: function (swiper) {
+            util.swpAutoHeight(actTabSwiper.activeIndex, $('.activity_nav li'), $(".act_tabitm"), $(".act_slide"), 
+                $(".activity_cont"), $(".activity_wrap"));
+        }
+    })
+    
+    // 列表切换
+    $('.activity_nav li').on('click', function (e) {
+        util.swpAutoHeight($(this).index(), $('.activity_nav li'), $(".act_tabitm"), $(".act_slide"), 
+                $(".activity_cont"), $(".activity_wrap"));
+        actTabSwiper.slideTo($(this).index(), 200, false);
+    });
+}
+
 //load
 $(function(){
     isPartyMember();  //是否为党员
 	sel_address();  //获取地址
     closeActlit();  //关闭
     opactionAct();  //操作list
+    actTab();  //选项卡
 });

@@ -83,7 +83,7 @@
    activity_bottom
 ============================================================================ */
 .activity_bottom{
-    bottom: 0;
+    bottom: 0.1rem;
     width: 100%;
 }
 
@@ -103,5 +103,6 @@
 
 .QRCode span{
     margin: 0 auto;
-    letter-spacing: 0.03rem;
+    letter-spacing: 0.13rem;
+    font-size: 0.18rem;
 }
