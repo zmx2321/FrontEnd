@@ -57,7 +57,7 @@
 }
 
 .tool_area .area_span{
-	margin-left: 8px;
+	margin-left: 10px;
 }
 
 .tool_area .area_span::after{
@@ -66,9 +66,10 @@
     top: 50%;
     transform: translateY(-50%);
     width: 10px;
-    height: 10px;
+    height: 6px;
     margin-left: 6px;
-    background: url(../images/icon/head_sprite.png) no-repeat -73px -312px;
+    overflow: hidden;
+    background: url(../images/icon/head_sprite.png) no-repeat -73px -316px;
 }
 
 .arealist{
@@ -81,8 +82,8 @@
 }
 
 .tool_area:hover .area_span::after{
-	background: url(../images/icon/head_sprite.png) no-repeat -73px -329px;
-	transition: 0.3s linear;
+	background: url(../images/icon/head_sprite.png) no-repeat -73px -332px;
+	transition: 0.2s linear;
 }
 
 .tool_area:hover .arealist{
