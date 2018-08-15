@@ -1,3 +1,24 @@
+/* ==========================================================================
+   layout
+============================================================================ */
+.g-box{
+	width:100%;
+	min-height:200px;
+}
+
+.g-wrap{
+	width: 100%;
+	min-height: 30px;
+}
+
+.g-cont{
+	width: 1200px;
+	margin:0 auto;
+}
+
+
+
+
 /* 提示框 */
 .bubble{z-index: 100000;height: 0.88rem;line-height: 0.88rem;padding: 0 0.26rem;text-align: center;color: #fff;background: #383838;}
 
@@ -12,3 +33,58 @@
 .l-icsiz{cursor: pointer;width:0.39rem;height:0.39rem;overflow: hidden;display: block;}
 /* 边框圆角 */
 .l-bdru{border-radius: 0.1rem;}
+
+
+/* ==========================================================================
+   header
+============================================================================ */
+/* ==============
+   tools
+================= */
+.tool{
+	height: 34px;
+	background: #f9f9f9;
+}
+
+.tool_area{
+	width: 95px;
+	height: 34px;
+	line-height: 34px;
+}
+
+.tool_area:hover{
+	background: #fff;
+}
+
+.tool_area .area_span{
+	margin-left: 8px;
+}
+
+.tool_area .area_span::after{
+	content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
+    background: url(../images/icon/head_sprite.png) no-repeat -73px -312px;
+}
+
+.arealist{
+	left: 0;
+	top: 34px;
+	width: 298px;
+	min-height: 66px;
+	border: 1px solid #e6e6e6;
+    background-color: #fff;
+}
+
+.tool_area:hover .area_span::after{
+	background: url(../images/icon/head_sprite.png) no-repeat -73px -329px;
+	transition: 0.3s linear;
+}
+
+.tool_area:hover .arealist{
+	display: block;
+}

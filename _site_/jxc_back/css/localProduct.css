@@ -54,8 +54,10 @@
     margin-bottom: 0.18rem;
 }
 
-.edit_pudtal_active textarea{
-    
+.pudtal_cot textarea{
+    padding: 0.16rem;
+    width: 93%;
+    height: 1.2rem;
 }
 /* ==========================================================================
    module: graphic_text

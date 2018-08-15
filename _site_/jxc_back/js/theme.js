@@ -41,8 +41,10 @@ var proTab = function(){
     $('#proTab li').on('click', function (e) {
         mirAutoHeight($(this).index(), $('#proTab li'), $(".pro_itm"), $(".pro_wap .swiper-slide"), 
                 $(".pro_wap"), $(".pro_cot"));
-        mrifoTabSwiper.slideTo($(this).index(), 200, false);
+        mrifoTabSwiper.slideTo($(this).index(), 200, false);           
     });
+
+    mrifoTabSwiper.slideTo(2);
 }
 
 // 提交图文详情 (富文本 wangEditor)

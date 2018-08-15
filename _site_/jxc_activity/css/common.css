@@ -103,7 +103,8 @@
 }
 
 .QRCode span{
-    margin: 0 auto;
-    letter-spacing: 0.13rem;
-    font-size: 0.18rem;
+    display: block;
+    margin-left: 0.06rem;
+    letter-spacing: 0.06rem;
+    font-size: 0.12rem;
 }

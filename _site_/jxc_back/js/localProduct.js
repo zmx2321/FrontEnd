@@ -57,9 +57,16 @@ var prodnum = function(){
 }
 
 //编辑产品名称
-var pudtal = function(){
+var pudtalTit = function(){
     util.fixInfo($('#editPudtal'), $('.pudtal_tit h1'), $('#pudtal'), 
             $('.pudtal_tit_edit .edit'), $('#comfirmPudtal'), $('#closePudtal'), 
+            $('.pudtal_tit'), 'edit_pudtal_active');
+}
+
+//编辑简介
+var pudtalCot = function(){
+    util.fixInfo($('#editPudtalCot'), $('.pudtal_cot p'), $('#pudtalCot'), 
+            $('.pudtal_cot_edit .edit'), $('#comfirmPudtalCot'), $('#closePudtalCot'), 
             $('.pudtal_tit'), 'edit_pudtal_active');
 }
 
@@ -69,5 +76,6 @@ $(function(){
     priedt();  //编辑价格
     oldPriedt();  //编辑原价
     prodnum();  //编辑份数
-    pudtal();  //编辑产品名称
+    pudtalTit();  //编辑产品名称
+    pudtalCot();  //编辑简介
 });
