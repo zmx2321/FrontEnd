@@ -9,6 +9,11 @@ var indexUtil = {
 
 };
 
+//tip
+var tip = function(){
+	
+}
+
 //窗口大小改变时加载
 $(window).on('resize', function(){
     
@@ -16,5 +21,5 @@ $(window).on('resize', function(){
 
 //load
 $(function(){
-    
+    tip();  //tip
 });

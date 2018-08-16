@@ -16,7 +16,35 @@
 	margin:0 auto;
 }
 
+/* flex_auto */
+.flex_auto{
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.flex_auto li{
+	flex-grow: 1;
+	height: 22px;
+	line-height: 22px;
+	margin: 2px 5px;
+	padding: 0 3px;
+	text-align: center;
+	border: solid 1px #efefef;
+	cursor: pointer;
+	transition: 0.2s linear;
+}
+
+.flex_auto li:hover{
+	color: #f00;
+	transition: 0.3s linear;
+}
+
+.flex_auto li.active{
+	color: #f00;
+	
+}
+
+/* flex_line */
 
 
 /* 提示框 */
@@ -56,11 +84,15 @@
 	background: #fff;
 }
 
-.tool_area .area_span{
+.tool_area:hover .arealist{
+	display: block;
+}
+
+.tool_area span{
 	margin-left: 10px;
 }
 
-.tool_area .area_span::after{
+.tool_area span::after{
 	content: '';
     position: absolute;
     top: 50%;
@@ -72,6 +104,11 @@
     background: url(../images/icon/head_sprite.png) no-repeat -73px -316px;
 }
 
+.tool_area:hover span::after{
+	background: url(../images/icon/head_sprite.png) no-repeat -73px -332px;
+	transition: 0.2s linear;
+}
+
 .arealist{
 	left: 0;
 	top: 34px;
@@ -81,11 +118,10 @@
     background-color: #fff;
 }
 
-.tool_area:hover .area_span::after{
-	background: url(../images/icon/head_sprite.png) no-repeat -73px -332px;
-	transition: 0.2s linear;
+.arealist ul{
+	padding: 6px;
 }
 
-.tool_area:hover .arealist{
-	display: block;
+.arealist li{
+
 }
