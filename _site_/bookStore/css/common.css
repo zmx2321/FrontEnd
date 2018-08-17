@@ -23,26 +23,22 @@
 }
 
 .flex_auto li{
-	flex-grow: 1;
-	height: 22px;
-	line-height: 22px;
-	margin: 2px 5px;
-	padding: 0 3px;
-	text-align: center;
-	border: solid 1px #efefef;
-	cursor: pointer;
-	transition: 0.2s linear;
+    flex-grow: 1;
 }
 
-.flex_auto li:hover{
+/* a标签移入 */
+.ahover:hover{
 	color: #f00;
 	transition: 0.3s linear;
 }
 
-.flex_auto li.active{
-	color: #f00;
-	
+/* a标签变成块元素 */
+.abk{
+	display: block;
+	width: 100%;
+	height: 100%;
 }
+
 
 /* flex_line */
 
@@ -75,13 +71,16 @@
 }
 
 .tool_area{
-	width: 95px;
-	height: 34px;
-	line-height: 34px;
+    width: 95px;
+    height: 28px;
+    line-height: 28px;
+    margin-top: 6px;
+    border: solid 1px transparent;
 }
 
 .tool_area:hover{
 	background: #fff;
+	border: solid 1px #efefef;
 }
 
 .tool_area:hover .arealist{
@@ -110,11 +109,11 @@
 }
 
 .arealist{
-	left: 0;
-	top: 34px;
-	width: 298px;
-	min-height: 66px;
-	border: 1px solid #e6e6e6;
+    left: -1px;
+    top: 27px;
+    width: 298px;
+    min-height: 66px;
+    border: 1px solid #e6e6e6;
     background-color: #fff;
 }
 
@@ -123,5 +122,67 @@
 }
 
 .arealist li{
+    margin: 2px;
+    padding: 0 3px;
+    text-align: center;
+}
 
+.arealist a{
+    border: solid 1px #e6e6e6;
+    min-width: 36px;
+    height: 22px;
+    line-height: 22px;
+}
+
+.arealist a:hover{
+	color: #f00;
+	border: solid 1px #f00;
+}
+
+.arealist li.active a{
+	color: #f00;
+	border: solid 1px #f00;
+}
+
+.tool_r{
+	min-width: 600px;
+}
+
+.tool_welcome{
+	min-width: 135px;
+	height: 34px;
+	line-height: 34px;
+}
+
+.tool_welcome p{
+	height: 12px;
+    line-height: 13px;
+    margin: 11px 15px 0 0;
+    padding-right: 15px;
+    border-right: solid 1px #e6e6e6;
+}
+
+.tool_welcome a{
+	padding: 0 6px;
+}
+
+.tool_nav{
+	height: 34px;
+}
+
+.tool_nav li{
+	height: 34px;
+	line-height: 34px;
+}
+
+.tool_nav a{
+    height: 18px;
+    line-height: 18px;
+    margin: 8px 15px 0 0;
+    padding-right: 15px;
+    
+}
+
+.tool_nav li:not(:last-child) a{
+	border-right: solid 1px #e6e6e6;
 }
