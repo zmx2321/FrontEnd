@@ -149,16 +149,15 @@
 }
 
 .tool_welcome{
-	min-width: 135px;
 	height: 34px;
 	line-height: 34px;
 }
 
 .tool_welcome p{
-	height: 12px;
+    height: 11px;
     line-height: 13px;
     margin: 11px 15px 0 0;
-    padding-right: 15px;
+    padding-right: 5px;
     border-right: solid 1px #e6e6e6;
 }
 
@@ -172,22 +171,61 @@
 
 .tool_nav li{
     position: relative;
-	height: 34px;
-	line-height: 34px;
+    height: 28px;
+    line-height: 28px;
+    margin-top: 6px;
+    border: solid 1px transparent;
+    border-bottom: none;
 }
 
 .tool_nav a{
     height: 18px;
     line-height: 18px;
-    margin: 8px 15px 0 0;
-    padding-right: 15px;
-    
 }
 
 .tool_nav li:not(:last-child) a{
 	border-right: solid 1px #e6e6e6;
+    padding: 0 10px;
 }
 
 .tool_nav li:hover .tooldl{
     display: block;
+}
+
+.tool_nav li:hover a{
+    border-color: transparent;
+    transition: 0.01s linear;
+}
+
+.tool_nav li:hover{
+    background: #fff;
+    border: solid 1px #efefef;
+    border-bottom: none;
+}
+
+.tooldl{
+    width: 100%;
+    min-height: 26px;
+    border: solid 1px #efefef;
+    border-top: 0;
+    top: 25px;
+    left: -1px;
+}
+
+.toollist a::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 6px;
+    margin-left: 6px;
+    overflow: hidden;
+    background: url(../images/icon/head_sprite.png) no-repeat -73px -316px;
+}
+
+.tool_nav li:hover a::after{
+    background: url(../images/icon/head_sprite.png) no-repeat -73px -332px;
+    transition: 0.2s linear;
 }
