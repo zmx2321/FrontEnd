@@ -16,7 +16,7 @@ caption,th{text-align:left;font-weight:normal;}
 html,body,fieldset,img,iframe,abbr{border:0;}
 i,cite,em,var,address,dfn{font-style:normal;}
 [hidefocus],summary{outline:0;}
-li{list-style:none;overflow: hidden;}
+li{list-style:none;}
 h1,h2,h3,h4,h5,h6,small,b{font-size:100%;}
 sup,sub{font-size:83%;}
 pre,code,kbd,samp{font-family:inherit;}
@@ -39,7 +39,7 @@ input[type="text"]{border:solid 1px #ccc;}
  /* 清除浮动 */
 .f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
 /* inline-block */
-.f-ib li, .f-ib dd{display:inline-block;*display:inline;*zoom:1;}
+.f-ib li{display:inline-block;*display:inline;*zoom:1;}
 /* 浮动 */
 .f-fl{float:left;}
 .f-fr{float:right;}

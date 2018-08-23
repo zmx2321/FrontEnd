@@ -171,6 +171,7 @@
 }
 
 .tool_nav li{
+    position: relative;
 	height: 34px;
 	line-height: 34px;
 }
@@ -185,4 +186,8 @@
 
 .tool_nav li:not(:last-child) a{
 	border-right: solid 1px #e6e6e6;
+}
+
+.tool_nav li:hover .tooldl{
+    display: block;
 }
