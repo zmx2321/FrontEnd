@@ -189,14 +189,12 @@
     border-bottom: none;
 }
 
-.tool_nav > a{
-    height: 18px;
-    line-height: 18px;
+.tool_nav li > a{
+    padding: 0 10px;
 }
 
 .tool_nav li:not(:last-child) > a{
 	border-right: solid 1px #e6e6e6;
-    padding: 0 10px;
 }
 
 .tool_nav li:hover > a{
@@ -206,6 +204,7 @@
 
 .tool_nav li:hover .tooldl{
     display: block;
+    transition: 0.03s linear;
 }
 
 .tooldl{
