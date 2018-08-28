@@ -183,6 +183,7 @@ var portraitLoad = function(){
 
     //点击显示图片上传内容窗口
     $('body').on('click', '.img_mask', function(){
+    // $('.img_mask').click(function(){
         util.showImageLoad();
         imgUpload();  //上传图片
     });

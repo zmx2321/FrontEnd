@@ -280,7 +280,7 @@
 			if ( !error ) {	
 				$fileBox.find('.viewThumb').append('<img src="'+dataSrc+'" >');
 				//$fileBox.find('.diySuccess').append('<input type="radio" name="if_thumbnail">');
-				$fileBox.find('.diyCancel').append('<img src="images/icon/close_modal.png" >');
+				$fileBox.find('.diyCancel').append('<img src="images/icon/close_modal2.png" >');
 			}
 		});	
 	}
