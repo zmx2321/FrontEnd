@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>vue_ajax</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div id="box">
+	<button @click="getText()">点我异步获取文本数据(Get)</button>
+	<button @click="getJson()">点我异步获取Json数据(Get)</button>
+
+	<div id="textbox"></div>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<!-- vue-resource相当于jquery中的ajax -->
+<script src="js/lib/vue-resource.min.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

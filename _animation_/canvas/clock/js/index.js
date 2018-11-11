@@ -15,7 +15,7 @@ function drawClock(){
       
 //表盘（蓝色）  
     cxt.lineWidth=10;  
-    cxt.strokeStyle="blue";  
+    cxt.strokeStyle="black";  
     cxt.beginPath();  
     cxt.arc(250,250,200,0,360,false);   //false逆时针，true顺时针  
     cxt.stroke();  
