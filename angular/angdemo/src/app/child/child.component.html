@@ -1,0 +1,14 @@
+<!-- 打开app.module.ts，在里面引入组件 -->
+{{ title }}
+
+<!-- 接收数组里面的值 
+	多个打印的话要用*ngFor
+	这个values指要返回的值,index指下标
+	加一个点击事件fchildevent(i),i是下标，然后去组件中写
+
+	fchildevent函数会传递一个下标i，输出到父组件中去处理
+	（this.childEvent.emit(index);）
+-->
+<p *ngFor="let item of values; let i=index" (click)="fchildevent(i)">
+	{{ item }}
+</p>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Angdemo</title>
+  <!-- 用来监听你当前服务器，根路径的意思 -->
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <!-- 不是一个真实的标签 
+	是angular.js中的一个指令
+	其实他是我们当前这个文件当中主要的组件
+	通过这个指令就可以去访问到src下app文件夹下的一个组件（app.component.ts）
+	index.html这个文件里面调用了app-root这个指令，
+	就会去到app文件夹里面的app.module.ts去
+
+  自定义标签(可以换成任何，一般不变，然后在app.component.ts中同步)
+  -->
+  <app-root>Lodding...</app-root>
+</body>
+</html>
