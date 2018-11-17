@@ -8,13 +8,46 @@
 // 从@angular/core(就是这里)引入Component装饰器
 import { Component } from '@angular/core';
 
+//使用User类
+import { User } from './classes/User';
+
+//用UserService服务来获取数据
+import { UserService } from './services/user.service';
+
 @Component({
   selector: 'app-root',  //自定义标签
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  //供应者
+  //用UserService服务来获取数据
+  //声明这个组件的依赖
+  providers: [UserService]
 })
 //根组件类
 export class AppComponent {
+  //第一种注入依赖的方法
+  //在组件中显示数据（User对象）
+  //创建数据
+  /*users:User[] = [
+    //实例化User类
+    //一般数据不在逻辑中
+    new User("张三", 18, "aa.qq.com"),
+    new User("李四", 46, "bb.qq.com"),
+    new User("王五", 32, "cc.qq.com")
+  ];*/
+
+  //第三种注入依赖的方法
+  //声明一个users属性，同时这个属性含有User类实例的数组
+  users: User[];
+  //声明一个构造函数
+  //一个私有属性，是UserService服务类的一个实例
+  constructor(private userService:UserService){
+    //可以调用刚刚创建好的UserService类中的方法
+    //来获取数据
+    //this.users刚刚创建的属性，调用类中的方法获取数据
+    this.users = userService.getUsers();
+  }
+
   title = 'my first angdemo';
   //app.component.html第二个组件模板写完之后，
   //在这里设置值[values]="data"(data属性的值就是数组)

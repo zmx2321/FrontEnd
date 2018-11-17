@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
 // 中导入ActivatedRoute服务
 import { ActivatedRoute } from '@angular/router';
 
+//如果要触发data.service中的fetchData方法，要先引入文件
+import { DataService } from '../data.service';
+
 /**
  * 实现路由第一步，创建路由的文件app.routers.ts,用来配置路由
  */
@@ -17,6 +20,24 @@ import { ActivatedRoute } from '@angular/router';
 //创建HiComponent组件实例
 //HiComponent组件类实现OnInit接口
 export class HiComponent implements OnInit{
+  //属性指令（ngClass）添加样式，定义一个属性
+  class1 = { 'blue': false, 'red': true, 'underline': true };
+
+  //结构指令(*ngIf) 这里是等号
+  //true文本*ngIf显示，false文本*ngIf隐藏
+  bool = true;
+
+  //结构指令(*ngFor),创建一个数组
+  arr = [
+    {name: "张三", age: 25},
+    {name: "李四", age: 30},
+    {name: "王五", age: 22}
+  ];
+
+  //请求json（data.service.ts）
+  //如果要触发data.service中的fetchData方法，要先引入文件
+  arrJson = [];
+
   //属性
   title = 'my third Component';
   //传一个属性
@@ -26,7 +47,9 @@ export class HiComponent implements OnInit{
   hi_id: string;
 
   //构造方法(加一个私有的参数,ActivatedRoute类)
-  constructor(private hiRoute:ActivatedRoute){
+  //
+  //引入DataService之后，在构造方法中创建DataService对象,然后就能调用对象中的方法了
+  constructor(private hiRoute:ActivatedRoute, private dataService:DataService){
   	console.log("创建HiComponent组件实例");
   }
 
@@ -42,6 +65,16 @@ export class HiComponent implements OnInit{
       this.hi_id = params['id'];
       console.log(this.hi_id);
     });
+
+    //调用fetchData方法请求json
+    //return方法之后，这句话就拿到了请求的数据
+    //所以要调用subscribe方法
+    this.dataService.fetchData()/*.subscribe(
+      (data) => {
+        //把请求到的值赋值给arr
+        this.arrJson[] = data;
+      }
+    )*/;
   }
 
   //一个下一页累加的事件
@@ -66,4 +99,5 @@ export class HiComponent implements OnInit{
   	let hi_id = parseInt(this.hi_id);
   	return hi_id > 1 ? (hi_id - 1) : (hi_id = 1);
   }
+  
 }

@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 //路由组件routing(引入app.routers.ts中的routing)
 //routing是提供器
 import { Routing } from './app.routes';
+//服务
+import { SharedService } from './shared/shared.service';
+//http请求
+import { DataService } from './data.service';
 
 /**
  * 从 @angular/forms 库中导入 FormsModule 符号
@@ -18,6 +22,12 @@ import { EzComponent } from './ez/ez.component';
 import { ChildComponent } from './child/child.component';
 //hi组件(路由)
 import { HiComponent } from './hi/hi.component';
+//服务组件
+//父组件
+import { ParentComponent } from './parent/parent.component';
+//子组件
+import { ChildsComponent } from './childs/childs.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +37,12 @@ import { HiComponent } from './hi/hi.component';
     //child组件(Input/Output)
     ChildComponent,
     //hi组件(路由)
-    HiComponent
+    HiComponent,
+    //服务组件
+    //父组件
+    ParentComponent,
+    //子组件
+    ChildsComponent
   ],
   imports: [
     //路由组件
@@ -38,7 +53,9 @@ import { HiComponent } from './hi/hi.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  //在父组件中使用的时候就需要去调用它，否组
+  //父组件和子组件两个不能共用一个服务
+  providers: [SharedService, DataService],  //服务
   bootstrap: [AppComponent]
 })
 export class AppModule { }

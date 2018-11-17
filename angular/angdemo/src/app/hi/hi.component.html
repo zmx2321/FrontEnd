@@ -20,5 +20,59 @@
 	<li><a [routerLink]=" ['/hi', 3] ">到第三页</a></li>
 </ul>
 
+<!-- 指令 -->
+<!-- 属性指令（ngClass）添加样式 
+	数据绑定中有属性绑定（ngClass是一个属性）
+		可以通过属性绑定给它一个值（使用表达式）
+-->
+<style>
+	.blue{
+		color: blue;
+	}
+	.red{
+		color: red;
+	}
+	.underline{
+		text-decoration: line-through;;
+	}
+</style>
+<!-- 不加中括号是定值，加中括号可以使用表达式 -->
+<!-- <p ngClass="red underline">股份等数据库率上档次</p> -->
+<!-- <p [ngClass] = 
+	"{ 'blue': false, 'red': true, 'underline': true }">
+	股份等数据库率上档次
+</p> -->
+<!-- 或者将表达式写在组件中,ngClass要加中括号 -->
+<p [ngClass]="class1">测试ngClass</p>
 
 
+<!-- 结构指令(*ngIf) 
+	如果条件为真，可以看见，如果为假，隐藏
+
+	可以在组件中写
+-->
+<!-- <p *ngIf="false">测试*ngIf</p> -->
+<p *ngIf="bool">测试*ngIf</p>
+
+
+
+<!-- 结构指令（*ngFor） 
+	let (任意名字) of (刚刚创建的数组) 
+	通过数据绑定的形式实现{{ ren(上面的任意名字) }}对象
+-->
+<p>测试*ngFor</p>
+<ul>
+	<li *ngFor="let ren of arr">
+		{{ ren.name }}：{{ ren.age }}
+	</li>
+</ul>
+
+
+<!-- 数据请求 -->
+<p>console.log数据请求</p>
+<p>展示数据到页面（rxjs--map(),对数据进行映射）</p>
+<ul>
+	<li *ngFor="let ren of arrJson">
+		{{ ren.name }}：{{ ren.age }}：{{ ren.email }}
+	</li>
+</ul>

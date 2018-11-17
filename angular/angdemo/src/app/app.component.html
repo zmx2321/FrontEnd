@@ -48,8 +48,27 @@
   router-outlet 是应用中的路由插座
 -->
 <router-outlet></router-outlet>
-<!-- <hi-app></hi-app> -->
+<hi-app></hi-app>
+<a [routerLink]=" ['/hi', 1] ">跳转到hi组件第一页</a>
+<a [routerLink]=" ['/ez'] ">跳转到ez组件</a>
 
+
+<!-- 服务 
+  先在父组件中去调用服务中的数组元素，
+  再在子组件中给服务中的数组添加元素
+-->
+<p>一个可以和组件之间共享数据的服务(父组件parent,子组件childs)</p>
+<parent-component></parent-component>
+
+<!-- 依赖注入 -->
+<p>依赖注入，实例化类</p>
+<ul>
+  <li *ngFor="let user of users">
+      姓名：{{ user.name }}
+      年龄：{{ user.age }}
+      邮箱：{{ user.email }}
+  </li>
+</ul>
 
 <p style="margin-top: 100px">根组件（在index.html中引用app-root）</p>
 <div style="text-align:center;">
@@ -58,7 +77,7 @@
   </h1>
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links11 to help you start: </h2>
+<h2>Here are some links to help you start: </h2>
 <ul>
   <li>
     <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
