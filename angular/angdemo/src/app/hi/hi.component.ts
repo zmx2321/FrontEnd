@@ -69,12 +69,12 @@ export class HiComponent implements OnInit{
     //调用fetchData方法请求json
     //return方法之后，这句话就拿到了请求的数据
     //所以要调用subscribe方法
-    this.dataService.fetchData()/*.subscribe(
+    this.dataService.fetchData().subscribe(
       (data) => {
-        //把请求到的值赋值给arr
-        this.arrJson[] = data;
+        console.log(data);
+        this.arrJson = data;
       }
-    )*/;
+    );
   }
 
   //一个下一页累加的事件

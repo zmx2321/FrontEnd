@@ -11,7 +11,7 @@ import { Http } from '@angular/http';
 
 //展示数据到页面（rxjs--map(),对数据进行映射
 //引入rxjs
-//import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 //创建一个类
@@ -29,7 +29,7 @@ export class DataService{
 
 	//请求数据
 	fetchData(){
-		//它可以把我们给定的地址当中的数据请求出来
+		/*//它可以把我们给定的地址当中的数据请求出来
 		//通过subscribe方法处理数据
 		this.http.get('./assets/arr.json')
 		//请求到数据，对它进行映射
@@ -47,9 +47,9 @@ export class DataService{
 			(data) => {
 				console.log(data);
 			}
-		);
+		);*/
 
-		/*return this.http.get('./assets/arr.json').
-			map((res) => res.json());*/
+		return this.http.get('./assets/arr.json').
+			map((res) => res.json());
 	}
 }
