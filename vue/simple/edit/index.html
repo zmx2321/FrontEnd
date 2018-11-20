@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>vue_edit</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<!-- v-cloak 隐藏未编译的变量，直到 Vue 实例准备就绪。 -->
+<!-- 元素点击后 hideTooltp() 方法被调用 -->
+
+<div id="main" v-cloak v-on:click="hideTooltip">
+
+    <!-- 这是一个提示框
+         v-on:clock.stop 是一个点击事件处理器，stop 修饰符用于阻止事件传递
+         v-if 用来判断 show_tooltip 为 true 时才显示 -->
+
+    <div class="tooltip" v-on:click.stop v-if="show_tooltip">
+
+        <!-- v-model 绑定了文本域的内容
+         在文本域内容改变时，对应的变量也会实时改变  -->
+
+        <input type="text" v-model="text_content" />
+    </div>
+
+    <!-- 点击后调用 "toggleTooltip" 方法并阻止事件传递 -->
+
+    <!--  "text_content" 变量根据文本域内容的变化而变化 -->
+
+    <p v-on:click.stop="toggleTooltip">{{text_content}}</p>
+
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

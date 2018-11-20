@@ -1,0 +1,21 @@
+https://www.jb51.net/article/138736.htm
+
+
+git clone https://github.com/vuejs/vue-devtools.git
+
+cd vue-devtools
+npm install
+
+npm run build
+
+修改 vue-devtools/shells/chrome/manifest.json 文件，将 persistent改成 true
+
+打开chrome，输入 chrome://extensions/ 进入到chrome扩展程序设置页面
+打开右上角的 开发者模式
+
+
+点击 加载已解压的扩展程序 选择 vue-devtools/shells/chrome
+
+注意：勾选 允许访问文件网址
+
+至此，vue-devtools已经安装完毕。

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>vue_layer</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<form id="main" v-cloak>
+
+    <div class="bar">
+
+        <!-- 两个按钮用于切换不同的列表布局 -->
+
+        <a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+        <a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
+    </div>
+
+    <!-- 我们设置了两套布局页面。使用哪套依赖于 "layout" 绑定 -->
+
+    <ul v-if="layout == 'grid'" class="grid">
+        <!-- 使用大图，没有文本 -->
+        <li v-for="a in articles">
+            <a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.large" /></a>
+        </li>
+    </ul>
+
+    <ul v-if="layout == 'list'" class="list">
+        <!-- 使用小图及标题 -->
+        <li v-for="a in articles">
+            <a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.small" /></a>
+            <p>{{a.title}}</p>
+        </li>
+    </ul>
+
+</form>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

@@ -20,7 +20,7 @@ app.component.ts  逻辑，处理数据的增删改查
 
 
 
-assets文件是流出来的接口
+assets文件是留出来的接口
 存放自己的东西
 
 environments  配置当前项目的环境

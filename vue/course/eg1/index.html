@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>vue_eg1</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="container">
+    <ul>
+        <li>
+            <p>{{ title }}</p>
+        </li>
+        <li>
+            <!-- 对title进行双向数据绑定v-model -->
+            <input type="text" v-model="title">
+        </li>
+        <li>
+            <!-- vue数组支持字符串数组运算 -->
+            <p>{{ "数组：" + student }}</p>
+            
+            <dl>
+                <dt>
+                    <p>循环</p>
+                </dt>
+                <!-- 每一个数据就是每一个节点 -->
+                <dd v-for="item in student">
+                    {{ item }}
+                </dd>
+            </dl>
+
+            <dl>
+                <dd>
+                    <p>输出下标和当前节点</p>
+                </dd>
+                <!-- item是节点，index是下标-->
+                <dd v-for="(item, index) in student">
+                    {{ index }}: {{ item }}
+                </dd>
+            </dl>
+
+            <!-- 对象循环 -->
+            <dl>
+                <dt>对象循环</dt>
+                <!-- index是key，item是具体对象 -->
+                <dd v-for="(val, key) in userinfo">
+                    {{ key + 1 }}: {{ val }}
+                    {{ val.name }}
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>des</dt>
+                <!-- 直接输出div -->
+                <dd>{{ des }}</dd>
+                <dd>
+                    <!-- html解析div -->
+                    <h2 v-html="des">
+                        {{ des }}
+                    </h2>
+                    <!-- 写一个h2标签，过滤html标签，只保留文字性的内容
+                    和不写v-text="des"是一致的
+                    只是把html标签直接转化为文本（把标签页变成了文本）
+                    -->
+                    <h2 v-text="des">
+                        {{ des }}
+                    </h2>
+                </dd>
+            </dl>
+        </li>
+        <li>
+            <!-- 两个值没有区别，都是双向绑定 -->
+            <p>
+                今天的老师是：{{ teacher }},<br />
+                如果{{ teacher }}没来，请{{ newTeacher }}
+                来上课
+            </p>
+        </li>
+    </ul>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>
