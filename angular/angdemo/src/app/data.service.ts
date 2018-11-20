@@ -11,6 +11,7 @@ import { Http } from '@angular/http';
 
 //展示数据到页面（rxjs--map(),对数据进行映射
 //引入rxjs
+//如果map无法找到，使用npm install rxjs-compat
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -49,7 +50,7 @@ export class DataService{
 			}
 		);*/
 
-		return this.http.get('./assets/arr.json').
-			map((res) => res.json());
+		return this.http.get('./assets/arr.json')
+			.map((res) => res.json());
 	}
 }
