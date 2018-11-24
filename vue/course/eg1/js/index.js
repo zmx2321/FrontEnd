@@ -55,6 +55,14 @@ window.onload = function(){
                     return "fff" + this.teacher + "fdasd";
                 }
             }
+        },
+
+        //事件有一个专有的函数处理
+        methods: {
+            changeTeacher: function(){
+                //修改属性
+                this.teacher = "eee";
+            }
         }
     });
 }

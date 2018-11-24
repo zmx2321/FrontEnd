@@ -15,10 +15,14 @@
         <li>
             <p>{{ title }}</p>
         </li>
+
+
         <li>
             <!-- 对title进行双向数据绑定v-model -->
             <input type="text" v-model="title">
         </li>
+
+
         <li>
             <!-- vue数组支持字符串数组运算 -->
             <p>{{ "数组：" + student }}</p>
@@ -72,6 +76,8 @@
                 </dd>
             </dl>
         </li>
+
+
         <li>
             <!-- 两个值没有区别，都是双向绑定 -->
             <p>
@@ -79,6 +85,11 @@
                 如果{{ teacher }}没来，请{{ newTeacher }}
                 来上课
             </p>
+        </li>
+
+        <li>
+            <!-- v-on表示监听 -->
+            <button v-on:click="changeTeacher()">换老师事件</button>
         </li>
     </ul>
 </div>
