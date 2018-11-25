@@ -22,6 +22,7 @@
     <br /><br /><br /><br />
 
 	状态：<span v-html="tip"></span>
+    <div style="color: #f00" v-if="!userinfo.length">现在还没有用户信息</div>
 
     <table>
     	<tr>
@@ -42,7 +43,7 @@
     	</tr>
     	<tr>
     		<td colspan="4">
-    			<button @click="clear()">删除全部</button>
+    			<button @click="clear()" v-if="userinfo.length">删除全部</button>
     		</td>
     	</tr>
     </table>
