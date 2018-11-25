@@ -1,0 +1,9 @@
+https://www.tslang.cn//	中文文档
+https://github.com/Phaiax/ArcticTypescript	sublime ts 高亮
+
+支持面向对象（可见度[属性被访问的限制]（public,protected,private））
+protected，当前类及其子类对象可以访问
+private  当前类
+
+
+构造函数-->当这个类被创建出来就会被立即执行

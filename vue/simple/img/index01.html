@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue/vue.js"></script>
+    <style>
+        .buton{
+            display: inline-block;
+            width:80px;
+            height:35px;
+            margin-bottom:30px;
+            border:2px solid black;
+            border-radius: 10px;
+            outline: none;
+        }
+        .buton:focus{
+            color:white;
+            background:black;
+            border:2px solid #989898;
+        }
+    </style>
+</head>
+<body>
+    <!--数据绑定-->
+    <button class="buton" onclick="changeImg(this)" value="1">PIC1</button>
+    <button class="buton" onclick="changeImg(this)" value="2">PIC2</button>
+    <button class="buton" onclick="changeImg(this)" value="3">PIC3</button>
+    <button class="buton" onclick="changeImg(this)" value="4">PIC4</button>
+    <div id="app">
+        <!--{{msg}}<br>
+        <input v-model="msg">-->
+        <img v-bind:src="imgUrl" :width="width" :height="height">
+        <p>
+            {{num}}
+        </p>
+        <button @click="add">+</button>
+        <button @click="min">-</button>
+    </div>
+</body>
+</html>
+<script>
+    function changeImg(btn){
+        var val = btn.value;
+        //alert(val);
+        vName.imgUrl = "images/1-"+val+".jpg";
+    }
+    var vName = new Vue({
+        el:'#app',
+        data:{
+            msg:'Hello world!',
+            imgUrl:"https://10.url.cn/qqcourse_logo_ng/ajNVdqHZLLCWGlZau1ddTVfNc6E6f1D2Jc2O3Zkz1T2olYPMTgqtWRL4e6dE5cZp8bkAuiaiaWf7Y/220?tp=webp",
+            width:'600',
+            height:'350',
+            num:10
+        },
+        methods:{
+            add:function(){
+                this.num++;
+            },
+            min:function(){
+                this.num--;
+            }
+        }
+    })
+</script>

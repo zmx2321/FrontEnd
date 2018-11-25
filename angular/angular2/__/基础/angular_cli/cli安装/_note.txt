@@ -1,0 +1,11 @@
+npm install -g @angular/cli	全局安装angular-cli
+
+cd e:  进到e盘
+
+cd WWW\angular  进到angular文件夹
+
+ng new angdemo  创建angular项目，下载脚手架
+
+cd angdemo  进到盘符
+
+ng serve  --open 	 ng serve打开当前文件，--open启动服务

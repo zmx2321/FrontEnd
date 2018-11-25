@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>添加删除</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="container">
+	<!-- 双向绑定用v-model -->
+    用户名: <input type="text" placeholder="请输入用户名" v-model="skname">
+    年龄: <input type="text" placeholder="请输入密码" v-model="skage">
+
+    
+    <button @click="add()">添加</button>
+    <input type="reset" value="重置" @click="reset()">
+
+    <br /><br /><br /><br />
+
+	状态：<span v-html="tip"></span>
+
+    <table>
+    	<tr>
+    		<th>序号</th>
+    		<th>姓名</th>
+    		<th>年龄</th>
+    		<th>操作</th>
+    	</tr>
+    	<tr v-for="(item, index) in userinfo">
+    		<!-- 序号从1开始 -->
+    		<td>{{ index+1 }}</td>
+    		<td>{{ item.name }}</td>
+    		<td>{{ item.age }}</td>
+    		<td>
+    			<!-- 删除当前 -->
+    			<button @click="del(index)">删除</button>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="4">
+    			<button @click="clear()">删除全部</button>
+    		</td>
+    	</tr>
+    </table>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

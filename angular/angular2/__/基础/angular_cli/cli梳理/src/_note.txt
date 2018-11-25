@@ -1,0 +1,28 @@
+index.html	当前整个项目的入口
+
+app.component.spec.ts  主要用来做测试使用的
+
+app.module.ts  主要用来做模块配置
+
+index.html的app-root指令到app.component.ts文件中（selector）选择器，
+    找到他之后，就会出来一个templateUrl（以模板的路径）
+         当某个文件运行了app-root之后他就会去找到templateUrl路径下的文件并把这个文件展示出来
+
+
+
+当app.component.html中使用双花括号title时
+app.component.ts  里的titile值作用在app.component.html（数据绑定）
+
+
+app.component.html  结构
+app.component.css  样式
+app.component.ts  逻辑，处理数据的增删改查
+
+
+
+assets文件是留出来的接口
+存放自己的东西
+
+environments  配置当前项目的环境
+
+
