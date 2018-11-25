@@ -1,0 +1,61 @@
+.container{
+    width: 800px;
+    height: 600px;
+    margin: 100px auto 0;
+    padding: 10px;
+    border: solid 1px #ccc;
+    overflow: auto;
+}
+
+.container li{
+    margin-bottom: 10px;
+}
+
+.container dl{
+    margin-top: 5px;
+}
+
+.container p{
+    font-size: 16px;
+}
+
+.text-red{
+    color: red;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: solid 1px #f00;
+}
+
+nav{
+    margin-top: 20px;
+}
+
+.nav_list li{
+    display: inline-block;
+    margin: 0 10px;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.nav_list li:hover{
+    background: #ccc;
+    transition: 0.2s linear;
+}
+
+.nav_cont{
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    border: solid 1px #2540ff;
+}
+
+.bg-tab{
+    background: #000;
+    color: #fff;
+}

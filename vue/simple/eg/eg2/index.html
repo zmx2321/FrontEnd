@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>vue_eg2</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="container">
+    <button @click="cfkj()">乘法口诀</button>
+
+    <!-- Vue.js库中的v-html指令，可以更新元素的innerHMTL 
+		v-if="str"表示str没有数据的时候不渲染这个div
+		v-show="str"表示str没有数据的时候display为none
+    -->
+    <div class="cfkj" v-html="str" v-show="str"></div>
+
+    <!-- 显示隐藏 -->
+    <!-- 单击取反 -->
+    <button @click="onoff=!onoff">显示隐藏切换</button>
+    <!-- 根据onoff值 -->
+    <div class="box" v-show="onoff">
+    	<p>
+    		内容
+    	</p>
+    </div>
+
+    <!-- 选项卡(双向绑定) -->
+    <nav>
+        <ul class="nav_list">
+            <!-- 给每个li绑定事件(赋值) 
+                v-bind:表示绑定样式(v-bind: = :)
+                    active等于1的时候绑定一个样式
+            -->
+            <li @click="active=1" :class="{'bg-tab':active==1}">推荐</li>
+            <li @click="active=2" :class="{'bg-tab':active==2}">新闻</li>
+            <li @click="active=3" :class="{'bg-tab':active==3}">最新</li>
+            <li @click="active=4" :class="{'bg-tab':active==4}">关于</li>
+        </ul>
+
+        <ul class="nav_cont">
+            <!-- 第二个选项卡显示(判断) -->
+            <li v-show="active==1">推荐</li>
+            <li v-show="active==2">新闻</li>
+            <li v-show="active==3">最新</li>
+            <li v-show="active==4">关于</li>
+        </ul>
+    </nav>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>
