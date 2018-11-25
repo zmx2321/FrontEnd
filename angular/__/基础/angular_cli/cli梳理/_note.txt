@@ -1,4 +1,0 @@
-README.md	各种命令说明（引导你当前运行的项目）
-package.json	当前文件初始化的时候的操作（告诉我们这个项目用了哪些框架和哪些文件）
-	"dependencies"	依赖的库和框架
-	"devDependencies"	依赖的插件
