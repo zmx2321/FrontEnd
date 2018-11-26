@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>登陆注册</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+
+<body>
+<!-- body s -->
+<div class="container">
+	<ul class="nav_list">
+		<!-- 监听判断tab -->
+		<li @click="tab=true" :class="{'nlvr': tab}">登陆</li>
+		<li @click="tab=false" :class="{'nlvr': !tab}">注册</li>
+		<li v-on:click="tab=!tab">切换</li>
+	</ul>
+
+	<ul class="nav_cont">
+		<!-- tab为false不显示 -->
+		<li v-if="tab">
+			<dl>
+				<dt class="f-tac">登陆</dt>
+				<dd>
+					用户名：<input type="text">
+				</dd>
+				<dd>
+					密码：<input type="text">
+				</dd>
+				<dd class="f-tac">
+					<button type="button">登陆</button>
+				</dd>
+			</dl>
+		</li>
+		<!-- 取反 -->
+		<li v-if="!tab">
+			<dl>
+				<dt class="f-tac">注册</dt>
+				<dd>
+					<!-- 双向绑定 -->
+					用户名：<input type="text" v-model="skname">
+					<span v-html="tip[0]"></span>
+				</dd>
+				<dd>
+					密码：<input type="password" v-model="skpwd">
+					{{ skpwd }}
+					<span v-html="tip[1]"></span>
+				</dd>
+				<dd>
+					重复密码：<input type="password" v-model="skpwd2">
+					{{ skpwd2 }}
+					<span v-html="tip[2]"></span>
+				</dd>
+				<dd>
+					头像地址：<input type="text" v-model="skpic">
+					<span v-html="tip[3]"></span>
+				</dd>
+				<dd class="f-tac">
+					<!-- 是否禁用按钮 -->
+					<button :disabled="resubmit" :class="{'resbtn': resubmit}" type="button" @click="submitreg">注册</button>
+				</dd>
+			</dl>
+		</li>
+	</ul>
+</div>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>
