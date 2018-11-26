@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<meta name="Author" content="zmx" />
+<meta name="Keywords" content="v-bind" />
+<meta name="Description" content="v-bind 属性的变量不能为空" />
 <title>vue_eg3</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
@@ -11,7 +14,34 @@
 <body>
 <!-- body s -->
 <div class="container">
-    
+	<!-- v-bind:class后面是变量，class后面是字符串 
+		也是双向绑定(样式可以通过文本框改变)
+	-->
+	<p>text-green</p>
+	<!-- 字符串类型的属性绑定 -->
+    <p :class="skstyle">字符串类型的属性绑定+{{ title }}</p>
+    <input type="text" v-model="skstyle" />
+
+    <!-- 数组类型的属性绑定 
+		字符串和数组两种表现形式完全一样
+		字符串不支持叠加，数组支持叠加
+    -->
+    <p :class="[skstyle, skstyle2]" class="mgtp">数组类型的属性绑定+{{ title }}</p>
+
+	<!-- 对象的形式 
+		skstyle不再是一个变量，只能用具体样式
+	-->
+    <p :class="{'text-red':isshow}" class="mgtp">加了判断+{{ title }}</p>
+
+	<!-- 三元判断 
+		中括号和字符串的用法是一样的
+	-->
+    <p :class="[isshow?'text-green':'text-red']" class="mgtp">三元判断{{ title }}</p>
+
+	<!-- 表示src中的数据从data里面找 
+		绑定的数据在预处理数据里面skpic
+	-->
+    <img :src="skpic" :alt="title" :title="title">
 </div>
 <!-- body e -->
 
