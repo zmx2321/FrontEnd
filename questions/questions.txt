@@ -1,0 +1,10 @@
+1、请描述一下cookies, sessionStroage, localStroage的区别
+
+
+
+2、javascript的typeof返回哪些数据类型
+
+
+3、闭包是什么，有什么特性，对页面有什么影响？简要介绍你理解的闭包
+
+4、
