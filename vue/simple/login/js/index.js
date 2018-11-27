@@ -12,18 +12,27 @@ window.onload = function(){
             skname: '',
             skpwd: '',
             skpwd2: '',
-            skpic: '',
+            skpic: 'https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_efde696.png',
             userlist: [],
             //注册按钮是否可以点击
             //resubmit: true,
             //注册提示
             tip: [],
+
+            //用户登陆
+            username: '',
+            userpwd: '',
+            userpic: 'fds',
+            //判断是否登陆成功，默认true，未登陆
+            isloginstate: true,
+            // islogin: false,
         },
 
         //预处理数据
         //让用户根据初始数据有一个预先处理的结果（数据判断）
         //实时监听，但比实际步骤慢一步
         computed: {
+            //判断注册按钮是否可用
             //用户信息数据符合条件为false，否则为true
             resubmit: function(){
                 //检测用户名[4~6]
@@ -76,6 +85,17 @@ window.onload = function(){
                 } else {
                     return true;  //注册不可用
                 }
+            },
+
+            //判断登陆按钮是否可用(用户名密码是否正确)
+            islogin: function(){
+                //如果用户名密码存在
+                if(this.username && this.userpwd){
+                    //存在的时候，按钮可用，disabled：false
+                    return false;
+                } else {
+                    return true;
+                }
             }
         },
 
@@ -104,11 +124,53 @@ window.onload = function(){
                         pic: this.skpic
                     }
                 );
-                console.log(this.userlist[0]);
-                console.log(this.userlist[0].name);
+                //console.log(this.userlist[0]);
+                //console.log(this.userlist[0].name);
+
+                //debugger;
+                //注册成功之后，把data数据清空
+                //登陆的时候要求再输入用户名密码，防止冲突
+                //登陆填写的信息和userlist中的信息进行比对
+                this.skname = "";
+                this.skpwd = "";
+                this.skpwd2 = "";
+
+                alert("用户注册成功，请进行登陆！");
 
                 //切换到登陆
                 this.tab = true;
+            },
+
+            //登陆
+            submitlog: function(){
+                var userlist = this.userlist,
+                    username = this.username;
+                    userpwd = this.userpwd,
+                    userpic = this.userpic;
+                
+                console.log(userlist);
+
+                //循环用户列表
+                for(var i=0; i<userlist.length; i++){
+                    if(userlist[i].name==username && userlist[i].pwd==userpwd){
+
+                        alert("登陆成功！");
+
+                        this.isloginstate = false;
+
+                        //头像
+                        //debugger;
+                        //this.userpic = this.skpic;
+                        this.userpic = userlist[i].pic;
+
+                        console.log(userlist[i].pic);
+                        console.log(userpic);
+
+                        break;
+                    } else {
+                        alert("用户信息填写错误！");
+                    }
+                }
             }
         },
 
