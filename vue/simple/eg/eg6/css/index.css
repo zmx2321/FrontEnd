@@ -7,10 +7,6 @@
     overflow: auto;
 }
 
-.container ul{
-    margin-bottom: 20px;
-}
-
 .container li{
     margin-bottom: 10px;
 }
@@ -27,6 +23,19 @@
     color: red;
 }
 
-.margbtm{
-    margin-bottom: 30px;
+.text-green{
+    color: green;
+}
+
+.mgtp{
+    margin-top: 20px;
+}
+
+.border{
+    border-style: dashed;
+}
+
+img{
+    width: 100px;
+    height: 100px;
 }

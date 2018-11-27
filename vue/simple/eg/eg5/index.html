@@ -3,16 +3,58 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-<title>vue_eg3</title>
+<title>vue_eg5</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
 
 <body>
 <!-- body s -->
+<!-- vheader -->
 <div class="container">
-    <div :class="skstyle">{{ title }}</div>
+    <!-- 使用模板 -->
+	<p style="background: green">vue模板不要包含在实例作用范围中</p>
+	
+
+
+    <!-- vue模板不要包含在实例作用范围中
+        在实例中会以标签形式渲染出来
+        template要替换我们实例中的内容 
+
+        模板默认都不允许，只在调用的时候运行
+    -->
+    <!-- <template id="tp1">
+        <div>
+            <h2>模板1</h2>
+            <p>模板内容</p>
+        </div>
+    </template> -->
 </div>
+
+<!-- vcontent -->
+<div class="container2">
+	
+</div>
+
+<!-- template尽量要是body下的子节点（模板） -->
+<template id="tp1">
+    <div style="background: #f00">
+        <h2>模板1</h2>
+        <p>模板内容</p>
+    </div>
+</template>
+
+<!-- 另外一种模板写法(固定写法) -->
+<script type="x-template" id="tp2">
+    <div>
+        <h2>模板2</h2>
+        <ul>
+            <li>首页</li>
+            <li>列表</li>
+            <li>最新</li>
+        </ul>
+    </div>
+</script>
 <!-- body e -->
 
 <!-- js s -->
