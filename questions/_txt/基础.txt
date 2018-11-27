@@ -1,0 +1,2 @@
+1、javascript的typeof返回哪些数据类型
+	undefined, string, boolean, number, Object, Function
