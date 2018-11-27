@@ -21,16 +21,28 @@
 	<ul class="nav_cont">
 		<!-- tab为false不显示 -->
 		<li v-if="tab">
-			<dl>
+			<!-- 如果未登陆，isloginstate为true显示 -->
+			<dl v-if="isloginstate">
 				<dt class="f-tac">登陆</dt>
 				<dd>
-					用户名：<input type="text">
+					<!-- 双向绑定 -->
+					用户名：<input type="text" v-model="username">
 				</dd>
 				<dd>
-					密码：<input type="text">
+					密码：<input type="password" v-model="userpwd">
+					{{ userpwd }}
 				</dd>
 				<dd class="f-tac">
-					<button type="button">登陆</button>
+					<button type="button" :disabled="islogin" :class="{'relgbtn': islogin}" @click="submitlog()">登陆</button>
+				</dd>
+			</dl>
+
+			<!-- 如果已经登陆，isloginstate为false，登陆不显示 -->
+			<dl v-if="!isloginstate">
+				<dt>用户已经成功登陆</dt>
+				<dd>欢迎{{ username }}</dd>
+				<dd>
+					<img v-bind:src="userpic" alt="userpic">
 				</dd>
 			</dl>
 		</li>
@@ -59,7 +71,7 @@
 				</dd>
 				<dd class="f-tac">
 					<!-- 是否禁用按钮 -->
-					<button :disabled="resubmit" :class="{'resbtn': resubmit}" type="button" @click="submitreg">注册</button>
+					<button :disabled="resubmit" :class="{'relgbtn': resubmit}" type="button" @click="submitreg()">注册</button>
 				</dd>
 			</dl>
 		</li>
