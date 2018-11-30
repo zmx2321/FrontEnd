@@ -1,0 +1,6 @@
+﻿1、javascript的typeof返回哪些数据类型
+	undefined, string, boolean, number, Object, Function
+
+2、call和apply的区别
+
+3、页面价值速度，从哪几方面入手
