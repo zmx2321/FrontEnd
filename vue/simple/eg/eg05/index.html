@@ -53,6 +53,10 @@
             <li>列表</li>
             <li>最新</li>
         </ul>
+        <input class="inputmargin" :type=" ispwd?'password':'text' " />
+        <button @click=" ispwd=!ispwd ">
+            {{ ispwd ? '密码不可见' : '密码可见' }}
+        </button>
     </div>
 </script>
 <!-- body e -->

@@ -6,7 +6,8 @@ window.onload = function(){
 
         //初始数据
         data: {
-            title: "这是页面头"
+            title: "这是页面头",
+            ispwd: true,  //默认显示密码
         },
 
         //预处理数据
@@ -26,6 +27,8 @@ window.onload = function(){
 
         //模板(模板往作用域渲染)
         //指向一个模板,替换的范围是vue实例的innerHTML
+        //实例vheader指向tp2,作用域在container
+        //在tp2中的内容与这里的data绑定
         template: "#tp2",
     });
 
@@ -44,8 +47,8 @@ window.onload = function(){
         //初始数据
         data: {
             //获取模板1的变量
-            //不同模板直接的通信
-            title2: "模板2的title" + vheader.title
+            //不同模板之间的通信
+            title2: "模板2的title" + vheader.title,
         },
 
         //预处理数据
@@ -65,6 +68,7 @@ window.onload = function(){
 
         //模板(模板往作用域渲染)
         //指向一个模板,替换的范围是vue实例的innerHTML
+        //实例vcontent指向的是tp1，作用域在container2
         template: "#tp1",
     });
 }

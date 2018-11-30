@@ -3,10 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-<meta name="Author" content="zmx" />
-<meta name="Keywords" content="v-bind" />
-<meta name="Description" content="v-bind 属性的变量不能为空" />
-<title>vue_eg6</title>
+<title>vue_eg6-生命周期</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
@@ -14,7 +11,14 @@
 <body>
 <!-- body s -->
 <div class="container">
-	
+	<p>{{ title() }}</p>
+	<p>{{ testTitle }}</p>
+
+	<!-- 数据更新 -->
+	<input type="text" v-model="msg" />
+
+	<!-- vue的系统方法 -->
+	<button onclick="vm.$destroy()">销毁vue（必须知道实例名）</button>
 </div>
 <!-- body e -->
 
