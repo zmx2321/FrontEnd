@@ -3,7 +3,7 @@
  * http://www.coolneng.com/wap/json/list.php?fid=3（栏目中的列表）
  * http://www.coolneng.com/wap/json/show.php?tid=574（列表具体内容）
  */
-//Vue.use(VueResource);
+Vue.use(VueResource);
 
 var skrouter = new VueRouter({
     routes: [
@@ -29,7 +29,7 @@ var skrouter = new VueRouter({
                     var that = this;  //这里的this值vue实例
 
                     //jquery方法
-                    $.ajax({
+                    /*$.ajax({
                         type: 'get',
                         url: this.apiurl,
                         data: {},
@@ -40,6 +40,9 @@ var skrouter = new VueRouter({
                             that.apidata = data.content;
                             //console.log(this.apidata);
                         }
+                    });*/
+                    $.getJSON(this.apiurl, function(res){
+                        that.apidata = res.content;
                     });
                 }
             }
@@ -95,7 +98,7 @@ var skrouter = new VueRouter({
 
                 //在创建的时候监听接口
                 created: function(){
-                    var that = this;  //这里的this值vue实例
+                    /*var that = this;  //这里的this值vue实例
 
                     //jquery方法
                     $.ajax({
@@ -110,6 +113,12 @@ var skrouter = new VueRouter({
                             that.apidata = data.content;
                             console.log(that.apidata);
                         }
+                    });*/
+                    this.$http.get(this.apiurl).then(res=>{
+                        this.apidata = res.body.content;
+                        console.log(this.apidata);
+                    }, res=>{
+                        console.log("error");
                     });
                 }
             }
