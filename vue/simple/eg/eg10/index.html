@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-<title>vue_eg10</title>
+<title>vue_eg10(路由[插件])</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
@@ -11,12 +11,62 @@
 <body>
 <!-- body s -->
 <div class="container">
-	
+	<!-- 相当于a标签 
+		to后面与路由中path保持一致
+
+		添加样式的时候在父级添加class，并使用a标签（渲染时，渲染成a标签）
+
+		active-class
+			当前页面所有与当前地址所匹配的的链接都会被添加class属性
+
+		exact-active-class
+			当路由被激活时，添加class
+	-->
+	<router-link to="/" exact-active-class="btnact">首页</router-link>
+	<router-link to="/user/sk" exact-active-class="btnact">用户</router-link>
+	<!-- <a href="#/list"></a> -->
+	<router-link to="/list" exact-active-class="btnact">列表</router-link>
+
+	<!-- 路由模板加载区域（父路由） 
+		平行路由
+		路由基本只允许在一个页面出现一个父级
+		如果要增加，需要命名name="..."
+	-->
+	<router-view></router-view>
 </div>
 <!-- body e -->
 
+<!-- 模板 
+	模板中允许嵌套路由（子路由）
+-->
+<template id="home">
+    <div style="background: #999">
+    	<!-- 如果在vue实例中加student，显示未定义 
+			因为路由中自带生命周期，要在路由中添加
+    	-->
+        <h2>首页{{ student }}</h2>
+        <p>首页内容</p>
+    </div>
+</template>
+
+<template id="list">
+	<div class="marg" style="background: #ccc">
+		<p>子路由</p>
+		<!-- 默认的国内就不写，写/gn页面不显示，点击才显示 -->
+		<router-link to="/list/" exact-active-class="btnact">国内</router-link>
+		<router-link to="/list/gw" exact-active-class="btnact">国外</router-link>
+		<!-- 子路由模板加载区域 -->
+		<router-view></router-view>
+	</div>
+    <!-- <div style="background: #ccc">
+        <h2>列表</h2>
+        <p>列表内容</p>
+    </div> -->
+</template>
+
 <!-- js s -->
 <script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/lib/vue-router.js"></script>
 <script src="js/index.js"></script>
 <!-- js e -->
 </body>

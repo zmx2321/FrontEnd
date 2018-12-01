@@ -31,6 +31,14 @@
     margin-top: 20px;
 }
 
+.mgbym{
+    margin-bottom: 20px;
+}
+
+.marg{
+    margin: 20px 0;
+}
+
 .border{
     border-style: dashed;
 }
@@ -38,4 +46,8 @@
 img{
     width: 100px;
     height: 100px;
+}
+
+td{
+    padding: 6px;
 }
