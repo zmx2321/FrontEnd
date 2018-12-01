@@ -27,10 +27,6 @@
     color: green;
 }
 
-.mgtp{
-    margin-top: 20px;
-}
-
 .border{
     border-style: dashed;
 }
@@ -38,4 +34,16 @@
 img{
     width: 100px;
     height: 100px;
+}
+
+.mgtp{
+    margin-top: 20px;
+}
+
+.mgbym{
+    margin-bottom: 20px;
+}
+
+.marg{
+    margin: 20px 0;
 }

@@ -39,17 +39,3 @@ img{
     width: 100px;
     height: 100px;
 }
-
-.box{
-    width: 500px;
-    border: solid 1px #ccc;
-    padding: 10px;
-}
-
-.mgbym{
-    margin-bottom: 20px;
-}
-
-.marg{
-    margin: 20px 0;
-}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-<title>vue_eg11</title>
+<title>vue_eg11(平行多个路由的关系)</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
@@ -11,12 +11,32 @@
 <body>
 <!-- body s -->
 <div class="container">
-	
+	<p class="mgbym">多个路由视图</p>
+
+	<router-link to="/">首页</router-link>
+	<router-link to="/list">列表</router-link>
+
+	<!-- 第一个路由视图(默认) -->
+	<p>第一个路由视图</p>
+	<router-view></router-view>
+
+	<div class="mgbym"></div>
+
+	<!-- 第二个路由视图（非默认需要命名） -->
+	<p>第二个路由视图</p>
+	<router-view name="skview"></router-view>
 </div>
+
+<template id="home">
+    <div style="background: #999">
+        <p>首页内容</p>
+    </div>
+</template>
 <!-- body e -->
 
 <!-- js s -->
 <script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/lib/vue-router.js"></script>
 <script src="js/index.js"></script>
 <!-- js e -->
 </body>

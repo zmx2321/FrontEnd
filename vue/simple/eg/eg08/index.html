@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-<title>vue_eg8</title>
+<title>vue_eg8-vue的数据请求VueResource（插件）</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
 </head>
@@ -11,13 +11,35 @@
 <body>
 <!-- body s -->
 <div class="container">
-	
+	<p>VueResource(接口)</p>
+	<p>{{ tip }}</p>
+
+	<table class="marg">
+		<thead>
+			<tr>
+				<td>linkid</td>
+				<td>sitename</td>
+				<td>url</td>
+				<td>type</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-for="item in resdata">
+				<td v-html="item.linkid"></td>
+				<td v-html="item.sitename"></td>
+				<td v-html="item.url"></td>
+				<td v-html="item.type"></td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 <!-- body e -->
 
 <!-- js s -->
 <script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/lib/vue-resource.min.js"></script>
 <script src="js/index.js"></script>
+<!-- vue完全支持jquery -->
 <!-- js e -->
 </body>
 </html>
