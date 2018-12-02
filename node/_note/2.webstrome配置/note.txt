@@ -1,0 +1,3 @@
+file -> setting -> 输入node -> 找到Node.js and npm
+把node安装路径写进去
+点击Enable
