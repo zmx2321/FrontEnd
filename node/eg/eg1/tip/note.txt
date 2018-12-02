@@ -1,0 +1,6 @@
+1、webstrome直接运行（直接右键，run）
+
+2、在该文件夹url直接输入cmd，命令提示符会自动找到当前路径
+(或者可以用gitbush)
+
+3、输入node eg1
