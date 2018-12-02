@@ -32,4 +32,3 @@ fs.open("./userinfo2.json", "w", function (openErr, openRes) {
         console.log("已经关闭");
     });
 });
-
