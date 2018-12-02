@@ -10,14 +10,13 @@ console.log(new Date());
  * 按住ctrl键,选择括号中的fs，弹出fs.js文件夹(和java一样)
  * fs.js文件管理写好的框架集(不能自己建fs.js文件)
  */
-//拿来我们调用的框架集
-var fs = require("fs");
+const fs = require("fs");
 
 /**
  * path.js，路径核心库
  */
 //拿到当前的路径（path.js）
-var path = require("path");
+const path = require("path");
 
 //拿到函数
 /*console.log(fs);
@@ -36,7 +35,7 @@ console.log(path);*/
 //读取文件同步操作
 //必须先执行完readFile之后才能输出同步结束(没有过程)
 console.log("同步开始");
-var res1 = fs.readFileSync("./userinfo.json", "utf8");
+let res1 = fs.readFileSync("./userinfo.json", "utf8");
 console.log(res1);
 console.log("同步结束");
 
@@ -46,7 +45,7 @@ console.log("同步结束");
 //res(结果)
 //专门有一个进程给他执行
 console.log("异步开始");
-var res2 = fs.readFile("./userinfo.json", "utf8", function (err, res) {
+let res2 = fs.readFile("./userinfo.json", "utf8", function (err, res) {
     //如果有错误，抛出（相当于return）
     if(err) throw err;
 
