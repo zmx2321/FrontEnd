@@ -1,3 +1,24 @@
+/**
+ * const => 在确定该变量永远不会在其它的代码行里被重新赋值(只读)
+ * 1、可以用来定义常量，修饰函数参数，修饰函数返回值，且被const修饰的东西，
+ * 都受到强制保护，可以预防其它代码无意识的进行修改，从而提高了程序的健壮性
+ * 2、使编译器保护那些不希望被修改的参数，防止无意代码的修改，减少bug
+ * 3、给读代码的人传递有用的信息，声明一个参数，是为了告诉用户这个参数的应用目的；
+ * 4、编译器可以对const进行类型安全检查（所谓的类型安全检查，能将程序集间彼此隔离开来，这
+ * 种隔离能确保程序集彼此间不会产生负面影响，提高程序的可读性）；
+ * 5、可以节省空间，避免不必要的内存分配，因为编译器通常不为const常量分配内存空间，而是将它保存
+ * 在符号表中，这样就没有了存储于读内存的操作，使效率也得以提高；
+ *
+ * const 除了不能改变物理指针的特性，其他特性和 let 一样
+ *
+ * let => 用来声明变量，并且会在当前作用域形成 代码块
+ * {
+ *      let a = 1;
+ *  }
+ * console.log(a)  // 报错 a is not defined
+ */
+
+
 console.log('this is a node program');
 console.log(new Date());
 
@@ -35,7 +56,7 @@ console.log(path);*/
 //读取文件同步操作
 //必须先执行完readFile之后才能输出同步结束(没有过程)
 console.log("同步开始");
-let res1 = fs.readFileSync("./userinfo.json", "utf8");
+const res1 = fs.readFileSync("./userinfo.json", "utf8");
 console.log(res1);
 console.log("同步结束");
 
@@ -45,7 +66,7 @@ console.log("同步结束");
 //res(结果)
 //专门有一个进程给他执行
 console.log("异步开始");
-let res2 = fs.readFile("./userinfo.json", "utf8", function (err, res) {
+const res2 = fs.readFile("./userinfo.json", "utf8", function (err, res) {
     //如果有错误，抛出（相当于return）
     if(err) throw err;
 
