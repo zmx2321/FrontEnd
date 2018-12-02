@@ -1,11 +1,15 @@
 ﻿1、javascript的typeof返回哪些数据类型
 	undefined, string, boolean, number, Object, Function
 
-2、call和apply的区别
 
-3、页面价值速度，从哪几方面入手
+2、页面价值速度，从哪几方面入手
+1.减少css,js文件数量及大小（减少重复代码，代码的重复利用），压缩css，js代码
+2.图片的大小，加载icon使用雪碧图
+3.把css样式表放顶部，把js放页面底部
+4.减少http请求次数
+5.使用外部js和css
 
-4、状态码
+3、状态码
 	200 - 请求成功
 	301 - 资源（网页等）被永久转移到其它URL
 	403	- 服务器拒绝请求
