@@ -64,6 +64,5 @@ fs.readdir(myfiles, function (err, res) {
             console.log(res[item] + "文件追加成功！");
         }
     }
-
 });
 
