@@ -1,0 +1,26 @@
+安装mangodb，设置环境变量(bin)
+
+环境变量配置好之后，找一个用来存数据的盘符，通过文件夹url进入命令提示符，
+输入mongod启动服务，发现报错(D:\data\db\ not found)
+根据提示，在d盘新建data\db\
+
+再次启动mongodb
+
+不关闭，并在d盘另起命令提示符，输入mongo，表示开启一个mongodb的客户端
+
+
+
+打开webstrome => setting => Plugins => 搜索mongo => 右边install 
+
+
+
+
+show dbs
+
+use mydb
+
+db.stu.insert({name: 'www', age: 20})  //都是以json格式
+
+use mydb
+
+show tables
