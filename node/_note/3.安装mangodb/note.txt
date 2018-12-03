@@ -24,3 +24,6 @@ db.stu.insert({name: 'www', age: 20})  //都是以json格式
 use mydb
 
 show tables
+
+
+必须选中一张表，然后左上角标识亮起来的时候点一下，显示mongo shell
