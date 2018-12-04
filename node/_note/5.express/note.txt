@@ -1,0 +1,32 @@
+npm install express body-parser mongoose --save
+
+npm init
+
+(或者把node_modules、package、package-lock直接复制过来)
+package.json中，"main": "eg.js"为程序入口
+
+//加载模块
+const express = require("express");  //加载框架
+const  fs = require("fs");  //加载文件操作模块
+const http = require("http");  //加载http服务模块
+const md5 = require("md5");  //加载md5加密模块
+const mdb = require("mongoose");  //数据库连接以及数据处理模块
+
+//实例化方法，实例化express对象
+let app = express();
+
+//数据模型，所有数据库操作要以该模型通信
+let Schema = mdb.Schema;
+
+//定义一个数据模型类(Schema)
+
+//关联模型(数据表与模型关联)
+
+//查询所有数据
+
+//创建一个http服务(接收请求，发送请求)
+
+
+
+
+
