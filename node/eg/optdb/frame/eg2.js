@@ -28,6 +28,8 @@ const path = require("path");
  *  让我们更方便的操作页面中的效果，
  *  用于处理json，url，编码，text方法(文档)
  *
+ *  给了我们很多res的方法
+ *
  *  大部分用在url中
  */
 const bodyParser = require("body-parser");
@@ -36,8 +38,15 @@ const bodyParser = require("body-parser");
 let app = express();
 
 //实例使用中间件（方法）
-//有警告
-app.use(bodyParser());
+//有警告（bodyParser()构造器已经弃用）
+//app.use(bodyParser());
+
+//现在需要分别调用这些方法。
+//app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+
+//如果你还在收到警告urlencoded你需要用
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /**
  *  use路由(规定可以被用户请求到的文件夹)
@@ -75,6 +84,13 @@ app.post("/form", function (req, res) {
     //拿到了值，存到数据库
     res.send("数据已经成功录入到数据库中，完成注册<a href='/'>返回首页</a>");
 });
+
+app.use("/json", function (req, res) {
+    //拿到页面传过来的对象
+    let obj = { username: 'aa', password: '123456', usernickname: 'sss' };
+    //转成json(中间件的用法，给了我们很多res的方法)
+    res.json(obj);
+})
 
 //如果没有找到文件
 //或者app.use(function(){});

@@ -4,6 +4,7 @@
  *  环境安装：npm install express body-parser mongoose --save
  *           npm install md5 --save(当前文件夹)
  *           npm init(package.json)
+ *           webstrome安装mongodbPlus,express,mongoose,……
  *  启动数据库(设置路径mongod --dbpath d:\data\db => 启动 mongod)
  *  使用mongoose连接mongodb服务
  */
@@ -24,7 +25,7 @@ let Schema = mdb.Schema;
 //数据库连接
 //直接写function,报警告说缺少{useNewUrlParser: true}
 //用户url格式化
-let connect = mdb.connect("mongodb://localhost:27017/news",
+mdb.connect("mongodb://localhost:27017/news",
     {useNewUrlParser: true}, function (err, res) {
         if (err) throw err;
 
