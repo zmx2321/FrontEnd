@@ -83,5 +83,29 @@ usermodel.find({}, function (err, res) {
 usermodel.remove({"name": "c"}, function (err, res) {
     if (err) throw err;
 
-    console.log("数据删除成功！", res);
+    //res有两个返回值，n表示，为1的时候删除成功
+    //ok表示执行成功
+    if (res.n) {
+        console.log("数据删除成功！", res);
+    } else {
+        console.log("没有找到用户，删除失败！", res);
+    }
 });
+
+//数据更新(修改)
+//$代表系统方法
+//{multi: true, upsert: true}表示多条数据修改
+//multi（全部修改）、upsert（如果数据存在则跳过，去除条件）
+usermodel.update(
+    { "_id": "5c05c2bb51b19b72d0aa417b" },{
+        $set: { "name" : "tomeeee" }
+    },/*{multi: true, upsert: true},*/ function (err, res) {
+        if (err) throw err;
+
+        if (res.n) {
+            console.log("数据修改成功！", res);
+        } else {
+            console.log("数据不存在，修改失败！", res);
+        }
+    }
+);

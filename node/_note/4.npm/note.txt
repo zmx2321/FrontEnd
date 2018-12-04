@@ -45,3 +45,10 @@ mongo.connect(url, {useNewUrlParser: true}, function (err, db) {
 
 
 //加密的插件（npm install md5）
+
+
+
+
+
+
+npm下载的东西都在package.json里面
