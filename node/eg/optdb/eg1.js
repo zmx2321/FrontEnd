@@ -39,7 +39,7 @@ mongo.connect(url, {useNewUrlParser: true}, function (err, skdb) {
 //定义数据模型，定义的是一个类==数据库中表的模型一致
 //数据模型类
 //模型到后期不能动，后期增加，前面不能增加字段
-var userSchema = new Schema(
+let userSchema = new Schema(
     {
         "name": "string",
         "nickname": "string",
