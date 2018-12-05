@@ -43,10 +43,12 @@ let app = express();
 
 //现在需要分别调用这些方法。
 //app.use(bodyParser.urlencoded());
+//使用bodyParser
 app.use(bodyParser.json());
 
 //如果你还在收到警告urlencoded你需要用
-app.use(bodyParser.urlencoded({ extended: true }));
+//路由解码
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /**
  *  use路由(规定可以被用户请求到的文件夹)
@@ -65,6 +67,7 @@ app.use(express.static(path.join(__dirname, "tpl")));
 
 //关于我们
 app.use("/about", function (req, res) {
+    //发送一个模板文件
     res.sendFile(path.join(__dirname, "tpl", "about.html"));
 });
 
@@ -75,22 +78,27 @@ app.use("/list", function (req, res) {
 });
 
 //提交表单，路由（前端过来的请求action）
-app.post("/form", function (req, res) {
+app.post("/useradd", function (req, res) {
     //console.log(req);
 
     //获取到前端提交过来的表单数据 req.body
     console.log(req.body);
 
     //拿到了值，存到数据库
-    res.send("数据已经成功录入到数据库中，完成注册<a href='/'>返回首页</a>");
+    res.send("数据已经成功录入到数据库中，完成注册<a href='/json'>接口</a>");
 });
 
+//接口处理数据
 app.use("/json", function (req, res) {
     //拿到页面传过来的对象
     let obj = { username: 'aa', password: '123456', usernickname: 'sss' };
     //转成json(中间件的用法，给了我们很多res的方法)
     res.json(obj);
-})
+});
+
+app.use("/reg", function (req, res) {
+    res.sendFile(path.join(__dirname, "tpl", "reg.html"));
+});
 
 //如果没有找到文件
 //或者app.use(function(){});
