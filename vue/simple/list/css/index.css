@@ -1,0 +1,55 @@
+.container{
+    width: 800px;
+    height: 600px;
+    margin: 100px auto 0;
+    padding: 10px;
+    border: solid 1px #ccc;
+    overflow: auto;
+}
+
+.container li{
+    margin-bottom: 10px;
+}
+
+.container dl{
+    margin-top: 5px;
+}
+
+.container p{
+    font-size: 16px;
+}
+
+.text-red{
+    color: red;
+}
+
+.text-green{
+    color: green;
+}
+
+.mgtp{
+    margin-top: 20px;
+}
+
+.border{
+    border-style: dashed;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+.box{
+    width: 500px;
+    border: solid 1px #ccc;
+    padding: 10px;
+}
+
+.mgbym{
+    margin-bottom: 20px;
+}
+
+.marg{
+    margin: 20px 0;
+}
