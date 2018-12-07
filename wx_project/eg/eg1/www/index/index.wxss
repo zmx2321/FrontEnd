@@ -1,0 +1,12 @@
+page{
+  /* background: #efefef; */
+  color: #000;
+}
+
+text{
+  background: green;
+}
+
+view{
+  background: pink;
+}
