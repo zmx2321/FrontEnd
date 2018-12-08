@@ -1,1 +1,3 @@
-/* www/list/list.wxss */
+swiper{
+  background: #fff;
+}

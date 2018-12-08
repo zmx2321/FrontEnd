@@ -1,2 +1,32 @@
 <view class='f-tac'>块级标签</view>
 <text>行内标签</text>
+<view>
+  <text>{{ teacher }}</text>
+  <text>{{ student }}</text>
+  <text>{{ student[0] }}</text>
+  <!-- 
+    wx:for循环(节点是item)
+    警告没有wx:key(表单会用到)
+
+    block包装元素，block没有样式
+   -->
+  <block>
+    <view wx:for="{{student}}" wx:key>
+      <!-- 不输出ss,如果没有，全部输出 
+        else,输出ss可以给他添加特别样式
+
+        if else一次一次循环（每次循环都要经过一次判断）
+      -->
+      <text wx:if="{{item!='ss'}}">{{ index+1 }}、 {{ item }}</text>
+      <text wx:else class='txt-red'>rrr{{ index+1 }}、 {{ item }}</text>
+    </view>
+  </block>
+
+  <!-- 单向绑定，视图不会影响脚本 
+  bindtap触摸事件
+  -->
+  <!-- <input type='text' value='{{teacher}}' bindtap=''></input> -->
+
+  
+
+</view>

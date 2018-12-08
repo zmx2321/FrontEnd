@@ -5,6 +5,7 @@ page{
 
 text{
   background: green;
+  display: block;
 }
 
 view{

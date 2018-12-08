@@ -2,5 +2,30 @@
   "pages": [
     "www/index/index",
     "www/list/list"
-  ]
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffcc33",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "小程序",
+    "backgroundColor": "#999",
+    "backgroundTextStyle": "gray",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#fc0",
+    "selectedColor": "#f00",
+    "background": "#000",
+    "borderStyle":"black", 
+    "list": [{
+      "pagePath": "www/index/index",
+      "text": "首页",
+      "iconPath": "",
+      "selectedIconPath": ""
+    },{
+      "pagePath": "www/list/list",
+      "text": "列表",
+      "iconPath": "",
+      "selectedIconPath": ""
+    }]
+  }
 }

@@ -5,14 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    teacher: "tttt",
+    student: ["aa", "ss", "ff"],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //this指当前的data
+    console.log("123", this);
+    //改变数据
+    this.setData({
+      teacher: "zmx"
+    });
 
+    
   },
 
   /**

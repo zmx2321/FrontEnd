@@ -11,9 +11,23 @@ wxml中只有page，并不是html页面，支持window
 project.config.json  项目配置文件
 app.json项目入口
     pages（路由）在里面输入之后，自动新建模板，第一行是首页
+    window对当前界面的配置
+	navigationBarBackgroundColor头部背景颜色
+	navigationBarTextStyle头部字体颜色(只支持黑白)
+	navigationBarTitleText(头部标题)
+	backgroundColor（下拉刷新的背景颜色）
+	backgroundTextStyle(下拉刷新三个点的颜色(白色变某种颜色(默认灰色或者白色)))
+	enablePullDownRefresh(是否支持下拉刷新)
+
+如果颜色不显示，就是只有黑白两色
+
+tabBar底部导航条（最少2个）
+底部大小最好在80px
 
 app.wxss全局样式
 css可以外部导入，但不支持*zoom:1;星号
+
+index的json（当前页面改window）
     
 
 
@@ -38,4 +52,18 @@ AppData数据的单向绑定（脚本数据影响界面数据，界面数据不会影响脚本数据）
 rich-text(支持富文本标签)
 
 
+rem(1个rem在ipone6下代表一个字体的大小)14px=24rpx
 
+
+block就是为循环和判断准备的，告诉我们里面有多个标签（block没有样式）
+
+
+swiper()
+indicator-dots是否有点(boolean)
+默认字符串是true，必须使用data定义
+indicator-color点的颜色，或者使用{{}}数据绑定
+indicator-active-color选中效果颜色
+autoplay='{{true}}'，是否自动循环播放，默认5秒
+interval轮播间隔
+circular衔接运动{{true}}不回到第一个
+current='3'从第4个下标开始轮播

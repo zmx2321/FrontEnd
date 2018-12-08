@@ -1,2 +1,16 @@
-<!--www/list/list.wxml-->
-<text>www/list/list.wxml</text>
+<!-- 图片必须要上传到服务器才能获取，尽量用外网的链接 -->
+<image src=''></image>
+
+<!-- 滑动容器视图 -->
+<view>
+  <!-- 滑动容器 
+    滑到最后不再自动播放
+  -->
+  <swiper indicator-dots='{{isShow}}' indicator-color='{{skcolor}}' indicator-active-color='#f00' autoplay='{{skautoplay}}' interval='500' circular='{{true}}' current='{{num}}' bindchange='skchange'>
+    <swiper-item>a</swiper-item>
+    <swiper-item>b</swiper-item>
+    <swiper-item>c</swiper-item>
+    <swiper-item>d</swiper-item>
+  </swiper>
+  <text>{{num+1}}</text>
+</view>
