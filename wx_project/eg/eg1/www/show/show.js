@@ -1,44 +1,18 @@
-// www/index/index.js
+// www/show/show.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    nav: [
-      {
-        name: "首页",
-        url: "www/index/index"
-      }, {
-        name: "列表",
-        url: "www/list/list"
-      }, {
-        name: "展示",
-        url: "www/show/show"
-      }, {
-        name: "新闻",
-        url: "www/index/index"
-      }, {
-        name: "专题",
-        url: "www/index/index"
-      },
-    ],
-    teacher: "tttt",
-    student: ["aa", "ss", "ff"],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //this指当前的data
-    console.log("123", this);
-    //改变数据
-    this.setData({
-      teacher: "zmx"
-    });
 
-    
   },
 
   /**

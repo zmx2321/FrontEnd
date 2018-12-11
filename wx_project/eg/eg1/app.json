@@ -1,7 +1,8 @@
 {
   "pages": [
     "www/index/index",
-    "www/list/list"
+    "www/list/list",
+    "www/show/show"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffcc33",

@@ -26,7 +26,17 @@
   bindtap触摸事件
   -->
   <!-- <input type='text' value='{{teacher}}' bindtap=''></input> -->
+</view>
 
-  
-
+<view>
+  <!-- 底部导航不行(需要加switchTab) 
+  默认类型(navigate)
+  -->
+  <navigator open-type='switchTab' url='/www/list/list'>列表</navigator>
+  <navigator url='/www/show/show'>展示</navigator>
+  <!-- 重定向(替换)无法返回 -->
+  <navigator open-type='redirect' url='/www/show/show'>展示</navigator>
+  <view>首页</view>
+  <view>列表</view>
+  <view></view>
 </view>
