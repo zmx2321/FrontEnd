@@ -1,0 +1,12 @@
+<!-- 模板页(wxml) -->
+<template name="sk_nav">
+  <view>tpl njav</view>
+</template>
+<template name="sk_footer">
+  <view>tpl fotter</view>
+</template>
+
+<!-- 数据在模板上，引用的时候，不知道传的是什么数据，所以要用data传数据 -->
+<template name="sk_header">
+  <navigator url='/{{item.url}}' wx:for='{{nav}}' wx:key open-type='{{index<2?"switchTab":"navigate"}}'>{{item.name}}</navigator>
+</template>

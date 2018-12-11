@@ -40,3 +40,33 @@
   <view>列表</view>
   <view></view>
 </view>
+
+<!-- item指当前节点
+  index下标
+ -->
+<navigator url='/{{item.url}}' wx:for='{{nav}}' wx:key open-type='{{index<2?"switchTab":"navigate"}}'>{{item.name}}</navigator>
+
+<!-- 嵌套循环
+wx:for-item='it'自定义item
+wx:for-index='ind'自定义下标
+ -->
+
+
+ <view>
+  <!-- 超出以滚动的方式显示 -->
+  <scroll-view scroll-x>123</scroll-view>
+</view>
+
+
+
+<!-- 使用模板
+  找路径以根目录为主
+  data给组件传数据
+ -->
+<import src="/tpl/nav.wxml" />
+<template is="sk_nav"></template>
+
+<template is="sk_footer"></template>
+
+<!-- 把nav数组传到模板，然后模板再把数据渲染到页面 -->
+<template is="sk_header" data="{{nav}}"></template>

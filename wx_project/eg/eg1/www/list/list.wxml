@@ -14,3 +14,10 @@
   </swiper>
   <text>{{num+1}}</text>
 </view>
+
+
+<!-- 调用全局数据 -->
+<view>
+  <text> {{text1}} </text>
+</view>
+<view wx:for="{{stdInfo}}" wx:key>{{item.name}}</view>

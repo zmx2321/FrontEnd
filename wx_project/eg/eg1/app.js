@@ -27,5 +27,23 @@ App({
    */
   onError: function (msg) {
     console.log("4、错误抛出");
+  },
+
+  //定义全局数据
+  globaldata : {
+    stdInfo: [
+      {
+        name: "lostexin",
+        age: 21,
+        gender: "m",
+        title: "老子是魔法少女"
+      },
+      {
+        name: "afei",
+        age: 21,
+        gender: "m",
+        title: "邪王真眼"
+      }
+    ],
   }
 })

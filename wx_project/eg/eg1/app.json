@@ -1,7 +1,8 @@
 {
   "pages": [
-    "www/index/index",
     "www/list/list",
+    "www/index/index",
+    
     "www/show/show"
   ],
   "window": {

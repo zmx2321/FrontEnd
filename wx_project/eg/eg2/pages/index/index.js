@@ -1,57 +1,18 @@
-//调用全局方法(获取小程序实例)
-let app = getApp();
-
+// pages/index/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isShow: true,
-    skcolor: "000",
-    num: 2,
-    skautoplay: true,
-  },
 
-  //监听swiper
-  skchange: function(e){
-    //e表示元素
-    //console.log(this.data.num, e);
-
-    //获取当前显示的item
-    //console.log(e.detail.current);
-
-    //修改data属性
-    this.setData({
-      num: e.detail.current
-    });
-
-    // 如果到末尾
-    if (e.detail.current == 4){
-      this.setData({
-        skautoplay: true,
-      });
-    } else {
-      this.setData({
-        skautoplay: false,
-      });
-    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globaldata.stdInfo);
 
-    //获取到全局数据
-    this.setData({
-      stdInfo: app.globaldata.stdInfo
-    });
-
-    this.setData({
-      text1: "这是文本1"
-    });
   },
 
   /**

@@ -67,3 +67,10 @@ autoplay='{{true}}'，是否自动循环播放，默认5秒
 interval轮播间隔
 circular衔接运动{{true}}不回到第一个
 current='3'从第4个下标开始轮播
+
+
+
+<view>
+  <!-- 超出以滚动的方式显示 -->
+  <scroll-view scroll-x></scroll-view>
+</view>
