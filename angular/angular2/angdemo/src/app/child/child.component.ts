@@ -9,7 +9,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 // 建一个组件类
 // 我们这个组件类要继承一个父类，就是上面导入过来的OnInit类
 // 实现一个接口？
-export class ChildComponent implements OnInit{
+export class ChildComponent implements OnInit {
   // Input来获取我们传递过来的参数（需要上面导入）
   // 子组件定义了一个values值（app.component.html）
   // 用它来接收父组件的输入（data）

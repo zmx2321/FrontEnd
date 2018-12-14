@@ -7,19 +7,19 @@
  *  父类组件parent,子类组件childs
  */
 
-//引入Injectable
+// 引入Injectable
 import { Injectable } from '@angular/core';
 
-//创建一个Injectable装饰器
+// 创建一个Injectable装饰器
 @Injectable()
 
-//创建一个类
+// 创建一个类
 export class SharedService{
-	//创建一个属性和一个方法
-	list:string[] = [];
+  // 创建一个属性和一个方法
+  list: string[] = [];
 
-	//通过这个方法，往数组中追加元素
-	append(str:string){
-		this.list.push(str);
-	}
+  // 通过这个方法，往数组中追加元素
+  append(str: string) {
+    this.list.push(str);
+  }
 }
