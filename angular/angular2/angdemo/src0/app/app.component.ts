@@ -8,26 +8,26 @@
 // 从@angular/core(就是这里)引入Component装饰器
 import { Component } from '@angular/core';
 
-// 使用User类
+//使用User类
 import { User } from './classes/User';
 
-// 用UserService服务来获取数据
+//用UserService服务来获取数据
 import { UserService } from './services/user.service';
 
 @Component({
-  selector: 'app-root',  // 自定义标签
+  selector: 'app-root',  //自定义标签
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  // 供应者
-  // 用UserService服务来获取数据
-  // 声明这个组件的依赖
+  //供应者
+  //用UserService服务来获取数据
+  //声明这个组件的依赖
   providers: [UserService]
 })
-// 根组件类
+//根组件类
 export class AppComponent {
-  // 第一种注入依赖的方法
-  // 在组件中显示数据（User对象）
-  // 创建数据
+  //第一种注入依赖的方法
+  //在组件中显示数据（User对象）
+  //创建数据
   /*users:User[] = [
     //实例化User类
     //一般数据不在逻辑中
@@ -36,30 +36,30 @@ export class AppComponent {
     new User("王五", 32, "cc.qq.com")
   ];*/
 
-  // 第三种注入依赖的方法
-  // 声明一个users属性，同时这个属性含有User类实例的数组
+  //第三种注入依赖的方法
+  //声明一个users属性，同时这个属性含有User类实例的数组
   users: User[];
-  // 声明一个构造函数
-  // 一个私有属性，是UserService服务类的一个实例
-  constructor(private userService: UserService){
-    // 可以调用刚刚创建好的UserService类中的方法
-    // 来获取数据
-    // this.users刚刚创建的属性，调用类中的方法获取数据
+  //声明一个构造函数
+  //一个私有属性，是UserService服务类的一个实例
+  constructor(private userService:UserService){
+    //可以调用刚刚创建好的UserService类中的方法
+    //来获取数据
+    //this.users刚刚创建的属性，调用类中的方法获取数据
     this.users = userService.getUsers();
   }
 
   title = 'my first angdemo';
-  // app.component.html第二个组件模板写完之后，
-  // 在这里设置值[values]="data"(data属性的值就是数组)
-  // 这里没有给他设置数据类型，可以直接赋值
+  //app.component.html第二个组件模板写完之后，
+  //在这里设置值[values]="data"(data属性的值就是数组)
+  //这里没有给他设置数据类型，可以直接赋值
   data = [1, 2, 3];
-  // 写第二个组件的方法(参数是一个下标，那边是$event，这里可以直接改成index)
+  //写第二个组件的方法(参数是一个下标，那边是$event，这里可以直接改成index)
   getChildEvent(index){
     console.log(index);
-    // 删除当前下标值(前面一个参数写下标，后面一个参数写删除多少个元素)
-    // data数组，根据数组下标删除数组的值
+    //删除当前下标值(前面一个参数写下标，后面一个参数写删除多少个元素)
+    //data数组，根据数组下标删除数组的值
     this.data.splice(index, 1);
-  }  // 之后在child.component.ts中写（先写模板）
+  }  //之后在child.component.ts中写（先写模板）
 }
 
 
