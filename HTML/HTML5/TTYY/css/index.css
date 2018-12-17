@@ -1,0 +1,112 @@
+/*== common ==*/
+.container{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+.p2_txt dt{
+	font-weight: bold;
+}
+
+.p2_btn button.iosbtn::before, .p2_btn button.andrbtn::before{
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 15px;
+    left: 4px;
+    top: 45%;
+    transform: translateY(-50%);
+    overflow: hidden;
+    
+}
+
+.p2_btn button.iosbtn::before{
+	background: url(../images/ios.png) top no-repeat;
+	background-size: 100% 100%;
+}
+
+.p2_btn button.andrbtn::before{
+	background: url(../images/android.png) top no-repeat;
+	background-size: 100% 100%;
+}
+
+/*== 移动端 ==*/
+.container{
+	
+}
+
+.part_1{
+	width: 100%;
+    height: 26%;
+	background: #fff;
+}
+
+.p1_img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    width: 136px;
+    height: 120px;
+}
+
+.part_2{
+	width: 100%;
+	height: 37%;
+	background: #EDEDED;
+}
+
+.p2_txt{
+    padding: 16px 0;
+    text-align: center;
+}
+
+.p2_txt dt{
+	margin: 10px 0;
+	font-size: 16px;
+}
+
+.p2_txt dd{
+	height: 22px;
+	line-height: 22px;
+	font-size: 14px;
+}
+
+.p2_btn{
+	height: 45px;
+}
+
+.p2_btn ul{
+	display: flex;
+}
+
+.p2_btn li{
+	flex: 1;
+	text-align: center;
+}
+
+.p2_btn button{
+    padding: 10px 20px;
+    background: #FE9402;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.part_3{
+	width: 100%;
+	height: 37%;
+}
+
+.p3_t_img{
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+}
+
+/*== @media(PC端) ==*/
+@media screen and (min-width: 900px) {	/* 当设备大于900px的时候 */
+    body {
+        background-color:lightblue;
+    }
+}
