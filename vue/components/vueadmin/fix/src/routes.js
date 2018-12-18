@@ -8,10 +8,10 @@ import DataManage from './views/manage/data_manage.vue'
 import OperateManage from './views/manage/operate_manage.vue'
 import AccountManage from './views/manage/account_manage.vue'
 
-// import Test from './views/test.vue'
+import Test from './views/test.vue'
 
 import Main from './views/Main.vue'
-import Table from './views/nav1/Table.vue'
+// import Table from './views/nav1/Table.vue'
 import Form from './views/nav1/Form.vue'
 import user from './views/nav1/user.vue'
 
@@ -80,16 +80,16 @@ let routes = [
     },
 
     //test
-    // {
-    //     path: '/',
-    //     component: Home,
-    //     name: '',
-    //     iconCls: 'fa fa-address-card',//图标样式class
-    //     leaf: true,//只有一个节点
-    //     children: [
-    //         { path: '/test', component: Test, name: 'test' }
-    //     ]
-    // },
+    {
+        path: '/',
+        component: Home,
+        name: '',
+        iconCls: 'fa fa-address-card',//图标样式class
+        leaf: true,//只有一个节点
+        children: [
+            { path: '/test', component: Test, name: 'test' }
+        ]
+    },
 
     //{ path: '/main', component: Main },
     {
@@ -99,7 +99,7 @@ let routes = [
         iconCls: 'el-icon-message',//图标样式class
         children: [
             { path: '/main', component: Main, name: '主页', hidden: true },
-            { path: '/table', component: Table, name: 'Table' },
+            // { path: '/table', component: Table, name: 'Table' },
             { path: '/form', component: Form, name: 'Form' },
             { path: '/user', component: user, name: '列表' },
         ]

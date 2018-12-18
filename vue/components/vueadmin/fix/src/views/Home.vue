@@ -43,11 +43,11 @@
 							</ul>
 						</template>
 						<template v-else>
-							<li class="el-submenu">
-								<div class="el-submenu__title el-menu-item" style="padding-left: 20px;height: 56px;line-height: 56px;padding: 0 20px;" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)">
+							<ul class="el-submenu">
+								<li class="el-submenu__title el-menu-item" :class="$route.path==item.children[0].path?'is-active':''" @click="$router.push(item.children[0].path)">
 									<i :class="item.iconCls"></i>
-								</div>
-							</li>
+								</li>
+							</ul>
 						</template>
 					</li>
 				</ul>
@@ -98,10 +98,10 @@
 				console.log('submit!');
 			},
 			handleopen() {
-				console.log('handleopen');
+				//console.log('handleopen');
 			},
 			handleclose() {
-				console.log('handleclose');
+				//console.log('handleclose');
 			},
 			handleselect: function (a, b) {
 			},
@@ -225,10 +225,6 @@
 				.el-menu-vertical-demo{
 					width: initial !important;
 				}
-
-				// position: absolute;
-				// top: 0px;
-				// bottom: 0px;
 				ul{
 					//background: #f00;
 
@@ -238,6 +234,22 @@
 				}
 				.el-menu{
 					height: 100%;
+					.el-menu-item{
+						width: initial;
+					}
+					.el-submenu{
+						ul{
+							padding: 0;
+							overflow: hidden;
+							li{
+								padding: 0px 23px;
+								z-index: 999;
+							}
+						}
+						.el-submenu [class^=el-icon-] {
+							 margin-left: -4px;
+						 }
+					}
 				}
 				.collapsed{
 					width:60px;
