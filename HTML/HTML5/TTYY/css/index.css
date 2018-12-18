@@ -1,20 +1,61 @@
 /*== common ==*/
 .container{
-	position: fixed;
-	width: 100%;
-	height: 100%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.part{
+    width: 100%;
+}
+
+.part_1{
+    background: #fff;
+}
+
+.p1_img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+}
+
+.part_2{
+    background: #EDEDED;
+}
+
+.p2_txt{
+    width: 100%;
+    text-align: center;
 }
 
 .p2_txt dt{
-	font-weight: bold;
+    font-weight: bold;
+}
+
+.p2_btn ul{
+    display: flex;
+}
+
+.p2_btn li{
+    flex: 1;
+    text-align: center;
+}
+
+.p2_btn button{
+    background: #FE9402;
+    color: #fff;
+    font-size: 0.2rem;
+    border-radius: 0.14rem;
 }
 
 .p2_btn button.iosbtn::before, .p2_btn button.andrbtn::before{
     content: '';
     position: absolute;
-    width: 13px;
-    height: 15px;
-    left: 4px;
+    width: 0.26rem;
+    height: 0.32rem;
+    left: 0.3rem;
     top: 45%;
     transform: translateY(-50%);
     overflow: hidden;
@@ -22,91 +63,217 @@
 }
 
 .p2_btn button.iosbtn::before{
-	background: url(../images/ios.png) top no-repeat;
-	background-size: 100% 100%;
+    background: url(../images/ios.png) top no-repeat;
+    background-size: 100% 100%;
 }
 
 .p2_btn button.andrbtn::before{
-	background: url(../images/android.png) top no-repeat;
-	background-size: 100% 100%;
-}
-
-/*== 移动端 ==*/
-.container{
-	
-}
-
-.part_1{
-	width: 100%;
-    height: 26%;
-	background: #fff;
-}
-
-.p1_img{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-    width: 136px;
-    height: 120px;
-}
-
-.part_2{
-	width: 100%;
-	height: 37%;
-	background: #EDEDED;
-}
-
-.p2_txt{
-    padding: 16px 0;
-    text-align: center;
-}
-
-.p2_txt dt{
-	margin: 10px 0;
-	font-size: 16px;
-}
-
-.p2_txt dd{
-	height: 22px;
-	line-height: 22px;
-	font-size: 14px;
-}
-
-.p2_btn{
-	height: 45px;
-}
-
-.p2_btn ul{
-	display: flex;
-}
-
-.p2_btn li{
-	flex: 1;
-	text-align: center;
-}
-
-.p2_btn button{
-    padding: 10px 20px;
-    background: #FE9402;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.part_3{
-	width: 100%;
-	height: 37%;
+    background: url(../images/android.png) top no-repeat;
+    background-size: 100% 100%;
 }
 
 .p3_t_img{
-	width: 100px;
-	height: 100px;
-	overflow: hidden;
+    height: auto;
+}
+
+.p3_btm span{
+    display: block;
+    text-align: center;
+    color: #323333;
+}
+
+.btm_img{
+    height: auto;
+}
+
+/*== ÒÆ¶¯¶Ë ==*/
+.container{
+    
+}
+
+.part_1{
+    height: 26%;
+}
+
+.p1_img{
+    width: 2.8rem;
+}
+
+.part_2{
+    height: 37%;
+}
+
+.p2_txt{
+    height: 63%;
+    padding: 0.38rem 0 0.32rem 0;
+}
+
+.p2_txt dt{
+    margin: 0.1rem 0;
+    font-size: 0.32rem;
+}
+
+.p2_txt dd{
+    height: 0.42rem;
+    line-height: 0.42rem;
+    font-size: 0.28rem;
+}
+
+.p2_btn button.iosbtn::before, .p2_btn button.andrbtn::before{
+    width: 0.26rem;
+    height: 0.32rem;
+    left: 0.3rem;
+}
+
+.p2_btn button{
+    padding: 0.2rem 0.3rem 0.2rem 0.68rem;
+}
+
+.part_3{
+    height: 37%;
+}
+
+.p3_top{
+    height: 82%;
+}
+
+.p3_t_img{
+    width: 4.5rem;
+    margin: 0.5rem auto 0.42rem;
+}
+
+.p3_btm span{
+    font-size: 0.22rem;
+}
+
+.btm_img{
+    width: 3.2rem;
+    margin: 0.1rem auto 0;
+}
+
+/*== @media(ipad端) ==*/
+@media screen and (min-width: 768px) and (max-width: 900px) {   /* 当屏幕尺寸在768px-900px直接的时候 */
+    .part_1 {
+        height: 20%;
+    }
+
+    .p1_img{
+        width: 1.8rem;
+    }
+
+    .part_2 {
+        height: 40%;
+    }
+
+    .p2_txt {
+        padding: 0.18rem 0 0.4rem 0;
+    }
+
+    .p2_txt dt {
+        margin: 0.08rem 0;
+        font-size: 0.3rem;
+    }
+
+    .p2_txt dd {
+        height: 0.38rem;
+        line-height: 0.38rem;
+        font-size: 0.25rem;
+    }
+
+    .p2_btn button{
+        font-size: 0.25rem;
+    }
+
+    .part_3{
+        height: 40%;
+    }
+
+    .p3_t_img {
+        width: 3.8rem;
+        margin: 0.3rem auto 0;
+    }
 }
 
 /*== @media(PC端) ==*/
-@media screen and (min-width: 900px) {	/* 当设备大于900px的时候 */
-    body {
-        background-color:lightblue;
+@media screen and (min-width: 900px) {  /* 当屏幕尺寸大于900的时候 */
+    .container {
+        display: flex;
+    }
+
+    .part {
+        height: 100%;
+        flex: 1;
+    }
+
+    .p1_img{
+        width: 50%;
+    }
+
+    .p2_txt {
+        height: initial; 
+        padding: 250px 0 45px 0;
+    }
+
+    .p2_txt dt{
+        font-size: 0.22rem;
+    }
+
+    .p2_txt dd{
+        height: 55px;
+        line-height: 55px;
+        font-size: 30px;
+    }
+
+    .p2_btn ul{
+        flex-direction: column;
+    }
+
+    .p2_btn li:first-child{
+        margin-bottom: 15px;
+    }
+
+    .p2_btn button {
+        width: 281px;
+        font-size: 20px;
+        padding: 20px 20px 20px 35px;
+        border-radius: 7px;
+        transition: 0.3s linear;
+    }
+
+    .p2_btn button:hover{
+        background: #ce7b08;
+        transition: 0.3s linear;
+    }
+
+    .p2_btn button.iosbtn::before, .p2_btn button.andrbtn::before {
+        top: 50%;
+        width: 25px;
+        height: 30px;
+    }
+
+    .p2_btn button.iosbtn::before{
+        left: 63px;
+    }
+
+    .p2_btn button.andrbtn::before{
+        left: 42px;
+    }
+
+    .p3_top{
+        height: initial;
+    }
+
+    .p3_t_img {
+        width: 75%;
+        margin: 275px auto 50px;
+    }
+
+    .p3_btm span {
+        font-size: 18px;
+    }
+
+    .btm_img {
+        width: 45%;
+        margin: 20px auto 0;
     }
 }

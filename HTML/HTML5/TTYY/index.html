@@ -20,25 +20,23 @@
 	<!-- /part_1 -->
 
 	<!-- part_2 -->
-	<div class="part part_2">
+	<div class="part part_2 f-oh">
 		<div class="p2_txt f-oh">
 			<dl>
-				<dt>App简介</dt>
-				<dd>畅想全网VIP影视会员的APP</dd>
+    			<dd>一个天天影院APP</dd>
+				<dd>畅想全网VIP影视会员</dd>
 				<dd>无需下载多个视频APP</dd>
-				<dd>一个天天影院APP</dd>
 				<dd>覆盖全网VIP会员</dd>
-				<dd>VIP会员影视任意看</dd>
 				<dd>付费影视任意点</dd>
 			</dl>
 		</div>
 		<div class="p2_btn f-oh">
 			<ul>
 				<li>
-					<button class="iosbtn f-pr">ios版本下载</button>
+					<button class="iosbtn f-pr" onclick="location.href='https://www.baidu.com'">ios版本下载</button>
 				</li>
 				<li>
-					<button class="andrbtn f-pr">Android版本下载</button>
+					<button class="andrbtn f-pr" onclick="location.href='https://www.baidu.com'">Android版本下载</button>
 				</li>
 			</ul>
 		</div>
@@ -47,14 +45,14 @@
 
 	<!-- part_3 -->
 	<div class="part part_3 f-oh">
-		<div class="p3_top">
-			<div class="p3_t_img">
+		<div class="p3_top f-oh">
+			<div class="p3_t_img f-oh">
 				<img src="images/img_1.png" alt="">
 			</div>
 		</div>
 		<div class="p3_btm">
 			<span>天天影院，如影随形</span>
-			<div class="btm_img">
+			<div class="btm_img f-oh">
 				<img src="images/bottom.png" alt="">
 			</div>
 		</div>
@@ -62,5 +60,13 @@
 	<!-- /part_3 -->
 </div>
 <!-- body e -->
+
+<script>
+	//改变根元素font-size
+	document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+	window.addEventListener("resize",function(){
+		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+	},false);
+</script>
 </body>
 </html>
