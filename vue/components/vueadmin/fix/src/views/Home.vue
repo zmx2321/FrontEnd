@@ -81,7 +81,7 @@
 				collapsed:false,
 				sysUserName: '',
 				sysUserAvatar: '',
-				form: {
+				fmenuCollapsedorm: {
 					name: '',
 					region: '',
 					date1: '',
@@ -122,11 +122,11 @@
 			//折叠导航栏
 			collapse:function(){
 				this.collapsed=!this.collapsed;
-				console.log("132");
+				//console.log("132");
 			},
 			showMenu(i,status){
 				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
-				console.log(i);
+				//console.log(i);
 			}
 		},
 		mounted() {

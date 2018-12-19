@@ -1,0 +1,1026 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>导音教育</title>
+    <link href="./css/mini-class.css" rel="stylesheet">
+    <link href="./css/vue-toastr-2.min.css" rel="stylesheet">
+
+    <link href="https://cdn.bootcss.com/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet">
+
+    <style>
+        .graphical .graphical-size .paint-brush-size-4 {
+            width: 4px;
+            height: 4px;
+        }
+
+        .graphical .graphical-size .paint-brush-size-8 {
+            width: 8px;
+            height: 8px
+        }
+
+        .graphical .graphical-size .paint-brush-size-12 {
+            width: 12px;
+            height: 12px
+        }
+
+        .graphical .graphical-size span {
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        .edu-index-tips,  .edu-index-code {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .el-tabs__item:hover {
+            color: rgb(82, 183, 55) !important;
+            cursor: pointer;
+        }
+        .el-tabs__item.is-active {
+            color: rgb(82, 183, 55) !important;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app" style="display:none;" v-show="ready">
+    <div class="edu-index-body-container" v-if="status != 'live'">
+        <div class="edu-index-body">
+            <div class="edu-index-pop-ups" style="left:50%; top:10px; margin-left: -210px;transform:none;" v-if="status == 'createRoom'">
+                <div class="edu-index-logo">
+                    <img srcset="x" src="./css/img/logo.png" alt="" style="width: 50px; height: 50px;">
+                </div>
+
+                <!-- 输入直播课堂 s -->
+                <div class="edu-index-class-input">
+                    <ul>
+                        <li><input type="text" placeholder="请输入课堂名称" v-model='createInfo.conf_name' maxlength="12" /></li>
+                        <li><input type="text" placeholder="请输入你的昵称" v-model='createInfo.owner_nick' maxlength="12" /></li>
+                    </ul>
+                </div>
+                <!-- 输入直播课堂 e -->
+
+                <!-- 按钮 s -->
+                <div class="edu-index-button">
+                    <!-- 加入教室的按钮 s -->
+                    <div class="tc-15-rich-dialog-ft">
+                        <div class="tc-15-rich-dialog-ft-btn-wrap">
+                            <button class="tc-15-btn" v-on:click="createConf">加入</button>
+                            <button class="tc-15-btn weak" v-on:click="status='roomList'">取消</button>
+                        </div>
+                    </div>
+                    <!-- 加入教室的按钮 e -->
+                </div>
+                <!-- 按钮 e -->
+            </div>
+            <div class="edu-index-pop-ups" style="left:50%; top:10px; margin-left: -210px;transform:none;" v-if="status == 'joinRoom'">
+                <div class="edu-index-logo">
+                    <img srcset="" src="./css/img/logo.png" alt="" />
+                </div>
+
+                <!-- 输入直播课堂 s -->
+                <div class="edu-index-class-input">
+                    <ul>
+                        <li><input type="text" placeholder="请输入你的昵称" v-model='createInfo.owner_nick' maxlength="12" /></li>
+                    </ul>
+                </div>
+                <!-- 输入直播课堂 e -->
+
+                <!-- 按钮 s -->
+                <div class="edu-index-button">
+                    <!-- 加入教室的按钮 s -->
+                    <div class="tc-15-rich-dialog-ft">
+                        <div class="tc-15-rich-dialog-ft-btn-wrap">
+                            <button class="tc-15-btn" v-on:click="joinConf(conf_id, createInfo.owner_nick)">加入</button>
+                            <button class="tc-15-btn weak" v-on:click="status='roomList'">取消</button>
+                        </div>
+                    </div>
+                    <!-- 加入教室的按钮 e -->
+                </div>
+                <!-- 按钮 e -->
+            </div>
+            <div class="edu-index-pop-ups" style="left:50%; top:10px; margin-left: -210px;transform:none;" v-if="status == 'roomList'">
+                <div class="edu-index-logo">
+                    <img src="./css/img/logo.png" alt="" />
+                </div>
+
+                <!-- 加入课堂 s -->
+                <div class="edu-index-class-middle">
+                    <div class="edu-index-class-list" v-if="roomList.length > 0">
+                        <ul>
+                            <template v-for="item in roomList">
+                                <li :key="item.conf_id" v-on:click="setNick(item.conf_id, item.conf_name || (item.owner_nick + '的课堂'), item.owner, item)">
+                                    <span>{{item.conf_name || (item.owner_nick + '的课堂')}}</span><a href="javascript:;">加入</a>
+                                </li>
+                            </template>
+                            <!--<img src="css/img/logo.png" height="50" width="179"/>-->
+                        </ul>
+                    </div>
+                    <div class="edu-index-class-prompt" v-else>
+                        <p>暂时没有直播，请创建课堂</p>
+                    </div>
+                </div>
+
+                <div class="edu-index-button">
+                    <div class="tc-15-rich-dialog-ft">
+                        <div class="tc-15-rich-dialog-ft-btn-wrap">
+                            <button class="tc-15-btn" v-on:click="status='createRoom'">创建课堂</button>
+                            <button class="tc-15-btn weak" v-on:click="getRoomList(true)">刷新列表</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="edu-index-code">
+                    <img src="https://main.qcloudimg.com/raw/e2a3739fd21a3571140e6a28ed90b9ac.jpg" alt="导音教育" width="100">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="edu-header clearfix" v-if="status == 'live'">
+        <h1>
+            <img srcset="" src="./css/img/logo.png"
+                 alt="导音教育直播" style="margin-top: 10px;">
+        </h1>
+        <span style="color: #52B737;float: left; font-size: 24px; margin-left: 10px;">网上课堂</span>
+        <div class="edu-class-title" style="color: #000;">{{conf_name}}（ID:{{conf_id}}）</div>
+        <div class="edu-header-login">
+            <a href="javascript:;" style="color: #000;">{{createInfo.owner_nick}}</a>
+            <!--<a href="#js-code-tips" rel="modal:open">联系我们</a>-->
+            <a href="javascript:;" v-on:click="refresh" style="color: #000;"><img src="img/退出 (1).png" alt=""></a>
+        </div>
+    </div>
+    <div class="edu-container" v-if="status == 'live' && role == 'student'" style="">
+        <div class="edu-container-inner">
+            <div class="edu-main edu-main-student">
+                <div class="edu-main-inner edu-scroll">
+                    <!-- 内容快 start -->
+                    <div class="edu-area-main edu-scroll" style="background:#ccc;">
+                        <!--dialog-->
+                        <!--<div class="dialog" style="position: absolute; width: 100%; height: 500px; background: #e4e4e4; top: 0; left: 0; z-index: 10000;">-->
+                            <!--&lt;!&ndash;demo btn&ndash;&gt;-->
+                            <!--<button @click="toWhiteBoard()">初始化白板</button>-->
+                            <!--&lt;!&ndash;demo btn end&ndash;&gt;-->
+                            <!--&lt;!&ndash;白板&ndash;&gt;-->
+                            <!--<div class="edu-main-video">-->
+                                <!--<div class="edu-main-video-bd">-->
+                                    <!--<div class="edu-main-video-box">-->
+                                        <!--&lt;!&ndash; 播放器 start &ndash;&gt;-->
+                                        <!--<div class="edu-video-play">-->
+                                            <!--<div v-once style="width: 100%;height: 100%;position:absolute;top: 0; left: 0;z-index: 10;" id="sketch_pad2"></div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div>-->
+                                        <!--<button v-bind:class="paintCurrentPage == 0 ? 'disabled tc-15-btn' : 'tc-15-btn'" v-on:click="paintPrev">上一页</button>-->
+                                        <!--{{paintCurrentPage + 1}}/{{paintPageList.length}}-->
+                                        <!--<button v-bind:class="paintCurrentPage == (paintPageList.length - 1) ? 'disabled tc-15-btn' : 'tc-15-btn'"-->
+                                                <!--v-on:click="paintNext">下一页</button>-->
+                                        <!--<button class="tc-15-btn" v-on:click="paintAdd">新增一页</button>-->
+                                        <!--<button class="tc-15-btn" v-on:click="paintDelete">删除当前页</button>-->
+                                        <!--(两个箭头分别为：框选、点选。两个上传按钮分别为上传图片、上传PPT。)-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;白板end&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--dialog end-->
+                        <!-- title start -->
+                        <h2 class="edu-student-title">当前画面：<span>{{(conf_info.home_screen != 'whiteboard' && conf_info.home_screen != 'whiteboard1')? '老师端摄像头或者屏幕' : '画板'}}</span></h2>
+                        <!-- title end -->
+                        <div class="edu-member-list">
+                            <ul class="edu-member-list-inner edu-scroll">
+                                <template v-for="(item, index) in videoList">
+                                    <li class="edu-member-box" v-if="item.isOpen">
+                                        <!-- 互动人员图片 start -->
+                                        <div class="edu-member-img">
+                                            <video v-if="item.isMe" id="me" autoplay playsinline muted style="height:100%; width: 100%;"></video>
+                                            <video v-else v-bind:id="'video' + index" autoplay playsinline style="height:100%; width: 100%;"></video>
+                                        </div>
+                                        <!-- 互动人员图片 end -->
+                                        <!-- 互动信息 start -->
+                                        <div class="edu-member-body">
+                                            <div class="edu-member-body-info">
+                                                <span class="edu-member-name">{{item.isMe ? '我' : getUserNick(item.openId)}}</span>
+                                            </div>
+                                        </div>
+                                        <!-- 互动信息 end -->
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                        <!--tab1 摄像头 Start -->
+                        <div class="tab-panel edu-main-tab-video" style="display: block;">
+                            <div class="edu-main-video">
+                                <div class="edu-main-video-bd">
+                                    <div class="edu-main-video-box">
+                                        <!-- 播放器 start -->
+                                        <div class="edu-video-play">
+                                            <video id="video" autoplay playsinline v-show="conf_info.home_screen != 'whiteboard'" style="width: 100%;height: 100%;position:absolute;z-index: 20;"></video>
+                                            <div style="width: 100%;height: 100%;position:absolute;top: 0; left: 0;z-index: 11;background-color:black;"
+                                                 v-show="conf_info.home_screen != 'whiteboard'"></div>
+                                            <div style="width: 100%;height: 100%;position:absolute;top: 0; left: 0;z-index: 10;" id="sketch_pad"></div>
+                                        </div>
+                                        <!-- 播放器 end -->
+
+                                    </div>
+
+                                </div>
+                                <div class="edu-main-video-ft">
+                                    <div class="edu-col ">
+                                        <div v-if="studentStatus.mic || studentStatus.camera">
+                                            <button v-bind:class="paintCurrentPage == 0 ? 'disabled tc-15-btn' : 'tc-15-btn'" v-on:click="paintPrev">上一页</button>
+                                            {{paintCurrentPage + 1}}/{{paintPageList.length}}
+                                            <button v-bind:class="paintCurrentPage == (paintPageList.length - 1) ? 'disabled tc-15-btn' : 'tc-15-btn'"
+                                                    v-on:click="paintNext">下一页</button>
+                                            <button class="tc-15-btn" v-on:click="paintAdd">新增一页</button>
+                                            <button class="tc-15-btn" v-on:click="paintDelete">删除当前页</button>
+                                            (两个箭头分别为：框选、点选。两个上传按钮分别为上传图片、上传PPT。)
+                                        </div>
+
+                                        <ul class="bottom-bar">
+                                            <li><a href="###" style="font-size:14px;line-height: 20px;font-weight:bold;color:#52B737;">添加文档</a></li>
+                                            <li style="margin-left:40px;">
+                                                <a href="###"><img src="img/页 (2).png" alt=""></a>
+                                               <a href="###"> <img src="img/页 (3).png" alt=""></a>
+                                            </li>
+                                            <li  style="margin-left:40px;">
+                                                <a href="###"><img src="img/分页 上一页.png" alt=""></a>
+                                                <a href="###" style="color: rgb(82, 183, 55);line-height: 24px;">14/20</a>
+                                                <a href="###"><img src="img/分页 上一页 (1).png" alt=""></a>
+                                                
+                                            </li>
+                                            <li  style="margin-left:80px;"><a href="###"><img src="img/画笔.png" alt=""></a></li>
+                                            <li><a href="###"><img src="img/点选.png" alt=""></a></li>
+                                            <li><a href="###"><img src="img/橡皮擦.png" alt=""></a></li>
+                                            <li><a href="###"><img src="img/颜色选择.png" alt=""></a></li>
+                                            <li  style="margin-left:160px;"><a href="###"><img src="img/图形.png" alt=""></a></li>
+                                            <li><a href="###"><img src="img/框选.png" alt=""></a></li>
+                                            <li><a href="###"><img src="img/清除_画板 1@2x.png" alt=""></a></li>
+                                            <li  style=" margin-right:40px;float: right !important;">
+                                                <a href="###"><img src="img/撤销 (3).png" alt=""></a>
+                                                <a href="###"><img src="img/前进.png" alt=""></a></li>
+                                        </ul>
+
+
+
+
+                                        <!--请求发言被拒绝  加类名edu-not-allowed -->
+                                        <!--<a href="javascript:;" class="edu-head-btn edu-ft-btn" title="发言" v-on:click="applyPermission">发言</a>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edu-toolbar-box" v-if="studentStatus.mic || studentStatus.camera">
+                            <ul class="edu-toolbar-menu">
+                                <li class="tool-bgcolor">
+                                    <div class="choose-state" v-on:click="showOption(0)"><i class="tool" title="色板"><span v-bind:class="currentColor"></span></i></div>
+                                    <div class="choose-drop-down bgcolor-drop-down" style="display: block;" v-show="showOptions && showNum[0]">
+                                        <ul>
+                                            <li v-on:click="setPaintColor(7274495, 0)"><span class="bg-blue"></span></li>
+                                            <li v-on:click="setPaintColor(13369599, 1)"><span class="bg-green"></span></li>
+                                            <li v-on:click="setPaintColor(4288218111, 2)"><span class="bg-yellow"></span></li>
+                                            <li v-on:click="setPaintColor(4278255871, 3)"><span class="bg-red"></span></li>
+                                            <li v-on:click="setPaintColor(255, 4)"><span class="bg-black"></span></li>
+                                            <li v-on:click="setPaintColor(3435973887, 5)"><span class="bg-gray"></span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="paint-brush">
+                                    <div class="choose-state" v-on:click="showOption(1)"><i class="tool" title="画笔"></i></div>
+                                    <div class="choose-drop-down paint-brush-drop-down" style="display: block;" v-show="showOptions && showNum[1]">
+                                        <ul>
+                                            <li v-on:click="setPaintThin(50)"><span class="paint-brush-size-4"></span></li>
+                                            <li v-on:click="setPaintThin(100)"><span class="paint-brush-size-8"></span></li>
+                                            <li v-on:click="setPaintThin(150)"><span class="paint-brush-size-12"></span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="straight-line">
+                                    <div class="choose-state" v-on:click="setPaintType('graph-line')"><i class="tool" title="直线"></i></div>
+                                </li>
+                                <li class="graphical">
+                                    <div class="choose-state" v-on:click="showOption(2)"><i class="tool" title="图形"><span class="graphical-square-empty"></span></i></div>
+                                    <div class="choose-drop-down" style="display: block;" v-show="showOptions && showNum[2]">
+                                        <ul>
+                                            <li v-on:click="setPaintType('graph-rect')"><span class="graphical-square-empty"></span></li>
+                                            <li v-on:click="setPaintType('graph-rect-solid')"><span class="graphical-square-entity"></span></li>
+                                            <li v-on:click="setPaintType('graph-oval')"><span class="graphical-ellipse-empty"></span></li>
+                                            <li v-on:click="setPaintType('graph-oval-solid')"><span class="graphical-ellipse-entity"></span></li>
+                                        </ul>
+                                        <p class="graphical-title">描边厚度</p>
+                                        <ul class="graphical-size">
+                                            <li v-on:click="setPaintThin(50)"><span class="paint-brush-size-4"></span></li>
+                                            <li v-on:click="setPaintThin(100)"><span class="paint-brush-size-8"></span></li>
+                                            <li v-on:click="setPaintThin(150)"><span class="paint-brush-size-12"></span></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="setPaintType('eraser')"><i style="background-image: url(./css/img/eraser.png);background-position: 0;background-size: 28px 24px;"
+                                                                                                     class="tool" title="橡皮擦"></i></div>
+                                </li>
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="setPaintType('select')"><i class="tool" style="background-image: url(./css/img/rec_select.png);background-position: 0;background-size: 28px 24px;" title="框选"></i></div>
+                                </li>
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="setPaintType('pointselect')"><i class="tool" title="点选"></i></div>
+                                </li>
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="paint.clearDraws()"><i class="tool" style="background-image: url(./css/img/cleardraw.png);background-position: 0;background-size: 28px 24px;"
+                                                                                                 title="清空涂鸦(不清除背景图)"></i></div>
+                                </li>
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="paint.clear()"><i class="tool" style="background-image: url(./css/img/clear.png);background-position: 0;background-size: 28px 24px;"
+                                                                                            title="清空画板(包括背景图)"></i></div>
+                                </li>
+                                <!-- <li class="tool-path">
+                                    <div class="choose-state" v-on:click="paint.setBackgroundColor(paint.formatColor(paint.color))"><i class="tool" style="background-image: url(./css/img/fill.png);background-position: 0;background-size: 28px 24px;" title="设置背景色"></i></div>
+                                </li>
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="paint.setGlobalBackgroundColor(paint.formatColor(paint.color))"><i class="tool" style="background-image: url(./css/img/fill.png);background-position: 0;background-size: 28px 24px;" title="设置全局背景色"></i></div>
+                                </li> -->
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="revert"><i class="tool" style="background-image: url(./css/img/left.png);background-position: 0;background-size: 28px 24px;"
+                                                                                     title="撤销"></i></div>
+                                </li>
+                                <li class="tool-path">
+                                    <div class="choose-state" v-on:click="process"><i class="tool" style="background-image: url(./css/img/right.png);background-position: 0;background-size: 28px 24px;"
+                                                                                      title="前进"></i></div>
+                                </li>
+                                <!-- <li class="upload-picture">
+                                    <div class="choose-state" v-on:click="triggerUploadPic"><i class="tool" title="上传图片"></i></div>
+                                </li> -->
+                                <li class="upload-picture">
+                                    <div class="choose-state" v-on:click="triggerUpload"><i class="tool" title="上传PPT"></i></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--tab1 摄像头 End -->
+                    </div>
+                    <!-- 内容快 end -->
+
+                </div>
+
+                <div class="edu-right-sidebar">
+                    <div class="edu-right-chatroom" style="display: flex;flex-direction: column;overflow: hidden;">
+                        <div class="edu-member-list" id="eMD1">
+                            <ul class="edu-member-list-inner edu-scroll" id="emd1">
+                                    <template v-for="(item, index) in videoList">
+                                    <li class="edu-member-box" v-if="">
+                                        <!-- 互动人员图片 start -->
+                                        <div class="edu-member-img">
+                                            <video autoplay playsinline muted style="height:100%; width: 100%;"></video>
+                                            <video v-else v-bind:id="'video' + index" autoplay playsinline style="height:100%; width: 100%;"></video>
+                                        </div>
+                                        <!--<div class="edu-video-play">-->
+                                        <!--<div v-once style="width: 100%;height: 100%;position:absolute;top: 0; left: 0;z-index: 10;" id="sketch_pad2"></div>-->
+                                        <!--</div>-->
+                                        <!-- 互动人员图片 end -->
+                                        <!-- 互动信息 start -->
+                                        <!--<div class="edu-member-body">-->
+                                        <!--<div class="edu-member-body-info">-->
+                                        <!--<span class="edu-member-name">{{item.isMe ? '我' : getUserNick(item.openId)}}</span>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!-- 互动信息 end -->
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                        <!--<div class="edu-chatroom-notification">-->
+                            <!--<h4>消息</h4>-->
+                        <!--</div>-->
+                        <!--<div class="edu-chatroom-list" style="overflow-y: auto;flex-shrink: 1;flex-grow: 1;overflow-y: auto;">-->
+                            <!--<ul>-->
+                                <!--<template v-for="item in msgList">-->
+                                    <!--<li class="edu-chatroom-student" v-if="item.type == 'msg' && item.from != conf_owner"><span>{{getUserNick(item.from)}}：</span>{{item.content}}<li>-->
+                                    <!--<li class="edu-chatroom-admin" v-if="item.type == 'msg' && item.from == conf_owner"><span>{{getUserNick(item.from)}}(管理员)：</span>{{item.content}}</li>-->
+                                    <!--<li class="edu-chatroom-student" v-if="item.type == 'admin'">{{item.content}}<li>-->
+                                    <!--<li>-->
+                                        <!--<span>{{getUserNick(conf_owner)}}<em>（管理员）</em></span>-->
+                                        <!--<span class="edu-sidebar-list-state">主讲</span>-->
+                                    <!--</li>-->
+                                    <!--<ul class="edu-sidebar-list">-->
+                                        <!--<template v-for="item in conf_member">-->
+                                            <!--<li v-if="item.id != conf_owner && item.status != 0">-->
+                                                <!--<span>{{getUserNick(item.id)}}</span>-->
+                                                <!--<span class="edu-sidebar-list-state" v-if="item.camera">互动中</span>-->
+                                                <!--<div class="edu-sidebar-list-speak" v-if="item.camera" style="bottom: 0px;top:0px;">-->
+                                                    <!--<a href="javascript:;" v-on:click="forbid(item.id)">禁止发言</a>-->
+                                                <!--</div>-->
+                                                <!--<div class="edu-sidebar-list-speak" v-if="!item.camera" style="bottom: 0px;top:0px;">-->
+                                                    <!--<a href="javascript:;" v-on:click="invite(item.id)">邀请发言</a>-->
+                                                <!--</div>-->
+                                            <!--</li>-->
+                                        <!--</template>-->
+                                    <!--</ul>-->
+                                <!--</template>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--选项卡容器-->
+                        <div class="tabCon edu-chatroom-notification" style="height: 100%;">
+                            <!--选项卡-->
+                            <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+                                <el-tab-pane label="群消息" name="first">
+                                    <template v-for="item in msgList">
+                                        <li class="edu-chatroom-student" v-if="item.type == 'msg' && item.from != conf_owner"><span>{{getUserNick(item.from)}}：</span>{{item.content}}<li>
+                                        <li class="edu-chatroom-admin" v-if="item.type == 'msg' && item.from == conf_owner"><span>{{getUserNick(item.from)}}(管理员)：</span>{{item.content}}</li>
+                                        <li class="edu-chatroom-student" v-if="item.type == 'admin'">{{item.content}}<li>
+                                    </template>
+                                </el-tab-pane>
+                                <el-tab-pane label="私聊老师" name="second">
+
+                                </el-tab-pane>
+                                <el-tab-pane label="学生列表" name="third">
+                                    <ul class="edu-sidebar-list">
+
+                                        <!--<template>-->
+                                            <li>
+                                                <span>{{getUserNick(conf_owner)}}<em>（老师）</em></span>
+                                                <span class="edu-sidebar-list-state" v-if="!studentStatus.mic || !studentStatus.camera"></span>
+                                                <span class="edu-sidebar-list-state" v-if="studentStatus.mic || studentStatus.camera">互动中</span>
+                                                <!--<span class="edu-sidebar-list-state" v-if="conf_owner.camera">互动中</span>-->
+                                                <div class="edu-sidebar-list-speak" v-if="!studentStatus.mic || !studentStatus.camera" style="bottom: 0px;top:0px;">
+                                                    <a href="javascript:;" v-on:click="applyPermission">举手</a>
+                                                    <!--<a href="javascript:;" v-on:click="invite(conf_owner)">举手</a>-->
+                                                </div>
+                                                <div class="edu-sidebar-list-speak" v-if="studentStatus.mic || studentStatus.camera" style="bottom: 0px;top:0px;">
+                                                    <a href="javascript:;" v-on:click="forbid(conf_owner)">互动中</a>
+                                                </div>
+                                            </li>
+                                        <!--</template>-->
+
+                                        <template v-for="item in conf_member">
+                                            <li v-if="item.id != conf_owner && item.status != 0">
+                                                <span>{{getUserNick(item.id)}}</span>
+                                                <!--<span class="edu-sidebar-list-state" v-if="item.camera">互动中</span>-->
+                                                <!--<div class="edu-sidebar-list-speak" v-if="item.camera" style="bottom: 0px;top:0px;">-->
+                                                    <!--<a href="javascript:;" v-on:click="forbid(item.id)">禁止发言</a>-->
+                                                <!--</div>-->
+                                                <!--<div class="edu-sidebar-list-speak" v-if="!item.camera" style="bottom: 0px;top:0px;">-->
+                                                    <!--<a href="javascript:;" v-on:click="invite(item.id)">邀请发言</a>-->
+                                                <!--</div>-->
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </el-tab-pane>
+                                <!--<el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>-->
+                            </el-tabs>
+                            <!--选项卡结束-->
+                        </div>
+                        <!--选项卡容器结束-->
+                        <div class="edu-chatroom-speaking" style="position: static;flex-shrink: 0;">
+                            <textarea class="tc-15-input-textarea" placeholder="在此输入消息，点击发送" v-model="message"></textarea>
+                            <div class="edu-expression-icon">
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg(1)"><img src="img/禁止聊天.png" alt=""></a>
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg(1)"><img src="img/图片 (1).png" alt=""></a>
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg(1)"><img src="img/笑脸 (5).png" alt=""></a>
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg(1)"><img src="img/发送.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="edu-container" v-if="status == 'live' && role == 'teacher'">
+        <div class="edu-container-inner">
+            <div class="edu-main">
+                <div class="edu-main-inner edu-scroll">
+                    <div class="edu-area-main edu-scroll">
+                        <div class="tc-15-tab tc-15-tab-alt customize-tab-bg">
+                            <div role="tablist" class="tc-15-tablist edu-tab-tablist">
+                                <ul class="">
+                                    <li v-bind:class="{'tc-cur': tab == 'camera'}"><a href="javascript:;" v-on:click="switchTab('camera')">摄像头</a></li>
+                                    <li v-bind:class="{'tc-cur': tab == 'whiteboard'}"><a href="javascript:;" v-on:click="switchTab('whiteboard')">白板</a></li>
+                                    <li v-bind:class="{'tc-cur': tab == 'whiteboard1'}"><a href="javascript:;" v-on:click="switchTab('whiteboard1')">白板</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tab-panel edu-main-tab-video" v-show="tab == 'camera'">
+                            <div class="edu-main-video">
+                                <div class="edu-main-video-bd">
+                                    <div class="edu-main-video-box">
+                                        <!-- 播放器 start -->
+                                        <div class="edu-video-play">
+                                            <video id="video" autoplay playsinline muted style="width: 100%;height: 100%;position:absolute;z-index: 20;"></video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="edu-main-video-ft"><div class="edu-col ">
+                            <ul class="bottom-bar">
+                                <li>
+                                    <a href="###" style="font-size: 14px; line-height: 20px; font-weight: bold; color: rgb(82, 183, 55);">添加文档</a>
+                                </li>
+                                <li style="margin-left: 40px;">
+                                    <a href="###">
+                                        {{paintCurrentPage + 1}}
+                                        <img src="img/页 (2).png" alt="">
+                                    </a>
+                                    <a href="###">
+                                        {{paintPageList.length}}
+                                        <img src="img/页 (3).png" alt="">
+                                    </a>
+                                </li>
+                                <li style="margin-left: 40px;">
+                                    <a href="###" v-on:click="paintPrev">
+                                        <img src="img/分页 上一页.png" alt="">
+                                    </a>
+                                    <a href="###" style="color: rgb(82, 183, 55); line-height: 24px;">
+                                        {{paintCurrentPage + 1}}/{{paintPageList.length}}
+                                    </a>
+                                    <a href="###"v-on:click="paintNext">
+                                        <img src="img/分页 上一页 (1).png" alt="">
+                                    </a>
+                                </li>
+                                <li style="margin-left: 80px;">
+                                    <a href="###">
+                                        <ul>
+                                            <li v-on:click="setPaintThin(50)"><span class="paint-brush-size-4"></span></li>
+                                            <li v-on:click="setPaintThin(100)"><span class="paint-brush-size-8"></span></li>
+                                            <li v-on:click="setPaintThin(150)"><span class="paint-brush-size-12"></span></li>
+                                        </ul>
+                                        <img src="img/画笔.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="###">
+                                        <img src="img/点选.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="###">
+                                        <img src="img/橡皮擦.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="###">
+                                        <img src="img/颜色选择.png" alt="">
+                                    </a>
+                                </li>
+                                <li style="margin-left: 160px;">
+                                    <a href="###">
+                                        <img src="img/图形.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="###">
+                                        <img src="img/框选.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="###">
+                                        <img src="img/清除_画板 1@2x.png" alt="">
+                                    </a>
+                                </li>
+                                <li style="margin-right: 40px; float: right !important;">
+                                    <a href="###">
+                                        <img src="img/撤销 (3).png" alt="">
+                                    </a>
+                                    <a href="###">
+                                        <img src="img/前进.png" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+
+
+
+                        <div class="tab-panel edu-main-tab-video" v-show="tab == 'whiteboard' || tab == 'whiteboard1'">
+                            <div class="edu-main-video" v-show="tab == 'whiteboard'">
+                                <div class="edu-main-video-bd">
+                                    <div class="edu-main-video-box">
+                                        <!-- 播放器 start -->
+                                        <div class="edu-video-play">
+                                            <div v-once style="width: 100%;height: 100%;position:absolute;top: 0; left: 0;z-index: 10;" id="sketch_pad"></div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <button v-bind:class="paintCurrentPage == 0 ? 'disabled tc-15-btn' : 'tc-15-btn'" v-on:click="paintPrev">上一页</button>
+                                        {{paintCurrentPage + 1}}/{{paintPageList.length}}
+                                        <button v-bind:class="paintCurrentPage == (paintPageList.length - 1) ? 'disabled tc-15-btn' : 'tc-15-btn'"
+                                                v-on:click="paintNext">下一页</button>
+                                        <button class="tc-15-btn" v-on:click="paintAdd">新增一页</button>
+                                        <button class="tc-15-btn" v-on:click="paintDelete">删除当前页</button>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="edu-main-video-ft"><div class="edu-col ">
+                                    <ul class="bottom-bar">
+                                        <li>
+                                            <a href="###" style="font-size: 14px; line-height: 20px; font-weight: bold; color: rgb(82, 183, 55);" v-on:click="paintAdd">添加文档</a>
+                                        </li>
+                                        <li style="margin-left: 40px;">
+                                            <a href="###">
+                                                {{paintCurrentPage + 1}}
+                                                <img src="img/页 (2).png" alt="">
+                                            </a>
+                                            <a href="###">
+                                                {{paintPageList.length}}
+                                                <img src="img/页 (3).png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-left: 40px;">
+                                            <a href="###" v-on:click="paintPrev">
+                                                <img src="img/分页 上一页.png" alt="">
+                                            </a>
+                                            <a href="###" style="color: rgb(82, 183, 55); line-height: 24px;">
+                                                {{paintCurrentPage + 1}}/{{paintPageList.length}}
+                                            </a>
+                                            <a href="###"v-on:click="paintNext">
+                                                <img src="img/分页 上一页 (1).png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-left: 80px;">
+                                            <a href="###">
+                                                <ul>
+                                                    <li v-on:click="setPaintThin(50)"><span class="paint-brush-size-4"></span></li>
+                                                    <li v-on:click="setPaintThin(100)"><span class="paint-brush-size-8"></span></li>
+                                                    <li v-on:click="setPaintThin(150)"><span class="paint-brush-size-12"></span></li>
+                                                </ul>
+                                                <img src="img/画笔.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/点选.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/橡皮擦.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/颜色选择.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-left: 160px;">
+                                            <a href="###">
+                                                <img src="img/图形.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/框选.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/清除_画板 1@2x.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-right: 40px; float: right !important;">
+                                            <a href="###">
+                                                <img src="img/撤销 (3).png" alt="">
+                                            </a>
+                                            <a href="###">
+                                                <img src="img/前进.png" alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="edu-main-video" v-show="tab == 'whiteboard1'">
+                                <div class="edu-main-video-bd">
+                                    <div class="edu-main-video-box">
+                                        <!-- 播放器 start -->
+                                        <div class="edu-video-play">
+                                            <div v-once style="width: 100%;height: 100%;position:absolute;top: 0; left: 0;z-index: 10;" id="sketch_pad1"></div>
+                                            <!--<div v-once style="width:40%;height: 100%;position:absolute;top: 0; left: 320px;z-index: 10;" id="sketch_pad1"></div>-->
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <button v-bind:class="paintCurrentPage == 0 ? 'disabled tc-15-btn' : 'tc-15-btn'" v-on:click="paintPrev">上一页</button>
+                                        {{paintCurrentPage + 1}}/{{paintPageList.length}}
+                                        <button v-bind:class="paintCurrentPage == (paintPageList.length - 1) ? 'disabled tc-15-btn' : 'tc-15-btn'"
+                                                v-on:click="paintNext">下一页</button>
+                                        <button class="tc-15-btn" v-on:click="paintAdd">新增一页</button>
+                                        <button class="tc-15-btn" v-on:click="paintDelete">删除当前页</button>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="edu-main-video-ft"><div class="edu-col ">
+                                    <ul class="bottom-bar">
+                                        <li>
+                                            <a href="###" style="font-size: 14px; line-height: 20px; font-weight: bold; color: rgb(82, 183, 55);">添加文档</a>
+                                        </li>
+                                        <li style="margin-left: 40px;">
+                                            <a href="###">
+                                                {{paintCurrentPage + 1}}
+                                                <img src="img/页 (2).png" alt="">
+                                            </a>
+                                            <a href="###">
+                                                {{paintPageList.length}}
+                                                <img src="img/页 (3).png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-left: 40px;">
+                                            <a href="###" v-on:click="paintPrev">
+                                                <img src="img/分页 上一页.png" alt="">
+                                            </a>
+                                            <a href="###" style="color: rgb(82, 183, 55); line-height: 24px;">
+                                                {{paintCurrentPage + 1}}/{{paintPageList.length}}
+                                            </a>
+                                            <a href="###"v-on:click="paintNext">
+                                                <img src="img/分页 上一页 (1).png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-left: 80px;">
+                                            <a href="###">
+                                                <ul>
+                                                    <li v-on:click="setPaintThin(50)"><span class="paint-brush-size-4"></span></li>
+                                                    <li v-on:click="setPaintThin(100)"><span class="paint-brush-size-8"></span></li>
+                                                    <li v-on:click="setPaintThin(150)"><span class="paint-brush-size-12"></span></li>
+                                                </ul>
+                                                <img src="img/画笔.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/点选.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/橡皮擦.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/颜色选择.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-left: 160px;">
+                                            <a href="###">
+                                                <img src="img/图形.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/框选.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="###">
+                                                <img src="img/清除_画板 1@2x.png" alt="">
+                                            </a>
+                                        </li>
+                                        <li style="margin-right: 40px; float: right !important;">
+                                            <a href="###">
+                                                <img src="img/撤销 (3).png" alt="">
+                                            </a>
+                                            <a href="###">
+                                                <img src="img/前进.png" alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+                            <!--<div class="edu-toolbar-box">-->
+                                <!--<ul class="edu-toolbar-menu">-->
+                                    <!--<li class="tool-bgcolor">-->
+                                        <!--<div class="choose-state" v-on:click="showOption(0)"><i class="tool" title="色板"><span v-bind:class="currentColor"></span></i></div>-->
+                                        <!--<div class="choose-drop-down bgcolor-drop-down" style="display: block;" v-show="showOptions && showNum[0]">-->
+                                            <!--<ul>-->
+                                                <!--<li v-on:click="setPaintColor(7274495, 0)"><span class="bg-blue"></span></li>-->
+                                                <!--<li v-on:click="setPaintColor(13369599, 1)"><span class="bg-green"></span></li>-->
+                                                <!--<li v-on:click="setPaintColor(4288218111, 2)"><span class="bg-yellow"></span></li>-->
+                                                <!--<li v-on:click="setPaintColor(4278255871, 3)"><span class="bg-red"></span></li>-->
+                                                <!--<li v-on:click="setPaintColor(255, 4)"><span class="bg-black"></span></li>-->
+                                                <!--<li v-on:click="setPaintColor(3435973887, 5)"><span class="bg-gray"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li class="paint-brush">-->
+                                        <!--<div class="choose-state" v-on:click="showOption(1)"><i class="tool" title="画笔"></i></div>-->
+                                        <!--<div class="choose-drop-down paint-brush-drop-down" style="display: block;" v-show="showOptions && showNum[1]">-->
+                                            <!--<ul>-->
+                                                <!--<li v-on:click="setPaintThin(50)"><span class="paint-brush-size-4"></span></li>-->
+                                                <!--<li v-on:click="setPaintThin(100)"><span class="paint-brush-size-8"></span></li>-->
+                                                <!--<li v-on:click="setPaintThin(150)"><span class="paint-brush-size-12"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li class="straight-line">-->
+                                        <!--<div class="choose-state" v-on:click="setPaintType('graph-line')"><i class="tool" title="直线"></i></div>-->
+                                    <!--</li>-->
+                                    <!--<li class="graphical">-->
+                                        <!--<div class="choose-state" v-on:click="showOption(2)"><i class="tool" title="图形"><span class="graphical-square-empty"></span></i></div>-->
+                                        <!--<div class="choose-drop-down" style="display: block;" v-show="showOptions && showNum[2]">-->
+                                            <!--<ul>-->
+                                                <!--<li v-on:click="setPaintType('graph-rect')"><span class="graphical-square-empty"></span></li>-->
+                                                <!--<li v-on:click="setPaintType('graph-rect-solid')"><span class="graphical-square-entity"></span></li>-->
+                                                <!--<li v-on:click="setPaintType('graph-oval')"><span class="graphical-ellipse-empty"></span></li>-->
+                                                <!--<li v-on:click="setPaintType('graph-oval-solid')"><span class="graphical-ellipse-entity"></span></li>-->
+                                            <!--</ul>-->
+                                            <!--<p class="graphical-title">描边厚度</p>-->
+                                            <!--<ul class="graphical-size">-->
+                                                <!--<li v-on:click="setPaintThin(50)"><span class="paint-brush-size-4"></span></li>-->
+                                                <!--<li v-on:click="setPaintThin(100)"><span class="paint-brush-size-8"></span></li>-->
+                                                <!--<li v-on:click="setPaintThin(150)"><span class="paint-brush-size-12"></span></li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="setPaintType('eraser')"><i style="background-image: url(./css/img/eraser.png);background-position: 0;background-size: 28px 24px;"-->
+                                                                                                         <!--class="tool" title="橡皮擦"></i></div>-->
+                                    <!--</li>-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="setPaintType('select')"><i class="tool" style="background-image: url(./css/img/rec_select.png);background-position: 0;background-size: 28px 24px;" title="框选"></i></div>-->
+                                    <!--</li>-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="setPaintType('pointselect')"><i class="tool" title="点选"></i></div>-->
+                                    <!--</li>-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="paint.clearDraws()"><i class="tool" style="background-image: url(./css/img/cleardraw.png);background-position: 0;background-size: 28px 24px;"-->
+                                                                                                     <!--title="清空涂鸦(不清除背景图)"></i></div>-->
+                                    <!--</li>-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="paint.clear()"><i class="tool" style="background-image: url(./css/img/clear.png);background-position: 0;background-size: 28px 24px;"-->
+                                                                                                <!--title="清空画板(包括背景图)"></i></div>-->
+                                    <!--</li>-->
+                                    <!--&lt;!&ndash; <li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="paint.setBackgroundColor(paint.formatColor(paint.color))"><i class="tool" style="background-image: url(./css/img/fill.png);background-position: 0;background-size: 28px 24px;" title="设置背景色"></i></div>-->
+                                    <!--</li>-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="paint.setGlobalBackgroundColor(paint.formatColor(paint.color))"><i class="tool" style="background-image: url(./css/img/fill.png);background-position: 0;background-size: 28px 24px;" title="设置全局背景色"></i></div>-->
+                                    <!--</li> &ndash;&gt;-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="revert"><i class="tool" style="background-image: url(./css/img/left.png);background-position: 0;background-size: 28px 24px;"-->
+                                                                                         <!--title="撤销"></i></div>-->
+                                    <!--</li>-->
+                                    <!--<li class="tool-path">-->
+                                        <!--<div class="choose-state" v-on:click="process"><i class="tool" style="background-image: url(./css/img/right.png);background-position: 0;background-size: 28px 24px;"-->
+                                                                                          <!--title="前进"></i></div>-->
+                                    <!--</li>-->
+                                    <!--&lt;!&ndash; <li class="upload-picture">-->
+                                        <!--<div class="choose-state" v-on:click="triggerUploadPic"><i class="tool" title="上传图片"></i></div>-->
+                                    <!--</li> &ndash;&gt;-->
+                                    <!--<li class="upload-picture">-->
+                                        <!--<div class="choose-state" v-on:click="triggerUpload"><i class="tool" title="上传PPT"></i></div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!-- <input id="imageSelector" type="file" accept="image/*" style="display: none;" v-on:change="uploadPic"> -->
+                            <input id="fileSelector" type="file" accept="image/*,application/pdf, application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                                   style="display: none;" v-on:change="upload">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-right-sidebar">
+                    <div class="edu-right-chatroom" style="display: flex;flex-direction: column;overflow: hidden;">
+                        <div class="" id="eMD2">
+                            <ul class="" id="emd2" style="display: none;">
+                                <template v-for="(item, index) in videoList">
+                                    <li class="" v-if="item.isOpen">
+                                        <!-- 互动人员图片 start -->
+                                        <div class="edu-member-img">
+                                            <video v-if="item.isMe" id="me" autoplay playsinline muted style="height:100%; width: 100%;"></video>
+                                            <video v-else v-bind:id="'video' + index" autoplay playsinline style="height:100%; width: 100%;"></video>
+                                        </div>
+
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+
+                        <div class="tabCon edu-chatroom-notification" style="height: 100%;">
+                            <!--选项卡-->
+                            <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+                                <el-tab-pane label="群消息" name="first">
+                                    <template v-for="item in msgList">
+                                    <li class="edu-chatroom-student" v-if="item.type == 'msg' && item.from != conf_owner"><span>{{getUserNick(item.from)}}：</span>{{item.content}}<li>
+                                    <li class="edu-chatroom-admin" v-if="item.type == 'msg' && item.from == conf_owner"><span>{{getUserNick(item.from)}}(管理员)：</span>{{item.content}}</li>
+                                    <li class="edu-chatroom-student" v-if="item.type == 'admin'">{{item.content}}<li>
+                                    </template>
+                                </el-tab-pane>
+                                <el-tab-pane label="学生私信" name="second">
+                                        <ul>
+                                            <template v-for="item in conf_member">
+                                                <li v-if="item.id != conf_owner && item.status != 0">
+                                                    <span class="edu-sidebar-list-state" @click="getStudent(item.id)">{{getUserNick(item.id)}}</span>
+                                                </li>
+                                            </template>
+                                        </ul>
+
+                                </el-tab-pane>
+                                <el-tab-pane label="学生管理" name="third">
+                                    <ul class="edu-sidebar-list">
+                                        <li>
+                                        <span>{{getUserNick(conf_owner)}}<em>（老师）</em></span>
+                                        <span class="edu-sidebar-list-state">老师</span>
+                                        </li>
+                                        <template v-for="item in conf_member">
+                                        <li v-if="item.id != conf_owner && item.status != 0">
+                                        <span>{{getUserNick(item.id)}}</span>
+                                        <span class="edu-sidebar-list-state" v-if="item.camera">互动中</span>
+                                        <div class="edu-sidebar-list-speak" v-if="item.camera" style="bottom: 0px;top:0px;">
+                                        <a href="javascript:;" v-on:click="forbid(item.id)">    取消</a>
+                                        </div>
+                                        <div class="edu-sidebar-list-speak" v-if="!item.camera" style="bottom: 0px;top:0px;">
+                                        <a href="javascript:;" v-on:click="invite(item.id)">连麦</a>
+                                        </div>
+                                        </li>
+                                        </template>
+                                        </ul>
+                                </el-tab-pane>
+                                <!--<el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>-->
+                            </el-tabs>
+                            <!--选项卡结束-->
+                        </div>
+                        <div class="edu-chatroom-speaking" style="position: static;flex-shrink: 0;">
+                            <textarea class="tc-15-input-textarea" placeholder="在此输入消息，按回车键发送" v-model="message"></textarea>
+
+                            <div class="edu-expression-icon">
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg"><img src="img/禁止聊天.png" alt=""></a>
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg"><img src="img/图片 (1).png" alt=""></a>
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg"><img src="img/笑脸 (5).png" alt=""></a>
+                                <a href="javascript:void(0);" class="m weak" v-on:click="sendMsg"><img src="img/发送.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mask" style="position: absolute;height:100%;width:100%;left:0;top:0;background-color:black;z-index:0;opacity:0.5;"
+         v-show="showDialog">
+    </div>
+    <div class="tc-15-rich-dialog m" role="alertdialog" style="z-index:101;position: absolute;top: 50%;left: 50%;margin-top: -150px;margin-left: -225px;"
+         v-show="showDialog">
+        <div class="tc-15-rich-dialog-hd">
+            <button title="关闭" class="tc-15-btn-close">关闭</button>
+        </div>
+        <div class="tc-15-rich-dialog-bd">
+            <div class="tc-icon-box">
+                <div class="col">
+                    <h3 class="tc-dialog-title"style="color: #000;">{{dialogTitle}}</h3>
+                    <apstyle = "color: #000;">{{dialogContent}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="tc-15-rich-dialog-ft">
+            <div class="tc-15-rich-dialog-ft-btn-wrap">
+                <button class="tc-15-btn" v-on:click="dialogSubmit">确定</button>
+                <button class="tc-15-btn weak" v-on:click="dialogCancel">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WebRTC SDK -->
+<script src="https://sqimg.qq.com/expert_qq/webrtc/2.6/WebRTCAPI.min.js"></script>
+<!-- WebIM SDK -->
+<script src="https://sqimg.qq.com/expert_qq/webim/1.7.1/webim.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="./libs/vue.min.js"></script>
+<script src="./libs/axios.min.js"></script>
+<script src="./libs/md5.min.js"></script>
+<script src="./libs/vue-toastr-2.js"></script>
+<script src="./libs/webim.min.js"></script>
+<script src="https://sqimg.qq.com/expert_qq/edu/1.2.7/sketchpad_sdk.mini.js"></script>
+<!-- <script src="https://sqimg.qq.com/expert_qq/webrtc/2.0/WebRTCAPI.min.js"></script> -->
+<script src="./libs/WebRTCAPI.cloud.min.js"></script>
+<script src="./js/main.js?t=20180413"></script>
+<!-- element 引入样式 -->
+<link rel="stylesheet" href="css/index.css">
+<!-- element 引入组件库 -->
+<script src="js/index.js"></script>
+
+<script>
+    <!--hello world-->
+    var _mtac = {};
+    (function () {
+        var mta = document.createElement("script");
+        mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.2";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500611043");
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script>
+</body>
+
+</html>
