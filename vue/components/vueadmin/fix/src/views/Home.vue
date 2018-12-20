@@ -234,7 +234,7 @@
 				}
 				.el-menu{
 					height: 100%;
-					.el-menu-item{
+					.el-menu-item [class^=el-icon-]{
 						width: initial;
 					}
 					.el-submenu{
@@ -247,7 +247,7 @@
 							}
 						}
 						.el-submenu [class^=el-icon-] {
-							 margin-left: -4px;
+
 						 }
 					}
 				}

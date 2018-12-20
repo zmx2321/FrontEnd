@@ -1,4 +1,4 @@
-import babelpolyfill from 'babel-polyfill'
+// import babelpolyfill from 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
@@ -13,6 +13,9 @@ import routes from './routes'
 import Mock from './mock'
 Mock.bootstrap();
 import 'font-awesome/css/font-awesome.min.css'
+
+//引入自己的公共样式common.css
+import './assets/css/common.css'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)

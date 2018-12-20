@@ -3,7 +3,7 @@
         <!-- 按钮操作 -->
         <el-row>
             <el-form :inline="true">
-                <el-col class="toolbar" :span="24">
+                <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="2" class="mantit">设备</el-col>
                     <el-col :span="22">
                         <el-form-item>
@@ -20,11 +20,11 @@
                         </el-form-item>
                     </el-col>
                 </el-col>
-                <el-col class="toolbar" :span="24">
+                <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="2" class="mantit">柜口</el-col>
                     <el-col :span="22">
                         <el-form-item>
-                            <el-input placeholder="请输入单个特定柜口ID"></el-input>
+                            <el-input placeholder="请输入单个特定柜口ID" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="openCabinet">开启</el-button>
@@ -38,7 +38,7 @@
         </el-row>
 
         <!-- 设备列表 -->
-        <el-table class="device_list" :data="tableData" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
+        <el-table class="device_list" :data="deviceData" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column type="index" width="60"></el-table-column>
             <el-table-column prop="name" label="设备名称" width="950"></el-table-column>
@@ -51,6 +51,7 @@
                     <el-button @click="showQRCode" v-on:click="showQRCodeForm = true" type="text" size="small">显示设备的存取餐二维码</el-button>
                     <el-button @click="editPositionInfo" v-on:click="editPositionInfoForm = true" type="text" size="small">编辑位置信息</el-button>
                     <el-button @click="RemoteOpenCabinet" v-on:click="viewDeviceStatusForm = true" type="text" size="small">远程开柜</el-button>
+                    <el-button @click="delDevice" type="text" size="small">删除设备</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -61,22 +62,22 @@
         </el-dialog>
 
         <!-- 查看设备状态 -->
-        <el-dialog title="查看设备状态" :close-on-click-modal="false" :visible.sync="viewDeviceStatusForm">
+        <el-dialog title="查看设备状态" :close-on-click-modal="true" :visible.sync="viewDeviceStatusForm">
 
         </el-dialog>
 
         <!-- 查看设备通信状态 -->
-        <el-dialog title="查看设备通信状态" :close-on-click-modal="false" :visible.sync="viewDeviceCommunicationStatusForm">
+        <el-dialog title="查看设备通信状态" :close-on-click-modal="true" :visible.sync="viewDeviceCommunicationStatusForm">
 
         </el-dialog>
 
         <!-- 查看设备柜口状态 -->
-        <el-dialog title="查看设备柜口状态" :close-on-click-modal="false" :visible.sync="viewDeviceCabinetStatusForm">
+        <el-dialog title="查看设备柜口状态" :close-on-click-modal="true" :visible.sync="viewDeviceCabinetStatusForm">
 
         </el-dialog>
 
         <!-- 显示设备的存取餐二维码 -->
-        <el-dialog title="显示设备的存取餐二维码" :close-on-click-modal="false" :visible.sync="showQRCodeForm">
+        <el-dialog title="显示设备的存取餐二维码" :close-on-click-modal="true" :visible.sync="showQRCodeForm">
 
         </el-dialog>
 
@@ -86,7 +87,7 @@
         </el-dialog>
 
         <!-- 底部工具条 -->
-        <el-col :span="24" class="toolbar">
+        <el-col :span="24" class="toolbar bottip">
             <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
         </el-col>
     </section>
@@ -105,22 +106,14 @@
                 addDeviceForm: false,
 
                 //数据
-                tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
+                deviceData: [{
+                    name: '设备1',
                 }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
+                    name: '设备2',
                 }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
+                    name: '设备3',
                 }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
+                    name: '设备4',
                 }],
 
                 //查看设备状态
@@ -203,14 +196,24 @@
             //批量删除
             batchRemove: function () {
                 console.log("批量删除");
+            },
+
+            delDevice () {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    console.log("删除设备");
+                }).catch(() => {
+
+                });
             }
         },
     }
-
 </script>
 
 <style scoped>
     .toolbar{
+        padding: 10px 10px 0 10px;
         margin: 10px 0px;
     }
 
@@ -222,5 +225,9 @@
 
     .device_list{
         width: 100%;
+    }
+
+    .bottip{
+        padding: 10px;
     }
 </style>
