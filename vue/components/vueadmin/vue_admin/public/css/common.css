@@ -55,4 +55,39 @@
    layout
  ============================================================================ */
 /* 标题字体 */
-.title{font-size: 15px;font-weight: bold;color: #5e7382;}
+.title{
+    font-size: 15px;
+    font-weight: bold;
+    color: #5e7382;
+}
+
+.el-submenu [class^=fa] {
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+
+.el-menu-item [class^=fa] {
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+
+.toolbar {
+    background: #f2f2f2;
+    padding: 10px;
+    /*border: 1 px solid #dfe6ec;*/
+    margin: 10px 0px;
+}
+
+.el-form-item {
+    margin-bottom: 10px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all .2s ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+}

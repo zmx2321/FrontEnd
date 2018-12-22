@@ -6,3 +6,7 @@ vue3安装(npm install -g @vue/cli)
 https://blog.csdn.net/u012302552/article/details/81703202
 
 Vue CLI 3 和旧版使用了相同的 vue 命令，所以 Vue CLI 2 (vue-cli) 被覆盖了。如果你仍然需要使用旧版本的 vue init 功能，你可以全局安装一个桥接工具：(npm install -g @vue/cli-init)
+
+前后连通，安装concurrently
+
+安装nodemon，nodemon server.js 监听依赖热加载

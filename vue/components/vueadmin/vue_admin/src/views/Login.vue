@@ -1,3 +1,13 @@
+<!--<el-form @submit="newsubmit">-->
+    <!--<el-form-item size="large">-->
+        <!--<el-button type="primary" native-type="submit" >立即创建</el-button>-->
+    <!--</el-form-item>-->
+<!--</el-form>-->
+<!--解决办法：给submit加上 .native 修饰符-->
+
+<!--<el-form @submit.navite="newsubmit">-->
+
+
 <template>
     <div class="login">
         <section class="form_container">
@@ -52,7 +62,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.$axios.post("/api/admin/user/login", this.loginUser).then(res => {
-              console.log(res);
+            console.log(res);
             // 登录成功
             const { token } = res.data;
             localStorage.setItem("eleToken", token);
@@ -90,7 +100,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(../assets/bg.jpg) no-repeat center center;
+  background: url(../assets/images/bg.jpg) no-repeat center center;
   background-size: 100% 100%;
 }
 .form_container {

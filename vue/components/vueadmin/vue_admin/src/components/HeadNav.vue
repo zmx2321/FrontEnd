@@ -3,19 +3,17 @@
         <el-row>
             <el-col :span="6" class='logo-container'>
                 <img src="../assets/logo.png" class='logo' alt="">
-                <span class='title'>米修在线后台管理系统</span>
+                <span class='title'>城驿通后台管理系统</span>
             </el-col>
             <el-col :span='6' class="user">
                 <div class="userinfo">
-                    <img :src="user.avatar" class='avatar' alt="">
-                     <div class='welcome'>
+                    <img src="../assets/images/portrait.png" class='avatar' alt="">
+                    <div class='welcome'>
                         <p class='name comename'>欢迎</p>
-                        <p class='name avatarname'>{{user.name}}</p>
+                        <p class='name avatarname'>aa</p>
                     </div>
                     <span class='username'>
-                        <el-dropdown
-                                trigger="click"
-                                @command='setDialogInfo'>
+                        <el-dropdown trigger="click" @command='setDialogInfo'>
                             <span class="el-dropdown-link">
                                 <i class="el-icon-caret-bottom el-icon--right"></i>
                             </span>
@@ -35,9 +33,10 @@
 <script>
 export default {
   name: "head-nav",
+
   computed: {
     user() {
-      return this.$store.getters.user;
+      // return this.$store.getters.user;
     }
   },
   methods: {
@@ -56,14 +55,15 @@ export default {
           break;
       }
     },
+    // 个人信息
     showInfoList() {
-      // 个人信息
       this.$router.push("/infoshow");
     },
+    // 退出
     logout() {
       // 清除token
-      localStorage.removeItem("eleToken");
-      this.$store.dispatch("clearCurrentState");
+      // localStorage.removeItem("eleToken");
+      // this.$store.dispatch("clearCurrentState");
 
       // 页面跳转
       this.$router.push("/login");
@@ -98,6 +98,7 @@ export default {
   font-size: 22px;
   font-family: "Microsoft YaHei";
   letter-spacing: 3px;
+  color: #fff;
 }
 .user {
   line-height: 60px;
