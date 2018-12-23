@@ -190,21 +190,26 @@
                 console.log("远程开柜");
             },
 
-            //选中批量删除按钮可以点击
+            //设备列表是否选中
             selsChange (sels) {
                 this.sels = sels;
             },
-
-            //批量删除
-            batchRemove: function () {
-                console.log("批量删除");
-            },
-
+            //删除设备
             delDevice () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
                     console.log("删除设备");
+                }).catch(() => {
+
+                });
+            },
+            //批量删除设备
+            batchRemove: function () {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    console.log("设备批量删除");
                 }).catch(() => {
 
                 });

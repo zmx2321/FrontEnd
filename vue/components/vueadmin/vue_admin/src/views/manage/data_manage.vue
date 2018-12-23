@@ -1,10 +1,7 @@
 <template>
     <!--
 
-    记录管理
-        查看所有订单数据
         使用筛选器筛选数据
-
         需要可以通过以下一些数据来筛选记录
             设备名称
             存件人手机号
@@ -15,10 +12,7 @@
             柜号
             尾号
 
-    记录状态
-        待取
-        已取出：用何种方式取出（& 被谁取出）
-        可以在记录页面直接开启记录相关的柜门
+
 
 
 
@@ -40,36 +34,36 @@
                 <span>记录管理</span>
             </el-col>
 
-            <el-row :gutter="10">
-                <el-col :span="6" class="title">
-                    <i class="el-icon-search"></i>
-                    <span>筛选条件</span>
-                </el-col>
-                <el-col :span="6">11</el-col>
-                <el-col :span="6">11</el-col>
-                <el-col :span="6">11</el-col>
-                <el-col :span="6">1</el-col>
-                <el-col :span="6">1</el-col>
-                <el-col :span="6">1</el-col>
-                <el-col :span="6">1</el-col>
-            </el-row>
+            <!--<el-row :gutter="10">-->
+                <!--<el-col :span="6" class="title">-->
+                    <!--<i class="el-icon-search"></i>-->
+                    <!--<span>筛选条件</span>-->
+                <!--</el-col>-->
+                <!--<el-col :span="6">11</el-col>-->
+                <!--<el-col :span="6">11</el-col>-->
+                <!--<el-col :span="6">11</el-col>-->
+                <!--<el-col :span="6">1</el-col>-->
+                <!--<el-col :span="6">1</el-col>-->
+                <!--<el-col :span="6">1</el-col>-->
+                <!--<el-col :span="6">1</el-col>-->
+            <!--</el-row>-->
 
-            <!-- 管理员列表 -->
-            <el-table class="admin_list" :data="adminData" border highlight-current-row v-loading="listLoading" @selection-change="adminSelsChange" height="220">
+            <!-- 记录列表 -->
+            <el-table class="record_list" :data="recordData" border highlight-current-row v-loading="listLoading" @selection-change="recordSelsChange" height="220">
                 <el-table-column type="selection" width="35"></el-table-column>
                 <el-table-column type="index" width="35"></el-table-column>
                 <el-table-column prop="name" label="管理员名称" width="1300"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="300">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small">查看</el-button>
-                        <el-button type="text" size="small">删除</el-button>
+                        <el-button type="text" size="small" v-on:click="ViewDataForm = true" @click="ViewData">查看</el-button>
+                        <el-button type="text" size="small" @click="delRecord">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
             <!-- 底部工具条 -->
             <el-col :span="24" class="toolbar bottip">
-                <el-button type="danger" @click="adminBatchRemove" :disabled="this.adminSels.length===0">批量删除</el-button>
+                <el-button type="danger" @click="adminBatchRemove" :disabled="this.recordSels.length===0">批量删除</el-button>
             </el-col>
         </el-row>
 
@@ -80,15 +74,43 @@
                 <span>账号管理</span>
             </el-col>
 
+            <el-form :inline="true">
+                <el-col :span="22">
+                    <el-form-item>
+                        <el-input placeholder="请输入手机号码" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary">根据手机号查找相关用户</el-button>
+                    </el-form-item>
+                </el-col>
+            </el-form>
+
+            <!--<el-col :span="22" class="btn_wrap">-->
+                <!--<el-button type="primary" @click="addUser" v-on:click="addUserForm = true">添加角色</el-button>-->
+            <!--</el-col>-->
+
+            <!--账号管理-->
+            <!--根据手机号查找相关用户-->
+            <!--骑手用户-->
+            <!--查看骑手账号的操作记录-->
+            <!--对客服认为异常的账号进行封禁，并发送通知信息给被封禁用户-->
+            <!--解禁账号-->
+            <!--账号审核（未来需求）-->
+            <!--用户账号会出现何种异常？有何种解决方法？-->
+
             <!-- 账号列表 -->
             <el-table class="user_list" :data="userData" border highlight-current-row v-loading="listLoading" @selection-change="userSelsChange" height="220">
                 <el-table-column type="selection" width="35"></el-table-column>
                 <el-table-column type="index" width="35"></el-table-column>
-                <el-table-column prop="name" label="账号名称" width="1300"></el-table-column>
+                <el-table-column prop="name" label="账号名称" width="100"></el-table-column>
+                <el-table-column prop="type" label="账号类型" width="100"></el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="300">
+                <el-table-column fixed="right" label="操作" width="260">
                     <template slot-scope="scope">
                         <el-button type="text" size="small">查看</el-button>
+                        <el-button type="text" size="small">封禁并通知</el-button>
+                        <el-button type="text" size="small">解禁</el-button>
+                        <el-button type="text" size="small">审核</el-button>
                         <el-button type="text" size="small">删除</el-button>
                     </template>
                 </el-table-column>
@@ -98,6 +120,16 @@
                 <el-button type="danger" @click="userBatchRemove" :disabled="this.userSels.length===0">批量删除</el-button>
             </el-col>
         </el-row>
+
+        <!-- 查看记录 -->
+        <el-dialog title="查看记录" :close-on-click-modal="false" :visible.sync="ViewDataForm">
+            <!--记录管理-->
+            <!--查看所有订单数据-->
+            <!--记录状态-->
+            <!--待取-->
+            <!--已取出：用何种方式取出（& 被谁取出）-->
+            <!--可以在记录页面直接开启记录相关的柜门-->
+        </el-dialog>
     </section>
 </template>
 
@@ -110,44 +142,49 @@
               listLoading: false,  //lodding动画
               dialogVisible: false,  //关闭提示
 
-              adminSels: [],  //管理员列表选中列
+              recordSels: [],  //管理员列表选中列
+              ViewDataForm: false,  //查看
 
               userSels: [],  //角色列表选中列
 
               //数据
-              adminData: [{
+              recordData: [{
                   date: '2016-05-02',
-                  name: '管理员1',
+                  name: '记录1',
                   address: '上海市普陀区金沙江路 1518 弄'
               }, {
                   date: '2016-05-04',
-                  name: '管理员2',
+                  name: '记录2',
                   address: '上海市普陀区金沙江路 1517 弄'
               }, {
                   date: '2016-05-01',
-                  name: '管理员3',
+                  name: '记录3',
                   address: '上海市普陀区金沙江路 1519 弄'
               }, {
                   date: '2016-05-03',
-                  name: '管理员4',
+                  name: '记录4',
                   address: '上海市普陀区金沙江路 1516 弄'
               }],
 
               userData: [{
                   date: '2016-05-02',
-                  name: '用户1',
+                  name: '账号1',
+                  type: '用户账号',
                   address: '上海市普陀区金沙江路 1518 弄'
               }, {
                   date: '2016-05-04',
-                  name: '用户2',
+                  name: '账号2',
+                  type: '骑手账号',
                   address: '上海市普陀区金沙江路 1517 弄'
               }, {
                   date: '2016-05-01',
-                  name: '用户3',
+                  name: '账号3',
+                  type: '用户账号',
                   address: '上海市普陀区金沙江路 1519 弄'
               }, {
                   date: '2016-05-03',
-                  name: '用户4',
+                  name: '账号4',
+                  type: '骑手账号',
                   address: '上海市普陀区金沙江路 1516 弄'
               }],
           }
@@ -162,17 +199,30 @@
                     .catch(_ => {});
             },
 
-            //管理员列表是否选中
-            adminSelsChange (adminSels) {
-                this.adminSels = adminSels;
+            //记录列表是否选中
+            recordSelsChange (recordSels) {
+                this.recordSels = recordSels;
             },
+            //查看记录
+            ViewData () {
+                console.log("查看记录");
+            },
+            //删除记录
+            delRecord () {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    console.log("删除记录");
+                }).catch(() => {
 
-            //管理员批量删除
+                });
+            },
+            //记录批量删除
             adminBatchRemove: function () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    console.log("管理员批量删除");
+                    console.log("记录批量删除");
                 }).catch(() => {
 
                 });
