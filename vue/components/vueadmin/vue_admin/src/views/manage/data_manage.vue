@@ -32,7 +32,7 @@
         用户账号会出现何种异常？有何种解决方法？
 -->
 
-    <section>
+    <section class="main_cont">
         <!-- 记录管理 -->
         <el-row class="toolbar bdr_radiu">
             <el-col :span="24" class="title">
@@ -79,6 +79,24 @@
                 <i class="el-icon-info"></i>
                 <span>账号管理</span>
             </el-col>
+
+            <!-- 账号列表 -->
+            <el-table class="user_list" :data="userData" border highlight-current-row v-loading="listLoading" @selection-change="userSelsChange" height="220">
+                <el-table-column type="selection" width="35"></el-table-column>
+                <el-table-column type="index" width="35"></el-table-column>
+                <el-table-column prop="name" label="账号名称" width="1300"></el-table-column>
+
+                <el-table-column fixed="right" label="操作" width="300">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small">查看</el-button>
+                        <el-button type="text" size="small">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <!-- 底部工具条 -->
+            <el-col :span="24" class="toolbar bottip">
+                <el-button type="danger" @click="userBatchRemove" :disabled="this.userSels.length===0">批量删除</el-button>
+            </el-col>
         </el-row>
     </section>
 </template>
@@ -93,6 +111,8 @@
               dialogVisible: false,  //关闭提示
 
               adminSels: [],  //管理员列表选中列
+
+              userSels: [],  //角色列表选中列
 
               //数据
               adminData: [{
@@ -110,6 +130,24 @@
               }, {
                   date: '2016-05-03',
                   name: '管理员4',
+                  address: '上海市普陀区金沙江路 1516 弄'
+              }],
+
+              userData: [{
+                  date: '2016-05-02',
+                  name: '用户1',
+                  address: '上海市普陀区金沙江路 1518 弄'
+              }, {
+                  date: '2016-05-04',
+                  name: '用户2',
+                  address: '上海市普陀区金沙江路 1517 弄'
+              }, {
+                  date: '2016-05-01',
+                  name: '用户3',
+                  address: '上海市普陀区金沙江路 1519 弄'
+              }, {
+                  date: '2016-05-03',
+                  name: '用户4',
                   address: '上海市普陀区金沙江路 1516 弄'
               }],
           }
@@ -139,6 +177,31 @@
 
                 });
             },
+
+            //账号列表是否选中
+            userSelsChange (userSels) {
+                this.userSels = userSels;
+            },
+            //删除账号
+            delUser () {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    console.log("删除角色");
+                }).catch(() => {
+
+                });
+            },
+            //账号批量删除
+            userBatchRemove: function () {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    console.log("账号批量删除");
+                }).catch(() => {
+
+                });
+            },
         }
     }
 </script>
@@ -146,5 +209,9 @@
 <style scoped>
     .title{
         margin-bottom: 10px;
+    }
+
+    .title i{
+        margin-right: 10px;
     }
 </style>

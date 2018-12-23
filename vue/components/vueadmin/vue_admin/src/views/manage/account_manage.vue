@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="main_cont">
         <!-- 管理员 -->
         <el-row class="toolbar bdr_radiu">
             <el-col :span="24" class="title">

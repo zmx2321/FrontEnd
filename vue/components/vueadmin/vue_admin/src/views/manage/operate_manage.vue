@@ -1,5 +1,8 @@
 <template>
-    <h2>运营管理</h2>
+    <section class="main_cont">
+        <h2>运营管理</h2>
+    </section>
+
 
     <!--
 

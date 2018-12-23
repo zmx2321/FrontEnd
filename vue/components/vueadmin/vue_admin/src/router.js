@@ -21,7 +21,7 @@ import AccountManage from './views/manage/account_manage.vue'
 //test
 // import SX from './views/sx/HelloDGTable.vue'
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
@@ -42,7 +42,9 @@ const router = new Router({
             { path: '/home', component: Home, name: 'home' },
             { path: '/infoshow', component: InfoShow, name: 'infoShow' },
             { path: '/foundlist', name: 'foundlist', component: FoundList },
+
             { path: '/test', name: 'test', component: Test },
+            // { path: '/sx', name: 'sx', component: SX },
 
             //设备管理(device manage)
             { path: '/device_manage', name: 'device_manage', component: DeviceManage },
@@ -73,7 +75,7 @@ const router = new Router({
         component: NotFound
     }
   ]
-})
+});
 
 // 添加路由守卫
 // router.beforeEach((to, from, next) => {

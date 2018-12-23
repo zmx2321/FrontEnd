@@ -12,6 +12,8 @@
       @filter-change='getFilter'
       @select-change="getselect"
       @page-change="getpage"></dg-table>
+
+    <!--<dg-table :data='data'></dg-table>-->
   </div>
 </template>
 
@@ -24,27 +26,27 @@ import {
   dofilter,
   cities,
   createTableDataByRandom
-} from '../assets/js/simulationapi.js'
+} from 'js/simulationapi.js'
 export default {
   methods: {
     getpage (page) {
-      this.curpage = page
+      this.curpage = page;
       let allfilter = {
         filters: this.filters,
         page
-      }
-      let res = dofilter(allfilter)
+      };
+      let res = dofilter(allfilter);
       this.data = res.data
     },
     getFilter (val) {
-      console.log(val)
+      console.log(val);
       let allfilter = {
         filters: val,
         page: 1
-      }
-      this.filters = val
-      let res = dofilter(allfilter)
-      this.data = res.data
+      };
+      this.filters = val;
+      let res = dofilter(allfilter);
+      this.data = res.data;
       this.pagenum = res.pagenum
     },
     getselect (val) {
@@ -52,8 +54,8 @@ export default {
     }
   },
   mounted () {
-    let res = createTableDataByRandom(587)
-    this.data = res.data
+    let res = createTableDataByRandom(587);
+    this.data = res.data;
     this.pagenum = res.pagenum
   },
   data () {
@@ -115,12 +117,12 @@ export default {
           label: '出生地',
           processdata: (row, prop) => {
             // console.log('process data:', row) // 返回整行 便于 处理一些依赖其他列的数据
-            var space = ''
-            if (!row.birthPlace) return '-'
-            var curobj = row.birthPlace
+            var space = '';
+            if (!row.birthPlace) return '-';
+            var curobj = row.birthPlace;
             while (1) {
               if (curobj) {
-                space += curobj.name
+                space += curobj.name;
                 curobj = curobj.child
               } else {
                 break

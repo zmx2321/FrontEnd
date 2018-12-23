@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="main_cont">
         <!-- 按钮操作 -->
         <el-row>
             <el-form :inline="true">
@@ -216,7 +216,7 @@
 <style scoped>
     .toolbar{
         padding: 10px 10px 0 10px;
-        margin: 10px 0px;
+        margin: 10px 0;
     }
 
     .mantit{

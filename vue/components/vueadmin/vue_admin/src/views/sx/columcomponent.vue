@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import { GENDER } from '../assets/js/datamap.js'
+import { GENDER } from './js/datamap.js'
 export default {
   props: ['row'],
   data () {
