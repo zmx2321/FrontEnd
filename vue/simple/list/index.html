@@ -13,6 +13,7 @@
 <div class="container">
 	<router-link to="/">首页</router-link>
 	<router-link to="/cate">栏目</router-link>
+	<router-link to="/test">test</router-link>
 
 	<!-- 路由模板加载区域 -->
 	<router-view></router-view>
@@ -53,6 +54,19 @@
 		</ul>
 	</div>
 </template>
+
+<!-- test模板 -->
+<!-- <template id="test">
+	<div class='mgtp box'>
+		<h2 class="mgbym">test</h2>
+		<ul>
+			<li v-for="item in apidata">
+				用v-bind添加参数
+				<router-link :to="'/list/'+item.fid">{{ item.name }}</router-link>
+			</li>
+		</ul>
+	</div>
+</template> -->
 
 <!-- js s -->
 <script src="js/lib/vue-2.5.16.js"></script>

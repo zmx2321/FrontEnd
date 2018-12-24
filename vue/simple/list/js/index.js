@@ -42,6 +42,7 @@ var skrouter = new VueRouter({
                         }
                     });*/
                     $.getJSON(this.apiurl, function(res){
+                        console.log(res);
                         that.apidata = res.content;
                     });
                 }
@@ -72,7 +73,7 @@ var skrouter = new VueRouter({
                         data: {},
                         dataType: 'json',
                         success: function(data, status){
-                            //console.log(data);
+                            console.log(data);
                             //console.log(data.content);
 
                             that.apidata = data.content;
@@ -117,12 +118,37 @@ var skrouter = new VueRouter({
                     this.$http.get(this.apiurl).then(res=>{
                         this.apidata = res.body.content;
                         console.log(this.apidata);
+                        console.log(res);
                     }, res=>{
                         console.log("error");
                     });
                 }
             }
-        }
+        },
+        {
+            path: "/test", 
+            component: {
+                // template:"#test", 
+                template:"<div>123</div>", 
+
+                data: function(){
+                    return {
+                        apidata: [], 
+                        apiurl: "http://10.10.10.202:8080/admin/user/login",
+                    }
+                },
+                //在创建的时候监听接口
+                created: function(){
+                    this.$http.post(this.apiurl).then(res=>{
+                        this.apidata = res.body.content;
+                        console.log(this.apidata);
+                        //console.log(res);
+                    }, res=>{
+                        console.log("error");
+                    });
+                }
+            }
+        },
     ]
 });
 

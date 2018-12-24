@@ -124,7 +124,9 @@ var subform = function(){
 
 
 $(function(){
-	checkboxSelect();  //复选框
-	checkForm();  //表单验证
-	oppup();  //弹出框
+	// checkboxSelect();  //复选框
+	// checkForm();  //表单验证
+	// oppup();  //弹出框
+	// 
+	subform();  //提交表单
 });

@@ -4,16 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
 <title>form验证</title>
-<link rel="stylesheet" type="text/css" href="css/style.css"/>
-<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
 </head>
 
 <body>
 <!-- body s -->
-<form method="post" action="">
+<form method="post" id="form">
     <div class="int">
+        <label for="phone">手机号:</label>
+        <input type="text" id="phone" name="phone">
+    </div>
+    <div class="int">
+        <label for="password">密码:</label>
+        <input type="text" id="password" name="password">
+    </div>
+    <div class="sub">
+        <!-- <button id="send">提交</button> -->
+        <input type="button" value="提交" id="send"/>
+    </div>
+    <!-- <div class="int">
         <label for="username">用户名:</label>
-        <!-- 为每个需要的元素添加required -->
         <input type="text" id="username" class="required" />
     </div>
     <div class="int">
@@ -26,13 +37,13 @@
     </div>
     <div class="sub">
         <input type="submit" value="提交" id="send"/><input type="reset" id="res"/>
-    </div>
+    </div> -->
 </form>
 <!-- body e -->
 
 <!-- js s -->
 <script src="js/lib/jquery1.8.3.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js/index2.js"></script>
 <!-- js e -->
 </body>
 </html>
