@@ -61,6 +61,10 @@
     color: #5e7382;
 }
 
+.title i{
+    margin-right: 10px;
+}
+
 .el-submenu [class^=fa] {
     vertical-align: baseline;
     margin-right: 10px;

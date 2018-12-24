@@ -10,7 +10,7 @@
                     <img src="../assets/images/portrait.png" class='avatar' alt="">
                     <div class='welcome'>
                         <p class='name comename'>欢迎</p>
-                        <p class='name avatarname'>aa</p>
+                        <p class='name avatarname'>{{ user_info.nickname }}</p>
                     </div>
                     <span class='username'>
                         <el-dropdown trigger="click" @command='setDialogInfo'>
@@ -32,43 +32,59 @@
 </template>
 <script>
 export default {
-  name: "head-nav",
+    name: "head-nav",
 
-  computed: {
-    user() {
-      // return this.$store.getters.user;
-    }
-  },
-  methods: {
-    setDialogInfo(cmditem) {
-      if (!cmditem) {
-        console.log("test");
-        this.$message("菜单选项缺少command属性");
-        return;
-      }
-      switch (cmditem) {
-        case "info":
-          this.showInfoList();
-          break;
-        case "logout":
-          this.logout();
-          break;
-      }
+    data () {
+        return {
+            user_info: {},
+        }
     },
-    // 个人信息
-    showInfoList() {
-      this.$router.push("/infoshow");
+    computed: {
+        user() {
+            // return this.$store.getters.user;
+        }
     },
-    // 退出
-    logout() {
-      // 清除token
-      // localStorage.removeItem("eleToken");
-      // this.$store.dispatch("clearCurrentState");
+    methods: {
+        getUser () {
+            this.axios.post('/api/admin/user/login', qs.stringify({phone:15988831425,password:123456})).then((res) => {
+                this.user_info = res.data.data;
+                console.log(this.user_info)
+            }).catch((err) => {
 
-      // 页面跳转
-      this.$router.push("/login");
+            });
+        },
+        setDialogInfo(cmditem) {
+          // if (!cmditem) {
+          //   console.log("test");
+          //   this.$message("菜单选项缺少command属性");
+          //   return;
+          // }
+          switch (cmditem) {
+            case "info":
+              this.showInfoList();
+              break;
+            case "logout":
+              this.logout();
+              break;
+          }
+        },
+        // 个人信息
+        showInfoList() {
+          this.$router.push("/infoshow");
+        },
+        // 退出
+        logout() {
+          // 清除token
+          // localStorage.removeItem("eleToken");
+          // this.$store.dispatch("clearCurrentState");
+
+          // 页面跳转
+          this.$router.push("/login");
+        }
+    },
+    created: function(){
+        this.getUser();
     }
-  }
 };
 </script>
 

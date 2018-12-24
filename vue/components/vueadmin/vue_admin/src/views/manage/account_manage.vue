@@ -241,8 +241,6 @@
 </script>
 
 <style scoped>
-
-
     .btn_wrap{
         margin: 15px 0;
     }

@@ -11,19 +11,6 @@
             时间 | 以半小时为最小调整单位
             柜号
             尾号
-
-
-
-
-
-    账号管理
-        根据手机号查找相关用户
-        骑手用户
-        查看骑手账号的操作记录
-        对客服认为异常的账号进行封禁，并发送通知信息给被封禁用户
-        解禁账号
-        账号审核（未来需求）
-        用户账号会出现何种异常？有何种解决方法？
 -->
 
     <section class="main_cont">
@@ -56,7 +43,7 @@
 
                 <el-table-column fixed="right" label="操作" width="300">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small" v-on:click="ViewDataForm = true" @click="ViewData">查看</el-button>
+                        <el-button type="text" size="small" v-on:click="viewDataForm = true" @click="viewData">查看</el-button>
                         <el-button type="text" size="small" @click="delRecord">删除</el-button>
                     </template>
                 </el-table-column>
@@ -85,17 +72,11 @@
                 </el-col>
             </el-form>
 
-            <!--<el-col :span="22" class="btn_wrap">-->
-                <!--<el-button type="primary" @click="addUser" v-on:click="addUserForm = true">添加角色</el-button>-->
-            <!--</el-col>-->
 
-            <!--账号管理-->
-            <!--根据手机号查找相关用户-->
-            <!--骑手用户-->
-            <!--查看骑手账号的操作记录-->
+
             <!--对客服认为异常的账号进行封禁，并发送通知信息给被封禁用户-->
             <!--解禁账号-->
-            <!--账号审核（未来需求）-->
+
             <!--用户账号会出现何种异常？有何种解决方法？-->
 
             <!-- 账号列表 -->
@@ -107,11 +88,11 @@
 
                 <el-table-column fixed="right" label="操作" width="260">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small">查看</el-button>
-                        <el-button type="text" size="small">封禁并通知</el-button>
-                        <el-button type="text" size="small">解禁</el-button>
-                        <el-button type="text" size="small">审核</el-button>
-                        <el-button type="text" size="small">删除</el-button>
+                        <el-button type="text" size="small" v-on:click="viewUserForm = true" @click="viewUser">查看</el-button>
+                        <el-button type="text" size="small" @click="prohibition">封禁并通知</el-button>
+                        <el-button type="text" size="small" @click="lifted">解禁</el-button>
+                        <el-button type="text" size="small" v-on:click="checkUserForm = true" @click="checkUser">审核</el-button>
+                        <el-button type="text" size="small" @click="delUser">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -122,13 +103,23 @@
         </el-row>
 
         <!-- 查看记录 -->
-        <el-dialog title="查看记录" :close-on-click-modal="false" :visible.sync="ViewDataForm">
+        <el-dialog title="查看记录" :close-on-click-modal="false" :visible.sync="viewDataForm">
             <!--记录管理-->
             <!--查看所有订单数据-->
             <!--记录状态-->
             <!--待取-->
             <!--已取出：用何种方式取出（& 被谁取出）-->
             <!--可以在记录页面直接开启记录相关的柜门-->
+        </el-dialog>
+
+        <!-- 查看账号 -->
+        <el-dialog title="查看账号" :close-on-click-modal="false" :visible.sync="viewUserForm">
+            <!--查看骑手账号的操作记录-->
+        </el-dialog>
+
+        <!-- 审核账号 -->
+        <el-dialog title="审核账号" :close-on-click-modal="false" :visible.sync="checkUserForm" :before-close="handleClose">
+
         </el-dialog>
     </section>
 </template>
@@ -143,9 +134,11 @@
               dialogVisible: false,  //关闭提示
 
               recordSels: [],  //管理员列表选中列
-              ViewDataForm: false,  //查看
+              viewDataForm: false,  //查看
 
-              userSels: [],  //角色列表选中列
+              userSels: [],  //账号列表选中列
+              viewUserForm: false,  //查看账号
+              checkUserForm: false,  //审核账号
 
               //数据
               recordData: [{
@@ -204,7 +197,7 @@
                 this.recordSels = recordSels;
             },
             //查看记录
-            ViewData () {
+            viewData () {
                 console.log("查看记录");
             },
             //删除记录
@@ -231,6 +224,23 @@
             //账号列表是否选中
             userSelsChange (userSels) {
                 this.userSels = userSels;
+            },
+            //查看账号
+            viewUser () {
+                console.log("查看账号");
+            },
+            //封禁并通知
+            prohibition () {
+                console.log("封禁并通知");
+            },
+            //解禁账号
+            lifted () {
+                console.log("解禁账号");
+            },
+            //审核账号
+            checkUser () {
+                //账号审核（未来需求）
+                console.log("审核账号");
             },
             //删除账号
             delUser () {
@@ -259,9 +269,5 @@
 <style scoped>
     .title{
         margin-bottom: 10px;
-    }
-
-    .title i{
-        margin-right: 10px;
     }
 </style>

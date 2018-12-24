@@ -24,7 +24,6 @@
 
 <script>
 
-// import jwt_decode from "jwt-decode";
 
 export default {
   name: "login",
@@ -47,53 +46,33 @@ export default {
       }
     };
   },
+
   methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-              this.$axios({
-                  method: 'post',
-                  url: '/api/admin/user/login',
-                  data: {
-                      phone: this.loginUser.phone,
-                      password: this.loginUser.password
-                  }
-              }).then(res => {
-                  console.log(res);
-              }).catch(err => {
-                  console.log('网络错误，不能访问', err);
-              });
-          } else {
-              console.log('error submit!!');
-              return false;
-          }
-        });
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.axios.post("/api/admin/user/login", qs.stringify(this.loginUser)).then(res => {
+            console.log(res);
+            // 登录成功
+            // const { token } = res.data;
+            // localStorage.setItem("eleToken", token);
+
+            // 解析token
+            // const decode = jwt_decode(token);
+
+            // 存储数据
+            // this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
+            // this.$store.dispatch("setUser", decode);
+
+            // 页面跳转
+            // this.$router.push("/index");
+          });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
-    // submitForm(formName) {
-    //   this.$refs[formName].validate(valid => {
-    //     if (valid) {
-    //       this.$axios.post("/api/admin/user/login", this.loginUser).then(res => {
-    //         console.log(res);
-    //         // 登录成功
-    //         const { token } = res.data;
-    //         localStorage.setItem("eleToken", token);
-    //
-    //         // 解析token
-    //         // const decode = jwt_decode(token);
-    //
-    //         // 存储数据
-    //         // this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
-    //         // this.$store.dispatch("setUser", decode);
-    //
-    //         // 页面跳转
-    //         this.$router.push("/index");
-    //       });
-    //     } else {
-    //       console.log("error submit!!");
-    //       return false;
-    //     }
-    //   });
-    // },
     // isEmpty(value) {
     //   return (
     //     value === undefined ||
@@ -102,7 +81,11 @@ export default {
     //     (typeof value === "string" && value.trim().length === 0)
     //   );
     // }
-  }
+  },
+    //预处理数据
+    created: function(){
+        //console.log($('body'));
+    },
 };
 </script>
 
