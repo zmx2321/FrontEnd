@@ -7,8 +7,8 @@ import Register from './views/Register.vue'
 import Login from './views/Login.vue'
 import NotFound from './views/NotFound.vue'
 import Home from './views/Home.vue'
-import InfoShow from './views/InfoShow.vue'
-import FoundList from './views/FoundList.vue'
+
+// import FoundList from './views/FoundList.vue'
 
 import Test from './views/test/Test.vue'
 
@@ -17,6 +17,9 @@ import DeviceManage from './views/manage/device_manage.vue'
 import DataManage from './views/manage/data_manage.vue'
 import OperateManage from './views/manage/operate_manage.vue'
 import AccountManage from './views/manage/account_manage.vue'
+
+import RichText from './views/test/RichText.vue'
+import InfoShow from './views/InfoShow.vue'
 
 //test
 // import SX from './views/sx/HelloDGTable.vue'
@@ -41,9 +44,13 @@ const router = new Router({
             { path: '', component: Home },
             { path: '/home', component: Home, name: 'home' },
             { path: '/infoshow', component: InfoShow, name: 'infoShow' },
-            { path: '/foundlist', name: 'foundlist', component: FoundList },
+            // { path: '/foundlist', name: 'foundlist', component: FoundList },
 
+            //test
             { path: '/test', name: 'test', component: Test },
+            // 富文本
+            { path: '/rich_text', name: 'rich_text', component: RichText },
+
             // { path: '/sx', name: 'sx', component: SX },
 
             //设备管理(device manage)

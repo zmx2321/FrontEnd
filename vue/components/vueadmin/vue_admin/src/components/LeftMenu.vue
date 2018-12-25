@@ -26,6 +26,13 @@
                             </router-link>
                         </el-submenu>
                     </template>
+
+                     <router-link to="/rich_text">
+                         <el-menu-item index="1">
+                             <i class="fa fa-margin fa-server"></i>
+                             <span slot="title">富文本</span>
+                         </el-menu-item>
+                     </router-link>
                  </el-menu>
              </el-col>
         </el-row>
@@ -57,18 +64,19 @@ export default {
               children: [{ path: "infoshow", name: "个人信息" }]
           },
 
-          {
-              icon: "fa-money",
-              name: "资金管理",
-              path: "fund",
-              children: [{ path: "foundlist", name: "资金流水" }]
-          },
+          // {
+          //     icon: "fa-money",
+          //     name: "资金管理",
+          //     path: "fund",
+          //     children: [{ path: "foundlist", name: "资金流水" }]
+          // },
           {
               icon: "fa-money",
               name: "test",
               path: "test",
               children: [
                   { path: "test", name: "test" },
+                  { path: '/rich_text', name: 'rich_text'},
                   // { path: "sx", name: "sx" },
               ]
           }

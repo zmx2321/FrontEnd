@@ -53,19 +53,6 @@ export default {
         if (valid) {
           this.axios.post("/api/admin/user/login", qs.stringify(this.loginUser)).then(res => {
             console.log(res);
-            // 登录成功
-            // const { token } = res.data;
-            // localStorage.setItem("eleToken", token);
-
-            // 解析token
-            // const decode = jwt_decode(token);
-
-            // 存储数据
-            // this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
-            // this.$store.dispatch("setUser", decode);
-
-            // 页面跳转
-            // this.$router.push("/index");
           });
         } else {
           console.log("error submit!!");

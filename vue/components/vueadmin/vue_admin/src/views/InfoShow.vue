@@ -10,7 +10,7 @@
                <div class="userinfo">
                   <div class="user-item">
                     <i class="fa fa-user"></i>
-                   <span>aa</span>
+                   <span>{{ user_info.nickname }}</span>
                   </div>
                   <div class="user-item">
                     <i class="fa fa-cog"></i>
@@ -23,13 +23,32 @@
 </template>
 <script>
 export default {
-  name: "infoshow",
+    name: "infoshow",
 
-  computed: {
-    user() {
-      // return this.$store.getters.user;
+    data () {
+        return {
+            user_info: {},
+        }
+    },
+
+    computed: {
+        user() {
+          // return this.$store.getters.user;
+        }
+    },
+    methods: {
+        getUser () {
+            this.axios.post('/api/admin/user/login', qs.stringify({phone:15988831425,password:123456})).then((res) => {
+                this.user_info = res.data.data;
+                console.log(this.user_info)
+            }).catch((err) => {
+
+            });
+        },
+    },
+    created () {
+        this.getUser();
     }
-  }
 };
 </script>
 <style scoped>

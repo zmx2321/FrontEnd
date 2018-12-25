@@ -47,9 +47,9 @@
             <el-table class="user_list" :data="userData" border highlight-current-row v-loading="listLoading" @selection-change="userSelsChange" height="220">
                 <el-table-column type="selection" width="35"></el-table-column>
                 <el-table-column type="index" width="35"></el-table-column>
-                <el-table-column prop="name" label="角色名称" width="900"></el-table-column>
+                <el-table-column prop="name" label="角色名称" width="1200"></el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="600">
+                <el-table-column fixed="right" label="操作" width="400">
                     <template slot-scope="scope">
                         <el-button @click="editUserPower" v-on:click="editUserPowerForm = true" type="text" size="small">编辑角色权限</el-button>
                         <el-button @click="addChildAdmin" v-on:click="addChildAdminForm = true" type="text" size="small">添加子管理员</el-button>

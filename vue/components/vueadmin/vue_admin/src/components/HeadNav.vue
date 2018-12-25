@@ -10,7 +10,8 @@
                     <img src="../assets/images/portrait.png" class='avatar' alt="">
                     <div class='welcome'>
                         <p class='name comename'>欢迎</p>
-                        <p class='name avatarname'>{{ user_info.nickname }}</p>
+                        <!--<p class='name avatarname'>{{ user_info.nickname }}</p>-->
+                        <p class='name avatarname'>aa</p>
                     </div>
                     <span class='username'>
                         <el-dropdown trigger="click" @command='setDialogInfo'>
@@ -46,12 +47,12 @@ export default {
     },
     methods: {
         getUser () {
-            this.axios.post('/api/admin/user/login', qs.stringify({phone:15988831425,password:123456})).then((res) => {
-                this.user_info = res.data.data;
-                console.log(this.user_info)
-            }).catch((err) => {
-
-            });
+            // this.axios.post('/api/admin/user/login', qs.stringify({phone:15988831425,password:123456})).then((res) => {
+            //     this.user_info = res.data.data;
+            //     console.log(this.user_info)
+            // }).catch((err) => {
+            //
+            // });
         },
         setDialogInfo(cmditem) {
           // if (!cmditem) {
@@ -82,7 +83,7 @@ export default {
           this.$router.push("/login");
         }
     },
-    created: function(){
+    created (){
         this.getUser();
     }
 };

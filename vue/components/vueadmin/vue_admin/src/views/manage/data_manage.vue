@@ -83,10 +83,10 @@
             <el-table class="user_list" :data="userData" border highlight-current-row v-loading="listLoading" @selection-change="userSelsChange" height="220">
                 <el-table-column type="selection" width="35"></el-table-column>
                 <el-table-column type="index" width="35"></el-table-column>
-                <el-table-column prop="name" label="账号名称" width="100"></el-table-column>
-                <el-table-column prop="type" label="账号类型" width="100"></el-table-column>
+                <el-table-column prop="name" label="账号名称" width="600"></el-table-column>
+                <el-table-column prop="type" label="账号类型" width="500"></el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="260">
+                <el-table-column fixed="right" label="操作" width="500">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" v-on:click="viewUserForm = true" @click="viewUser">查看</el-button>
                         <el-button type="text" size="small" @click="prohibition">封禁并通知</el-button>
