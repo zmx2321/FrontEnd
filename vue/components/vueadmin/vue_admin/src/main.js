@@ -16,7 +16,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 Vue.use(ElementUI);
 // 全局注册 dg-table 这样我们就可以 在html中<dg-table></dg-table>使用组件了
@@ -32,4 +32,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app');
+}).$mount('#app')
