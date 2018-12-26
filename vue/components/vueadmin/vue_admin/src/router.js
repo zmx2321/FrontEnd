@@ -8,8 +8,6 @@ import Login from './views/Login.vue'
 import NotFound from './views/NotFound.vue'
 import Home from './views/Home.vue'
 
-// import FoundList from './views/FoundList.vue'
-
 import Test from './views/test/Test.vue'
 
 // 二级
@@ -44,7 +42,6 @@ const router = new Router({
             { path: '', component: Home },
             { path: '/home', component: Home, name: 'home' },
             { path: '/infoshow', component: InfoShow, name: 'infoShow' },
-            // { path: '/foundlist', name: 'foundlist', component: FoundList },
 
             //test
             { path: '/test', name: 'test', component: Test },
@@ -80,7 +77,7 @@ const router = new Router({
         path: '*',
         name: '404',
         component: NotFound
-    }
+    },
   ]
 });
 
