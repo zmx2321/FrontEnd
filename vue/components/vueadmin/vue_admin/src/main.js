@@ -7,22 +7,19 @@ import ElementUI from 'element-ui'
 import DGTable from 'dg-table'  //表格筛选
 import 'element-ui/lib/theme-chalk/index.css'
 
-import router from './router'
-import store from './store'
-
-//富文本
-import VueQuillEditor  from 'vue-quill-editor'
+import VueQuillEditor  from 'vue-quill-editor'  //富文本
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-Vue.config.productionTip = false
+import router from './router'
+import store from './store'
 
+Vue.config.productionTip = false;
+
+// 全局注册
 Vue.use(ElementUI);
-// 全局注册 dg-table 这样我们就可以 在html中<dg-table></dg-table>使用组件了
 Vue.use(DGTable);
-
-//富文本
 Vue.use(VueQuillEditor);
 
 //挂载（使其可以在各个组件使用）
@@ -32,4 +29,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
