@@ -1,5 +1,5 @@
-const path = require('path')
-const debug = process.env.NODE_ENV !== 'production'
+const path = require('path');
+const debug = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     baseUrl: '/', // 根域上下文目录
@@ -44,8 +44,7 @@ module.exports = {
         hotOnly: false,
         proxy: { // 配置跨域
             '/api': {
-                target: 'http://10.10.10.202:8080',
-                // target: 'http://www.coolneng.com',
+                target: 'http://10.10.10.199:8080',
                 ws: true,
                 changOrigin: true,
                 pathRewrite: {
@@ -55,4 +54,4 @@ module.exports = {
         },
         before: app => { }
     }
-}
+};

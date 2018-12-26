@@ -98,3 +98,7 @@
 .main_cont{
     padding: 20px;
 }
+
+.centertab .cell{
+    text-align: center;
+}

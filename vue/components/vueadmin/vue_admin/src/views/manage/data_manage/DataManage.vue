@@ -105,7 +105,7 @@
 <script>
     import {
         searchdata,
-    } from '../filter/js/filter.js'
+    } from '../../filter/js/filter.js'
 
     export default {
         name: "data_manage",

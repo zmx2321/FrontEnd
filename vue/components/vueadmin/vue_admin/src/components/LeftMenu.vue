@@ -3,14 +3,39 @@
         <el-row>
              <el-col>
                  <el-menu mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="el-menu-vertical-demo">
-                     <!-- 首页 -->
-                     <router-link to="/home">
+                    <!-- 首页 -->
+                    <router-link to="/home">
                         <el-menu-item index="0">
                             <i class="fa fa-margin fa-server"></i>
                             <span slot="title">首页</span>
                         </el-menu-item>
                     </router-link>
 
+                     <!-- 设备管理 -->
+                    <router-link to="/device_manage">
+                        <el-menu-item index="1">
+                            <i class="fa fa-margin fa-server"></i>
+                            <span slot="title">设备管理</span>
+                        </el-menu-item>
+                    </router-link>
+
+                     <!-- 运营管理 -->
+                     <router-link to="/operate_manage">
+                         <el-menu-item index="2">
+                             <i class="fa fa-margin fa-server"></i>
+                             <span slot="title">运营管理</span>
+                         </el-menu-item>
+                     </router-link>
+
+                     <!-- 账号管理 -->
+                     <router-link to="/account_manage">
+                         <el-menu-item index="3">
+                             <i class="fa fa-margin fa-server"></i>
+                             <span slot="title">个人信息</span>
+                         </el-menu-item>
+                     </router-link>
+
+                     <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
                             <template slot="title">
@@ -27,10 +52,11 @@
                         </el-submenu>
                     </template>
 
-                     <router-link to="/rich_text">
-                         <el-menu-item index="1">
+                     <!-- 个人信息 -->
+                     <router-link to="/infoshow">
+                         <el-menu-item index="4">
                              <i class="fa fa-margin fa-server"></i>
-                             <span slot="title">富文本</span>
+                             <span slot="title">个人信息</span>
                          </el-menu-item>
                      </router-link>
                  </el-menu>
@@ -47,14 +73,14 @@ export default {
     return {
       items: [
           {
-              icon: "fa-money",
-              name: "资料管理",
-              path: "manager",
+              icon: "fa-asterisk",
+              name: "数据管理",
+              path: "data_manage",
               children: [
-                  { path: "device_manage", name: "设备管理" },
-                  { path: "data_manage", name: "数据管理" },
-                  { path: "operate_manage", name: "运营管理" },
-                  { path: "account_manage", name: "账号管理" }
+                  {path: "data_manage", name: "数据管理"},
+                  {path: "/record_manage", name: "记录管理"},
+                  {path: "/user_manage", name: "用户管理"},
+                  {path: "/rider_manage", name: "骑手管理"}
               ]
           },
           {
@@ -64,13 +90,21 @@ export default {
               children: [{ path: "infoshow", name: "个人信息" }]
           },
           {
+              icon: "fa-asterisk",
+              name: "临时",
+              path: "temp",
+              children: [
+                  { path: "/cabinet_manage", name: "柜口管理" },
+              ]
+          },
+          {
               icon: "fa-money",
               name: "test",
               path: "test",
               children: [
                   { path: "/test", name: "test" },
-                  { path: '/rich_text', name: 'rich_text'},
-                  { path: "/helloDGTable", name: "helloDGTable" },
+                  { path: '/rich_text', name: '富文本'},
+                  { path: "/helloDGTable", name: "筛选" },
               ]
           }
       ]

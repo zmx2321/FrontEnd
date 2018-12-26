@@ -1,3 +1,36 @@
+<!--
+    骑手
+    id
+        "createAt": "2018-12-25 12:25:59",  注册时间
+        "openId": "oUlJw1nMB0HvTESl4IbCop7SBxNk",  微信标志
+        "mobile": "13396573330",
+        "name": "庄梦杰",
+        "disable": 0,  封禁
+        "guiNo": null  注册设备
+
+
+     用户
+     id
+        "createAt": "2018-12-25 12:25:59",  注册时间
+        "openId": "oUlJw1nMB0HvTESl4IbCop7SBxNk",  微信标志
+        "mobile": "13396573330",
+
+    记录
+        "id": 5359,
+        "postmanMobile": "18257559058",  骑手手机号
+        "customerMobile": "1234",  取餐手机
+        "packageNo": "182575590581545117615001",  单号
+        "guiNo": "T181017",  设备编号
+        "boxNo": "A8",  柜口编号
+        "openBoxKey": "A81234",  开柜密码
+        "storeinAt": "2018-12-18 15:20:16",  存餐时间
+        "takeoutAt": null,  取餐时间
+        "takeoutBy": null,  取餐人
+        "status": 0,  订单状态(待取/已)
+-->
+
+
+
 <template>
     <section class="main_cont">
         <!-- 按钮操作 -->
@@ -20,41 +53,35 @@
                         </el-form-item>
                     </el-col>
                 </el-col>
-                <el-col class="toolbar bdr_radiu" :span="24">
-                    <el-col :span="2" class="mantit">柜口</el-col>
-                    <el-col :span="22">
-                        <el-form-item>
-                            <el-input placeholder="请输入单个特定柜口ID" clearable></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" @click="openCabinet">开启</el-button>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" @click="openAllCabinet">一键开启所有柜口</el-button>
-                        </el-form-item>
-                    </el-col>
-                </el-col>
             </el-form>
         </el-row>
 
-        <!-- 设备列表 -->
-        <el-table class="device_list" :data="deviceData" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
-            <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column type="index" width="60"></el-table-column>
-            <el-table-column prop="name" label="设备名称" width="950"></el-table-column>
+        <el-row>
+            <!-- 设备列表 -->
+            <el-table class="device_list" :data="deviceInfo" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
+                <el-table-column type="selection" width="55" align="center"></el-table-column>
+                <el-table-column type="index" width="60" align="center"></el-table-column>
+                <el-table-column prop="guiNo" label="设备编号" width="150"></el-table-column>
+                <el-table-column prop="guiName" label="设备名称" width="150"></el-table-column>
+                <el-table-column prop="manufacturer" label="设备生产厂商" width="200"></el-table-column>
+                <el-table-column prop="location" label="设备地址" width="350"></el-table-column>
 
-            <el-table-column fixed="right" label="操作" width="750">
-                <template slot-scope="scope">
-                    <el-button @click="viewDeviceStatus" v-on:click="viewDeviceStatusForm = true" type="text" size="small">查看设备状态</el-button>
-                    <el-button @click="viewDeviceCommunicationStatus" v-on:click="viewDeviceCommunicationStatusForm = true" type="text" size="small">查看设备通信状态</el-button>
-                    <el-button @click="viewDeviceCabinetStatus" v-on:click="viewDeviceCabinetStatusForm = true" type="text" size="small">查看设备柜口状态</el-button>
-                    <el-button @click="showQRCode" v-on:click="showQRCodeForm = true" type="text" size="small">显示设备的存取餐二维码</el-button>
-                    <el-button @click="editPositionInfo" v-on:click="editPositionInfoForm = true" type="text" size="small">编辑位置信息</el-button>
-                    <el-button @click="RemoteOpenCabinet" v-on:click="viewDeviceStatusForm = true" type="text" size="small">远程开柜</el-button>
-                    <el-button @click="delDevice" type="text" size="small">删除设备</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+                <el-table-column fixed="right" label="操作" width="500">
+                    <template slot-scope="scope">
+                        <el-button @click="viewDeviceStatus" v-on:click="viewDeviceStatusForm = true" type="text" size="small">查看设备状态</el-button>
+                        <!--<el-button @click="viewDeviceCommunicationStatus" v-on:click="viewDeviceCommunicationStatusForm = true" type="text" size="small">查看设备通信状态</el-button>-->
+                        <el-button @click="showQRCode" v-on:click="showQRCodeForm = true" type="text" size="small">显示设备的存取餐二维码</el-button>
+                        <el-button @click="editPositionInfo" v-on:click="editPositionInfoForm = true" type="text" size="small">编辑位置信息</el-button>
+                        <el-button @click="delDevice" type="text" size="small">删除设备</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+            <!-- 底部工具条 -->
+            <el-col :span="24" class="toolbar bottip">
+                <el-button type="danger" @click="deviceBatchRemove" :disabled="this.sels.length===0">批量删除</el-button>
+            </el-col>
+        </el-row>
 
         <!-- 添加新的设备 -->
         <el-dialog title="添加新的设备" :close-on-click-modal="false" :visible.sync="addDeviceForm" :before-close="handleClose">
@@ -71,11 +98,6 @@
 
         </el-dialog>
 
-        <!-- 查看设备柜口状态 -->
-        <el-dialog title="查看设备柜口状态" :close-on-click-modal="true" :visible.sync="viewDeviceCabinetStatusForm">
-
-        </el-dialog>
-
         <!-- 显示设备的存取餐二维码 -->
         <el-dialog title="显示设备的存取餐二维码" :close-on-click-modal="true" :visible.sync="showQRCodeForm">
 
@@ -85,15 +107,12 @@
         <el-dialog title="编辑位置信息" :close-on-click-modal="false" :visible.sync="editPositionInfoForm" :before-close="handleClose">
 
         </el-dialog>
-
-        <!-- 底部工具条 -->
-        <el-col :span="24" class="toolbar bottip">
-            <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
-        </el-col>
     </section>
 </template>
 
 <script>
+    import { getDeviceList } from '../../api/api.js';
+
     export default {
         name: "device_manage",
 
@@ -101,6 +120,9 @@
             return {
                 listLoading: false,  //lodding动画
                 sels: [],  //列表选中列
+
+                //设备信息
+                deviceInfo: [],
 
                 dialogVisible: false,  //关闭提示
 
@@ -124,9 +146,6 @@
                 //查看设备通信状态
                 viewDeviceCommunicationStatusForm: false,
 
-                //查看设备柜口状态
-                viewDeviceCabinetStatusForm: false,
-
                 //显示设备的存取餐二维码
                 showQRCodeForm: false,
 
@@ -135,6 +154,12 @@
             }
         },
         methods: {
+            //获取设备信息
+            getDeviceList(){
+                getDeviceList().then(res => {
+                    this.deviceInfo = res.data.data;
+                });
+            },
             //关闭提示
             handleClose(done) {
                 this.$confirm('确认关闭？')
@@ -156,15 +181,6 @@
                 console.log("重启设备");
             },
 
-            //开启柜口
-            openCabinet () {
-                console.log("开启柜口");
-            },
-            //一键开启所有柜口
-            openAllCabinet () {
-                console.log("开启所有柜口");
-            },
-
             //查看设备状态
             viewDeviceStatus () {
                 console.log("查看设备状态");
@@ -173,10 +189,6 @@
             viewDeviceCommunicationStatus () {
                 console.log("查看设备通信状态");
             },
-            //查看设备柜口状态
-            viewDeviceCabinetStatus () {
-                console.log("查看设备柜口状态");
-            },
             //显示设备的存取餐二维码
             showQRCode () {
                 console.log("显示设备的存取餐二维码");
@@ -184,10 +196,6 @@
             //编辑位置信息
             editPositionInfo () {
                 console.log("编辑位置信息");
-            },
-            //远程开柜
-            RemoteOpenCabinet () {
-                console.log("远程开柜");
             },
 
             //设备列表是否选中
@@ -205,7 +213,7 @@
                 });
             },
             //批量删除设备
-            batchRemove: function () {
+            deviceBatchRemove: function () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
@@ -215,6 +223,9 @@
                 });
             }
         },
+        created () {
+            this.getDeviceList();
+        }
     }
 </script>
 

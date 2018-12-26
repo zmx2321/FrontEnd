@@ -10,15 +10,21 @@ import InfoShow from './views/InfoShow.vue'
 import NotFound from './views/NotFound'
 
 // 二级
-import DataManage from './views/manage/data_manage'
-import DeviceManage from './views/manage/device_manage'
-import OperateManage from './views/manage/operate_manage'
-import AccountManage from './views/manage/account_manage'
+import DeviceManage from './views/manage/DeviceManage'
+import CabinetManage from './views/manage/CabinetManage'
+import OperateManage from './views/manage/OperateManage'
+import AccountManage from './views/manage/AccountManage'
+
+//三级
+import DataManage from './views/manage/data_manage/DataManage'
+import UserManage from './views/manage/data_manage/UserManage'
+import RiderManage from './views/manage/data_manage/RiderManage'
+import RecordManage from './views/manage/data_manage/RecordManage'
 
 //test
-import Test from './views/test/Test.vue'
-import RichText from './views/test/RichText.vue'
-import HelloDGTable from './views/sx/HelloDGTable.vue'
+import Test from './views/test/Test'
+import RichText from './views/test/RichText'
+import HelloDGTable from './views/sx/HelloDGTable'
 
 
 Vue.use(Router);
@@ -50,14 +56,24 @@ const router = new Router({
             //DGTable
             { path: '/helloDGTable', name: 'helloDGTable', component: HelloDGTable },
 
+
             //设备管理(device manage)
             { path: '/device_manage', name: 'device_manage', component: DeviceManage },
-            //数据管理(data manage)
-            { path: '/data_manage', name: 'data_manage', component: DataManage },
+            //柜口管理
+            { path: '/cabinet_manage', name: 'cabinet_manage', component: CabinetManage },
             //运营管理(operate manage)
             { path: '/operate_manage', name: 'operate_manage', component: OperateManage },
             //账号管理(account manage)
             { path: '/account_manage', name: 'account_manage', component: AccountManage },
+
+            //数据管理(data manage)
+            { path: '/data_manage', name: 'data_manage', component: DataManage },
+            //记录管理
+            { path: '/record_manage', name: 'record_manage', component: RecordManage },
+            //用户管理
+            { path: '/user_manage', name: 'user_manage', component: UserManage },
+            //骑手管理
+            { path: '/rider_manage', name: 'rider_manage', component: RiderManage },
         ]
     },
     // 注册页面
