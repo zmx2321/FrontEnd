@@ -2,31 +2,31 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 一级
-import Index from './views/Index.vue'
-import Register from './views/Register.vue'
-import Login from './views/Login.vue'
-import NotFound from './views/NotFound.vue'
-import Home from './views/Home.vue'
-
-import Test from './views/test/Test.vue'
+import Index from './views/Index'
+import Register from './views/Register'
+import Login from './views/Login'
+import Home from './views/Home'
+import InfoShow from './views/InfoShow.vue'
+import NotFound from './views/NotFound'
 
 // 二级
-import DeviceManage from './views/manage/device_manage.vue'
-import DataManage from './views/manage/data_manage.vue'
-import OperateManage from './views/manage/operate_manage.vue'
-import AccountManage from './views/manage/account_manage.vue'
-
-import RichText from './views/test/RichText.vue'
-import InfoShow from './views/InfoShow.vue'
+import DataManage from './views/manage/data_manage'
+import DeviceManage from './views/manage/device_manage'
+import OperateManage from './views/manage/operate_manage'
+import AccountManage from './views/manage/account_manage'
 
 //test
-// import SX from './views/sx/HelloDGTable.vue'
+import Test from './views/test/Test.vue'
+import RichText from './views/test/RichText.vue'
+import HelloDGTable from './views/sx/HelloDGTable.vue'
+
 
 Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
-  // base: process.env.BASE_URL,
+  base: process.env.BASE_URL,
+
   routes: [
     // 如果是根路径的话，重定向到index路径
     {
@@ -47,8 +47,8 @@ const router = new Router({
             { path: '/test', name: 'test', component: Test },
             // 富文本
             { path: '/rich_text', name: 'rich_text', component: RichText },
-
-            // { path: '/sx', name: 'sx', component: SX },
+            //DGTable
+            { path: '/helloDGTable', name: 'helloDGTable', component: HelloDGTable },
 
             //设备管理(device manage)
             { path: '/device_manage', name: 'device_manage', component: DeviceManage },

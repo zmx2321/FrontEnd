@@ -70,7 +70,7 @@ export default {
               children: [
                   { path: "/test", name: "test" },
                   { path: '/rich_text', name: 'rich_text'},
-                  // { path: "sx", name: "sx" },
+                  { path: "/helloDGTable", name: "helloDGTable" },
               ]
           }
       ]

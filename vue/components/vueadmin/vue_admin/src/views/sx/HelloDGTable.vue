@@ -26,7 +26,8 @@ import {
   dofilter,
   cities,
   createTableDataByRandom
-} from 'js/simulationapi.js'
+} from './js/simulationapi.js'
+
 export default {
   methods: {
     getpage (page) {
