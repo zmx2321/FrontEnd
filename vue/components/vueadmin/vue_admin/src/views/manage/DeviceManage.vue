@@ -37,7 +37,6 @@
         <el-row>
             <el-form :inline="true">
                 <el-col class="toolbar bdr_radiu" :span="24">
-                    <el-col :span="2" class="mantit">设备</el-col>
                     <el-col :span="22">
                         <el-form-item>
                             <el-input placeholder="请输入设备名称" clearable></el-input>
@@ -72,15 +71,15 @@
                         <!--<el-button @click="viewDeviceCommunicationStatus" v-on:click="viewDeviceCommunicationStatusForm = true" type="text" size="small">查看设备通信状态</el-button>-->
                         <el-button @click="showQRCode" v-on:click="showQRCodeForm = true" type="text" size="small">显示设备的存取餐二维码</el-button>
                         <el-button @click="editPositionInfo" v-on:click="editPositionInfoForm = true" type="text" size="small">编辑位置信息</el-button>
-                        <el-button @click="delDevice" type="text" size="small">删除设备</el-button>
+                        <!--<el-button @click="delDevice" type="text" size="small">删除设备</el-button>-->
                     </template>
                 </el-table-column>
             </el-table>
 
             <!-- 底部工具条 -->
-            <el-col :span="24" class="toolbar bottip">
-                <el-button type="danger" @click="deviceBatchRemove" :disabled="this.sels.length===0">批量删除</el-button>
-            </el-col>
+            <!--<el-col :span="24" class="toolbar bottip">-->
+                <!--<el-button type="danger" @click="deviceBatchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
+            <!--</el-col>-->
         </el-row>
 
         <!-- 添加新的设备 -->
@@ -128,17 +127,6 @@
 
                 //添加新的设备
                 addDeviceForm: false,
-
-                //数据
-                deviceData: [{
-                    name: '设备1',
-                }, {
-                    name: '设备2',
-                }, {
-                    name: '设备3',
-                }, {
-                    name: '设备4',
-                }],
 
                 //查看设备状态
                 viewDeviceStatusForm: false,
@@ -235,17 +223,7 @@
         margin: 10px 0;
     }
 
-    .mantit{
-        color: #5d5656;
-        line-height: 35px;
-        text-align: center;
-    }
-
     .device_list{
         width: 100%;
-    }
-
-    .bottip{
-        padding: 10px;
     }
 </style>

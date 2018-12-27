@@ -12,6 +12,9 @@
                             <el-button type="primary">筛选地址</el-button>
                         </el-form-item>
                     </el-col>
+                </el-col>
+
+                <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
                             <el-input placeholder="请输入用户标签" clearable></el-input>
@@ -26,7 +29,7 @@
 
         <el-row>
             <!-- 记录列表 -->
-            <el-table class="device_list" :data="deviceData" border highlight-current-row v-loading="listLoading" @selection-change="deviceSelsChange" height="800">
+            <el-table class="device_list" :data="deviceData" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="800">
                 <el-table-column type="selection" width="35"></el-table-column>
                 <el-table-column type="index" width="35"></el-table-column>
                 <el-table-column prop="name" label="设备名称" width="200"></el-table-column>
@@ -43,9 +46,9 @@
             </el-table>
             <!-- 底部工具条 -->
             <el-col :span="24" class="toolbar bottip">
-                <el-button type="danger" @click="deviceBatchRemove" :disabled="this.deviceSels.length===0">批量删除</el-button>
-                <el-button type="danger" @click="bannerBatchSet" :disabled="this.deviceSels.length===0" v-on:click="bannerBatchForm = true">批量设置banner</el-button>
-                <el-button type="danger" @click="infoBatchSet" :disabled="this.deviceSels.length===0" v-on:click="infoBatchForm = true">批量设置模板通知消息</el-button>
+                <el-button type="danger" @click="deviceBatchRemove" :disabled="this.sels.length===0">批量删除</el-button>
+                <el-button type="danger" @click="bannerBatchSet" :disabled="this.sels.length===0" v-on:click="bannerBatchForm = true">批量设置banner</el-button>
+                <el-button type="danger" @click="infoBatchSet" :disabled="this.sels.length===0" v-on:click="infoBatchForm = true">批量设置模板通知消息</el-button>
             </el-col>
         </el-row>
 
@@ -79,7 +82,7 @@
         data() {
             return {
                 listLoading: false,  //lodding动画
-                deviceSels: [],  //列表选中列
+                sels: [],  //列表选中列
 
                 dialogVisible: false,  //关闭提示
 
@@ -121,8 +124,8 @@
             },
 
             //设备列表是否选中
-            deviceSelsChange (deviceSels) {
-                this.deviceSels = deviceSels;
+            selsChange (sels) {
+                this.sels = sels;
             },
 
             //设置banner图
@@ -169,7 +172,6 @@
 <style scoped>
     .toolbar{
         padding: 10px 10px 0 10px;
-        margin: 10px 0;
     }
 
     .bottip{

@@ -9,18 +9,20 @@
                             <el-input placeholder="请输入单个特定柜口ID" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary">开启</el-button>
+                            <el-button type="primary" @click="openCabinet">开启</el-button>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary">一键开启所有柜口</el-button>
+                            <el-button type="primary" @click="openAllCabinet">一键开启所有柜口</el-button>
                         </el-form-item>
                     </el-col>
+                </el-col>
+                <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
-                            <el-input placeholder="请输入设备名称" clearable></el-input>
+                            <el-input placeholder="请输入设备编号" v-model="guiNo" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary">查询</el-button>
+                            <el-button type="primary" @click="searchDevCab">查询设备所属柜口</el-button>
                         </el-form-item>
                     </el-col>
                 </el-col>
@@ -29,15 +31,15 @@
 
         <el-row>
             <!-- 柜口列表 -->
-            <el-table class="cabinet_list centertab" :data="cabinetData" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
+            <el-table class="cabinet_list centertab" :data="cabinet_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
                 <el-table-column type="selection" width="55"></el-table-column>
                 <el-table-column type="index" width="60"></el-table-column>
-                <el-table-column prop="name" label="柜口编号" width="100"></el-table-column>
-                <el-table-column prop="name" label="柜口状态" width="100"></el-table-column>
+                <el-table-column prop="boxNo" label="柜口编号" width="100"></el-table-column>
+                <el-table-column prop="status" label="柜口状态" width="100"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="300">
                     <template slot-scope="scope">
-                        <el-button @click="openDevice" type="text" size="small">开启</el-button>
+                        <el-button @click="openCabinet" type="text" size="small">开启</el-button>
                         <el-button @click="viewDeviceCabinetStatus" v-on:click="viewDeviceCabinetStatusForm = true" type="text" size="small">查看设备柜口状态</el-button>
                         <el-button @click="delCabinet" type="text" size="small">删除柜口</el-button>
                     </template>
@@ -57,7 +59,7 @@
 </template>
 
 <script>
-    import { getCabinetList } from '../../api/api.js';
+    import { getCabinetList } from '../../../api/api.js';
 
     export default {
         name: "cabinet_manage",
@@ -68,30 +70,23 @@
                 sels: [],  //列表选中列
 
                 cabinet_info: [],  //柜口信息
-                // guiNo: "",  //柜口id
+                guiNo: "",  //柜口id
 
                 dialogVisible: false,  //关闭提示
 
                 viewDeviceCabinetStatusForm: false,  //查看设备柜口状态
-
-                //数据
-                cabinetData: [{
-                    name: '设备1',
-                }, {
-                    name: '设备2',
-                }, {
-                    name: '设备3',
-                }, {
-                    name: '设备4',
-                }],
             }
         },
         methods: {
             //获取柜口信息
             getCabinetList(){
-                // getDeviceList("123").then(res => {
-                //     this.cabinet_info = res.data.data;
-                // });
+                let para = {
+                    guiNo: this.guiNo
+                };
+                getCabinetList(qs.stringify(para)).then(res => {
+                    console.log(res);
+                    this.cabinet_info = res.data.data;
+                });
             },
             //关闭提示
             handleClose(done) {
@@ -102,12 +97,33 @@
                     .catch(_ => {});
             },
             //开启柜口
-            openDevice () {
-                console.log("开启柜门");
+            openCabinet () {
+                console.log("开启柜口");
             },
+            //一键开启所有柜口
+            openAllCabinet () {
+                console.log("开启所有柜口");
+            },
+            //查询设备所属柜口
+            searchDevCab () {
+                console.log("查询设备所属柜口");
+                let para = {
+                    guiNo: this.guiNo
+                };
+                getCabinetList(qs.stringify(para)).then(res => {
+                    console.log(res);
+                    this.cabinet_info = res.data.data;
+                });
+            },
+
             //查看设备柜口状态
             viewDeviceCabinetStatus () {
                 console.log("查看设备柜口状态");
+            },
+
+            //设备列表是否选中
+            selsChange (sels) {
+                this.sels = sels;
             },
             //删除柜口
             delCabinet () {
@@ -140,16 +156,6 @@
     .toolbar{
         padding: 10px 10px 0 10px;
         margin: 10px 0;
-    }
-
-    .mantit{
-        color: #5d5656;
-        line-height: 35px;
-        text-align: center;
-    }
-
-    .device_list{
-        width: 100%;
     }
 
     .bottip{

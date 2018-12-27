@@ -11,7 +11,7 @@ import NotFound from './views/NotFound'
 
 // 二级
 import DeviceManage from './views/manage/DeviceManage'
-import CabinetManage from './views/manage/CabinetManage'
+import CabinetManage from './views/manage/hide/CabinetManage'
 import OperateManage from './views/manage/OperateManage'
 import AccountManage from './views/manage/AccountManage'
 

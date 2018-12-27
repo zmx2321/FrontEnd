@@ -31,7 +31,7 @@
                      <router-link to="/account_manage">
                          <el-menu-item index="3">
                              <i class="fa fa-margin fa-server"></i>
-                             <span slot="title">个人信息</span>
+                             <span slot="title">账号管理</span>
                          </el-menu-item>
                      </router-link>
 
@@ -82,12 +82,6 @@ export default {
                   {path: "/user_manage", name: "用户管理"},
                   {path: "/rider_manage", name: "骑手管理"}
               ]
-          },
-          {
-              icon: "fa-asterisk",
-              name: "信息管理",
-              path: "info",
-              children: [{ path: "infoshow", name: "个人信息" }]
           },
           {
               icon: "fa-asterisk",
