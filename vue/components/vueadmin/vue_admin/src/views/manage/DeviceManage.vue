@@ -1,36 +1,3 @@
-<!--
-    骑手
-    id
-        "createAt": "2018-12-25 12:25:59",  注册时间
-        "openId": "oUlJw1nMB0HvTESl4IbCop7SBxNk",  微信标志
-        "mobile": "13396573330",
-        "name": "庄梦杰",
-        "disable": 0,  封禁
-        "guiNo": null  注册设备
-
-
-     用户
-     id
-        "createAt": "2018-12-25 12:25:59",  注册时间
-        "openId": "oUlJw1nMB0HvTESl4IbCop7SBxNk",  微信标志
-        "mobile": "13396573330",
-
-    记录
-        "id": 5359,
-        "postmanMobile": "18257559058",  骑手手机号
-        "customerMobile": "1234",  取餐手机
-        "packageNo": "182575590581545117615001",  单号
-        "guiNo": "T181017",  设备编号
-        "boxNo": "A8",  柜口编号
-        "openBoxKey": "A81234",  开柜密码
-        "storeinAt": "2018-12-18 15:20:16",  存餐时间
-        "takeoutAt": null,  取餐时间
-        "takeoutBy": null,  取餐人
-        "status": 0,  订单状态(待取/已)
--->
-
-
-
 <template>
     <section class="main_cont">
         <!-- 按钮操作 -->
@@ -57,7 +24,7 @@
 
         <el-row>
             <!-- 设备列表 -->
-            <el-table class="device_list" :data="deviceInfo" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
+            <el-table class="device_list" :data="device_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <el-table-column prop="guiNo" label="设备编号" width="150"></el-table-column>
@@ -78,7 +45,7 @@
 
             <!-- 底部工具条 -->
             <!--<el-col :span="24" class="toolbar bottip">-->
-                <!--<el-button type="danger" @click="deviceBatchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
+                <!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
             <!--</el-col>-->
         </el-row>
 
@@ -121,7 +88,7 @@
                 sels: [],  //列表选中列
 
                 //设备信息
-                deviceInfo: [],
+                device_info: [],
 
                 dialogVisible: false,  //关闭提示
 
@@ -145,7 +112,7 @@
             //获取设备信息
             getDeviceList(){
                 getDeviceList().then(res => {
-                    this.deviceInfo = res.data.data;
+                    this.device_info = res.data.data;
                 });
             },
             //关闭提示
@@ -201,7 +168,7 @@
                 });
             },
             //批量删除设备
-            deviceBatchRemove: function () {
+            batchRemove: function () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {

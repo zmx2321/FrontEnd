@@ -1,6 +1,5 @@
 // 用于模拟搜索的数据
 let allusers = []; // 全部数据
-let CUR_FILTERDATA = []; // 过滤后的数据
 
 export const searchdata = (k = {}) => {
     let data = [];

@@ -84,7 +84,7 @@
                     guiNo: this.guiNo
                 };
                 getCabinetList(qs.stringify(para)).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.cabinet_info = res.data.data;
                 });
             },
@@ -111,7 +111,7 @@
                     guiNo: this.guiNo
                 };
                 getCabinetList(qs.stringify(para)).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.cabinet_info = res.data.data;
                 });
             },

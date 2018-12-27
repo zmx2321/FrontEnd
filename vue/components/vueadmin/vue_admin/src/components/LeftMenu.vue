@@ -6,7 +6,7 @@
                     <!-- 首页 -->
                     <router-link to="/home">
                         <el-menu-item index="0">
-                            <i class="fa fa-margin fa-server"></i>
+                            <i class="fa fa-server"></i>
                             <span slot="title">首页</span>
                         </el-menu-item>
                     </router-link>
@@ -14,7 +14,7 @@
                      <!-- 设备管理 -->
                     <router-link to="/device_manage">
                         <el-menu-item index="1">
-                            <i class="fa fa-margin fa-server"></i>
+                            <i class="fa fa-cog"></i>
                             <span slot="title">设备管理</span>
                         </el-menu-item>
                     </router-link>
@@ -22,7 +22,7 @@
                      <!-- 运营管理 -->
                      <router-link to="/operate_manage">
                          <el-menu-item index="2">
-                             <i class="fa fa-margin fa-server"></i>
+                             <i class="fa fa-asterisk"></i>
                              <span slot="title">运营管理</span>
                          </el-menu-item>
                      </router-link>
@@ -30,7 +30,7 @@
                      <!-- 账号管理 -->
                      <router-link to="/account_manage">
                          <el-menu-item index="3">
-                             <i class="fa fa-margin fa-server"></i>
+                             <i class="fa fa-bitcoin"></i>
                              <span slot="title">账号管理</span>
                          </el-menu-item>
                      </router-link>
@@ -55,7 +55,7 @@
                      <!-- 个人信息 -->
                      <router-link to="/infoshow">
                          <el-menu-item index="4">
-                             <i class="fa fa-margin fa-server"></i>
+                             <i class="fa fa-paragraph"></i>
                              <span slot="title">个人信息</span>
                          </el-menu-item>
                      </router-link>
@@ -73,7 +73,7 @@ export default {
     return {
       items: [
           {
-              icon: "fa-asterisk",
+              icon: "fa-area-chart",
               name: "数据管理",
               path: "data_manage",
               children: [

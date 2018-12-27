@@ -46,7 +46,7 @@
             </el-table>
             <!-- 底部工具条 -->
             <el-col :span="24" class="toolbar bottip">
-                <el-button type="danger" @click="deviceBatchRemove" :disabled="this.sels.length===0">批量删除</el-button>
+                <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>
                 <el-button type="danger" @click="bannerBatchSet" :disabled="this.sels.length===0" v-on:click="bannerBatchForm = true">批量设置banner</el-button>
                 <el-button type="danger" @click="infoBatchSet" :disabled="this.sels.length===0" v-on:click="infoBatchForm = true">批量设置模板通知消息</el-button>
             </el-col>
@@ -156,7 +156,7 @@
                 console.log("批量设置模板通知");
             },
             //批量删除设备
-            deviceBatchRemove: function () {
+            batchRemove: function () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
