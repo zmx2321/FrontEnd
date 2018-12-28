@@ -70,7 +70,7 @@
                 sels: [],  //列表选中列
 
                 cabinet_info: [],  //柜口信息
-                guiNo: "",  //柜口id
+                guiNo: this.$route.params.guiNo,  //柜口id
 
                 dialogVisible: false,  //关闭提示
 
@@ -91,10 +91,10 @@
             //关闭提示
             handleClose(done) {
                 this.$confirm('确认关闭？')
-                    .then(_ => {
+                    .then(() => {
                         done();
                     })
-                    .catch(_ => {});
+                    .catch(() => {});
             },
             //开启柜口
             openCabinet () {
@@ -148,6 +148,7 @@
         },
         created () {
             this.getCabinetList();
+            //console.log(this.$route.params.guiNo);
         }
     }
 </script>

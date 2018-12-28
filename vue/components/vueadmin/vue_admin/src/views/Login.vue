@@ -111,11 +111,13 @@ export default {
 .submit_btn {
   width: 100%;
 }
+
 .tiparea {
   text-align: right;
   font-size: 12px;
   color: #333;
 }
+
 .tiparea p a {
   color: #409eff;
 }

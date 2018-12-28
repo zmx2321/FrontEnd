@@ -49,14 +49,6 @@ const router = new Router({
             { path: '/home', component: Home, name: 'home' },
             { path: '/infoshow', component: InfoShow, name: 'infoShow' },
 
-            //test
-            { path: '/test', name: 'test', component: Test },
-            // 富文本
-            { path: '/rich_text', name: 'rich_text', component: RichText },
-            //DGTable
-            { path: '/helloDGTable', name: 'helloDGTable', component: HelloDGTable },
-
-
             //设备管理(device manage)
             { path: '/device_manage', name: 'device_manage', component: DeviceManage },
             //柜口管理
@@ -74,6 +66,13 @@ const router = new Router({
             { path: '/user_manage', name: 'user_manage', component: UserManage },
             //骑手管理
             { path: '/rider_manage', name: 'rider_manage', component: RiderManage },
+
+            //test
+            { path: '/test', name: 'test', component: Test },
+            // 富文本
+            { path: '/rich_text', name: 'rich_text', component: RichText },
+            //筛选表格(dg_table)
+            { path: '/helloDGTable', name: 'helloDGTable', component: HelloDGTable },
         ]
     },
     // 注册页面

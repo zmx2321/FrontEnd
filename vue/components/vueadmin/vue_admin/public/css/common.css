@@ -47,7 +47,7 @@
 .f-csh{cursor:help;}
 .f-csm{cursor:move;}
 /* 文本不能被选择 */
-.f-usn{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none;}
+.f-usn{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 /* 边框圆角 */
 .bdr_radiu{border-radius: 4px;}
 
@@ -108,4 +108,8 @@
 
 .centertab .cell{
     text-align: center;
+}
+
+.el-dialog__body{
+    padding: 10px 20px 30px;
 }
