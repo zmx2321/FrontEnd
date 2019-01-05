@@ -52,16 +52,16 @@ export default {
                     this.loginUser.password = this.md5(this.loginUser.password);
 
                     Login(qs.stringify(this.loginUser)).then(res => {
-                        console.log(res.data);
+
+                        //登陆状态记录
+                        localStorage.setItem('code', this.md5((res.data.code).toString()));
 
                         this.$message({
                             message: "登录成功！",
                             type: "success"
                         });
 
-                        // localStorage.setItem('code', res.code);
-
-                        // this.$router.push("/index");
+                        this.$router.push("/index");
                     }).catch({});
                 } else {
                     console.log("error submit!!");
@@ -71,8 +71,7 @@ export default {
         },
     },
     created: function(){
-        // console.log(this.md5(this.loginUser.username));
-
+        // console.log(this.md5("admin"));
     },
 };
 </script>

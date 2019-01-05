@@ -19,8 +19,8 @@
             </el-form>
         </el-row>
 
+        <!-- 项目列表 -->
         <el-row>
-            <!-- 项目列表 -->
             <el-table class="project_list" :data="project_info" border highlight-current-row v-loading="listLoading" height="600">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
@@ -54,15 +54,19 @@
                 <!--</el-form-item>-->
                 <el-form-item label="上传项目logo">
                     <el-upload
-                            class="upload-demo"
-                            action="http://10.10.10.238:8090/admin/item/add"
+                             class="upload-demo"
+                             action="http://api8084.ximuok.com/admin/item/add"
+                             ref='upload'
                             :on-preview="handlePreview"
+                            :before-upload="handleBeforeUpload"
                             :on-remove="handleRemove"
                             :before-remove="beforeRemove"
-                            multiple
-                            :limit="1"
+                            :on-change="handleChange"
+                             multiple
+                            :limit="upload_arg.limit"
                             :on-exceed="handleExceed"
-                            :file-list="fileList">
+                            :file-list="upload_arg.fileList"
+                            :auto-upload='false'>
                         <el-button size="small" type="primary">点击上传</el-button>
                         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                     </el-upload>
@@ -148,15 +152,15 @@
                     amount: 0,
                     title: "123",
                     desc: "456",
+                    // ?title=qq&desc=11qqqqq&amount=1000&type=1
                 },
 
-                param:"",//表单要提交的参数
-                src:"https://afp.alicdn.com/afp-creative/creative/u124884735/14945f2171400c10764ab8f3468470e4.jpg", //展示图片的地址
-
-                // form: {
-                //     logoFile: ''
-                // },
-                fileList: [],
+                //上传图片参数
+                upload_arg: {
+                    limit:1,
+                    logoFile: [],
+                    fileList: [],
+                },
 
                 //验证添加项目界面数据
                 addProjectRules: {
@@ -172,12 +176,7 @@
                     desc: [
                         { required: true, message: '项目描述不能为空', trigger: 'blur' },
                     ],
-                    logoUrl: [
-                        { required: true, message: '项目logo不能为空', trigger: 'blur' },
-                    ]
                 },
-
-                // fileList: [],
 
                 /**
                  *  更新项目
@@ -233,6 +232,16 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+            //获取文件后缀名
+            getFileType(fileName){
+                let fileLength = fileName.length,  //文件名总长度
+                    beforeFileLength = fileName.lastIndexOf('.');  //文件名长度
+
+                //截取字符串，获取文件后缀名
+                let suffix = fileName.substring(beforeFileLength+1, fileLength)
+
+                return suffix;
+            },
 
             /**
              * api
@@ -266,101 +275,54 @@
              * 添加项目
              */
             //显示添加项目界面
-            // handleRemove(file, fileList) {
-            //     console.log(file, fileList);
-            // },
-            // handlePreview(file) {
-            //     console.log(file);
-            // },
-            // handleExceed(files, fileList) {
-            //     this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-            // },
-            // beforeRemove(file, fileList) {
-            //     return this.$confirm(`确定移除 ${ file.name }？`);
-            // },
-            // fileChange(file, fileList) {
-            //     console.log('change')
-            //     console.log(file)
-            //     this.form.loginFile = file.raw
-            //     console.log(this.form.file)
-            //     console.log(fileList)
-            // },
-            // // 文件上传成功时的钩子
-            // handleSuccess(res, file, fileList) {
-            //     this.$notify.success({
-            //         title: '成功',
-            //         message: `文件上传成功`
-            //     });
-            // },
-            // // 文件上传失败时的钩子
-            // handleError(err, file, fileList) {
-            //     this.$notify.error({
-            //         title: '错误',
-            //         message: `文件上传失败`
-            //     });
-            // },
-            // 文件超出个数限制时的钩子
-            exceedFile(files, fileList) {
-                this.$notify.warning({
-                    title: '警告',
-                    message: `只能选择 ${this.limitNum} 个文件，当前共选择了 ${files.length + fileList.length} 个`
-                });
-            },
-            // 文件状态改变时的钩子
-            fileChange(file, fileList) {
-                // console.log('change')
-                // console.log(file)
-                // this.form.logoFile = file.raw
-                // console.log(this.form.logoFile)
-                // console.log(fileList)
-            },
-            // 上传文件之前的钩子, 参数为上传的文件,若返回 false 或者返回 Promise 且被 reject，则停止上传
-            beforeUploadFile(file) {
-                console.log(file);
-                //创建临时的路径来展示图片
-                var windowURL = window.URL || window.webkitURL;
-
-                this.src=windowURL.createObjectURL(file);
-                //重新写一个表单上传的方法
-                this.param = new FormData();
-                this.param.append('logoFile', file, file.name);
-                return false;
-                // console.log('before upload')
-                // console.log(file)
-                // let extension = file.name.substring(file.name.lastIndexOf('.')+1)
-                // let size = file.size / 1024 / 1024
-                // if(extension !== 'xlsx') {
-                //     this.$notify.warning({
-                //         title: '警告',
-                //         message: `只能上传Excel2017（即后缀是.xlsx）的文件`
-                //     });
-                // }
-                // if(size > 10) {
-                //     this.$notify.warning({
-                //         title: '警告',
-                //         message: `文件大小不得超过10M`
-                //     });
-                // }
-            },
-            // 文件上传成功时的钩子
-            handleSuccess(res, file, fileList) {
-                this.src = file.url;
-                this.formData.files.push(file.raw);
-
-                this.$notify.success({
-                    title: '成功',
-                    message: `文件上传成功`
-                });
-            },
-            // 文件上传失败时的钩子
-            handleError(err, file, fileList) {
-                this.$notify.error({
-                    title: '错误',
-                    message: `文件上传失败`
-                });
-            },
             addProject () {
                 console.log("添加项目");
+            },
+            //el-upload
+            // 上传文件之前的钩子
+            handleBeforeUpload(file) {
+                console.log('上传文件之前的钩子');
+
+                console.log(file);
+            },
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            handleChange(file, fileList){
+                console.log("文件状态改变时的钩子");
+
+                //获取文件类型
+                let fileType = this.getFileType(file.name);
+
+                //判断文件类型是否符合条件
+                if(!(fileType == "jpg" || fileType == "jpeg")){
+                    this.$message.warning({
+                        title: '警告',
+                        message: '请上传格式为image/jpg, image/jpeg的图片'
+                    })
+                    this.upload_arg.fileList = [];
+                } else {
+                    //上传文件变化时将文件对象push进files数组
+                    this.upload_arg.logoFile.push(file.raw);
+                }
+            },
+            // 文件列表移除文件时的钩子
+            handleRemove(file, fileList) {
+                console.log("文件列表移除文件时的钩子");
+                console.log(file, fileList);
+            },
+            // 点击文件列表中已上传的文件时的钩子
+            handlePreview(file) {
+                console.log("点击文件列表中已上传的文件时的钩子");
+                console.log(file);
+            },
+            // 文件超出个数限制时的钩子
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            // 删除文件之前的钩子
+            beforeRemove(file, fileList) {
+                console.log("删除文件之前的钩子");
+                console.log(fileList);
+                return this.$confirm(`确定移除 ${ file.name }？`);
             },
             //提交添加项目表单
             addProjectSubmit (formName) {
@@ -370,23 +332,34 @@
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
+                        console.log("submit!!");
+
+                        console.log(this.upload_arg.logoFile[0]);
+
                         let formData = new FormData();
 
-                        formData.append("logoFile", this.form.logoFile);
-
-                        console.log(this.fileList);
+                        formData.append('logoFile', this.upload_arg.logoFile[0]);
 
                         let config = {
                             headers: {
                                 'Content-Type': 'multipart/form-data'
                             }
-                        }
+                        };
 
+                        // ?title=qq&desc=11qqqqq&amount=1000&type=1
+                        // qs.stringify(this.addProjectData) ,
                         addProject(formData, config).then((res) => {
                             console.log(res);
-                            // this.addProjectVisible = false;  //隐藏编辑位置信息界面
-                            // this.listLoading = false;  //请求成功停止加载loading
-                            // this.getProjectList();  //刷新列表数据
+
+                            this.$message({
+                                message: "添加成功！",
+                                type: "success"
+                            });
+
+                            this.addProjectVisible = false;  //隐藏编辑位置信息界面
+                            this.listLoading = false;  //请求成功停止加载loading
+                            this.getProjectList();  //刷新列表数据
+                            this.upload_arg.fileList = [];  //清空上传图片
                         }).catch({});
                     } else {  //验证失败跳出
                         console.log('error submit!!');
@@ -430,6 +403,7 @@
         },
         created () {
             this.getProjectList();
+            // console.log(this.md5("admin"));
         }
     }
 </script>

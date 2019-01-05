@@ -23,4 +23,4 @@ export const findOne = params => { return  axios.get(base + 'item/findOne', { pa
 export const updateProject = params => { return  axios.post(base + 'item/update', params); };
 
 //添加项目
-export const addProject = params => { return  axios.post(base + 'item/add?title=qq&desc=qqqqq&amount=1000&type=1', params); };
+export const addProject = params => { return  axios.post(base + 'item/add?title=qq&desc=11qqqqq&amount=1000&type=1', params); };

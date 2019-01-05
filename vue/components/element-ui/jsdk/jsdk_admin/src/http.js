@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Message, Loading } from 'element-ui'
+import router from './router'
 
 let loading;        //定义loading变量
 
@@ -22,23 +23,29 @@ axios.interceptors.request.use(config => {
     // 加载
     startLoading();
 
+    //设置统一请求头
+    config.headers.Authorization = localStorage.code;
+
     return config
 }, error => {
     return Promise.reject(error)
 });
 
-//响应拦截  401 token过期处理
+//响应拦截
 axios.interceptors.response.use(response => {
     endLoading();
+
     return response
 }, error => {
-    // 错误提醒
     endLoading();
-    Message.error(error.response.data);
+
+    Message.error(error.response.data);  // 错误提醒
 
     const { status } = error.response;
-    if (status === 401) {
-        localStorage.removeItem('username')
+    if (status === 401) {  //失效
+        Message.error("登陆失效，请重新登陆");  // 错误提醒
+
+        localStorage.removeItem('code')
 
         // 页面跳转
         router.push('/login')

@@ -44,8 +44,8 @@ module.exports = {
         hotOnly: false,
         proxy: { // 配置跨域
             '/api': {
-                target: 'http://10.10.10.238:8090',
-                // target: 'http://api8084.ximuok.com/admin',
+                // target: 'http://10.10.10.238:8090',
+                target: 'http://api8084.ximuok.com',
                 ws: true,
                 changOrigin: true,
                 pathRewrite: {

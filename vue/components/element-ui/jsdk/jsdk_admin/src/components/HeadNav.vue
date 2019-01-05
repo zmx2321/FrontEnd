@@ -10,8 +10,7 @@
                     <img src="../assets/images/portrait.png" class='avatar' alt="">
                     <div class='welcome'>
                         <p class='name comename'>欢迎</p>
-                        <!--<p class='name avatarname'>{{ user_info.nickname }}</p>-->
-                        <p class='name avatarname'>aa</p>
+                        <!--<p class='name avatarname'>aa</p>-->
                     </div>
                     <span class='username'>
                         <el-dropdown trigger="click" @command='setDialogInfo'>
@@ -76,7 +75,7 @@ export default {
         // 退出
         logout() {
           // 清除token
-          // localStorage.removeItem("eleToken");
+          localStorage.removeItem("code");
           // this.$store.dispatch("clearCurrentState");
 
           // 页面跳转
