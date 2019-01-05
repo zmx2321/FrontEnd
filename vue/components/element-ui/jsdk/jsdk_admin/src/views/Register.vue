@@ -5,7 +5,7 @@
                 <span class="title">借了么后台管理系统</span>
             </div>
             <!-- ref获取表单内容 -->
-            <el-form :model="registerUser" status-icon :rules="rules" class="registerForm" ref="registerForm" label-width="80px">
+            <el-form :model="registerUser" @keyup.enter.native="submitForm('registerForm')" status-icon :rules="rules" class="registerForm" ref="registerForm" label-width="80px">
                 <el-form-item label="用户名" prop="name">
                     <el-input v-model="registerUser.name" placeholder="请输入用户名"></el-input>
                 </el-form-item>

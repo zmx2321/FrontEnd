@@ -49,9 +49,6 @@
                 <el-form-item label="项目标题" prop="title">
                     <el-input v-model="addProjectData.title" placeholder="请输入项目标题" clearable></el-input>
                 </el-form-item>
-                <!--<el-form-item label="项目logo" prop="logoUrl">-->
-                    <!--<el-input v-model="addProjectData.logoUrl" placeholder="请输入项目logo" clearable></el-input>-->
-                <!--</el-form-item>-->
                 <el-form-item label="上传项目logo">
                     <el-upload
                              class="upload-demo"
@@ -148,10 +145,10 @@
                  */
                 //添加项目数据
                 addProjectData: {
-                    type: 0,
-                    amount: 0,
-                    title: "123",
-                    desc: "456",
+                    type: 1,
+                    amount: 1000,
+                    title: "qq",
+                    desc: "11qqqqq",
                     // ?title=qq&desc=11qqqqq&amount=1000&type=1
                 },
 
@@ -276,18 +273,18 @@
              */
             //显示添加项目界面
             addProject () {
-                console.log("添加项目");
+                // console.log("添加项目");
             },
             //el-upload
             // 上传文件之前的钩子
             handleBeforeUpload(file) {
-                console.log('上传文件之前的钩子');
+                // console.log('上传文件之前的钩子');
 
-                console.log(file);
+                // console.log(file);
             },
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
             handleChange(file, fileList){
-                console.log("文件状态改变时的钩子");
+                // console.log("文件状态改变时的钩子");
 
                 //获取文件类型
                 let fileType = this.getFileType(file.name);
@@ -306,22 +303,22 @@
             },
             // 文件列表移除文件时的钩子
             handleRemove(file, fileList) {
-                console.log("文件列表移除文件时的钩子");
-                console.log(file, fileList);
+                // console.log("文件列表移除文件时的钩子");
+                // console.log(file, fileList);
             },
             // 点击文件列表中已上传的文件时的钩子
             handlePreview(file) {
-                console.log("点击文件列表中已上传的文件时的钩子");
-                console.log(file);
+                // console.log("点击文件列表中已上传的文件时的钩子");
+                // console.log(file);
             },
             // 文件超出个数限制时的钩子
             handleExceed(files, fileList) {
                 this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
             },
             // 删除文件之前的钩子
-            beforeRemove(file, fileList) {
-                console.log("删除文件之前的钩子");
-                console.log(fileList);
+            beforeRemove(file) {
+                // console.log("删除文件之前的钩子");
+                // console.log(fileList);
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
             //提交添加项目表单
@@ -332,10 +329,6 @@
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        console.log("submit!!");
-
-                        console.log(this.upload_arg.logoFile[0]);
-
                         let formData = new FormData();
 
                         formData.append('logoFile', this.upload_arg.logoFile[0]);
@@ -349,7 +342,7 @@
                         // ?title=qq&desc=11qqqqq&amount=1000&type=1
                         // qs.stringify(this.addProjectData) ,
                         addProject(formData, config).then((res) => {
-                            console.log(res);
+                            // console.log(res);
 
                             this.$message({
                                 message: "添加成功！",

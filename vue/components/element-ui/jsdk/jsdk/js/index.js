@@ -53,8 +53,8 @@ const setnavscroll = () => {
 
 //ajax
 const handleData = {
-    // url: "http://api8084.ximuok.com",
-    url: "http://10.10.10.238:8090",
+    url: "http://api8084.ximuok.com",
+    // url: "http://10.10.10.238:8090",
 
     tab: () => {
         //点击t1

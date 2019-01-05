@@ -4,7 +4,7 @@
             <div class="manage_tip">
                 <span class="title">借了么后台管理系统</span>
             </div>
-            <el-form :model="modifyUser" status-icon :rules="rules" ref="modifyForm" class="loginForm" label-width="80px">
+            <el-form :model="modifyUser" @keyup.enter.native="submitForm('modifyForm')" status-icon :rules="rules" ref="modifyForm" class="loginForm" label-width="80px">
                 <el-form-item label="旧密码" prop="oldPassword">
                     <el-input v-model="modifyUser.oldPassword" placeholder="请输入旧密码" type="password"></el-input>
                 </el-form-item>
@@ -43,9 +43,9 @@
 
             return {
                 modifyUser: {
-                    oldPassword: "admin",  //旧密码
-                    newPassword: "123456",  //新密码
-                    newPassword2: "123456"  //重复新密码
+                    oldPassword: "",  //旧密码
+                    newPassword: "",  //新密码
+                    newPassword2: ""  //重复新密码
                 },
                 rules: {
                     oldPassword: [
