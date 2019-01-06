@@ -6,7 +6,7 @@
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
-                            <el-input placeholder="请输入项目id" v-model="project_id" clearable></el-input>
+                            <el-input placeholder="请输入项目id" @keyup.enter.native="findProject" v-model="project_id" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="findProject">查询</el-button>
@@ -44,28 +44,28 @@
         </el-row>
 
         <!-- 添加新的设备 -->
-        <el-dialog title="添加新的项目" :close-on-click-modal="false" :visible.sync="addProjectVisible" :before-close="handleClose">
+        <el-dialog title="添加新的项目" @keyup.enter.native="addProjectSubmit('addProjectForm')" :close-on-click-modal="false" :visible.sync="addProjectVisible" :before-close="handleClose">
             <el-form :model="addProjectData" status-icon :rules="addProjectRules" ref="addProjectForm" label-width="130px">
                 <el-form-item label="项目标题" prop="title">
                     <el-input v-model="addProjectData.title" placeholder="请输入项目标题" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="上传项目logo">
                     <el-upload
-                             class="upload-demo"
-                             action="http://api8084.ximuok.com/admin/item/add"
-                             ref='upload'
+                            class="upload-demo"
+                            action="http://api8084.ximuok.com/admin/item/add"
+                            ref='upload'
                             :on-preview="handlePreview"
                             :before-upload="handleBeforeUpload"
                             :on-remove="handleRemove"
                             :before-remove="beforeRemove"
                             :on-change="handleChange"
-                             multiple
+                            multiple
                             :limit="upload_arg.limit"
                             :on-exceed="handleExceed"
                             :file-list="upload_arg.fileList"
                             :auto-upload='false'>
                         <el-button size="small" type="primary">点击上传</el-button>
-                        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb</div>
                     </el-upload>
                 </el-form-item>
                 <el-form-item label="项目申请人数" prop="amount">
@@ -85,7 +85,7 @@
         </el-dialog>
 
         <!-- 编辑项目信息 -->
-        <el-dialog title="更新项目" :close-on-click-modal="false" :visible.sync="updateProjectVisible" :before-close="handleClose">
+        <el-dialog title="更新项目" :close-on-click-modal="false" @keyup.enter.native="updateProjectSubmit('updateProjectForm')" :visible.sync="updateProjectVisible" :before-close="handleClose">
             <el-form :model="updateProjectData" status-icon :rules="updateProjectRules" ref="updateProjectForm" label-width="130px">
                 <el-form-item label="项目id" prop="id">
                     <el-input v-model="updateProjectData.id" disabled></el-input>
@@ -133,7 +133,7 @@
                 dialogVisible: false,  //关闭提示
                 sels: [],  //列表选中列
 
-                project_id: 3,  //项目id
+                project_id: "",  //项目id
 
                 /**
                  * 项目列表

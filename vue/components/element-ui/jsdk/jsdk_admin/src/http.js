@@ -35,6 +35,10 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(response => {
     endLoading();
 
+    if (response.data.code == -1){
+        localStorage.removeItem('code')
+    }
+
     return response
 }, error => {
     endLoading();
