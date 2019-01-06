@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const root = 'http://api8084.ximuok.com/admin';
+const root = 'http://api8084.ximuok.com/admin/';
 
 const Axios = axios.create({
     baseURL: root, // api

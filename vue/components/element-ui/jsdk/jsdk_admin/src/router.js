@@ -19,7 +19,7 @@ import Test from './views/test/Test'
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'hash',
+    mode: 'history',
     base: process.env.BASE_URL,
 
     routes: [

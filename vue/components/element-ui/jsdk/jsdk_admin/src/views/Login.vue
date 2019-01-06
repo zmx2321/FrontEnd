@@ -29,7 +29,7 @@
             return {
                 loginUser: {
                     username: "admin",
-                    password: ""
+                    password: "admin"
                 },
                 rules: {
                     username: [
@@ -68,7 +68,7 @@
                                     type: "success"
                                 });
 
-                                this.$router.push("/index");
+                                // this.$router.push("/index");
                             }
                         }).catch({});
                     } else {
