@@ -5,16 +5,33 @@
             <el-form :inline="true">
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
-                        <el-form-item>
-                            <el-input placeholder="请输入项目id" @keyup.enter.native="findProject" v-model="project_id" clearable></el-input>
+                        <el-form-item label="">
+                            <el-input placeholder="请输入项目标题" v-model="search_list_arg.title" @keyup.enter.native="findProjectList" clearable></el-input>
+                        </el-form-item>
+                        <el-form-item label="">
+                            <el-input placeholder="请输入项目类型" v-model="search_list_arg.type" @keyup.enter.native="findProjectList" clearable></el-input>
+                        </el-form-item>
+                        <el-form-item label="">
+                            <el-input placeholder="请输入项目描述关键字" v-model="search_list_arg.desc" @keyup.enter.native="findProjectList" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="findProject">查询</el-button>
+                            <el-button type="primary" @click="findProjectList">查询</el-button>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="addProject" v-on:click="addProjectVisible = true">添加项目</el-button>
+                            <el-button type="primary" v-on:click="addProjectVisible = true">添加项目</el-button>
                         </el-form-item>
                     </el-col>
+                    <!--<el-col :span="22">-->
+                        <!--<el-form-item label="根据id查询">-->
+                            <!--<el-input placeholder="请输入项目id" @keyup.enter.native="findProject" v-model="project_id" clearable></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item>-->
+                            <!--<el-button type="primary" @click="findProject">查询</el-button>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item>-->
+                            <!--<el-button type="primary" @click="addProject" v-on:click="addProjectVisible = true">添加项目</el-button>-->
+                        <!--</el-form-item>-->
+                    <!--</el-col>-->
                 </el-col>
             </el-form>
         </el-row>
@@ -41,6 +58,12 @@
                     </template>
                 </el-table-column>
             </el-table>
+
+            <!-- 分页 -->
+            <el-col :span="24" class="toolbar">
+                <el-pagination layout="prev, pager, next, total"  @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="page_arg.total" style="float:right;">
+                </el-pagination>
+            </el-col>
         </el-row>
 
         <!-- 添加新的设备 -->
@@ -52,21 +75,20 @@
                 <el-form-item label="上传项目logo">
                     <el-upload
                             class="upload-demo"
-                            action="http://api8084.ximuok.com/admin/item/add"
+                            action="http://10.10.10.238:8090/admin/item/upload"
                             ref='upload'
-                            :on-preview="handlePreview"
-                            :before-upload="handleBeforeUpload"
-                            :on-remove="handleRemove"
                             :before-remove="beforeRemove"
-                            :on-change="handleChange"
+                            :on-change="addHandleChange"
                             multiple
                             :limit="upload_arg.limit"
                             :on-exceed="handleExceed"
-                            :file-list="upload_arg.fileList"
-                            :auto-upload='false'>
+                            :file-list="upload_arg.fileList">
                         <el-button size="small" type="primary">点击上传</el-button>
                         <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb</div>
                     </el-upload>
+                </el-form-item>
+                <el-form-item label="项目logo" prop="title">
+                    <el-input v-model="addProjectData.logoUrl" placeholder="请输入项目logo" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="项目申请人数" prop="amount">
                     <el-input v-model="addProjectData.amount" placeholder="请输入项目申请人数" clearable></el-input>
@@ -96,6 +118,21 @@
                 <el-form-item label="项目logo" prop="logoUrl">
                     <el-input v-model="updateProjectData.logoUrl" placeholder="请输入项目logo" clearable></el-input>
                 </el-form-item>
+                <el-form-item label="上传项目logo">
+                    <el-upload
+                            class="upload-demo"
+                            action="http://10.10.10.238:8090/admin/item/upload"
+                            ref='upload'
+                            :before-remove="beforeRemove"
+                            :on-change="updateHandleChange"
+                            multiple
+                            :limit="upload_arg.limit"
+                            :on-exceed="handleExceed"
+                            :file-list="upload_arg.fileList">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb</div>
+                    </el-upload>
+                </el-form-item>
                 <el-form-item label="项目申请人数" prop="amount">
                     <el-input v-model="updateProjectData.amount" placeholder="请输入项目申请人数" clearable></el-input>
                 </el-form-item>
@@ -117,6 +154,7 @@
     import {
         getProjectList,  //获取项目列表
         findOne,  //根据id查询项目
+        getLogoUrl,  //获取logo url
         updateProject,  //修改项目
         addProject  //添加项目
     } from '../api/api.js';
@@ -135,6 +173,20 @@
 
                 project_id: "",  //项目id
 
+                //查询参数
+                search_list_arg: {
+                    desc: "",
+                    title: "",
+                    type: ""
+                },
+
+                //分页参数
+                page_arg: {
+                    pagesize: 20,  // 初始一页条数
+                    currentPage: 1,  // 当前第几页
+                    total: 0,  // 用于table的 :total
+                },
+
                 /**
                  * 项目列表
                  */
@@ -145,11 +197,11 @@
                  */
                 //添加项目数据
                 addProjectData: {
-                    type: 1,
-                    amount: 1000,
-                    title: "qq",
-                    desc: "11qqqqq",
-                    // ?title=qq&desc=11qqqqq&amount=1000&type=1
+                    type: "",
+                    amount: "",
+                    title: "",
+                    desc: "",
+                    logoUrl: ""
                 },
 
                 //上传图片参数
@@ -180,9 +232,9 @@
                  */
                 //更新项目数据
                 updateProjectData: {
-                    id: 1,
-                    type: 0,
-                    amount: 0,
+                    id: "",
+                    type: "",
+                    amount: "",
                     title: "",
                     desc: "",
                     logoUrl: "",
@@ -239,6 +291,33 @@
 
                 return suffix;
             },
+            /**
+             * el-upload common
+             */
+            // 文件超出个数限制时的钩子
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            // 删除文件之前的钩子
+            beforeRemove(file) {
+                this.addProjectData.logoUrl = "";
+                this.updateProjectData = "";
+                return this.$confirm(`确定移除 ${ file.name }？`);
+            },
+
+            /**
+             *  分页
+             */
+            // 控制每页的数量--分页
+            handleCurrentChange(val) {
+                this.page_arg.currentPage = val;
+                this.getProjectList();
+            },
+            // 判断点击是第几页--分页
+            handleSizeChange (size) {
+                this.page_arg.pagesize = size;
+                this.getProjectList();
+            },
 
             /**
              * api
@@ -247,14 +326,17 @@
             getProjectList () {
                 //接口参数
                 let param = {
-                    type: 0
+                    pageSize: this.page_arg.pageSize,
+                    pageNum: this.page_arg.currentPage,
                 };
 
                 getProjectList(JSON.stringify(param)).then(res => {
-                    this.project_info = res.data.data;
+                    console.log(res);
+                    this.page_arg.total = res.data.data.total;
+                    this.project_info = res.data.data.list;
                 }).catch({});
             },
-            //查找项目
+            //查找单个项目
             findProject () {
                 //接口参数
                 let param = {
@@ -263,6 +345,8 @@
 
                 //请求
                 findOne(param).then(res => {
+                    // console.log(res);
+
                     this.$message({
                         message: "查询成功！",
                         type: "success"
@@ -272,60 +356,50 @@
                     this.project_info.push(res.data.data);
                 }).catch({});
             },
+            //查找项目列表
+            findProjectList () {
+                console.log("查找项目列表");
+
+                getProjectList(JSON.stringify(this.search_list_arg)).then(res => {
+                    console.log(res);
+                    this.page_arg.total = res.data.data.total;
+                    this.project_info = res.data.data.list;
+                }).catch({});
+            },
 
             /**
              * 添加项目
              */
-            //显示添加项目界面
-            addProject () {
-                // console.log("添加项目");
-            },
             //el-upload
-            // 上传文件之前的钩子
-            handleBeforeUpload(file) {
-                // console.log('上传文件之前的钩子');
-
-                // console.log(file);
-            },
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
-            handleChange(file, fileList){
-                // console.log("文件状态改变时的钩子");
+            addHandleChange(file){
+                console.log("文件状态改变时的钩子");
 
-                //获取文件类型
-                let fileType = this.getFileType(file.name);
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.logoFile.push(file.raw);
 
-                //判断文件类型是否符合条件
-                if(!(fileType == "jpg" || fileType == "jpeg")){
-                    this.$message.warning({
-                        title: '警告',
-                        message: '请上传格式为image/jpg, image/jpeg的图片'
-                    });
+                //上传图片
+                this.addUpload();
+            },
+
+            // 获取logo url
+            addUpload(){
+                let formData = new FormData();
+
+                formData.append('logoFile', this.upload_arg.logoFile[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getLogoUrl(formData, config).then(res=>{
+                    this.addProjectData.logoUrl = res.data.data.logoUrl;
+
                     this.upload_arg.fileList = [];
-                } else {
-                    //上传文件变化时将文件对象push进files数组
-                    this.upload_arg.logoFile.push(file.raw);
-                }
+                })
             },
-            // 文件列表移除文件时的钩子
-            handleRemove(file, fileList) {
-                // console.log("文件列表移除文件时的钩子");
-                // console.log(file, fileList);
-            },
-            // 点击文件列表中已上传的文件时的钩子
-            handlePreview(file) {
-                // console.log("点击文件列表中已上传的文件时的钩子");
-                // console.log(file);
-            },
-            // 文件超出个数限制时的钩子
-            handleExceed(files, fileList) {
-                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-            },
-            // 删除文件之前的钩子
-            beforeRemove(file) {
-                // console.log("删除文件之前的钩子");
-                // console.log(fileList);
-                return this.$confirm(`确定移除 ${ file.name }？`);
-            },
+
             //提交添加项目表单
             addProjectSubmit (formName) {
                 this.listLoading = true;  //点击提交开始加载loading
@@ -334,21 +408,7 @@
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        let formData = new FormData();
-
-                        formData.append('logoFile', this.upload_arg.logoFile[0]);
-
-                        let config = {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            }
-                        };
-
-                        // ?title=qq&desc=11qqqqq&amount=1000&type=1
-                        // qs.stringify(this.addProjectData) ,
-                        addProject(formData, config).then(() => {
-                            // console.log(res);
-
+                        addProject(qs.stringify(this.addProjectData)).then(() => {
                             this.$message({
                                 message: "添加成功！",
                                 type: "success"
@@ -369,9 +429,35 @@
             /**
              * 更新项目
              */
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            updateHandleChange(file){
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.logoFile.push(file.raw);
+
+                //上传图片
+                this.updateUpload();
+            },
+            // 获取logo url
+            updateUpload(){
+                let formData = new FormData();
+
+                formData.append('logoFile', this.upload_arg.logoFile[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getLogoUrl(formData, config).then(res=>{
+                    this.updateProjectData.logoUrl = res.data.data.logoUrl;
+
+                    this.upload_arg.fileList = [];
+                })
+            },
             //显示更新项目界面
             updateProject (row) {
                 this.updateProjectData = Object.assign({}, row);
+                console.log(this.updateProjectData);
             },
             //提交更新项目表单
             updateProjectSubmit(formName) {
@@ -401,7 +487,7 @@
         },
         created () {
             this.getProjectList();
-            console.log(this.md5("admin"));
+            // console.log(this.md5("admin"));
         }
     }
 </script>

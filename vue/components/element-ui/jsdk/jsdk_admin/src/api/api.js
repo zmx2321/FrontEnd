@@ -34,6 +34,18 @@ export const getProjectList = params => {
     });
 };
 
+//获取logo url
+export const getLogoUrl = params => {
+    return  axios({
+        url: 'item/upload',
+        method: 'post',
+        data: params,
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        },
+    });
+};
+
 //根据id查询项目
 export const findOne = params => {
     return  axios({
@@ -58,7 +70,7 @@ export const updateProject = params => {
 //添加项目
 export const addProject = params => {
     return  axios({
-        url: 'item/add?title=qq&desc=11qqqqq&amount=1000&type=1',
+        url: 'item/add',
         method: 'post',
         data: params,
     });

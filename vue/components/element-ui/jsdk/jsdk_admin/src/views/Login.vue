@@ -68,7 +68,7 @@
 
                                 this.loginUser.password = "";
 
-                                this.$router.push("/index");
+                                this.$router.push("/project_manage");
                             }
                         }).catch({});
                     } else {

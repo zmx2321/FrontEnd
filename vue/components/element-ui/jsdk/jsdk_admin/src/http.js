@@ -23,6 +23,8 @@ axios.interceptors.request.use(config => {
     // 加载
     startLoading();
 
+    console.log(response.data.code);
+
     //设置统一请求头
     config.headers.Authorization = localStorage.code;
 
@@ -34,6 +36,8 @@ axios.interceptors.request.use(config => {
 //响应拦截
 axios.interceptors.response.use(response => {
     endLoading();
+
+    console.log(response.data.code);
 
     if (response.data.code == -1){
         localStorage.removeItem('code')
