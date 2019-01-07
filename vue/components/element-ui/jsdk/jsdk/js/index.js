@@ -53,7 +53,7 @@ const setnavscroll = () => {
 
 //ajax
 const handleData = {
-    url: "dc-api.9m3j.cn",
+    url: "http://dc-api.9m3j.cn",
     // url: "http://api8084.ximuok.com",
     // url: "http://10.10.10.238:8090",
 
