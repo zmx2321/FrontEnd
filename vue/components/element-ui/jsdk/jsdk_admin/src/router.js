@@ -14,12 +14,10 @@ import NotFound from './views/NotFound'
 import ProjectManage from './views/ProjectManage'
 import ModifyPassword from './views/ModifyPassword'
 
-import Test from './views/test/Test'
-
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
 
     routes: [
@@ -37,8 +35,6 @@ const router = new Router({
                 { path: '', component: Home },
                 { path: '/home', component: Home, name: 'home' },
                 { path: '/infoshow', component: InfoShow, name: 'infoShow' },
-
-                { path: '/test', component: Test, name: 'test' },
 
                 //项目管理
                 { path: '/project_manage', component: ProjectManage, name: 'project_manage' },
@@ -79,6 +75,6 @@ router.beforeEach((to, from, next) => {
     } else {
         isLogin ? next() : next("/login");
     }
-})
+});
 
 export default router;

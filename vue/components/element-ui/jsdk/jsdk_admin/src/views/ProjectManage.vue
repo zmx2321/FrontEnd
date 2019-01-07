@@ -263,6 +263,11 @@
 
                 //请求
                 findOne(param).then(res => {
+                    this.$message({
+                        message: "查询成功！",
+                        type: "success"
+                    });
+
                     this.project_info = [];
                     this.project_info.push(res.data.data);
                 }).catch({});
@@ -294,7 +299,7 @@
                     this.$message.warning({
                         title: '警告',
                         message: '请上传格式为image/jpg, image/jpeg的图片'
-                    })
+                    });
                     this.upload_arg.fileList = [];
                 } else {
                     //上传文件变化时将文件对象push进files数组
@@ -341,7 +346,7 @@
 
                         // ?title=qq&desc=11qqqqq&amount=1000&type=1
                         // qs.stringify(this.addProjectData) ,
-                        addProject(formData, config).then((res) => {
+                        addProject(formData, config).then(() => {
                             // console.log(res);
 
                             this.$message({
