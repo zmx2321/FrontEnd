@@ -9,7 +9,7 @@
                 <div class="userinfo">
                     <img src="../assets/images/portrait.png" class='avatar' alt="">
                     <div class='welcome'>
-                        <p class='name comename'>欢迎</p>
+                        <p class='name comename'>欢迎使用</p>
                         <!--<p class='name avatarname'>aa</p>-->
                     </div>
                     <span class='username'>

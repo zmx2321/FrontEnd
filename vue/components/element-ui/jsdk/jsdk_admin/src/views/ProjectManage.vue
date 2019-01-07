@@ -21,6 +21,7 @@
                             <el-button type="primary" v-on:click="addProjectVisible = true">添加项目</el-button>
                         </el-form-item>
                     </el-col>
+                    <el-col class="tip">项目类型(只允许输入0-2){[0:快速微额贷][1:热门极速贷][2:大额贷款]}</el-col>
                     <!--<el-col :span="22">-->
                         <!--<el-form-item label="根据id查询">-->
                             <!--<el-input placeholder="请输入项目id" @keyup.enter.native="findProject" v-model="project_id" clearable></el-input>-->
@@ -43,7 +44,7 @@
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="id" width="60" align="center"></el-table-column>
                 <el-table-column prop="title" label="项目标题" width="150" align="center"></el-table-column>
-                <el-table-column prop="logo" label="项目logo" width="150" align="center">
+                <el-table-column label="项目logo" width="150" align="center">
             	<template slot-scope="scope">
             		<img :src="scope.row.logoUrl" class="tabimg" />
             	</template>
@@ -68,6 +69,8 @@
 
         <!-- 添加新的设备 -->
         <el-dialog title="添加新的项目" @keyup.enter.native="addProjectSubmit('addProjectForm')" :close-on-click-modal="false" :visible.sync="addProjectVisible" :before-close="handleClose">
+            <el-col class="tip mgt toolbar">项目类型(只允许输入0-2){[0:快速微额贷][1:热门极速贷][2:大额贷款]}</el-col>
+
             <el-form :model="addProjectData" status-icon :rules="addProjectRules" ref="addProjectForm" label-width="130px">
                 <el-form-item label="项目标题" prop="title">
                     <el-input v-model="addProjectData.title" placeholder="请输入项目标题" clearable></el-input>
@@ -84,7 +87,7 @@
                             :on-exceed="handleExceed"
                             :file-list="upload_arg.fileList">
                         <el-button size="small" type="primary">点击上传</el-button>
-                        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb</div>
+                        <!--<div slot="tip" class="el-upload__tip">只能上传图片格式文件</div>-->
                     </el-upload>
                 </el-form-item>
                 <el-form-item label="项目logo" prop="title">
@@ -108,15 +111,14 @@
 
         <!-- 编辑项目信息 -->
         <el-dialog title="更新项目" :close-on-click-modal="false" @keyup.enter.native="updateProjectSubmit('updateProjectForm')" :visible.sync="updateProjectVisible" :before-close="handleClose">
+            <el-col class="tip mgt toolbar">项目类型(只允许输入0-2){[0:快速微额贷][1:热门极速贷][2:大额贷款]}</el-col>
+
             <el-form :model="updateProjectData" status-icon :rules="updateProjectRules" ref="updateProjectForm" label-width="130px">
                 <el-form-item label="项目id" prop="id">
                     <el-input v-model="updateProjectData.id" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="项目标题" prop="title">
                     <el-input v-model="updateProjectData.title" placeholder="请输入项目标题" clearable></el-input>
-                </el-form-item>
-                <el-form-item label="项目logo" prop="logoUrl">
-                    <el-input v-model="updateProjectData.logoUrl" placeholder="请输入项目logo" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="上传项目logo">
                     <el-upload
@@ -130,8 +132,11 @@
                             :on-exceed="handleExceed"
                             :file-list="upload_arg.fileList">
                         <el-button size="small" type="primary">点击上传</el-button>
-                        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb</div>
+                        <!--<div slot="tip" class="el-upload__tip">只能上传图片格式文件</div>-->
                     </el-upload>
+                </el-form-item>
+                <el-form-item label="项目logo" prop="logoUrl">
+                    <el-input v-model="updateProjectData.logoUrl" placeholder="请输入项目logo" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="项目申请人数" prop="amount">
                     <el-input v-model="updateProjectData.amount" placeholder="请输入项目申请人数" clearable></el-input>
@@ -156,14 +161,23 @@
         findOne,  //根据id查询项目
         getLogoUrl,  //获取logo url
         updateProject,  //修改项目
-        addProject,  //添加项目
-        UVProject  //UV接口
+        addProject  //添加项目
     } from '../api/api.js';
 
     export default {
         name: 'project_manage',
 
         data() {
+            let validateType = (rule, value, callback) => {
+                if (value<0 || value>2) {
+                    return callback(new Error('项目类型只能输入0-2！'));
+                } else {
+                    return callback(new Error('非法输入！'));
+                }
+
+                callback();
+            };
+
             return {
                 /**
                  * common
@@ -209,22 +223,22 @@
                 upload_arg: {
                     limit:1,
                     logoFile: [],
-                    fileList: [],
                 },
 
                 //验证添加项目界面数据
                 addProjectRules: {
                     type: [
                         { required: true, message: '项目类型不能为空', trigger: 'blur' },
+                        { validator: validateType, trigger: 'blur' },
                     ],
                     amount: [
-                        { required: true, message: '项目申请人数不能为空', trigger: 'blur' },
+                        { required: true, message: '项目申请人数不能为空！', trigger: 'blur' },
                     ],
                     title: [
-                        { required: true, message: '项目标题不能为空', trigger: 'blur' },
+                        { required: true, message: '项目标题不能为空！', trigger: 'blur' },
                     ],
                     desc: [
-                        { required: true, message: '项目描述不能为空', trigger: 'blur' },
+                        { required: true, message: '项目描述不能为空！', trigger: 'blur' },
                     ],
                 },
 
@@ -243,19 +257,20 @@
                 //验证更新项目界面数据
                 updateProjectRules: {
                     type: [
-                        { required: true, message: '项目类型不能为空', trigger: 'blur' },
+                        { required: true, message: '项目类型不能为空！', trigger: 'blur' },
+                        { validator: validateType, trigger: 'blur' },
                     ],
                     amount: [
-                        { required: true, message: '项目申请人数不能为空', trigger: 'blur' },
+                        { required: true, message: '项目申请人数不能为空！', trigger: 'blur' },
                     ],
                     title: [
-                        { required: true, message: '项目标题不能为空', trigger: 'blur' },
+                        { required: true, message: '项目标题不能为空！', trigger: 'blur' },
                     ],
                     desc: [
-                        { required: true, message: '项目描述不能为空', trigger: 'blur' },
+                        { required: true, message: '项目描述不能为空！', trigger: 'blur' },
                     ],
                     logoUrl: [
-                        { required: true, message: '项目logo不能为空', trigger: 'blur' },
+                        { required: true, message: '项目logo不能为空！', trigger: 'blur' },
                     ]
                 },
 
@@ -292,6 +307,7 @@
 
                 return suffix;
             },
+
             /**
              * el-upload common
              */
@@ -302,7 +318,7 @@
             // 删除文件之前的钩子
             beforeRemove(file) {
                 this.addProjectData.logoUrl = "";
-                this.updateProjectData = "";
+                this.updateProjectData.logoUrl = "";
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
 
@@ -332,7 +348,6 @@
                 };
 
                 getProjectList(JSON.stringify(param)).then(res => {
-                    // console.log(res);
                     this.page_arg.total = res.data.data.total;
                     this.project_info = res.data.data.list;
                 }).catch({});
@@ -346,8 +361,6 @@
 
                 //请求
                 findOne(param).then(res => {
-                    // console.log(res);
-
                     this.$message({
                         message: "查询成功！",
                         type: "success"
@@ -359,10 +372,7 @@
             },
             //查找项目列表
             findProjectList () {
-                console.log("查找项目列表");
-
                 getProjectList(JSON.stringify(this.search_list_arg)).then(res => {
-                    console.log(res);
                     this.page_arg.total = res.data.data.total;
                     this.project_info = res.data.data.list;
                 }).catch({});
@@ -374,7 +384,7 @@
             //el-upload
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
             addHandleChange(file){
-                console.log("文件状态改变时的钩子");
+                // console.log("文件状态改变时的钩子");
 
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.logoFile.push(file.raw);
@@ -396,9 +406,7 @@
                 };
                 getLogoUrl(formData, config).then(res=>{
                     this.addProjectData.logoUrl = res.data.data.logoUrl;
-
-                    this.upload_arg.fileList = [];
-                })
+                });
             },
 
             //提交添加项目表单
@@ -418,7 +426,6 @@
                             this.addProjectVisible = false;  //隐藏编辑位置信息界面
                             this.listLoading = false;  //请求成功停止加载loading
                             this.getProjectList();  //刷新列表数据
-                            this.upload_arg.fileList = [];  //清空上传图片
                         }).catch({});
                     } else {  //验证失败跳出
                         console.log('error submit!!');
@@ -451,14 +458,11 @@
                 };
                 getLogoUrl(formData, config).then(res=>{
                     this.updateProjectData.logoUrl = res.data.data.logoUrl;
-
-                    this.upload_arg.fileList = [];
                 })
             },
             //显示更新项目界面
             updateProject (row) {
                 this.updateProjectData = Object.assign({}, row);
-                console.log(this.updateProjectData);
             },
             //提交更新项目表单
             updateProjectSubmit(formName) {
@@ -488,16 +492,6 @@
         },
         created () {
             this.getProjectList();
-            // console.log(this.md5("admin"));
-
-            let params = {
-                "endTime": "2019-01-07 11:10:08.417Z",
-                "startTime": "2019-01-07 11:10:08.417Z"
-            }
-            UVProject(params).then(res => {
-                console.log(res.data.data);
-                console.log(res.data.code);
-            });
         }
     }
 </script>
@@ -508,5 +502,14 @@
         width: 40px;
         height: 40px;
         margin: 0 auto;
+    }
+
+    .tip{
+        font-size: 12px;
+        color: #717171;
+    }
+
+    .mgt{
+        margin-bottom: 25px;
     }
 </style>

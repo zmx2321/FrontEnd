@@ -43,7 +43,7 @@ const tip = () =>{
     });
 
     //自动触发点击事件
-    $('#tab2').trigger("click");
+    $('#tab1').trigger("click");
 };
 
 //nav置顶
@@ -53,7 +53,8 @@ const setnavscroll = () => {
 
 //ajax
 const handleData = {
-    url: "http://api8084.ximuok.com",
+    url: "dc-api.9m3j.cn",
+    // url: "http://api8084.ximuok.com",
     // url: "http://10.10.10.238:8090",
 
     tab: () => {
@@ -71,7 +72,9 @@ const handleData = {
                 contentType: 'application/json; charset=UTF-8',
                 data: JSON.stringify(param),
                 dataType:"json",
-                success: (res) => {
+                success: res => {
+                    console.log(res);
+
                     util.hideLoding();
 
                     let str = "";
@@ -124,7 +127,7 @@ const handleData = {
             util.showLoding();  //加载loading
 
             let param = {
-                type: 0
+                type: 1
             };
 
             $.ajax({
@@ -186,7 +189,7 @@ const handleData = {
             util.showLoding();  //加载loading
 
             let param = {
-                type: 0
+                type: 2
             };
 
             $.ajax({

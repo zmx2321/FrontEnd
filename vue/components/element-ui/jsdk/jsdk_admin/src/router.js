@@ -13,6 +13,7 @@ import NotFound from './views/NotFound'
 
 import ProjectManage from './views/ProjectManage'
 import ModifyPassword from './views/ModifyPassword'
+import UV from './views/UV'
 
 Vue.use(Router);
 
@@ -38,6 +39,8 @@ const router = new Router({
 
                 //项目管理
                 { path: '/project_manage', component: ProjectManage, name: 'project_manage' },
+                //UV
+                { path: '/uv', component: UV, name: 'UV' },
             ]
         },
         // 注册页面
