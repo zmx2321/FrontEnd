@@ -43,9 +43,9 @@
 
             return {
                 modifyUser: {
-                    oldPassword: "admin",  //旧密码
-                    newPassword: "admin",  //新密码
-                    newPassword2: "admin"  //重复新密码
+                    oldPassword: "",  //旧密码
+                    newPassword: "",  //新密码
+                    newPassword2: ""  //重复新密码
                 },
                 rules: {
                     oldPassword: [

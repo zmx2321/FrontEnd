@@ -396,7 +396,7 @@
         },
         created () {
             this.getProjectList();
-            // console.log(this.md5("admin"));
+            console.log(this.md5("admin"));
         }
     }
 </script>

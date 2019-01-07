@@ -1,5 +1,5 @@
 //引入mongoose
-const mongoose = required(mongoose);
+const mongoose = require("mongoose");
 //引入Schema
 const Schema = mongoose.Schema;
 

@@ -29,7 +29,7 @@
             return {
                 loginUser: {
                     username: "admin",
-                    password: "admin"
+                    password: ""
                 },
                 rules: {
                     username: [
@@ -52,8 +52,6 @@
                         this.loginUser.password = this.md5(this.loginUser.password);
 
                         Login(qs.stringify(this.loginUser)).then(res => {
-                            console.log(res);
-
                             if (res.data.code == 1){
                                 this.$message({
                                     message: "用户名或密码错误",
@@ -68,7 +66,9 @@
                                     type: "success"
                                 });
 
-                                // this.$router.push("/index");
+                                this.loginUser.password = "";
+
+                                this.$router.push("/index");
                             }
                         }).catch({});
                     } else {
