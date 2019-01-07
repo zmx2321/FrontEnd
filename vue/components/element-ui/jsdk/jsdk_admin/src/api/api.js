@@ -75,3 +75,12 @@ export const addProject = params => {
         data: params,
     });
 };
+
+//UV接口
+export const UVProject = params => {
+    return  axios({
+        url: 'UV/findByDate',
+        method: 'post',
+        data: params,
+    });
+};

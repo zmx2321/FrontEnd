@@ -38,7 +38,7 @@
 
         <!-- 项目列表 -->
         <el-row>
-            <el-table class="project_list" :data="project_info" border highlight-current-row v-loading="listLoading" height="600">
+            <el-table class="project_list" :data="project_info" border highlight-current-row v-loading="listLoading" height="720">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="id" width="60" align="center"></el-table-column>
@@ -156,7 +156,8 @@
         findOne,  //根据id查询项目
         getLogoUrl,  //获取logo url
         updateProject,  //修改项目
-        addProject  //添加项目
+        addProject,  //添加项目
+        UVProject  //UV接口
     } from '../api/api.js';
 
     export default {
@@ -182,8 +183,8 @@
 
                 //分页参数
                 page_arg: {
-                    pagesize: 20,  // 初始一页条数
-                    currentPage: 1,  // 当前第几页
+                    pagesize: "10",  // 初始一页条数
+                    currentPage: "1",  // 当前第几页
                     total: 0,  // 用于table的 :total
                 },
 
@@ -326,12 +327,12 @@
             getProjectList () {
                 //接口参数
                 let param = {
-                    pageSize: this.page_arg.pageSize,
+                    pageSize: this.page_arg.pagesize,
                     pageNum: this.page_arg.currentPage,
                 };
 
                 getProjectList(JSON.stringify(param)).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.page_arg.total = res.data.data.total;
                     this.project_info = res.data.data.list;
                 }).catch({});
@@ -488,6 +489,15 @@
         created () {
             this.getProjectList();
             // console.log(this.md5("admin"));
+
+            let params = {
+                "endTime": "2019-01-07 11:10:08.417Z",
+                "startTime": "2019-01-07 11:10:08.417Z"
+            }
+            UVProject(params).then(res => {
+                console.log(res.data.data);
+                console.log(res.data.code);
+            });
         }
     }
 </script>
