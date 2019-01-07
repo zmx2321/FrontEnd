@@ -18,7 +18,7 @@
                     <el-button type="primary" @click="submitForm('modifyForm')" @keyup.enter.native="submitForm('modifyForm')" class="submit_btn">修改密码</el-button>
                 </el-form-item>
                 <div class="tiparea">
-                    <router-link to='/login'>返回登录</router-link>
+                    <router-link to='/index'>返回</router-link>
                 </div>
             </el-form>
         </section>
