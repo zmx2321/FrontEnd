@@ -39,7 +39,7 @@
 
         <!-- 项目列表 -->
         <el-row>
-            <el-table class="project_list" :data="project_info" border highlight-current-row v-loading="listLoading" height="720">
+            <el-table class="project_list" :data="project_info" border highlight-current-row v-loading="listLoading" height="710">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="id" width="60" align="center"></el-table-column>
@@ -53,27 +53,35 @@
                 <el-table-column prop="type" label="项目类型" width="80" align="center"></el-table-column>
                 <el-table-column prop="desc" label="项目描述" width="auto"></el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="100">
+                <el-table-column fixed="right" label="操作" width="200">
                     <template slot-scope="scope">
                         <el-button @click="updateProject(scope.row)" v-on:click="updateProjectVisible = true" type="text" size="small">更新项目</el-button>
+                        <el-button @click="updateProjectSort(scope.row)" v-on:click="updateProjectSortVisible = true" type="text" size="small">编辑序号</el-button>
                     </template>
                 </el-table-column>
             </el-table>
 
             <!-- 分页 -->
-            <el-col :span="24" class="toolbar">
-                <el-pagination layout="prev, pager, next, total"  @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="page_arg.total" style="float:right;">
-                </el-pagination>
+            <el-col :span="24" class="toolbar f-cb">
+                <el-pagination class="f-fr" layout="prev, pager, next, total"  @current-change="handleCurrentChange" :total="page_arg.total"></el-pagination>
             </el-col>
         </el-row>
 
         <!-- 添加新的设备 -->
         <el-dialog title="添加新的项目" @keyup.enter.native="addProjectSubmit('addProjectForm')" :close-on-click-modal="false" :visible.sync="addProjectVisible" :before-close="handleClose">
-            <el-col class="tip mgt toolbar">项目类型(只允许输入0-2){[0:快速微额贷][1:热门极速贷][2:大额贷款]}</el-col>
+            <el-col class="tip mgt toolbar bdr_radiu">
+                <el-col class="mgt">项目类型(只允许输入0-2)</el-col>
+                <el-col class="mgt">0：快速微额贷</el-col>
+                <el-col class="mgt">1：热门极速贷</el-col>
+                <el-col class="mgt">2：大额贷款</el-col>
+            </el-col>
 
-            <el-form :model="addProjectData" status-icon :rules="addProjectRules" ref="addProjectForm" label-width="130px">
+            <el-form :model="addProjectData" status-icon :rules="addProjectRules" ref="addProjectForm" label-width="150px">
                 <el-form-item label="项目标题" prop="title">
                     <el-input v-model="addProjectData.title" placeholder="请输入项目标题" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="项目跳转目的URL" prop="targetUrl">
+                    <el-input v-model="addProjectData.targetUrl" placeholder="请输入跳转目的URL" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="上传项目logo">
                     <el-upload
@@ -90,7 +98,7 @@
                         <!--<div slot="tip" class="el-upload__tip">只能上传图片格式文件</div>-->
                     </el-upload>
                 </el-form-item>
-                <el-form-item label="项目logo" prop="title">
+                <el-form-item label="项目logo" prop="logoUrl">
                     <el-input v-model="addProjectData.logoUrl" placeholder="请输入项目logo" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="项目申请人数" prop="amount">
@@ -111,14 +119,22 @@
 
         <!-- 编辑项目信息 -->
         <el-dialog title="更新项目" :close-on-click-modal="false" @keyup.enter.native="updateProjectSubmit('updateProjectForm')" :visible.sync="updateProjectVisible" :before-close="handleClose">
-            <el-col class="tip mgt toolbar">项目类型(只允许输入0-2){[0:快速微额贷][1:热门极速贷][2:大额贷款]}</el-col>
+            <el-col class="tip mgt toolbar bdr_radiu">
+                <el-col class="mgt">项目类型(只允许输入0-2)</el-col>
+                <el-col class="mgt">0：快速微额贷</el-col>
+                <el-col class="mgt">1：热门极速贷</el-col>
+                <el-col class="mgt">2：大额贷款</el-col>
+            </el-col>
 
-            <el-form :model="updateProjectData" status-icon :rules="updateProjectRules" ref="updateProjectForm" label-width="130px">
+            <el-form :model="updateProjectData" status-icon :rules="updateProjectRules" ref="updateProjectForm" label-width="150px">
                 <el-form-item label="项目id" prop="id">
                     <el-input v-model="updateProjectData.id" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="项目标题" prop="title">
-                    <el-input v-model="updateProjectData.title" placeholder="请输入项目标题" clearable></el-input>
+                    <el-input v-model="updateProjectData.title" placeholder="请输入项目序号" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="项目跳转目的URL" prop="targetUrl">
+                    <el-input v-model="updateProjectData.targetUrl" placeholder="请输入跳转目的URL" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="上传项目logo">
                     <el-upload
@@ -153,6 +169,22 @@
                 </el-form-item>
             </el-form>
         </el-dialog>
+
+        <!-- 编辑序号 -->
+        <el-dialog title="编辑序号" :close-on-click-modal="false" @keyup.enter.native="updateProjectSortSubmit('updateProjectSortForm')" :visible.sync="updateProjectSortVisible" :before-close="handleClose">
+            <el-form :model="updateProjectSortData" status-icon :rules="updateProjectSortRules" ref="updateProjectSortForm" label-width="130px">
+                <el-form-item label="项目id" prop="id">
+                    <el-input v-model="updateProjectSortData.id" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="项目序号" prop="sort">
+                    <el-input v-model="updateProjectSortData.sort" placeholder="请输入项目序号" clearable></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="updateProjectSortSubmit('updateProjectSortForm')">提交</el-button>
+                    <el-button @click="resetForm('updateProjectSortForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </section>
 </template>
 <script>
@@ -161,6 +193,7 @@
         findOne,  //根据id查询项目
         getLogoUrl,  //获取logo url
         updateProject,  //修改项目
+        updateProjectSort,  //编辑序号
         addProject  //添加项目
     } from '../api/api.js';
 
@@ -168,11 +201,22 @@
         name: 'project_manage',
 
         data() {
+            //项目类型验证
             let validateType = (rule, value, callback) => {
-                if (value<0 || value>2) {
+                let reg = /^[0-2]$/;
+
+                if (!reg.test(value)) {
                     return callback(new Error('项目类型只能输入0-2！'));
-                } else {
-                    return callback(new Error('非法输入！'));
+                }
+
+                callback();
+            };
+            //url验证
+            let validateUrl = (rule, value, callback) => {
+                let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/
+
+                if (!reg.test(value)) {
+                    return callback(new Error('url输入不正确！'));
                 }
 
                 callback();
@@ -184,7 +228,6 @@
                  */
                 listLoading: false,  //lodding动画
                 dialogVisible: false,  //关闭提示
-                sels: [],  //列表选中列
 
                 project_id: "",  //项目id
 
@@ -216,7 +259,8 @@
                     amount: "",
                     title: "",
                     desc: "",
-                    logoUrl: ""
+                    logoUrl: "",
+                    targetUrl: "http://"
                 },
 
                 //上传图片参数
@@ -240,6 +284,13 @@
                     desc: [
                         { required: true, message: '项目描述不能为空！', trigger: 'blur' },
                     ],
+                    logoUrl: [
+                        { required: true, message: '项目logo不能为空！', trigger: 'blur' },
+                    ],
+                    targetUrl: [
+                        { required: true, message: '跳转目的URL不能为空！', trigger: 'blur' },
+                        { validator: validateUrl, trigger: 'blur' },
+                    ]
                 },
 
                 /**
@@ -253,6 +304,7 @@
                     title: "",
                     desc: "",
                     logoUrl: "",
+                    targetUrl: ""
                 },
                 //验证更新项目界面数据
                 updateProjectRules: {
@@ -271,7 +323,26 @@
                     ],
                     logoUrl: [
                         { required: true, message: '项目logo不能为空！', trigger: 'blur' },
+                    ],
+                    targetUrl: [
+                        { required: true, message: '跳转目的URL不能为空！', trigger: 'blur' },
+                        { validator: validateUrl, trigger: 'blur' },
                     ]
+                },
+
+                /**
+                 * 编辑序号
+                 */
+                //编辑序号数据
+                updateProjectSortData: {
+                    id: "",
+                    sort: ""
+                },
+                //验证编辑序号界面数据
+                updateProjectSortRules: {
+                    sort: [
+                        { required: true, message: '序号不能为空！', trigger: 'blur' },
+                    ],
                 },
 
                 /**
@@ -279,6 +350,7 @@
                  */
                 addProjectVisible: false,  //显示隐藏添加新的项目界面
                 updateProjectVisible: false,  //显示隐藏更新项目界面
+                updateProjectSortVisible: false,  //显示隐藏编辑序号界面
             }
         },
         methods: {
@@ -330,16 +402,11 @@
                 this.page_arg.currentPage = val;
                 this.getProjectList();
             },
-            // 判断点击是第几页--分页
-            handleSizeChange (size) {
-                this.page_arg.pagesize = size;
-                this.getProjectList();
-            },
 
             /**
-             * api
+             *  api
+             *  获取项目信息
              */
-            //获取项目信息
             getProjectList () {
                 //接口参数
                 let param = {
@@ -352,7 +419,11 @@
                     this.project_info = res.data.data.list;
                 }).catch({});
             },
-            //查找单个项目
+
+            /**
+             *  api
+             *  查找单个项目
+             */
             findProject () {
                 //接口参数
                 let param = {
@@ -370,16 +441,25 @@
                     this.project_info.push(res.data.data);
                 }).catch({});
             },
-            //查找项目列表
+
+            /**
+             *  api
+             *  查找项目列表
+             */
             findProjectList () {
+                this.listLoading = true;
+
                 getProjectList(JSON.stringify(this.search_list_arg)).then(res => {
+                    this.listLoading = false;
+
                     this.page_arg.total = res.data.data.total;
                     this.project_info = res.data.data.list;
                 }).catch({});
             },
 
             /**
-             * 添加项目
+             *  api
+             *  添加项目
              */
             //el-upload
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
@@ -435,7 +515,8 @@
             },
 
             /**
-             * 更新项目
+             *  api
+             *  更新项目
              */
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
             updateHandleChange(file){
@@ -460,7 +541,7 @@
                     this.updateProjectData.logoUrl = res.data.data.logoUrl;
                 })
             },
-            //显示更新项目界面
+            //浅拷贝列表数据到表单
             updateProject (row) {
                 this.updateProjectData = Object.assign({}, row);
             },
@@ -488,7 +569,43 @@
                         return false;
                     }
                 });
-            }
+            },
+
+            /**
+             *  api
+             *  编辑序号
+             */
+            //浅拷贝列表数据到表单
+            updateProjectSort (row) {
+                this.updateProjectSortData.id = Object.assign({}, row).id;
+                this.updateProjectSortData.sort = Object.assign({}, row).sort;
+            },
+            //提交编辑序号表单
+            updateProjectSortSubmit(formName) {
+                this.listLoading = true;  //点击提交开始加载loading
+
+                //验证表单
+                this.$refs[formName].validate((valid) => {
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        updateProjectSort(qs.stringify(this.updateProjectSortData)).then(() => {
+                            this.updateProjectSortVisible = false;  //隐藏编辑位置信息界面
+
+                            this.$message({
+                                message: "更新成功！",
+                                type: "success"
+                            });
+
+                            this.listLoading = false;  //请求成功停止加载loading
+                            this.getProjectList();  //刷新列表数据
+                        }).catch({});
+                    } else {  //验证失败跳出
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+
         },
         created () {
             this.getProjectList();
@@ -510,6 +627,6 @@
     }
 
     .mgt{
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
 </style>

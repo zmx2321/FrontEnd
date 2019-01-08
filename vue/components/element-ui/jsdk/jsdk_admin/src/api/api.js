@@ -30,7 +30,7 @@ export const getProjectList = params => {
         data: params,
         headers: {
             "Content-Type": "application/json;charset=utf-8"
-        },
+        }
     });
 };
 
@@ -39,10 +39,7 @@ export const getLogoUrl = params => {
     return  axios({
         url: 'item/upload',
         method: 'post',
-        data: params,
-        headers: {
-            "Content-Type": "application/json;charset=utf-8"
-        },
+        data: params
     });
 };
 
@@ -51,7 +48,7 @@ export const findOne = params => {
     return  axios({
         url: 'item/findOne',
         method: 'get',
-        params,
+        params
     });
 };
 
@@ -60,10 +57,16 @@ export const updateProject = params => {
     return  axios({
         url: 'item/update',
         method: 'post',
-        data: params,
-        headers: {
-            "Content-Type": "application/json;charset=utf-8"
-        },
+        data: params
+    });
+};
+
+//编辑序号
+export const updateProjectSort = params => {
+    return  axios({
+        url: 'item/updateSort',
+        method: 'post',
+        data: params
     });
 };
 
@@ -72,14 +75,15 @@ export const addProject = params => {
     return  axios({
         url: 'item/add',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
 //UV接口
-export const UVProject = () => {
+export const UVProject = params => {
     return  axios({
         url: 'UV/find',
         method: 'post',
+        data: params
     });
 };

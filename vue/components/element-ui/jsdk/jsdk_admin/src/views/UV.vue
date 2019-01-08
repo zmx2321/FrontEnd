@@ -15,9 +15,8 @@
             </el-table>
 
             <!-- 分页 -->
-            <el-col :span="24" class="toolbar">
-                <el-pagination layout="prev, pager, next, total"  @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="page_arg.total" style="float:right;">
-                </el-pagination>
+            <el-col :span="24" class="toolbar f-cb">
+                <el-pagination class="f-fr" layout="prev, pager, next, total"  @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="page_arg.total"></el-pagination>
             </el-col>
         </el-row>
     </section>
@@ -44,7 +43,7 @@
 
                 //分页参数
                 page_arg: {
-                    pagesize: "10",  // 初始一页条数
+                    pagesize: "11",  // 初始一页条数
                     currentPage: "1",  // 当前第几页
                     total: 0,  // 用于table的 :total
                 },
@@ -69,12 +68,7 @@
             // 控制每页的数量--分页
             handleCurrentChange(val) {
                 this.page_arg.currentPage = val;
-                this.getProjectList();
-            },
-            // 判断点击是第几页--分页
-            handleSizeChange (size) {
-                this.page_arg.pagesize = size;
-                this.getProjectList();
+                this.getProjectUV();
             },
 
             /**
@@ -82,9 +76,19 @@
              */
             //获取项目信息
             getProjectUV () {
-                UVProject().then(res => {
-                    console.log(res.data.data);
-                    this.uv_info = res.data.data;
+                //接口参数
+                let param = {
+                    pageSize: this.page_arg.pagesize,
+                    pageNum: this.page_arg.currentPage,
+                };
+
+                this.listLoading = true;
+
+                UVProject(qs.stringify(param)).then(res => {
+                    this.listLoading = false;
+
+                    this.page_arg.total = res.data.data.total;
+                    this.uv_info = res.data.data.list;
                 });
             },
         },
