@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="f-pr">
+  <div id="app">
     <router-view />
   </div>
 </template>
@@ -12,7 +12,8 @@
 
 <style>
   #app {
-    width: 100%;
+    position: fixed;
+    width: 100vw;
     height: 100vh;
   }
 </style>

@@ -125,3 +125,13 @@ a:hover{
 a:visited{
     color: #c4c7cc;
 }
+
+/* 媒体查询 */
+@media screen and (max-width: 700px){
+    /* login */
+    .login .form_container{
+        left: 10% !important;
+        width: 300px !important;
+        padding: 0 !important;
+    }
+}

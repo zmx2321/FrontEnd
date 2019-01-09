@@ -30,7 +30,7 @@
                 loginUser: {
                     username: "admin",
                     password: ""
-                },
+                                    },
                 rules: {
                     username: [
                         { required: true, message: "用户名不能为空", trigger: "blur" },
@@ -92,22 +92,24 @@
         background: url(../assets/images/bg.jpg) no-repeat center center;
         background-size: 100% 100%;
     }
+
     .form_container {
-        width: 370px;
-        height: 210px;
         position: absolute;
         top: 20%;
         left: 34%;
+        width: 370px;
         padding: 25px;
-        border-radius: 5px;
         text-align: center;
+        border-radius: 5px;
     }
+
     .form_container .manage_tip .title {
         /*font-family: "Microsoft YaHei";*/
         font-weight: bold;
         font-size: 26px;
         color: #fff;
     }
+
     .loginForm {
         margin-top: 20px;
         background-color: #fff;

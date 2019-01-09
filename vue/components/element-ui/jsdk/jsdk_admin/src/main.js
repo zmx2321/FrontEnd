@@ -14,7 +14,7 @@ import store from './store'
 Vue.config.productionTip = false;
 
 // 全局注册
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
 //挂载（使其可以在各个组件使用）
 Vue.prototype.axios = axios;
