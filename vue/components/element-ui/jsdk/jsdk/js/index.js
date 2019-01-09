@@ -1,6 +1,13 @@
 // 公共工具方法
 util = {
-    flag: true,
+    flag: true,  // 分页开关
+
+    scrolltop: () => {
+        var speed=200;//滑动的速度
+        $('body,html').animate({ scrollTop: 0 }, speed);
+        setnavscroll(); //导航栏
+        return false;
+    },
 
     /**
      * [setnavscroll 浏览器滚动条位置]
@@ -40,6 +47,7 @@ util = {
      * reset
      */
     reset: () => {
+        util.scrolltop();
         $('.tip').fadeOut();
         $('.container').html("");
     }
@@ -88,34 +96,34 @@ const handleData = {
                     // console.log(data[i]);
 
                     str += `
-                            <a href="${data[i].targetUrl}">
-                                <div class="wrap">
-                                    <div class="icon_wrap f-pr f-oh">
-                                        <div class="icon">
-                                            <img src="${data[i].logoUrl}" alt="logoUrl">
-                                        </div>
-                                    </div>
-                                    <div class="text_wrap f-pr f-oh">
-                                        <div class="text">
-                                            <ul>
-                                                <li>
-                                                    <span class="t1 f-toe">${data[i].title}</span>
-                                                </li>
-                                                <li>
-                                                    <span class="t2 f-toe">${data[i].desc}</span>
-                                                </li>
-                                                <li>
-                                                    <span class="t2">申请人数<b>337419</b>人</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="arrow">
-                                            <img src="images/icon_rightarrow_gray.png" alt="arrow">
-                                        </div>
+                        <a href="${data[i].targetUrl}">
+                            <div class="wrap">
+                                <div class="icon_wrap f-pr f-oh">
+                                    <div class="icon">
+                                        <img src="${data[i].logoUrl}" alt="logoUrl">
                                     </div>
                                 </div>
-                            </a>
-                        `;
+                                <div class="text_wrap f-pr f-oh">
+                                    <div class="text">
+                                        <ul>
+                                            <li>
+                                                <span class="t1 f-toe">${data[i].title}</span>
+                                            </li>
+                                            <li>
+                                                <span class="t2 f-toe">${data[i].desc}</span>
+                                            </li>
+                                            <li>
+                                                <span class="t2">申请人数<b>337419</b>人</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="arrow">
+                                        <img src="images/icon_rightarrow_gray.png" alt="arrow">
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
                 }
 
                 $('.container').append(str);
@@ -139,69 +147,35 @@ const tip = () =>{
 };
 
 // 选项卡数据加载
-const tab = ()=> {
-    // 快速微贷
-    $('#tab1').click(()=>{
+const getData = (_$, type) => {
+    _$.click(() => {
         util.reset();
         let num = 1;
         util.flag = true;
 
-        handleData.loadData(0);
+        handleData.loadData(type);
 
+        // 滚动条事件
         $(window).scroll(function(){
-            // console.log(util.flag);
+            console.log(util.flag);
+
             if (util.flag) {
                 if($(document).scrollTop() + $(window).height() > $(document).height() - 30){
                     setTimeout(function(){
-                        handleData.loadData(0, num+=1);
                         console.log(num);
+                        handleData.loadData(type, num+=1);
                     }, 500);
                 }
             }
         });
     });
+};
 
-    // 热门极速贷
-    $('#tab2').click(()=>{
-        util.reset();
-        let num = 1;
-        util.flag = true;
-
-        handleData.loadData(1);
-
-        $(window).scroll(function(){
-            // console.log(util.flag);
-            if (util.flag) {
-                if($(document).scrollTop() + $(window).height() > $(document).height() - 30){
-                    setTimeout(function(){
-                        handleData.loadData(1, num+=1);
-                        console.log(num);
-                    }, 500);
-                }
-            }
-        });
-    });
-
-    // 大额贷款
-    $('#tab3').click(()=>{
-        util.reset();
-        let num = 1;
-        util.flag = true;
-
-        handleData.loadData(2);
-
-        $(window).scroll(function(){
-            // console.log(util.flag);
-            if (util.flag) {
-                if($(document).scrollTop() + $(window).height() > $(document).height() - 30){
-                    setTimeout(function(){
-                        handleData.loadData(2, num+=1);
-                        console.log(num);
-                    }, 500);
-                }
-            }
-        });
-    });
+// 选项卡
+const tab = () => {
+    getData($('#tab1'), 0);  // 快速微贷
+    getData($('#tab2'), 1);  // 热门极速贷
+    getData($('#tab3'), 2);  // 大额贷款
 };
 
 // nav置顶
