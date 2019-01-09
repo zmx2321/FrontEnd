@@ -113,3 +113,15 @@
 .el-dialog__body{
     padding: 10px 20px 30px;
 }
+
+a{
+    color: #777474;
+}
+
+a:hover{
+    color: #3a8ee6;
+}
+
+a:visited{
+    color: #c4c7cc;
+}

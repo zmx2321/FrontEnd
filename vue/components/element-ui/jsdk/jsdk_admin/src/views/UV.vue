@@ -8,15 +8,22 @@
                 <el-table-column prop="title" label="项目标题" width="200" align="center"></el-table-column>
                 <el-table-column label="项目logo" width="200" align="center">
             	<template slot-scope="scope">
-            		<img :src="scope.row.logo" class="tabimg" />
+            		<img :src="scope.row.logoUrl" class="tabimg" />
             	</template>
                 </el-table-column>
+
+                <el-table-column label="访问链接" width="100" show-overflow-tooltip>
+                    <template slot-scope="scope">
+                        <a :href="scope.row.targetUrl" target="_blank" class="buttonText">链接</a>
+                    </template>
+                </el-table-column>
+
                 <el-table-column prop="countUV" label="访问量" width="auto"></el-table-column>
             </el-table>
 
             <!-- 分页 -->
             <el-col :span="24" class="toolbar f-cb">
-                <el-pagination class="f-fr" layout="prev, pager, next, total"  @current-change="handleCurrentChange" @size-change="handleSizeChange" :total="page_arg.total"></el-pagination>
+                <el-pagination class="f-fr" layout="prev, pager, next, total"  @current-change="handleCurrentChange" :total="page_arg.total"></el-pagination>
             </el-col>
         </el-row>
     </section>

@@ -197,4 +197,4 @@ $(function(){
 // dom加载完之后执行
 window.onload = () => {
     tip();  // 页面工具方法
-}
+};

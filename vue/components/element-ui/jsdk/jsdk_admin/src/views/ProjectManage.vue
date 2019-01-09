@@ -43,6 +43,7 @@
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="id" width="60" align="center"></el-table-column>
+                <el-table-column prop="sort" label="序号" width="60" align="center"></el-table-column>
                 <el-table-column prop="title" label="项目标题" width="150" align="center"></el-table-column>
                 <el-table-column label="项目logo" width="150" align="center">
             	<template slot-scope="scope">
@@ -51,6 +52,13 @@
                 </el-table-column>
                 <el-table-column prop="amount" label="申请人数" width="80" align="center"></el-table-column>
                 <el-table-column prop="type" label="项目类型" width="80" align="center"></el-table-column>
+
+                <el-table-column label="访问链接" width="100" show-overflow-tooltip>
+                    <template slot-scope="scope">
+                        <a :href="scope.row.targetUrl" target="_blank" class="buttonText">链接</a>
+                    </template>
+                </el-table-column>
+
                 <el-table-column prop="desc" label="项目描述" width="auto"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="200">
@@ -107,8 +115,11 @@
                 <el-form-item label="项目类型" prop="type">
                     <el-input v-model="addProjectData.type" placeholder="请输入项目类型" clearable></el-input>
                 </el-form-item>
+                <el-form-item label="序号" prop="sort">
+                    <el-input v-model="addProjectData.sort" placeholder="请输入序号(非必填)" clearable></el-input>
+                </el-form-item>
                 <el-form-item label="项目描述" prop="desc">
-                    <el-input v-model="addProjectData.desc" placeholder="请输入desc项目描述" clearable></el-input>
+                    <el-input class="textarea" type="textarea" v-model="addProjectData.desc" placeholder="请输入desc项目描述" clearable></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="addProjectSubmit('addProjectForm')">提交</el-button>
@@ -136,6 +147,7 @@
                 <el-form-item label="项目跳转目的URL" prop="targetUrl">
                     <el-input v-model="updateProjectData.targetUrl" placeholder="请输入跳转目的URL" clearable></el-input>
                 </el-form-item>
+
                 <el-form-item label="上传项目logo">
                     <el-upload
                             class="upload-demo"
@@ -151,6 +163,7 @@
                         <!--<div slot="tip" class="el-upload__tip">只能上传图片格式文件</div>-->
                     </el-upload>
                 </el-form-item>
+
                 <el-form-item label="项目logo" prop="logoUrl">
                     <el-input v-model="updateProjectData.logoUrl" placeholder="请输入项目logo" clearable></el-input>
                 </el-form-item>
@@ -161,8 +174,9 @@
                     <el-input v-model="updateProjectData.type" placeholder="请输入项目类型" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="项目描述" prop="desc">
-                    <el-input v-model="updateProjectData.desc" placeholder="请输入desc项目描述" clearable></el-input>
+                    <el-input type="textarea" v-model="updateProjectData.desc" placeholder="请输入desc项目描述" clearable></el-input>
                 </el-form-item>
+
                 <el-form-item>
                     <el-button type="primary" @click="updateProjectSubmit('updateProjectForm')">提交</el-button>
                     <el-button @click="resetForm('updateProjectForm')">重置</el-button>
@@ -179,6 +193,7 @@
                 <el-form-item label="项目序号" prop="sort">
                     <el-input v-model="updateProjectSortData.sort" placeholder="请输入项目序号" clearable></el-input>
                 </el-form-item>
+
                 <el-form-item>
                     <el-button type="primary" @click="updateProjectSortSubmit('updateProjectSortForm')">提交</el-button>
                     <el-button @click="resetForm('updateProjectSortForm')">重置</el-button>
@@ -187,6 +202,7 @@
         </el-dialog>
     </section>
 </template>
+
 <script>
     import {
         getProjectList,  //获取项目列表
@@ -213,7 +229,7 @@
             };
             //url验证
             let validateUrl = (rule, value, callback) => {
-                let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/
+                let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/;
 
                 if (!reg.test(value)) {
                     return callback(new Error('url输入不正确！'));
@@ -375,7 +391,7 @@
                     beforeFileLength = fileName.lastIndexOf('.');  //文件名长度
 
                 //截取字符串，获取文件后缀名
-                let suffix = fileName.substring(beforeFileLength+1, fileLength)
+                let suffix = fileName.substring(beforeFileLength+1, fileLength);
 
                 return suffix;
             },
@@ -415,6 +431,8 @@
                 };
 
                 getProjectList(JSON.stringify(param)).then(res => {
+                    // console.log(res.data.data);
+
                     this.page_arg.total = res.data.data.total;
                     this.project_info = res.data.data.list;
                 }).catch({});

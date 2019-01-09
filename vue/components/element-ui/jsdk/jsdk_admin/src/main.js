@@ -3,7 +3,7 @@ import App from './App.vue'
 
 import md5 from 'js-md5';  //md5加密
 
-import axios from './http';  //请求文件
+import axios from 'axios';  //请求文件
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
