@@ -1,7 +1,7 @@
 <template>
     <section class="head-nav f-oh">
         <el-row>
-            <el-col :span="6" class='logo-container'>
+            <el-col :span="6" class='logo-container f-cb'>
                 <img src="../assets/logo.png" class='logo' alt="">
                 <span class='title'>借了么后台管理系统</span>
             </el-col>
@@ -12,7 +12,7 @@
                         <p class='name comename'>欢迎使用</p>
                         <!--<p class='name avatarname'>aa</p>-->
                     </div>
-                    <span class='username'>
+                    <span class='username '>
                         <el-dropdown trigger="click" @command='setDialogInfo'>
                             <span class="el-dropdown-link">
                                 <i class="el-icon-caret-bottom el-icon--right"></i>
@@ -90,6 +90,7 @@ export default {
 
 <style scoped>
 .head-nav {
+    height: 100%;
     background: #324057;
     color: #fff;
 }

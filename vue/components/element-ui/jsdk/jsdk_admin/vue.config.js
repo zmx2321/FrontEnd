@@ -54,24 +54,24 @@ module.exports = {
     pluginOptions: { // 第三方插件配置
     },
     pwa: { // 单页插件相关配置 https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
-    }
+    },
     // devServer: {
     //     open: true,
-    //     host: 'localhost',
-    //     port: 80,
+    //     host: '10.10.10.100',
+    //     port: 5214,
     //     https: false,
     //     hotOnly: false,
-    //     proxy: { // 配置跨域
-    //         '/api': {
-    //             // target: 'http://10.10.10.238:8090',
-    //             target: 'http://api8084.ximuok.com',
-    //             ws: true,
-    //             changOrigin: true,
-    //             pathRewrite: {
-    //                 '^/api': ''
-    //             }
-    //         }
-    //     },
+    //     // proxy: { // 配置跨域
+    //     //     '/api': {
+    //     //         // target: 'http://10.10.10.238:8090',
+    //     //         target: 'http://api8084.ximuok.com',
+    //     //         ws: true,
+    //     //         changOrigin: true,
+    //     //         pathRewrite: {
+    //     //             '^/api': ''
+    //     //         }
+    //     //     }
+    //     // },
     //     before: app => { }
     // }
 };

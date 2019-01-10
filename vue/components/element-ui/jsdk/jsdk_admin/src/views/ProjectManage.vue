@@ -18,7 +18,7 @@
                             <el-button type="primary" @click="findProjectList">查询</el-button>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" v-on:click="addProjectVisible = true">添加项目</el-button>
+                            <el-button type="primary" @click="addProject" v-on:click="addProjectVisible = true">添加项目</el-button>
                         </el-form-item>
                     </el-col>
                     <el-col class="tip">项目类型(只允许输入0-2){[0:快速微额贷][1:热门极速贷][2:大额贷款]}</el-col>
@@ -39,7 +39,7 @@
 
         <!-- 项目列表 -->
         <el-row>
-            <el-table class="project_list" :data="project_info" border highlight-current-row v-loading="listLoading" height="710">
+            <el-table class="project_list" :data="project_info" border highlight-current-row v-loading="listLoading">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="id" width="60" align="center"></el-table-column>
@@ -93,8 +93,7 @@
                 </el-form-item>
                 <el-form-item label="上传项目logo">
                     <el-upload
-                            class="upload-demo"
-                            action="http://10.10.10.238:8090/admin/item/upload"
+                            action="https://jsonplaceholder.typicode.com/posts/"
                             ref='upload'
                             :before-remove="beforeRemove"
                             :on-change="addHandleChange"
@@ -150,8 +149,7 @@
 
                 <el-form-item label="上传项目logo">
                     <el-upload
-                            class="upload-demo"
-                            action="http://10.10.10.238:8090/admin/item/upload"
+                            action="https://jsonplaceholder.typicode.com/posts/"
                             ref='upload'
                             :before-remove="beforeRemove"
                             :on-change="updateHandleChange"
@@ -283,6 +281,7 @@
                 upload_arg: {
                     limit:1,
                     logoFile: [],
+                    fileList: []
                 },
 
                 //验证添加项目界面数据
@@ -479,6 +478,10 @@
              *  api
              *  添加项目
              */
+            //点击添加项目
+            addProject () {
+                this.upload_arg.fileList = [];  //清空上传logo file
+            },
             //el-upload
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
             addHandleChange(file){
@@ -561,6 +564,7 @@
             },
             //浅拷贝列表数据到表单
             updateProject (row) {
+                this.upload_arg.fileList = [];  //清空上传logo file
                 this.updateProjectData = Object.assign({}, row);
             },
             //提交更新项目表单
