@@ -1,7 +1,7 @@
-import md5 from 'js-md5';  //md5加密
-
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import md5 from 'js-md5';  //md5加密
 
 // index
 import Index from './views/Index'

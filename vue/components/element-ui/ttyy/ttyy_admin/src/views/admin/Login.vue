@@ -29,8 +29,8 @@
             return {
                 loginUser: {
                     username: "admin",
-                    password: ""
-                                    },
+                    password: "admin"
+                },
                 rules: {
                     username: [
                         { required: true, message: "用户名不能为空", trigger: "blur" },
@@ -52,6 +52,9 @@
                         this.loginUser.password = this.md5(this.loginUser.password);
 
                         Login(qs.stringify(this.loginUser)).then(res => {
+                            // console.log(res.data.data.isSuperAdmin);
+                            // console.log(res.data);
+
                             if (res.data.code == 1){
                                 this.$message({
                                     message: "用户名或密码错误",
@@ -66,11 +69,11 @@
                                     type: "success"
                                 });
 
-                                this.loginUser.password = "";
-
                                 this.$router.push("/index");
                             }
-                        }).catch({});
+                        }).catch(err => {
+                            console.log(err);
+                        });
                     } else {
                         console.log("error submit!!");
                         return false;
@@ -79,7 +82,7 @@
             },
         },
         created: function(){
-            // console.log(this.md5("-1"));
+            console.log(this.md5("admin"));
         },
     };
 </script>
@@ -104,7 +107,6 @@
     }
 
     .form_container .manage_tip .title {
-        /*font-family: "Microsoft YaHei";*/
         font-weight: bold;
         font-size: 26px;
         color: #fff;

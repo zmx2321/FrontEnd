@@ -4,7 +4,10 @@
 
 import axios from './axios'
 
-//登录
+/**
+ * 登录/注销/个人信息
+ */
+// 登录
 export const Login = params => {
     return  axios({
         url: 'account/login',
@@ -12,6 +15,42 @@ export const Login = params => {
         data: params
     });
 };
+
+// 注销
+export const Logout = () => {
+    return  axios({
+        url: 'account/logout',
+        method: 'get',
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    });
+};
+
+/**
+ * 用户管理
+ */
+// 获取管理员和员工列表
+export const findAccount = params => {
+    return  axios({
+        url: 'account/findAccount',
+        method: 'post',
+        data: params,
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    });
+};
+
+
+/**
+ * banner管理
+ */
+
+
+/**
+ * 兑换码管理
+ */
 
 //修改密码
 // export const ModifyPassword = params => {

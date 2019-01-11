@@ -209,7 +209,7 @@
         updateProject,  //修改项目
         updateProjectSort,  //编辑序号
         addProject  //添加项目
-    } from '../../api/api.js';
+    } from '../../../api/api.js';
 
     export default {
         name: 'project_manage',

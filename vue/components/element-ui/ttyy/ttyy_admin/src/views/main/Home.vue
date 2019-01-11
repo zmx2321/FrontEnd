@@ -1,7 +1,7 @@
 <template>
     <section class="home">
         <div class="container">
-            <p class="lead"> 天天影院后台管理系统 </p>
+            <p class="lead"> 天天影院后台管理系统</p>
         </div>
     </section>
 </template>

@@ -24,7 +24,10 @@
         components: {
             HeadNav,
             LeftMenu
-        }
+        },
+        created: function(){
+            console.log(this.md5("admin"));
+        },
     }
 </script>
 
@@ -32,6 +35,10 @@
     .container {
         width: 100%;
         height: 100%;
+    }
+
+    .header, .aside{
+        background: #324057;
     }
 
     .header{
