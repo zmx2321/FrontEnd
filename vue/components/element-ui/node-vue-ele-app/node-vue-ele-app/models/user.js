@@ -1,7 +1,9 @@
-//引入mongoose
-const mongoose = require("mongoose");
-//引入Schema
-const Schema = mongoose.Schema;
+/**
+ *  @description UserSchema
+ */
+// 引入创建Schema重要组件
+const mongoose = require("mongoose"),  // 引入mongoose
+    Schema = mongoose.Schema;  // 引入Schema
 
 //创建Schema
 const UserSchema = new Schema({
@@ -19,10 +21,6 @@ const UserSchema = new Schema({
     },
     avatar: {
         type: String
-    },
-    identity: {
-        type: String,
-        required: true
     },
     date: {
         type: Date,

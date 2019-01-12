@@ -11,9 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^2.0.1",
+    "gravatar": "^1.6.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "gravatar": "^1.6.0",
     "mongoose": "^5.4.1"
   }
 }
