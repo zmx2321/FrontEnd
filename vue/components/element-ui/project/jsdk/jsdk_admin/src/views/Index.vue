@@ -37,6 +37,7 @@
     .header{
         padding: 0;
         border-bottom: 1px solid #1f2d3d;
+        background: #324057;
     }
 
     .aside {

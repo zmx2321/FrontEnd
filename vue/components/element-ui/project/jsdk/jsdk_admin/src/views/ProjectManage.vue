@@ -23,15 +23,15 @@
                     </el-col>
                     <el-col class="tip">项目类型(只允许输入0-2){[0:快速微额贷][1:热门极速贷][2:大额贷款]}</el-col>
                     <!--<el-col :span="22">-->
-                        <!--<el-form-item label="根据id查询">-->
-                            <!--<el-input placeholder="请输入项目id" @keyup.enter.native="findProject" v-model="project_id" clearable></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item>-->
-                            <!--<el-button type="primary" @click="findProject">查询</el-button>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item>-->
-                            <!--<el-button type="primary" @click="addProject" v-on:click="addProjectVisible = true">添加项目</el-button>-->
-                        <!--</el-form-item>-->
+                    <!--<el-form-item label="根据id查询">-->
+                    <!--<el-input placeholder="请输入项目id" @keyup.enter.native="findProject" v-model="project_id" clearable></el-input>-->
+                    <!--</el-form-item>-->
+                    <!--<el-form-item>-->
+                    <!--<el-button type="primary" @click="findProject">查询</el-button>-->
+                    <!--</el-form-item>-->
+                    <!--<el-form-item>-->
+                    <!--<el-button type="primary" @click="addProject" v-on:click="addProjectVisible = true">添加项目</el-button>-->
+                    <!--</el-form-item>-->
                     <!--</el-col>-->
                 </el-col>
             </el-form>
@@ -46,9 +46,9 @@
                 <el-table-column prop="sort" label="序号" width="60" align="center"></el-table-column>
                 <el-table-column prop="title" label="项目标题" width="150" align="center"></el-table-column>
                 <el-table-column label="项目logo" width="150" align="center">
-            	<template slot-scope="scope">
-            		<img :src="scope.row.logoUrl" class="tabimg" />
-            	</template>
+                                	<template slot-scope="scope">
+                                		<img :src="scope.row.logoUrl" class="tabimg" />
+                                	</template>
                 </el-table-column>
                 <el-table-column prop="amount" label="申请人数" width="80" align="center"></el-table-column>
                 <el-table-column prop="type" label="项目类型" width="80" align="center"></el-table-column>
