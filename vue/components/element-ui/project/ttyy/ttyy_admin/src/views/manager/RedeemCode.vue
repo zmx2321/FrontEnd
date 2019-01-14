@@ -6,7 +6,10 @@
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
-                            <el-button type="primary" @click="addRedeemCode" v-on:click="addRedeemCodeVisible = true">添加banner</el-button>
+                            <el-button type="primary" @click="addSingleRedeemCode" v-on:click="addSingleRedeemCodeVisible = true">添加单个兑换码</el-button>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="addMoreRedeemCode" v-on:click="addMoreRedeemCodeVisible = true">添加单个兑换码</el-button>
                         </el-form-item>
                     </el-col>
                 </el-col>
@@ -15,9 +18,9 @@
 
         <!-- 兑换码列表 -->
         <el-row>
-            <el-table class="redeem_code_list" :data="redeem_code_info" border highlight-current-row v-loading="listLoading" height="720">
+            <el-table class="redeem_code_list" :data="redeem_code_info" border highlight-current-row v-loading="listLoading">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
+                <el-table-column type="index" width="60" align="center"></el-table-column>
                 <el-table-column prop="id" label="兑换码id" width="80" align="center"></el-table-column>
                 <el-table-column prop="userId" label="用户id" width="80" align="center"></el-table-column>
                 <el-table-column prop="code" label="兑换码" width="120" align="center"></el-table-column>
@@ -30,7 +33,7 @@
                     </template>
                 </el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="100">
+                <el-table-column fixed="right" label="操作" width="300">
                     <template slot-scope="scope">
                         <el-button type="text" size="small">删除</el-button>
                     </template>
@@ -39,12 +42,20 @@
 
             <!-- 分页 -->
             <el-col :span="24" class="toolbar f-cb">
-                <el-pagination class="f-fr" layout="prev, pager, next, total"  @current-change="handleCurrentChange" :total="page_arg.total"></el-pagination>
+                <el-pagination class="f-fr pagination"
+                    :current-page.sync='page_arg.page_index'
+                    :page-sizes="page_arg.page_sizes"
+                    :page-size="page_arg.page_size"
+                    :layout="page_arg.layout"
+                    :total="page_arg.total"
+                    @current-change='handleCurrentChange'
+                    @size-change='handleSizeChange'>
+                </el-pagination>
             </el-col>
         </el-row>
 
         <!-- 添加兑换码 -->
-        <el-dialog title="添加兑换码" @keyup.enter.native="addRedeemCodeSubmit('addRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addRedeemCodeVisible" :before-close="handleClose">
+        <el-dialog title="添加兑换码" @keyup.enter.native="addSingleRedeemCodeSubmit('addSingleRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addSingleRedeemCodeVisible" :before-close="handleClose">
 
         </el-dialog>
     </section>
@@ -77,11 +88,14 @@
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
 
+
                 //分页参数
                 page_arg: {
-                    pagesize: "10",  // 初始一页条数
-                    currentPage: "1",  // 当前第几页
-                    total: 0,  // 用于table的 :total
+                    page_index: 1, // 当前位于哪页
+                    total: 0, // 总数
+                    page_size: 10, // 1页显示多少条
+                    page_sizes: [5, 10, 15, 20], //每页显示多少条
+                    layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
                 /**
@@ -104,7 +118,7 @@
                 /**
                  *  弹出表单界面
                  */
-                addRedeemCodeVisible: false,  // 显示隐藏添加新的项目界面
+                addSingleRedeemCodeVisible: false,  // 显示隐藏添加新的项目界面
             }
         },
         methods: {
@@ -127,28 +141,37 @@
             /**
              *  分页
              */
-            // 控制每页的数量--分页
-            handleCurrentChange(val) {
-                this.page_arg.currentPage = val;
-                this.getRedeemCodeList();
+            // 点击页码
+            handleCurrentChange() {
+                this.getRedeemCodeList();  // 加载分页数据
+            },
+            // 设置每页条数
+            handleSizeChange(page_size) {
+                // console.log(page_size);
+
+                this.page_arg.page_size = page_size;  // 切换size
+
+                this.getRedeemCodeList();  // 加载分页数据
             },
 
             /**
              *  api
-             *  获取banner信息
+             *  获取兑换码信息
              */
             getRedeemCodeList () {
                 //接口参数
                 let param = {
-                    pageSize: this.page_arg.pagesize,
-                    pageNum: this.page_arg.currentPage,
+                    pageSize: this.page_arg.page_size,  //每页条数
+                    pageNum: this.page_arg.page_index,  //当前页码
                 };
 
                 findRedeemCodeList(qs.stringify(param)).then(res => {
-                    console.log(res.data.data);
+                    // console.log(res.data.data);
 
-                    this.page_arg.total = res.data.data.total;
                     this.redeem_code_info = res.data.data.list;
+
+                    // 返回分页总数
+                    this.page_arg.total = res.data.data.total;
                 }).catch({});
             },
             formatType (row) {
@@ -173,7 +196,7 @@
              *  添加用户
              */
             // 点击添加项目
-            addRedeemCode () {
+            addSingleRedeemCode () {
                 console.log("添加用户");
             },
 
@@ -210,14 +233,16 @@
 </script>
 
 <style scoped>
+    .redeem_code_list{
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
     .toolbar {
         padding-bottom: 0;
     }
 
-    .tabimg{
-        display: block;
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
+    .pagination{
+        margin-bottom: 16px;
     }
 </style>

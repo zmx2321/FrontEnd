@@ -2,7 +2,7 @@
     <section class="menu_page">
         <el-row>
              <el-col>
-                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff">
+                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu">
                     <!-- 首页 -->
                     <router-link to="/home">
                         <el-menu-item index="0">
@@ -106,7 +106,7 @@ export default {
     height: 100%;
 }
 
-.el-menu-vertical-demo{
+.menu{
     border: none;
 }
 </style>
