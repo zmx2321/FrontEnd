@@ -2,14 +2,17 @@
     <section class="main_cont">
         <!-- 表单 -->
         <el-row>
-            <el-form :inline="true">
+            <el-form :model="addRedeemCodeData" status-icon :inline="true" ref="addSingleRedeemCodeForm" :rules="addSingleRedeemCodeRule">
                 <el-col class="toolbar bdr_radiu" :span="24">
-                    <el-col :span="22">
-                        <el-form-item>
-                            <el-button type="primary" @click="addSingleRedeemCode" v-on:click="addSingleRedeemCodeVisible = true">添加单个兑换码</el-button>
+                    <el-col :span="22" class="top_cont">
+                        <el-form-item label="兑换码月份" prop="month">
+                            <el-input placeholder="请输入兑换码月份" v-model="addRedeemCodeData.month" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="addMoreRedeemCode" v-on:click="addMoreRedeemCodeVisible = true">添加单个兑换码</el-button>
+                            <el-button type="primary" @click="addSingleRedeemCodeSubmit('addSingleRedeemCodeForm')">添加单个兑换码</el-button>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="addMoreRedeemCode" v-on:click="addMoreRedeemCodeVisible = true">添加多个兑换码</el-button>
                         </el-form-item>
                     </el-col>
                 </el-col>
@@ -54,8 +57,8 @@
             </el-col>
         </el-row>
 
-        <!-- 添加兑换码 -->
-        <el-dialog title="添加兑换码" @keyup.enter.native="addSingleRedeemCodeSubmit('addSingleRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addSingleRedeemCodeVisible" :before-close="handleClose">
+        <!-- 添加多个兑换码 -->
+        <el-dialog title="添加多个兑换码" @keyup.enter.native="addMoreRedeemCodeSubmit('addMoreRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addMoreRedeemCodeVisible" :before-close="handleClose">
 
         </el-dialog>
     </section>
@@ -70,16 +73,16 @@
         name: 'redeem_code',
 
         data() {
-            //项目类型验证
-            // let validateType = (rule, value, callback) => {
-            //     let reg = /^[0-2]$/;
-            //
-            //     if (!reg.test(value)) {
-            //         return callback(new Error('项目类型只能输入0-2！'));
-            //     }
-            //
-            //     callback();
-            // };
+            // 兑换码月份验证
+            let validateMonth = (rule, value, callback) => {
+                let reg = /^(0?[1-9]|1[0-2])$/;
+
+                if (!reg.test(value)) {
+                    return callback(new Error('月份在1-12之间！'));
+                }
+
+                callback();
+            };
 
             return {
                 /**
@@ -87,7 +90,6 @@
                  */
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
-
 
                 //分页参数
                 page_arg: {
@@ -108,17 +110,22 @@
                  */
                 // 添加兑换码数据
                 addRedeemCodeData: {
+                    month: 1,  // 兑换码月份（默认一月）
+                    number: 1,  // 生成数量
                 },
 
-                // 验证添加用户界面数据
-                addRedeemCodeRules: {
+                // 验证添加单个兑换码数据
+                addSingleRedeemCodeRule: {
+                    month: [
+                        { validator: validateMonth, trigger: 'blur' },
+                    ],
                 },
-
 
                 /**
                  *  弹出表单界面
                  */
-                addSingleRedeemCodeVisible: false,  // 显示隐藏添加新的项目界面
+                addMoreRedeemCodeVisible: false,  // 显示隐藏添加多个兑换码界面
+
             }
         },
         methods: {
@@ -193,11 +200,34 @@
 
             /**
              *  api
-             *  添加用户
+             *  添加兑换码
              */
-            // 点击添加项目
-            addSingleRedeemCode () {
-                console.log("添加用户");
+            // 点击添加单个兑换码
+            addSingleRedeemCodeSubmit (formName) {
+                // console.log("添加单个兑换码");
+
+                //验证表单
+                this.$refs[formName].validate((valid) => {
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        console.log("success");
+
+                        this.$confirm('确定添加单个兑换码？', '提示', {
+                            type: 'warning'
+                        }).then(() => {
+                            this.listLoading = true;  //点击提交开始加载loading
+                        }).catch(() => {});
+
+                    } else {  //验证失败跳出
+                        console.log('error submit!!');
+                    }
+                });
+
+
+            },
+            // 点击添加多个兑换码
+            addMoreRedeemCode () {
+                console.log("添加多个兑换码");
             },
 
             // 提交添加用户表单
@@ -208,19 +238,9 @@
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        // addProject(qs.stringify(this.addProjectData)).then(() => {
-                        //     this.$message({
-                        //         message: "添加成功！",
-                        //         type: "success"
-                        //     });
-                        //
-                        //     this.addProjectVisible = false;  //隐藏编辑位置信息界面
-                        //     this.listLoading = false;  //请求成功停止加载loading
-                        //     this.getProjectList();  //刷新列表数据
-                        // }).catch({});
+
                     } else {  //验证失败跳出
                         console.log('error submit!!');
-                        return false;
                     }
                 });
             },
@@ -234,12 +254,16 @@
 
 <style scoped>
     .redeem_code_list{
-        height: calc(100vh - 250px);
+        height: calc(100vh - 260px);
         overflow: auto;
     }
 
     .toolbar {
         padding-bottom: 0;
+    }
+
+    .top_cont{
+        margin: 0 0 10px 20px;
     }
 
     .pagination{

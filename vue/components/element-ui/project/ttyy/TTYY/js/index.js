@@ -6,7 +6,8 @@
 
 // 公共工具方法
 util = {
-    url: "http://10.10.10.238:8089/",
+    // url: "http://10.10.10.238:8089/",
+    url: "http://hh55.ge75g.cn/",
 
     // 改变根元素font-size
     rootFont: () => {
@@ -33,7 +34,6 @@ util = {
 let loadData = {
     // ios数据加载
     ios: () => {
-        // window.location.href = "http://www.baidu.com";
         $.ajax({
             url: util.url + "version/findVersionByType",
             type:"POST",
@@ -48,7 +48,12 @@ let loadData = {
 
                 let url = res.data.url;
 
-                window.location.href = url;
+                // console.log(url);
+
+                window.open(url);
+
+                // window.location.href = url;
+                // window.location.href = "http://www.baidu.com";
             }
         });
     }
