@@ -64,6 +64,7 @@ router
                     email: req.body.email,
                     avatar,
                     password: req.body.password,
+                    identity: req.body.identity,
                 });
 
                 // 加密
@@ -97,7 +98,7 @@ router
         // 查询数据库
         User.findOne({email}).then(user => {
             if (!user){
-                return res.status(404).json({email: "用户不存在!"});
+                return res.status(404).json("用户不存在!");
             }
 
             // 如果email在数据库中存在，则进行密码匹配
@@ -109,7 +110,9 @@ router
                     // jwt.sign("规则", "加密名字", "过期时间", "回调");  // 签名
                     const rule = {  //加密规则，使用id+昵称
                         id: user.id,
-                        name: user.name
+                        name: user.name,
+                        avatar: user.avatar,
+                        identity: user.identity
                     };
                     jwt.sign(rule, keys.secretOrKey, {
                         expiresIn: 3600  // 有效时间在3600s,60分钟
@@ -143,6 +146,7 @@ router
             id: req.user.id,
             name: req.user.name,
             email: req.user.email,
+            identity: req.user.identity
         });
     })
 

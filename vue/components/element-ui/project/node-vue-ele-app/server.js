@@ -12,6 +12,8 @@ const passport = require("passport");
 
 // 引入users
 const users = require("./routers/api/users");
+// 引入profiles.js
+const profiles = require('./routers/api/profiles');
 
 // 实例化
 const app = express();
@@ -50,7 +52,9 @@ app
     .get("/", (req, res) => {  // 设置根路由(浏览器访问)
         res.send("Hello world!");
     })
-    .use('/api/users', users);  // 使用routes,设置接口路由
+    // 使用routes,设置接口路由
+    .use('/api/users', users)
+    .use('/api/profiles', profiles);
 
 // 端口号（在本地就是5001）
 const port = process.env.PORT || 5001;
