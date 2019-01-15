@@ -21,45 +21,63 @@
 
         <!-- 兑换码列表 -->
         <el-row>
-            <el-table class="redeem_code_list" :data="redeem_code_info" border highlight-current-row v-loading="listLoading">
+            <el-table class="redeem_code_list" :data="redeem_code_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="calc(100vh - 311px)">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <el-table-column prop="id" label="兑换码id" width="80" align="center"></el-table-column>
                 <el-table-column prop="userId" label="用户id" width="80" align="center"></el-table-column>
-                <el-table-column prop="code" label="兑换码" width="120" align="center"></el-table-column>
+                <el-table-column prop="code" label="兑换码" width="300" align="center"></el-table-column>
                 <el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
                 <el-table-column prop="usedAt" label="使用时间" width="110" align="center"></el-table-column>
 
-                <el-table-column label="状态" width="110" align="center">
+                <el-table-column label="状态" width="auto">
                     <template slot-scope="scope">
-                        {{ scope.row.isUsed === 1 ? "未使用" : "已使用" }}
+                        {{ scope.row.isUsed === 1 ? "已使用" : "未使用" }}
                     </template>
                 </el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="300">
+                <el-table-column fixed="right" label="操作" width="100">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small">删除</el-button>
+                        <el-button type="text" size="small" @click="delRedeemCode(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
 
-            <!-- 分页 -->
-            <el-col :span="24" class="toolbar f-cb">
-                <el-pagination class="f-fr pagination"
-                    :current-page.sync='page_arg.page_index'
-                    :page-sizes="page_arg.page_sizes"
-                    :page-size="page_arg.page_size"
-                    :layout="page_arg.layout"
-                    :total="page_arg.total"
-                    @current-change='handleCurrentChange'
-                    @size-change='handleSizeChange'>
-                </el-pagination>
-            </el-col>
+            <el-row :span="24" class="toolbar f-cb">
+                <!-- 批量删除 -->
+                <el-col>
+                    <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0" class="f-fr del_more">批量删除</el-button>
+                </el-col>
+                <!-- 分页 -->
+                <el-col>
+                    <el-pagination class="f-fr pagination"
+                        :current-page.sync='page_arg.page_index'
+                        :page-sizes="page_arg.page_sizes"
+                        :page-size="page_arg.page_size"
+                        :layout="page_arg.layout"
+                        :total="page_arg.total"
+                        @current-change='handleCurrentChange'
+                        @size-change='handleSizeChange'>
+                    </el-pagination>
+                </el-col>
+            </el-row>
         </el-row>
 
-        <!-- 添加多个兑换码 -->
+        <!-- 添加多条兑换码 -->
         <el-dialog title="添加多个兑换码" @keyup.enter.native="addMoreRedeemCodeSubmit('addMoreRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addMoreRedeemCodeVisible" :before-close="handleClose">
+            <el-form :model="addRedeemCodeData" status-icon :rules="addMoreRedeemCodeRule" ref="addMoreRedeemCodeForm" label-width="160px">
+                <el-form-item label="兑换码月份(默认一月)" prop="month">
+                    <el-input v-model="addRedeemCodeData.month"  placeholder="请输入兑换码月份" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="生成数量" prop="number">
+                    <el-input v-model="addRedeemCodeData.number" placeholder="请输入生成兑换码数量" clearable></el-input>
+                </el-form-item>
 
+                <el-form-item>
+                    <el-button type="primary" @click="addMoreRedeemCodeSortSubmit('addMoreRedeemCodeForm')">提交</el-button>
+                    <el-button @click="resetForm('updateProjectSortForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
         </el-dialog>
     </section>
 </template>
@@ -67,7 +85,12 @@
 <script>
     import {
         findRedeemCodeList,  // 获取兑换码列表
+        addSingleRedeemCode,  // 添加一条兑换码
+        addMoreRedeemCode,  // 添加多条兑换码
+        removeRedeemCode  // 删除兑换码
     } from '../../api/api.js';
+
+    import axios from '../../api/axios'
 
     export default {
         name: 'redeem_code',
@@ -90,13 +113,14 @@
                  */
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
+                sels: [],  //列表选中列
 
                 //分页参数
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
                     page_size: 10, // 1页显示多少条
-                    page_sizes: [5, 10, 15, 20], //每页显示多少条
+                    page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
@@ -111,13 +135,24 @@
                 // 添加兑换码数据
                 addRedeemCodeData: {
                     month: 1,  // 兑换码月份（默认一月）
-                    number: 1,  // 生成数量
+                    number: "",  // 生成数量
                 },
 
-                // 验证添加单个兑换码数据
+                // 验证添加单条兑换码数据
                 addSingleRedeemCodeRule: {
                     month: [
                         { validator: validateMonth, trigger: 'blur' },
+                    ],
+                },
+
+                // 验证添加多条兑换码数据
+                addMoreRedeemCodeRule: {
+                    month: [
+                        { required: true, message: '生成兑换码月份不能为空！', trigger: 'blur' },
+                        { validator: validateMonth, trigger: 'blur' },
+                    ],
+                    number: [
+                        { required: true, message: '生成兑换码数量不能为空！', trigger: 'blur' }
                     ],
                 },
 
@@ -125,24 +160,26 @@
                  *  弹出表单界面
                  */
                 addMoreRedeemCodeVisible: false,  // 显示隐藏添加多个兑换码界面
-
             }
         },
         methods: {
             /**
              * common
              */
-            //关闭提示
+            // 关闭提示
             handleClose(done) {
                 this.$confirm('确认关闭？').then(() => {
                     done();
-                }).catch(err => {
-                    throw err;
-                });
+                }).catch(() => {});
             },
-            //表单重置
+            // 表单重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+            // 列表是否选中
+            selsChange (sels) {
+                this.sels = sels;
+                // console.log(sels);
             },
 
             /**
@@ -165,11 +202,12 @@
              *  api
              *  获取兑换码信息
              */
+            // 获取兑换码列表
             getRedeemCodeList () {
                 //接口参数
                 let param = {
-                    pageSize: this.page_arg.page_size,  //每页条数
-                    pageNum: this.page_arg.page_index,  //当前页码
+                    pageSize: this.page_arg.page_size,  // 每页条数
+                    pageNum: this.page_arg.page_index,  // 当前页码
                 };
 
                 findRedeemCodeList(qs.stringify(param)).then(res => {
@@ -181,69 +219,137 @@
                     this.page_arg.total = res.data.data.total;
                 }).catch({});
             },
-            formatType (row) {
-                switch (row.type) {
-                    case 0:
-                        return "视频";
-                        break;
-                    case 1:
-                        return "平台";
-                        break;
-                    case 2:
-                        return "null";
-                        break;
-                    default :
-                        return "null";
-                        break;
-                }
-            },
 
             /**
              *  api
-             *  添加兑换码
+             *  添加单条兑换码
              */
-            // 点击添加单个兑换码
+            // 点击添加单条兑换码
             addSingleRedeemCodeSubmit (formName) {
                 // console.log("添加单个兑换码");
 
                 //验证表单
                 this.$refs[formName].validate((valid) => {
-                    //如果验证成功，请求接口数据
-                    if (valid) {
-                        console.log("success");
+                    if (valid) {  // 如果验证成功，请求接口数据
+                        // console.log("success");
 
                         this.$confirm('确定添加单个兑换码？', '提示', {
                             type: 'warning'
                         }).then(() => {
-                            this.listLoading = true;  //点击提交开始加载loading
-                        }).catch(() => {});
+                            this.listLoading = true;  // 加载loading
 
-                    } else {  //验证失败跳出
+                            // 请求添加单条兑换码接口
+                            addSingleRedeemCode(qs.stringify(this.addRedeemCodeData.month)).then(() => {
+                                this.listLoading = false;  // 结束加载loading
+
+                                this.$message({
+                                    message: "添加成功！",
+                                    type: "success"
+                                });
+
+                                this.getRedeemCodeList();  // 加载分页数据
+
+                                this.addRedeemCodeData.month = 1;
+                            }).catch({});
+                        }).catch(() => {});
+                    } else {  // 验证失败跳出
                         console.log('error submit!!');
                     }
                 });
-
-
             },
-            // 点击添加多个兑换码
+
+            /**
+             *  api
+             *  添加多条兑换码
+             */
+            // 点击添加多条兑换码
             addMoreRedeemCode () {
-                console.log("添加多个兑换码");
+                // console.log("添加多条兑换码");
             },
-
-            // 提交添加用户表单
-            addUserSubmit (formName) {
+            // 提交添加多条兑换码表单
+            addMoreRedeemCodeSortSubmit (formName) {
                 this.listLoading = true;  //点击提交开始加载loading
 
                 //验证表单
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
+                        // 请求添加单条兑换码接口
+                        addMoreRedeemCode(qs.stringify(this.addRedeemCodeData)).then(() => {
+                            this.listLoading = false;  // 结束加载loading
 
+                            this.addMoreRedeemCodeVisible = false;  //隐藏添加多条兑换码表单界面
+
+                            this.$message({
+                                message: "添加成功！",
+                                type: "success"
+                            });
+
+                            this.getRedeemCodeList();  // 加载分页数据
+
+                            this.addRedeemCodeData.month = 1;
+                        }).catch({});
                     } else {  //验证失败跳出
                         console.log('error submit!!');
                     }
                 });
             },
+
+            /**
+             *  api
+             *  删除兑换码
+             */
+            // 单个兑换码删除
+            delRedeemCode (row) {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    let id = Object.assign({}, row).id;
+
+                    let params = {
+                        ids: id
+                    }
+
+                    // console.log(params);
+
+                    removeRedeemCode(params).then(res => {
+                        // console.log(res);
+
+                        this.$message({
+                            message: res.data.msg,
+                            type: "success"
+                        });
+
+                        this.getRedeemCodeList();  // 加载分页数据
+                    }).catch({});
+                }).catch(() => {});
+            },
+
+            // 批量删除兑换码
+            batchRemove: function () {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    let params = [], url_arg;
+
+                    for (let i=0; i<this.sels.length; i++){
+                        params.push(this.sels[i].id);
+                    }
+
+                    url_arg = "?ids=" + params.join('&ids=');
+
+                    axios.get("http://10.10.10.238:8089/admin/redeemcode/delete" + url_arg).then(res => {
+                        // console.log(res);
+
+                        this.$message({
+                            message: res.data.msg,
+                            type: "success"
+                        });
+
+                        this.getRedeemCodeList();  // 加载分页数据
+                    }).catch({});
+                }).catch(() => {});;
+            }
         },
         // 预处理
         created () {
@@ -253,11 +359,6 @@
 </script>
 
 <style scoped>
-    .redeem_code_list{
-        height: calc(100vh - 260px);
-        overflow: auto;
-    }
-
     .toolbar {
         padding-bottom: 0;
     }
@@ -266,7 +367,7 @@
         margin: 0 0 10px 20px;
     }
 
-    .pagination{
-        margin-bottom: 16px;
+    .del_more{
+        margin: 8px 5px 10px 0;
     }
 </style>

@@ -46,9 +46,9 @@
                 <el-table-column prop="sort" label="序号" width="60" align="center"></el-table-column>
                 <el-table-column prop="title" label="项目标题" width="150" align="center"></el-table-column>
                 <el-table-column label="项目logo" width="150" align="center">
-                                	<template slot-scope="scope">
-                                		<img :src="scope.row.logoUrl" class="tabimg" />
-                                	</template>
+            	<template slot-scope="scope">
+            		<img :src="scope.row.logoUrl" class="tabimg" />
+            	</template>
                 </el-table-column>
                 <el-table-column prop="amount" label="申请人数" width="80" align="center"></el-table-column>
                 <el-table-column prop="type" label="项目类型" width="80" align="center"></el-table-column>
@@ -304,7 +304,7 @@
                     ],
                     targetUrl: [
                         { required: true, message: '跳转目的URL不能为空！', trigger: 'blur' },
-                        { validator: validateUrl, trigger: 'blur' },
+                        { validator: validateUrl, trigger: 'blur' }
                     ]
                 },
 
