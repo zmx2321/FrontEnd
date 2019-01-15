@@ -10,8 +10,17 @@ const router = express.Router();
 // bcrypt跨平台加密
 const bcrypt = require("bcrypt");
 
+// 引入jsonwebtoken
+const jwt = require('jsonwebtoken');
+
 // 全球公认的头像
 const gravatar = require('gravatar');
+
+// 引入key.js[secretOrKey(加密名字)]
+const keys = require("../../config/keys");
+
+// 引入passport
+const passwort = require("passport");
 
 // 引入数据模型
 const User = require("../../models/User");
@@ -35,7 +44,7 @@ router
      *  使用post必须使用body-parser(中间件)
      */
     .post('/register', (req, res) => {
-        console.log(req.body);
+        // console.log(req.body);
 
         // 查询数据库中是否拥有邮箱
         // (如果没有数据库则新建再新增数据，如果没有数据则新增数据)
@@ -71,13 +80,13 @@ router
                     });
                 });
 
-                console.log("register success")
+                // console.log("register success");
             }
         });
     })
 
     /**
-     *  @route  GET api/users/login
+     *  @route  POST api/users/login
      *  @desc   返回的请求的json数据
      *  @access public
      */
@@ -94,13 +103,48 @@ router
             // 如果email在数据库中存在，则进行密码匹配
             bcrypt.compare(password, user.password).then(isMatch => {
                 if (isMatch) {
-                    res.json({msg: "登陆成功!"});
+                    // res.json({msg: "登陆成功!"});
+
+                    // 登录成功返回token
+                    // jwt.sign("规则", "加密名字", "过期时间", "回调");  // 签名
+                    const rule = {  //加密规则，使用id+昵称
+                        id: user.id,
+                        name: user.name
+                    };
+                    jwt.sign(rule, keys.secretOrKey, {
+                        expiresIn: 3600  // 有效时间在3600s,60分钟
+                    }, (err, token) => {
+                        if (err) throw err;
+
+                        res.json({
+                            success: true,
+                            token: "Bearer " + token  // 前缀名必须是Bearer加空格
+                        });
+                    });
                 } else {
                     return res.status(400).json('密码错误!');
                 }
             });
         });
-    });
+    })
+
+    /**
+     *  @route  GET api/users/current
+     *  @desc   返回的请求的json数据(验证token,passport-jwt)
+     *  ('/current', '验证token', (req, res))
+     *  @access private
+     */
+    .get('/current', passwort.authenticate("jwt", {session: false}), (req, res) => {
+        // res.json({msg: "success"});
+
+        // 返回用户信息(passport中return了user)
+        // res.json(req.user);
+        res.json({
+            id: req.user.id,
+            name: req.user.name,
+            email: req.user.email,
+        });
+    })
 
 //对外提供一个接口
 module.exports = router;

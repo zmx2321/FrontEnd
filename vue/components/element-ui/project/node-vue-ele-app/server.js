@@ -7,6 +7,9 @@ const express = require("express"),  // 引入express
     mongoose = require("mongoose"),  // 引入mongoose（用来链接数据库）
     bodyParser = require('body-parser');  // 引入body-parser(中间件)
 
+// 引入passport(解析token)(认证各种账号信息)
+const passport = require("passport");
+
 // 引入users
 const users = require("./routers/api/users");
 
@@ -22,6 +25,8 @@ app
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json());
 
+
+
 //链接数据库
 mongoose.connect(db, { useNewUrlParser: true }).then(
     () => console.log("mongodb connected !")
@@ -29,6 +34,11 @@ mongoose.connect(db, { useNewUrlParser: true }).then(
     err => console.log(err)
 );
 
+// passport初始化
+app.use(passport.initialize());
+
+// 配置passport(引入config下的passport在其中配置，并传递过去一个passport)
+require('./config/passport')(passport);
 
 /**
  * 每次修改需要重启服务，
