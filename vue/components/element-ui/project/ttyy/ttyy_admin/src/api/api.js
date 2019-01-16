@@ -1,11 +1,11 @@
 /**
- * 用以请求接口数据
+ *  用以请求接口数据
  */
 
 import axios from './axios'
 
 /**
- * 登录/注销/修改密码
+ *  登录/注销/修改密码
  */
 // 登录
 export const Login = params => {
@@ -34,27 +34,27 @@ export const ModifyPassword = params => {
 };
 
 /**
- * 用户管理
+ *  用户管理
  */
 // 获取管理员和员工列表
 export const findAccountList = params => {
     return  axios({
         url: 'account/findAccount',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
 
 /**
- * banner管理
+ *  banner管理
  */
 // 获取banner列表
 export const findBannerList = params => {
     return  axios({
         url: 'banner/findList',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
@@ -63,7 +63,7 @@ export const addBanner = params => {
     return  axios({
         url: 'banner/add',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
@@ -72,7 +72,7 @@ export const updateBanner = params => {
     return  axios({
         url: 'banner/updateNotNull',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
@@ -81,20 +81,20 @@ export const delBanner = params => {
     return  axios({
         url: 'banner/delete',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
 
 /**
- * 兑换码管理
+ *  兑换码管理
  */
 // 获取兑换码列表
 export const findRedeemCodeList = params => {
     return  axios({
         url: 'redeemcode/findList',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
@@ -103,7 +103,7 @@ export const addSingleRedeemCode = params => {
     return  axios({
         url: 'redeemcode/addOne',
         method: 'post',
-        data: params,
+        data: params
     });
 };
 
@@ -122,5 +122,31 @@ export const removeRedeemCode = params => {
         url: 'redeemcode/delete',
         method: 'get',
         params: params
+    });
+};
+
+
+/**
+ *  订单管理
+ */
+// 获取订单列表
+export const findOrderList = params => {
+    return  axios({
+        url: 'order/findList',
+        method: 'get',
+        data: params
+    });
+};
+
+
+/**
+ *  商品管理
+ */
+// 获取商品列表
+export const findProductList = params => {
+    return  axios({
+        url: 'product/findList',
+        method: 'get',
+        data: params
     });
 };

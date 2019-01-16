@@ -1,22 +1,13 @@
 <template>
     <section class="main_cont">
-        <!-- 表单 -->
-        <el-row>
-            <el-form :model="addRedeemCodeData" status-icon :inline="true" ref="addSingleRedeemCodeForm" :rules="addSingleRedeemCodeRule">
-                <el-col class="toolbar bdr_radiu" :span="24">
-                    <el-col :span="22" class="top_cont">
-                        <el-form-item label="兑换码月份" prop="month">
-                            <el-input placeholder="请输入兑换码月份" v-model="addRedeemCodeData.month" clearable></el-input>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" @click="addSingleRedeemCodeSubmit('addSingleRedeemCodeForm')">添加单个兑换码</el-button>
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" @click="addMoreRedeemCode" v-on:click="addMoreRedeemCodeVisible = true">添加多个兑换码</el-button>
-                        </el-form-item>
-                    </el-col>
-                </el-col>
-            </el-form>
+        <!-- 按钮 -->
+        <el-row class="toolbar bdr_radiu f-cb">
+            <el-col class="f-fl btn_wrap">
+                <el-button type="primary" @click="addSingleRedeemCode" v-on:click="addSingleRedeemCodeVisible = true">添加单个兑换码</el-button>
+            </el-col>
+            <el-col class="f-fl btn_wrap">
+                <el-button type="primary" @click="addMoreRedeemCode" v-on:click="addMoreRedeemCodeVisible = true">添加多个兑换码</el-button>
+            </el-col>
         </el-row>
 
         <!-- 兑换码列表 -->
@@ -24,17 +15,19 @@
             <el-table class="redeem_code_list" :data="redeem_code_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="calc(100vh - 311px)">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column type="index" width="60" align="center"></el-table-column>
-                <el-table-column prop="id" label="兑换码id" width="80" align="center"></el-table-column>
-                <el-table-column prop="userId" label="用户id" width="80" align="center"></el-table-column>
+                <!--<el-table-column prop="id" label="兑换码id" width="80" align="center"></el-table-column>-->
+                <el-table-column prop="userMobile" label="用户手机" width="150" align="center"></el-table-column>
                 <el-table-column prop="code" label="兑换码" width="300" align="center"></el-table-column>
                 <el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
                 <el-table-column prop="usedAt" label="使用时间" width="110" align="center"></el-table-column>
 
-                <el-table-column label="状态" width="auto">
+                <el-table-column label="状态" width="95" align="center">
                     <template slot-scope="scope">
                         {{ scope.row.isUsed === 1 ? "已使用" : "未使用" }}
                     </template>
                 </el-table-column>
+
+                <el-table-column prop="memo" label="备注" width="auto"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="100">
                     <template slot-scope="scope">
@@ -63,14 +56,34 @@
             </el-row>
         </el-row>
 
+        <!-- 添加单条兑换码 -->
+        <el-dialog title="添加单条兑换码" @keyup.enter.native="addSingleRedeemCodeSubmit('addSingleRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addSingleRedeemCodeVisible" :before-close="handleClose">
+            <el-form :model="addRedeemCodeData" status-icon :rules="addMoreRedeemCodeRule" ref="addSingleRedeemCodeForm" label-width="160px">
+                <el-form-item label="兑换码月份(默认一月)" prop="month">
+                    <el-input v-model="addRedeemCodeData.month"  placeholder="请输入兑换码月份" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="备注" prop="memo">
+                    <el-input v-model="addRedeemCodeData.memo" placeholder="请输入备注" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="addSingleRedeemCodeSubmit('addSingleRedeemCodeForm')">提交</el-button>
+                    <el-button @click="resetForm('addSingleRedeemCodeForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+
         <!-- 添加多条兑换码 -->
-        <el-dialog title="添加多个兑换码" @keyup.enter.native="addMoreRedeemCodeSubmit('addMoreRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addMoreRedeemCodeVisible" :before-close="handleClose">
+        <el-dialog title="添加多条兑换码" @keyup.enter.native="addMoreRedeemCodeSubmit('addMoreRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addMoreRedeemCodeVisible" :before-close="handleClose">
             <el-form :model="addRedeemCodeData" status-icon :rules="addMoreRedeemCodeRule" ref="addMoreRedeemCodeForm" label-width="160px">
                 <el-form-item label="兑换码月份(默认一月)" prop="month">
                     <el-input v-model="addRedeemCodeData.month"  placeholder="请输入兑换码月份" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="生成数量" prop="number">
                     <el-input v-model="addRedeemCodeData.number" placeholder="请输入生成兑换码数量" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="备注" prop="memo">
+                    <el-input v-model="addRedeemCodeData.memo" placeholder="请输入备份" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -107,6 +120,17 @@
                 callback();
             };
 
+            // 数字验证
+            let validateNumber = (rule, value, callback) => {
+                let reg = /^[1-9]\d?$/;
+
+                if (!reg.test(value)) {
+                    return callback(new Error('数量必须为2位数的非零正整数！'));
+                }
+
+                callback();
+            };
+
             return {
                 /**
                  * common
@@ -115,7 +139,7 @@
                 dialogVisible: false,  // 关闭提示
                 sels: [],  //列表选中列
 
-                //分页参数
+                // 分页参数
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
@@ -136,6 +160,7 @@
                 addRedeemCodeData: {
                     month: 1,  // 兑换码月份（默认一月）
                     number: "",  // 生成数量
+                    memo: ""  //备注
                 },
 
                 // 验证添加单条兑换码数据
@@ -149,17 +174,19 @@
                 addMoreRedeemCodeRule: {
                     month: [
                         { required: true, message: '生成兑换码月份不能为空！', trigger: 'blur' },
-                        { validator: validateMonth, trigger: 'blur' },
+                        { validator: validateMonth, trigger: 'blur' }
                     ],
                     number: [
-                        { required: true, message: '生成兑换码数量不能为空！', trigger: 'blur' }
+                        { required: true, message: '生成兑换码数量不能为空！', trigger: 'blur' },
+                        { validator: validateNumber, trigger: 'blur' }
                     ],
                 },
 
                 /**
                  *  弹出表单界面
                  */
-                addMoreRedeemCodeVisible: false,  // 显示隐藏添加多个兑换码界面
+                addSingleRedeemCodeVisible: false,  //  显示隐藏添加单条兑换码界面
+                addMoreRedeemCodeVisible: false,  // 显示隐藏添加多条兑换码界面
             }
         },
         methods: {
@@ -210,6 +237,7 @@
                     pageNum: this.page_arg.page_index,  // 当前页码
                 };
 
+                // 请求接口
                 findRedeemCodeList(qs.stringify(param)).then(res => {
                     // console.log(res.data.data);
 
@@ -224,34 +252,41 @@
              *  api
              *  添加单条兑换码
              */
+            addSingleRedeemCode () {
+                console.log("添加单个兑换码");
+            },
             // 点击添加单条兑换码
             addSingleRedeemCodeSubmit (formName) {
-                // console.log("添加单个兑换码");
-
                 //验证表单
                 this.$refs[formName].validate((valid) => {
-                    if (valid) {  // 如果验证成功，请求接口数据
-                        // console.log("success");
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
+                        // 参数
+                        let params = {
+                            month: this.addRedeemCodeData.month,
+                            memo: this.addRedeemCodeData.memo
+                        };
 
-                        this.$confirm('确定添加单个兑换码？', '提示', {
-                            type: 'warning'
-                        }).then(() => {
-                            this.listLoading = true;  // 加载loading
+                        // 请求添加单条兑换码接口
+                        addSingleRedeemCode(qs.stringify(params)).then(() => {
+                            // 结束加载loading
+                            this.listLoading = false;
 
-                            // 请求添加单条兑换码接口
-                            addSingleRedeemCode(qs.stringify(this.addRedeemCodeData.month)).then(() => {
-                                this.listLoading = false;  // 结束加载loading
+                            // 隐藏添加单条兑换码
+                            this.addSingleRedeemCodeVisible = false;
 
-                                this.$message({
-                                    message: "添加成功！",
-                                    type: "success"
-                                });
+                            this.$message({
+                                message: "添加成功！",
+                                type: "success"
+                            });
 
-                                this.getRedeemCodeList();  // 加载分页数据
+                            // 加载分页数据
+                            this.getRedeemCodeList();
 
-                                this.addRedeemCodeData.month = 1;
-                            }).catch({});
-                        }).catch(() => {});
+                            // data数据初始化
+                            this.addRedeemCodeData.month = 1;
+                            this.addRedeemCodeData.memo = "";
+                        }).catch({});
                     } else {  // 验证失败跳出
                         console.log('error submit!!');
                     }
@@ -276,18 +311,23 @@
                     if (valid) {
                         // 请求添加单条兑换码接口
                         addMoreRedeemCode(qs.stringify(this.addRedeemCodeData)).then(() => {
-                            this.listLoading = false;  // 结束加载loading
+                            // 结束加载loading
+                            this.listLoading = false;
 
-                            this.addMoreRedeemCodeVisible = false;  //隐藏添加多条兑换码表单界面
+                            //隐藏添加多条兑换码表单界面
+                            this.addMoreRedeemCodeVisible = false;
 
                             this.$message({
                                 message: "添加成功！",
                                 type: "success"
                             });
 
-                            this.getRedeemCodeList();  // 加载分页数据
+                            // 加载分页数据
+                            this.getRedeemCodeList();
 
+                            // data数据初始化
                             this.addRedeemCodeData.month = 1;
+                            this.addRedeemCodeData.memo = "";
                         }).catch({});
                     } else {  //验证失败跳出
                         console.log('error submit!!');
@@ -310,10 +350,8 @@
                         ids: id
                     }
 
-                    // console.log(params);
-
                     removeRedeemCode(params).then(res => {
-                        // console.log(res);
+                        console.log(res);
 
                         this.$message({
                             message: res.data.msg,
@@ -359,12 +397,8 @@
 </script>
 
 <style scoped>
-    .toolbar {
-        padding-bottom: 0;
-    }
-
-    .top_cont{
-        margin: 0 0 10px 20px;
+    .btn_wrap{
+        width: 150px;
     }
 
     .del_more{

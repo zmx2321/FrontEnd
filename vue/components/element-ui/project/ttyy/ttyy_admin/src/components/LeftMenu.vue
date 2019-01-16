@@ -11,7 +11,7 @@
                         </el-menu-item>
                     </router-link>
 
-                     <!-- 用户管理 -->
+                    <!-- 用户管理 -->
                     <router-link to="/user">
                         <el-menu-item index="1">
                             <i class="fa fa-address-book"></i>
@@ -19,7 +19,7 @@
                         </el-menu-item>
                     </router-link>
 
-                     <!-- banner管理 -->
+                    <!-- banner管理 -->
                     <router-link to="/banner">
                         <el-menu-item index="2">
                             <i class="fa fa-map-signs"></i>
@@ -32,6 +32,22 @@
                         <el-menu-item index="3">
                             <i class="fa fa-money"></i>
                             <span slot="title">兑换码管理</span>
+                        </el-menu-item>
+                    </router-link>
+
+                    <!-- 订单管理 -->
+                    <router-link to="/order">
+                        <el-menu-item index="4">
+                            <i class="fa fa-cc-amex"></i>
+                            <span slot="title">订单管理</span>
+                        </el-menu-item>
+                    </router-link>
+
+                    <!-- 商品管理 -->
+                    <router-link to="/product">
+                        <el-menu-item index="5">
+                            <i class="fa fa-cog"></i>
+                            <span slot="title">商品管理</span>
                         </el-menu-item>
                     </router-link>
 
@@ -93,6 +109,12 @@ export default {
                     break;
                 case "redeem_code":
                     return "3";
+                    break;
+                case "order":
+                    return "4";
+                    break;
+                case "product":
+                    return "5";
                     break;
             }
         },

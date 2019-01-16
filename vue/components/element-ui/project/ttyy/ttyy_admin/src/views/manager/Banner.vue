@@ -17,7 +17,7 @@
         <el-row>
             <el-table class="banner_list" :data="banner_info" border highlight-current-row v-loading="listLoading">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
+                <el-table-column type="index" width="60" align="center"></el-table-column>
                 <el-table-column prop="id" label="banner_id" width="100" align="center"></el-table-column>
                 <el-table-column prop="title" label="名称" width="100" align="center"></el-table-column>
 
@@ -70,6 +70,11 @@
                 </el-form-item>
                 <el-form-item label="banner类型" prop="type">
                     <el-input v-model="addBannerData.type" placeholder="请输入banner类型" clearable></el-input>
+                    <ul class="tip">
+                        <li>0：视频</li>
+                        <li>1：平台</li>
+                        <li>2: URL</li>
+                    </ul>
                 </el-form-item>
                 <el-form-item label="banner路径" prop="img">
                     <el-input v-model="addBannerData.img" placeholder="请输入banner路径" clearable></el-input>
@@ -99,6 +104,11 @@
                 </el-form-item>
                 <el-form-item label="banner类型" prop="type">
                     <el-input v-model="updateBannerData.type" placeholder="请输入banner类型" clearable></el-input>
+                    <ul class="tip">
+                        <li>0：视频</li>
+                        <li>1：平台</li>
+                        <li>2: URL</li>
+                    </ul>
                 </el-form-item>
                 <el-form-item label="banner路径" prop="img">
                     <el-input v-model="updateBannerData.img" placeholder="请输入banner路径" clearable></el-input>
@@ -130,10 +140,10 @@
         data() {
             // banner类型验证
             let validateType = (rule, value, callback) => {
-                let reg = /^[0-3]$/;
+                let reg = /^[0-2]$/;
 
                 if (!reg.test(value)) {
-                    return callback(new Error('banner类型只能输入0-3！'));
+                    return callback(new Error('banner类型只能输入0-2！'));
                 }
 
                 callback();
@@ -299,6 +309,7 @@
                     this.page_arg.total = res.data.data.total;
                 }).catch({});
             },
+            // banner类型
             formatType (row) {
                 switch (row.type) {
                     case 0:
@@ -374,11 +385,11 @@
                     if (valid) {  // 如果验证成功，请求接口数据
                         updateBanner(qs.stringify(this.updateBannerData)).then(() => {
                             this.$message({
-                                message: "添加成功！",
+                                message: "编辑成功！",
                                 type: "success"
                             });
 
-                            this.addBannerVisible = false;  //隐藏编辑banner界面
+                            this.updateBannerVisible = false;  //隐藏编辑banner界面
 
                             this.listLoading = false;  //请求成功停止加载loading
 
@@ -436,5 +447,17 @@
         width: 40px;
         height: 40px;
         margin: 0 auto;
+    }
+
+    .tip{
+        height: 22px;
+        line-height: 22px;
+    }
+
+    .tip li{
+        display: inline-block;
+        font-size: 12px;
+        color: #f17b7b;
+        margin-right: 28px;
     }
 </style>

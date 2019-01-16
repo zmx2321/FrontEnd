@@ -18,6 +18,8 @@ import ModifyPassword from './views/admin/ModifyPassword'
 import User from './views/manager/User'
 import Banner from './views/manager/Banner'
 import RedeemCode from './views/manager/RedeemCode'
+import Order from './views/manager/Order'
+import Product from './views/manager/Product'
 
 Vue.use(Router);
 
@@ -45,7 +47,11 @@ const router = new Router({
                 // banner管理
                 { path: '/banner', component: Banner, name: 'banner' },
                 // 兑换码管理
-                { path: '/redeem_code', component: RedeemCode, name: 'redeem_code' }
+                { path: '/redeem_code', component: RedeemCode, name: 'redeem_code' },
+                // 订单管理
+                { path: '/order', component: Order, name: 'order' },
+                // 商品管理
+                { path: '/product', component: Product, name: 'product' }
 
             ]
         },
