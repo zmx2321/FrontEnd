@@ -24,8 +24,9 @@
                         <!--:picker-options="pickerOptions1">-->
                 <!--</el-date-picker>-->
             <!--</el-col>-->
+            <!--{{timeArray}}-->
             <el-date-picker
-                    v-model="value7"
+                    v-model="orderTime.timeArray"
                     type="daterange"
                     align="right"
                     unlink-panels
@@ -33,14 +34,14 @@
                     start-placeholder="开始日期"
                     end-placeholder="结束日期"
                     format="yyyy-MM-dd"
-                    @change="dateChangebirthday"
-                    :picker-options="pickerOptions2">
+                    @change="getSTime"
+                    :picker-options="pickerOptions">
             </el-date-picker>
         </el-row>
 
         <!-- 订单列表 -->
         <el-row>
-            <el-table class="order_list" :data="order_info" border highlight-current-row v-loading="listLoading">
+            <el-table class="order_list" :data="order_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 230px)">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <el-table-column prop="id" label="订单编号" width="80" align="center"></el-table-column>
@@ -88,13 +89,13 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 5, // 1页显示多少条
+                    page_size: 10, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
                 // 时间筛选器
-                pickerOptions2: {
+                pickerOptions: {
                     shortcuts: [{
                         text: '最近一周',
                         onClick(picker) {
@@ -120,15 +121,13 @@
                             picker.$emit('pick', [start, end]);
                         }
                     }]
-
                 },
-                value6: '',
-                value7: '',
 
                 // 起止时间
                 orderTime: {
-                    startTime: "",
-                    endTime: ""
+                    timeArray: '',  // 起止时间集合
+                    startTime: "",  // 开始时间
+                    endTime: ""  // 结束时间
                 },
 
                 /**
@@ -138,20 +137,19 @@
             }
         },
         methods: {
-            // 时间戳转换
-            formatDate (now) {
-                let year = now.getFullYear();  // 年
-                let month = now.getMonth() + 1;  // 月
-                let date = now.getDate();  // 日
+            //点击日期控制器
+            getSTime(val) {
+                // 将日期控制器的数组值存入容器
+                this.orderTime.timeArray = val;
 
-                return year + "-" + month + "-" + date;
+                // 为起止时间赋值
+                this.orderTime.startTime = this.orderTime.timeArray[0];
+                this.orderTime.endTime = this.orderTime.timeArray[1];
+
+                // console.log(this.orderTime);
+
+                this.getOrderList();  // 加载分页数据
             },
-
-            dateChangebirthday(val) {
-                console.log(val);
-                this.form.birthdayName = val;
-            },
-
 
             // 点击页码
             handleCurrentChange() {
@@ -173,23 +171,16 @@
             // 获取订单列表
             getOrderList () {
                 // //接口参数
-                // let param = {
-                //     pageSize: this.page_arg.page_size,  // 每页条数
-                //     pageNum: this.page_arg.page_index,  // 当前页码
-                //     startTime: new Date("2019-01-11"),  // 开始时间（格式yyyy-MM-dd）
-                //     endTime: new Date("2019-01-11")  // 结束时间（格式yyyy-MM-dd）
-                // };
-
-                //接口参数
                 let param = {
                     pageSize: this.page_arg.page_size,  // 每页条数
                     pageNum: this.page_arg.page_index,  // 当前页码
+                    startTime: this.orderTime.startTime,  // 开始时间（格式yyyy-MM-dd）
+                    endTime: this.orderTime.endTime  // 结束时间（格式yyyy-MM-dd）
                 };
 
-
                 // 请求接口
-                findOrderList(qs.stringify(param)).then(res => {
-                    console.log(res);
+                findOrderList(param).then(res => {
+                    // console.log(res);
 
                     this.order_info = res.data.data.list;
 
@@ -215,8 +206,6 @@
         // 预处理
         created () {
             this.getOrderList();  // 获取订单列表
-            console.log(this.value7);
-            this.dateChangebirthday();
         }
     }
 </script>
@@ -224,22 +213,5 @@
 <style scoped>
     .toolbar{
         padding-left: 28px;
-    }
-
-    .btn_wrap{
-        width: 310px;
-        height: 40px;
-    }
-
-    .btn_wrap:not(:last-child){
-        margin-bottom: 10px;
-    }
-
-    .btn_wrap span{
-        display: block;
-        height: 40px;
-        line-height: 40px;
-        font-size: 14px;
-        color: #797979;
     }
 </style>

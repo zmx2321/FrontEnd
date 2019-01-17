@@ -134,7 +134,7 @@ export const findOrderList = params => {
     return  axios({
         url: 'order/findList',
         method: 'get',
-        data: params
+        params: params
     });
 };
 
