@@ -51,6 +51,14 @@
                         </el-menu-item>
                     </router-link>
 
+                     <!-- 数据统计 -->
+                     <router-link to="/statistics">
+                         <el-menu-item index="6">
+                             <i class="fa fa-cc-amex"></i>
+                             <span slot="title">数据统计</span>
+                         </el-menu-item>
+                     </router-link>
+
                      <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
@@ -115,6 +123,9 @@ export default {
                     break;
                 case "product":
                     return "5";
+                    break;
+                case "statistics":
+                    return "6";
                     break;
             }
         },

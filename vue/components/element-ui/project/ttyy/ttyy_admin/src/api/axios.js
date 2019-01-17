@@ -4,6 +4,7 @@ import { Message } from 'element-ui'
 import router from '../router'
 
 const root = 'http://10.10.10.238:8089/admin/';
+// const root = 'https://aappii.ge75g.cn/admin/';
 
 const Axios = axios.create({
     baseURL: root, // api

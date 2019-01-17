@@ -129,3 +129,10 @@ a:visited{
 .pagination{
     margin-bottom: 16px;
 }
+
+.tabimg{
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+}

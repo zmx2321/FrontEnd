@@ -262,13 +262,13 @@
             /**
              * common
              */
-            //关闭提示
+            // 关闭提示
             handleClose(done) {
                 this.$confirm('确认关闭？').then(() => {
                     done();
                 }).catch(() => {});
             },
-            //表单重置
+            // 表单重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
@@ -278,7 +278,7 @@
              */
             // 点击页码
             handleCurrentChange() {
-                this.getRedeemCodeList();  // 加载分页数据
+                this.getBannerList();  // 加载分页数据
             },
             // 设置每页条数
             handleSizeChange(page_size) {
@@ -296,8 +296,8 @@
             getBannerList () {
                 //接口参数
                 let param = {
-                    pageSize: this.page_arg.pagesize,
-                    pageNum: this.page_arg.currentPage,
+                    pageNum: this.page_arg.page_index,  // 当前页码
+                    pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
                 findBannerList(JSON.stringify(param)).then(res => {
@@ -338,24 +338,29 @@
 
             // 提交添加用户表单
             addBannerSubmit (formName) {
-                this.listLoading = true;  //点击提交开始加载loading
+                // 点击提交开始加载loading
+                this.listLoading = true;
 
                 // 验证表单
                 this.$refs[formName].validate((valid) => {
-                    if (valid) {  // 如果验证成功，请求接口数据
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
                         addBanner(qs.stringify(this.addBannerData)).then(() => {
                             this.$message({
                                 message: "添加成功！",
                                 type: "success"
                             });
 
-                            this.addBannerVisible = false;  //隐藏添加banner信息界面
+                            // 隐藏添加banner信息界面
+                            this.addBannerVisible = false;
 
-                            this.listLoading = false;  //请求成功停止加载loading
+                            // 请求成功停止加载loading
+                            this.listLoading = false;
 
-                            this.getBannerList();  //刷新列表数据
+                            // 刷新列表数据
+                            this.getBannerList();
                         }).catch({});
-                    } else {  //验证失败跳出
+                    } else {  // 验证失败跳出
                         console.log('error submit!!');
                         return false;
                     }
@@ -440,13 +445,6 @@
 <style scoped>
     .toolbar {
         padding-bottom: 0;
-    }
-
-    .tabimg{
-        display: block;
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
     }
 
     .tip{

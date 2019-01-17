@@ -20,6 +20,7 @@ import Banner from './views/manager/Banner'
 import RedeemCode from './views/manager/RedeemCode'
 import Order from './views/manager/Order'
 import Product from './views/manager/Product'
+import Statistics from './views/manager/Statistics'
 
 Vue.use(Router);
 
@@ -51,7 +52,9 @@ const router = new Router({
                 // 订单管理
                 { path: '/order', component: Order, name: 'order' },
                 // 商品管理
-                { path: '/product', component: Product, name: 'product' }
+                { path: '/product', component: Product, name: 'product' },
+                // 数据统计
+                { path: '/statistics', component: Statistics, name: 'statistics' }
 
             ]
         },

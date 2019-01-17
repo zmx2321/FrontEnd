@@ -18,24 +18,27 @@
             <el-table class="product_list" :data="product_info" border highlight-current-row v-loading="listLoading">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
+
+                <el-table-column label="商品图片" width="120" align="center">
+                    <template slot-scope="scope">
+            		<img :src="scope.row.img" class="tabimg" />
+            	</template>
+                </el-table-column>
+
                 <el-table-column prop="id" label="商品id" width="80" align="center"></el-table-column>
-                <!--<el-table-column prop="Productname" label="商品名" width="100" align="center"></el-table-column>-->
-                <!--<el-table-column prop="name" label="商品昵称" width="100" align="center"></el-table-column>-->
-                <!--<el-table-column label="商品角色" width="80" align="center">-->
-                    <!--<template slot-scope="scope">-->
-                        <!--{{ scope.row.isSuperAdmin === 1 ? "超级管理员" : "普通员工" }}-->
-                    <!--</template>-->
-                <!--</el-table-column>-->
+                <el-table-column prop="title" label="商品名称" width="120" align="center"></el-table-column>
+                <el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
+                <el-table-column prop="month" label="商品周期(月)" width="120" align="center"></el-table-column>
+                <el-table-column prop="originalPrice" label="原价" width="120" align="center"></el-table-column>
+                <el-table-column prop="currentPrice" label="现价" width="120" align="center"></el-table-column>
+                <el-table-column prop="desc" label="商品详情" width="auto"></el-table-column>
 
-                <!--<el-table-column prop="createAt" label="创建时间" width="200" align="center"></el-table-column>-->
-                <!--<el-table-column prop="updateAt" label="更新时间" width="200" align="center"></el-table-column>-->
-
-                <!--<el-table-column fixed="right" label="操作" width="100">-->
-                    <!--<template slot-scope="scope">-->
-                        <!--<el-button type="text" size="small">编辑</el-button>-->
-                        <!--<el-button type="text" size="small">删除</el-button>-->
-                    <!--</template>-->
-                <!--</el-table-column>-->
+                <el-table-column fixed="right" label="操作" width="100">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small">编辑</el-button>
+                        <el-button type="text" size="small">删除</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
 
             <!-- 分页 -->
@@ -91,7 +94,7 @@
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
                     page_size: 10, // 1页显示多少条
-                    page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
+                    page_sizes: [2, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
@@ -140,7 +143,7 @@
              */
             // 点击页码
             handleCurrentChange() {
-                this.getOrderList();  // 加载分页数据
+                this.getProductList();  // 加载分页数据
             },
             // 设置每页条数
             handleSizeChange(page_size) {
@@ -148,7 +151,7 @@
 
                 this.page_arg.page_size = page_size;  // 切换size
 
-                this.getOrderList();  // 加载分页数据
+                this.getProductList();  // 加载分页数据
             },
 
             /**
@@ -158,15 +161,17 @@
             getProductList () {
                 //接口参数
                 let param = {
-                    pageSize: this.page_arg.pagesize,
-                    pageNum: this.page_arg.currentPage,
+                    pageNum: this.page_arg.page_index,  // 当前页码
+                    pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
                 findProductList(JSON.stringify(param)).then(res => {
-                    // console.log(res.data.data);
+                    console.log(res.data.data);
 
-                    this.page_arg.total = res.data.data.total;
                     this.product_info = res.data.data.list;
+
+                    // 返回分页总数
+                    this.page_arg.total = res.data.data.total;
                 }).catch({});
             },
 

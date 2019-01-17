@@ -2,61 +2,56 @@
     <section class="main_cont">
         <!-- 筛选 -->
         <el-row class="toolbar bdr_radiu f-cb">
-            <!--<el-col class="f-fl btn_wrap f-cb">-->
-                <!--<span class="f-fl">开始时间：</span>-->
-                <!--<el-date-picker-->
-                    <!--class="f-fl"-->
-                    <!--v-model="value2"-->
-                    <!--align="right"-->
-                    <!--type="date"-->
-                    <!--placeholder="选择日期"-->
-                    <!--:picker-options="pickerOptions1">-->
-                <!--</el-date-picker>-->
-            <!--</el-col>-->
-            <!--<el-col class="f-fl btn_wrap f-cb">-->
-                <!--<span class="f-fl">结束时间：</span>-->
-                <!--<el-date-picker-->
-                        <!--class="f-fl"-->
-                        <!--v-model="value2"-->
-                        <!--align="right"-->
-                        <!--type="date"-->
-                        <!--placeholder="选择日期"-->
-                        <!--:picker-options="pickerOptions1">-->
-                <!--</el-date-picker>-->
-            <!--</el-col>-->
-            <!--{{timeArray}}-->
-            <el-date-picker
-                    v-model="orderTime.timeArray"
-                    type="daterange"
-                    align="right"
-                    unlink-panels
-                    range-separator="至"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期"
-                    format="yyyy-MM-dd"
-                    @change="getSTime"
-                    :picker-options="pickerOptions">
-            </el-date-picker>
+            <el-form status-icon :model="filterData" ref="filterOrderForm" label-width="40px">
+                <el-form-item label="日期">
+                    <el-date-picker
+                        v-model="filterData.timeArray"
+                        type="daterange"
+                        align="right"
+                        unlink-panels
+                        range-separator="至"
+                        start-placeholder="开始日期"
+                        end-placeholder="结束日期"
+                        format="yyyy-MM-dd"
+                        @change="getSTime"
+                        :picker-options="pickerOptions">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="手机" prop="target" class="filter_text">
+                    <el-input v-model="filterData.searchText" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="filterOrderSubmit('filterOrderForm')">查询</el-button>
+                    <el-button @click="resetForm('filterOrderForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
         </el-row>
 
         <!-- 订单列表 -->
         <el-row>
-            <el-table class="order_list" :data="order_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 230px)">
+            <el-table class="order_list" :data="order_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 340px)">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column type="index" width="60" align="center"></el-table-column>
+                <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
+
+                <el-table-column label="商品图片" width="120" align="center">
+                    <template slot-scope="scope">
+            		<img :src="scope.row.product.img" class="tabimg" />
+            	</template>
+                </el-table-column>
+
+                <el-table-column prop="product.title" label="商品名称" width="200" align="center"></el-table-column>
                 <el-table-column prop="id" label="订单编号" width="80" align="center"></el-table-column>
                 <el-table-column prop="finalPrice" label="订单价格" width="80" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="创建时间" width="80" align="center"></el-table-column>
-                <el-table-column prop="userId" label="用户编号" width="80" align="center"></el-table-column>
-                <el-table-column prop="productId" label="产品编号" width="80" align="center"></el-table-column>
-                <el-table-column prop="payAt" label="支付时间" width="80" align="center"></el-table-column>
-                <el-table-column prop="status" label="订单状态" width="80" align="center" :formatter="formatStatusType"></el-table-column>
+                <el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
+                <el-table-column prop="userMobile" label="用户手机" width="120" align="center"></el-table-column>
+                <el-table-column prop="payAt" label="支付时间" width="110" align="center"></el-table-column>
+                <el-table-column prop="status" label="订单状态" width="auto" :formatter="formatStatusType"></el-table-column>
             </el-table>
 
             <!-- 分页 -->
-            <el-col>
-                <el-pagination
-                   class="f-fr pagination"
+            <el-col :span="24" class="toolbar f-cb">
+                <el-pagination class="f-fr pagination"
                    :current-page.sync='page_arg.page_index'
                    :page-sizes="page_arg.page_sizes"
                    :page-size="page_arg.page_size"
@@ -123,11 +118,12 @@
                     }]
                 },
 
-                // 起止时间
-                orderTime: {
+                // 筛选器
+                filterData: {
                     timeArray: '',  // 起止时间集合
                     startTime: "",  // 开始时间
-                    endTime: ""  // 结束时间
+                    endTime: "",  // 结束时间
+                    searchText: ""  // 关键词搜索（暂定手机号）
                 },
 
                 /**
@@ -137,31 +133,48 @@
             }
         },
         methods: {
-            //点击日期控制器
-            getSTime(val) {
-                // 将日期控制器的数组值存入容器
-                this.orderTime.timeArray = val;
-
-                // 为起止时间赋值
-                this.orderTime.startTime = this.orderTime.timeArray[0];
-                this.orderTime.endTime = this.orderTime.timeArray[1];
-
-                // console.log(this.orderTime);
-
-                this.getOrderList();  // 加载分页数据
-            },
-
+            /**
+             * common
+             */
             // 点击页码
             handleCurrentChange() {
-                this.getOrderList();  // 加载分页数据
+                // 加载分页数据
+                this.getOrderList();
             },
             // 设置每页条数
             handleSizeChange(page_size) {
                 // console.log(page_size);
 
-                this.page_arg.page_size = page_size;  // 切换size
+                // 切换size
+                this.page_arg.page_size = page_size;
 
-                this.getOrderList();  // 加载分页数据
+                // 加载分页数据
+                this.getOrderList();
+            },
+
+            // 表单重置
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+
+                this.filterData.searchText = "";
+                this.filterData.timeArray = "";
+
+                // 加载分页数据
+                this.getOrderList();
+            },
+
+            /**
+             *  日期筛选器
+             */
+            // 点击日期控制器
+            getSTime(val) {
+                if(val){
+                    // 为起止时间赋值
+                    this.filterData.startTime = val[0];
+                    this.filterData.endTime = val[1];
+                }
+
+                return false;
             },
 
             /**
@@ -170,12 +183,16 @@
              */
             // 获取订单列表
             getOrderList () {
-                // //接口参数
+                // 点击提交开始加载loading
+                this.listLoading = true;
+
+                // 接口参数
                 let param = {
-                    pageSize: this.page_arg.page_size,  // 每页条数
                     pageNum: this.page_arg.page_index,  // 当前页码
-                    startTime: this.orderTime.startTime,  // 开始时间（格式yyyy-MM-dd）
-                    endTime: this.orderTime.endTime  // 结束时间（格式yyyy-MM-dd）
+                    pageSize: this.page_arg.page_size,  // 每页条数
+                    startTime: this.filterData.startTime,  // 开始时间（格式yyyy-MM-dd）
+                    endTime: this.filterData.endTime,  // 结束时间（格式yyyy-MM-dd）
+                    searchText: this.filterData.searchText,  // 关键词搜索（暂定手机号）
                 };
 
                 // 请求接口
@@ -186,6 +203,9 @@
 
                     // 返回分页总数
                     this.page_arg.total = res.data.data.total;
+
+                    // 停止加载loading
+                    this.listLoading = false;
                 }).catch({});
             },
             // 订单状态类型
@@ -202,10 +222,24 @@
                         break;
                 }
             },
+            // 筛选
+            filterOrderSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
+                        // 加载分页数据
+                        this.getOrderList();
+                    } else {  //验证失败跳出
+                        console.log('error submit!!');
+                    }
+                });
+            }
         },
         // 预处理
         created () {
-            this.getOrderList();  // 获取订单列表
+            // 获取订单列表
+            this.getOrderList();
         }
     }
 </script>
@@ -213,5 +247,9 @@
 <style scoped>
     .toolbar{
         padding-left: 28px;
+    }
+
+    .filter_text{
+        width: 280px;
     }
 </style>

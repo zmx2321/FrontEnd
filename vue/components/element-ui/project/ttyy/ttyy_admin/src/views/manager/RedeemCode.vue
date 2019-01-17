@@ -233,8 +233,8 @@
             getRedeemCodeList () {
                 //接口参数
                 let param = {
-                    pageSize: this.page_arg.page_size,  // 每页条数
                     pageNum: this.page_arg.page_index,  // 当前页码
+                    pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
                 // 请求接口
