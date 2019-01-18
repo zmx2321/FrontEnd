@@ -21,14 +21,14 @@
                 <el-table-column prop="id" label="用户id" width="80" align="center"></el-table-column>
                 <el-table-column prop="username" label="用户名" width="100" align="center"></el-table-column>
                 <el-table-column prop="name" label="用户昵称" width="100" align="center"></el-table-column>
-                <el-table-column label="用户角色" width="80" align="center">
+                <el-table-column label="用户角色" width="100" align="center">
                     <template slot-scope="scope">
                         {{ scope.row.isSuperAdmin === 0 ? "超级管理员" : "普通员工" }}
                     </template>
                 </el-table-column>
 
                 <el-table-column prop="createAt" label="创建时间" width="200" align="center"></el-table-column>
-                <el-table-column prop="updateAt" label="更新时间" width="200" align="center"></el-table-column>
+                <el-table-column prop="updateAt" label="更新时间" width="auto"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="100">
                     <template slot-scope="scope">
@@ -76,11 +76,11 @@
 
 <script>
     import {
-        findUserList,  // 获取管理员和员工列表
+        findAccountList,  // 获取管理员和员工列表
     } from '../../api/api.js';
 
     export default {
-        name: 'user',
+        name: 'admin',
 
         data() {
             //项目类型验证
@@ -188,7 +188,7 @@
                     pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
-                findUserList(qs.stringify(param)).then(res => {
+                findAccountList(param).then(res => {
                     console.log(res.data.data);
 
                     this.user_info = res.data.data.list;

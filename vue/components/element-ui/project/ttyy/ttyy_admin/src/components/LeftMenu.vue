@@ -11,9 +11,17 @@
                         </el-menu-item>
                     </router-link>
 
+                     <!-- 管理员 -->
+                     <router-link to="/admin">
+                         <el-menu-item index="1">
+                             <i class="fa fa-address-book"></i>
+                             <span slot="title">管理员</span>
+                         </el-menu-item>
+                     </router-link>
+
                     <!-- 用户管理 -->
                     <router-link to="/user">
-                        <el-menu-item index="1">
+                        <el-menu-item index="2">
                             <i class="fa fa-address-book"></i>
                             <span slot="title">用户管理</span>
                         </el-menu-item>
@@ -21,7 +29,7 @@
 
                     <!-- banner管理 -->
                     <router-link to="/banner">
-                        <el-menu-item index="2">
+                        <el-menu-item index="3">
                             <i class="fa fa-map-signs"></i>
                             <span slot="title">banner管理</span>
                         </el-menu-item>
@@ -29,7 +37,7 @@
 
                      <!-- 兑换码管理 -->
                     <router-link to="/redeem_code">
-                        <el-menu-item index="3">
+                        <el-menu-item index="4">
                             <i class="fa fa-money"></i>
                             <span slot="title">兑换码管理</span>
                         </el-menu-item>
@@ -37,7 +45,7 @@
 
                     <!-- 订单管理 -->
                     <router-link to="/order">
-                        <el-menu-item index="4">
+                        <el-menu-item index="5">
                             <i class="fa fa-cc-amex"></i>
                             <span slot="title">订单管理</span>
                         </el-menu-item>
@@ -45,7 +53,7 @@
 
                     <!-- 商品管理 -->
                     <router-link to="/product">
-                        <el-menu-item index="5">
+                        <el-menu-item index="6">
                             <i class="fa fa-cog"></i>
                             <span slot="title">商品管理</span>
                         </el-menu-item>
@@ -53,7 +61,7 @@
 
                      <!-- 数据统计 -->
                      <router-link to="/statistics">
-                         <el-menu-item index="6">
+                         <el-menu-item index="7">
                              <i class="fa fa-cc-amex"></i>
                              <span slot="title">数据统计</span>
                          </el-menu-item>
@@ -109,23 +117,26 @@ export default {
                 case "index":
                     return "0";
                     break;
-                case "user":
+                case "admin":
                     return "1";
                     break;
-                case "banner":
+                case "user":
                     return "2";
                     break;
-                case "redeem_code":
+                case "banner":
                     return "3";
                     break;
-                case "order":
+                case "redeem_code":
                     return "4";
                     break;
-                case "product":
+                case "order":
                     return "5";
                     break;
-                case "statistics":
+                case "product":
                     return "6";
+                    break;
+                case "statistics":
+                    return "7";
                     break;
             }
         },

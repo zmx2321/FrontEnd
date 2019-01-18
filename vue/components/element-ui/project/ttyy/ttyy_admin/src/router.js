@@ -14,6 +14,8 @@ import NotFound from './views/main/NotFound'
 import Login from './views/admin/Login'
 import ModifyPassword from './views/admin/ModifyPassword'
 
+import Test from './views/test/Test'
+
 // manager
 import User from './views/manager/User'
 import Banner from './views/manager/Banner'
@@ -21,6 +23,7 @@ import RedeemCode from './views/manager/RedeemCode'
 import Order from './views/manager/Order'
 import Product from './views/manager/Product'
 import Statistics from './views/manager/Statistics'
+import Admin from './views/manager/Admin'
 
 Vue.use(Router);
 
@@ -43,6 +46,10 @@ const router = new Router({
                 { path: '', component: Home },
                 { path: '/home', component: Home, name: 'home' },
 
+                { path: '/test', component: Test, name: 'test' },
+
+                // 管理员
+                { path: '/admin', component: Admin, name: 'admin' },
                 // 用户管理
                 { path: '/user', component: User, name: 'user' },
                 // banner管理

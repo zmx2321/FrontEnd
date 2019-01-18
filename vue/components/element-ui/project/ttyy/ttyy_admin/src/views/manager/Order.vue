@@ -2,7 +2,7 @@
     <section class="main_cont">
         <!-- 筛选 -->
         <el-row class="toolbar bdr_radiu f-cb">
-            <el-form status-icon :model="filterData" ref="filterOrderForm" label-width="40px">
+            <el-form :inline="true" status-icon :model="filterData" ref="filterOrderForm" label-width="40px">
                 <el-form-item label="日期">
                     <el-date-picker
                         v-model="filterData.timeArray"

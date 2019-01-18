@@ -300,7 +300,7 @@
                     pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
-                findBannerList(JSON.stringify(param)).then(res => {
+                findBannerList(qs.stringify(param)).then(res => {
                     // console.log(res.data.data);
 
                     this.banner_info = res.data.data.list;

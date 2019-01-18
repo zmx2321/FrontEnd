@@ -34,9 +34,8 @@ export const ModifyPassword = params => {
 };
 
 /**
- *  用户管理
+ *  管理员
  */
-// 获取管理员和员工列表
 export const findAccountList = params => {
     return  axios({
         url: 'account/findAccount',
@@ -44,6 +43,27 @@ export const findAccountList = params => {
         data: params
     });
 };
+
+/**
+ *  用户管理
+ */
+// 获取管理员和员工列表
+export const findUserList = params => {
+    return  axios({
+        url: 'user/findUserList',
+        method: 'get',
+        params: params
+    });
+};
+
+// 添加管理员
+// export const findAccountList = params => {
+//     return  axios({
+//         url: 'account/findAccount',
+//         method: 'post',
+//         data: params
+//     });
+// };
 
 
 /**
@@ -148,5 +168,17 @@ export const findProductList = params => {
         url: 'product/findList',
         method: 'get',
         data: params
+    });
+};
+
+
+/**
+ *  数据统计
+ */
+// 数据统计
+export const findTodayStatus = () => {
+    return  axios({
+        url: 'status/findTodayStatus',
+        method: 'get',
     });
 };

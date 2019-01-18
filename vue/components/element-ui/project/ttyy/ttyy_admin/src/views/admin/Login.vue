@@ -70,7 +70,7 @@
                                     type: "success"
                                 });
 
-                                this.$router.push("/user");
+                                this.$router.push("/index");
                             }
                         }).catch(err => {
                             console.log(err);

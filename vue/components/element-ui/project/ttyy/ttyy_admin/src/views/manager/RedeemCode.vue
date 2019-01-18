@@ -8,6 +8,9 @@
             <el-col class="f-fl btn_wrap">
                 <el-button type="primary" @click="addMoreRedeemCode" v-on:click="addMoreRedeemCodeVisible = true">添加多个兑换码</el-button>
             </el-col>
+            <el-col class="f-fl btn_wrap del_more">
+                <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0" class="f-fr">批量删除</el-button>
+            </el-col>
         </el-row>
 
         <!-- 兑换码列表 -->
@@ -37,10 +40,6 @@
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
-                <!-- 批量删除 -->
-                <el-col>
-                    <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0" class="f-fr del_more">批量删除</el-button>
-                </el-col>
                 <!-- 分页 -->
                 <el-col>
                     <el-pagination class="f-fr pagination"
@@ -402,6 +401,6 @@
     }
 
     .del_more{
-        margin: 8px 5px 10px 0;
+        width: 98px;
     }
 </style>
