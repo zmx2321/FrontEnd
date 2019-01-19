@@ -5,6 +5,19 @@
 import axios from './axios'
 
 /**
+ * common
+ */
+// 上传图片
+export const getImgURI = params => {
+    return  axios({
+        url: 'upload',
+        method: 'post',
+        data: params
+    });
+};
+
+
+/**
  *  登录/注销/修改密码
  */
 // 登录
@@ -167,6 +180,33 @@ export const findProductList = params => {
     return  axios({
         url: 'product/findList',
         method: 'get',
+        params: params
+    });
+};
+
+// 添加商品
+export const addProduct = params => {
+    return  axios({
+        url: 'product/add',
+        method: 'post',
+        data: params
+    });
+};
+
+// 更新商品
+export const updateProduct = params => {
+    return  axios({
+        url: 'product/updateNotNull',
+        method: 'post',
+        data: params
+    });
+};
+
+// 删除商品
+export const delProduct = params => {
+    return  axios({
+        url: 'product/delete',
+        method: 'post',
         data: params
     });
 };

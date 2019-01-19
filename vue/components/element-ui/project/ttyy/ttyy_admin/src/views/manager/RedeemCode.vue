@@ -3,21 +3,29 @@
         <!-- 按钮 -->
         <el-row class="toolbar bdr_radiu f-cb">
             <el-col class="f-fl btn_wrap">
-                <el-button type="primary" @click="addSingleRedeemCode" v-on:click="addSingleRedeemCodeVisible = true">添加单个兑换码</el-button>
+                <el-button type="primary" @click="addSingleRedeemCodeVisible = true">添加单个兑换码</el-button>
             </el-col>
             <el-col class="f-fl btn_wrap">
-                <el-button type="primary" @click="addMoreRedeemCode" v-on:click="addMoreRedeemCodeVisible = true">添加多个兑换码</el-button>
+                <el-button type="primary" @click="addMoreRedeemCodeVisible = true">添加多个兑换码</el-button>
+            </el-col>
+            <el-col class="f-fl btn_wrap">
+                <el-tooltip effect="dark" content="Excel只允许下载一次" placement="top">
+                    <el-button type="primary" @click="downloadExcel" :disabled="this.downloadExcelData.excelURI===''">下载Excel</el-button>
+                </el-tooltip>
             </el-col>
             <el-col class="f-fl btn_wrap del_more">
                 <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0" class="f-fr">批量删除</el-button>
+            </el-col>
+            <el-col class="tip">
+                <p><i class="fa fa-info-circle"></i>生成多条兑换码可生成Excel，且Excel只允许下载一次</p>
             </el-col>
         </el-row>
 
         <!-- 兑换码列表 -->
         <el-row>
-            <el-table class="redeem_code_list" :data="redeem_code_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="calc(100vh - 311px)">
+            <el-table class="redeem_code_list" :data="redeem_code_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="calc(100vh - 240px)">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column type="index" width="60" align="center"></el-table-column>
+                <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="兑换码id" width="80" align="center"></el-table-column>-->
                 <el-table-column prop="userMobile" label="用户手机" width="150" align="center"></el-table-column>
                 <el-table-column prop="code" label="兑换码" width="300" align="center"></el-table-column>
@@ -73,7 +81,7 @@
         </el-dialog>
 
         <!-- 添加多条兑换码 -->
-        <el-dialog title="添加多条兑换码" @keyup.enter.native="addMoreRedeemCodeSubmit('addMoreRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addMoreRedeemCodeVisible" :before-close="handleClose">
+        <el-dialog title="添加多条兑换码" @keyup.enter.native="addMoreRedeemCodeSortSubmit('addMoreRedeemCodeForm')" :close-on-click-modal="false" :visible.sync="addMoreRedeemCodeVisible" :before-close="handleClose">
             <el-form :model="addRedeemCodeData" status-icon :rules="addMoreRedeemCodeRule" ref="addMoreRedeemCodeForm" label-width="160px">
                 <el-form-item label="兑换码月份(默认一月)" prop="month">
                     <el-input v-model="addRedeemCodeData.month"  placeholder="请输入兑换码月份" clearable></el-input>
@@ -87,7 +95,7 @@
 
                 <el-form-item>
                     <el-button type="primary" @click="addMoreRedeemCodeSortSubmit('addMoreRedeemCodeForm')">提交</el-button>
-                    <el-button @click="resetForm('updateProjectSortForm')">重置</el-button>
+                    <el-button @click="resetForm('addMoreRedeemCodeForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -108,7 +116,7 @@
         name: 'redeem_code',
 
         data() {
-            // 兑换码月份验证
+            // 月份验证
             let validateMonth = (rule, value, callback) => {
                 let reg = /^(0?[1-9]|1[0-2])$/;
 
@@ -182,10 +190,19 @@
                 },
 
                 /**
+                 * 下载Excel
+                 */
+                // 下载Excel数据
+                downloadExcelData: {
+                    excelURI: "",  // excel下载路径
+                },
+
+                /**
                  *  弹出表单界面
                  */
                 addSingleRedeemCodeVisible: false,  //  显示隐藏添加单条兑换码界面
                 addMoreRedeemCodeVisible: false,  // 显示隐藏添加多条兑换码界面
+                downloadExcelVisible: false  // 显示隐藏下载Excel界面
             }
         },
         methods: {
@@ -204,8 +221,9 @@
             },
             // 列表是否选中
             selsChange (sels) {
-                this.sels = sels;
                 // console.log(sels);
+
+                this.sels = sels;
             },
 
             /**
@@ -251,10 +269,6 @@
              *  api
              *  添加单条兑换码
              */
-            addSingleRedeemCode () {
-                console.log("添加单个兑换码");
-            },
-            // 点击添加单条兑换码
             addSingleRedeemCodeSubmit (formName) {
                 //验证表单
                 this.$refs[formName].validate((valid) => {
@@ -296,11 +310,6 @@
              *  api
              *  添加多条兑换码
              */
-            // 点击添加多条兑换码
-            addMoreRedeemCode () {
-                // console.log("添加多条兑换码");
-            },
-            // 提交添加多条兑换码表单
             addMoreRedeemCodeSortSubmit (formName) {
                 this.listLoading = true;  //点击提交开始加载loading
 
@@ -309,7 +318,9 @@
                     //如果验证成功，请求接口数据
                     if (valid) {
                         // 请求添加单条兑换码接口
-                        addMoreRedeemCode(qs.stringify(this.addRedeemCodeData)).then(() => {
+                        addMoreRedeemCode(qs.stringify(this.addRedeemCodeData)).then((res) => {
+                            console.log(res);
+
                             // 结束加载loading
                             this.listLoading = false;
 
@@ -327,11 +338,27 @@
                             // data数据初始化
                             this.addRedeemCodeData.month = 1;
                             this.addRedeemCodeData.memo = "";
+
+                            // 将下载链接赋值给data
+                            this.downloadExcelData.excelURI = res.data.data.downloadUrl;
+                            // console.log(this.downloadExcel.excelURI);
                         }).catch({});
                     } else {  //验证失败跳出
                         console.log('error submit!!');
                     }
                 });
+            },
+
+            /**
+             *  api
+             *  下载Excel
+             */
+            downloadExcel () {
+                console.log("下载Excel");
+                window.location.href = this.downloadExcelData.excelURI;
+
+                // excel只允许下载一次
+                this.downloadExcelData.excelURI = "";
             },
 
             /**
@@ -361,7 +388,6 @@
                     }).catch({});
                 }).catch(() => {});
             },
-
             // 批量删除兑换码
             batchRemove: function () {
                 this.$confirm('确认删除该记录吗?', '提示', {
@@ -402,5 +428,25 @@
 
     .del_more{
         width: 98px;
+    }
+
+    .pagination {
+        margin-bottom: 5px;
+    }
+
+    .tip{
+        margin-top: 10px;
+    }
+
+    .tip p{
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: #8a8484;
+    }
+
+    .tip i{
+        margin-right: 3px;
+        transform: rotateZ(20deg);
+        color: #c3bfbf;
     }
 </style>

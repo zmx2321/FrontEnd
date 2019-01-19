@@ -15,9 +15,9 @@
 
         <!-- banner列表 -->
         <el-row>
-            <el-table class="banner_list" :data="banner_info" border highlight-current-row v-loading="listLoading">
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column type="index" width="60" align="center"></el-table-column>
+            <el-table class="banner_list" :data="banner_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 242px)">
+                <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
+                <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="banner_id" width="100" align="center"></el-table-column>
                 <el-table-column prop="title" label="名称" width="100" align="center"></el-table-column>
 
@@ -61,7 +61,7 @@
 
         <!-- 添加banner -->
         <el-dialog title="添加banner" @keyup.enter.native="addBannerSubmit('addBannerForm')" :close-on-click-modal="false" :visible.sync="addBannerVisible" :before-close="handleClose">
-            <el-form :model="addBannerData" status-icon :rules="addBannerRules" ref="addBannerForm" label-width="100px">
+            <el-form :model="addBannerData" status-icon :rules="addBannerRules" ref="addBannerForm" label-width="120px">
                 <el-form-item label="跳转目标" prop="target">
                     <el-input v-model="addBannerData.target"  placeholder="请输入跳转目标" clearable></el-input>
                 </el-form-item>
@@ -76,6 +76,21 @@
                         <li>2: URL</li>
                     </ul>
                 </el-form-item>
+
+                <el-form-item label="上传banner图">
+                    <el-upload
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        ref='upload'
+                        :before-remove="beforeRemove"
+                        :on-change="addHandleChange"
+                        multiple
+                        :limit="upload_arg.limit"
+                        :on-exceed="handleExceed"
+                        :file-list="upload_arg.fileList">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                    </el-upload>
+                </el-form-item>
+
                 <el-form-item label="banner路径" prop="img">
                     <el-input v-model="addBannerData.img" placeholder="请输入banner路径" clearable></el-input>
                 </el-form-item>
@@ -92,7 +107,7 @@
 
         <!-- 编辑banner -->
         <el-dialog title="编辑banner" @keyup.enter.native="updateBannerSubmit('updateBannerForm')" :close-on-click-modal="false" :visible.sync="updateBannerVisible" :before-close="handleClose">
-            <el-form :model="updateBannerData" status-icon :rules="updateBannerRules" ref="updateBannerForm" label-width="100px">
+            <el-form :model="updateBannerData" status-icon :rules="updateBannerRules" ref="updateBannerForm" label-width="110px">
                 <el-form-item label="bannerId" prop="id">
                     <el-input v-model="updateBannerData.id" disabled></el-input>
                 </el-form-item>
@@ -110,6 +125,21 @@
                         <li>2: URL</li>
                     </ul>
                 </el-form-item>
+
+                <el-form-item label="上传banner图">
+                    <el-upload
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            ref='upload'
+                            :before-remove="beforeRemove"
+                            :on-change="updateHandleChange"
+                            multiple
+                            :limit="upload_arg.limit"
+                            :on-exceed="handleExceed"
+                            :file-list="upload_arg.fileList">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                    </el-upload>
+                </el-form-item>
+
                 <el-form-item label="banner路径" prop="img">
                     <el-input v-model="updateBannerData.img" placeholder="请输入banner路径" clearable></el-input>
                 </el-form-item>
@@ -129,6 +159,7 @@
 <script>
     import {
         findBannerList,  // 获取管理员和员工列表
+        getImgURI,  // 上传图片
         addBanner,  // 添加banner
         updateBanner,  // 编辑banner
         delBanner  // 删除banner
@@ -149,7 +180,7 @@
                 callback();
             };
 
-            //url验证
+            // url验证
             let validateUrl = (rule, value, callback) => {
                 let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/;
 
@@ -174,6 +205,13 @@
                     page_size: 10, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
+                },
+
+                //上传图片参数
+                upload_arg: {
+                    limit:1,
+                    imgFile: [],
+                    fileList: []
                 },
 
                 /**
@@ -255,7 +293,7 @@
                  *  弹出表单界面
                  */
                 addBannerVisible: false,  // 显示隐藏添加新的项目界面
-                updateBannerVisible: false,  // 显示隐藏添加新的项目界面
+                updateBannerVisible: true,  // 显示隐藏添加新的项目界面
             }
         },
         methods: {
@@ -272,6 +310,16 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+            //获取文件后缀名
+            getFileType(fileName){
+                let fileLength = fileName.length,  //文件名总长度
+                    beforeFileLength = fileName.lastIndexOf('.');  //文件名长度
+
+                //截取字符串，获取文件后缀名
+                let suffix = fileName.substring(beforeFileLength+1, fileLength);
+
+                return suffix;
+            },
 
             /**
              *  分页
@@ -284,9 +332,25 @@
             handleSizeChange(page_size) {
                 // console.log(page_size);
 
-                this.page_arg.page_size = page_size;  // 切换size
+                // 切换size
+                this.page_arg.page_size = page_size;
 
-                this.getBannerList();  // 加载分页数据
+                // 获取接口数据
+                this.getBannerList();
+            },
+
+            /**
+             * el-upload common
+             */
+            // 文件超出个数限制时的钩子
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            // 删除文件之前的钩子
+            beforeRemove(file) {
+                this.addProjectData.logoUrl = "";
+                this.updateProjectData.logoUrl = "";
+                return this.$confirm(`确定移除 ${ file.name }？`);
             },
 
             /**
@@ -300,6 +364,7 @@
                     pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
+                // 获取接口数据
                 findBannerList(qs.stringify(param)).then(res => {
                     // console.log(res.data.data);
 
@@ -331,11 +396,43 @@
              *  api
              *  添加banner
              */
-            // 点击添加项目
+            //点击添加banner
             addBanner () {
                 // console.log("添加banner");
+
+                this.upload_arg.fileList = [];  //清空上传img file
+            },
+            //el-upload
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            addHandleChange(file){
+                // console.log("文件状态改变时的钩子");
+
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.imgFile.push(file.raw);
+
+                console.log(this.upload_arg.imgFile);
+
+                //上传图片
+                this.addUpload();
             },
 
+            // 获取img url
+            addUpload(){
+                let formData = new FormData();
+
+                formData.append('imgFile', this.upload_arg.imgFile[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    // console.log(res);
+
+                    this.addBannerData.img = res.data.data.imgUrl;
+                });
+            },
             // 提交添加用户表单
             addBannerSubmit (formName) {
                 // 点击提交开始加载loading
@@ -371,14 +468,48 @@
              *  api
              *  编辑banner
              */
+            //el-upload
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            updateHandleChange(file){
+                // console.log("文件状态改变时的钩子");
+
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.imgFile.push(file.raw);
+
+                // console.log(this.upload_arg.imgFile);
+
+                //上传图片
+                this.updateUpload();
+            },
+
+            // 获取img url
+            updateUpload (){
+                let formData = new FormData();
+
+                formData.append('imgFile', this.upload_arg.imgFile[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    console.log(res);
+
+                    this.updateBannerData.img = res.data.data.imgUrl;
+                    // console.log(this.updateBannerData.img);
+                });
+            },
             // 编辑banner(浅拷贝列表数据到表单)
             updateBanner (row) {
                 // console.log("编辑banner");
 
+                // this.upload_arg.fileList = [];  // 清空上传img file
+
                 this.updateBannerData = Object.assign({}, row);
 
                 this.updateBanner.bannerId = this.updateBannerData.id
-                console.log(this.updateBanner.bannerId);
+                // console.log(this.updateBanner.bannerId);
             },
 
             // 提交编辑banner表单
@@ -455,7 +586,7 @@
     .tip li{
         display: inline-block;
         font-size: 12px;
-        color: #f17b7b;
+        color: #4ba8cc;
         margin-right: 28px;
     }
 </style>

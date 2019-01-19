@@ -21,7 +21,7 @@
                     </el-col>
                     <el-col :span="4" class="title f-oh">
                         <el-dropdown trigger="click" @command='setDialogInfo'>
-                            <span class="el-dropdown-link">
+                            <span class="el-dropdown-link f-csp">
                                 <i class="el-icon-caret-bottom el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">

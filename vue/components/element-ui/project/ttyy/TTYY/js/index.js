@@ -48,14 +48,18 @@ let loadData = {
 
                 let url = res.data.url;
 
-                // console.log(url);
-
-                window.open(url);
-
-                // window.location.href = url;
-                // window.location.href = "http://www.baidu.com";
+                javascrtpt:window.location.href = url;
             }
         });
+    },
+
+    // android数据加载
+    android: () => {
+        // let url = "http://app.ge75g.cn/app/app-release.zip";
+        // let url = "http://10.10.10.238:8089/downloadText";
+        let url = util.url + "downloadText?url=http://app.ge75g.cn/app/app-release.zip";
+
+        javascrtpt:window.location.href = url;
     }
 }
 
@@ -69,7 +73,12 @@ let btnEvent = {
     },
     // android按钮事件
     android: () => {
-        util.laytip($('.andrbtn '), "紧张开发中,即将上线");  // 执行lay弹框
+        // util.laytip($('.andrbtn '), "紧张开发中,即将上线");  // 执行lay弹框
+
+        // android按钮事件
+        $(".andrbtn").click(() => {
+            loadData.android();  // android数据加载
+        });
     }
 }
 

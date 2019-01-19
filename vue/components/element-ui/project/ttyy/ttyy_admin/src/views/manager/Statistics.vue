@@ -1,7 +1,7 @@
 <template>
     <section class="main_cont">
-        <el-row>
-            <el-col id="myChart" class="chart"></el-col>
+        <el-row class="chart">
+            <el-col id="myChart"></el-col>
         </el-row>
     </section>
 </template>
@@ -51,6 +51,8 @@
                  *  newMakeRedeemCount: 9  今日生成兑换码总数
                  */
                 findTodayStatus().then(res => {
+                    // console.log(res);
+
                     // 状态集合
                     let statuses = res.data.data;
 
@@ -80,7 +82,7 @@
                                 name: '访问统计',
                                 type: 'pie',
                                 radius : '55%',
-                                center: ['50%', '60%'],
+                                center: ['50%', '50%'],
                                 data:[
                                     { value: statuses.newPayOrderAmountCount, name:'今日付款总额' },
                                     { value: statuses.newUserCount, name:'今日新用户总数' },
@@ -98,6 +100,9 @@
                             }
                         ]
                     });
+
+                    // 改变窗口改变大小
+                    window.onresize = myChart.resize;
                 }).catch({});
             },
         }
@@ -106,6 +111,10 @@
 
 <style scoped>
     .chart{
-        height: calc(100vh - 300px);
+        height: calc(100vh - 110px);
+    }
+
+    .chart #myChart{
+        height: 100%;
     }
 </style>

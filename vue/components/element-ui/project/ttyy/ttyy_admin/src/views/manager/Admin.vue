@@ -15,8 +15,8 @@
 
         <!-- 用户列表 -->
         <el-row>
-            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading">
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
+            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)">
+                <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="用户id" width="80" align="center"></el-table-column>
                 <el-table-column prop="username" label="用户名" width="100" align="center"></el-table-column>

@@ -30,8 +30,8 @@
 
         <!-- 订单列表 -->
         <el-row>
-            <el-table class="order_list" :data="order_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 340px)">
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
+            <el-table class="order_list" :data="order_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 250px)">
+                <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
 
                 <el-table-column label="商品图片" width="120" align="center">
@@ -251,5 +251,9 @@
 
     .filter_text{
         width: 280px;
+    }
+
+    .pagination{
+        margin-bottom: 5px;
     }
 </style>
