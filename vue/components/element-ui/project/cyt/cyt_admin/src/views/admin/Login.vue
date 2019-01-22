@@ -60,7 +60,7 @@
                             // console.log(res.data.data.isSuperAdmin);
                             // console.log(res.data);
 
-                            if (res.data.code == 1){
+                            if (res.data.code === 1){
                                 this.$message({
                                     message: "用户名或密码错误",
                                     type: "error"

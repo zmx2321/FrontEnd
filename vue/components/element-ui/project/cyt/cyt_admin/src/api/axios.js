@@ -33,7 +33,7 @@ Axios.interceptors.response.use(response => {
     // console.log(code);
 
     // 如果响应请求未登录，则返回登录页面
-    if (code == -1){
+    if (code === -1){
         router.push('/login')
     }
 

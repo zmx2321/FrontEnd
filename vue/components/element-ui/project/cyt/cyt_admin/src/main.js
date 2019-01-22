@@ -29,7 +29,7 @@ Vue.use(VueQuillEditor);
 //挂载（使其可以在各个组件使用）
 Vue.prototype.axios = axios;
 Vue.prototype.md5 = md5;  //在main.js文件中将md5转换成vue原型
-Vue.prototype.echarts = echarts
+Vue.prototype.echarts = echarts;
 
 new Vue({
     router,

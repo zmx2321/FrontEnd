@@ -143,7 +143,7 @@
              */
             //获取柜口信息
             getCabinetList(){
-                if (this.cabinet_arg.guiNo == undefined) {
+                if (this.cabinet_arg.guiNo === undefined) {
                     this.cabinet_arg.guiNo = "180921002";
                 }
 
@@ -200,7 +200,7 @@
                 let para = {
                     guiNo: this.cabinet_arg.guiNo
                 };
-                openBoxAll(qs.stringify(para)).then((res) => {
+                openBoxAll(qs.stringify(para)).then(() => {
                     //成功提示
                     this.$message({
                         message: para.guiNo + " " + '开启成功',
