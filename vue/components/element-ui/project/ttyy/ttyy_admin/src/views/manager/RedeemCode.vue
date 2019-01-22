@@ -107,7 +107,8 @@
         findRedeemCodeList,  // 获取兑换码列表
         addSingleRedeemCode,  // 添加一条兑换码
         addMoreRedeemCode,  // 添加多条兑换码
-        removeRedeemCode  // 删除兑换码
+        removeRedeemCode,  // 删除兑换码
+        removeMoreRedeemCode  // 删除兑换码
     } from '../../api/api.js';
 
     import axios from '../../api/axios'
@@ -401,13 +402,17 @@
 
                     url_arg = "?ids=" + params.join('&ids=');
 
-                    axios.get("http://10.10.10.238:8089/admin/redeemcode/delete" + url_arg).then(res => {
+                    sessionStorage.setItem('url_arg', url_arg);
+
+                    removeMoreRedeemCode().then(res => {
                         // console.log(res);
 
                         this.$message({
                             message: res.data.msg,
                             type: "success"
                         });
+
+                        sessionStorage.removeItem("url_arg");
 
                         this.getRedeemCodeList();  // 加载分页数据
                     }).catch({});

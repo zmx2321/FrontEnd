@@ -198,7 +198,7 @@
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
 
-                //分页参数
+                // 分页参数
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
@@ -207,7 +207,7 @@
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
-                //上传图片参数
+                // 上传图片参数
                 upload_arg: {
                     limit:1,
                     imgFile: [],
@@ -224,21 +224,19 @@
                  */
                 // 添加banner数据
                 addBannerData: {
-                    target: "http://www.baidu.com",  // 目标
+                    target: "http://",  // 目标
                     type: "0",  // 类型 0：视频，1：平台, 2: URL, 为 NULL 前端不跳转
-                    title: "无敌破坏王",  // 标题
-                    img: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543572159322&di=583e210fadd6501a474809b5f6d991a9&imgtype=0&src=http%3A%2F%2Fimg.mp.sohu.com%2Fupload%2F20170710%2F609db0fc0bfa4c7fae6a3c4f58b8d932_th.png",  // 图片
-                    desc: "无敌破坏王无敌破坏王无敌破坏王无敌破坏王无敌破坏王",  // 描述文字
+                    title: "",  // 标题
+                    img: "https://",  // 图片
+                    desc: "",  // 描述文字
                 },
 
                 // 验证添加用户界面数据
                 addBannerRules: {
                     target: [
-                        { required: true, message: '跳转目标不能为空！', trigger: 'blur' },
                         { validator: validateUrl, trigger: 'blur' }
                     ],
                     type: [
-                        { required: true, message: '类型不能为空！', trigger: 'blur' },
                         { validator: validateType, trigger: 'blur' }
                     ],
                     title: [
@@ -270,11 +268,9 @@
                 // 验证添加用户界面数据
                 updateBannerRules: {
                     target: [
-                        { required: true, message: '跳转目标不能为空！', trigger: 'blur' },
                         { validator: validateUrl, trigger: 'blur' }
                     ],
                     type: [
-                        { required: true, message: '类型不能为空！', trigger: 'blur' },
                         { validator: validateType, trigger: 'blur' }
                     ],
                     title: [
@@ -290,10 +286,10 @@
                 },
 
                 /**
-                 *  弹出表单界面
+                 *  弹出表单界面(true 显示, false 隐藏)
                  */
-                addBannerVisible: false,  // 显示隐藏添加新的项目界面
-                updateBannerVisible: true,  // 显示隐藏添加新的项目界面
+                addBannerVisible: false,  // 添加banner界面
+                updateBannerVisible: false,  // 编辑banner界面
             }
         },
         methods: {
@@ -348,8 +344,8 @@
             },
             // 删除文件之前的钩子
             beforeRemove(file) {
-                this.addProjectData.logoUrl = "";
-                this.updateProjectData.logoUrl = "";
+                this.addBannerData.img = "";
+                this.updateBannerData.img = "";
                 return this.$confirm(`确定移除 ${ file.name }？`);
             },
 
@@ -384,7 +380,7 @@
                         return "平台";
                         break;
                     case 2:
-                        return "null";
+                        return "url";
                         break;
                     default :
                         return "null";
@@ -410,7 +406,7 @@
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.imgFile.push(file.raw);
 
-                console.log(this.upload_arg.imgFile);
+                // console.log(this.upload_arg.imgFile);
 
                 //上传图片
                 this.addUpload();
@@ -420,7 +416,7 @@
             addUpload(){
                 let formData = new FormData();
 
-                formData.append('imgFile', this.upload_arg.imgFile[0]);
+                formData.append('logoFile', this.upload_arg.imgFile[0]);
 
                 let config = {
                     headers: {
@@ -478,7 +474,7 @@
 
                 // console.log(this.upload_arg.imgFile);
 
-                //上传图片
+                // 上传图片
                 this.updateUpload();
             },
 
@@ -486,7 +482,7 @@
             updateUpload (){
                 let formData = new FormData();
 
-                formData.append('imgFile', this.upload_arg.imgFile[0]);
+                formData.append('logoFile', this.upload_arg.imgFile[0]);
 
                 let config = {
                     headers: {
@@ -494,7 +490,7 @@
                     }
                 };
                 getImgURI(formData, config).then(res => {
-                    console.log(res);
+                    // console.log(res);
 
                     this.updateBannerData.img = res.data.data.imgUrl;
                     // console.log(this.updateBannerData.img);
@@ -504,7 +500,7 @@
             updateBanner (row) {
                 // console.log("编辑banner");
 
-                // this.upload_arg.fileList = [];  // 清空上传img file
+                this.upload_arg.fileList = [];  // 清空上传img file
 
                 this.updateBannerData = Object.assign({}, row);
 
@@ -588,5 +584,9 @@
         font-size: 12px;
         color: #4ba8cc;
         margin-right: 28px;
+    }
+
+    .tabimg{
+        width: 75px;
     }
 </style>

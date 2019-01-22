@@ -61,6 +61,21 @@
                 <el-form-item label="商品名称" prop="title">
                     <el-input v-model="addProductData.title"  placeholder="请输入商品名称" clearable></el-input>
                 </el-form-item>
+
+                <el-form-item label="上传商品图">
+                    <el-upload
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            ref='upload'
+                            :before-remove="beforeRemove"
+                            :on-change="addHandleChange"
+                            multiple
+                            :limit="upload_arg.limit"
+                            :on-exceed="handleExceed"
+                            :file-list="upload_arg.fileList">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                    </el-upload>
+                </el-form-item>
+
                 <el-form-item label="商品图片" prop="img">
                     <el-input v-model="addProductData.img" placeholder="请输入商品图片" clearable></el-input>
                 </el-form-item>
@@ -78,7 +93,7 @@
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" @click="addProductSubmit('addProductForm')">提交</el-button>
+                    <el-button type="primary" @click="addProduct" v-on:click="addProductSubmit('addProductForm')">提交</el-button>
                     <el-button @click="resetForm('addProductForm')">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -93,6 +108,21 @@
                 <el-form-item label="商品名称" prop="title">
                     <el-input v-model="updateProductData.title"  placeholder="请输入商品名称" clearable></el-input>
                 </el-form-item>
+
+                <el-form-item label="上传商品图">
+                    <el-upload
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            ref='upload'
+                            :before-remove="beforeRemove"
+                            :on-change="updateHandleChange"
+                            multiple
+                            :limit="upload_arg.limit"
+                            :on-exceed="handleExceed"
+                            :file-list="upload_arg.fileList">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                    </el-upload>
+                </el-form-item>
+
                 <el-form-item label="商品图片" prop="img">
                     <el-input v-model="updateProductData.img" placeholder="请输入商品图片" clearable></el-input>
                 </el-form-item>
@@ -121,6 +151,7 @@
 <script>
     import {
         findProductList,  // 获取商品列表
+        getImgURI,  // 上传图片
         addProduct,  // 添加商品
         updateProduct,  // 更新商品
         delProduct  // 删除商品
@@ -177,6 +208,13 @@
                     page_size: 10, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
+                },
+
+                // 上传图片参数
+                upload_arg: {
+                    limit:1,
+                    imgFile: [],
+                    fileList: []
                 },
 
                 /**
@@ -264,10 +302,10 @@
                 },
 
                 /**
-                 *  弹出表单界面
+                 *  弹出表单界面(true 显示, false 隐藏)
                  */
-                addProductVisible: false,  // 显示隐藏添加新的商品界面
-                updateProductVisible: false,  // 显示隐藏更新商品界面
+                addProductVisible: false,  // 添加新的商品界面
+                updateProductVisible: false,  // 更新商品界面
             }
         },
         methods: {
@@ -304,6 +342,20 @@
             },
 
             /**
+             * el-upload common
+             */
+            // 文件超出个数限制时的钩子
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            // 删除文件之前的钩子
+            beforeRemove(file) {
+                this.addProductData.img = "";
+                this.updateProductData.img = "";
+                return this.$confirm(`确定移除 ${ file.name }？`);
+            },
+
+            /**
              *  api
              *  获取商品信息
              */
@@ -329,6 +381,44 @@
              *  api
              *  添加商品
              */
+            //点击添加商品
+            addProduct () {
+                console.log("添加商品");
+
+                this.upload_arg.fileList = [];  //清空上传img file
+            },
+            //el-upload
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            addHandleChange(file){
+                // console.log("文件状态改变时的钩子");
+
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.imgFile.push(file.raw);
+
+                console.log(this.upload_arg.imgFile);
+
+                //上传图片
+                this.addUpload();
+            },
+
+            // 获取img url
+            addUpload(){
+                let formData = new FormData();
+
+                formData.append('logoFile', this.upload_arg.imgFile[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    // console.log(res);
+
+                    this.addProductData.img = res.data.data.imgUrl;
+                });
+            },
+            // 提添加商品表单
             addProductSubmit (formName) {
                 this.listLoading = true;  //点击提交开始加载loading
 
@@ -361,8 +451,46 @@
              *  api
              *  更新商品
              */
+            //el-upload
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            updateHandleChange(file){
+                // console.log("文件状态改变时的钩子");
+
+                // this.upload_arg.fileList = [];  // 清空上传img file
+
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.imgFile.push(file.raw);
+
+                // console.log(this.upload_arg.imgFile);
+
+                // 上传图片
+                this.updateUpload();
+            },
+
+            // 获取img url
+            updateUpload (){
+                let formData = new FormData();
+
+                formData.append('logoFile', this.upload_arg.imgFile[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    // console.log(res);
+
+                    this.updateProductData.img = res.data.data.imgUrl;
+                    // console.log(this.updateBannerData.img);
+                });
+            },
             // 更新商品(浅拷贝列表数据到表单)
             updateProduct (row) {
+                // console.log("更新商品");
+
+                this.upload_arg.fileList = [];  // 清空上传img file
+
                 this.updateProductData = Object.assign({}, row);
 
                 this.updateProduct.id = this.updateProductData.id;

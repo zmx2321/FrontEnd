@@ -7,26 +7,26 @@
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <el-table-column prop="id" label="用户id" width="80" align="center"></el-table-column>
 
-                <el-table-column label="头像" width="100" align="center">
-                    <template slot-scope="scope">
-            		<img :src="scope.row.avatar" class="tabimg" />
-            	</template>
-                </el-table-column>
+                <!--<el-table-column label="头像" width="100" align="center">-->
+                    <!--<template slot-scope="scope">-->
+                        <!--<img :src="scope.row.avatar" class="tabimg" />-->
+                    <!--</template>-->
+                <!--</el-table-column>-->
 
                 <el-table-column prop="username" label="用户名" width="80" align="center"></el-table-column>
                 <el-table-column prop="nickname" label="昵称" width="115" align="center"></el-table-column>
                 <el-table-column prop="mobile" label="手机号" width="115" align="center"></el-table-column>
-                <el-table-column prop="sex" label="性别" width="115" align="center"></el-table-column>
-                <el-table-column prop="age" label="年龄" width="115" align="center"></el-table-column>
-                <el-table-column prop="birthday" label="生日" width="110" align="center"></el-table-column>
+                <!--<el-table-column prop="sex" label="性别" width="115" align="center"></el-table-column>-->
+                <!--<el-table-column prop="age" label="年龄" width="115" align="center"></el-table-column>-->
+                <!--<el-table-column prop="birthday" label="生日" width="110" align="center"></el-table-column>-->
                 <el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
-                <el-table-column prop="expireAt" label="过期时间" width="110" align="center"></el-table-column>
-                <el-table-column prop="updateAt" label="更新时间" width="110" align="center"></el-table-column>
-                <el-table-column prop="realname" label="真实姓名" width="110" align="center"></el-table-column>
+                <!--<el-table-column prop="expireAt" label="过期时间" width="110" align="center"></el-table-column>-->
+                <!--<el-table-column prop="updateAt" label="更新时间" width="110" align="center"></el-table-column>-->
+                <!--<el-table-column prop="realname" label="真实姓名" width="110" align="center"></el-table-column>-->
                 <el-table-column prop="wxNumber" label="微信号" width="80" align="center"></el-table-column>
-                <el-table-column prop="loginTime" label="登录时间" width="80" align="center"></el-table-column>
-                <el-table-column prop="deviceType" label="设备类型" width="80" align="center"></el-table-column>
-                <el-table-column prop="loginIp" label="登录ip" width="auto"></el-table-column>
+                <el-table-column prop="loginTime" label="登录时间" width="auto"></el-table-column>
+                <!--<el-table-column prop="deviceType" label="设备类型" width="80" align="center"></el-table-column>-->
+                <!--<el-table-column prop="loginIp" label="登录ip" width="auto"></el-table-column>-->
             </el-table>
 
             <!-- 分页 -->
@@ -65,7 +65,7 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 10, // 1页显示多少条
+                    page_size: 5, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
@@ -105,7 +105,7 @@
                 };
 
                 // 请求接口数据
-                findUserList(qs.stringify(param)).then(res => {
+                findUserList(param).then(res => {
                     // console.log(res);
 
                     this.user_info = res.data.data.list;

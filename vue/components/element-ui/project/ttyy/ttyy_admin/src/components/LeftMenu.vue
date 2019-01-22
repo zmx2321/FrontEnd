@@ -11,18 +11,18 @@
                         </el-menu-item>
                     </router-link>
 
-                     <!-- 管理员 -->
-                     <router-link to="/admin">
+                     <!-- 员工账号管理 -->
+                     <router-link to="/account">
                          <el-menu-item index="1">
                              <i class="fa fa-address-book"></i>
-                             <span slot="title">管理员</span>
+                             <span slot="title">员工账号管理</span>
                          </el-menu-item>
                      </router-link>
 
                     <!-- 用户管理 -->
                     <router-link to="/user">
                         <el-menu-item index="2">
-                            <i class="fa fa-address-book"></i>
+                            <i class="fa fa-user"></i>
                             <span slot="title">用户管理</span>
                         </el-menu-item>
                     </router-link>
@@ -54,7 +54,7 @@
                     <!-- 商品管理 -->
                     <router-link to="/product">
                         <el-menu-item index="6">
-                            <i class="fa fa-cog"></i>
+                            <i class="fa fa-google-wallet"></i>
                             <span slot="title">商品管理</span>
                         </el-menu-item>
                     </router-link>
@@ -62,7 +62,7 @@
                      <!-- 数据统计 -->
                      <router-link to="/statistics">
                          <el-menu-item index="7">
-                             <i class="fa fa-cc-amex"></i>
+                             <i class="fa fa-pie-chart"></i>
                              <span slot="title">数据统计</span>
                          </el-menu-item>
                      </router-link>
@@ -117,7 +117,7 @@ export default {
                 case "index":
                     return "0";
                     break;
-                case "admin":
+                case "account":
                     return "1";
                     break;
                 case "user":

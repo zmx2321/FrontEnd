@@ -49,6 +49,7 @@ export const ModifyPassword = params => {
 /**
  *  管理员
  */
+// 获取管理员和员工列表
 export const findAccountList = params => {
     return  axios({
         url: 'account/findAccount',
@@ -57,10 +58,30 @@ export const findAccountList = params => {
     });
 };
 
+// 添加员工
+export const addAccount = params => {
+    return  axios({
+        url: 'account/add',
+        method: 'post',
+        data: params
+    });
+};
+
+// 删除员工
+export const delAccount = (params) => {
+    // let params = sessionStorage['params'];  // 获取参数id
+
+    return  axios({
+        url: 'account/del',
+        method: 'get',
+        params: params
+    });
+};
+
 /**
  *  用户管理
  */
-// 获取管理员和员工列表
+// 获取用户列表
 export const findUserList = params => {
     return  axios({
         url: 'user/findUserList',
@@ -68,16 +89,6 @@ export const findUserList = params => {
         params: params
     });
 };
-
-// 添加管理员
-// export const findAccountList = params => {
-//     return  axios({
-//         url: 'account/findAccount',
-//         method: 'post',
-//         data: params
-//     });
-// };
-
 
 /**
  *  banner管理
@@ -155,6 +166,16 @@ export const removeRedeemCode = params => {
         url: 'redeemcode/delete',
         method: 'get',
         params: params
+    });
+};
+
+// 删除多条兑换码
+export const removeMoreRedeemCode = () => {
+    let url_arg = sessionStorage['url_arg'];  // 获取参数id
+
+    return  axios({
+        url: 'redeemcode/delete/' + url_arg,
+        method: 'get',
     });
 };
 

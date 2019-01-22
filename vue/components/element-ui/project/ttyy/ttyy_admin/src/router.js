@@ -23,12 +23,12 @@ import RedeemCode from './views/manager/RedeemCode'
 import Order from './views/manager/Order'
 import Product from './views/manager/Product'
 import Statistics from './views/manager/Statistics'
-import Admin from './views/manager/Admin'
+import Account from './views/manager/Account'
 
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
 
     routes: [
@@ -49,7 +49,7 @@ const router = new Router({
                 { path: '/test', component: Test, name: 'test' },
 
                 // 管理员
-                { path: '/admin', component: Admin, name: 'admin' },
+                { path: '/account', component: Account, name: 'account' },
                 // 用户管理
                 { path: '/user', component: User, name: 'user' },
                 // banner管理
