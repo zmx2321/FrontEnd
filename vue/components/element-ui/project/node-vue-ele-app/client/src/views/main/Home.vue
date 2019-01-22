@@ -1,7 +1,7 @@
 <template>
     <section class="home">
         <div class="container">
-            <p class="lead"> {{ mainData.title }}</p>
+            <p class="lead">{{ mainData.title }}</p>
         </div>
     </section>
 </template>

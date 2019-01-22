@@ -2,7 +2,7 @@
     <div class="modify">
         <section class="form_container">
             <div class="manage_tip">
-                <span class="title">天天影院后台管理系统</span>
+                <span class="title">{{ mainData.title }}</span>
             </div>
             <el-form :model="modifyUser" @keyup.enter.native="submitForm('modifyForm')" status-icon :rules="rules" ref="modifyForm" class="loginForm" label-width="80px">
                 <el-form-item label="旧密码" prop="oldPassword">
@@ -42,6 +42,10 @@
             };
 
             return {
+                mainData: {
+                    title: title
+                },
+
                 modifyUser: {
                     oldPassword: "",  //旧密码
                     newPassword: "",  //新密码

@@ -7,7 +7,7 @@
                         <img src="../assets/logo.png" alt="">
                     </el-col>
                     <el-col :span="18" class="title f-oh">
-                        <span>天天影院后台管理系统</span>
+                        <span>{{ mainData.title }}</span>
                     </el-col>
                 </el-row>
             </el-col>
@@ -44,7 +44,9 @@ export default {
 
     data () {
         return {
-
+            mainData: {
+                title: title
+            }
         }
     },
     methods: {

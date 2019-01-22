@@ -14,8 +14,6 @@ import NotFound from './views/main/NotFound'
 import Login from './views/admin/Login'
 import ModifyPassword from './views/admin/ModifyPassword'
 
-import Test from './views/test/Test'
-
 // manager
 import User from './views/manager/User'
 import Banner from './views/manager/Banner'
@@ -28,6 +26,7 @@ import Account from './views/manager/Account'
 Vue.use(Router);
 
 const router = new Router({
+    // mode: 'history',
     mode: 'hash',
     base: process.env.BASE_URL,
 
@@ -45,8 +44,6 @@ const router = new Router({
             children: [
                 { path: '', component: Home },
                 { path: '/home', component: Home, name: 'home' },
-
-                { path: '/test', component: Test, name: 'test' },
 
                 // 管理员
                 { path: '/account', component: Account, name: 'account' },

@@ -6,7 +6,7 @@
                     <!-- 首页 -->
                     <router-link to="/home">
                         <el-menu-item index="0">
-                            <i class="fa fa-server"></i>
+                            <i class="icon iconfont icon-shouye"></i>
                             <span slot="title">首页</span>
                         </el-menu-item>
                     </router-link>
@@ -14,7 +14,7 @@
                      <!-- 员工账号管理 -->
                      <router-link to="/account">
                          <el-menu-item index="1">
-                             <i class="fa fa-address-book"></i>
+                             <i class="icon iconfont icon-yuangongguanli"></i>
                              <span slot="title">员工账号管理</span>
                          </el-menu-item>
                      </router-link>
@@ -22,7 +22,7 @@
                     <!-- 用户管理 -->
                     <router-link to="/user">
                         <el-menu-item index="2">
-                            <i class="fa fa-user"></i>
+                            <i class="icon iconfont icon-yonghu"></i>
                             <span slot="title">用户管理</span>
                         </el-menu-item>
                     </router-link>
@@ -30,7 +30,7 @@
                     <!-- banner管理 -->
                     <router-link to="/banner">
                         <el-menu-item index="3">
-                            <i class="fa fa-map-signs"></i>
+                            <i class="icon iconfont icon-tupian"></i>
                             <span slot="title">banner管理</span>
                         </el-menu-item>
                     </router-link>
@@ -38,7 +38,7 @@
                      <!-- 兑换码管理 -->
                     <router-link to="/redeem_code">
                         <el-menu-item index="4">
-                            <i class="fa fa-money"></i>
+                            <i class="icon iconfont icon-jifenduihuanchanpin"></i>
                             <span slot="title">兑换码管理</span>
                         </el-menu-item>
                     </router-link>
@@ -46,7 +46,7 @@
                     <!-- 订单管理 -->
                     <router-link to="/order">
                         <el-menu-item index="5">
-                            <i class="fa fa-cc-amex"></i>
+                            <i class="icon iconfont icon-dingdan"></i>
                             <span slot="title">订单管理</span>
                         </el-menu-item>
                     </router-link>
@@ -54,7 +54,7 @@
                     <!-- 商品管理 -->
                     <router-link to="/product">
                         <el-menu-item index="6">
-                            <i class="fa fa-google-wallet"></i>
+                            <i class="icon iconfont icon-shangpin"></i>
                             <span slot="title">商品管理</span>
                         </el-menu-item>
                     </router-link>
@@ -62,7 +62,7 @@
                      <!-- 数据统计 -->
                      <router-link to="/statistics">
                          <el-menu-item index="7">
-                             <i class="fa fa-pie-chart"></i>
+                             <i class="icon iconfont icon-tongji"></i>
                              <span slot="title">数据统计</span>
                          </el-menu-item>
                      </router-link>
@@ -145,12 +145,16 @@ export default {
 </script>
 
 <style scoped>
-.menu_page {
-    width: 100%;
-    height: 100%;
-}
+    .menu_page {
+        width: 100%;
+        height: 100%;
+    }
 
-.menu{
-    border: none;
-}
+    .menu{
+        border: none;
+    }
+
+    .menu span{
+        margin-left: 8px;
+    }
 </style>

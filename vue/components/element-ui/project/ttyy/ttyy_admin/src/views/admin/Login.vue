@@ -2,7 +2,7 @@
     <div class="login">
         <section class="form_container">
             <div class="manage_tip">
-                <span class="title">天天影院后台管理系统</span>
+                <span class="title">{{ mainData.title }}</span>
             </div>
             <el-form :model="loginUser" @keyup.enter.native="submitForm('loginForm')" status-icon :rules="rules" ref="loginForm" class="loginForm" label-width="80px">
                 <el-form-item label="用户名" prop="username">
@@ -27,9 +27,13 @@
 
         data() {
             return {
+                mainData: {
+                    title: title
+                },
+
                 loginUser: {
-                    username: "admin",
-                    password: "admin"
+                    username: "",
+                    password: ""
                 },
                 rules: {
                     username: [

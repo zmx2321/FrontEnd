@@ -14,7 +14,7 @@ module.exports = {
             chunks: ['chunk-vendors', 'chunk-common', 'index'] // 在这个页面中包含的块，默认情况下会包含,提取出来的通用 chunk 和 vendor chunk
         }
     },
-    productionSourceMap: true, // 是否在构建生产包时生成 sourceMap 文件，false将提高构建速度
+    productionSourceMap: false, // 是否在构建生产包时生成 sourceMap 文件，false将提高构建速度
     // devServer: {
     //     open: true,
     //     host: 'localhost',

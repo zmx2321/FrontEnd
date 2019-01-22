@@ -1,10 +1,27 @@
 <template>
     <section class="home">
         <div class="container">
-            <p class="lead"> 天天影院后台管理系统</p>
+            <p class="lead">{{ mainData.title }}</p>
         </div>
     </section>
 </template>
+
+<script>
+    export default {
+        name: "home",
+
+        data () {
+            return {
+                mainData: {
+                    title: title
+                }
+            }
+        },
+        created (){
+            // console.log(aa);
+        }
+    };
+</script>
 
 <style scoped>
     .home {

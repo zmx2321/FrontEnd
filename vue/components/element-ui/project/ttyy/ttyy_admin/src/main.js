@@ -8,6 +8,8 @@ import axios from 'axios';  //请求文件
 import ElementUI from 'element-ui'  // 引入element-ui
 import 'element-ui/lib/theme-chalk/index.css'
 
+import './assets/icon/iconfont.css'  // icon
+
 import echarts from 'echarts'  // 引入echarts
 
 import router from './router'

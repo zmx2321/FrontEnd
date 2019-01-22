@@ -227,12 +227,12 @@
                  */
                 // 添加商品数据
                 addProductData: {
-                    title: "aaa",  // 商品名称
-                    img: "https://nei.netease.com/res/images/interface.png?47c471ba67e19d5c5923ce2e9629d000",  // 商品图片
-                    month: "3",  // 商品时间(月)
-                    originalPrice: "12.5",  // 商品原价
-                    currentPrice: "5",  // 商品现价
-                    desc: "促销促销促销"  // 商品描述
+                    title: "",  // 商品名称
+                    img: "https://",  // 商品图片
+                    month: "",  // 商品时间(月)
+                    originalPrice: "",  // 商品原价
+                    currentPrice: "",  // 商品现价
+                    desc: ""  // 商品描述
                 },
 
                 // 验证添加商品界面数据

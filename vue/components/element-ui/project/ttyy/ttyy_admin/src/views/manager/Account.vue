@@ -110,9 +110,9 @@
                  */
                 // 添加员工账号数据
                 addAccountData: {
-                    name: "aa",  // 姓名
-                    username: "aa",  // 昵称
-                    password: "aa",  // 密码
+                    name: "",  // 姓名
+                    username: "",  // 昵称
+                    password: "",  // 密码
                 },
 
                 // 验证添加员工账号界面数据

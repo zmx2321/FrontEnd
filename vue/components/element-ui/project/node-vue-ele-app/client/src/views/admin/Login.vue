@@ -2,7 +2,7 @@
     <div class="login">
         <section class="form_container">
             <div class="manage_tip">
-                <span class="title">{{ mainData.title }}}</span>
+                <span class="title">{{ mainData.title }}</span>
             </div>
             <el-form :model="loginUser" @keyup.enter.native="submitForm('loginForm')" status-icon :rules="rules" ref="loginForm" class="loginForm" label-width="80px">
                 <el-form-item label="用户名" prop="username">
