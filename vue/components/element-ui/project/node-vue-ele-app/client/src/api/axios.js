@@ -3,16 +3,16 @@ import { Message } from 'element-ui'
 
 import router from '../router'
 
-const root = 'localhost:5001/api/';
+const root = 'http://10.10.8.100:5001/api/';
 
 const Axios = axios.create({
     baseURL: root, // api
     timeout: 10000,
     responseType: "json",
     withCredentials: true, // 是否允许带cookie这些
-    // headers: {
-    //     "Content-Type": "application/json;charset=utf-8"
-    // }
+    /*headers: {
+        "Content-Type": "application/json;charset=utf-8"
+    }*/
 });
 
 //请求拦截  设置统一header

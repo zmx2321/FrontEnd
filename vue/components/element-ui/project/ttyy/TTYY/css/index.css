@@ -151,49 +151,6 @@
     margin: 0.1rem auto 0;
 }
 
-/*== @media(ipad端) ==*/
-@media screen and (min-width: 768px) and (max-width: 900px) {   /* 当屏幕尺寸在768px-900px直接的时候 */
-    .part_1 {
-        height: 20%;
-    }
-
-    .p1_img{
-        width: 1.8rem;
-    }
-
-    .part_2 {
-        height: 40%;
-    }
-
-    .p2_txt {
-        padding: 0.18rem 0 0.4rem 0;
-    }
-
-    .p2_txt dt {
-        margin: 0.08rem 0;
-        font-size: 0.3rem;
-    }
-
-    .p2_txt dd {
-        height: 0.38rem;
-        line-height: 0.38rem;
-        font-size: 0.25rem;
-    }
-
-    .p2_btn button{
-        font-size: 0.25rem;
-    }
-
-    .part_3{
-        height: 40%;
-    }
-
-    .p3_t_img {
-        width: 3.8rem;
-        margin: 0.3rem auto 0;
-    }
-}
-
 /*== @media(PC端) ==*/
 @media screen and (min-width: 900px) {  /* 当屏幕尺寸大于900的时候 */
     .container {
@@ -210,8 +167,8 @@
     }
 
     .p2_txt {
-        height: initial; 
-        padding: 250px 0 45px 0;
+        height: initial;
+        padding: 250px 0 45px 0 !important;
     }
 
     .p2_txt dt{
@@ -265,7 +222,7 @@
 
     .p3_t_img {
         width: 75%;
-        margin: 275px auto 50px;
+        margin: 275px auto 50px !important;
     }
 
     .p3_btm span {
@@ -277,3 +234,131 @@
         margin: 20px auto 0;
     }
 }
+
+/* 竖屏 */
+@media screen and (orientation: portrait) {
+    /*== @media(ipad端) ==*/
+    @media screen and (min-width: 768px) and (max-width: 900px) {   /* 当屏幕尺寸在768px-900px直接的时候 */
+        .part_1 {
+            height: 20%;
+        }
+
+        .p1_img{
+            width: 1.8rem;
+        }
+
+        .part_2 {
+            height: 40%;
+        }
+
+        .p2_txt {
+            padding: 0.18rem 0 0.4rem 0;
+        }
+
+        .p2_txt dt {
+            margin: 0.08rem 0;
+            font-size: 0.3rem;
+        }
+
+        .p2_txt dd {
+            height: 0.38rem;
+            line-height: 0.38rem;
+            font-size: 0.25rem;
+        }
+
+        .p2_btn button{
+            font-size: 0.25rem;
+        }
+
+        .part_3{
+            height: 40%;
+        }
+
+        .p3_t_img {
+            width: 3.8rem;
+            margin: 0.3rem auto 0;
+        }
+    }
+}
+
+/* 横屏 */
+@media screen and (orientation: landscape) {
+    /*== @media(ipad端) ==*/
+    @media screen and (min-width: 370px) {   /* 当屏幕尺寸在768px-900px直接的时候 */
+        .container {
+            display: flex;
+        }
+
+        .part {
+            height: 100%;
+            flex: 1;
+        }
+
+        .p1_img{
+            width: 50%;
+        }
+
+        .p2_txt {
+            height: initial;
+            padding: 0.5rem 0 0.25rem 0;
+        }
+
+        .p2_txt dt{
+            font-size: 0.22rem;
+        }
+
+        .p2_txt dd{
+            height: 0.3rem;
+            line-height: 0.3rem;
+            font-size: 0.1rem;
+        }
+
+        .p2_btn ul{
+            flex-direction: column;
+        }
+
+        .p2_btn li:first-child{
+            margin-bottom: 0.1rem;
+        }
+
+        .p2_btn button {
+            width: 1.5rem;
+            font-size: 0.12rem;
+            padding: 0.12rem 0.03rem 0.12rem 0.05rem;
+            border-radius: 0.07rem;
+        }
+
+        .p2_btn button.iosbtn::before, .p2_btn button.andrbtn::before {
+            top: 50%;
+            width: 0.14rem;
+            height: 0.18rem;
+        }
+
+        .p2_btn button.iosbtn::before{
+            left: 0.26rem;
+        }
+
+        .p2_btn button.andrbtn::before{
+            left: 0.13rem;
+        }
+
+        .p3_top{
+            height: initial;
+        }
+
+        .p3_t_img {
+            width: 75%;
+            margin: 0.7rem auto 0.2rem;
+        }
+
+        .p3_btm span {
+            font-size: 18px;
+        }
+
+        .btm_img {
+            width: 45%;
+            margin: 20px auto 0;
+        }
+    }
+}
+

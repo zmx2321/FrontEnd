@@ -18,6 +18,10 @@
     import HeadNav from '../components/HeadNav'
     import LeftMenu from "../components/LeftMenu";
 
+    import {
+        Test  // 测试
+    } from "../api/api"
+
     export default {
         name: "index",
 
@@ -25,8 +29,16 @@
             HeadNav,
             LeftMenu
         },
+
+        methods: {
+            test: () => {
+                Test().then(res => {
+                    console.log(res);
+                }).catch(({}));
+            }
+        },
         created: function(){
-            // console.log(this.md5("admin"));
+            this.test();
         },
     }
 </script>

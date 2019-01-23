@@ -10,7 +10,7 @@ import NotFound from './views/main/NotFound'
 
 // admin
 import Login from './views/admin/Login'
-import ModifyPassword from './views/admin/ModifyPassword'
+import Register from './views/admin/Register'
 
 Vue.use(Router)
 
@@ -45,9 +45,9 @@ const router = new Router({
       },
       // 修改密码
       {
-          path: '/modify_password',
-          name: 'modify_password',
-          component: ModifyPassword
+          path: '/register',
+          name: 'register',
+          component: Register
       },
       // 404
       {

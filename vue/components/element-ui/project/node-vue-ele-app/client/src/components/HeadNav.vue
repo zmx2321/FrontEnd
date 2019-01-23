@@ -25,7 +25,7 @@
                                 <i class="el-icon-caret-bottom el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item command='modify_password'>修改密码</el-dropdown-item>
+                                <el-dropdown-item command='register'>修改密码</el-dropdown-item>
                                 <el-dropdown-item  command='logout'>注销</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -59,8 +59,8 @@ export default {
             }
 
             switch (cmditem) {
-                case "modify_password":
-                    this.modifyPassword();
+                case "register":
+                    this.register();
                     break;
                 case "logout":
                     this.logout();
@@ -68,8 +68,8 @@ export default {
             }
         },
         // 修改密码
-        modifyPassword() {
-          this.$router.push("/modify_password");
+        register() {
+          this.$router.push("/register");
         },
         // 退出
         logout() {

@@ -33,7 +33,7 @@ router
      *  @access public
      */
     .get('/test', (req, res) => {
-        res.json({ msg: 'login works' });
+        res.json({ msg: 'test' });
     })
 
     /**

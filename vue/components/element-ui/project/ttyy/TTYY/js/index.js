@@ -9,6 +9,41 @@ util = {
     // url: "http://10.10.10.238:8089/",
     url: "http://hh55.ge75g.cn/",
 
+    // 判断横竖屏
+    detectOrient: () => {
+        let width = document.documentElement.clientWidth,
+            height = document.documentElement.clientHeight;
+
+        // 竖屏
+        if(width <= height) {
+            /*if (width > 320) {
+                width = 320;
+            }
+
+            if(width > 750){
+                width = 750;
+            }*/
+        }
+        /*if(width <= height) {//竖屏
+            if ( 320 > width ) {
+                width = 320;
+            }
+            if(width > 750){
+                width = 750;
+            }
+            document.getElementsByTagName("html")[0].style.fontSize = width/7.5 + "px";
+            return false;
+        } else{//横屏
+            if ( height > width ) {
+                height = 320;
+            }
+            if(height > 750){
+                height = 750;
+            }
+            document.getElementsByTagName("html")[0].style.fontSize = height/7.5 + "px";
+            return false;*/
+    },
+
     // 改变根元素font-size
     rootFont: () => {
         let c_width = document.documentElement.clientWidth;
@@ -57,7 +92,7 @@ let loadData = {
     android: () => {
         // let url = "http://app.ge75g.cn/app/app-release.zip";
         // let url = "http://10.10.10.238:8089/downloadText";
-        let url = util.url + "downloadText?url=http://app.ge75g.cn/app/app-release.zip";
+        let url = util.url + "download/pdf";
 
         javascrtpt:window.location.href = url;
     }
