@@ -3,7 +3,7 @@ import { Message } from 'element-ui'
 
 import router from '../router'
 
-const root = 'http://10.10.10.199:8080/admin/';
+const root = 'http://10.10.10.199:8080/';
 
 const Axios = axios.create({
     baseURL: root, // api

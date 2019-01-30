@@ -1,16 +1,12 @@
 <template>
     <section class="main_cont">
-        <!-- 表单 -->
+        <!-- 按钮 -->
         <el-row>
-            <el-form :inline="true">
-                <el-col class="toolbar bdr_radiu" :span="24">
-                    <el-col :span="22">
-                        <el-form-item>
-                            <el-button type="primary" @click="addAccountVisible = true">添加员工账号</el-button>
-                        </el-form-item>
-                    </el-col>
+            <el-col class="toolbar bdr_radiu" :span="24">
+                <el-col :span="22">
+                    <el-button type="primary" @click="addAccountVisible = true">添加员工账号</el-button>
                 </el-col>
-            </el-form>
+            </el-col>
         </el-row>
 
         <!-- 员工账号列表 -->
@@ -263,7 +259,5 @@
 </script>
 
 <style scoped>
-    .toolbar {
-        padding-bottom: 0;
-    }
+
 </style>

@@ -3,6 +3,12 @@
         <div class="container">
             <p class="lead">{{ mainData.title }}</p>
         </div>
+        <ul class="bottom">
+            <li>powered by</li>
+            <li>
+                <a href="http://ximuok.com">ximuok.com</a>
+            </li>
+        </ul>
     </section>
 </template>
 
@@ -45,5 +51,31 @@
     .lead {
         margin-top: 50px;
         font-size: 22px;
+    }
+
+    .bottom{
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .bottom li{
+        display: inline-block;
+        color: #757575;
+    }
+
+    .bottom li a{
+        color: #757575;
+        transition: 0.2s linear;
+    }
+
+    .bottom li a:hover{
+        color: #bdbdbd;
+        transition: 0.3s linear;
+    }
+
+    .bottom li:not(:last-child){
+        margin-right: 8px;
     }
 </style>

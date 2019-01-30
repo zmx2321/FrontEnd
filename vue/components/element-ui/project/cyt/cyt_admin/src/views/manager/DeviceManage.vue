@@ -14,9 +14,9 @@
                         <!--<el-form-item>-->
                             <!--<el-button type="primary" @click="addDevice" v-on:click="addDeviceVisible = true">添加新的设备</el-button>-->
                         <!--</el-form-item>-->
-                        <el-form-item>
+                        <!--<el-form-item>
                             <el-button type="primary" @click="restartDevice">重启设备</el-button>
-                        </el-form-item>
+                        </el-form-item>-->
                     </el-col>
                 </el-col>
             </el-form>
@@ -25,21 +25,22 @@
         <el-row>
             <!-- 设备列表 -->
             <el-table class="device_list" :data="device_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column type="index" width="60" align="center"></el-table-column>
+                <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
+                <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="id" width="100"></el-table-column>-->
-                <el-table-column prop="guiNo" label="设备编号" width="100"></el-table-column>
-                <el-table-column prop="guiName" label="设备名称" width="120"></el-table-column>
-                <el-table-column prop="manufacturer" label="设备生产厂商" width="220"></el-table-column>
-                <el-table-column prop="tcpStatus" label="设备状态" width="100"></el-table-column>
-                <el-table-column prop="location" label="设备地址" width="620"></el-table-column>
+                <el-table-column prop="guiNo" label="设备编号" width="100" align="center"></el-table-column>
+                <el-table-column prop="guiName" label="设备名称" width="120" align="center"></el-table-column>
+                <el-table-column prop="manufacturer" label="设备生产厂商" width="220" align="center"></el-table-column>
+                <el-table-column prop="tcpStatus" label="设备状态" width="100" align="center"></el-table-column>
+                <el-table-column prop="location" label="设备地址" width="auto"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="520">
                     <template slot-scope="scope">
+                        <el-button @click="viewBanner(scope.row)" type="text" size="small">设置banner图</el-button>
                         <el-button @click="viewDeviceCabinet(scope.row)" type="text" size="small">查看设备柜口</el-button>
                         <!--<el-button @click="viewDeviceStatus" v-on:click="viewDeviceStatusVisible = true" type="text" size="small">查看设备状态</el-button>-->
                         <!--<el-button @click="viewDeviceCommunicationStatus" v-on:click="viewDeviceCommunicationStatusVisible = true" type="text" size="small">查看设备通信状态</el-button>-->
-                        <el-button @click="showQRCode(scope.row)" v-on:click="showQRCodeVisible = true" type="text" size="small">显示设备的存取餐二维码</el-button>
+                        <!--<el-button @click="showQRCode(scope.row)" v-on:click="showQRCodeVisible = true" type="text" size="small">显示设备的存取餐二维码</el-button>-->
                         <el-button @click="editPositionInfo(scope.row)" v-on:click="editPositionVisible = true" type="text" size="small">编辑位置信息</el-button>
                         <!--<el-button @click="delDevice" type="text" size="small">删除设备</el-button>-->
                     </template>
@@ -86,19 +87,27 @@
         </el-dialog>
 
         <!-- 编辑位置信息 -->
-        <el-dialog title="编辑位置信息" :close-on-click-modal="false" :visible.sync="editPositionVisible" :before-close="handleClose">
+        <el-dialog title="编辑位置信息" @keyup.enter.native="editPositionSubmit('editPositionForm')" :close-on-click-modal="false" :visible.sync="editPositionVisible" :before-close="handleClose">
             <el-form :model="editPosition" status-icon :rules="editPositionRules" ref="editPositionForm" label-width="100px">
                 <el-form-item label="柜端编号" prop="guiNo">
                     <el-input v-model="editPosition.guiNo" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="柜端新地址" prop="location">
-                    <el-input v-model="editPosition.location" placeholder="请输入柜端新地址" clearable></el-input>
+                    <el-input v-model="editPosition.location" placeholder="请输入柜端新地址" clearable class="address_input"></el-input>
+                    <el-button @click="getLocation">查询</el-button>
+                </el-form-item>
+                <el-form-item label="经度" prop="latitude">
+                    <el-input v-model="editPosition.latitude" placeholder="请输入经度" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="纬度" prop="longitude">
+                    <el-input v-model="editPosition.longitude" placeholder="请输入经度" clearable></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="editPositionSubmit('editPositionForm')">提交</el-button>
                     <el-button @click="resetForm('editPositionForm')">重置</el-button>
                 </el-form-item>
             </el-form>
+            <div id="atlas"></div>
         </el-dialog>
     </section>
 </template>
@@ -114,10 +123,19 @@
         getDevice,  //查询设备
     } from '../../api/api.js';
 
+    import { TMap } from '../../api/parking'
+
     export default {
         name: "device_manage",
 
         data() {
+            // 数字验证
+            let getLocation = (rule, value, callback) => {
+                this.getLocation();
+
+                callback();
+            };
+
             return {
                 /**
                  * common
@@ -134,13 +152,13 @@
                 device_info: [],  //存放设备信息列表数据
 
                 /**
-                 *  弹出表单界面
+                 *  弹出表单界面(true 显示, false 隐藏)
                  */
-                addDeviceVisible: false,  //显示隐藏添加新的设备界面
-                viewDeviceStatusVisible: false,  //显示隐藏查看设备状态界面
-                viewDeviceCommunicationStatusVisible: false,  //显示隐藏查看设备通信状态界面
-                showQRCodeVisible: false,  //显示隐藏设备的存取餐二维码界面
-                editPositionVisible: false,  //显示隐藏编辑设备位置信息界面
+                addDeviceVisible: false,  // 添加新的设备界面
+                viewDeviceStatusVisible: false,  // 查看设备状态界面
+                viewDeviceCommunicationStatusVisible: false,  // 查看设备通信状态界面
+                showQRCodeVisible: false,  // 设备的存取餐二维码界面
+                editPositionVisible: false,  // 编辑设备位置信息界面
 
                 /**
                  * 二维码
@@ -156,13 +174,16 @@
                 //编辑位置信息界面数据
                 editPosition: {
                     guiNo: '',  //柜端编号
-                    location: ''  //柜端新地址
+                    location: '',  //柜端新地址
+                    longitude: "",  // 经度
+                    latitude: ""  // 纬度
                 },
                 //验证编辑位置信息界面数据
                 editPositionRules: {
                     location: [
                         { required: true, message: '柜端新地址不能为空', trigger: 'blur' },
-                        { min: 2, message: "长度在大于2个字符", trigger: "blur" }
+                        { min: 2, message: "长度在大于2个字符", trigger: "blur" },
+                        { validator: getLocation, trigger: 'blur' }
                     ]
                 },
             }
@@ -189,6 +210,76 @@
             },
 
             /**
+             *  获取地址经纬度
+             */
+            getLocation () {
+                // console.log("获取地址经纬度");
+
+                TMap().then(qq => {
+                    // Geocoder
+                    let geo = new qq.maps.Geocoder();
+
+                    // 地址
+                    geo.getLocation(this.editPosition.location);
+
+                    // console.log(geo);
+
+                    geo.setComplete(res => {
+                        // 经纬度
+                        // console.log(res.detail.location);
+
+                        this.editPosition.latitude = res.detail.location.lng;
+                        this.editPosition.longitude = res.detail.location.lat;
+
+                        let map = new qq.maps.Map(document.getElementById('atlas'),{
+                            center: res.detail.location,//将经纬度加到center属性上
+                            zoom: 16,//缩放
+                            draggable: true,//是否可拖拽
+                            scrollwheel: true,//是否可滚动缩放
+                            disableDoubleClickZoom: false
+                        });
+
+                        new qq.maps.Marker({
+                            position: res.detail.location,//标记的经纬度
+                            animation: qq.maps.MarkerAnimation.BOUNCE,//标记的动画
+                            map: map//标记的地图
+                        })
+                    });
+                });
+            },
+
+            /**
+             * map
+             */
+            map () {
+                let that = this;
+
+                TMap().then(qq => {
+                    // 获取接口经纬度
+                    let center = new qq.maps.LatLng(that.editPosition.longitude, that.editPosition.latitude);
+
+                     // 绘制地图
+                    var map = new qq.maps.Map(document.getElementById('atlas'), {
+                        //这里经纬度代理表进入地图显示的中心区域
+                        center: center,
+                        zoom: 13
+                    });
+
+                    // 坐标点添加标记
+                    new qq.maps.Marker({
+                        position: center,
+                        animation: qq.maps.MarkerAnimation.DOWN,  // 标记的动画(一次：qq.maps.MarkerAnimation.DOWN，持续：qq.maps.MarkerAnimation.BOUNCE)
+                        map: map
+                    });
+
+                    //添加点击事件
+                    qq.maps.event.addListener(map,'click', event => {
+                        console.log(event.latLng);
+                    });
+                });
+            },
+
+            /**
              * api
              */
             //获取设备信息
@@ -196,11 +287,14 @@
                 this.listLoading = true;
 
                 getDeviceList().then(res => {  //请求成功
+                    // console.log(res);
+
                     this.listLoading = false;
                     this.device_info = res.data.data;  //接口数据赋值页面数据进行双向绑定
                 }).catch({});
             },
-            //跳转查看设备柜口
+
+            // 跳转查看设备柜口
             viewDeviceCabinet (row) {
                 //跳转cabinet_manage组件并传递设备编号
                 let guiNo = Object.assign({}, row).guiNo;  //获取当前记录(行)设备编号
@@ -219,6 +313,28 @@
                     });
                 }
             },
+
+            // 跳转设置banner
+            viewBanner (row) {
+                //跳转operate_manage组件并传递设备编号
+                let guiNo = Object.assign({}, row).guiNo;  //获取当前记录(行)设备编号
+
+                if (guiNo) {  //如果设备编号存在跳转
+                    this.$router.push({
+                        name: "banner_manage",
+                        params: {
+                            guiNo: Object.assign({}, row).guiNo
+                        }
+                    });
+
+                    // console.log(guiNo);
+                } else {
+                    this.$message({
+                        message: '无设备编号',
+                        type: 'warning'
+                    });
+                }
+            },
             //查询设备信息
             getDevices (){
                 this.listLoading = true;
@@ -226,6 +342,7 @@
                 let para = {
                     guiNo: this.guiNo,
                 };
+
                 getDevice(para).then(res => {
 
                     console.log(para);
@@ -234,94 +351,59 @@
                     console.log(this.device_info);
                 }).catch({});
             },
-            //显示添加设备界面
+            // 显示添加设备界面
             addDevice () {
                 console.log("添加设备");
             },
-            //重启设备
+            // 重启设备
             restartDevice () {
                 console.log("重启设备");
             },
-            //查看设备状态
+            // 查看设备状态
             viewDeviceStatus () {
                 console.log("查看设备状态");
             },
-            //查看设备通信状态
+            // 查看设备通信状态
             viewDeviceCommunicationStatus () {
                 console.log("查看设备通信状态");
             },
-            //显示设备的存取餐二维码
+            // 显示设备的存取餐二维码
             showQRCode (row) {
-                // console.log($('body'));
+                console.log("显示设备的存取餐二维码");
 
-                $.ajax({
-                    url: "http://t-postapi.lxstation.com/wx/common/qrcode",
-                    type: "GET",
-                    data: {
-                        guiNo: Object.assign({}, row).guiNo,
-                        type: 0
-                    },
-                    dataType: 'json',
-                    crossDomain: true,
-                    // contentType: "image/png",
-                    // headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    // beforeSend: function(xhr) {
-                    //     xhr.setRequestHeader("Access-Control-Request-Headers", "access-control-allow-origin");
-                    // },
-                    // headers:{
-                    //     'Access-Control-Allow-Origin': "*"
-                    // },
-                    success: (data) => {
-                        console.log(data);
-                    }
-                });
+                // 0存1取
+                /*let params = {
+                    guiNo: Object.assign({}, row).guiNo,
+                    type: 0
+                };
+
+                getQRCode(params).then(res => {
+                    console.log(res);
+                });*/
 
 
-                // axios({
-                //     headers: {'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},
-                //     method: "GET",
-                //     url: "//t-postapi.lxstation.com/wx/common/qrcode",
-                //     data: {
-                //         guiNo: Object.assign({}, row).guiNo,
-                //         type: 0
-                //     }
-                // }).then((res) => {
-                //     console.log(res);
-                // })
-
-
-                //存餐接口参数
-                // let holdPara = {
-                //     guiNo: Object.assign({}, row).guiNo,  //获取当前记录(行)设备编号
-                //     type: 0
-                // };
-                // let takePara = {
-                //     guiNo: Object.assign({}, row).guiNo,  //获取当前记录(行)设备编号
-                //     type: 1
-                // }
+                // 存餐接口参数
+                let holdPara = {
+                    guiNo: Object.assign({}, row).guiNo,  // 获取当前记录(行)设备编号
+                    type: 0
+                };
+                // 取餐接口参数
+                let takePara = {
+                    guiNo: Object.assign({}, row).guiNo,  // 获取当前记录(行)设备编号
+                    type: 1
+                };
 
                 // console.log(holdPara)
 
-                //存餐二维码
-                // getQRCode().then(res => {
-                //     console.log(res);
-                // }).catch(err => {
-                //     console.log(err);
-                // });
+                // 存餐二维码
+                getQRCode(holdPara).then(res => {
+                    console.log(res);
+                }).catch({});
 
-
-                // getQRCode(qs.stringify(holdPara)).then(res => {
-                //     console.log(res);
-                // }).catch(err => {
-                //     console.log(err);
-                // });
-                //
-                // //取餐二维码
-                // getQRCode(qs.stringify(takePara)).then(res => {
-                //     // console.log(res);
-                // }).catch(err => {
-                //     console.log(err);
-                // });
+                // 取餐二维码
+                getQRCode(takePara).then(res => {
+                    // console.log(res);
+                }).catch({});
             },
 
             /**
@@ -331,6 +413,10 @@
             editPositionInfo (row) {
                 //将表格中的值根据editPosition对象中的键传入表单
                 this.editPosition = Object.assign({}, row);
+
+                // console.log(this.editPosition);
+
+                this.map();  // 加载地图
             },
             //提交编辑设备地址表单
             editPositionSubmit(formName) {
@@ -339,8 +425,13 @@
                 //接口参数
                 let para = {
                     guiNo: this.editPosition.guiNo,  //柜端编号
-                    location: this.editPosition.location  //柜端新地址
+                    location: this.editPosition.location,  //柜端新地址
+                    lon: this.editPosition.longitude,  //经度
+                    lat: this.editPosition.latitude  //纬度
                 };
+
+                // console.log(para);
+
                 //验证表单
                 this.$refs[formName].validate((valid) => {
                     if (valid) {  //如果验证成功，请求接口数据
@@ -378,7 +469,7 @@
         },
         created () {
             this.getDeviceList();
-        }
+        },
     }
 </script>
 
@@ -412,5 +503,19 @@
 
     .show_QRcode:first-child{
         border-right: solid 1px #acaeaf;
+    }
+
+    .map{
+
+    }
+
+    #atlas{
+        min-width: 600px;
+        min-height: 300px;
+    }
+
+    .address_input{
+        width: 500px;
+        margin-right: 30px;
     }
 </style>

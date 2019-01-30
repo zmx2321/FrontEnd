@@ -2,10 +2,10 @@
     <section class="main_cont">
         <!-- 骑手管理 -->
         <el-row>
-            <el-col :span="24" class="title">
-                <i class="el-icon-info"></i>
-                <span>骑手管理</span>
-            </el-col>
+            <!--<el-col :span="24" class="title">-->
+                <!--<i class="el-icon-info"></i>-->
+                <!--<span>骑手管理</span>-->
+            <!--</el-col>-->
 
             <!-- 账号列表 -->
             <el-table class="rider_list" :data="rider_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">

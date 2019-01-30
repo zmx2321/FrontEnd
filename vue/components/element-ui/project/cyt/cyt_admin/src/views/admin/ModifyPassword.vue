@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import { ModifyPassword } from "../../api/api"
+    // import { ModifyPassword } from "../../api/api"
 
     export default {
         name: "modify_password",

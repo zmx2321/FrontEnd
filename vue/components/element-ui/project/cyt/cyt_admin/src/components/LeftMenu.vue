@@ -19,14 +19,6 @@
                          </el-menu-item>
                      </router-link>
 
-                     <!-- 运营管理 -->
-                     <router-link to="/operate_manage">
-                         <el-menu-item index="2">
-                             <i class="fa fa-asterisk"></i>
-                             <span slot="title">运营管理</span>
-                         </el-menu-item>
-                     </router-link>
-
                      <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
@@ -66,23 +58,25 @@ export default {
                         { path: "/rider_manage", name: "骑手管理" }
                     ]
                 },
-                {
-                    icon: "fa-asterisk",
-                    name: "临时",
-                    path: "temp",
-                    children: [
-                        { path: "/cabinet_manage", name: "柜口管理" },
-                    ]
-                },
-                {
-                    icon: "fa-money",
-                    name: "test",
-                    path: "test",
-                    children: [
-                        { path: "/test", name: "test" },
-                        { path: '/rich_text', name: '富文本'},
-                    ]
-                }
+                // {
+                //     icon: "fa-asterisk",
+                //     name: "临时",
+                //     path: "temp",
+                //     children: [
+                //         { path: "/cabinet_manage", name: "柜口管理" },
+                //         { path: "/banner_manage", name: "banner管理" },
+                //     ]
+                // },
+                // {
+                //     icon: "fa-money",
+                //     name: "test",
+                //     path: "test",
+                //     children: [
+                //         { path: "/test", name: "test" },
+                //         { path: '/rich_text', name: '富文本'},
+                //         { path: '/map', name: '地图'},
+                //     ]
+                // }
             ]
         };
     },

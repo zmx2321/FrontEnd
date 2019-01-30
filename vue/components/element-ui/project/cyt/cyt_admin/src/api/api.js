@@ -15,7 +15,7 @@ import axios from './axios'
 // 登录
 export const Login = params => {
     return  axios({
-        url: 'login',
+        url: 'admin/login',
         method: 'post',
         data: params
     });
@@ -27,39 +27,60 @@ export const Login = params => {
 // 获取设备信息
 export const getDeviceList = () => {
     return  axios({
-        url: 'selectGuiAll',
+        url: 'admin/selectGuiAll',
         method: 'get',
     });
 };
 
 // 修改设备地址
-// export const updateLocation = params => { return  axios.post(`${base}/updateLocation`, params); };
 export const updateLocation = params => {
     return  axios({
-        url: 'updateLocation',
+        url: 'admin/updateLocation',
         method: 'post',
         data: params
     });
 };
 
 // 存取餐二维码
-// export const getQRCode = params => { return  axios.get("http://t-postapi.lxstation.com/wx/common/qrcode", params); };
-export const getQRCode = () => {
+export const getQRCode = params => {
     return  axios({
-        url: 'updateLocation',
-        method: 'get',
-    });
-};
-
-// 查询设备
-// export const getDevice = params => { return  axios.get(`${base}/selectGuiAll`, { params: params }); }
-export const getDevice = params => {
-    return  axios({
-        url: 'selectGuiAll',
+        url: 'http://t-postapi.lxstation.com/wx/common/qrcode',
         method: 'get',
         params: params
     });
 };
+
+// 查询设备
+export const getDevice = params => {
+    return  axios({
+        url: 'admin/selectGuiAll',
+        method: 'get',
+        params: params
+    });
+};
+
+
+/**
+ * banner 管理
+ */
+// 获取banner列表
+export const findBannerList = params => {
+    return  axios({
+        url: 'configure/all',
+        method: 'post',
+        data: params
+    });
+};
+
+// 添加banner
+export const addBanner = params => {
+    return  axios({
+        url: 'configure/add',
+        method: 'post',
+        data: params
+    });
+};
+
 
 /**
  * 柜口管理
@@ -68,7 +89,7 @@ export const getDevice = params => {
 // export const getCabinetList = params => { return  axios.post(`${base}/getBoxInfos`, params) };
 export const getCabinetList = params => {
     return  axios({
-        url: 'getBoxInfos',
+        url: 'admin/getBoxInfos',
         method: 'post',
         data: params
     });
@@ -78,7 +99,7 @@ export const getCabinetList = params => {
 // export const openBoxNo = params => { return  axios.post(`${base}/openBoxNo`, params) };
 export const openBoxNo = params => {
     return  axios({
-        url: 'openBoxNo',
+        url: 'admin/openBoxNo',
         method: 'post',
         data: params
     });
@@ -88,7 +109,7 @@ export const openBoxNo = params => {
 // export const openBoxAll = params => { return  axios.post(`${base}/openBoxAll`, params) };
 export const openBoxAll = params => {
     return  axios({
-        url: 'openBoxAll',
+        url: 'admin/openBoxAll',
         method: 'post',
         data: params
     });
@@ -98,7 +119,7 @@ export const openBoxAll = params => {
 // export const getBoxStatus = params => { return  axios.post(`${base}/getBoxStatus`, params) };
 export const getBoxStatus = params => {
     return  axios({
-        url: 'getBoxStatus',
+        url: 'admin/getBoxStatus',
         method: 'post',
         data: params
     });
@@ -111,7 +132,7 @@ export const getBoxStatus = params => {
 // export const getRecordInfo = params => { return  axios.post(`${base}/getPackageList`, params); };
 export const getRecordInfo = params => {
     return  axios({
-        url: 'getPackageList',
+        url: 'admin/getPackageList',
         method: 'post',
         data: params
     });
@@ -124,7 +145,7 @@ export const getRecordInfo = params => {
 // export const geUserList = params => { return  axios.post(`${base}/getUserList`, params); };
 export const geUserList = params => {
     return  axios({
-        url: 'getUserList',
+        url: 'admin/getUserList',
         method: 'post',
         data: params
     });
@@ -137,7 +158,7 @@ export const geUserList = params => {
 // export const getRiderList = params => { return  axios.post(`${base}/getPostmanList`, params); };
 export const getRiderList = params => {
     return  axios({
-        url: 'getPostmanList',
+        url: 'admin/getPostmanList',
         method: 'post',
         data: params
     });

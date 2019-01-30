@@ -2,10 +2,10 @@
     <section class="main_cont">
         <!-- 用户管理 -->
         <el-row>
-            <el-col :span="24" class="title">
-                <i class="el-icon-info"></i>
-                <span>用户管理</span>
-            </el-col>
+            <!--<el-col :span="24" class="title">-->
+                <!--<i class="el-icon-info"></i>-->
+                <!--<span>用户管理</span>-->
+            <!--</el-col>-->
 
             <el-form :inline="true">
                 <el-col :span="22">

@@ -10,8 +10,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import './assets/icon/iconfont.css'  // icon
 
-import echarts from 'echarts'  // 引入echarts
-
 import VueQuillEditor  from 'vue-quill-editor'  //富文本
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -29,7 +27,6 @@ Vue.use(VueQuillEditor);
 //挂载（使其可以在各个组件使用）
 Vue.prototype.axios = axios;
 Vue.prototype.md5 = md5;  //在main.js文件中将md5转换成vue原型
-Vue.prototype.echarts = echarts;
 
 new Vue({
     router,

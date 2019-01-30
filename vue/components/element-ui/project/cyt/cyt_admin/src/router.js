@@ -17,7 +17,7 @@ import ModifyPassword from './views/admin/ModifyPassword'
 // manager
 import DeviceManage from './views/manager/DeviceManage'
 import CabinetManage from './views/manager/hide/CabinetManage'
-import OperateManage from './views/manager/OperateManage'
+import BannerManage from './views/manager/hide/BannerManage'
 // import AccountManage from './views/manager/AccountManage'
 
 // 数据管理
@@ -30,12 +30,13 @@ import RecordManage from './views/manager/data_manage/RecordManage'
 // test
 import Test from './views/test/Test'
 import RichText from './views/test/RichText'
+import Map from './views/test/Map'
 
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
-    // mode: 'hash',
+    // mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
 
     routes: [
@@ -55,13 +56,16 @@ const router = new Router({
 
                 // 设备管理(device manage)
                 { path: '/device_manage', name: 'device_manage', component: DeviceManage },
+
+                // hide
                 // 柜口管理
                 { path: '/cabinet_manage', name: 'cabinet_manage', component: CabinetManage },
-                // 运营管理(operate manage)
-                { path: '/operate_manage', name: 'operate_manage', component: OperateManage },
+                // banner管理(banner manage)
+                { path: '/banner_manage', name: 'banner_manage', component: BannerManage },
                 // 账号管理(account manage)
                 // { path: '/account_manage', name: 'account_manage', component: AccountManage },
 
+                // data
                 // 记录管理
                 { path: '/record_manage', name: 'record_manage', component: RecordManage },
                 //用户管理
@@ -73,6 +77,8 @@ const router = new Router({
                 { path: '/test', name: 'test', component: Test },
                 // 富文本
                 { path: '/rich_text', name: 'rich_text', component: RichText },
+                // 地图
+                { path: '/map', name: 'map', component: Map },
 
             ]
         },

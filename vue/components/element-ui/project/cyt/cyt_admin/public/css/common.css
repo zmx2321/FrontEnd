@@ -136,3 +136,7 @@ a:visited{
     height: 40px;
     margin: 0 auto;
 }
+
+.time_section .el-input{
+    margin-right: 15px;
+}

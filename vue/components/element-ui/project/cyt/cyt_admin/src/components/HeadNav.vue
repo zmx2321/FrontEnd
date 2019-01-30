@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { Logout } from "../api/api"
+// import { Logout } from "../api/api"
 
 export default {
     name: "head-nav",
