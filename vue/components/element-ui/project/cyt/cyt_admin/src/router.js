@@ -104,13 +104,13 @@ const router = new Router({
 });
 
 // 添加路由守卫
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
     const isLogin = localStorage.code == md5("0") ? true : false;
     if (to.path == "/login" || to.path == '/register') {
         next();
     } else {
         isLogin ? next() : next("/login");
     }
-});*/
+});
 
 export default router;

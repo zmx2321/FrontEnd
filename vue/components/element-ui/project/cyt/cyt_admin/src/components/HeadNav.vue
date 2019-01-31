@@ -73,10 +73,8 @@ export default {
         },
         // 退出
         logout() {
-            Logout().then(() => {
-                localStorage.removeItem("code");
-                this.$router.push("/login");
-            }).catch({});
+            localStorage.removeItem("code");
+            this.$router.push("/login");
         }
     },
     created (){

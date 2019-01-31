@@ -5,8 +5,24 @@
             <el-form :inline="true">
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
+                        <el-form-item label="筛选" class="intxt">
+                            <el-select v-model="bannerType" placeholder="请选择配置类型" @change="currentSel">
+                                <el-option label="存件语音" value="1"></el-option>
+                                <el-option label="取件语音" value="2"></el-option>
+                                <el-option label="取件成功语音" value="3"></el-option>
+                                <el-option label="banner" value="4"></el-option>
+                                <el-option label="锁屏广告" value="5"></el-option>
+                                <el-option label="存件页面底图" value="6"></el-option>
+                                <el-option label="取件页面底图" value="7"></el-option>
+                                <el-option label="广告视频" value="8"></el-option>
+                            </el-select>
+                        </el-form-item>
+
                         <el-form-item>
                             <el-button type="primary" @click="addBanner" v-on:click="addBannerVisible = true">添加banner</el-button>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="setSpeed" v-on:click="setSpeedVisible = true">轮播速度</el-button>
                         </el-form-item>
                     </el-col>
                 </el-col>
@@ -19,6 +35,7 @@
                 <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="banner_id" width="100" align="center"></el-table-column>-->
+
                 <el-table-column label="文件" width="100" align="center">
                     <template slot-scope="scope">
             		<img :src="scope.row.path" class="tabimg" />
@@ -27,8 +44,8 @@
 
                 <el-table-column label="类型" width="130" align="center" :formatter="formatType"></el-table-column>
 
-                <el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
-                <el-table-column prop="updateAt" label="更新时间" width="110" align="center"></el-table-column>
+                <!--<el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
+                <el-table-column prop="updateAt" label="更新时间" width="110" align="center"></el-table-column>-->
 
                 <el-table-column prop="content" label="描述" width="auto"></el-table-column>
 
@@ -100,28 +117,36 @@
             </el-form>
         </el-dialog>
 
-        <!-- 编辑banner -->
-        <el-dialog title="编辑banner" @keyup.enter.native="updateBannerSubmit('updateBannerForm')" :close-on-click-modal="false" :visible.sync="updateBannerVisible" :before-close="handleClose">
-            <el-form :model="updateBannerData" status-icon :rules="updateBannerRules" ref="updateBannerForm" label-width="110px">
-                <el-form-item label="bannerId" prop="id">
-                    <el-input v-model="updateBannerData.id" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="跳转目标" prop="target">
-                    <el-input v-model="updateBannerData.target"  placeholder="请输入跳转目标" clearable></el-input>
-                </el-form-item>
-                <el-form-item label="banner标题" prop="title">
-                    <el-input v-model="updateBannerData.title" placeholder="请输入banner标题" clearable></el-input>
-                </el-form-item>
-                <el-form-item label="banner类型" prop="type">
-                    <el-input v-model="updateBannerData.type" placeholder="请输入banner类型" clearable></el-input>
-                    <ul class="tip">
-                        <li>0：视频</li>
-                        <li>1：平台</li>
-                        <li>2: URL</li>
-                    </ul>
+        <!-- 轮播速度 -->
+        <el-dialog title="轮播速度" @keyup.enter.native="setSpeedSubmit('setSpeedForm')" :close-on-click-modal="false" :visible.sync="setSpeedVisible" :before-close="handleClose">
+            <el-form :model="setSpeedData" status-icon :rules="setSpeedRules" ref="setSpeedForm" label-width="120px">
+                <el-form-item label="柜号" prop="guiNos">
+                    <el-input v-model="setSpeedData.guiNo" disabled></el-input>
                 </el-form-item>
 
-                <el-form-item label="上传banner图">
+                <el-form-item label="速度数值(秒)" prop="speed">
+                    <el-input v-model="setSpeedData.speed" placeholder="请输入banner说明" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="setSpeedSubmit('setSpeedForm')">提交</el-button>
+                    <el-button @click="resetForm('setSpeedForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+
+        <!-- 编辑banner -->
+        <el-dialog title="编辑banner" @keyup.enter.native="updateBannerSubmit('updateBannerForm')" :close-on-click-modal="false" :visible.sync="updateBannerVisible" :before-close="handleClose">
+            <el-form :model="updateBannerData" status-icon ref="updateBannerForm" label-width="110px">
+                <el-form-item label="柜号" prop="guiNo">
+                    <el-input v-model="updateBannerData.guiNo" disabled></el-input>
+                </el-form-item>
+
+                <el-form-item label="配置Id" prop="configureId">
+                    <el-input v-model="updateBannerData.configureId" disabled></el-input>
+                </el-form-item>
+
+                <el-form-item label="上传文件">
                     <el-upload
                             action="https://jsonplaceholder.typicode.com/posts/"
                             ref='upload'
@@ -133,13 +158,6 @@
                             :file-list="upload_arg.fileList">
                         <el-button size="small" type="primary">点击上传</el-button>
                     </el-upload>
-                </el-form-item>
-
-                <el-form-item label="banner路径" prop="img">
-                    <el-input v-model="updateBannerData.img" placeholder="请输入banner路径" clearable></el-input>
-                </el-form-item>
-                <el-form-item label="banner描述" prop="desc">
-                    <el-input type="textarea" v-model="updateBannerData.desc" placeholder="请输入banner描述" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -155,6 +173,10 @@
     import {
         findBannerList,  // 获取banner列表
         addBanner,  // 添加banner
+        setSpeed,  // 轮播速度
+        updateBanner,  // 修改banner
+        conType,  // 配置类型
+        delCon  // 删除配置
     } from '../../../api/api.js';
 
     export default {
@@ -179,8 +201,10 @@
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
 
-                // guiNo: this.$route.params.guiNo,  // 当前柜端编号（this.$route.params.guiNo;）
-                guiNo: "TA104",  // 当前柜端编号（this.$route.params.guiNo;）
+                guiNo: this.$route.params.guiNo,  // 当前柜端编号（this.$route.params.guiNo;）
+                // guiNo: "TA104",  // 当前柜端编号（this.$route.params.guiNo;）
+
+                bannerType: "",
 
                 // 分页参数
                 /*page_arg: {
@@ -194,7 +218,7 @@
                 // 上传图片参数
                 upload_arg: {
                     limit:1,
-                    imgFile: [],
+                    fileFile: [],
                     fileList: []
                 },
 
@@ -208,10 +232,9 @@
                  */
                 // 添加banner数据
                 addBannerData: {
-                    // guiNos: this.$route.params.guiNo,
-                    guiNos: "TA104",
-                    type: "1",  // 类型 1 存件语音 2 取件语音 3 取件成功语音 4 banner 5 锁屏广告 6 存件页面底图 7 取件页面底图 8 广告视频
-                    content: "qaa",  // 描述文字
+                    guiNos: this.$route.params.guiNo,
+                    type: "",  // 类型 1 存件语音 2 取件语音 3 取件成功语音 4 banner 5 锁屏广告 6 存件页面底图 7 取件页面底图 8 广告视频
+                    content: "",  // 描述文字
                 },
 
                 // 验证添加用户界面数据
@@ -225,30 +248,36 @@
                 },
 
                 /**
+                 *  轮播速度
+                 */
+                // 轮播速度数据
+                setSpeedData: {
+                    guiNo: this.$route.params.guiNo,
+                    // guiNo: "TA104",
+                    speed: "10",  // 描述文字
+                },
+
+                // 验证轮播速度界面数据
+                setSpeedRules: {
+                    speed: [
+                        { required: true, message: '速度数值不能为空！', trigger: 'blur' }
+                    ]
+                },
+
+                /**
                  * 编辑banner
                  */
                 // 编辑banner数据
                 updateBannerData: {
-                    // guiNos: this.$route.params.guiNo,
-                    guiNos: "TA104",
-                    type: "0",  // 类型 1 存件语音 2 取件语音 3 取件成功语音 4 banner 5 锁屏广告 6 存件页面底图 7 取件页面底图 8 广告视频
-                    content: "",  // 描述文字
-                },
-
-                // 验证添加用户界面数据
-                updateBannerRules: {
-                    type: [
-                        { validator: validateType, trigger: 'blur' }
-                    ],
-                    content: [
-                        { required: true, message: '描述文字不能为空！', trigger: 'blur' }
-                    ]
+                    guiNo: this.$route.params.guiNo,
+                    configureId: "",  // 配置id
                 },
 
                 /**
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
                 addBannerVisible: false,  // 添加banner界面
+                setSpeedVisible: false,  // 轮播速度界面
                 updateBannerVisible: false,  // 编辑banner界面
             }
         },
@@ -319,7 +348,7 @@
 
                 // 获取接口数据
                 findBannerList(qs.stringify(param)).then(res => {
-                    console.log(res.data.data);
+                    // console.log(res.data.data);
 
                     if (!res.data.data){
                         this.$message({
@@ -327,7 +356,7 @@
                             type: "warning"
                         });
 
-                        // this.$router.push("device_manage");
+                        this.$router.push("device_manage");
                     }
 
                     this.banner_info = res.data.data;
@@ -368,12 +397,34 @@
             },
 
             /**
+             * api
+             * 筛选
+             */
+            // 状态下拉框
+            currentSel(val){
+                // console.log(val)
+
+                let params = {
+                    guiNo : this.guiNo,
+                    type: val
+                }
+
+                // console.log(params)
+                this.listLoading = true;  //点击提交开始加载loading
+
+                conType(params).then(res => {
+                    this.banner_info = res.data.data;
+
+                    this.listLoading = false;
+                });
+            },
+
+            /**
              *  api
              *  添加banner
              */
             //点击添加banner
             addBanner () {
-                // console.log(this.guiNos)
                 // console.log("添加banner");
 
                 this.upload_arg.fileList = [];  //清空上传img file
@@ -384,32 +435,9 @@
                 console.log("文件状态改变时的钩子");
 
                 //上传文件变化时将文件对象push进files数组
-                this.upload_arg.imgFile.push(file.raw);
-
-                // console.log(this.upload_arg.imgFile);
-
-                //上传图片
-                // this.addUpload();
+                this.upload_arg.fileFile.push(file.raw);
             },
-
-            // 获取img url
-            addUpload(){
-                // let formData = new FormData();
-                //
-                // formData.append('logoFile', this.upload_arg.imgFile[0]);
-                //
-                // let config = {
-                //     headers: {
-                //         'Content-Type': 'multipart/form-data'
-                //     }
-                // };
-                // getImgURI(formData, config).then(res => {
-                //     // console.log(res);
-                //
-                //     this.addBannerData.img = res.data.data.imgUrl;
-                // });
-            },
-            // 提交添加用户表单
+            // 提交添加banner表单
             addBannerSubmit (formName) {
                 // 点击提交开始加载loading
                 this.listLoading = true;
@@ -418,23 +446,69 @@
                 this.$refs[formName].validate((valid) => {
                     // 如果验证成功，请求接口数据
                     if (valid) {
-                        console.log(this.addBannerData);
+                        // console.log(this.addBannerData)
 
-                        addBanner(qs.stringify(this.addBannerData)).then(() => {
-                            /*this.$message({
+                        let formData = new FormData();;
+
+                        formData.append('file', this.upload_arg.fileFile[0]);
+                        // formData.append('guiNos', this.$route.params.guiNo);
+                        formData.append('guiNos', this.addBannerData.guiNos);
+                        formData.append('type', this.addBannerData.type);
+                        formData.append('content', this.addBannerData.content);
+                        // console.log(this.upload_arg.fileFile[0]);
+
+                        let config = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        };
+
+                        addBanner(formData, config).then(() => {
+                            this.$message({
                                 message: "添加成功！",
                                 type: "success"
                             });
 
-                            // 隐藏添加banner信息界面
-                            this.addBannerVisible = false;
-
-                            // 请求成功停止加载loading
                             this.listLoading = false;
 
-                            // 刷新列表数据
-                            this.getBannerList();*/
-                        }).catch({});
+                            this.addBannerVisible = false;
+
+                            this.getBannerList();
+                        });
+                    } else {  // 验证失败跳出
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+
+            /**
+             * api
+             * 轮播速度
+             */
+            setSpeed() {
+                console.log("点击轮播速度");
+            },
+            // 提交添加banner表单
+            setSpeedSubmit (formName) {
+                // 点击提交开始加载loading
+                this.listLoading = true;
+
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
+                        setSpeed(this.setSpeedData).then(() => {
+                            this.$message({
+                                message: "轮播速度设置成功！",
+                                type: "success"
+                            });
+
+                            this.setSpeedVisible = false;
+
+                            this.listLoading = false;
+                        });
+
                     } else {  // 验证失败跳出
                         console.log('error submit!!');
                         return false;
@@ -452,31 +526,9 @@
                 // console.log("文件状态改变时的钩子");
 
                 //上传文件变化时将文件对象push进files数组
-                this.upload_arg.imgFile.push(file.raw);
+                this.upload_arg.fileFile.push(file.raw);
 
-                // console.log(this.upload_arg.imgFile);
-
-                // 上传图片
-                this.updateUpload();
-            },
-
-            // 获取img url
-            updateUpload (){
-                let formData = new FormData();
-
-                formData.append('logoFile', this.upload_arg.imgFile[0]);
-
-                let config = {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                };
-                getImgURI(formData, config).then(res => {
-                    // console.log(res);
-
-                    this.updateBannerData.img = res.data.data.imgUrl;
-                    // console.log(this.updateBannerData.img);
-                });
+                // console.log(this.upload_arg.fileFile)
             },
             // 编辑banner(浅拷贝列表数据到表单)
             updateBanner (row) {
@@ -484,10 +536,7 @@
 
                 this.upload_arg.fileList = [];  // 清空上传img file
 
-                this.updateBannerData = Object.assign({}, row);
-
-                this.updateBanner.bannerId = this.updateBannerData.id
-                // console.log(this.updateBanner.bannerId);
+                this.updateBannerData.configureId = Object.assign({}, row).configure_id;
             },
 
             // 提交编辑banner表单
@@ -497,18 +546,32 @@
                 // 验证表单
                 this.$refs[formName].validate((valid) => {
                     if (valid) {  // 如果验证成功，请求接口数据
-                        updateBanner(qs.stringify(this.updateBannerData)).then(() => {
+                        let formData = new FormData();;
+
+                        formData.append('file', this.upload_arg.fileFile[0]);
+                        // formData.append('guiNos', this.$route.params.guiNo);
+                        formData.append('guiNo', this.updateBannerData.guiNo);
+                        formData.append('configureId', this.updateBannerData.configureId);
+                        // console.log(this.upload_arg.fileFile[0]);
+
+                        let config = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        };
+
+                        updateBanner(formData, config).then(() => {
                             this.$message({
                                 message: "编辑成功！",
                                 type: "success"
                             });
 
-                            this.updateBannerVisible = false;  //隐藏编辑banner界面
+                            this.listLoading = false;
 
-                            this.listLoading = false;  //请求成功停止加载loading
+                            this.updateBannerVisible = false;
 
-                            this.getBannerList();  //刷新列表数据
-                        }).catch({});
+                            this.getBannerList();
+                        });
                     } else {  //验证失败跳出
                         console.log('error submit!!');
                         return false;
@@ -520,12 +583,14 @@
              *  api
              *  删除banner
              */
-            // 单个兑换码删除
+            // 单个banner删除
             delBanner (row) {
+                // console.log(Object.assign({}, row).configure_id)
+
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    let id = Object.assign({}, row).id;
+                    let id = Object.assign({}, row).configure_id;
 
                     let params = {
                         id: id
@@ -533,7 +598,7 @@
 
                     // console.log(params);
 
-                    delBanner(qs.stringify(params)).then(() => {
+                    delCon(params).then(() => {
                         this.$message({
                             message: "删除成功！",
                             type: "success"

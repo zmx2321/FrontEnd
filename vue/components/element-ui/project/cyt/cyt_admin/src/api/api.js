@@ -81,6 +81,42 @@ export const addBanner = params => {
     });
 };
 
+// 轮播速度
+export const setSpeed = params => {
+    return  axios({
+        url: 'configure/setSpeed',
+        method: 'post',
+        params: params
+    });
+};
+
+// 修改banner
+export const updateBanner = params => {
+    return  axios({
+        url: 'configure/update',
+        method: 'post',
+        data: params
+    });
+};
+
+// 配置类型
+export const conType = params => {
+    return  axios({
+        url: 'configure/get',
+        method: 'get',
+        params: params
+    });
+};
+
+// 删除配置
+export const delCon = params => {
+    return  axios({
+        url: 'configure/del',
+        method: 'post',
+        params: params
+    });
+};
+
 
 /**
  * 柜口管理
