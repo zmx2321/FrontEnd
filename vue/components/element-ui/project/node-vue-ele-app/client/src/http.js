@@ -19,8 +19,12 @@ function endLoading() {    //使用Element loading-close 方法
 axios.interceptors.request.use(config => {
     // 加载
     startLoading()
-    if (localStorage.eleToken)
+
+    // 请求头
+    if (localStorage.eleToken) {
         config.headers.Authorization = localStorage.eleToken
+    }
+
     return config
 }, error => {
     return Promise.reject(error)
@@ -28,21 +32,25 @@ axios.interceptors.request.use(config => {
 
 // 响应拦截  401 token过期处理
 axios.interceptors.response.use(response => {
-    endLoading()
+    endLoading();
+
     return response
 }, error => {
     // 错误提醒
     endLoading()
+
     Message.error(error.response.data)
 
-    const { status } = error.response
+    const { status } = error.response;
+
     if (status == 401) {
-        Message.error('token值无效，请重新登录')
+        Message.error('token值无效，请重新登录');
+
         // 清除token
-        localStorage.removeItem('eleToken')
+        localStorage.removeItem('eleToken');
 
         // 页面跳转
-        router.push('/login')
+        router.push('/login');
     }
 
     return Promise.reject(error)

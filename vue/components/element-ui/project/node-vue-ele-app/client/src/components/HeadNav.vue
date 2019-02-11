@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import { Logout } from "../api/api"
-
 export default {
     name: "head-nav",
 
