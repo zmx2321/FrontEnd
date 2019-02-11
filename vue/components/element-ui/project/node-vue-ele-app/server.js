@@ -4,7 +4,7 @@
 
 // 引入node重要组件
 const express = require("express"),  // 引入express
-    cors = require('cors'),  // 跨域机制
+    // cors = require('cors'),  // 跨域机制
     mongoose = require("mongoose"),  // 引入mongoose（用来链接数据库）
     bodyParser = require('body-parser');  // 引入body-parser(中间件)
 
@@ -35,7 +35,7 @@ const app = express();
 
 
 //设置跨域访问
-app.use('*',function (req, res, next) {
+/*app.use('*',function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); //这个表示任意域名都可以访问，这样写不能携带cookie了。
     // res.header('Access-Control-Allow-Origin', 'http://10.10.8.100:5001'); //这样写，只有www.baidu.com 可以访问。
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
@@ -46,7 +46,7 @@ app.use('*',function (req, res, next) {
     else {
         next();
     }
-});
+});*/
 
 
 //db config

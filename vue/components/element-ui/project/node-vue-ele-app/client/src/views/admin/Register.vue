@@ -5,7 +5,7 @@
                 <span class="title">{{ mainData.title }}</span>
             </div>
 
-            <el-form :model="registerUser" :rules="rules" class="registerForm" ref="registerForm" label-width="80px">
+            <el-form :model="registerUser" :rules="rules" class="registerForm" @keyup.enter.native="registerForm('registerForm')" ref="registerForm" label-width="80px">
                 <el-form-item label="用户名" prop="name">
                     <el-input v-model="registerUser.name" placeholder="请输入用户名"></el-input>
                 </el-form-item>
@@ -107,9 +107,15 @@
                         console.log("fetch data success!!");
 
                         // 请求接口数据
-                        Register(qs.stringify(this.registerUser)).then(res => {
-                            console.log(res);
-                        }).catch({});
+                        Register(this.registerUser).then(() => {
+                                // 注册成功
+                                this.$message({
+                                    message: "账号注册成功！",
+                                    type: "success"
+                                });
+
+                                // this.$router.push("/login");
+                            });
 
                     } else {
                         console.log("error submit!!");

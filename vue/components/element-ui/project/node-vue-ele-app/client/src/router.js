@@ -12,6 +12,10 @@ import NotFound from './views/main/NotFound'
 import Login from './views/admin/Login'
 import Register from './views/admin/Register'
 
+// manager
+import InfoShow from './views/manager/InfoShow'
+import FoundList from './views/manager/FoundList'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -34,7 +38,8 @@ const router = new Router({
               { path: '', component: Home },
               { path: '/home', component: Home, name: 'home' },
 
-
+              { path: '/infoshow', name: 'infoshow', component: InfoShow },
+              { path: '/foundlist', name: 'foundlist', component: FoundList }
           ]
       },
       // 登陆页面
@@ -43,7 +48,7 @@ const router = new Router({
           name: 'login',
           component: Login
       },
-      // 修改密码
+      // 注册页面
       {
           path: '/register',
           name: 'register',
@@ -59,13 +64,13 @@ const router = new Router({
 });
 
 // 添加路由守卫
-/*router.beforeEach((to, from, next) => {
-    const isLogin = localStorage.code == md5("0") ? true : false;
-    if (to.path == "/login" || to.path == '/register') {
+router.beforeEach((to, from, next) => {
+    const isLogin = localStorage.eleToken ? true : false;
+    if (to.path == "/login" || to.path == "/register") {
         next();
     } else {
-        // isLogin ? next() : next("/login");
+        isLogin ? next() : next("/login");
     }
-});*/
+});
 
 export default router;

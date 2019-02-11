@@ -33,7 +33,7 @@
         methods: {
             test: () => {
                 Test().then(res => {
-                    console.log(res);
+                    // console.log(res);
                 }).catch(({}));
             }
         },

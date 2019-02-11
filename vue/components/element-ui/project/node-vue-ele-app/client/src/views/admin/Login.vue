@@ -4,23 +4,30 @@
             <div class="manage_tip">
                 <span class="title">{{ mainData.title }}</span>
             </div>
-            <el-form :model="loginUser" @keyup.enter.native="submitForm('loginForm')" status-icon :rules="rules" ref="loginForm" class="loginForm" label-width="80px">
-                <el-form-item label="用户名" prop="username">
-                    <el-input v-model="loginUser.username" placeholder="请输入用户名" clearable></el-input>
+            <el-form :model="loginUser" :rules="rules" ref="loginForm" class="loginForm" @keyup.enter.native="submitForm('loginForm')" label-width="60px">
+                <el-form-item label="邮箱" prop="email">
+                    <el-input v-model="loginUser.email" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input autocomplete="new-password" type="password" v-model="loginUser.password" placeholder="请输入密码" clearable></el-input>
+                    <el-input v-model="loginUser.password" placeholder="请输入密码" type="password"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登  录</el-button>
+                    <el-button type="primary"  @click="submitForm('loginForm')" class="submit_btn">登  录</el-button>
                 </el-form-item>
+                <div class="tiparea">
+                    <p>还没有账号？现在<router-link to='/register'>注册</router-link></p>
+                </div>
             </el-form>
         </section>
     </div>
 </template>
 
 <script>
-    import { Login } from "../../api/api"
+    import {
+        Login,  // 登录
+    } from "../../api/api"
+
+    import jwt_decode from "jwt-decode";
 
     export default {
         name: "login",
@@ -32,17 +39,21 @@
                 },
 
                 loginUser: {
-                    username: "admin",
-                    password: "admin"
+                    email: "aa@aa.com",
+                    password: "aaaaaa"
                 },
                 rules: {
-                    username: [
-                        { required: true, message: "用户名不能为空", trigger: "blur" },
-                        { min: 2, max: 30, message: "长度在 2 到 30 个字符", trigger: "blur" }
+                    email: [
+                        {
+                            type: "email",
+                            required: true,
+                            message: "邮箱格式不正确",
+                            trigger: "change"
+                        }
                     ],
                     password: [
                         { required: true, message: "密码不能为空", trigger: "blur" },
-                        { min: 5, message: "长度不小于 5 个字符", trigger: "blur" }
+                        { min: 6, max: 30, message: "长度在 6 到 30 个字符", trigger: "blur" }
                     ]
                 }
             };
@@ -53,31 +64,29 @@
             submitForm(formName) {
                 this.$refs[formName].validate(valid => {
                     if (valid) {
-                        //验证通过，密码进行md5加密
-                        this.loginUser.password = this.md5(this.loginUser.password);
+                        Login(this.loginUser).then(res => {
+                            // console.log(res);
 
-                        Login(qs.stringify(this.loginUser)).then(res => {
-                            // console.log(res.data.data.isSuperAdmin);
-                            // console.log(res.data);
+                            // 登录成功
+                            this.$message({
+                                message: "登录成功！",
+                                type: "success"
+                            });
 
-                            if (res.data.code == 1){
-                                this.$message({
-                                    message: "用户名或密码错误",
-                                    type: "error"
-                                });
-                            } else {
-                                // 登陆状态记录
-                                localStorage.setItem('code', this.md5((res.data.code).toString()));
+                            const { token } = res.data;
+                            localStorage.setItem("eleToken", token);
 
-                                this.$message({
-                                    message: "登录成功！",
-                                    type: "success"
-                                });
+                            // 解析token
+                            const decode = jwt_decode(token);
 
-                                this.$router.push("/index");
-                            }
-                        }).catch(err => {
-                            console.log(err);
+                            // console.log(decode);
+
+                            // 存储数据
+                            // this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
+                            // this.$store.dispatch("setUser", decode);
+
+                            // 页面跳转
+                            this.$router.push("/index");
                         });
                     } else {
                         console.log("error submit!!");
@@ -130,6 +139,11 @@
         width: 100%;
     }
 
+    .tiparea {
+        text-align: right;
+        font-size: 12px;
+        color: #333;
+    }
     .tiparea p a {
         color: #409eff;
     }

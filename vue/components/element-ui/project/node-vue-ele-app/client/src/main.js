@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import axios from 'axios';  //请求文件
+import axios from './http';  //请求文件
 
 import ElementUI from 'element-ui'  // 引入element-ui
 import 'element-ui/lib/theme-chalk/index.css'

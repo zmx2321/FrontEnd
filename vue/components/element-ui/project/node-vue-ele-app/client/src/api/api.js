@@ -2,7 +2,7 @@
  *  用以请求接口数据
  */
 
-import axios from './axios'
+import axios from '../http'
 
 /**
  * common
@@ -10,7 +10,7 @@ import axios from './axios'
 // 测试
 export const Test = () => {
     return  axios({
-        url: 'users/test',
+        url: 'api/users/test',
         method: 'get',
     });
 };
@@ -22,20 +22,17 @@ export const Test = () => {
 // 注册
 export const Register = params => {
     return  axios({
-        url: 'users/register',
+        url: 'api/users/register',
         method: 'post',
         data: params,
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
     });
 };
 
 // 登录
-// export const Login = params => {
-//     return  axios({
-//         url: 'account/login',
-//         method: 'post',
-//         data: params
-//     });
-// };
+export const Login = params => {
+    return  axios({
+        url: 'api/users/login',
+        method: 'post',
+        data: params
+    });
+};

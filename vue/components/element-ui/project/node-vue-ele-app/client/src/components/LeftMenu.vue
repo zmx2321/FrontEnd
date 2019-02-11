@@ -11,62 +11,6 @@
                         </el-menu-item>
                     </router-link>
 
-                     <!-- 员工账号管理 -->
-                     <router-link to="/account">
-                         <el-menu-item index="1">
-                             <i class="fa fa-address-book"></i>
-                             <span slot="title">员工账号管理</span>
-                         </el-menu-item>
-                     </router-link>
-
-                    <!-- 用户管理 -->
-                    <router-link to="/user">
-                        <el-menu-item index="2">
-                            <i class="fa fa-user"></i>
-                            <span slot="title">用户管理</span>
-                        </el-menu-item>
-                    </router-link>
-
-                    <!-- banner管理 -->
-                    <router-link to="/banner">
-                        <el-menu-item index="3">
-                            <i class="fa fa-map-signs"></i>
-                            <span slot="title">banner管理</span>
-                        </el-menu-item>
-                    </router-link>
-
-                     <!-- 兑换码管理 -->
-                    <router-link to="/redeem_code">
-                        <el-menu-item index="4">
-                            <i class="fa fa-money"></i>
-                            <span slot="title">兑换码管理</span>
-                        </el-menu-item>
-                    </router-link>
-
-                    <!-- 订单管理 -->
-                    <router-link to="/order">
-                        <el-menu-item index="5">
-                            <i class="fa fa-cc-amex"></i>
-                            <span slot="title">订单管理</span>
-                        </el-menu-item>
-                    </router-link>
-
-                    <!-- 商品管理 -->
-                    <router-link to="/product">
-                        <el-menu-item index="6">
-                            <i class="fa fa-google-wallet"></i>
-                            <span slot="title">商品管理</span>
-                        </el-menu-item>
-                    </router-link>
-
-                     <!-- 数据统计 -->
-                     <router-link to="/statistics">
-                         <el-menu-item index="7">
-                             <i class="fa fa-pie-chart"></i>
-                             <span slot="title">数据统计</span>
-                         </el-menu-item>
-                     </router-link>
-
                      <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
@@ -96,14 +40,18 @@ export default {
     data() {
         return {
             items: [
-                // {
-                //     icon: "fa fa-paragraph",
-                //     name: "个人信息",
-                //     path: "infoshow",
-                //     children: [
-                //         { path: "/infoshow", name: "个人信息" },
-                //     ]
-                // }
+                {
+                    icon: "fa-money",
+                    name: "资金管理",
+                    path: "fund",
+                    children: [{ path: "foundlist", name: "资金流水" }]
+                },
+                {
+                    icon: "fa-asterisk",
+                    name: "信息管理",
+                    path: "info",
+                    children: [{ path: "infoshow", name: "个人信息" }]
+                }
             ]
         };
     },
@@ -116,27 +64,6 @@ export default {
             switch (pathName) {
                 case "index":
                     return "0";
-                    break;
-                case "account":
-                    return "1";
-                    break;
-                case "user":
-                    return "2";
-                    break;
-                case "banner":
-                    return "3";
-                    break;
-                case "redeem_code":
-                    return "4";
-                    break;
-                case "order":
-                    return "5";
-                    break;
-                case "product":
-                    return "6";
-                    break;
-                case "statistics":
-                    return "7";
                     break;
             }
         },
