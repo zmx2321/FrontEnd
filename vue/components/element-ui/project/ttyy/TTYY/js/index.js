@@ -81,6 +81,8 @@ let btnEvent = {
             // loadData.ios();  // ios数据加载
             $('.m-modal').fadeIn(300);
             $('.ios_box').slideDown(500);
+
+            swiper_setp();  // swiper
         });
     },
     // android按钮事件
@@ -122,7 +124,6 @@ $(window).resize(function() {
 // dom加载完执行
 window.onload = () => {
     util.rootFont();  // 改变根元素font-size
-    swiper_setp();  // swiper
 };
 
 // dom加载时执行
