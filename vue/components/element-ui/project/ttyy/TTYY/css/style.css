@@ -32,7 +32,7 @@ img{width: 100%; height: 100%}
  /* 清除浮动 */
 .f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
 /* li平均分布 */
-.f-ibj{width: 100%;display: -webkit-inline-box;-webkit-box-pack: justify;}
+.f-ibj{width: 100%;-webkit-box-pack: justify;}
 /* inline-block */
 .f-ib li{display:inline-block;*display:inline;*zoom:1;}
 /* 浮动 */
@@ -83,6 +83,6 @@ img{width: 100%; height: 100%}
  /* 总内容区域 */
 .g-box{width: 1024px;min-height: 200px;margin: 0 auto;}
 /* 模态框 */
-.m-modal{position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.8);z-index: 9999;}
+.m-modal{position: fixed;left: 0px;top: 0px;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.8);z-index: 9999;display: none}
 
 

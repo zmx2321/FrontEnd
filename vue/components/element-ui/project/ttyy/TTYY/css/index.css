@@ -86,6 +86,84 @@
     height: auto;
 }
 
+/* m-modal */
+.ios_box{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.ios_auto{
+    padding: 0.2rem 0.24rem;
+    height: calc(100vh - 0.4rem);
+}
+
+.ios_auto .close{
+    width: 0.3rem;
+    height: 0.3rem;
+    position: absolute;
+    right: 9px;
+    top: 9px;
+}
+
+.setp_container{
+    margin-top: 0.8rem;
+    height: calc(100% - 0.8rem);
+}
+
+.setp_wrapper .setp{
+    width: 100%;
+}
+
+.step_arr {
+    width: 0.35rem;
+    height: 0.35rem;
+    background-size: 100%;
+}
+
+.setp article {
+    height: 100%;
+}
+
+.setp section.setp_img{
+}
+
+.setp section.setp_txt{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1.4rem;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.setp_txt ul{
+    width: 95%;
+    margin: 0.18rem auto 0;
+}
+
+.setp_txt li{
+    margin-left: 0.2rem;
+    margin-top: 2px;
+    color: #d2d2d2;
+}
+
+.setp_txt li b{
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.step_next {
+    background-image: url("../images/arr_next.png");
+}
+
+.step_prev{
+    background-image: url("../images/arr_prev.png");
+}
+
 /*== 移动端 ==*/
 .container{
     

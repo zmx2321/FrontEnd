@@ -9,41 +9,6 @@ util = {
     // url: "http://10.10.10.238:8089/",
     url: "http://hh55.ge75g.cn/",
 
-    // 判断横竖屏
-    detectOrient: () => {
-        let width = document.documentElement.clientWidth,
-            height = document.documentElement.clientHeight;
-
-        // 竖屏
-        if(width <= height) {
-            /*if (width > 320) {
-                width = 320;
-            }
-
-            if(width > 750){
-                width = 750;
-            }*/
-        }
-        /*if(width <= height) {//竖屏
-            if ( 320 > width ) {
-                width = 320;
-            }
-            if(width > 750){
-                width = 750;
-            }
-            document.getElementsByTagName("html")[0].style.fontSize = width/7.5 + "px";
-            return false;
-        } else{//横屏
-            if ( height > width ) {
-                height = 320;
-            }
-            if(height > 750){
-                height = 750;
-            }
-            document.getElementsByTagName("html")[0].style.fontSize = height/7.5 + "px";
-            return false;*/
-    },
-
     // 改变根元素font-size
     rootFont: () => {
         let c_width = document.documentElement.clientWidth;
@@ -90,12 +55,22 @@ let loadData = {
 
     // android数据加载
     android: () => {
-        // let url = "http://app.ge75g.cn/app/app-release.zip";
-        // let url = "http://10.10.10.238:8089/downloadText";
         let url = util.url + "download/pdf";
 
         javascrtpt:window.location.href = url;
     }
+}
+
+// swiper
+let swiper_setp = () => {
+    let swiper_setp = new Swiper('.setp_container', {
+        navigation: {
+            nextEl: '.step_next',
+            prevEl: '.step_prev',
+        },
+    });
+
+    swiper_setp.slideTo(0, 1000, false);
 }
 
 // 按钮事件
@@ -103,7 +78,9 @@ let btnEvent = {
     // ios按钮事件
     ios: () => {
         $(".iosbtn").click(() => {
-            loadData.ios();  // ios数据加载
+            // loadData.ios();  // ios数据加载
+            $('.m-modal').fadeIn(300);
+            $('.ios_box').slideDown(500);
         });
     },
     // android按钮事件
@@ -114,13 +91,27 @@ let btnEvent = {
         $(".andrbtn").click(() => {
             loadData.android();  // android数据加载
         });
+    },
+}
+
+// 关闭弹窗
+let close = {
+    ios_box: () => {
+        $('.ios_box .close').click(() => {
+            $('.ios_box').slideUp(300);
+            $('.m-modal').fadeOut(500);
+        });
     }
 }
 
 // 点击按钮
 let pressBtn = () => {
+    // 点击按钮
     btnEvent.ios();  // 点击ios按钮
     btnEvent.android();  // 点击android按钮
+
+    // 关闭弹窗
+    close.ios_box();  // 关闭ios弹窗
 }
 
 // 窗口改变时执行
@@ -131,6 +122,7 @@ $(window).resize(function() {
 // dom加载完执行
 window.onload = () => {
     util.rootFont();  // 改变根元素font-size
+    swiper_setp();  // swiper
 };
 
 // dom加载时执行
