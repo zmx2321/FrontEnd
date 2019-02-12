@@ -36,3 +36,11 @@ export const Login = params => {
         data: params
     });
 };
+
+// 资金管理列表
+export const getProfile = () => {
+    return  axios({
+        url: 'api/profiles',
+        method: 'get',
+    });
+};

@@ -39,8 +39,8 @@
                 },
 
                 loginUser: {
-                    email: "aa@aa.com",
-                    password: "aaaaaa"
+                    email: "zmx2321@gmail.com",
+                    password: "123456"
                 },
                 rules: {
                     email: [

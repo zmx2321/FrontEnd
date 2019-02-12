@@ -11,7 +11,7 @@
                         </el-menu-item>
                     </router-link>
 
-                     <!-- 二级菜单 -->
+                    <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
                             <template slot="title">
@@ -27,6 +27,14 @@
                             </router-link>
                         </el-submenu>
                     </template>
+
+                     <!-- 信息管理 -->
+                     <!--<router-link to="/infoshow">
+                         <el-menu-item index="1">
+                             <i class="fa fa-asterisk"></i>
+                             <span slot="title">信息管理</span>
+                         </el-menu-item>
+                     </router-link>-->
                  </el-menu>
              </el-col>
         </el-row>
@@ -46,12 +54,12 @@ export default {
                     path: "fund",
                     children: [{ path: "foundlist", name: "资金流水" }]
                 },
-                {
+                /*{
                     icon: "fa-asterisk",
                     name: "信息管理",
                     path: "info",
                     children: [{ path: "infoshow", name: "个人信息" }]
-                }
+                }*/
             ]
         };
     },
@@ -65,6 +73,9 @@ export default {
                 case "index":
                     return "0";
                     break;
+                /*case "infoshow":
+                    return "1";
+                    break;*/
             }
         },
     },

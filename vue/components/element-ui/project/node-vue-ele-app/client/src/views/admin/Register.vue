@@ -114,7 +114,7 @@
                                     type: "success"
                                 });
 
-                                // this.$router.push("/login");
+                                this.$router.push("/login");
                             });
 
                     } else {
