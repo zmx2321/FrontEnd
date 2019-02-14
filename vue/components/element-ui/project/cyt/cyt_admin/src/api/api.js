@@ -21,6 +21,26 @@ export const Login = params => {
     });
 };
 
+// 修改密码
+export const ModifyPassword = params => {
+    return  axios({
+        url: 'admin/updatePassword',
+        method: 'post',
+        params: params
+    });
+};
+
+/**
+ * 管理员管理
+ */
+export const getAdminList = params => {
+    return  axios({
+        url: 'admin/info/all',
+        method: 'post',
+        data: params
+    });
+};
+
 /**
  * 设备管理
  */
@@ -61,10 +81,10 @@ export const getDevice = params => {
 
 
 /**
- * banner 管理
+ * 配置管理
  */
-// 获取banner列表
-export const findBannerList = params => {
+// 获取配置列表
+export const findConfigureList = params => {
     return  axios({
         url: 'configure/all',
         method: 'post',
@@ -73,7 +93,7 @@ export const findBannerList = params => {
 };
 
 // 添加banner
-export const addBanner = params => {
+export const addConfigure = params => {
     return  axios({
         url: 'configure/add',
         method: 'post',
@@ -90,8 +110,8 @@ export const setSpeed = params => {
     });
 };
 
-// 修改banner
-export const updateBanner = params => {
+// 修改配置
+export const updateConfigure = params => {
     return  axios({
         url: 'configure/update',
         method: 'post',
@@ -119,9 +139,9 @@ export const delCon = params => {
 
 
 /**
- * 柜口管理
+ * 格口管理
  */
-//获取柜口信息
+//获取格口信息
 // export const getCabinetList = params => { return  axios.post(`${base}/getBoxInfos`, params) };
 export const getCabinetList = params => {
     return  axios({
@@ -131,7 +151,7 @@ export const getCabinetList = params => {
     });
 };
 
-//开启柜口
+//开启格口
 // export const openBoxNo = params => { return  axios.post(`${base}/openBoxNo`, params) };
 export const openBoxNo = params => {
     return  axios({
@@ -141,7 +161,7 @@ export const openBoxNo = params => {
     });
 };
 
-//开启所有柜口
+//开启所有格口
 // export const openBoxAll = params => { return  axios.post(`${base}/openBoxAll`, params) };
 export const openBoxAll = params => {
     return  axios({
@@ -151,7 +171,7 @@ export const openBoxAll = params => {
     });
 };
 
-//查看设备柜口状态
+//查看设备格口状态
 // export const getBoxStatus = params => { return  axios.post(`${base}/getBoxStatus`, params) };
 export const getBoxStatus = params => {
     return  axios({
@@ -164,8 +184,7 @@ export const getBoxStatus = params => {
 /**
  * 记录管理
  */
-//获取记录信息
-// export const getRecordInfo = params => { return  axios.post(`${base}/getPackageList`, params); };
+// 获取记录信息
 export const getRecordInfo = params => {
     return  axios({
         url: 'admin/getPackageList',
@@ -174,11 +193,19 @@ export const getRecordInfo = params => {
     });
 };
 
+// 记录数据下载
+export const downloadPackageList = params => {
+    return  axios({
+        url: 'admin/downloadPackageList',
+        method: 'get',
+        params: params
+    });
+};
+
 /**
  * 用户管理
  */
-//获取用户信息
-// export const geUserList = params => { return  axios.post(`${base}/getUserList`, params); };
+// 获取用户信息
 export const geUserList = params => {
     return  axios({
         url: 'admin/getUserList',
@@ -187,15 +214,41 @@ export const geUserList = params => {
     });
 };
 
+// 用户数据下载
+export const downloadUserList = params => {
+    return  axios({
+        url: 'admin/downloadUserList',
+        method: 'get',
+        params: params
+    });
+};
+
 /**
  * 骑手管理
  */
-//获取骑手信息
-// export const getRiderList = params => { return  axios.post(`${base}/getPostmanList`, params); };
+// 获取骑手信息
 export const getRiderList = params => {
     return  axios({
         url: 'admin/getPostmanList',
         method: 'post',
         data: params
+    });
+};
+
+// 解封/封禁
+export const setDisable = params => {
+    return  axios({
+        url: 'admin/disable',
+        method: 'post',
+        params: params
+    });
+};
+
+// 骑手数据下载
+export const downloadPostmanList = params => {
+    return  axios({
+        url: 'admin/downloadPostmanList',
+        method: 'get',
+        params: params
     });
 };

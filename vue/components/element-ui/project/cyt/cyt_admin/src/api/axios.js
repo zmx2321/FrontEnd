@@ -3,8 +3,8 @@ import { Message } from 'element-ui'
 
 import router from '../router'
 
-const root = 'http://10.10.10.199:8080/';
-// const root = 'http://postapi.lxstation.com/';
+// const root = 'http://10.10.10.199:8080/';
+const root = 'http://postapi.lxstation.com/';
 
 const Axios = axios.create({
     baseURL: root, // api
@@ -34,7 +34,7 @@ Axios.interceptors.response.use(response => {
     // console.log(code);
 
     // 如果响应请求未登录，则返回登录页面
-    if (code === -1){
+    if (code === 2){
         router.push('/login')
     }
 

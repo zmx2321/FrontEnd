@@ -6,13 +6,13 @@
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
-                            <el-input v-model="cabinet_arg.boxNo" placeholder="请输入单个特定柜口ID" clearable></el-input>
+                            <el-input v-model="cabinet_arg.boxNo" placeholder="请输入单个特定格口ID" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="openSpecificCabinets">开启</el-button>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="openAllCabinet">一键开启所有柜口</el-button>
+                            <el-button type="primary" @click="openAllCabinet">一键开启所有格口</el-button>
                         </el-form-item>
                     </el-col>
                 </el-col>
@@ -22,7 +22,7 @@
                             <el-input placeholder="请输入设备编号" v-model="cabinet_arg.guiNo" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-button type="primary" @click="searchDevCab">查询设备所属柜口</el-button>
+                            <el-button type="primary" @click="searchDevCab">查询设备所属格口</el-button>
                         </el-form-item>
                     </el-col>
                 </el-col>
@@ -30,18 +30,18 @@
         </el-row>
 
         <el-row>
-            <!-- 柜口列表 -->
+            <!-- 格口列表 -->
             <el-table class="cabinet_list centertab" :data="cabinet_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
                 <el-table-column type="selection" width="55"></el-table-column>
                 <el-table-column type="index" width="60"></el-table-column>
-                <el-table-column prop="boxNo" label="柜口编号"></el-table-column>
-                <el-table-column prop="status" label="柜口状态"></el-table-column>
+                <el-table-column prop="boxNo" label="格口编号"></el-table-column>
+                <el-table-column prop="status" label="格口状态"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="300">
                     <template slot-scope="scope">
                         <el-button @click="openCabinet(scope.row)" type="text" size="small">开启</el-button>
-                        <el-button @click="viewDeviceCabinetStatus" v-on:click="viewDeviceCabinetStatusVisible = true" type="text" size="small">查看设备柜口状态</el-button>
-                        <!--<el-button @click="delCabinet" type="text" size="small">删除柜口</el-button>-->
+                        <el-button @click="viewDeviceCabinetStatus" v-on:click="viewDeviceCabinetStatusVisible = true" type="text" size="small">查看设备格口状态</el-button>
+                        <!--<el-button @click="delCabinet" type="text" size="small">删除格口</el-button>-->
                     </template>
                 </el-table-column>
             </el-table>
@@ -51,8 +51,8 @@
             <!--</el-col>-->
         </el-row>
 
-        <!-- 查看设备柜口状态 -->
-        <el-dialog title="查看设备柜口状态" :close-on-click-modal="true" :visible.sync="viewDeviceCabinetStatusVisible">
+        <!-- 查看设备格口状态 -->
+        <el-dialog title="查看设备格口状态" :close-on-click-modal="true" :visible.sync="viewDeviceCabinetStatusVisible">
             <!--{{ boxStatusInfo }}-->
             {{ boxStatusInfo.code }}
             {{ boxStatusInfo.msg }}
@@ -74,10 +74,10 @@
 
 <script>
     import {
-        getCabinetList, //获取柜口信息
-        openBoxNo,  //开启柜口
-        openBoxAll,  //开启所有柜口
-        getBoxStatus,  //查看设备柜口状态
+        getCabinetList, //获取格口信息
+        openBoxNo,  //开启格口
+        openBoxAll,  //开启所有格口
+        getBoxStatus,  //查看设备格口状态
     } from '../../../api/api.js';
 
     export default {
@@ -93,26 +93,26 @@
                 sels: [],  //列表选中列
 
                 /**
-                 * 柜口列表
+                 * 格口列表
                  */
-                cabinet_info: [],  //存放柜口信息列表数据
-                //柜口参数
+                cabinet_info: [],  //存放格口信息列表数据
+                //格口参数
                 cabinet_arg: {
                     // guiNo: undefined ? "TA104" : this.$route.params.guiNo,
                     guiNo: this.$route.params.guiNo,  //柜端编号（this.$route.params.guiNo;）
-                    boxNo: "",  //柜口编号
+                    boxNo: "",  //格口编号
                 },
-                //柜口状态信息
+                //格口状态信息
                 boxStatusInfo: [],
 
                 /**
                  *  弹出表单界面
                  */
-                viewDeviceCabinetStatusVisible: false,  //查看设备柜口状态
+                viewDeviceCabinetStatusVisible: false,  //查看设备格口状态
 
                 rules: {
                     boxNo: [
-                        { required: true, message: "柜口编号不能为空", trigger: "blur" },
+                        { required: true, message: "格口编号不能为空", trigger: "blur" },
                     ]
                 }
             }
@@ -141,20 +141,29 @@
             /**
              * api
              */
-            //获取柜口信息
+            //获取格口信息
             getCabinetList(){
-                if (this.cabinet_arg.guiNo === undefined) {
+                /*if (this.cabinet_arg.guiNo === undefined) {
                     this.cabinet_arg.guiNo = "180921002";
-                }
+                }*/
 
                 let para = {
                     guiNo: this.cabinet_arg.guiNo
                 };
                 getCabinetList(qs.stringify(para)).then(res => {
+                    if (!res.data.data){
+                        this.$message({
+                            message: "查不到格口编号，请在设备管理列表中选择具体设备查看格口状态！",
+                            type: "warning"
+                        });
+
+                        this.$router.push("device_manage");
+                    }
+
                     this.cabinet_info = res.data.data;
                 }).catch({});
             },
-            //开启单个柜口
+            //开启单个格口
             openSpecificCabinets () {
                 this.listLoading = true;  //加载loading
 
@@ -167,12 +176,12 @@
 
                     //成功提示
                     this.$message({
-                        message: para.guiNo + "设备" + para.boxNo + "柜口" + "  开启成功",
+                        message: para.guiNo + "设备" + para.boxNo + "格口" + "  开启成功",
                         type: 'success'
                     });
                 }).catch({});
             },
-            //开启柜口
+            //开启格口
             openCabinet (row) {
                 this.listLoading = true;  //加载loading
 
@@ -183,7 +192,7 @@
                 openBoxNo(qs.stringify(para)).then(() => {
                     this.listLoading = false;  //停止加载loading
 
-                    //获取当前记录柜口编号
+                    //获取当前记录格口编号
                     let boxNo = Object.assign({}, row).boxNo;
 
                     //成功提示
@@ -193,7 +202,7 @@
                     });
                 }).catch({});
             },
-            //一键开启所有柜口
+            //一键开启所有格口
             openAllCabinet () {
                 this.listLoading = true;  //加载loading
 
@@ -210,9 +219,9 @@
                     this.listLoading = false;  //停止加载loading
                 }).catch({});
             },
-            //查询设备所属柜口
+            //查询设备所属格口
             searchDevCab () {
-                console.log("查询设备所属柜口");
+                console.log("查询设备所属格口");
                 let para = {
                     guiNo: this.cabinet_arg.guiNo
                 };
@@ -220,7 +229,7 @@
                     this.cabinet_info = res.data.data;
                 }).catch({});
             },
-            //查看设备柜口状态
+            //查看设备格口状态
             viewDeviceCabinetStatus () {
                 this.listLoading = true;  //加载loading
 
@@ -237,22 +246,22 @@
                     this.listLoading = false;  //停止加载loading
                 }).catch({});
             },
-            //删除柜口
+            //删除格口
             delCabinet () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    console.log("删除柜口");
+                    console.log("删除格口");
                 }).catch(() => {
 
                 });
             },
-            //批量删除柜口
+            //批量删除格口
             cabinetBatchRemove: function () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    console.log("柜口批量删除");
+                    console.log("格口批量删除");
                 }).catch(() => {
 
                 });

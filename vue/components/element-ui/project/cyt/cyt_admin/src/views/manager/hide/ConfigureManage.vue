@@ -6,7 +6,7 @@
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item label="筛选" class="intxt">
-                            <el-select v-model="bannerType" placeholder="请选择配置类型" @change="currentSel">
+                            <el-select v-model="ConfigureType" placeholder="请选择配置类型" @change="currentSel">
                                 <el-option label="存件语音" value="1"></el-option>
                                 <el-option label="取件语音" value="2"></el-option>
                                 <el-option label="取件成功语音" value="3"></el-option>
@@ -19,7 +19,7 @@
                         </el-form-item>
 
                         <el-form-item>
-                            <el-button type="primary" @click="addBanner" v-on:click="addBannerVisible = true">添加banner</el-button>
+                            <el-button type="primary" @click="addConfigure" v-on:click="addConfigureVisible = true">添加配置</el-button>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="setSpeed" v-on:click="setSpeedVisible = true">轮播速度</el-button>
@@ -29,17 +29,17 @@
             </el-form>
         </el-row>
 
-        <!-- banner列表 -->
+        <!-- 配置列表 -->
         <el-row>
-            <el-table class="banner_list" :data="banner_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 242px)">
+            <el-table class="configure_list" :data="configure_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 242px)">
                 <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
-                <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
-                <!--<el-table-column prop="id" label="banner_id" width="100" align="center"></el-table-column>-->
+                <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
+                <!--<el-table-column prop="id" label="configure_id" width="100" align="center"></el-table-column>-->
 
                 <el-table-column label="文件" width="100" align="center">
                     <template slot-scope="scope">
-            		<img :src="scope.row.path" class="tabimg" />
-            	</template>
+                   <img :src="scope.row.path" class="tabimg" />
+               </template>
                 </el-table-column>
 
                 <el-table-column label="类型" width="130" align="center" :formatter="formatType"></el-table-column>
@@ -51,31 +51,18 @@
 
                 <el-table-column fixed="right" label="操作" width="100">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small" @click="updateBanner(scope.row)" v-on:click="updateBannerVisible = true">编辑</el-button>
-                        <el-button type="text" size="small" @click="delBanner(scope.row)">删除</el-button>
+                        <el-button type="text" size="small" @click="updateConfigure(scope.row)" v-on:click="updateConfigureVisible = true">编辑</el-button>
+                        <el-button type="text" size="small" @click="delConfigure(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
-
-            <!-- 分页 -->
-            <!--<el-col :span="24" class="toolbar f-cb">
-                <el-pagination class="f-fr pagination"
-                               :current-page.sync='page_arg.page_index'
-                               :page-sizes="page_arg.page_sizes"
-                               :page-size="page_arg.page_size"
-                               :layout="page_arg.layout"
-                               :total="page_arg.total"
-                               @current-change='handleCurrentChange'
-                               @size-change='handleSizeChange'>
-                </el-pagination>
-            </el-col>-->
         </el-row>
 
-        <!-- 添加banner -->
-        <el-dialog title="添加banner" @keyup.enter.native="addBannerSubmit('addBannerForm')" :close-on-click-modal="false" :visible.sync="addBannerVisible" :before-close="handleClose">
-            <el-form :model="addBannerData" status-icon :rules="addBannerRules" ref="addBannerForm" label-width="120px">
+        <!-- 添加配置 -->
+        <el-dialog title="添加配置" @keyup.enter.native="addConfigureSubmit('addConfigureForm')" :close-on-click-modal="false" :visible.sync="addConfigureVisible" :before-close="handleClose">
+            <el-form :model="addConfigureData" status-icon :rules="addConfigureRules" ref="addConfigureForm" label-width="120px">
                 <el-form-item label="柜号" prop="guiNos">
-                    <el-input v-model="addBannerData.guiNos" disabled></el-input>
+                    <el-input v-model="addConfigureData.guiNos" disabled></el-input>
                 </el-form-item>
 
                 <el-form-item label="上传文件">
@@ -92,27 +79,26 @@
                     </el-upload>
                 </el-form-item>
 
-                <el-form-item label="banner类型" prop="type">
-                    <el-input v-model="addBannerData.type" placeholder="请输入banner类型" clearable></el-input>
-                    <ul class="tip">
-                        <li>1 存件语音</li>
-                        <li>2 取件语音</li>
-                        <li>3 取件成功语音</li>
-                        <li>4 banner</li>
-                        <li>5 锁屏广告</li>
-                        <li>6 存件页面底图</li>
-                        <li>7 取件页面底图</li>
-                        <li>8 广告视频</li>
-                    </ul>
+                <el-form-item label="配置类型" class="intxt">
+                    <el-select v-model="addConfigureData.type" placeholder="请选择配置类型">
+                        <el-option label="存件语音" value="1"></el-option>
+                        <el-option label="取件语音" value="2"></el-option>
+                        <el-option label="取件成功语音" value="3"></el-option>
+                        <el-option label="banner" value="4"></el-option>
+                        <el-option label="锁屏广告" value="5"></el-option>
+                        <el-option label="存件页面底图" value="6"></el-option>
+                        <el-option label="取件页面底图" value="7"></el-option>
+                        <el-option label="广告视频" value="8"></el-option>
+                    </el-select>
                 </el-form-item>
 
                 <el-form-item label="说明" prop="content">
-                    <el-input type="textarea" v-model="addBannerData.content" placeholder="请输入banner说明" clearable></el-input>
+                    <el-input type="textarea" v-model="addConfigureData.content" placeholder="请输入配置说明" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" @click="addBannerSubmit('addBannerForm')">提交</el-button>
-                    <el-button @click="resetForm('addBannerForm')">重置</el-button>
+                    <el-button type="primary" @click="addConfigureSubmit('addConfigureForm')">提交</el-button>
+                    <el-button @click="resetForm('addConfigureForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -125,7 +111,7 @@
                 </el-form-item>
 
                 <el-form-item label="速度数值(秒)" prop="speed">
-                    <el-input v-model="setSpeedData.speed" placeholder="请输入banner说明" clearable></el-input>
+                    <el-input v-model="setSpeedData.speed" placeholder="请输入速度数值" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -135,15 +121,15 @@
             </el-form>
         </el-dialog>
 
-        <!-- 编辑banner -->
-        <el-dialog title="编辑banner" @keyup.enter.native="updateBannerSubmit('updateBannerForm')" :close-on-click-modal="false" :visible.sync="updateBannerVisible" :before-close="handleClose">
-            <el-form :model="updateBannerData" status-icon ref="updateBannerForm" label-width="110px">
+        <!-- 编辑配置 -->
+        <el-dialog title="编辑配置" @keyup.enter.native="updateConfigureSubmit('updateConfigureForm')" :close-on-click-modal="false" :visible.sync="updateConfigureVisible" :before-close="handleClose">
+            <el-form :model="updateConfigureData" status-icon ref="updateConfigureForm" label-width="110px">
                 <el-form-item label="柜号" prop="guiNo">
-                    <el-input v-model="updateBannerData.guiNo" disabled></el-input>
+                    <el-input v-model="updateConfigureData.guiNo" disabled></el-input>
                 </el-form-item>
 
                 <el-form-item label="配置Id" prop="configureId">
-                    <el-input v-model="updateBannerData.configureId" disabled></el-input>
+                    <el-input v-model="updateConfigureData.configureId" disabled></el-input>
                 </el-form-item>
 
                 <el-form-item label="上传文件">
@@ -161,8 +147,8 @@
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" @click="updateBannerSubmit('updateBannerForm')">提交</el-button>
-                    <el-button @click="resetForm('updateBannerForm')">重置</el-button>
+                    <el-button type="primary" @click="updateConfigureSubmit('updateConfigureForm')">提交</el-button>
+                    <el-button @click="resetForm('updateConfigureForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -171,24 +157,24 @@
 
 <script>
     import {
-        findBannerList,  // 获取banner列表
-        addBanner,  // 添加banner
+        findConfigureList,  // 获取配置列表
+        addConfigure,  // 添加配置
         setSpeed,  // 轮播速度
-        updateBanner,  // 修改banner
+        updateConfigure,  // 修改配置
         conType,  // 配置类型
         delCon  // 删除配置
     } from '../../../api/api.js';
 
     export default {
-        name: 'banner',
+        name: 'configure',
 
         data() {
-            // banner类型验证
+            // 配置类型验证
             let validateType = (rule, value, callback) => {
                 let reg = /^[1-8]$/;
 
                 if (!reg.test(value)) {
-                    return callback(new Error('banner类型只能输入1-8！'));
+                    return callback(new Error('配置类型只能输入1-8！'));
                 }
 
                 callback();
@@ -204,7 +190,7 @@
                 guiNo: this.$route.params.guiNo,  // 当前柜端编号（this.$route.params.guiNo;）
                 // guiNo: "TA104",  // 当前柜端编号（this.$route.params.guiNo;）
 
-                bannerType: "",
+                ConfigureType: "",
 
                 // 分页参数
                 /*page_arg: {
@@ -223,22 +209,22 @@
                 },
 
                 /**
-                 * banner列表
+                 * 配置列表
                  */
-                banner_info: [],  // 存放项目信息列表数据
+                configure_info: [],  // 存放项目信息列表数据
 
                 /**
-                 * 添加banner
+                 * 添加配置
                  */
-                // 添加banner数据
-                addBannerData: {
+                // 添加配置数据
+                addConfigureData: {
                     guiNos: this.$route.params.guiNo,
                     type: "",  // 类型 1 存件语音 2 取件语音 3 取件成功语音 4 banner 5 锁屏广告 6 存件页面底图 7 取件页面底图 8 广告视频
                     content: "",  // 描述文字
                 },
 
                 // 验证添加用户界面数据
-                addBannerRules: {
+                addConfigureRules: {
                     type: [
                         { validator: validateType, trigger: 'blur' }
                     ],
@@ -265,10 +251,10 @@
                 },
 
                 /**
-                 * 编辑banner
+                 * 编辑配置
                  */
-                // 编辑banner数据
-                updateBannerData: {
+                // 编辑配置数据
+                updateConfigureData: {
                     guiNo: this.$route.params.guiNo,
                     configureId: "",  // 配置id
                 },
@@ -276,9 +262,9 @@
                 /**
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
-                addBannerVisible: false,  // 添加banner界面
+                addConfigureVisible: false,  // 添加配置界面
                 setSpeedVisible: false,  // 轮播速度界面
-                updateBannerVisible: false,  // 编辑banner界面
+                updateConfigureVisible: false,  // 编辑配置界面
             }
         },
         methods: {
@@ -311,7 +297,7 @@
              */
             // 点击页码
             handleCurrentChange() {
-                this.getBannerList();  // 加载分页数据
+                this.getConfigureList();  // 加载分页数据
             },
             // 设置每页条数
             handleSizeChange(page_size) {
@@ -321,7 +307,7 @@
                 this.page_arg.page_size = page_size;
 
                 // 获取接口数据
-                this.getBannerList();
+                this.getConfigureList();
             },
 
             /**
@@ -338,31 +324,31 @@
 
             /**
              *  api
-             *  获取banner信息
+             *  获取配置信息
              */
-            getBannerList () {
+            getConfigureList () {
                 //接口参数
                 let param = {
                     guiNo: this.guiNo,  // 柜端编号
                 };
 
                 // 获取接口数据
-                findBannerList(qs.stringify(param)).then(res => {
+                findConfigureList(qs.stringify(param)).then(res => {
                     // console.log(res.data.data);
 
                     if (!res.data.data){
                         this.$message({
-                            message: "查不到柜口编号，请在设备管理列表中选择具体设备设置banner图！",
+                            message: "查不到格口编号，请在设备管理列表中选择具体设备修改配置信息！",
                             type: "warning"
                         });
 
                         this.$router.push("device_manage");
                     }
 
-                    this.banner_info = res.data.data;
+                    this.configure_info = res.data.data;
                 }).catch({});
             },
-            // banner类型
+            // 配置类型
             formatType (row) {
                 // 1 存件语音 2 取件语音 3 取件成功语音 4 banner 5 锁屏广告 6 存件页面底图 7 取件页面底图 8 广告视频
                 switch (row.type) {
@@ -413,7 +399,7 @@
                 this.listLoading = true;  //点击提交开始加载loading
 
                 conType(params).then(res => {
-                    this.banner_info = res.data.data;
+                    this.configure_info = res.data.data;
 
                     this.listLoading = false;
                 });
@@ -421,11 +407,11 @@
 
             /**
              *  api
-             *  添加banner
+             *  添加配置
              */
-            //点击添加banner
-            addBanner () {
-                // console.log("添加banner");
+            //点击添加配置
+            addConfigure () {
+                // console.log("添加配置");
 
                 this.upload_arg.fileList = [];  //清空上传img file
             },
@@ -437,8 +423,8 @@
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.fileFile.push(file.raw);
             },
-            // 提交添加banner表单
-            addBannerSubmit (formName) {
+            // 提交添加配置信息表单
+            addConfigureSubmit (formName) {
                 // 点击提交开始加载loading
                 this.listLoading = true;
 
@@ -446,16 +432,18 @@
                 this.$refs[formName].validate((valid) => {
                     // 如果验证成功，请求接口数据
                     if (valid) {
-                        // console.log(this.addBannerData)
+                        // console.log(this.addConfigureData)
 
                         let formData = new FormData();;
 
                         formData.append('file', this.upload_arg.fileFile[0]);
                         // formData.append('guiNos', this.$route.params.guiNo);
-                        formData.append('guiNos', this.addBannerData.guiNos);
-                        formData.append('type', this.addBannerData.type);
-                        formData.append('content', this.addBannerData.content);
+                        formData.append('guiNos', this.addConfigureData.guiNos);
+                        formData.append('type', this.addConfigureData.type);
+                        formData.append('content', this.addConfigureData.content);
                         // console.log(this.upload_arg.fileFile[0]);
+
+                        console.log(this.addConfigureData.type);
 
                         let config = {
                             headers: {
@@ -463,7 +451,7 @@
                             }
                         };
 
-                        addBanner(formData, config).then(() => {
+                        addConfigure(formData, config).then(() => {
                             this.$message({
                                 message: "添加成功！",
                                 type: "success"
@@ -471,9 +459,9 @@
 
                             this.listLoading = false;
 
-                            this.addBannerVisible = false;
+                            this.addConfigureVisible = false;
 
-                            this.getBannerList();
+                            this.getConfigureList();
                         });
                     } else {  // 验证失败跳出
                         console.log('error submit!!');
@@ -489,7 +477,7 @@
             setSpeed() {
                 console.log("点击轮播速度");
             },
-            // 提交添加banner表单
+            // 提交添加配置表单
             setSpeedSubmit (formName) {
                 // 点击提交开始加载loading
                 this.listLoading = true;
@@ -518,7 +506,7 @@
 
             /**
              *  api
-             *  编辑banner
+             *  编辑配置
              */
             //el-upload
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
@@ -530,17 +518,17 @@
 
                 // console.log(this.upload_arg.fileFile)
             },
-            // 编辑banner(浅拷贝列表数据到表单)
-            updateBanner (row) {
-                // console.log("编辑banner");
+            // 编辑配置(浅拷贝列表数据到表单)
+            updateConfigure (row) {
+                // console.log("编辑配置");
 
                 this.upload_arg.fileList = [];  // 清空上传img file
 
-                this.updateBannerData.configureId = Object.assign({}, row).configure_id;
+                this.updateConfigureData.configureId = Object.assign({}, row).configure_id;
             },
 
-            // 提交编辑banner表单
-            updateBannerSubmit (formName) {
+            // 提交编辑配置表单
+            updateConfigureSubmit (formName) {
                 this.listLoading = true;  //点击提交开始加载loading
 
                 // 验证表单
@@ -550,8 +538,8 @@
 
                         formData.append('file', this.upload_arg.fileFile[0]);
                         // formData.append('guiNos', this.$route.params.guiNo);
-                        formData.append('guiNo', this.updateBannerData.guiNo);
-                        formData.append('configureId', this.updateBannerData.configureId);
+                        formData.append('guiNo', this.updateConfigureData.guiNo);
+                        formData.append('configureId', this.updateConfigureData.configureId);
                         // console.log(this.upload_arg.fileFile[0]);
 
                         let config = {
@@ -560,7 +548,7 @@
                             }
                         };
 
-                        updateBanner(formData, config).then(() => {
+                        updateConfigure(formData, config).then(() => {
                             this.$message({
                                 message: "编辑成功！",
                                 type: "success"
@@ -568,9 +556,9 @@
 
                             this.listLoading = false;
 
-                            this.updateBannerVisible = false;
+                            this.updateConfigureVisible = false;
 
-                            this.getBannerList();
+                            this.getConfigureList();
                         });
                     } else {  //验证失败跳出
                         console.log('error submit!!');
@@ -581,10 +569,10 @@
 
             /**
              *  api
-             *  删除banner
+             *  删除配置
              */
-            // 单个banner删除
-            delBanner (row) {
+            // 单个配置信息删除
+            delConfigure (row) {
                 // console.log(Object.assign({}, row).configure_id)
 
                 this.$confirm('确认删除该记录吗?', '提示', {
@@ -604,14 +592,14 @@
                             type: "success"
                         });
 
-                        this.getBannerList();  // 加载分页数据
+                        this.getConfigureList();  // 加载分页数据
                     }).catch({});
                 }).catch(() => {});
             },
         },
         // 预处理
         created () {
-            this.getBannerList();
+            this.getConfigureList();
         }
     }
 </script>

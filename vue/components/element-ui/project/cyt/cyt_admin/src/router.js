@@ -17,15 +17,13 @@ import ModifyPassword from './views/admin/ModifyPassword'
 // manager
 import DeviceManage from './views/manager/DeviceManage'
 import CabinetManage from './views/manager/hide/CabinetManage'
-import BannerManage from './views/manager/hide/BannerManage'
-// import AccountManage from './views/manager/AccountManage'
+import ConfigureManage from './views/manager/hide/ConfigureManage'
+import AdminManage from './views/manager/AdminManage'
 
 // 数据管理
 import UserManage from './views/manager/data_manage/UserManage'
 import RiderManage from './views/manager/data_manage/RiderManage'
 import RecordManage from './views/manager/data_manage/RecordManage'
-
-// 账号管理
 
 // test
 import Test from './views/test/Test'
@@ -35,8 +33,8 @@ import Map from './views/test/Map'
 Vue.use(Router);
 
 const router = new Router({
-    // mode: 'history',
-    mode: 'hash',
+    mode: 'history',
+    // mode: 'hash',
     base: process.env.BASE_URL,
 
     routes: [
@@ -58,12 +56,12 @@ const router = new Router({
                 { path: '/device_manage', name: 'device_manage', component: DeviceManage },
 
                 // hide
-                // 柜口管理
+                // 格口管理
                 { path: '/cabinet_manage', name: 'cabinet_manage', component: CabinetManage },
-                // banner管理(banner manage)
-                { path: '/banner_manage', name: 'banner_manage', component: BannerManage },
-                // 账号管理(account manage)
-                // { path: '/account_manage', name: 'account_manage', component: AccountManage },
+                // 配置管理(configure_manage)
+                { path: '/configure_manage', name: 'configure_manage', component: ConfigureManage },
+                // 管理员管理(admin_manage)
+                { path: '/admin_manage', name: 'admin_manage', component: AdminManage },
 
                 // data
                 // 记录管理

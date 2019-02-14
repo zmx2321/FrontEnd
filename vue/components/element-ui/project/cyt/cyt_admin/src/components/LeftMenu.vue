@@ -19,6 +19,14 @@
                          </el-menu-item>
                      </router-link>
 
+                     <!-- 管理员管理 -->
+                     <router-link to="/admin_manage">
+                         <el-menu-item index="2">
+                             <i class="fa fa-address-book"></i>
+                             <span slot="title">管理员管理</span>
+                         </el-menu-item>
+                     </router-link>
+
                      <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
@@ -63,7 +71,7 @@ export default {
                 //     name: "临时",
                 //     path: "temp",
                 //     children: [
-                //         { path: "/cabinet_manage", name: "柜口管理" },
+                //         { path: "/cabinet_manage", name: "格口管理" },
                 //         { path: "/banner_manage", name: "banner管理" },
                 //     ]
                 // },
@@ -93,7 +101,7 @@ export default {
                 case "device_manage":
                     return "1";
                     break;
-                case "operate_manage":
+                case "admin_manage":
                     return "2";
                     break;
             }

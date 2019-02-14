@@ -57,7 +57,8 @@
                             </el-form-item>
 
                             <el-form-item label="记录状态" class="intxt">
-                                <el-select v-model="filterData.status" placeholder="请选择记录状态" @change="currentSel">
+                                <el-select v-model="filterData.status" placeholder="全部" @change="currentSel">
+                                    <el-option label="全部" value=""></el-option>
                                     <el-option label="未取" value="0"></el-option>
                                     <el-option label="已取" value="1"></el-option>
                                 </el-select>
@@ -70,6 +71,7 @@
                             <el-form-item class="intxt">
                                 <el-button type="primary" @click="filterRecordSubmit('filterRecordForm')">查询</el-button>
                                 <el-button @click="resetForm('filterRecordForm')">重置</el-button>
+                                <el-button type="primary" @click="downloadPackageList">下载</el-button>
                             </el-form-item>
                         </el-col>
                     </el-col>
@@ -116,7 +118,10 @@
 </template>
 
 <script>
-    import { getRecordInfo } from '../../../api/api.js';
+    import {
+        getRecordInfo,  // 获取记录信息
+        downloadPackageList,  // 记录数据下载
+    } from '../../../api/api.js';
 
     export default {
         name: "record_manage",
@@ -199,9 +204,10 @@
                 // 筛选器数据
                 filterData: {
                     guiNo: undefined,  // 柜端编号
-                    postmanMobile: "",  // 存件人手机号
-                    customerMobile: "",  // 取件人手机号
-                    date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
+                    postmanMobile: undefined,  // 存件人手机号
+                    customerMobile: undefined,  // 取件人手机号
+                    // date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
+                    date: "2018-12-18",  // 日期 | 默认选择今天，但可以选择其他日期
                     startTime: undefined,  // 时间 | 以半小时为最小调整单位
                     endTime: undefined,  // 时间 | 以半小时为最小调整单位
                     boxNo: undefined,  // 柜号（非空）
@@ -346,6 +352,9 @@
             // 状态下拉框
             currentSel(selVal){
                 switch (selVal) {
+                    case "":
+                        this.filterData.status = undefined;
+                        break;
                     case "0":
                         this.isTakeOut = false;
                         break;
@@ -354,6 +363,29 @@
                         break;
                 }
             },
+            /**
+             * api
+             * 记录数据下载
+             */
+            downloadPackageList () {
+                let para = {
+                    guiNo: this.filterData.guiNo,  // 柜端编号
+                    postmanMobile: this.filterData.postmanMobile,  // 存件人手机号
+                    customerMobile: this.filterData.customerMobile,  // 取件人手机号
+                    date: this.filterData.date,  // 日期
+                    startTime: this.filterData.startTime,  // 开始时间
+                    endTime: this.filterData.endTime,  // 结束时间
+                    boxNo: this.filterData.boxNo,  // 柜号
+                    status: this.filterData.status,  // 记录状态
+                    takeoutBy: this.filterData.takeoutBy,  // 取出方式
+                };
+
+                // console.log(para);
+
+                downloadPackageList(para).then(res => {
+                    console.log(res);
+                });
+            }
         },
         created () {
             // console.log($);

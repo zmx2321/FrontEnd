@@ -24,7 +24,7 @@
 
         <el-row>
             <!-- 设备列表 -->
-            <el-table class="device_list" :data="device_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
+            <el-table class="device_list" :data="device_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange">
                 <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="id" width="100"></el-table-column>-->
@@ -36,8 +36,8 @@
 
                 <el-table-column fixed="right" label="操作" width="520">
                     <template slot-scope="scope">
-                        <el-button @click="viewBanner(scope.row)" type="text" size="small">设置banner图</el-button>
-                        <el-button @click="viewDeviceCabinet(scope.row)" type="text" size="small">查看设备柜口</el-button>
+                        <el-button @click="viewBanner(scope.row)" type="text" size="small">修改配置</el-button>
+                        <el-button @click="viewDeviceCabinet(scope.row)" type="text" size="small">查看设备格口</el-button>
                         <!--<el-button @click="viewDeviceStatus" v-on:click="viewDeviceStatusVisible = true" type="text" size="small">查看设备状态</el-button>-->
                         <!--<el-button @click="viewDeviceCommunicationStatus" v-on:click="viewDeviceCommunicationStatusVisible = true" type="text" size="small">查看设备通信状态</el-button>-->
                         <!--<el-button @click="showQRCode(scope.row)" v-on:click="showQRCodeVisible = true" type="text" size="small">显示设备的存取餐二维码</el-button>-->
@@ -294,7 +294,7 @@
                 }).catch({});
             },
 
-            // 跳转查看设备柜口
+            // 跳转查看设备格口
             viewDeviceCabinet (row) {
                 //跳转cabinet_manage组件并传递设备编号
                 let guiNo = Object.assign({}, row).guiNo;  //获取当前记录(行)设备编号
@@ -314,14 +314,14 @@
                 }
             },
 
-            // 跳转设置banner
+            // 跳转修改配置
             viewBanner (row) {
                 //跳转operate_manage组件并传递设备编号
                 let guiNo = Object.assign({}, row).guiNo;  //获取当前记录(行)设备编号
 
                 if (guiNo) {  //如果设备编号存在跳转
                     this.$router.push({
-                        name: "banner_manage",
+                        name: "configure_manage",
                         params: {
                             guiNo: Object.assign({}, row).guiNo
                         }

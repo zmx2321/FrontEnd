@@ -33,23 +33,92 @@
                 </el-row>
             </el-col>
         </el-row>
+
+        <!-- 修改密码 -->
+        <el-dialog title="修改密码" :close-on-click-modal="false" :visible.sync="modifyUserVisible" :before-close="handleClose">
+            <el-form :model="modifyUser" @keyup.enter.native="submitForm('modifyForm')" status-icon :rules="rules" ref="modifyForm" class="loginForm" label-width="100px">
+                <el-form-item label="旧密码" prop="oldPwd">
+                    <el-input v-model="modifyUser.oldPwd" placeholder="请输入旧密码" type="password"></el-input>
+                </el-form-item>
+                <el-form-item label="新密码" prop="newPwd">
+                    <el-input v-model="modifyUser.newPwd" placeholder="请输入新密码" type="password"></el-input>
+                </el-form-item>
+                <el-form-item label="重复新密码" prop="newPwd2">
+                    <el-input v-model="modifyUser.newPwd2" placeholder="请输入新密码" type="password"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('modifyForm')" @keyup.enter.native="submitForm('modifyForm')" class="submit_btn">修改密码</el-button>
+                    <el-button @click="resetForm('modifyForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </section>
 </template>
 
 <script>
-// import { Logout } from "../api/api"
+import { ModifyPassword } from "../api/api"
 
 export default {
     name: "head-nav",
 
     data () {
+        // 校验重复密码
+        const validatePass2 = (rule, value, callback) => {
+            if (value !== this.modifyUser.newPwd) {
+                callback(new Error("两次输入密码不一致!"));
+            } else {
+                callback();
+            }
+        };
+
         return {
             mainData: {
                 title: title
-            }
+            },
+
+            modifyUserVisible: false,
+
+            modifyUser: {
+                oldPwd: "",  //旧密码
+                newPwd: "",  //新密码
+                newPwd2: ""  //重复新密码
+            },
+            rules: {
+                oldPwd: [
+                    { required: true, message: "密码不能为空", trigger: "blur" },
+                    { min: 5, message: "长度不小于 5 个字符", trigger: "blur" }
+                ],
+                newPwd: [
+                    { required: true, message: "密码不能为空", trigger: "blur" },
+                    { min: 5, message: "长度不小于 5 个字符", trigger: "blur" }
+                ],
+                newPwd2: [
+                    { required: true, message: "确认密码不能为空", trigger: "blur" },
+                    { min: 5, message: "长度不小于 5 个字符", trigger: "blur" },
+                    //使用自定义验证规则，在失去焦点触发
+                    { validator: validatePass2, trigger: "blur" }
+                ]
+            },
         }
     },
     methods: {
+        /**
+         * common
+         */
+        //关闭提示
+        handleClose(done) {
+            this.$confirm('确认关闭？').then(() => {
+                done();
+                this.resetForm('modifyForm');
+            }).catch(err => {
+                throw err;
+            });
+        },
+        //表单重置
+        resetForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+
         // 下拉框属性
         setDialogInfo(cmditem) {
             if (!cmditem) {
@@ -69,8 +138,51 @@ export default {
         },
         // 修改密码
         modifyPassword() {
-          this.$router.push("/modify_password");
+          // this.$router.push("/modify_password");
+            this.modifyUserVisible = true;
         },
+
+        // 提交表单
+        submitForm(formName) {
+            this.$refs[formName].validate(valid => {
+                if (valid) {
+                    //验证通过，密码进行md5加密
+                    this.modifyUser.oldPwd = this.md5(this.modifyUser.oldPwd);
+                    this.modifyUser.newPwd = this.md5(this.modifyUser.newPwd);
+                    this.modifyUser.newPwd2 = this.md5(this.modifyUser.newPwd2);
+
+                    ModifyPassword(this.modifyUser).then(res => {
+                        // console.log(res);
+
+                        if (res.data.msg != "success"){
+                            this.$message({
+                                message: res.data.msg,
+                                type: "warning"
+                            });
+
+                            this.modifyUser.oldPwd = "";
+                            this.modifyUser.newPwd = "";
+                            this.modifyUser.newPwd2 = "";
+                        } else {
+                            this.$message({
+                                message: "密码修改成功",
+                                type: "success"
+                            });
+
+                            this.modifyUserVisible = false;
+
+                            this.modifyUser.oldPwd = "";
+                            this.modifyUser.newPwd = "";
+                            this.modifyUser.newPwd2 = "";
+                        }
+                    }).catch({});
+                } else {
+                    console.log("error submit!!");
+                    return false;
+                }
+            });
+        },
+
         // 退出
         logout() {
             localStorage.removeItem("code");
