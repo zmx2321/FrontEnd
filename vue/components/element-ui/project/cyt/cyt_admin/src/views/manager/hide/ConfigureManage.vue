@@ -31,12 +31,19 @@
 
         <!-- 配置列表 -->
         <el-row>
-            <el-table class="configure_list" :data="configure_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 242px)">
+            <el-table class="configure_list" :data="configure_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 176px)">
                 <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
-                <!--<el-table-column prop="id" label="configure_id" width="100" align="center"></el-table-column>-->
+                <el-table-column prop="id" label="configure_id" width="100" align="center"></el-table-column>
 
+                <!--<el-table-column label="文件" width="100" align="center" :formatter="formatterColumn">-->
                 <el-table-column label="文件" width="100" align="center">
+                    <!--<template slot-scope="scope">
+                        &lt;!&ndash;{{ scope.row.path.slice(59).substring((scope.row.path.slice(59).lastIndexOf('.'))+1), scope.row.path.slice(59).length }}&ndash;&gt;
+                        {{ scope.row.path.slice(59).substring((scope.row.path.slice(59).lastIndexOf('.'))+1), scope.row.path.slice(59).length }}
+                   <img :src="scope.row.path" class="tabimg" v-show="scope.row.path.slice(59).substring((scope.row.path.slice(59).lastIndexOf('.'))+1), scope.row.path.slice(59).length == 'jpg'" />
+                        <video :src="scope.row.path" class="tabimg" />
+               </template>-->
                     <template slot-scope="scope">
                    <img :src="scope.row.path" class="tabimg" />
                </template>
@@ -67,7 +74,7 @@
 
                 <el-form-item label="上传文件">
                     <el-upload
-                            action="https://jsonplaceholder.typicode.com/posts/"
+                            action="http://10.10.10.184:8080"
                             ref='upload'
                             :before-remove="beforeRemove"
                             :on-change="addHandleChange"
@@ -240,7 +247,7 @@
                 setSpeedData: {
                     guiNo: this.$route.params.guiNo,
                     // guiNo: "TA104",
-                    speed: "10",  // 描述文字
+                    speed: "",  // 速度值
                 },
 
                 // 验证轮播速度界面数据
@@ -281,6 +288,13 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+            isImg (str) {
+                if(str!="bmp"&&str!="png"&&str!="gif"&&str!="jpg"&&str!="jpeg"){
+                    return false;
+                }
+
+                return true;
+            },
             //获取文件后缀名
             getFileType(fileName){
                 let fileLength = fileName.length,  //文件名总长度
@@ -290,6 +304,16 @@
                 let suffix = fileName.substring(beforeFileLength+1, fileLength);
 
                 return suffix;
+            },
+            // 获取pathname参数
+            getUrlPathname (str) {
+                let reg = /^(https?:)\/\/([^\/]+)(\/[^\?]*)?(\?[^#]*)?(#.*)?$/;
+                let arr = str.match(reg);
+
+                let pathname = arr[3].slice(11);
+                /*console.log(this.getFileType(pathname));*/
+
+                return pathname;
             },
 
             /**
@@ -381,6 +405,27 @@
                         break;
                 }
             },
+            // 文件类型
+            formatterColumn(row, column) {
+                this.getUrlPathname(row.path);
+
+                let pathname = this.getUrlPathname(row.path);
+
+                console.log(pathname);
+                console.log(this.getFileType(pathname));
+
+                console.log(this.isImg(this.getFileType(pathname)));
+
+                if (this.isImg(this.getFileType(this.getUrlPathname(row.path)))){
+                    // return <img :src=\"scope.row.path\" class=\"tabimg\" />
+                }
+                // console.log(this.isImage(this.getFileType(pathname)));
+
+
+
+                // console.log(row.id + "---" + row.path);
+                // switch (row.path){}
+            },
 
             /**
              * api
@@ -393,7 +438,7 @@
                 let params = {
                     guiNo : this.guiNo,
                     type: val
-                }
+                };
 
                 // console.log(params)
                 this.listLoading = true;  //点击提交开始加载loading
@@ -578,7 +623,7 @@
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    let id = Object.assign({}, row).configure_id;
+                    let id = Object.assign({}, row).id;
 
                     let params = {
                         id: id

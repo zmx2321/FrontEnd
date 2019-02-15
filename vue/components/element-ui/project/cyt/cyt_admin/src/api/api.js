@@ -33,9 +33,28 @@ export const ModifyPassword = params => {
 /**
  * 管理员管理
  */
+// 获取管理员列表
 export const getAdminList = params => {
     return  axios({
         url: 'admin/info/all',
+        method: 'post',
+        data: params
+    });
+};
+
+// 添加管理员
+export const addAdmin = params => {
+    return  axios({
+        url: 'admin/add',
+        method: 'post',
+        data: params
+    });
+};
+
+// 编辑管理员
+export const updateAdmin = params => {
+    return  axios({
+        url: 'admin/updateInfo',
         method: 'post',
         data: params
     });
@@ -194,13 +213,13 @@ export const getRecordInfo = params => {
 };
 
 // 记录数据下载
-export const downloadPackageList = params => {
+/*export const downloadPackageList = params => {
     return  axios({
         url: 'admin/downloadPackageList',
         method: 'get',
         params: params
     });
-};
+};*/
 
 /**
  * 用户管理
@@ -215,13 +234,13 @@ export const geUserList = params => {
 };
 
 // 用户数据下载
-export const downloadUserList = params => {
+/*export const downloadUserList = params => {
     return  axios({
         url: 'admin/downloadUserList',
         method: 'get',
         params: params
     });
-};
+};*/
 
 /**
  * 骑手管理
@@ -245,10 +264,10 @@ export const setDisable = params => {
 };
 
 // 骑手数据下载
-export const downloadPostmanList = params => {
+/*export const downloadPostmanList = params => {
     return  axios({
         url: 'admin/downloadPostmanList',
         method: 'get',
         params: params
     });
-};
+};*/

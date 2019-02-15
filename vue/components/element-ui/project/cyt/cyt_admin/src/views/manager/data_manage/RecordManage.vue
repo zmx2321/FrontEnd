@@ -79,7 +79,7 @@
             </el-row>
 
             <!-- 记录列表 -->
-            <el-table class="record_list" :data="record_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="calc(100vh - 370px)">
+            <el-table class="record_list" :data="record_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="calc(100vh - 396px)">
                 <!--<el-table-column type="selection" width="35"></el-table-column>-->
                 <!--<el-table-column type="index" width="35" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="id" width="60" align="center"></el-table-column>-->
@@ -88,7 +88,7 @@
                 <el-table-column prop="boxNo" label="格口编号" width="100" align="center"></el-table-column>
                 <el-table-column prop="postmanMobile" label="骑手手机号" width="120" align="center"></el-table-column>
                 <el-table-column prop="storeinAt" label="存餐时间" width="110" align="center"></el-table-column>
-                <el-table-column prop="takeoutBy" label="存餐时间" width="110" align="center"></el-table-column>
+                <el-table-column prop="takeoutBy" label="取餐人" width="110" align="center"></el-table-column>
                 <el-table-column prop="customerMobile" label="取餐手机" width="80" align="center"></el-table-column>
                 <el-table-column prop="openBoxKey" label="开柜密码" width="100"></el-table-column>
 
@@ -120,7 +120,7 @@
 <script>
     import {
         getRecordInfo,  // 获取记录信息
-        downloadPackageList,  // 记录数据下载
+        // downloadPackageList,  // 记录数据下载
     } from '../../../api/api.js';
 
     export default {
@@ -151,8 +151,8 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 5, // 1页显示多少条
-                    page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
+                    page_size: 10, // 1页显示多少条
+                    page_sizes: [10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
@@ -206,8 +206,8 @@
                     guiNo: undefined,  // 柜端编号
                     postmanMobile: undefined,  // 存件人手机号
                     customerMobile: undefined,  // 取件人手机号
-                    // date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
-                    date: "2018-12-18",  // 日期 | 默认选择今天，但可以选择其他日期
+                    date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
+                    // date: "2018-12-18",  // 日期 | 默认选择今天，但可以选择其他日期
                     startTime: undefined,  // 时间 | 以半小时为最小调整单位
                     endTime: undefined,  // 时间 | 以半小时为最小调整单位
                     boxNo: undefined,  // 柜号（非空）
@@ -220,7 +220,7 @@
                         { validator: validatePhone, trigger: 'blur' }
                     ],*/
                     date: [
-                        { required: true, message: '日期不能为空！', trigger: 'blur' }
+                        // { required: true, message: '日期不能为空！', trigger: 'blur' }
                     ]
                 },
 
@@ -380,11 +380,70 @@
                     takeoutBy: this.filterData.takeoutBy,  // 取出方式
                 };
 
-                // console.log(para);
+                let _guiNo, _postmanMobile, _customerMobile, _date, _startTime, _endTime, _boxNo, _status, _takeoutBy;
 
-                downloadPackageList(para).then(res => {
-                    console.log(res);
-                });
+                if (para.guiNo == undefined){
+                    _guiNo = "";
+                } else {
+                    _guiNo = "&guiNo=" + para.guiNo;
+                }
+
+                if (para.postmanMobile == undefined){
+                    _postmanMobile = "";
+                } else {
+                    _postmanMobile = "&postmanMobile=" + para.postmanMobile;
+                }
+
+                if (para.customerMobile == undefined){
+                    _customerMobile = "";
+                } else {
+                    _customerMobile = "&customerMobile=" + para.customerMobile;
+                }
+
+                if (para.date == undefined){
+                    _date = "";
+                } else {
+                    _date = "&date=" + para.date;
+                }
+
+                if (para.startTime == undefined){
+                    _startTime = "";
+                } else {
+                    _startTime = "&startTime=" + para.startTime;
+                }
+
+                if (para.endTime == undefined){
+                    _endTime = "";
+                } else {
+                    _endTime = "&endTime=" + para.endTime;
+                }
+
+                if (para.boxNo == undefined){
+                    _boxNo = "";
+                } else {
+                    _boxNo = "&boxNo=" + para.boxNo;
+                }
+
+                if (para.status == undefined){
+                    _status = "";
+                } else {
+                    _status = "&status=" + para.status;
+                }
+
+                if (para.takeoutBy == undefined){
+                    _takeoutBy = "";
+                } else {
+                    _takeoutBy = "&takeoutBy=" + para.takeoutBy;
+                }
+
+                let url = requsetUrl + "downloadPackageList?" +
+                        _guiNo + _postmanMobile + _customerMobile +
+                        _date + _startTime + _endTime + _boxNo +
+                        _status + _takeoutBy
+
+                // console.log(url);
+
+                window.location.href = url;
             }
         },
         created () {

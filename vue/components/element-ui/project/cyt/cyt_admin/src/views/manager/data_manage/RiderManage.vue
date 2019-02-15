@@ -76,7 +76,7 @@
     import {
         getRiderList,  // 获取骑手信息
         setDisable,  // 解封/封禁
-        downloadPostmanList  // 骑手数据下载
+        // downloadPostmanList  // 骑手数据下载
     } from '../../../api/api.js';
 
     export default {
@@ -94,8 +94,8 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 5, // 1页显示多少条
-                    page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
+                    page_size: 10, // 1页显示多少条
+                    page_sizes: [10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
@@ -136,8 +136,8 @@
                 },
                 // 筛选器数据
                 filterData: {
-                    // date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
-                    date: "2018/12/25",  // 日期 | 默认选择今天，但可以选择其他日期
+                    date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
+                    // date: "2018/12/25",  // 日期 | 默认选择今天，但可以选择其他日期
                     mobile: "",  // 手机号
                 },
             }
@@ -238,7 +238,7 @@
                     id: Object.assign({}, row).id,  // 用户或者骑手,管理员id
                     disable: Object.assign({}, row).disable,  // 封禁 1 ，解封 0
                     type: 0  // 用户 1 ，骑手 0 , 管理员 2
-                }
+                };
 
                 setDisable(params).then(res => {
                     console.log(res);
@@ -256,7 +256,7 @@
                     id: Object.assign({}, row).id,  // 用户或者骑手,管理员id
                     disable: Object.assign({}, row).disable,  // 封禁 1 ，解封 0
                     type: 0  // 用户 1 ，骑手 0 , 管理员 2
-                }
+                };
 
                 setDisable(params).then(res => {
                     console.log(res);
@@ -278,11 +278,26 @@
                     mobile: this.filterData.mobile,
                 };
 
-                // console.log(para);
+                let _date, _mobile;
 
-                downloadPostmanList(para).then(res => {
-                    console.log(res);
-                });
+                if (para.date == null){
+                    _date = "";
+                } else {
+                    _date = "&date=" + para.date;
+                }
+
+                if (para.mobile == ""){
+                    _mobile = "";
+                } else {
+                    _mobile = "&mobile=" + para.mobile;
+                }
+
+                let url = requsetUrl + "downloadUserList?" +
+                    _date + _mobile
+
+                // console.log(url);
+
+                window.location.href = url;
             }
         },
         created () {
