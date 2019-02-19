@@ -34,7 +34,7 @@
             <el-table class="configure_list" :data="configure_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 176px)">
                 <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
-                <el-table-column prop="id" label="configure_id" width="100" align="center"></el-table-column>
+                <!--<el-table-column prop="id" label="configure_id" width="100" align="center"></el-table-column>-->
 
                 <!--<el-table-column label="文件" width="100" align="center" :formatter="formatterColumn">-->
                 <el-table-column label="文件" width="100" align="center">
@@ -73,8 +73,9 @@
                 </el-form-item>
 
                 <el-form-item label="上传文件">
+                    <!--action= "http://10.10.10.199:8080/"-->
                     <el-upload
-                            action="http://10.10.10.184:8080"
+                            action = "http://postapi.lxstation.com/"
                             ref='upload'
                             :before-remove="beforeRemove"
                             :on-change="addHandleChange"
@@ -140,8 +141,9 @@
                 </el-form-item>
 
                 <el-form-item label="上传文件">
+                    <!--action="http://10.10.10.199:8080/"-->
                     <el-upload
-                            action="https://jsonplaceholder.typicode.com/posts/"
+                            action = "http://postapi.lxstation.com/"
                             ref='upload'
                             :before-remove="beforeRemove"
                             :on-change="updateHandleChange"
@@ -176,7 +178,7 @@
         name: 'configure',
 
         data() {
-            // 配置类型验证
+            /*// 配置类型验证
             let validateType = (rule, value, callback) => {
                 let reg = /^[1-8]$/;
 
@@ -185,7 +187,7 @@
                 }
 
                 callback();
-            };
+            };*/
 
             return {
                 /**
@@ -232,9 +234,9 @@
 
                 // 验证添加用户界面数据
                 addConfigureRules: {
-                    type: [
+                    /*type: [
                         { validator: validateType, trigger: 'blur' }
-                    ],
+                    ],*/
                     content: [
                         { required: true, message: '描述文字不能为空！', trigger: 'blur' }
                     ]
@@ -406,7 +408,7 @@
                 }
             },
             // 文件类型
-            formatterColumn(row, column) {
+            formatterColumn(row) {
                 this.getUrlPathname(row.path);
 
                 let pathname = this.getUrlPathname(row.path);
@@ -454,19 +456,25 @@
              *  api
              *  添加配置
              */
+            // 上传文件
+            /*uploadUrl:function(){
+                return "requsetUrl";
+            },*/
             //点击添加配置
             addConfigure () {
                 // console.log("添加配置");
 
                 this.upload_arg.fileList = [];  //清空上传img file
+                this.upload_arg.fileFile = [];
             },
             //el-upload
             // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
             addHandleChange(file){
-                console.log("文件状态改变时的钩子");
+                // console.log("文件状态改变时的钩子");
 
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.fileFile.push(file.raw);
+                console.log(this.upload_arg.fileFile);
             },
             // 提交添加配置信息表单
             addConfigureSubmit (formName) {

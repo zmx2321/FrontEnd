@@ -5,5 +5,5 @@ const qs = window.Qs;
 const title = "城驿通后台管理系统";
 document.title = title;
 
-const requsetUrl = "http://10.10.10.199:8080/admin/";
-// const requsetUrl = "http://postapi.lxstation.com/";
+// const requsetUrl = "http://10.10.10.199:8080/admin/";
+const requsetUrl = "http://postapi.lxstation.com/admin/";

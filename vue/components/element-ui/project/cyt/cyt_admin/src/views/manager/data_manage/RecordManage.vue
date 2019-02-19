@@ -97,6 +97,12 @@
                         {{ scope.row.status === 0 ? "待取" : "已取" }}
                     </template>
                 </el-table-column>
+
+                <el-table-column fixed="right" label="操作" width="320">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small" @click="openSpecificCabinets(scope.row)" v-if="scope.row.status == 0">开柜</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -120,6 +126,7 @@
 <script>
     import {
         getRecordInfo,  // 获取记录信息
+        openBoxNo,  // 开启单个特定格口
         // downloadPackageList,  // 记录数据下载
     } from '../../../api/api.js';
 
@@ -206,8 +213,8 @@
                     guiNo: undefined,  // 柜端编号
                     postmanMobile: undefined,  // 存件人手机号
                     customerMobile: undefined,  // 取件人手机号
-                    date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
-                    // date: "2018-12-18",  // 日期 | 默认选择今天，但可以选择其他日期
+                    // date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
+                    date: "2018-12-18",  // 日期 | 默认选择今天，但可以选择其他日期
                     startTime: undefined,  // 时间 | 以半小时为最小调整单位
                     endTime: undefined,  // 时间 | 以半小时为最小调整单位
                     boxNo: undefined,  // 柜号（非空）
@@ -444,7 +451,38 @@
                 // console.log(url);
 
                 window.location.href = url;
-            }
+            },
+
+            /**
+             * api
+             * 开启单个格口
+             */
+            openSpecificCabinets (row) {
+                this.listLoading = true;  // 加载loading
+
+                // console.log(Object.assign({}, row));
+
+                let para = {
+                    guiNo: Object.assign({}, row).guiNo,  // 柜端编号
+                    mobile: Object.assign({}, row).postmanMobile,
+                    // postmanMobile: this.filterData.postmanMobile,  // 存件人手机号
+                    // customerMobile: this.filterData.customerMobile,  // 取件人手机号
+                    boxNo: Object.assign({}, row).boxNo,  // 柜号
+                };
+
+                // console.log(para);
+
+                openBoxNo(para).then(() => {
+                    // console.log(res)
+                    this.listLoading = false;  //停止加载loading
+
+                    //成功提示
+                    this.$message({
+                        message: para.guiNo + "设备" + para.boxNo + "格口" + "  开启成功",
+                        type: 'success'
+                    });
+                }).catch({});
+            },
         },
         created () {
             // console.log($);

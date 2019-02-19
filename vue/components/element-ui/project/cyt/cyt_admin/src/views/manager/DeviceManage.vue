@@ -6,10 +6,13 @@
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
-                            <el-input v-model="guiNo" placeholder="请输入设备名称" clearable></el-input>
+                            <el-input v-model="guiNo" placeholder="请输入设备编号" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="getDevices">查询</el-button>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="addConfigureAllVisible = true">一键配置</el-button>
                         </el-form-item>
                         <!--<el-form-item>-->
                             <!--<el-button type="primary" @click="addDevice" v-on:click="addDeviceVisible = true">添加新的设备</el-button>-->
@@ -29,10 +32,16 @@
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="id" width="100"></el-table-column>-->
                 <el-table-column prop="guiNo" label="设备编号" width="100" align="center"></el-table-column>
-                <el-table-column prop="guiName" label="设备名称" width="120" align="center"></el-table-column>
-                <el-table-column prop="manufacturer" label="设备生产厂商" width="220" align="center"></el-table-column>
-                <el-table-column prop="tcpStatus" label="设备状态" width="100" align="center"></el-table-column>
+
                 <el-table-column prop="location" label="设备地址" width="auto"></el-table-column>
+
+                <!--<el-table-column prop="guiName" label="设备名称" width="120" align="center"></el-table-column>-->
+
+                <!--<el-table-column prop="manufacturer" label="设备生产厂商" width="220" align="center"></el-table-column>-->
+
+                <el-table-column label="设备生产厂商" width="auto" align="center" :formatter="formatType"></el-table-column>
+
+                <el-table-column prop="tcpStatus" label="设备状态" width="auto" align="center"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="520">
                     <template slot-scope="scope">
@@ -52,6 +61,50 @@
                 <!--<el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
             <!--</el-col>-->
         </el-row>
+
+        <!-- 一键配置 -->
+        <!--<el-dialog title="一键配置" @keyup.enter.native="addConfigureAllSubmit('addConfigureAllForm')" :close-on-click-modal="false" :visible.sync="addConfigureAllVisible" :before-close="handleClose">-->
+        <el-dialog title="一键配置" @keyup.enter.native="addConfigureAllSubmit('addConfigureAllForm')" :close-on-click-modal="false" :visible.sync="addConfigureAllVisible" :before-close="handleClose">
+            <el-form :model="addConfigureAllData" status-icon :rules="addConfigureAllRules" ref="addConfigureAllForm" label-width="120px">
+                <el-form-item label="上传文件">
+                    <!--action= "http://10.10.10.199:8080/"-->
+                    <!--action = "http://postapi.lxstation.com/"-->
+                    <el-upload
+                            action = "http://postapi.lxstation.com/"
+                            ref='upload'
+                            :before-remove="beforeRemove"
+                            :on-change="addConfigureAllChange"
+                            multiple
+                            :limit="upload_arg.limit"
+                            :on-exceed="handleExceed"
+                            :file-list="upload_arg.fileList">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                    </el-upload>
+                </el-form-item>
+
+                <el-form-item label="配置类型" class="intxt">
+                    <el-select v-model="addConfigureAllData.type" placeholder="请选择配置类型">
+                        <el-option label="存件语音" value="1"></el-option>
+                        <el-option label="取件语音" value="2"></el-option>
+                        <el-option label="取件成功语音" value="3"></el-option>
+                        <el-option label="banner" value="4"></el-option>
+                        <el-option label="锁屏广告" value="5"></el-option>
+                        <el-option label="存件页面底图" value="6"></el-option>
+                        <el-option label="取件页面底图" value="7"></el-option>
+                        <el-option label="广告视频" value="8"></el-option>
+                    </el-select>
+                </el-form-item>
+
+                <el-form-item label="说明" prop="content">
+                    <el-input type="textarea" v-model="addConfigureAllData.content" placeholder="请输入配置说明" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="addConfigureAllSubmit('addConfigureAllForm')">提交</el-button>
+                    <el-button @click="resetForm('addConfigureAllForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
 
         <!-- 添加新的设备 -->
         <el-dialog title="添加新的设备" :close-on-click-modal="false" :visible.sync="addDeviceVisible" :before-close="handleClose">
@@ -117,10 +170,11 @@
      * 获取接口地址
      */
     import {
-        getDeviceList, //设备列表
-        updateLocation, //修改设备地址
-        getQRCode,   //设备存取餐二维码
-        getDevice,  //查询设备
+        getDeviceList, // 设备列表
+        addConfigure,  // 添加配置
+        updateLocation, // 修改设备地址
+        getQRCode,   // 设备存取餐二维码
+        getDevice,  // 查询设备
     } from '../../api/api.js';
 
     import { TMap } from '../../api/parking'
@@ -159,6 +213,7 @@
                 viewDeviceCommunicationStatusVisible: false,  // 查看设备通信状态界面
                 showQRCodeVisible: false,  // 设备的存取餐二维码界面
                 editPositionVisible: false,  // 编辑设备位置信息界面
+                addConfigureAllVisible: false,  // 一键配置界面
 
                 /**
                  * 二维码
@@ -167,6 +222,30 @@
                 //     guiNo: '',  //柜端编号
                 //     type: 0  //状态
                 // },
+
+                // 上传图片参数
+                upload_arg: {
+                    limit:1,
+                    fileFile: [],
+                    fileList: []
+                },
+
+                /**
+                 * 一键配置
+                 */
+                // 一键配置数据
+                addConfigureAllData: {
+                    guiNos: "",
+                    type: "",  // 类型 1 存件语音 2 取件语音 3 取件成功语音 4 banner 5 锁屏广告 6 存件页面底图 7 取件页面底图 8 广告视频
+                    content: "",  // 描述文字
+                },
+
+                // 验证添加用户界面数据
+                addConfigureAllRules: {
+                    content: [
+                        { required: true, message: '描述文字不能为空！', trigger: 'blur' }
+                    ]
+                },
 
                 /**
                  *  编辑设备位置信息
@@ -207,6 +286,18 @@
             //表单重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+
+            /**
+             * el-upload common
+             */
+            // 文件超出个数限制时的钩子
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            // 删除文件之前的钩子
+            beforeRemove(file) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
             },
 
             /**
@@ -344,13 +435,155 @@
                 };
 
                 getDevice(para).then(res => {
-
-                    console.log(para);
+                    // console.log(para);
                     this.listLoading = false;
                     this.device_info = res.data.data;  //渲染查询列表
                     console.log(this.device_info);
                 }).catch({});
             },
+
+            /**
+             *  api
+             *  一键配置
+             */
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            addConfigureAllChange(file){
+                // console.log("文件状态改变时的钩子");
+
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.fileFile.push(file.raw);
+                console.log(this.upload_arg.fileFile);
+            },
+            // 提交添加配置信息表单
+            addConfigureAllSubmit (formName) {
+                // 点击提交开始加载loading
+                this.listLoading = true;
+
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
+                        let str = "";
+
+                        // 获取设备编号
+                        for (let i=0; i<this.device_info.length; i++){
+                            str += this.device_info[i].guiNo + ",";
+                        }
+                        if (str.length > 0) {
+                            this.addConfigureAllData.guiNos = str.substr(0, str.length - 1);
+                        }
+
+                        let formData = new FormData();;
+
+                        formData.append('file', this.upload_arg.fileFile[0]);
+                        // formData.append('guiNos', this.$route.params.guiNo);
+                        formData.append('guiNos', this.addConfigureAllData.guiNos);
+                        formData.append('type', this.addConfigureAllData.type);
+                        formData.append('content', this.addConfigureAllData.content);
+
+                        // console.log(formData);
+
+                        let config = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        };
+
+                        addConfigure(formData, config).then(() => {
+                            this.$message({
+                                message: "配置成功！",
+                                type: "success"
+                            });
+
+                            this.listLoading = false;
+
+                            this.addConfigureAllVisible = false;
+                        });
+                    } else {  // 验证失败跳出
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            /*// 上传文件
+            /!*uploadUrl:function(){
+                return "requsetUrl";
+            },*!/
+            //点击添加配置
+            addConfigureAll () {
+                // console.log("添加配置");
+
+                this.upload_arg.fileList = [];  //清空上传img file
+                this.upload_arg.fileFile = [];
+            },
+            //el-upload
+            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+            addHandleChangeAll(file){
+                // console.log("文件状态改变时的钩子");
+
+                //上传文件变化时将文件对象push进files数组
+                this.upload_arg.fileFile.push(file.raw);
+                console.log(this.upload_arg.fileFile);
+            },
+            // 提交添加配置信息表单
+            addConfigureAllSubmit (formName) {
+                // 点击提交开始加载loading
+                this.listLoading = true;
+
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
+                        // console.log(this.addConfigureData)
+
+                        let formData = new FormData();;
+
+                        formData.append('file', this.upload_arg.fileFile[0]);
+                        // formData.append('guiNos', this.$route.params.guiNo);
+                        formData.append('guiNos', this.addConfigureData.guiNos);
+                        formData.append('type', this.addConfigureData.type);
+                        formData.append('content', this.addConfigureData.content);
+                        // console.log(this.upload_arg.fileFile[0]);
+
+                        console.log(this.addConfigureData.type);
+
+                        let config = {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        };
+
+                        addConfigure(formData, config).then(() => {
+                            this.$message({
+                                message: "添加成功！",
+                                type: "success"
+                            });
+
+                            this.listLoading = false;
+
+                            this.addConfigureVisible = false;
+
+                            this.getConfigureList();
+                        });
+                    } else {  // 验证失败跳出
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },*/
+
+            // 生产商
+            formatType (row) {
+                switch (row.manufacturer) {
+                    case "dcdz":
+                        return "东城电子";
+                        break;
+                    case "py":
+                        return "品元";
+                        break;
+                }
+            },
+
             // 显示添加设备界面
             addDevice () {
                 console.log("添加设备");

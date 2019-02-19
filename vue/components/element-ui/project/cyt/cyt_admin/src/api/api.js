@@ -21,6 +21,15 @@ export const Login = params => {
     });
 };
 
+// 获取个人信息
+export const getInfo = () => {
+    return  axios({
+        url: 'admin/info',
+        method: 'post'
+    });
+};
+
+
 // 修改密码
 export const ModifyPassword = params => {
     return  axios({
@@ -42,6 +51,35 @@ export const getAdminList = params => {
     });
 };
 
+// 获取管理员允许管理的柜号
+export const selectAdminGuiNo = params => {
+    return  axios({
+        url: 'admin/selectAdminGuiNo',
+        method: 'post',
+        params: params
+    });
+};
+
+// 新增管理员允许管理的柜号
+export const addGuiNo = params => {
+    return  axios({
+        url: 'admin/addGuiNo',
+        method: 'post',
+        params: params
+    });
+};
+
+// 删除管理员允许管理的柜号
+export const deleteGuiNo = params => {
+    return  axios({
+        url: 'admin/deleteGuiNo',
+        method: 'post',
+        params: params
+    });
+};
+
+
+
 // 添加管理员
 export const addAdmin = params => {
     return  axios({
@@ -57,6 +95,15 @@ export const updateAdmin = params => {
         url: 'admin/updateInfo',
         method: 'post',
         data: params
+    });
+};
+
+// 删除管理员
+export const delAdmin = params => {
+    return  axios({
+        url: 'admin/delete',
+        method: 'post',
+        params: params
     });
 };
 
@@ -161,7 +208,6 @@ export const delCon = params => {
  * 格口管理
  */
 //获取格口信息
-// export const getCabinetList = params => { return  axios.post(`${base}/getBoxInfos`, params) };
 export const getCabinetList = params => {
     return  axios({
         url: 'admin/getBoxInfos',
@@ -170,18 +216,16 @@ export const getCabinetList = params => {
     });
 };
 
-//开启格口
-// export const openBoxNo = params => { return  axios.post(`${base}/openBoxNo`, params) };
+// 开启单个特定格口
 export const openBoxNo = params => {
     return  axios({
         url: 'admin/openBoxNo',
         method: 'post',
-        data: params
+        params: params
     });
 };
 
-//开启所有格口
-// export const openBoxAll = params => { return  axios.post(`${base}/openBoxAll`, params) };
+// 开启所有格口
 export const openBoxAll = params => {
     return  axios({
         url: 'admin/openBoxAll',
@@ -191,7 +235,6 @@ export const openBoxAll = params => {
 };
 
 //查看设备格口状态
-// export const getBoxStatus = params => { return  axios.post(`${base}/getBoxStatus`, params) };
 export const getBoxStatus = params => {
     return  axios({
         url: 'admin/getBoxStatus',

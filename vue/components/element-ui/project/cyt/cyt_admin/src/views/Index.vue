@@ -25,9 +25,6 @@
             HeadNav,
             LeftMenu
         },
-        created: function(){
-            // console.log(this.md5("admin"));
-        },
     }
 </script>
 

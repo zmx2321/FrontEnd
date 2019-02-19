@@ -15,12 +15,25 @@
                             <el-button type="primary" @click="openAllCabinet">一键开启所有格口</el-button>
                         </el-form-item>
                     </el-col>
-                </el-col>
-                <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
                             <el-input placeholder="请输入设备编号" v-model="cabinet_arg.guiNo" clearable></el-input>
                         </el-form-item>
+                        <!--{{ guiNos }}-->
+                        <!--<el-dropdown>
+                            <el-button type="primary">
+                                {{ guicur }}<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>
+                            </el-button>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item v-for="item in guiNos" @click.native="drop(item)" :key="item.index">{{ item }}</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>-->
+                        <!--<el-form-item label="筛选" class="intxt">
+                            <el-select v-model="guicur" placeholder="请选择配置类型">
+                                &lt;!&ndash;<option :selected="isSelect" value="默认值">默认值</option>&ndash;&gt;
+                                <el-option v-for="guicur in guiNos" value="0" :key="guicur.index">{{ guicur }}</el-option>
+                            </el-select>
+                        </el-form-item>-->
                         <el-form-item>
                             <el-button type="primary" @click="searchDevCab">查询设备所属格口</el-button>
                         </el-form-item>
@@ -31,24 +44,21 @@
 
         <el-row>
             <!-- 格口列表 -->
-            <el-table class="cabinet_list centertab" :data="cabinet_info" border highlight-current-row v-loading="listLoading" @selection-change="selsChange" height="600">
-                <el-table-column type="selection" width="55"></el-table-column>
-                <el-table-column type="index" width="60"></el-table-column>
-                <el-table-column prop="boxNo" label="格口编号"></el-table-column>
-                <el-table-column prop="status" label="格口状态"></el-table-column>
+            <el-table class="cabinet_list" :data="cabinet_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 255px)">
+                <el-table-column prop="boxNo" label="格口编号" width="auto" align="center"></el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="300">
+                <el-table-column prop="status" label="格口状态" width="auto" align="center">
                     <template slot-scope="scope">
-                        <el-button @click="openCabinet(scope.row)" type="text" size="small">开启</el-button>
-                        <el-button @click="viewDeviceCabinetStatus" v-on:click="viewDeviceCabinetStatusVisible = true" type="text" size="small">查看设备格口状态</el-button>
-                        <!--<el-button @click="delCabinet" type="text" size="small">删除格口</el-button>-->
+                        {{ scope.row.status == 0 ? "待取" : "已取" }}
+                    </template>
+                </el-table-column>
+
+                <el-table-column fixed="right" label="操作" width="320">
+                    <template slot-scope="scope">
+                        <el-button @click="openCabinet(scope.row)" type="text" size="small" v-if="scope.row.status == 0">开启</el-button>
                     </template>
                 </el-table-column>
             </el-table>
-            <!-- 底部工具条 -->
-            <!--<el-col :span="24" class="toolbar bottip">-->
-                <!--<el-button type="danger" @click="cabinetBatchRemove" :disabled="this.sels.length===0">批量删除</el-button>-->
-            <!--</el-col>-->
         </el-row>
 
         <!-- 查看设备格口状态 -->
@@ -74,8 +84,9 @@
 
 <script>
     import {
+        getDeviceList, // 设备列表
         getCabinetList, //获取格口信息
-        openBoxNo,  //开启格口
+        openBoxNo,  // 开启单个特定格口
         openBoxAll,  //开启所有格口
         getBoxStatus,  //查看设备格口状态
     } from '../../../api/api.js';
@@ -92,16 +103,22 @@
                 dialogVisible: false,  //关闭提示
                 sels: [],  //列表选中列
 
+                // 设备列表
+                guiNos: [],
+
+                guicur: "1",
+
                 /**
-                 * 格口列表
                  */
                 cabinet_info: [],  //存放格口信息列表数据
-                //格口参数
+
+                // 格口参数
                 cabinet_arg: {
                     // guiNo: undefined ? "TA104" : this.$route.params.guiNo,
                     guiNo: this.$route.params.guiNo,  //柜端编号（this.$route.params.guiNo;）
                     boxNo: "",  //格口编号
                 },
+
                 //格口状态信息
                 boxStatusInfo: [],
 
@@ -138,6 +155,27 @@
                 this.$refs[formName].resetFields();
             },
 
+            drop(item) {
+                console.log(item)
+                this.guicur = item;
+            },
+
+            /**
+             * api
+             */
+            //获取设备信息
+            getDeviceList(){
+                getDeviceList().then(res => {  //请求成功
+                    let datalist = res.data.data;
+
+                    for (let i=0; i<datalist.length; i++){
+                        this.guiNos.push(datalist[i].guiNo);
+                    }
+
+                    console.log(this.guiNos);
+                }).catch({});
+            },
+
             /**
              * api
              */
@@ -151,6 +189,8 @@
                     guiNo: this.cabinet_arg.guiNo
                 };
                 getCabinetList(qs.stringify(para)).then(res => {
+                    // console.log(res);
+
                     if (!res.data.data){
                         this.$message({
                             message: "查不到格口编号，请在设备管理列表中选择具体设备查看格口状态！",
@@ -269,6 +309,7 @@
         },
         created () {
             this.getCabinetList();
+            // this.getDeviceList();
         }
     }
 </script>

@@ -8,19 +8,23 @@
                 </el-form-item>
 
                 <el-form-item label="日期" prop="date" class="intxt">
+                    <!--:default-time="['12:00:00', '08:00:00']"-->
                     <el-date-picker
-                            v-model="filterData.date"
-                            align="right"
-                            type="date"
-                            placeholder="选择日期"
-                            value-format=" yyyy-MM-dd"
-                            format="yyyy-MM-dd"
-                            @change="changeDate"
-                            :picker-options="pickerOptionsDate">
+                            v-model="filterData.timeArray"
+                            type="datetimerange"
+                            :picker-options="pickerOptions"
+                            :default-time="['00:00:00', '00:00:00']"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            format="yyyy-MM-dd HH:mm:ss"
+                            value-format="yyyy-MM-dd HH:mm:ss"
+                            @change="getSTime"
+                            align="right">
                     </el-date-picker>
                 </el-form-item>
 
-                <el-form-item class="intxt">
+                <el-form-item class="intxt date_sel">
                     <el-button type="primary" @click="filterRiderFormSubmit('filterRiderForm')">查询</el-button>
                     <el-button @click="resetForm('filterRiderForm')">重置</el-button>
                     <el-button type="primary" @click="downloadPostmanList">下载</el-button>
@@ -109,36 +113,39 @@
                  * 骑手信息筛选数据
                  */
                 // 日期筛选器
-                pickerOptionsDate: {
-                    disabledDate(time) {
-                        return time.getTime() > Date.now();
-                    },
+                pickerOptions: {
                     shortcuts: [{
-                        text: '今天',
+                        text: '最近一周',
                         onClick(picker) {
-                            picker.$emit('pick', new Date());
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', [start, end]);
                         }
                     }, {
-                        text: '昨天',
+                        text: '最近一个月',
                         onClick(picker) {
-                            const date = new Date();
-                            date.setTime(date.getTime() - 3600 * 1000 * 24);
-                            picker.$emit('pick', date);
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                            picker.$emit('pick', [start, end]);
                         }
                     }, {
-                        text: '一周前',
+                        text: '最近三个月',
                         onClick(picker) {
-                            const date = new Date();
-                            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-                            picker.$emit('pick', date);
+                            const end = new Date();
+                            const start = new Date();
+                            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                            picker.$emit('pick', [start, end]);
                         }
                     }]
                 },
-                // 筛选器数据
+                // 筛选器
                 filterData: {
-                    date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
-                    // date: "2018/12/25",  // 日期 | 默认选择今天，但可以选择其他日期
-                    mobile: "",  // 手机号
+                    timeArray: '',  // 起止时间集合
+                    startTime: "",  // 开始时间
+                    endTime: "",  // 结束时间
+                    mobile: ""  // 手机号
                 },
             }
         },
@@ -168,9 +175,17 @@
             /**
              * 日期筛选器
              */
-            changeDate (val) {
-                // 当date改变，重新赋值
-                this.filterData.date = val;
+            getSTime (val) {
+                if(val){
+                    // 为起止时间赋值
+                    this.filterData.startTime = val[0];
+                    this.filterData.endTime = val[1];
+
+                    // console.log(val);
+                    // console.log(this.filterData);
+                }
+
+                return false;
             },
 
             /**
@@ -195,8 +210,9 @@
              */
             getRiderList(){
                 let para = {
-                    date: this.filterData.date,
-                    mobile: this.filterData.mobile,
+                    startTime: this.filterData.startTime,  // 开始时间
+                    endTime: this.filterData.endTime,  // 结束时间
+                    mobile: this.filterData.mobile,  // 手机号
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size  // 每页数量
                 };
@@ -234,9 +250,17 @@
              * api 解封/封禁
              */
             prohibition (row) {
+                let disable;
+
+                if (Object.assign({}, row).disable == 0){
+                    disable = 1;
+                } else {
+                    disable = 0;
+                }
+
                 let params = {
                     id: Object.assign({}, row).id,  // 用户或者骑手,管理员id
-                    disable: Object.assign({}, row).disable,  // 封禁 1 ，解封 0
+                    disable: disable,  // 封禁 1 ，解封 0
                     type: 0  // 用户 1 ，骑手 0 , 管理员 2
                 };
 
@@ -247,14 +271,24 @@
                         message: '封禁成功',
                         type: 'success'
                     });
+
+                    this.getRiderList();  // 加载分页数据
                 });
             },
 
             // 封禁
             lifted (row) {
+                let disable;
+
+                if (Object.assign({}, row).disable == 0){
+                    disable = 1;
+                } else {
+                    disable = 0;
+                }
+
                 let params = {
                     id: Object.assign({}, row).id,  // 用户或者骑手,管理员id
-                    disable: Object.assign({}, row).disable,  // 封禁 1 ，解封 0
+                    disable: disable,  // 封禁 1 ，解封 0
                     type: 0  // 用户 1 ，骑手 0 , 管理员 2
                 };
 
@@ -265,6 +299,8 @@
                         message: '解封成功',
                         type: 'success'
                     });
+
+                    this.getRiderList();  // 加载分页数据
                 });
             },
 
@@ -316,5 +352,9 @@
         margin-right: 16px;
         margin-bottom: 2px;
         width: 345px;
+    }
+
+    .date_sel {
+        margin-left: 80px;
     }
 </style>

@@ -20,7 +20,7 @@
                      </router-link>
 
                      <!-- 管理员管理 -->
-                     <router-link to="/admin_manage">
+                     <router-link to="/admin_manage" v-if="isAdmin">
                          <el-menu-item index="2">
                              <i class="fa fa-address-book"></i>
                              <span slot="title">管理员管理</span>
@@ -50,13 +50,15 @@
 </template>
 
 <script>
-    // import {} from "../api"
+    import { getInfo } from "../api/api"
 
 export default {
     name: "leftmenu",
 
     data() {
         return {
+            isAdmin: true,
+
             items: [
                 {
                     icon: "fa-area-chart",
@@ -108,7 +110,26 @@ export default {
                     break;
             }
         },
-    }
+    },
+
+    methods: {
+        getInfo () {
+            getInfo().then(res => {
+                // console.log(res.data.data.role)
+
+                if (res.data.data.role == 0) {
+                    this.isAdmin = true;
+                } else  if(res.data.data.role == 1) {
+                    this.isAdmin = false;
+                }
+
+            }).catch({});
+        }
+    },
+
+    created: function(){
+        this.getInfo();
+    },
 };
 </script>
 

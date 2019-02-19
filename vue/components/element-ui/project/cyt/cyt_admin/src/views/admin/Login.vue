@@ -62,7 +62,7 @@
 
                             if (res.data.code === 1){
                                 this.$message({
-                                    message: "用户名或密码错误",
+                                    message: res.data.msg,
                                     type: "error"
                                 });
                             } else {
