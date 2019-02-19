@@ -32,8 +32,8 @@
                 },
 
                 loginUser: {
-                    username: "admin",
-                    password: "admin"
+                    username: "",
+                    password: ""
                 },
                 rules: {
                     username: [
