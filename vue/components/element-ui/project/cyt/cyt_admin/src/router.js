@@ -33,8 +33,8 @@ import Map from './views/test/Map'
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
-    // mode: 'hash',
+    // mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
 
     routes: [
