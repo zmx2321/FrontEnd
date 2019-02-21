@@ -128,19 +128,37 @@ export const updateLocation = params => {
 };
 
 // 存取餐二维码
-export const getQRCode = params => {
+/*export const getQRCode = params => {
     return  axios({
-        url: 'http://t-postapi.lxstation.com/wx/common/qrcode',
+        url: 'http://postapi.lxstation.com/wx/common/qrcode',
         method: 'get',
         params: params
     });
-};
+};*/
 
 // 查询设备
 export const getDevice = params => {
     return  axios({
         url: 'admin/selectGuiAll',
         method: 'get',
+        params: params
+    });
+};
+
+// 修改设备名称
+export const updateName = params => {
+    return  axios({
+        url: 'admin/updateName',
+        method: 'post',
+        params: params
+    });
+};
+
+// 刷新柜口列表
+export const refreshBox = params => {
+    return  axios({
+        url: 'admin/refreshBox',
+        method: 'post',
         params: params
     });
 };

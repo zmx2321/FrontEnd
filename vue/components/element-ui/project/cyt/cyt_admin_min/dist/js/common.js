@@ -5,5 +5,9 @@ const qs = window.Qs;
 const title = "城驿通后台管理系统";
 document.title = title;
 
+// 域名
 // const requsetUrl = "http://10.10.10.199:8080/admin/";
 const requsetUrl = "http://postapi.lxstation.com/admin/";
+
+// 微信二维码链接
+const wxQrCodeImgUrl = "http://postapi.lxstation.com/wx/common/qrcode/";

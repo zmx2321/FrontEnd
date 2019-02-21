@@ -47,15 +47,19 @@
             <el-table class="cabinet_list" :data="cabinet_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 255px)">
                 <el-table-column prop="boxNo" label="格口编号" width="auto" align="center"></el-table-column>
 
+                <!--<el-table-column prop="status" label="格口编号" width="auto" align="center"></el-table-column>-->
+
                 <el-table-column prop="status" label="格口状态" width="auto" align="center">
                     <template slot-scope="scope">
-                        {{ scope.row.status == 0 ? "待取" : "已取" }}
+                        <!--{{ scope.row.status == 0 ? "无订单" : "有订单,取餐号码:"+ scope.row.customer }}-->
+                        {{ scope.row.status == 0 ? "无订单" : `有订单,  取餐号码:${scope.row.customer}、 时间:${scope.row.storein}` }}
                     </template>
                 </el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="320">
                     <template slot-scope="scope">
-                        <el-button @click="openCabinet(scope.row)" type="text" size="small" v-if="scope.row.status == 0">开启</el-button>
+                        <el-button @click="openCabinet(scope.row)" type="text" size="small">开启</el-button>
+                        <!--<el-button @click="orderDetail(scope.row)" type="text" size="small" v-if="scope.row.status == 1">订单详情</el-button>-->
                     </template>
                 </el-table-column>
             </el-table>
@@ -107,6 +111,14 @@
                 guiNos: [],
 
                 guicur: "1",
+
+                // 订单详情
+                orderDetailData: {
+                    boxNo: "",  // 柜端编号
+                    customer: "",
+                    status: "",
+                    storein: ""
+                },
 
                 /**
                  */
@@ -172,7 +184,7 @@
                         this.guiNos.push(datalist[i].guiNo);
                     }
 
-                    console.log(this.guiNos);
+                    // console.log(this.guiNos);
                 }).catch({});
             },
 
@@ -188,6 +200,7 @@
                 let para = {
                     guiNo: this.cabinet_arg.guiNo
                 };
+
                 getCabinetList(qs.stringify(para)).then(res => {
                     // console.log(res);
 
@@ -203,6 +216,11 @@
                     this.cabinet_info = res.data.data;
                 }).catch({});
             },
+            // 订单详情
+            orderDetail (row) {
+                this.orderDetailData = Object.assign({}, row);
+                // console.log(this.orderDetailData);
+            },
             //开启单个格口
             openSpecificCabinets () {
                 this.listLoading = true;  //加载loading
@@ -211,35 +229,69 @@
                     guiNo: this.cabinet_arg.guiNo,
                     boxNo: this.cabinet_arg.boxNo
                 };
-                openBoxNo(qs.stringify(para)).then(() => {
+
+                // console.log(para);
+
+                openBoxNo(para).then(res => {
                     this.listLoading = false;  //停止加载loading
 
-                    //成功提示
-                    this.$message({
-                        message: para.guiNo + "设备" + para.boxNo + "格口" + "  开启成功",
-                        type: 'success'
-                    });
+                    // console.log(res.data.msg);
+
+                    if (res.data.msg == "success"){
+                        this.$message({
+                            message: para.boxNo + "  格口" + "开启成功",
+                            type: 'success'
+                        });
+                    } else {
+                        this.$message({
+                            message: res.data.msg,
+                            type: 'success'
+                        });
+                    }
+
+                    this.cabinet_arg.boxNo = "";
+
+                    this.getDeviceList();
                 }).catch({});
             },
             //开启格口
             openCabinet (row) {
-                this.listLoading = true;  //加载loading
+                // this.listLoading = true;  //加载loading
+
+                this.cabinet_arg.boxNo = Object.assign({}, row).boxNo;
 
                 let para = {
                     guiNo: this.cabinet_arg.guiNo,
                     boxNo: this.cabinet_arg.boxNo
                 };
-                openBoxNo(qs.stringify(para)).then(() => {
+
+                // console.log(para);
+                openBoxNo(para).then(res => {
                     this.listLoading = false;  //停止加载loading
 
-                    //获取当前记录格口编号
-                    let boxNo = Object.assign({}, row).boxNo;
+                    // console.log(res.data.msg);
+
+                    if (res.data.msg == "success"){
+                        this.$message({
+                            message: para.boxNo + "  格口" + "开启成功",
+                            type: 'success'
+                        });
+                    } else {
+                        this.$message({
+                            message: res.data.msg,
+                            type: 'success'
+                        });
+                    }
 
                     //成功提示
-                    this.$message({
+                    /*this.$message({
                         message: boxNo + " " + '开启成功',
                         type: 'success'
-                    });
+                    });*/
+
+                    this.cabinet_arg.boxNo = "";
+
+                    this.getDeviceList();
                 }).catch({});
             },
             //一键开启所有格口

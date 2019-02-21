@@ -83,14 +83,14 @@
                 <!--<el-table-column type="selection" width="35"></el-table-column>-->
                 <!--<el-table-column type="index" width="35" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="id" width="60" align="center"></el-table-column>-->
-                <el-table-column prop="packageNo" label="单号" width="220" align="center"></el-table-column>
-                <el-table-column prop="guiNo" label="柜端编号" width="100" align="center"></el-table-column>
-                <el-table-column prop="boxNo" label="格口编号" width="100" align="center"></el-table-column>
-                <el-table-column prop="postmanMobile" label="骑手手机号" width="120" align="center"></el-table-column>
-                <el-table-column prop="storeinAt" label="存餐时间" width="110" align="center"></el-table-column>
-                <el-table-column prop="takeoutBy" label="取餐人" width="110" align="center"></el-table-column>
-                <el-table-column prop="customerMobile" label="取餐手机" width="80" align="center"></el-table-column>
-                <el-table-column prop="openBoxKey" label="开柜密码" width="100"></el-table-column>
+                <el-table-column prop="packageNo" label="单号" width="220px" align="center"></el-table-column>
+                <el-table-column prop="guiNo" label="柜端编号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="boxNo" label="格口编号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="postmanMobile" label="骑手手机号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="storeinAt" label="存餐时间" width="200px" align="center"></el-table-column>
+                <el-table-column prop="takeoutBy" label="取餐人" width="auto" align="center"></el-table-column>
+                <el-table-column prop="customerMobile" label="取餐手机" width="auto" align="center"></el-table-column>
+                <el-table-column prop="openBoxKey" label="开柜密码" width="auto"></el-table-column>
 
                 <el-table-column label="订单状态" width="auto">
                     <template slot-scope="scope">
@@ -98,7 +98,7 @@
                     </template>
                 </el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="320">
+                <el-table-column fixed="right" label="操作" width="210">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="openSpecificCabinets(scope.row)" v-if="scope.row.status == 0">开柜</el-button>
                     </template>
@@ -213,8 +213,8 @@
                     guiNo: undefined,  // 柜端编号
                     postmanMobile: undefined,  // 存件人手机号
                     customerMobile: undefined,  // 取件人手机号
-                    // date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
-                    date: "2018-12-18",  // 日期 | 默认选择今天，但可以选择其他日期
+                    date: this.formatDate(new Date()),  // 日期 | 默认选择今天，但可以选择其他日期
+                    // date: "2018-12-18",  // 日期 | 默认选择今天，但可以选择其他日期
                     startTime: undefined,  // 时间 | 以半小时为最小调整单位
                     endTime: undefined,  // 时间 | 以半小时为最小调整单位
                     boxNo: undefined,  // 柜号（非空）

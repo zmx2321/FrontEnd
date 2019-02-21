@@ -40,11 +40,21 @@
 
                 <el-table-column prop="createAt" label="创建时间" width="110" align="center"></el-table-column>
                 <!--<el-table-column prop="guiNos" label="格口编号" width="120" align="center"></el-table-column>-->
-                <el-table-column prop="weChatName" label="微信名" width="auto" align="center"></el-table-column>
+
+                <!--<el-table-column prop="weChatName" label="微信名" width="auto" align="center"></el-table-column>-->
+
+                <el-table-column label="微信名" width="auto" align="center">
+                    <template slot-scope="scope">
+                        <span :class="scope.row.weChatName == null ? 'wx_info' : ''">
+                            <i v-if="scope.row.weChatName == null" class="el-icon-info"></i>
+                            {{ scope.row.weChatName == null ? "关注公众号并登陆个人中心进行绑定" : scope.row.weChatName }}
+                        </span>
+                    </template>
+                </el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="320">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small" @click="guiAdminManage(scope.row)" v-on:click="guiAdminManageVisible = true" v-if="scope.row.guiAdmin == 1">查看柜端权限</el-button>
+                        <el-button type="text" size="small" @click="guiAdminManage(scope.row)" v-on:click="guiAdminManageVisible = true" v-if="scope.row.guiAdmin == 1">管理柜端权限</el-button>
                         <el-button type="text" size="small" @click="prohibition(scope.row)" v-if="scope.row.disable == 0">封禁</el-button>
                         <el-button type="text" size="small" @click="lifted(scope.row)" v-else>解禁</el-button>
                         <el-button type="text" size="small" @click="updateAdmin(scope.row)" v-on:click="updateAdminVisible = true">编辑</el-button>
@@ -96,7 +106,7 @@
                     </el-select>
                 </el-form-item>
 
-                <el-form-item>
+                <el-form-item class="edit_btn">
                     <el-button type="primary" @click="updateAdminSubmit('updateAdminForm')">提交</el-button>
                     <el-button @click="resetForm('updateAdminForm')">重置</el-button>
                 </el-form-item>
@@ -256,7 +266,7 @@
              */
             getAdminList () {
                 getAdminList().then(res => {
-                    // console.log(res.data.data);
+                    console.log(res.data.data);
 
                     this.admin_info = res.data.data;
                 });
@@ -542,8 +552,22 @@
         margin-right: 15px;
     }
 
+    .guitag{
+        margin-bottom: 12px;
+    }
+
     .intxt{
         margin-bottom: 0;
         padding: 0;
+    }
+
+    .wx_info {
+        font-size: 12px;
+        color: #ef4b0c;
+        letter-spacing: 1px;
+    }
+
+    .edit_btn{
+        margin-top: 32px;
     }
 </style>

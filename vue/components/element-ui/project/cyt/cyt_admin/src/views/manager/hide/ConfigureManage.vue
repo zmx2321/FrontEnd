@@ -528,7 +528,7 @@
              * 轮播速度
              */
             setSpeed() {
-                console.log("点击轮播速度");
+                // console.log("点击轮播速度");
             },
             // 提交添加配置表单
             setSpeedSubmit (formName) {

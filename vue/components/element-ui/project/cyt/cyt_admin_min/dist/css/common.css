@@ -140,3 +140,7 @@ a:visited{
 .time_section .el-input{
     margin-right: 15px;
 }
+
+iframe img{
+    width: 100px;
+}

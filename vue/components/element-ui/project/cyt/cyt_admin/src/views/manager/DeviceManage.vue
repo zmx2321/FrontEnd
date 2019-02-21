@@ -6,7 +6,7 @@
                 <el-col class="toolbar bdr_radiu" :span="24">
                     <el-col :span="22">
                         <el-form-item>
-                            <el-input v-model="guiNo" placeholder="请输入设备编号" clearable></el-input>
+                            <el-input v-model="guiNo" placeholder="请输入设备编号或名称" clearable></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="getDevices">查询</el-button>
@@ -33,9 +33,9 @@
                 <!--<el-table-column prop="id" label="id" width="100"></el-table-column>-->
                 <el-table-column prop="guiNo" label="设备编号" width="100" align="center"></el-table-column>
 
-                <el-table-column prop="location" label="设备地址" width="auto"></el-table-column>
+                <el-table-column prop="guiName" label="设备名称" width="120" align="center"></el-table-column>
 
-                <!--<el-table-column prop="guiName" label="设备名称" width="120" align="center"></el-table-column>-->
+                <el-table-column prop="location" label="设备地址" width="auto"></el-table-column>
 
                 <!--<el-table-column prop="manufacturer" label="设备生产厂商" width="220" align="center"></el-table-column>-->
 
@@ -49,8 +49,10 @@
                         <el-button @click="viewDeviceCabinet(scope.row)" type="text" size="small">查看设备格口</el-button>
                         <!--<el-button @click="viewDeviceStatus" v-on:click="viewDeviceStatusVisible = true" type="text" size="small">查看设备状态</el-button>-->
                         <!--<el-button @click="viewDeviceCommunicationStatus" v-on:click="viewDeviceCommunicationStatusVisible = true" type="text" size="small">查看设备通信状态</el-button>-->
-                        <!--<el-button @click="showQRCode(scope.row)" v-on:click="showQRCodeVisible = true" type="text" size="small">显示设备的存取餐二维码</el-button>-->
+                        <el-button @click="showQRCode(scope.row)" v-on:click="showQRCodeVisible = true" type="text" size="small">显示设备的存取餐二维码</el-button>
                         <el-button @click="editPositionInfo(scope.row)" v-on:click="editPositionVisible = true" type="text" size="small">编辑位置信息</el-button>
+                        <el-button type="text" size="small" @click="editGuiName(scope.row)" v-on:click="editGuiNameVisible = true">修改设备名称</el-button>
+                        <!--<el-button type="text" size="small" @click="refreshBox(scope.row)">刷新柜口列表</el-button>-->
                         <!--<el-button @click="delDevice" type="text" size="small">删除设备</el-button>-->
                     </template>
                 </el-table-column>
@@ -63,7 +65,6 @@
         </el-row>
 
         <!-- 一键配置 -->
-        <!--<el-dialog title="一键配置" @keyup.enter.native="addConfigureAllSubmit('addConfigureAllForm')" :close-on-click-modal="false" :visible.sync="addConfigureAllVisible" :before-close="handleClose">-->
         <el-dialog title="一键配置" @keyup.enter.native="addConfigureAllSubmit('addConfigureAllForm')" :close-on-click-modal="false" :visible.sync="addConfigureAllVisible" :before-close="handleClose">
             <el-form :model="addConfigureAllData" status-icon :rules="addConfigureAllRules" ref="addConfigureAllForm" label-width="120px">
                 <el-form-item label="上传文件">
@@ -106,20 +107,6 @@
             </el-form>
         </el-dialog>
 
-        <!-- 添加新的设备 -->
-        <el-dialog title="添加新的设备" :close-on-click-modal="false" :visible.sync="addDeviceVisible" :before-close="handleClose">
-
-        </el-dialog>
-
-        <!-- 查看设备状态 -->
-        <el-dialog title="查看设备状态" :close-on-click-modal="true" :visible.sync="viewDeviceStatusVisible">
-
-        </el-dialog>
-
-        <!-- 查看设备通信状态 -->
-        <el-dialog title="查看设备通信状态" :close-on-click-modal="true" :visible.sync="viewDeviceCommunicationStatusVisible">
-
-        </el-dialog>
 
         <!-- 显示设备的存取餐二维码 -->
         <el-dialog title="显示设备的存取餐二维码" :close-on-click-modal="true" :visible.sync="showQRCodeVisible">
@@ -127,13 +114,13 @@
                 <el-col :span="12" class="show_QRcode f-oh">
                     <h2>存餐二维码</h2>
                     <div class="QRcode_img">
-                        <img src="../../assets/images/test/test.png" alt="QRcode">
+                        <iframe :src="iframeData.save_src" ref="save_iframe" scrolling="no"></iframe>
                     </div>
                 </el-col>
                 <el-col :span="12" class="show_QRcode f-oh">
                     <h2>取餐二维码</h2>
                     <div class="QRcode_img">
-                        <img src="../../assets/images/test/test.png" alt="QRcode">
+                        <iframe :src="iframeData.take_src" ref="take_iframe" scrolling="no"></iframe>
                     </div>
                 </el-col>
             </el-row>
@@ -162,6 +149,23 @@
             </el-form>
             <div id="atlas"></div>
         </el-dialog>
+
+        <!-- 修改设备名称 -->
+        <el-dialog title="修改设备名称" :close-on-click-modal="false" :visible.sync="editGuiNameVisible" :before-close="handleClose">
+            <el-form :model="editGuiNameData" status-icon :rules="editGuiNameRules" ref="editGuiNameForm" label-width="100px">
+                <el-form-item label="柜端编号" prop="guiNo">
+                    <el-input v-model="editGuiNameData.guiNo" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="柜端新名称" prop="location">
+                    <el-input v-model="editGuiNameData.name" placeholder="请输入柜端新名称" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="editGuiNameSubmit('editGuiNameForm')">提交</el-button>
+                    <el-button @click="resetForm('editGuiNameForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </section>
 </template>
 
@@ -172,7 +176,9 @@
     import {
         getDeviceList, // 设备列表
         addConfigure,  // 添加配置
+        refreshBox,  // 刷新柜口列表
         updateLocation, // 修改设备地址
+        updateName,  // 修改设备名称
         getQRCode,   // 设备存取餐二维码
         getDevice,  // 查询设备
     } from '../../api/api.js';
@@ -200,6 +206,11 @@
 
                 guiNo: '',  //柜端编号
 
+                iframeData: {
+                    save_src: '',
+                    take_src: '',
+                },
+
                 /**
                  * 设备列表
                  */
@@ -214,6 +225,7 @@
                 showQRCodeVisible: false,  // 设备的存取餐二维码界面
                 editPositionVisible: false,  // 编辑设备位置信息界面
                 addConfigureAllVisible: false,  // 一键配置界面
+                editGuiNameVisible: false,  // 修改设备名称
 
                 /**
                  * 二维码
@@ -263,6 +275,21 @@
                         { required: true, message: '柜端新地址不能为空', trigger: 'blur' },
                         { min: 2, message: "长度在大于2个字符", trigger: "blur" },
                         { validator: getLocation, trigger: 'blur' }
+                    ]
+                },
+
+                /**
+                 *  编辑设备名称
+                 */
+                // 编辑设备名称界面数据
+                editGuiNameData: {
+                    guiNo: '',  // 设备编号
+                    name: '',  // 设备名称
+                },
+                // 验证编辑设备名称界面数据
+                editGuiNameRules: {
+                    name: [
+                        { required: true, message: '设备名称不能为空', trigger: 'blur' },
                     ]
                 },
             }
@@ -365,7 +392,7 @@
 
                     //添加点击事件
                     qq.maps.event.addListener(map,'click', event => {
-                        console.log(event.latLng);
+                        // console.log(event.latLng);
                     });
                 });
             },
@@ -438,7 +465,7 @@
                     // console.log(para);
                     this.listLoading = false;
                     this.device_info = res.data.data;  //渲染查询列表
-                    console.log(this.device_info);
+                    // console.log(this.device_info);
                 }).catch({});
             },
 
@@ -505,72 +532,6 @@
                     }
                 });
             },
-            /*// 上传文件
-            /!*uploadUrl:function(){
-                return "requsetUrl";
-            },*!/
-            //点击添加配置
-            addConfigureAll () {
-                // console.log("添加配置");
-
-                this.upload_arg.fileList = [];  //清空上传img file
-                this.upload_arg.fileFile = [];
-            },
-            //el-upload
-            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
-            addHandleChangeAll(file){
-                // console.log("文件状态改变时的钩子");
-
-                //上传文件变化时将文件对象push进files数组
-                this.upload_arg.fileFile.push(file.raw);
-                console.log(this.upload_arg.fileFile);
-            },
-            // 提交添加配置信息表单
-            addConfigureAllSubmit (formName) {
-                // 点击提交开始加载loading
-                this.listLoading = true;
-
-                // 验证表单
-                this.$refs[formName].validate((valid) => {
-                    // 如果验证成功，请求接口数据
-                    if (valid) {
-                        // console.log(this.addConfigureData)
-
-                        let formData = new FormData();;
-
-                        formData.append('file', this.upload_arg.fileFile[0]);
-                        // formData.append('guiNos', this.$route.params.guiNo);
-                        formData.append('guiNos', this.addConfigureData.guiNos);
-                        formData.append('type', this.addConfigureData.type);
-                        formData.append('content', this.addConfigureData.content);
-                        // console.log(this.upload_arg.fileFile[0]);
-
-                        console.log(this.addConfigureData.type);
-
-                        let config = {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            }
-                        };
-
-                        addConfigure(formData, config).then(() => {
-                            this.$message({
-                                message: "添加成功！",
-                                type: "success"
-                            });
-
-                            this.listLoading = false;
-
-                            this.addConfigureVisible = false;
-
-                            this.getConfigureList();
-                        });
-                    } else {  // 验证失败跳出
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
-            },*/
 
             // 生产商
             formatType (row) {
@@ -584,59 +545,19 @@
                 }
             },
 
-            // 显示添加设备界面
-            addDevice () {
-                console.log("添加设备");
-            },
-            // 重启设备
-            restartDevice () {
-                console.log("重启设备");
-            },
-            // 查看设备状态
-            viewDeviceStatus () {
-                console.log("查看设备状态");
-            },
-            // 查看设备通信状态
-            viewDeviceCommunicationStatus () {
-                console.log("查看设备通信状态");
-            },
             // 显示设备的存取餐二维码
             showQRCode (row) {
-                console.log("显示设备的存取餐二维码");
+                // 获取当前记录(行)设备编号
+                let guiNo = Object.assign({}, row).guiNo;
 
-                // 0存1取
-                /*let params = {
-                    guiNo: Object.assign({}, row).guiNo,
-                    type: 0
-                };
+                // console.log(wxQrCodeImgUrl);
 
-                getQRCode(params).then(res => {
-                    console.log(res);
-                });*/
-
-
-                // 存餐接口参数
-                let holdPara = {
-                    guiNo: Object.assign({}, row).guiNo,  // 获取当前记录(行)设备编号
-                    type: 0
-                };
-                // 取餐接口参数
-                let takePara = {
-                    guiNo: Object.assign({}, row).guiNo,  // 获取当前记录(行)设备编号
-                    type: 1
-                };
-
-                // console.log(holdPara)
-
-                // 存餐二维码
-                getQRCode(holdPara).then(res => {
-                    console.log(res);
-                }).catch({});
-
-                // 取餐二维码
-                getQRCode(takePara).then(res => {
-                    // console.log(res);
-                }).catch({});
+                /**
+                 * 存取餐
+                 * (0存1取)
+                 */
+                this.iframeData.save_src = `${wxQrCodeImgUrl}?guiNo=${guiNo}&type=0`;  // 存餐链接[0]
+                this.iframeData.take_src = `${wxQrCodeImgUrl}?guiNo=${guiNo}&type=1`;  // 取餐链接[1]
             },
 
             /**
@@ -651,7 +572,7 @@
 
                 this.map();  // 加载地图
             },
-            //提交编辑设备地址表单
+            // 提交编辑设备地址表单
             editPositionSubmit(formName) {
                 this.listLoading = true;  //点击提交开始加载loading
 
@@ -679,22 +600,65 @@
                     }
                 });
             },
+
+            // 修改设备名称
+            editGuiName(row){
+                // console.log(Object.assign({}, row));
+                this.editGuiNameData.guiNo = Object.assign({}, row).guiNo;
+                this.editGuiNameData.name = Object.assign({}, row).guiName;
+                // updateName
+            },
+            // 提交修改设备名称
+            editGuiNameSubmit(formName){
+                // this.listLoading = true;  //点击提交开始加载loading
+
+                //接口参数
+                let para = {
+                    guiNo: this.editGuiNameData.guiNo,  // 柜端编号
+                    name: this.editGuiNameData.name,  // 柜端新名称
+                };
+
+                // console.log(para);
+
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {  //如果验证成功，请求接口数据
+                        updateName(para).then(() => {
+                            this.editGuiNameVisible = false;  //隐藏编辑位置信息界面
+
+                            this.listLoading = false;  //请求成功停止加载loading
+
+                            this.getDeviceList();  //刷新列表数据
+                        }).catch({});
+                    } else {  //验证失败跳出
+                        console.log('error submit!!');
+                    }
+                });
+            },
+
+            // 刷新柜口列表
+            refreshBox (row) {
+                // console.log(Object.assign({}, row))
+
+                let para = {
+                    guiNo: Object.assign({}, row).guiNo
+                }
+
+                refreshBox(para).then(() => {
+                    // console.log(res);
+                    this.$message({
+                        message: "刷新成功！",
+                        type: "success"
+                    });
+                }).catch({});
+            },
+
             //删除设备
             delDevice () {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
                     console.log("删除设备");
-                }).catch(err => {
-                    throw err;
-                });
-            },
-            //批量删除设备
-            batchRemove: function () {
-                this.$confirm('确认删除该记录吗?', '提示', {
-                    type: 'warning'
-                }).then(() => {
-                    console.log("设备批量删除");
                 }).catch(err => {
                     throw err;
                 });
@@ -725,21 +689,22 @@
     }
 
     .show_QRcode .QRcode_img{
-        width: 75%;
+        width: 100%;
         margin: 0 auto;
     }
 
-    .QRcode_img img{
+    .QRcode_img iframe{
         width: 100%;
-        height: 100%;
+        margin: 0 auto;
+        height: 435px;
+    }
+
+    iframe img{
+        width: 100px;
     }
 
     .show_QRcode:first-child{
         border-right: solid 1px #acaeaf;
-    }
-
-    .map{
-
     }
 
     #atlas{

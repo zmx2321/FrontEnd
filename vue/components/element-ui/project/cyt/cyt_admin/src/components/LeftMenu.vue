@@ -19,14 +19,6 @@
                          </el-menu-item>
                      </router-link>
 
-                     <!-- 管理员管理 -->
-                     <router-link to="/admin_manage" v-if="isAdmin">
-                         <el-menu-item index="2">
-                             <i class="fa fa-address-book"></i>
-                             <span slot="title">管理员管理</span>
-                         </el-menu-item>
-                     </router-link>
-
                      <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
@@ -43,6 +35,14 @@
                             </router-link>
                         </el-submenu>
                     </template>
+
+                     <!-- 管理员管理 -->
+                     <router-link to="/admin_manage" v-if="isAdmin">
+                         <el-menu-item index="2">
+                             <i class="fa fa-address-book"></i>
+                             <span slot="title">管理员管理</span>
+                         </el-menu-item>
+                     </router-link>
                  </el-menu>
              </el-col>
         </el-row>
