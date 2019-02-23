@@ -8,6 +8,7 @@ var flashvars = {
   f:'http://movie.ks.js.cn/flv/other/1_0.mp4',
   p: 0,
   e: 1,
+  c: 0,
   i: 'http://www.ckplayer.com/static/images/cqdw.jpg'
 };
 
@@ -28,11 +29,7 @@ var video=['http://img.ksbbs.com/asset/Mon_1703/05cacb4e02f9d9e.mp4->video/mp4']
 	平台优先选项[false=优先使用flashplayer，true=优先使用h5的video],初始化参数[必需],移动端所使用的地址数组[必需],其它配置[非必需，主要针对flashplayer的配置]);
  */
 // 只有当调用视频播放器时设置e=0或4时会有效果
-// CKobject.embed('ckplayer/ckplayer.swf','a1','ckplayer_a1','600','400',false,flashvars,video);
-
-// 只调用flash播放器
-var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
-CKobject.embedSWF('ckplayer/ckplayer.swf','a1','ckplayer_a1','600','400',flashvars,params); 
+CKobject.embed('ckplayer/ckplayer.swf','a1','ckplayer_a1','600','400',false,flashvars,video);
 
 
 
