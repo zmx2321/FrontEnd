@@ -203,8 +203,8 @@
                 // console.log(this.timeArray);
 
                 let para = {
-                    startTime: this.filterData.startTime,  // 开始时间
-                    endTime: this.filterData.endTime,  // 结束时间
+                    start: this.filterData.startTime,  // 开始时间
+                    end: this.filterData.endTime,  // 结束时间
                     mobile: this.filterData.mobile,  // 手机号
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size  // 每页数量

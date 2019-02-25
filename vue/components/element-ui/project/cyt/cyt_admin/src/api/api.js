@@ -273,6 +273,17 @@ export const getRecordInfo = params => {
     });
 };
 
+// 重置订单状态
+export const resetStatus = params => {
+    return  axios({
+        url: 'admin/saveStatus',
+        method: 'post',
+        params: params
+    });
+};
+
+
+
 // 记录数据下载
 /*export const downloadPackageList = params => {
     return  axios({

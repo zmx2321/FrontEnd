@@ -101,6 +101,7 @@
                 <el-table-column fixed="right" label="操作" width="210">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="openSpecificCabinets(scope.row)" v-if="scope.row.status == 0">开柜</el-button>
+                        <el-button type="text" size="small" @click="resetStatus(scope.row)">重置订单状态</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -120,6 +121,27 @@
                 </el-col>
             </el-row>
         </el-row>
+
+        <!-- 重置订单状态 -->
+        <!--<el-dialog title="重置订单状态" @keyup.enter.native="resetStatusSubmit('resetStatusForm')" :close-on-click-modal="false" :visible.sync="resetStatusVisible" :before-close="handleClose">
+            <el-form :model="resetStatusData" status-icon :rules="resetStatusRules" ref="resetStatusForm" label-width="120px">
+                <el-form-item label="记录编号" prop="id">
+                    <el-input v-model="resetStatusData.id" disabled></el-input>
+                </el-form-item>
+
+                <el-form-item label="订单状态">
+                    <el-select v-model="resetStatusData.status" placeholder="订单状态" @change="statuCurrentSel">
+                        <el-option label="已取" value="1"></el-option>
+                        <el-option label="待取" value="0"></el-option>
+                    </el-select>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="resetStatusSubmit('resetStatusForm')">提交</el-button>
+                    <el-button @click="resetForm('resetStatusForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>-->
     </section>
 </template>
 
@@ -127,6 +149,7 @@
     import {
         getRecordInfo,  // 获取记录信息
         openBoxNo,  // 开启单个特定格口
+        resetStatus,  // 重置状态
         // downloadPackageList,  // 记录数据下载
     } from '../../../api/api.js';
 
@@ -232,6 +255,27 @@
                 },
 
                 isTakeOut: false,
+
+                // 重置订单状态数据
+                resetStatusData: {
+                    id: "",  // 记录编号
+                    status: ""  // 状态
+                },
+
+                // 验证添加用户界面数据
+                resetStatusRules: {
+                    /*id: [
+                        { required: true, message: 'id不能为空！', trigger: 'blur' }
+                    ],*/
+                    status: [
+                        { required: true, message: '订单状态不能为空！', trigger: 'blur' }
+                    ],
+                },
+
+                /**
+                 *  弹出表单界面(true 显示, false 隐藏)
+                 */
+                resetStatusVisible: false,  // 重置订单状态界面
             }
         },
         methods: {
@@ -483,6 +527,70 @@
                     });
                 }).catch({});
             },
+
+            /**
+             * 订单状态
+             */
+            // 订单状态选择
+            /*statuCurrentSel (val) {
+                console.log(val);
+
+                this.resetStatusData.status = val;
+            },*/
+            // 重置订单状态
+            resetStatus (row) {
+                this.$confirm('确认重置？').then(() => {
+                    this.listLoading = true;
+
+                    let param = {
+                        packageNo: Object.assign({}, row).packageNo
+                    }
+
+                    // 重置接口
+                    resetStatus(param).then(res => {
+                        // console.log(res);
+
+                        this.$message({
+                            message: "重置成功！",
+                            type: "success"
+                        });
+
+                        this.listLoading = false;
+
+                        this.resetStatusVisible = false;
+
+                        this.getRecordInfo();  // 加载分页数据
+                    });
+                }).catch(() => {});
+            },
+            /*resetStatusSubmit(formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
+                        console.log("success!!");
+
+                        this.listLoading = true;
+
+                        /!*let params = {
+                            id: this.resetStatusData.id,
+                            status: this.resetStatusData.status,
+                        }*!/
+
+                        /!*resetStatus(qs.stringify(this.resetStatusData)).then(res => {
+                            console.log(res);
+
+                            this.listLoading = false;
+
+                            this.resetStatusVisible = false;
+
+                            this.getRecordInfo();  // 加载分页数据
+                        });*!/
+                    } else {  //验证失败跳出
+                        console.log('error submit!!');
+                    }
+                });
+            }*/
         },
         created () {
             // console.log($);

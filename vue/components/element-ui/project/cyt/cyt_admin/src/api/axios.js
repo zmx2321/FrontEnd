@@ -3,6 +3,7 @@ import { Message } from 'element-ui'
 
 import router from '../router'
 
+// const root = 'http://10.10.10.236:8080/';
 // const root = 'http://10.10.10.199:8080/';
 const root = 'http://postapi.lxstation.com/';
 
