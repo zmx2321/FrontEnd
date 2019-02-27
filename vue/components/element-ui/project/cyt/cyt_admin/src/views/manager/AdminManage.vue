@@ -32,6 +32,8 @@
                     </template>
                 </el-table-column>
 
+                <!--<el-table-column prop="guiAdmin" label="姓名" width="auto" align="center"></el-table-column>-->
+
                 <el-table-column label="柜端权限" width="auto" align="center">
                     <template slot-scope="scope">
                         {{ scope.row.guiAdmin == 1 ? "是" : "否" }}
@@ -226,9 +228,6 @@
                     mobile: [
                         { required: true, message: '手机号不能为空！', trigger: 'blur' },
                     ],
-                    guiRole: [
-                        { required: true, message: '柜端管理权限不能为空！', trigger: 'blur' },
-                    ],
                 },
 
                 /**
@@ -259,6 +258,10 @@
                         done();
                     }).catch(() => {});
             },
+            //表单重置
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            },
 
             /**
              * api
@@ -266,7 +269,7 @@
              */
             getAdminList () {
                 getAdminList().then(res => {
-                    console.log(res.data.data);
+                    // console.log(res.data.data);
 
                     this.admin_info = res.data.data;
                 });
@@ -391,22 +394,20 @@
              */
             // 编辑管理员(浅拷贝列表数据到表单)
             updateAdmin (row) {
-                this.updateAdminData = Object.assign({}, row);
+                // this.updateAdminData = Object.assign({}, row);
 
-                // this.updateAdminData.guiRole = Object.assign({}, row).guiAdmin;
+                this.updateAdminData.id = Object.assign({}, row).id;
+                this.updateAdminData.username = Object.assign({}, row).username;
+                this.updateAdminData.name = Object.assign({}, row).name;
+                this.updateAdminData.mobile = Object.assign({}, row).mobile;
+                this.updateAdminData.guiRole = Object.assign({}, row).guiAdmin.toString();
             },
 
             // 柜端管理权限
             currentSel (val) {
-                console.log(val);
-                /*switch (val) {
-                    case "1" :
-                        this.updateAdminData.guiRole = "是";
-                        break;
-                    case "0" :
-                        this.updateAdminData.guiRole = "否";
-                        break;
-                }*/
+                // console.log(val);
+
+                this.updateAdminData.guiRole = val;
             },
 
             // 提交编辑管理员表单
@@ -424,6 +425,8 @@
                             mobile: this.updateAdminData.mobile,
                             guiRole: this.updateAdminData.guiRole,
                         };
+
+                        // console.log(params);
 
                         updateAdmin(qs.stringify(params)).then(() => {
                             this.$message({
