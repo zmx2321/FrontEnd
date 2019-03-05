@@ -185,7 +185,7 @@ export default {
         logout() {
             Logout().then(() => {
                 this.$message({
-                    message: this.$t('message.logoutSuccess'),
+                    message: this.$t('message.success.logout'),
                     type: "success"
                 });
 

@@ -1,49 +1,23 @@
 <template>
   <section class="main_cont">
     <!-- 按钮 -->
-    <!--<el-row class="toolbar bdr_radiu f-cb">
+    <el-row class="toolbar bdr_radiu f-cb">
       <el-col class="f-fl btn_wrap">
-        <el-button type="primary" @click="addSingleRedeemCodeVisible = true">添加单个兑换码</el-button>
+        <el-button type="primary" @click="addVoteVisible = true">添加投票</el-button>
       </el-col>
-      <el-col class="f-fl btn_wrap">
-        <el-button type="primary" @click="addMoreRedeemCodeVisible = true">添加多个兑换码</el-button>
-      </el-col>
-      <el-col class="f-fl btn_wrap">
-        <el-tooltip effect="dark" content="Excel只允许下载一次" placement="top">
-          <el-button type="primary" @click="downloadExcel" :disabled="this.downloadExcelData.excelURI===''">下载Excel</el-button>
-        </el-tooltip>
-      </el-col>
-      <el-col class="f-fl btn_wrap del_more">
-        <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0" class="f-fr">批量删除</el-button>
-      </el-col>
-      <el-col class="tip">
-        <p><i class="fa fa-info-circle"></i>生成多条兑换码可生成Excel，且Excel只允许下载一次</p>
-      </el-col>
-    </el-row>-->
+    </el-row>
 
     <!-- 资讯列表 -->
     <el-row>
-      <el-table class="consultation_list" :data="consultation_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)">
-        <el-table-column type="selection" width="55" align="center"></el-table-column>
+      <el-table class="consultation_list" :data="vote_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)">
+        <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
         <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
-        <!--<el-table-column prop="id" label="资讯编号" width="80" align="center"></el-table-column>-->
-        <el-table-column prop="title" label="资讯标题" width="350"></el-table-column>
-        <!--<el-table-column prop="typeName" label="资讯类目" width="auto" align="center" :formatter="formatType"></el-table-column>-->
-        <el-table-column prop="category" label="资讯类目" width="100" align="center"></el-table-column>
-        <el-table-column prop="typeName" label="类型" width="80" align="center"></el-table-column>
-        <el-table-column prop="readNum" label="浏览量" width="80" align="center"></el-table-column>
-        <el-table-column prop="likeNum" label="点赞量" width="80" align="center"></el-table-column>
-        <el-table-column prop="forwardNum" label="转发量" width="80" align="center"></el-table-column>
-        <el-table-column label="状态" width="80" align="center">
-          <template slot-scope="scope">
-            {{ scope.row.status === 1 ? "推荐" : "" }}
-          </template>
-        </el-table-column>
+        <el-table-column prop="id" label="资讯编号" width="80" align="center"></el-table-column>
 
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
-            <el-button type="text" size="small" v-on:click="editConsultationVisible = true" @click="editConsultation(scope.row)">{{ $t('btn.edit') }}</el-button>
-            <el-button type="text" size="small" @click="delConsultation(scope.row)">{{ $t('btn.del') }}</el-button>
+            <el-button type="text" size="small" v-on:click="editVoteVisible = true" @click="editVote(scope.row)">{{ $t('btn.edit') }}</el-button>
+            <el-button type="text" size="small" @click="delVote(scope.row)">{{ $t('btn.del') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -64,9 +38,9 @@
       </el-row>
     </el-row>
 
-    <!-- 编辑资讯 -->
-    <el-dialog title="编辑资讯" @keyup.enter.native="editConsultationSubmit('editConsultationForm')" :close-on-click-modal="false" :visible.sync="editConsultationVisible" :before-close="handleClose">
-      <el-form :model="editConsultationData" status-icon :rules="editConsultationRules" ref="editConsultationForm" label-width="160px">
+    <!-- 新增投票 -->
+    <el-dialog title="新增投票" @keyup.enter.native="addVote('editVoteForm')" :close-on-click-modal="false" :visible.sync="addVoteVisible" :before-close="handleClose">
+      <el-form :model="addVoteData" status-icon :rules="addVoteRules" ref="editVoteForm" label-width="160px">
         <!--<el-form-item label="兑换码月份(默认一月)" prop="month">
           <el-input v-model="editConsultationData.month"  placeholder="请输入兑换码月份" clearable></el-input>
         </el-form-item>
@@ -75,8 +49,25 @@
         </el-form-item>-->
 
         <el-form-item>
-          <el-button type="primary" @click="editConsultationSubmit('editConsultationForm')">提交</el-button>
-          <el-button @click="resetForm('editConsultationForm')">重置</el-button>
+          <el-button type="primary" @click="addVoteSubmit('addVoteForm')">提交</el-button>
+          <el-button @click="resetForm('addVoteForm')">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+
+    <!-- 编辑投票 -->
+    <el-dialog title="编辑投票" @keyup.enter.native="editVote('editVoteForm')" :close-on-click-modal="false" :visible.sync="editVoteVisible" :before-close="handleClose">
+      <el-form :model="editVoteData" status-icon :rules="editVoteRules" ref="editVoteForm" label-width="160px">
+        <!--<el-form-item label="兑换码月份(默认一月)" prop="month">
+          <el-input v-model="editConsultationData.month"  placeholder="请输入兑换码月份" clearable></el-input>
+        </el-form-item>
+        <el-form-item label="备注" prop="memo">
+          <el-input v-model="addRedeemCodeData.memo" placeholder="请输入备注" clearable></el-input>
+        </el-form-item>-->
+
+        <el-form-item>
+          <el-button type="primary" @click="editVoteSubmit('editVoteForm')">提交</el-button>
+          <el-button @click="resetForm('editVoteForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -85,11 +76,11 @@
 
 <script>
     import {
-        getConsultation,  // 获取资讯列表
+        getVote,  // 获取投票列表
     } from '../../api/api.js';
 
     export default {
-        name: 'identificationInfo',
+        name: 'vote',
 
         data() {
             return {
@@ -109,34 +100,38 @@
                 },
 
                 /**
-                 * 资讯
+                 * 投票
                  */
-                // 资讯列表
-                consultation_info: [],  // 存放兑换码信息列表数据
+                // 投票列表
+                vote_info: [],  // 存放兑换码信息列表数据
 
-                // 筛选数据
-                filterData: {
-                    title: "",  // 资讯标题
-                    ctId: "",  // 资讯分类id
-                    type: "",  // 內容分類(0:文字,1:图文,2:视频,3:投票)
-                    originName: ""  // 资讯来源名称
+                /**
+                 * 编辑投票
+                 */
+                // 编辑投票数据
+                addVoteData: {
+                },
+
+                // 验证编辑投票数据
+                addVoteRules: {
                 },
 
                 /**
-                 * 编辑资讯
+                 * 编辑投票
                  */
-                // 编辑资讯数据
-                editConsultationData: {
+                // 编辑投票数据
+                editVoteData: {
                 },
 
                 // 验证编辑资讯数据
-                editConsultationRules: {
+                editVoteRules: {
                 },
 
                 /**
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
-                editConsultationVisible: false,  // 编辑资讯界面
+                addVoteVisible: false,  // 编辑资讯界面
+                editVoteVisible: false,  // 编辑资讯界面
             }
         },
         methods: {
@@ -159,7 +154,7 @@
              */
             // 点击页码
             handleCurrentChange() {
-                this.getConsultationList();  // 加载分页数据
+                // this.getConsultationList();  // 加载分页数据
             },
             // 设置每页条数
             handleSizeChange(page_size) {
@@ -167,15 +162,15 @@
 
                 this.page_arg.page_size = page_size;  // 切换size
 
-                this.getConsultationList();  // 加载分页数据
+                // this.getConsultationList();  // 加载分页数据
             },
 
             /**
              *  api
-             *  获取资讯信息
+             *  获取投票信息
              */
-            // 获取资讯列表
-            getConsultationList () {
+            // 获取投票列表
+            getVoteList () {
                 //接口参数
                 let param = {
                     pageNum: this.page_arg.page_index,  // 当前页码
@@ -183,10 +178,10 @@
                 };
 
                 // 请求接口
-                getConsultation(qs.stringify(param)).then(res => {
-                    console.log(res.data.data.list);
+                getVote(this.qs.stringify(param)).then(res => {
+                    // console.log(res.data.data.list);
 
-                    this.consultation_info = res.data.data.list;
+                    this.vote_info = res.data.data.list;
 
                     // 返回分页总数
                     this.page_arg.total = res.data.data.total;
@@ -195,31 +190,47 @@
 
             /**
              * api
-             * 编辑资讯
+             * 添加投票
              */
-            // 点击编辑
-            editConsultation (row) {
-                console.log(Object.assign({}, row));
-            },
-            // 提交编辑资讯表单
-            editConsultationSubmit (formName) {
+            // 提交添加投票表单
+            addVoteSubmit (formName) {
                 // 验证表单
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
                         console.log("submit!!")
                     } else {  //验证失败跳出
-                        console.log('error submit!!');
-                        return false;
+                        this.message.error("表单填写错误");
+                    }
+                });
+            },
+
+            /**
+             * api
+             * 编辑投票
+             */
+            // 点击编辑
+            editVote (row) {
+                console.log(Object.assign({}, row));
+            },
+            // 提交编辑投票表单
+            editVoteSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        console.log("submit!!")
+                    } else {  //验证失败跳出
+                        this.message.error("表单填写错误");
                     }
                 });
             },
 
             /**
              *  api
-             *  删除资讯
+             *  删除投票
              */
-            delConsultation (row) {
+            delVote (row) {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
@@ -229,7 +240,7 @@
         },
         // 预处理
         created () {
-            this.getConsultationList();
+            this.getVoteList();
         }
     }
 </script>

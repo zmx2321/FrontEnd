@@ -36,12 +36,12 @@
                     </router-link>-->
 
                     <!-- 轮播图管理 -->
-                    <router-link to="/banner">
+                    <!--<router-link to="/banner">
                         <el-menu-item index="5">
                             <i class="fa fa-cog"></i>
                             <span slot="title">{{ $t('leftMenu.banner') }}</span>
                         </el-menu-item>
-                    </router-link>
+                    </router-link>-->
 
                     <!-- 签到管理 -->
                     <!--<router-link to="/dailyTask">
@@ -52,12 +52,12 @@
                     </router-link>-->
 
                      <!-- 投票管理 -->
-                     <!--<router-link to="/vote">
+                     <router-link to="/vote">
                          <el-menu-item index="7">
-                             <i class="icon iconfont icon-tongji"></i>
+                             <i class="fa fa-paragraph"></i>
                              <span slot="title">投票管理</span>
                          </el-menu-item>
-                     </router-link>-->
+                     </router-link>
 
                      <!-- 职业管理 -->
                      <!--<router-link to="/job">
@@ -85,12 +85,12 @@
                     </template>
 
                      <!-- 员工管理 -->
-                     <router-link to="/staff">
+                     <!--<router-link to="/staff">
                          <el-menu-item index="1">
                              <i class="fa fa-user"></i>
                              <span slot="title">{{ $t('leftMenu.staff') }}</span>
                          </el-menu-item>
-                     </router-link>
+                     </router-link>-->
                  </el-menu>
              </el-col>
         </el-row>
@@ -104,15 +104,24 @@ export default {
     data() {
         return {
             items: [
-                {
-                    icon: "fa fa-paragraph",
+                /*{
+                    icon: "fa fa-pie-chart",
                     name: "数据统计",
                     path: this.$t('leftMenu.statistics'),
                     children: [
                         { path: "/userStatistics", name: this.$t('leftMenu.userStatistics') },
                         { path: "/consumptionStatistics", name: this.$t('leftMenu.consumptionStatistics') }
                     ]
-                }
+                },
+                {
+                    icon: "fa fa-paragraph",
+                    name: "test",
+                    path:  "test",
+                    children: [
+                        { path: "/richTest", name: "richTest" },
+                        { path: "/richTest2", name: "richTest2" },
+                    ]
+                },*/
             ]
         };
     },

@@ -10,13 +10,22 @@ let base = "/admin";
  * common
  */
 // 上传图片
-/*export const getImgURI = params => {
+export const getImgURI = params => {
     return  axios({
-        url: 'upload',
+        url: `${base}/upload/uploadImage`,
         method: 'post',
         data: params
     });
-};*/
+};
+
+// 上传视频
+export const getVideoURI = params => {
+    return  axios({
+        url: `${base}/upload/uploadVideo`,
+        method: 'post',
+        data: params
+    });
+};
 
 
 /**
@@ -27,7 +36,7 @@ export const Login = params => {
     return  axios({
         url: `${base}/user/login`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
@@ -48,9 +57,80 @@ export const getConsultation = params => {
     return  axios({
         url: `${base}/consultation/search`,
         method: 'get',
-        data: params
+        params: params
     });
 };
+
+// 获取资讯分类列表
+export const getConsultationType = params => {
+    return  axios({
+        url: `${base}/consultationType/search`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 添加资讯
+export const addConsultation = params => {
+    return  axios({
+        url: `${base}/consultation/add`,
+        method: 'post',
+        params: params
+    });
+};
+
+// 根据id获取资讯
+export const getConsultationById = params => {
+    return  axios({
+        url: `${base}/consultation/get`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 编辑资讯
+export const editConsultation = params => {
+    return  axios({
+        url: `${base}/consultation/modify`,
+        method: 'post',
+        params: params
+    });
+};
+
+// 删除资讯
+export const delConsultation = params => {
+    return  axios({
+        url: `${base}/consultation/remove`,
+        method: 'post',
+        params: params
+    });
+};
+
+
+/**
+ *  资质认证管理
+ */
+// 管理端获取资质资质认证列表
+export const getIdentificationInfo = params => {
+    return  axios({
+        url: `${base}/identificationInfo/admin/search`,
+        method: 'get',
+        params: params
+    });
+};
+
+/**
+ *  投票管理
+ */
+// 获取投票列表
+export const getVote = params => {
+    return  axios({
+        url: `${base}/vote/search`,
+        method: 'get',
+        params: params
+    });
+};
+
 
 /*
 // 注销

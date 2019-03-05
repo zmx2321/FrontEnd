@@ -20,10 +20,14 @@ import ConsumeInfo from './views/manager/ConsumeInfo'
 import Banner from './views/manager/Banner'
 import DailyTask from './views/manager/DailyTask'
 import Vote from './views/manager/Vote'
-import Job from './views/manager/Job'
+// import Job from './views/manager/Job'
 import UserStatistics from './views/manager/UserStatistics'
 import ConsumptionStatistics from './views/manager/ConsumptionStatistics'
 import Staff from './views/manager/Staff'
+
+// Test
+import RichTest from './views/test/RichTest'
+import RichTest2 from './views/test/RichTest2'
 
 Vue.use(Router);
 
@@ -60,13 +64,17 @@ const router = new Router({
                 // 投票管理
                 { path: '/vote', component: Vote, name: 'vote' },
                 // 职业管理
-                { path: '/job', component: Job, name: 'job' },
+                // { path: '/job', component: Job, name: 'job' },
                 // 用户统计
                 { path: '/userStatistics', component: UserStatistics, name: 'userStatistics' },
                 // 消费统计
                 { path: '/consumptionStatistics', component: ConsumptionStatistics, name: 'consumptionStatistics' },
                 // 员工管理
                 { path: '/staff', component: Staff, name: 'staff' },
+
+
+                { path: '/richTest', component: RichTest, name: 'richTest' },
+                { path: '/richTest2', component: RichTest2, name: 'richTest2' },
             ]
         },
         // 登陆页面

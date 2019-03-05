@@ -5,14 +5,15 @@
                 <span class="title">{{ $t('main.title') }}</span>
             </div>
             <el-form :model="loginUser" @keyup.enter.native="submitForm('loginForm')" status-icon :rules="rules" ref="loginForm" class="loginForm" label-width="80px">
-                <el-form-item label="用户名" prop="username">
-                    <el-input v-model="loginUser.username" placeholder="请输入用户名" clearable></el-input>
+                <!--{{ $t('identity.user') }}-->
+                <el-form-item :label="$t('identity.user')" prop="username">
+                    <el-input v-model="loginUser.username" :placeholder="$t('identity.input.user')" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input autocomplete="new-password" type="password" v-model="loginUser.password" placeholder="请输入密码" clearable></el-input>
+                <el-form-item :label="$t('identity.pas')" prop="password">
+                    <el-input autocomplete="new-password" type="password" v-model="loginUser.password" :placeholder="$t('identity.input.pas')" clearable></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登  录</el-button>
+                    <el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">{{ $t('btn.login') }}</el-button>
                 </el-form-item>
             </el-form>
         </section>
@@ -54,7 +55,7 @@
                         //验证通过，密码进行md5加密
                         this.loginUser.password = this.md5(this.loginUser.password);
 
-                        Login(this.loginUser).then(res => {
+                        Login(this.qs.stringify(this.loginUser)).then(res => {
                             // console.log(res.data);
 
                             if (res.data.code == 1){
@@ -67,7 +68,7 @@
                                 localStorage.setItem('code', this.md5((res.data.code).toString()));
 
                                 this.$message({
-                                    message: this.$t('message.loginSuccess'),
+                                    message: this.$t('message.success.login'),
                                     type: "success"
                                 });
 
