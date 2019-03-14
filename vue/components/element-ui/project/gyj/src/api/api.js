@@ -27,6 +27,14 @@ export const getVideoURI = params => {
     });
 };
 
+// 地址
+export const getAddress = () => {
+    return  axios({
+        url: `${base}/province/search`,
+        method: 'get',
+    });
+};
+
 
 /**
  *  登录/注销/修改密码
@@ -108,16 +116,35 @@ export const delConsultation = params => {
 
 
 /**
- *  资质认证管理
+ *  用户管理
  */
-// 管理端获取资质资质认证列表
-export const getIdentificationInfo = params => {
+// 获取用户列表
+export const getUserInfoList = params => {
     return  axios({
-        url: `${base}/identificationInfo/admin/search`,
+        url: `${base}/userinfo/search`,
         method: 'get',
         params: params
     });
 };
+
+// 根据用户id获取用户
+export const getUserInfoById = params => {
+    return  axios({
+        url: `${base}/userinfo/get`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 资质认证审核
+export const reviewUser = params => {
+    return  axios({
+        url: `${base}/identificationInfo/modify`,
+        method: 'post',
+        params: params
+    });
+};
+
 
 /**
  *  投票管理
@@ -131,220 +158,87 @@ export const getVote = params => {
     });
 };
 
-
-/*
-// 注销
-export const Logout = () => {
+// 添加投票
+export const addVote = params => {
     return  axios({
-        url: 'account/logout',
-        method: 'get'
-    });
-};
-
-// 修改密码
-export const ModifyPassword = params => {
-    return  axios({
-        url: 'account/updatePassword',
+        url: `${base}/vote/add`,
         method: 'post',
-        data: params
+        params: params
     });
 };
 
-/!**
- *  管理员
- *!/
-// 获取管理员和员工列表
-export const findAccountList = params => {
+// 编辑投票
+export const editVote = params => {
     return  axios({
-        url: 'account/findAccount',
+        url: `${base}/vote/modify`,
         method: 'post',
-        data: params
+        params: params
     });
 };
 
-// 添加员工
-export const addAccount = params => {
+// 删除投票
+export const delVote = params => {
     return  axios({
-        url: 'account/add',
+        url: `${base}/vote/remove`,
         method: 'post',
-        data: params
+        params: params
     });
 };
 
-// 删除员工
-export const delAccount = (params) => {
-    // let params = sessionStorage['params'];  // 获取参数id
-
+// 获取投票候选项列表
+export const getVoteOptionList = params => {
     return  axios({
-        url: 'account/del',
+        url: `${base}/voteOption/get`,
         method: 'get',
         params: params
     });
 };
 
-/!**
- *  用户管理
- *!/
-// 获取用户列表
-export const findUserList = params => {
+// 添加投票候选项
+export const addVoteOption = params => {
     return  axios({
-        url: 'user/findUserList',
-        method: 'get',
+        url: `${base}/voteOption/add`,
+        method: 'post',
         params: params
     });
 };
 
-/!**
- *  banner管理
- *!/
-// 获取banner列表
-export const findBannerList = params => {
+// 编辑投票候选项
+export const editVoteOption = params => {
     return  axios({
-        url: 'banner/findList',
+        url: `${base}/voteOption/modify`,
         method: 'post',
-        data: params
-    });
-};
-
-// 添加banner
-export const addBanner = params => {
-    return  axios({
-        url: 'banner/add',
-        method: 'post',
-        data: params
-    });
-};
-
-// 编辑banner
-export const updateBanner = params => {
-    return  axios({
-        url: 'banner/updateNotNull',
-        method: 'post',
-        data: params
-    });
-};
-
-// 删除banner
-export const delBanner = params => {
-    return  axios({
-        url: 'banner/delete',
-        method: 'post',
-        data: params
-    });
-};
-
-
-/!**
- *  兑换码管理
- *!/
-// 获取兑换码列表
-export const findRedeemCodeList = params => {
-    return  axios({
-        url: 'redeemcode/findList',
-        method: 'post',
-        data: params
-    });
-};
-
-// 添加一条兑换码
-export const addSingleRedeemCode = params => {
-    return  axios({
-        url: 'redeemcode/addOne',
-        method: 'post',
-        data: params
-    });
-};
-
-// 添加多条兑换码
-export const addMoreRedeemCode = params => {
-    return  axios({
-        url: 'redeemcode/addMore',
-        method: 'post',
-        data: params
-    });
-};
-
-// 删除兑换码
-export const removeRedeemCode = params => {
-    return  axios({
-        url: 'redeemcode/delete',
-        method: 'get',
         params: params
     });
 };
 
-// 删除多条兑换码
-export const removeMoreRedeemCode = () => {
-    let url_arg = sessionStorage['url_arg'];  // 获取参数id
-
+// 删除投票候选项
+export const delVoteOption = params => {
     return  axios({
-        url: 'redeemcode/delete/' + url_arg,
-        method: 'get',
-    });
-};
-
-
-/!**
- *  订单管理
- *!/
-// 获取订单列表
-export const findOrderList = params => {
-    return  axios({
-        url: 'order/findList',
-        method: 'get',
+        url: `${base}/voteOption/remove`,
+        method: 'post',
         params: params
     });
 };
 
 
-/!**
- *  商品管理
- *!/
-// 获取商品列表
-export const findProductList = params => {
+/**
+ *  统计
+ */
+// 消费数据统计
+export const getConsumerStatistics = params => {
     return  axios({
-        url: 'product/findList',
+        url: `${base}/statistics/consumer/search`,
         method: 'get',
         params: params
     });
 };
 
-// 添加商品
-export const addProduct = params => {
+// 用户数据统计
+export const getUserStatistics = params => {
     return  axios({
-        url: 'product/add',
-        method: 'post',
-        data: params
-    });
-};
-
-// 更新商品
-export const updateProduct = params => {
-    return  axios({
-        url: 'product/updateNotNull',
-        method: 'post',
-        data: params
-    });
-};
-
-// 删除商品
-export const delProduct = params => {
-    return  axios({
-        url: 'product/delete',
-        method: 'post',
-        data: params
-    });
-};
-
-
-/!**
- *  数据统计
- *!/
-// 数据统计
-export const findTodayStatus = () => {
-    return  axios({
-        url: 'status/findTodayStatus',
+        url: `${base}/statistics/user/search`,
         method: 'get',
+        params: params
     });
 };
-*/

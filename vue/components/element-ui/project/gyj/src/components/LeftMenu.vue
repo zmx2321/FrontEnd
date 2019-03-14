@@ -19,11 +19,11 @@
                         </el-menu-item>
                     </router-link>
 
-                    <!-- 资质认证管理 -->
-                    <router-link to="/identificationInfo">
+                    <!-- 用户管理 -->
+                    <router-link to="/userInfo">
                         <el-menu-item index="3">
-                            <i class="fa fa-cc"></i>
-                            <span slot="title">{{ $t('leftMenu.identificationInfo') }}</span>
+                            <i class="fa fa-user"></i>
+                            <span slot="title">{{ $t('leftMenu.userInfo') }}</span>
                         </el-menu-item>
                     </router-link>
 
@@ -36,12 +36,12 @@
                     </router-link>-->
 
                     <!-- 轮播图管理 -->
-                    <!--<router-link to="/banner">
+                    <router-link to="/banner">
                         <el-menu-item index="5">
                             <i class="fa fa-cog"></i>
                             <span slot="title">{{ $t('leftMenu.banner') }}</span>
                         </el-menu-item>
-                    </router-link>-->
+                    </router-link>
 
                     <!-- 签到管理 -->
                     <!--<router-link to="/dailyTask">
@@ -104,6 +104,15 @@ export default {
     data() {
         return {
             items: [
+                {
+                    icon: "fa fa-pie-chart",
+                    name: "数据统计",
+                    path: this.$t('leftMenu.statistics'),
+                    children: [
+                        { path: "/userStatistics", name: this.$t('leftMenu.userStatistics') },
+                        { path: "/consumptionStatistics", name: this.$t('leftMenu.consumptionStatistics') }
+                    ]
+                },
                 /*{
                     icon: "fa fa-pie-chart",
                     name: "数据统计",

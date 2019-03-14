@@ -15,14 +15,14 @@ import Login from './views/admin/Login'
 
 // manager
 import Consultation from './views/manager/Consultation'
-import IdentificationInfo from './views/manager/IdentificationInfo'
+import UserInfo from './views/manager/UserInfo'
 import ConsumeInfo from './views/manager/ConsumeInfo'
 import Banner from './views/manager/Banner'
 import DailyTask from './views/manager/DailyTask'
 import Vote from './views/manager/Vote'
 // import Job from './views/manager/Job'
-import UserStatistics from './views/manager/UserStatistics'
-import ConsumptionStatistics from './views/manager/ConsumptionStatistics'
+import UserStatistics from './views/manager/statistics/UserStatistics'
+import ConsumptionStatistics from './views/manager/statistics/ConsumptionStatistics'
 import Staff from './views/manager/Staff'
 
 // Test
@@ -54,7 +54,7 @@ const router = new Router({
                 // 资讯管理
                 { path: '/consultation', component: Consultation, name: 'consultation' },
                 // 资质认证管理
-                { path: '/identificationInfo', component: IdentificationInfo, name: 'identificationInfo' },
+                { path: '/userInfo', component: UserInfo, name: 'userInfo' },
                 // 积分管理
                 { path: '/consumeInfo', component: ConsumeInfo, name: 'consumeInfo' },
                 // 轮播图管理

@@ -51,7 +51,7 @@
         <el-table-column prop="readNum" label="浏览量" width="80" align="center"></el-table-column>
         <el-table-column prop="likeNum" label="点赞量" width="80" align="center"></el-table-column>
         <el-table-column prop="forwardNum" label="转发量" width="80" align="center"></el-table-column>
-        <el-table-column label="状态" width="80" align="center">
+        <el-table-column label="状态" width="auto" align="left">
           <template slot-scope="scope">
             {{ scope.row.status === 1 ? "推荐" : "" }}
           </template>
@@ -83,7 +83,6 @@
 
     <!-- 添加资讯 -->
     <el-dialog title="添加资讯"
-               @keyup.enter.native="addConsultationSubmit('addConsultationForm')"
                :close-on-click-modal="false"
                class="dialog_wrap"
                top="0"
@@ -186,7 +185,6 @@
 
     <!-- 编辑资讯 -->
     <el-dialog title="编辑资讯"
-               @keyup.enter.native="editConsultationSubmit('editConsultationForm')"
                :close-on-click-modal="false"
                class="dialog_wrap"
                :visible.sync="editConsultationVisible"
@@ -342,7 +340,7 @@
 
         data() {
             // url验证
-            /*let validateUrl = (rule, value, callback) => {
+            /*const validateUrl = (rule, value, callback) => {
                 let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/;
 
                 if (!reg.test(value)) {
@@ -370,7 +368,7 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 10, // 1页显示多少条
+                    page_size: 50, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
@@ -1032,9 +1030,12 @@
   }
 
   .dialog_wrap  /deep/ .el-dialog {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
+    width: 55%;
+    margin: 0 auto;
+    height: 85%;
+    overflow: auto;
+    top: 50%;
+    transform: translateY(-50%);
 
     .el-dialog__header {
       padding: 10px 10px 22px;

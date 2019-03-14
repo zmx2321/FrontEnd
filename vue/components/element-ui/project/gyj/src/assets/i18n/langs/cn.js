@@ -26,13 +26,14 @@ const cn = {
         edit: "编辑",
         del: "删除",
         logout: "注销",
-        login: "登陆"
+        login: "登陆",
+        review: "审核"
     },
     // 左侧列表
     leftMenu: {
         index: "首页",
         consultation: "资讯管理",
-        identificationInfo: "资质认证管理",
+        userInfo: "用户管理",
         banner: "轮播图管理",
         statistics: "数据统计",
         userStatistics: "用户统计",
