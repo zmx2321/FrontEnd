@@ -221,6 +221,45 @@ export const delVoteOption = params => {
     });
 };
 
+/**
+ * banner管理
+ */
+// 获取banner列表
+export const getBannerList = params => {
+    return  axios({
+        url: `${base}/banner/search`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 添加banner
+export const addBanner = params => {
+    return  axios({
+        url: `${base}/banner/add`,
+        method: 'post',
+        params: params
+    });
+};
+
+// 修改banner
+export const editBanner = params => {
+    return  axios({
+        url: `${base}/banner/modify`,
+        method: 'post',
+        params: params
+    });
+};
+
+// 删除banner
+export const delBanner = params => {
+    return  axios({
+        url: `${base}/banner/remove`,
+        method: 'post',
+        params: params
+    });
+};
+
 
 /**
  *  统计

@@ -72,14 +72,14 @@
                                     type: "success"
                                 });
 
-                                this.$router.push("/index");
+                                this.$router.push("/consultation");
                             }
                         }).catch(err => {
                             console.log(err);
                         });
                     } else {
-                        console.log("error submit!!");
-                        return false;
+                        this.$message.warning("error submit!!");
+                        // console.log("error submit!!");
                     }
                 });
             },

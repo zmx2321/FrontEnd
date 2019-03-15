@@ -95,11 +95,7 @@
     </el-row>
 
     <!-- 用户审核 -->
-    <el-dialog title="用户审核"
-               class="review_user"
-               :close-on-click-modal="false"
-               :visible.sync="reviewUserVisible"
-               :before-close="handleClose">
+    <el-dialog title="用户审核" class="review_user" :close-on-click-modal="false" :visible.sync="reviewUserVisible">
       <!-- 基本信息 -->
       <div class="part1 f-cb">
         <div class="portrait f-fl f-oh">
@@ -575,7 +571,7 @@
                     this.reviewUserData.idCode = datas.identificationInfos.idCode;  // 身份证号
                     this.reviewUserData.careerCertificate = datas.identificationInfos.careerCertificate;  // 工种认证图片
 
-                    console.log(this.reviewUserData);
+                    // console.log(this.reviewUserData);
                 }).catch({});
             },
             // 认证成功

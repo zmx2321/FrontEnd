@@ -4,12 +4,12 @@
              <el-col>
                  <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu">
                     <!-- 首页 -->
-                    <router-link to="/home">
+                    <!--<router-link to="/home">
                         <el-menu-item index="0">
                             <i class="fa fa-server"></i>
                             <span slot="title">{{ $t('leftMenu.index') }}</span>
                         </el-menu-item>
-                    </router-link>
+                    </router-link>-->
 
                     <!-- 资讯管理 -->
                     <router-link to="/consultation">
