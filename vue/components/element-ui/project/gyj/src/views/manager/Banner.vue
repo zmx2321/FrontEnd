@@ -12,7 +12,8 @@
       <el-table class="consultation_list" :data="banner_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 206px)">
         <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
         <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
-        <el-table-column prop="id" label="banner编号" width="100" align="center"></el-table-column>
+        <!--<el-table-column prop="id" label="banner编号" width="100" align="center"></el-table-column>-->
+        <el-table-column prop="sort" label="序号" width="100" align="center"></el-table-column>
 
         <el-table-column label="banner图片" width="100">
           <template slot-scope="scope">
@@ -76,7 +77,7 @@
         </el-form-item>
 
         <el-form-item label="图片地址" prop="img">
-          <el-input v-model="addBannerData.img" placeholder="请输入图片地址" clearable></el-input>
+          <el-input v-model="addBannerData.img" placeholder="请输入图片地址" disabled></el-input>
         </el-form-item>
 
         <el-form-item label="排列序号" prop="sort">
@@ -118,7 +119,7 @@
         </el-form-item>
 
         <el-form-item label="图片地址" prop="img">
-          <el-input v-model="editBannerData.img" placeholder="请输入图片地址" clearable></el-input>
+          <el-input v-model="editBannerData.img" placeholder="请输入图片地址" disabled></el-input>
         </el-form-item>
 
         <el-form-item label="排列序号" prop="sort">

@@ -191,13 +191,18 @@
                top="0"
                :before-close="handleClose">
 
-      <el-form :model="editConsultationData" status-icon :rules="editConsultationRules" ref="editConsultationForm" label-width="160px" class="f-cb">
+      <el-form :model="editConsultationData" status-icon :rules="editConsultationRules" ref="editConsultationForm" label-width="160px">
         <el-form-item label="资讯编号" prop="id">
           <el-input v-model="editConsultationData.id" disabled></el-input>
         </el-form-item>
-        <el-form-item label="资讯标题" prop="title">
+        <el-form-item label="资讯标题" prop="title" class="consulte_title f-fl">
           <el-input v-model="editConsultationData.title"  placeholder="请输入资讯标题" clearable></el-input>
         </el-form-item>
+
+        <el-form-item label="资讯阅读所获积分" prop="points"  class="consulte_points f-fl">
+          <el-input v-model="editConsultationData.points"  placeholder="请输入资讯阅读所获积分" clearable></el-input>
+        </el-form-item>
+
         <!--<el-form-item label="资讯来源图标" prop="originIcon">
           <el-input v-model="editConsultationData.originIcon"  placeholder="请输入资讯来源图标" clearable></el-input>
         </el-form-item>-->
@@ -208,8 +213,8 @@
           <el-input v-model="addConsultationData.imgs"  placeholder="请输入资讯列表图片显示" clearable></el-input>
         </el-form-item>-->
 
-        <el-form-item label="资讯分类" class="intxt">
-          <el-select v-model="editConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel">
+        <el-form-item label="资讯分类" class="intxt f-fl">
+          <el-select v-model="editConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel sel_short">
             <el-option v-for="(item,index) in consultation_type" :label="item.name" :value="item.id" :key="index"></el-option>
           </el-select>
         </el-form-item>
@@ -217,12 +222,9 @@
         <!--<el-form-item label="资讯视频地址" prop="videoUrl">
           <el-input v-model="editConsultationData.videoUrl"  placeholder="请输入资讯视频地址" clearable></el-input>
         </el-form-item>-->
-        <el-form-item label="资讯阅读所获积分" prop="points">
-          <el-input v-model="editConsultationData.points"  placeholder="请输入资讯阅读所获积分" clearable></el-input>
-        </el-form-item>
 
-        <el-form-item label="內容分类">
-          <el-select v-model="editConsultationData.type" placeholder="请选择內容分类" class="dialog_sel">
+        <el-form-item label="內容分类" class="intxt f-fl">
+          <el-select v-model="editConsultationData.type" placeholder="请选择內容分类" class="dialog_sel sel_short">
             <el-option label="文字" value="0"></el-option>
             <el-option label="图文" value="1"></el-option>
             <el-option label="视频" value="2"></el-option>
@@ -230,17 +232,17 @@
           </el-select>
         </el-form-item>
 
+        <el-form-item label="资讯状态" class="intxt f-fl">
+          <el-select v-model="editConsultationData.status" placeholder="资讯状态" class="dialog_sel sel_short">
+            <el-option label="不推荐" value="0"></el-option>
+            <el-option label="推荐" value="1"></el-option>
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="资讯投票" class="viId">
           <el-select v-model="editConsultationData.viId" placeholder="请选择资讯投票" class="dialog_sel">
             <el-option label="" value=""></el-option>
             <el-option v-for="(item,index) in vote_info" :label="item.title" :value="item.id" :key="index"></el-option>
-          </el-select>
-        </el-form-item>
-
-        <el-form-item label="资讯状态">
-          <el-select v-model="editConsultationData.status" placeholder="资讯状态" class="dialog_sel">
-            <el-option label="不推荐" value="0"></el-option>
-            <el-option label="推荐" value="1"></el-option>
           </el-select>
         </el-form-item>
 
@@ -1025,13 +1027,12 @@
   /* less */
 
   /* el-dialog */
-  .dialog_sel {
-    width: 60%;
-  }
+
 
   .dialog_wrap  /deep/ .el-dialog {
     width: 55%;
     margin: 0 auto;
+    padding-bottom: 22px;
     height: 85%;
     overflow: auto;
     top: 50%;
@@ -1047,6 +1048,30 @@
 
       .digbtn{
         margin: 0;
+      }
+
+      .el-form-item__content{
+        position: initial;
+      }
+
+      .consulte_title{
+        width: 60%;
+      }
+
+      .consulte_points{
+        width: 40%;
+      }
+
+      .dialog_sel {
+        width: 60%;
+      }
+
+      .intxt{
+        width: 33%;
+
+        .sel_short{
+          width: 100%;
+        }
       }
     }
   }
@@ -1064,4 +1089,6 @@
       width: initial;
     }
   }
+
+
 </style>

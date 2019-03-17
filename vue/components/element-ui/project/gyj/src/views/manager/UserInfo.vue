@@ -95,7 +95,7 @@
     </el-row>
 
     <!-- 用户审核 -->
-    <el-dialog title="用户审核" class="review_user" :close-on-click-modal="false" :visible.sync="reviewUserVisible">
+    <el-dialog title="用户审核" class="review_user" :close-on-click-modal="true" :visible.sync="reviewUserVisible">
       <!-- 基本信息 -->
       <div class="part1 f-cb">
         <div class="portrait f-fl f-oh">
@@ -132,92 +132,76 @@
         </div>
       </div>
 
-      <!-- 真实信息/实名认证审核 -->
-      <div class="part2 f-oh">
+      <!-- 真实信息/实名认证审核 1 -->
+      <div class="part2 f-oh" v-if="realReavierInfo.length != 0">
         <div class="p2_top f-cb">
           <div class="id_front f-fl f-oh">
-            <img :src="reviewUserData.imgFront" alt="imgFront">
+            <img :src="realReavierInfo.imgFront" alt="imgFront">
           </div>
           <div class="id_back f-fr f-oh">
-            <img :src="reviewUserData.imgBack" alt="imgBack">
+            <img :src="realReavierInfo.imgBack" alt="imgBack">
           </div>
         </div>
         <div class="p2_bottom">
           <div class="p2_bm_realname">
-            <p>{{ reviewUserData.realname }}({{ reviewUserData.idCode }})</p>
+            <p>{{ realReavierInfo.realname }}({{ realReavierInfo.idCode }})</p>
           </div>
-          <div class="p2_bm_btn">
+
+          <div class="p2_bm_btn" v-if="realReavierInfo.status == 0">
             <ul>
               <li>
-                <el-button type="primary" @click="reviewPass">通过认证</el-button>
+                <el-button type="primary" @click="realReviewPass">通过认证</el-button>
               </li>
               <li>
-                <el-button type="primary" @click="reviewFail">认证失败</el-button>
+                <el-button type="primary" @click="realReviewFail">认证失败</el-button>
               </li>
             </ul>
+          </div>
+
+          <div class="review_status_wrap">
+            <div class="review_status review_success" v-if="realReavierInfo.status == 1">
+              <span>认证成功</span>
+            </div>
+
+            <div class="review_status review_success" v-if="realReavierInfo.status == 2">
+              <span>认证失败</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 资质认证审核 -->
-      <div class="part3 f-oh">
+      <!-- 工种认证审核 0 -->
+      <div class="part3 f-oh" v-if="identiyReviewInfo.length != 0">
         <div class="p3_wrap">
           <div class="p3_wrap_auto">
-            <div class="work work1">
+            <div class="work" v-for="item in identiyReviewInfo">
               <ul>
                 <li class="work_img">
-                  <img :src="reviewUserData.careerCertificate" alt="work_img">
+                  <img :src="item.careerCertificate" alt="work_img">
                 </li>
                 <li class="work_type">
-                  {{ reviewUserData.ckName }}
+                  {{ item.ckName }}
+                  <!--{{ item.status }}-->
                 </li>
                 <li class="work_btn">
-                  <dl>
+                  <dl v-if="item.status == 0">
                     <dd>
-                      <el-button type="primary" @click="reviewPass">通过认证</el-button>
+                      <el-button type="primary" @click="identiyReviewPass(item)">通过认证</el-button>
                     </dd>
                     <dd>
-                      <el-button type="primary" @click="reviewFail">认证失败</el-button>
+                      <el-button type="primary" @click="identiyReviewFail(item)">认证失败</el-button>
                     </dd>
                   </dl>
-                </li>
-              </ul>
-            </div>
-            <div class="work work2">
-              <ul>
-                <li class="work_img">
-                  <img :src="reviewUserData.careerCertificate" alt="work_img">
-                </li>
-                <li class="work_type">
-                  {{ reviewUserData.ckName }}
-                </li>
-                <li class="work_btn">
-                  <dl>
+
+                  <dl class="work_review" v-if="item.status == 1">
                     <dd>
-                      <el-button type="primary" @click="reviewPass">通过认证</el-button>
-                    </dd>
-                    <dd>
-                      <el-button type="primary" @click="reviewFail">认证失败</el-button>
+                      <span>认证成功</span>
                     </dd>
                   </dl>
-                </li>
-              </ul>
-            </div>
-            <div class="work work3">
-              <ul>
-                <li class="work_img">
-                  <img :src="reviewUserData.careerCertificate" alt="work_img">
-                </li>
-                <li class="work_type">
-                  {{ reviewUserData.ckName }}
-                </li>
-                <li class="work_btn">
-                  <dl>
+
+                  <dl class="work_review" v-if="item.status == 2">
                     <dd>
-                      <el-button type="primary" @click="reviewPass">通过认证</el-button>
-                    </dd>
-                    <dd>
-                      <el-button type="primary" @click="reviewFail">认证失败</el-button>
+                      <span>认证失败</span>
                     </dd>
                   </dl>
                 </li>
@@ -271,6 +255,13 @@
                  */
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
+
+                type: 0,  // 认证审核
+                isreal: "",  // 判断是否为实名认证
+                iscrea: "",  // 判断是否为资质认证
+
+                txt_info: "",  // 提示
+                isReview: false,  // 是否进行认证
 
                 /**
                  * 选择城市
@@ -336,15 +327,14 @@
                     id: "",  // 用户编号
                     icon: "",  // 头像
                     nickname: "",  // 昵称
-                    ckName: "",  // 工种
-                    addressCity: "",  // 地区
-                    salary: "",  // 工资
-                    imgFront: "",  // 身份证前
-                    imgBack: "",  // 身份证后
-                    realname: "",  // 真实姓名
-                    idCode: "",  // 身份证号
-                    careerCertificate: ""  // 工种认证图片
+                    phone: "",  // 手机
                 },
+
+                // 实名认证用户列表
+                realReavierInfo: {},
+
+                // 工种认证用户列表
+                identiyReviewInfo: [],
 
                 /**
                  *  弹出表单界面(true 显示, false 隐藏)
@@ -543,6 +533,19 @@
             },
 
             /**
+             * 根据id获取信息
+             */
+            getUserInfoById (id) {
+                let param = {
+                    id: id,
+                }
+
+                getUserInfoById(param).then(() => {
+
+                }).catch({});
+            },
+
+            /**
              * api
              * 审核用户
              */
@@ -555,29 +558,71 @@
                 }
 
                 getUserInfoById(param).then(res => {
+                    /**
+                     * identificationInfos => 遍历数组，分别根据type，形成两组数据
+                     * type: 0 => 需要实名认证 => 只有一条数据，返回status状态（0：未认证，1认证成功，2认证失败）
+                     * type: 1 => 需要资质认证 => 有多条数据，遍历每条数据，返回每条数据的status状态（0：未认证，1认证成功，2认证失败）
+                     */
                     // console.log(res.data.data);
 
                     let datas = res.data.data;
 
+                    // console.log(datas);
+
+                    // 初始化数组
+                    this.realReavierInfo = [];
+                    this.identiyReviewInfo = [];
+
+                    // 用户基础信息
                     this.reviewUserData.id = datas.id;  // 用户编号
                     this.reviewUserData.icon = datas.icon;  // 头像
                     this.reviewUserData.nickname = datas.nickname;  // 昵称
-                    this.reviewUserData.ckName = datas.identificationInfos.ckName;  // 工种
-                    this.reviewUserData.addressCity = datas.careerInfo.addressCity;  // 地区
-                    this.reviewUserData.salary = datas.careerInfo.salary;  // 工资
-                    this.reviewUserData.imgFront = datas.identificationInfos.imgFront;  // 身份证前
-                    this.reviewUserData.imgBack = datas.identificationInfos.imgBack;  // 身份证后
-                    this.reviewUserData.realname = datas.identificationInfos.realname;  // 真实姓名
-                    this.reviewUserData.idCode = datas.identificationInfos.idCode;  // 身份证号
-                    this.reviewUserData.careerCertificate = datas.identificationInfos.careerCertificate;  // 工种认证图片
+                    this.reviewUserData.phone = datas.phone;  // 手机
 
-                    // console.log(this.reviewUserData);
+                    // careerInfo
+                    if (datas.careerInfo == null) {
+                        this.reviewUserData.addressCity = "";
+                        this.reviewUserData.salary = "";
+                    } else {
+                        this.reviewUserData.addressCity = datas.careerInfo.addressCity;  // 地区
+                        this.reviewUserData.salary = datas.careerInfo.salary;  // 薪资
+                    }
+
+                    this.reviewUserData.ckName = "";  // 工种名称初始化
+
+                    // 遍历
+                    for (let i=0; i<datas.identificationInfos.length; i++){
+                        // console.log(datas.identificationInfos[i]);
+
+                        // 实名认证
+                        if (datas.identificationInfos[i].type == 0) {
+                            // console.log(datas.identificationInfos[i]);
+
+                            this.realReavierInfo = datas.identificationInfos[i];
+                        }
+
+                        // 工种认证
+                        if (datas.identificationInfos[i].type == 1) {
+                            // console.log(datas.identificationInfos[i]);
+
+                            this.identiyReviewInfo.push(datas.identificationInfos[i]);
+
+                            this.reviewUserData.ckName += datas.identificationInfos[i].ckName + "、";
+                        }
+                    }
+
+                    // 工种名称输出处理
+                    this.reviewUserData.ckName = this.reviewUserData.ckName.slice(0, -1);
+
+                    console.log("用户基本信息", this.reviewUserData);
+                    // console.log("实名认证数据列表", this.realReavierInfo);
+                    // console.log("工种认证数据列表", this.identiyReviewInfo);
                 }).catch({});
             },
-            // 认证成功
-            reviewPass () {
+            // 实名认证成功
+            realReviewPass () {
                 let param = {
-                    id: this.reviewUserData.id,
+                    id: this.realReavierInfo.id,
                     status: 1
                 }
 
@@ -585,19 +630,65 @@
                     // console.log(res);
 
                     this.$message.success("认证成功");
+
+                    // this.getUserInfoById(this.reviewUserData.id);
+                    this.reviewUserVisible = false;
                 }).catch({});
             },
-            // 认证失败
-            reviewFail () {
+            // 实名认证失败
+            realReviewFail () {
                 let param = {
-                    id: this.reviewUserData.id,
-                    status: 0
+                    id: this.realReavierInfo.id,
+                    status: 2
                 }
 
                 reviewUser(param).then(() => {
                     // console.log(res);
 
-                    this.$message.warning("认证失败");
+                    this.$message.success("认证失败");
+
+                    // this.getUserInfoById(this.reviewUserData.id);
+
+                    this.reviewUserVisible = false;
+                }).catch({});
+            },
+            // 工种认证成功
+            identiyReviewPass (item) {
+                // console.log(item);
+
+                let param = {
+                    id: item.id,
+                    status: 1
+                }
+
+                // console.log(param);
+
+                reviewUser(param).then(() => {
+                    // console.log(res);
+
+                    this.$message.success("认证成功");
+
+                    // this.getUserInfoById(this.reviewUserData.id);
+
+                    this.reviewUserVisible = false;
+                }).catch({});
+            },
+            // 工种认证失败
+            identiyReviewFail (item) {
+                let param = {
+                    id: item.id,
+                    status: 2
+                }
+
+                // console.log(param);
+
+                reviewUser(param).then(() => {
+                    // console.log(res);
+
+                    this.$message.success("认证失败");
+
+                    // this.getUserInfoById(this.reviewUserData.id);
+                    this.reviewUserVisible = false;
                 }).catch({});
             }
         },
@@ -710,26 +801,38 @@
       .p3_wrap{
         width: 90%;
         margin: 18px auto;
-        overflow: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
 
         .p3_wrap_auto {
-          display: flex;
-          width: 1000px;
+          width: 10000px;
+
+          .work:last-child{
+            margin-right: 0;
+          }
 
           .work {
             display: inline-block;
-            width: 307px;
-            height: 222px;
+            width: 350px;
+            height: 278px;
             margin-right: 10px;
             overflow: hidden;
-            flex: 1;
 
             .work_img {
-              width: 100%;
-              height: 180px;
+              width: 260px;
+              height: 188px;
+              margin: 0 auto;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
             }
 
-            .work_type {}
+            .work_type {
+              margin: 10px auto;
+              text-align: center;
+            }
 
             .work_btn {
               text-align: center;
@@ -742,9 +845,21 @@
                 display: inline-block;
               }
             }
+
+            .work_review{
+              margin-top: 26px;
+            }
           }
         }
       }
+    }
+  }
+
+  .review_status_wrap {
+
+
+    .review_status {
+      text-align: center;
     }
   }
 </style>
