@@ -614,7 +614,7 @@
                     // 工种名称输出处理
                     this.reviewUserData.ckName = this.reviewUserData.ckName.slice(0, -1);
 
-                    console.log("用户基本信息", this.reviewUserData);
+                    // console.log("用户基本信息", this.reviewUserData);
                     // console.log("实名认证数据列表", this.realReavierInfo);
                     // console.log("工种认证数据列表", this.identiyReviewInfo);
                 }).catch({});

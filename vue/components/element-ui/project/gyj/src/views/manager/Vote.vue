@@ -705,6 +705,6 @@
 
 <style lang="less" scoped>
   .tabimg{
-    width: 75px;
+    width: 50px;
   }
 </style>

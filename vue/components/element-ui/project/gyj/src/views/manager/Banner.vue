@@ -64,7 +64,7 @@
 
         <el-form-item label="上传候选投票图片">
           <el-upload
-                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :action=requestUrl
                   ref='upload'
                   :before-remove="beforeRemove"
                   :on-change="addHandleChange"
@@ -106,7 +106,7 @@
 
         <el-form-item label="上传候选投票图片">
           <el-upload
-                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :action=requestUrl
                   ref='upload'
                   :before-remove="beforeRemove"
                   :on-change="updateHandleChange"
@@ -189,6 +189,8 @@
                 },
 
                 consultation_info: [],  // 存放资讯列表数据
+
+                requestUrl: requestUrl,
 
                 // 上传图片参数
                 upload_arg: {
@@ -283,9 +285,10 @@
             },
             // 删除文件之前的钩子
             beforeRemove(file) {
-                this.addBannerData.img = "";
-                this.editBannerData.img = "";
-                return this.$confirm(`确定移除 ${ file.name }？`);
+                return this.$confirm(`确定移除 ${ file.name }？`).then(() => {
+                    this.addBannerData.img = "";
+                    this.editBannerData.img = "";
+                });
             },
 
             /**
@@ -350,6 +353,9 @@
             // 点击添加banner
             addBanner () {
                this.getConsultation();
+
+                this.addBannerData.img = "";
+                this.editBannerData.img = "";
 
                 this.upload_arg.fileList = [];  //清空上传img file
             },
@@ -428,11 +434,10 @@
             // 点击上传
             updateHandleChange(file){
                 // console.log("文件状态改变时的钩子");
+                this.upload_arg.imgFile = [];
 
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.imgFile.push(file.raw);
-
-                // console.log(this.upload_arg.imgFile);
 
                 let formData = new FormData();
 
@@ -445,9 +450,10 @@
                 };
 
                 getImgURI(formData, config).then(res => {
-                    // console.log(res);
+                    // console.log(res.data.data);
 
                     this.editBannerData.img = res.data.data;
+                    // console.log(this.editBannerData.img);
                 });
             },
             // 提交编辑Banner表单

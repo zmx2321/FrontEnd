@@ -32,9 +32,9 @@ import RichTest2 from './views/test/RichTest2'
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
-    // mode: 'hash',
-    base: process.env.BASE_URL,
+    // mode: 'history',
+    mode: 'hash',
+    // base: process.env.BASE_URL,
 
     routes: [
         // 如果是根路径的话，重定向到index路径

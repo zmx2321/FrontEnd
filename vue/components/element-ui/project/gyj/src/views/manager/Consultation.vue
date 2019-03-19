@@ -388,7 +388,8 @@
                  * 富文本数据
                  */
                 quillUpdateImg: false, // 根据图片上传状态来确定是否显示loading动画，刚开始是false,不显示
-                serverUrl: 'https://jsonplaceholder.typicode.com/posts/',  // 这里写你要上传的图片服务器地址
+                // serverUrl: 'https://jsonplaceholder.typicode.com/posts/',  // 这里写你要上传的图片服务器地址
+                serverUrl: requestUrl,  // 这里写你要上传的图片服务器地址
                 header: {
                     // cookieName: document.cookie.indexOf("JSESSIONID" + "=")
                     // token: sessionStorage.token
