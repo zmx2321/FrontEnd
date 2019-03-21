@@ -101,7 +101,10 @@ export const editConsultation = params => {
     return  axios({
         url: `${base}/consultation/modify`,
         method: 'post',
-        params: params
+        params: params,
+        /*headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }*/
     });
 };
 

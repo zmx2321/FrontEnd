@@ -306,23 +306,28 @@
 <script>
     // 工具栏配置
     const toolbarOptions = [
-        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-        ['blockquote', 'code-block'],
+        ['bold', 'italic', 'underline', 'strike'],        //加粗，斜体，下划线，删除线
+        ['blockquote', 'code-block'],         //引用，代码块
 
-        [{'header': 1}, {'header': 2}],               // custom button values
-        [{'list': 'ordered'}, {'list': 'bullet'}],
-        [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
-        [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
-        [{'direction': 'rtl'}],                         // text direction
 
-        [{'size': ['small', false, 'large', 'huge']}],  // custom dropdown
-        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+        [{ 'header': 1 }, { 'header': 2 }],               // 标题，键值对的形式；1、2表示字体大小
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],          //列表
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // 上下标
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // 缩进
+        [{ 'direction': 'rtl' }],                         // 文本方向
 
-        [{'color': []}, {'background': []}],          // dropdown with defaults from theme
-        [{'font': []}],
-        [{'align': []}],
-        ['image'],
-        ['clean']                                         // remove formatting button
+
+        // [{ 'size': ['small', false, 'large', 'huge'] }],  // 字体大小
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],         //几级标题
+
+
+        [{ 'color': [] }, { 'background': [] }],          // 字体颜色，字体背景颜色
+        [{ 'font': [] }],         //字体
+        [{ 'align': [] }],        //对齐方式
+
+
+        ['clean'],        //清除字体样式
+        ['image',/*'video'*/],        //上传图片、上传视频
     ]
 
     import {
@@ -555,6 +560,20 @@
             beforeUpload() {
                 // 显示loading动画
                 this.quillUpdateImg = true
+            },
+
+            // 富文本内容处理
+            richContentHandle (content) {
+                // 富文本处理
+                return `
+                  <div class="ql-editor">
+                    <div class=" ql-snow">
+                      <div class="ql-editor">
+                        ${content}
+                      </div>
+                    </div>
+                  </div>
+                `;
             },
 
             // 富文本图片上传成功
@@ -935,6 +954,7 @@
                             // imgs: this.editConsultationData.imgs,
                             type: parseInt(this.editConsultationData.type),
                             content: this.editConsultationData.content,
+                            // content: this.richContentHandle(this.editConsultationData.content),
                             points: this.editConsultationData.points,
                             originName: this.editConsultationData.originName,
                             videoUrl: this.editConsultationData.videoUrl,
@@ -1091,5 +1111,7 @@
     }
   }
 
-
+  .ql-snow .ql-picker {
+    height: initial;
+  }
 </style>
