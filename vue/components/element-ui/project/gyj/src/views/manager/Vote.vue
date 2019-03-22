@@ -125,7 +125,7 @@
 
         <el-form-item label="上传候选投票图片">
           <el-upload
-                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :action=requestUrl
                   ref='upload'
                   :before-remove="beforeRemove"
                   :on-change="addHandleChange"
@@ -138,7 +138,7 @@
         </el-form-item>
 
         <el-form-item label="候选投票图片" prop="imgs">
-          <el-input v-model="addVoteOptionData.imgs" clearable></el-input>
+          <el-input v-model="addVoteOptionData.imgs" disabled></el-input>
         </el-form-item>
 
         <el-form-item>
@@ -161,9 +161,9 @@
           <el-input v-model="editVoteOptionData.name" clearable></el-input>
         </el-form-item>
 
-        <el-form-item label="上传banner图">
+        <el-form-item label="上传候选投票图片">
           <el-upload
-                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :action=requestUrl
                   ref='upload'
                   :before-remove="beforeRemove"
                   :on-change="updateHandleChange"
@@ -176,7 +176,7 @@
         </el-form-item>
 
         <el-form-item label="候选投票图片" prop="imgs">
-          <el-input v-model="editVoteOptionData.imgs" clearable></el-input>
+          <el-input v-model="editVoteOptionData.imgs" disabled></el-input>
         </el-form-item>
 
         <el-form-item>
@@ -243,6 +243,8 @@
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
+
+                requestUrl: requestUrl,
 
                 // 上传图片参数
                 upload_arg: {
@@ -471,7 +473,7 @@
                             content: this.addVoteData.content
                         }
 
-                        addVote(params).then(() => {
+                        addVote(this.qs.stringify(params)).then(() => {
                             // console.log(res);
 
                             this.addVoteVisible = false;
@@ -509,7 +511,7 @@
                             content: this.editVoteData.content
                         }
 
-                        editVote(params).then(() => {
+                        editVote(this.qs.stringify(params)).then(() => {
                             // console.log(res);
 
                             this.editVoteVisible = false;
@@ -591,7 +593,7 @@
                             imgs: this.addVoteOptionData.imgs,
                         }
 
-                        addVoteOption(params).then(res => {
+                        addVoteOption(this.qs.stringify(params)).then(res => {
                             // console.log(res);
 
                             this.addVoteOptionVisible = false;
@@ -621,10 +623,14 @@
                 this.editVoteOptionData.viId = this.viId;
                 this.editVoteOptionData.name = Object.assign({}, row).name;
                 this.editVoteOptionData.imgs = Object.assign({}, row).imgs;
+
+                this.upload_arg.fileList = [];  //清空上传img file
             },
             // 点击上传
             updateHandleChange(file){
                 // console.log("文件状态改变时的钩子");
+
+                this.upload_arg.imgFile = [];
 
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.imgFile.push(file.raw);
@@ -662,7 +668,7 @@
 
                         // console.log(params);
 
-                        editVoteOption(params).then(() => {
+                        editVoteOption(this.qs.stringify(params)).then(() => {
                             this.editVoteOptionVisible = false;
 
                             this.getVoteOptionList(params.viId);

@@ -89,9 +89,14 @@
                :visible.sync="addConsultationVisible"
                :before-close="handleClose">
       <el-form :model="addConsultationData" status-icon :rules="addConsultationRules" ref="addConsultationForm" label-width="160px" class="f-cb">
-        <el-form-item label="资讯标题" prop="title">
+        <el-form-item label="资讯标题" prop="title" class="consulte_title f-fl">
           <el-input v-model="addConsultationData.title"  placeholder="请输入资讯标题" clearable></el-input>
         </el-form-item>
+
+        <el-form-item label="资讯阅读所获积分" prop="points" class="consulte_points f-fl">
+          <el-input v-model="addConsultationData.points"  placeholder="请输入资讯阅读所获积分" clearable></el-input>
+        </el-form-item>
+
         <!--<el-form-item label="资讯来源图标" prop="originIcon">
           <el-input v-model="addConsultationData.originIcon"  placeholder="请输入资讯来源图标" clearable></el-input>
         </el-form-item>-->
@@ -103,8 +108,8 @@
           <el-input v-model="addConsultationData.imgs"  placeholder="请输入资讯列表图片显示" clearable></el-input>
         </el-form-item>-->
 
-        <el-form-item label="资讯分类">
-          <el-select v-model="addConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel">
+        <el-form-item label="资讯分类" class="intxt addintxt f-fl">
+          <el-select v-model="addConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel sel_short">
             <el-option v-for="(item,index) in consultation_type" :label="item.name" :value="item.id" :key="index"></el-option>
           </el-select>
         </el-form-item>
@@ -112,12 +117,9 @@
         <!--<el-form-item label="资讯视频地址" prop="videoUrl">
           <el-input v-model="addConsultationData.videoUrl"  placeholder="请输入资讯视频地址" clearable></el-input>
         </el-form-item>-->
-        <el-form-item label="资讯阅读所获积分" prop="points">
-          <el-input v-model="addConsultationData.points"  placeholder="请输入资讯阅读所获积分" clearable></el-input>
-        </el-form-item>
 
-        <el-form-item label="內容分类">
-          <el-select v-model="addConsultationData.type" placeholder="请选择內容分类" class="dialog_sel">
+        <el-form-item label="內容分类" class="intxt addintxt f-fl">
+          <el-select v-model="addConsultationData.type" placeholder="请选择內容分类"  class="dialog_sel sel_short">
             <el-option label="文字" value="0"></el-option>
             <el-option label="图文" value="1"></el-option>
             <el-option label="视频" value="2"></el-option>
@@ -199,7 +201,7 @@
           <el-input v-model="editConsultationData.title"  placeholder="请输入资讯标题" clearable></el-input>
         </el-form-item>
 
-        <el-form-item label="资讯阅读所获积分" prop="points"  class="consulte_points f-fl">
+        <el-form-item label="资讯阅读所获积分" prop="points" class="consulte_points f-fl">
           <el-input v-model="editConsultationData.points"  placeholder="请输入资讯阅读所获积分" clearable></el-input>
         </el-form-item>
 
@@ -846,7 +848,7 @@
 
                             // console.log(this.addConsultationData.imgs);
 
-                            addConsultation(this.addConsultationData).then(() => {
+                            addConsultation(this.qs.stringify(this.addConsultationData)).then(() => {
                                 // console.log(res);
 
                                 // console.log(this.richImg);
@@ -982,7 +984,7 @@
                             // 取消loading
                             this.listLoading = false;
                         } else {
-                            editConsultation(params).then(() => {
+                            editConsultation(this.qs.stringify(params)).then(() => {
                                 // console.log(res);
 
                                 // 隐藏弹框
@@ -1093,6 +1095,10 @@
         .sel_short{
           width: 100%;
         }
+      }
+
+      .addintxt {
+        width: 50%;
       }
     }
   }

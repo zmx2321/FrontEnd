@@ -401,7 +401,7 @@
                         if (this.addBannerData.cId == ""){
                             this.$message.error("请先选择资讯分类");
                         } else {
-                            addBanner(params).then(() => {
+                            addBanner(this.qs.stringify(params)).then(() => {
                                 this.$message.success("添加成功");
 
                                 this.addBannerVisible = false;
@@ -464,7 +464,7 @@
                     if (valid) {
                         // console.log(this.editBannerData);
 
-                        editBanner(this.editBannerData).then(() => {
+                        editBanner(this.qs.stringify(this.editBannerData)).then(() => {
                             // console.log(res);
 
                             this.$message.success("banner编辑成功");

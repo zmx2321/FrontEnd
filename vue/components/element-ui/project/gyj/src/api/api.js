@@ -83,7 +83,7 @@ export const addConsultation = params => {
     return  axios({
         url: `${base}/consultation/add`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
@@ -101,7 +101,7 @@ export const editConsultation = params => {
     return  axios({
         url: `${base}/consultation/modify`,
         method: 'post',
-        params: params,
+        data: params,
         /*headers: {
             "Content-Type": "application/json;charset=utf-8"
         }*/
@@ -166,7 +166,7 @@ export const addVote = params => {
     return  axios({
         url: `${base}/vote/add`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
@@ -175,7 +175,7 @@ export const editVote = params => {
     return  axios({
         url: `${base}/vote/modify`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
@@ -202,7 +202,7 @@ export const addVoteOption = params => {
     return  axios({
         url: `${base}/voteOption/add`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
@@ -211,7 +211,7 @@ export const editVoteOption = params => {
     return  axios({
         url: `${base}/voteOption/modify`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
@@ -241,7 +241,7 @@ export const addBanner = params => {
     return  axios({
         url: `${base}/banner/add`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
@@ -250,7 +250,7 @@ export const editBanner = params => {
     return  axios({
         url: `${base}/banner/modify`,
         method: 'post',
-        params: params
+        data: params
     });
 };
 
