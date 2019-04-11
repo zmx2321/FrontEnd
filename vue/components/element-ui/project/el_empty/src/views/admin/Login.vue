@@ -2,28 +2,75 @@
     <div class="login">
         <section class="form_container">
             <div class="manage_tip">
-                <span class="title">{{ mainData.title }}</span>
+                <span class="title">{{ $t('main.title') }}</span>
             </div>
+            <el-form :model="loginUser" @keyup.enter.native="submitForm('loginForm')" status-icon :rules="rules" ref="loginForm" class="loginForm" label-width="80px">
+                <el-form-item label="用户名" prop="name">
+                    <el-input v-model="loginUser.name" placeholder="请输入用户名" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input type="password" v-model="loginUser.password" placeholder="请输入密码" clearable></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登  录</el-button>
+                </el-form-item>
+            </el-form>
         </section>
     </div>
 </template>
 
 <script>
+    import {
+        Login  // 登录
+    } from "../../api/api"
+
     export default {
         name: "login",
 
         data() {
             return {
-                mainData: {
-                    title: title
+                loginUser: {
+                    name: "",
+                    password: ""
                 },
+                rules: {
+                    name: [
+                        { required: true, message: "用户名不能为空", trigger: "blur" },
+                        { min: 2, max: 30, message: "长度在 2 到 30 个字符", trigger: "blur" }
+                    ],
+                    password: [
+                        { required: true, message: "密码不能为空", trigger: "blur" },
+                        { min: 5, message: "长度不小于 5 个字符", trigger: "blur" }
+                    ]
+                }
             };
         },
 
         methods: {
+            // 提交表单
+            submitForm(formName) {
+                this.$refs[formName].validate(valid => {
+                    if (valid) {
+                        Login(qs.stringify(this.loginUser)).then(res => {
+                            if (res.data.code == 0) {
+                                this.$message.success("登录成功！");
+                                this.$router.push("/index");
+                            } else {
+                                this.$message.warning(res.data.detail);
+                            }
+                        }).catch(err => {
+                            console.log(err);
+                        });
+                    } else {
+                        console.log("error submit!!");
+                        return false;
+                    }
+                });
+            },
         },
         // 预处理
         created: function(){
+
         },
     };
 </script>
@@ -69,5 +116,3 @@
         color: #409eff;
     }
 </style>
-
-

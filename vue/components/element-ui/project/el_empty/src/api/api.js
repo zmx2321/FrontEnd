@@ -15,3 +15,15 @@ import axios from './axios'
         data: params
     });
 };*/
+
+/**
+ *  登录/注销/修改密码
+ */
+// 登录
+export const Login = params => {
+    return  axios({
+        url: 'user/login',
+        method: 'post',
+        data: params
+    });
+};
