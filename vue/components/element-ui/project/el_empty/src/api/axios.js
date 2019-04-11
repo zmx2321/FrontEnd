@@ -1,12 +1,10 @@
-import axios from 'axios'
+﻿import axios from 'axios'
 import { Message } from 'element-ui'
 
 import router from '../router'
 
-const root = '';
-
 const Axios = axios.create({
-    baseURL: root, // api
+    baseURL: requestUrl, // api
     timeout: 10000,
     responseType: "json",
     withCredentials: true, // 是否允许带cookie这些
