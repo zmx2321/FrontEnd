@@ -41,7 +41,10 @@
     }
 
     .lead {
-        margin-top: 50px;
         font-size: 22px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50%;
     }
 </style>
