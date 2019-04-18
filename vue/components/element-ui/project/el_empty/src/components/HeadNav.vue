@@ -6,7 +6,7 @@
                     <el-col :span="4" class="logo f-oh">
                         <img src="../assets/logo.png" alt="">
                     </el-col>
-                    <el-col :span="18" class="title f-oh">
+                    <el-col :span="15" class="title f-oh">
                         <span>{{ this.$store.state.title }}</span>
                     </el-col>
                 </el-row>
@@ -102,13 +102,17 @@ export default {
     }
 
     .logo{
-        margin: 0 8px 0 10px;
+        margin: 0 -3px 0 10px;
     }
 
     .logo img{
         height: 40px;
         width: 40px;
         margin-top: 10px;
+    }
+
+    .logo + .title {
+        margin-left: 20px;
     }
 
     .title span{
