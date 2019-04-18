@@ -4,7 +4,7 @@
 
 import axios from './axios'
 
-const admin = "/admin"
+const base = "/admin"
 
 /**
  * common
@@ -24,8 +24,20 @@ const admin = "/admin"
 // 登录
 export const Login = params => {
     return  axios({
-        url: `admin/user/login`,
+        url: `${base}/user/login`,
         method: 'post',
         data: params
+    });
+};
+
+/**
+ * 账号管理
+ */
+// 获取账号列表
+export const getUser = params => {
+    return  axios({
+        url: `${base}/user/list`,
+        method: 'get',
+        params: params
     });
 };

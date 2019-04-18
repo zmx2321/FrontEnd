@@ -14,6 +14,9 @@ import Login from './views/admin/Login'
 // test
 import Test from './views/test/Test'
 
+// manager
+import AccountManager from './views/manager/AccountManager'
+
 
 Vue.use(Router);
 
@@ -39,6 +42,9 @@ const router = new Router({
 
                 // test
                 { path: '/test', component: Test, name: 'test' },
+
+                // manager
+                { path: '/account_manager', component: AccountManager, name: 'account_manager' },
             ]
         },
         // 登陆页面

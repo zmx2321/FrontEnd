@@ -4,68 +4,20 @@
              <el-col>
                  <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu">
                     <!-- 首页 -->
-                    <!--<router-link to="/home">
+                    <router-link to="/home">
                         <el-menu-item index="0">
                             <i class="fa fa-server"></i>
-                            <span slot="title">{{ $t('leftMenu.index') }}</span>
-                        </el-menu-item>
-                    </router-link>-->
-
-                    <!-- 资讯管理 -->
-                    <router-link to="/consultation">
-                        <el-menu-item index="2">
-                            <i class="fa fa-file-text"></i>
-                            <span slot="title">{{ $t('leftMenu.consultation') }}</span>
+                            <span slot="title">首页</span>
                         </el-menu-item>
                     </router-link>
 
-                    <!-- 用户管理 -->
-                    <router-link to="/userInfo">
-                        <el-menu-item index="3">
+                    <!-- 账号管理 -->
+                    <router-link to="/account_manager">
+                        <el-menu-item index="1">
                             <i class="fa fa-user"></i>
-                            <span slot="title">{{ $t('leftMenu.userInfo') }}</span>
+                            <span slot="title">账号管理</span>
                         </el-menu-item>
                     </router-link>
-
-                     <!-- 积分管理 -->
-                    <!--<router-link to="/consumeInfo">
-                        <el-menu-item index="4">
-                            <i class="icon iconfont icon-jifenduihuanchanpin"></i>
-                            <span slot="title">积分管理</span>
-                        </el-menu-item>
-                    </router-link>-->
-
-                    <!-- 轮播图管理 -->
-                    <router-link to="/banner">
-                        <el-menu-item index="5">
-                            <i class="fa fa-cog"></i>
-                            <span slot="title">{{ $t('leftMenu.banner') }}</span>
-                        </el-menu-item>
-                    </router-link>
-
-                    <!-- 签到管理 -->
-                    <!--<router-link to="/dailyTask">
-                        <el-menu-item index="6">
-                            <i class="icon iconfont icon-shangpin"></i>
-                            <span slot="title">签到管理</span>
-                        </el-menu-item>
-                    </router-link>-->
-
-                     <!-- 投票管理 -->
-                     <router-link to="/vote">
-                         <el-menu-item index="7">
-                             <i class="fa fa-paragraph"></i>
-                             <span slot="title">投票管理</span>
-                         </el-menu-item>
-                     </router-link>
-
-                     <!-- 职业管理 -->
-                     <!--<router-link to="/job">
-                         <el-menu-item index="9">
-                             <i class="icon iconfont icon-tongji"></i>
-                             <span slot="title">职业管理</span>
-                         </el-menu-item>
-                     </router-link>-->
 
                     <!-- 二级菜单 -->
                     <template  v-for="item in items" >
@@ -83,14 +35,6 @@
                             </router-link>
                         </el-submenu>
                     </template>
-
-                     <!-- 员工管理 -->
-                     <!--<router-link to="/staff">
-                         <el-menu-item index="1">
-                             <i class="fa fa-user"></i>
-                             <span slot="title">{{ $t('leftMenu.staff') }}</span>
-                         </el-menu-item>
-                     </router-link>-->
                  </el-menu>
              </el-col>
         </el-row>
@@ -104,33 +48,14 @@ export default {
     data() {
         return {
             items: [
-                {
-                    icon: "fa fa-pie-chart",
-                    name: "数据统计",
-                    path: this.$t('leftMenu.statistics'),
-                    children: [
-                        { path: "/userStatistics", name: this.$t('leftMenu.userStatistics') },
-                        { path: "/consumptionStatistics", name: this.$t('leftMenu.consumptionStatistics') }
-                    ]
-                },
                 /*{
-                    icon: "fa fa-pie-chart",
-                    name: "数据统计",
-                    path: this.$t('leftMenu.statistics'),
-                    children: [
-                        { path: "/userStatistics", name: this.$t('leftMenu.userStatistics') },
-                        { path: "/consumptionStatistics", name: this.$t('leftMenu.consumptionStatistics') }
-                    ]
-                },
-                {
                     icon: "fa fa-paragraph",
                     name: "test",
-                    path:  "test",
+                    path: "infoshow",
                     children: [
-                        { path: "/richTest", name: "richTest" },
-                        { path: "/richTest2", name: "richTest2" },
+                        { path: "/test", name: "test" },
                     ]
-                },*/
+                }*/
             ]
         };
     },
@@ -141,32 +66,11 @@ export default {
             let pathName = this.$route.path.replace('/','');
 
             switch (pathName) {
-                case "index":
+                case "home":
                     return "0";
                     break;
-                case "admin":
+                case "account_manager":
                     return "1";
-                    break;
-                case "consultation":
-                    return "2";
-                    break;
-                case "identificationInfo":
-                    return "3";
-                    break;
-                case "consumeInfo":
-                    return "4";
-                    break;
-                case "banner":
-                    return "5";
-                    break;
-                case "dailyTask":
-                    return "6";
-                    break;
-                case "vote":
-                    return "7";
-                    break;
-                case "job":
-                    return "8";
                     break;
             }
         },

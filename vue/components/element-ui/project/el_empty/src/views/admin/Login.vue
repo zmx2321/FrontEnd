@@ -55,6 +55,10 @@
                             if (res.data.code == 0) {
                                 this.$message.success("登录成功！");
                                 this.$router.push("/index");
+
+                                console.log(res.data.data);
+
+                                this.$store.dispatch("getUser", res.data.data);
                             } else {
                                 this.$message.warning(res.data.detail);
                             }
