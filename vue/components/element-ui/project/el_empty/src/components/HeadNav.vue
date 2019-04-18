@@ -7,7 +7,7 @@
                         <img src="../assets/logo.png" alt="">
                     </el-col>
                     <el-col :span="18" class="title f-oh">
-                        <span>{{ mainData.title }}</span>
+                        <span>{{ this.$store.state.title }}</span>
                     </el-col>
                 </el-row>
             </el-col>
@@ -42,9 +42,7 @@ export default {
 
     data () {
         return {
-            mainData: {
-                title: title
-            }
+
         }
     },
     methods: {

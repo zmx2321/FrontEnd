@@ -2,11 +2,11 @@
     <div class="login">
         <section class="form_container">
             <div class="manage_tip">
-                <span class="title">{{ $t('main.title') }}</span>
+                <span class="title">{{ this.$store.state.title }}</span>
             </div>
             <el-form :model="loginUser" @keyup.enter.native="submitForm('loginForm')" status-icon :rules="rules" ref="loginForm" class="loginForm" label-width="80px">
-                <el-form-item label="用户名" prop="name">
-                    <el-input v-model="loginUser.name" placeholder="请输入用户名" clearable></el-input>
+                <el-form-item label="手机号" prop="mobile">
+                    <el-input v-model="loginUser.mobile" placeholder="请输入手机号" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
                     <el-input type="password" v-model="loginUser.password" placeholder="请输入密码" clearable></el-input>
@@ -30,11 +30,11 @@
         data() {
             return {
                 loginUser: {
-                    name: "",
-                    password: ""
+                    mobile: "15888888888",
+                    password: "123456"
                 },
                 rules: {
-                    name: [
+                    mobile: [
                         { required: true, message: "用户名不能为空", trigger: "blur" },
                         { min: 2, max: 30, message: "长度在 2 到 30 个字符", trigger: "blur" }
                     ],

@@ -4,6 +4,8 @@
 
 import axios from './axios'
 
+const admin = "/admin"
+
 /**
  * common
  */
@@ -22,7 +24,7 @@ import axios from './axios'
 // 登录
 export const Login = params => {
     return  axios({
-        url: 'user/login',
+        url: `admin/user/login`,
         method: 'post',
         data: params
     });

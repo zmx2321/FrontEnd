@@ -1,7 +1,7 @@
 <template>
     <section class="home">
         <div class="container">
-            <p class="lead">{{ mainData.title }}</p>
+            <p class="lead">{{ this.$store.state.title }}</p>
         </div>
     </section>
 </template>
@@ -12,9 +12,7 @@
 
         data () {
             return {
-                mainData: {
-                    title: title
-                }
+
             }
         },
         created (){

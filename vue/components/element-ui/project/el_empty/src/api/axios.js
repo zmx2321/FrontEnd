@@ -5,7 +5,7 @@ import router from '../router'
 
 const Axios = axios.create({
     baseURL: requestUrl, // api
-    timeout: 10000,
+    timeout: 100000,
     responseType: "json",
     withCredentials: true, // 是否允许带cookie这些
     // headers: {
@@ -32,6 +32,7 @@ Axios.interceptors.response.use(response => {
 
     // 如果响应请求未登录，则返回登录页面
     if (code == -1){
+        Message.error(data.message);
         router.push('/login')
     }
 

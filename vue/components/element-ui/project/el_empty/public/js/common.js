@@ -2,9 +2,9 @@
 const qs = window.Qs;
 
 // title
-const title = "xx后台管理系统";
+const title = "doc后台管理系统";
 document.title = title;
 
-// request
+// request  [http://hk-api.fanxy7.cn/swagger-ui.html]
 // const requestUrl = "http://api/xxxxx/xx.html";
-const requestUrl = "http://cep-iii-api.ximuok.com";
+const requestUrl = "http://hk-api.fanxy7.cn/";
