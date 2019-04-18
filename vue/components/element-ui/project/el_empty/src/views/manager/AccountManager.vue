@@ -9,10 +9,21 @@
 
         <!-- 用户列表 -->
         <el-row>
-            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)" @selection-change="selsChange">
+            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)" @selection-change="selsChange" @row-click="showRow">
+                <el-table-column label="选择" width="50" align="center">
+                    <template slot-scope="scope">
+                        <el-radio class="radio"  v-model="radio"  :label="scope.$index">&nbsp;</el-radio>
+                    </template>
+                </el-table-column>
+
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
                 <el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>
+
+                <el-table-column prop="realName" label="真实姓名" width="80" align="center"></el-table-column>
+                <el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="createAt" label="创建日期" width="auto" align="center"></el-table-column>
+                <el-table-column prop="updateAt" label="更新日期" width="auto" align="center"></el-table-column>
 
                 <!--<el-table-column fixed="right" label="操作" width="100">
                     <template slot-scope="scope">
@@ -90,6 +101,8 @@
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
                 sels: [],  //列表选中列
+                radio: '',
+                selected:{},
 
                 // 分页参数
                 page_arg: {
@@ -155,6 +168,12 @@
                 this.$refs[formName].resetFields();
             },
 
+            showRow(row,event){
+                if(event.target.nodeName!="INPUT"){
+                    console.log(row)
+                }
+            },
+
             /**
              *  分页
              */
@@ -186,8 +205,10 @@
                 // 请求接口
                 getUser(param).then(res => {
                     // console.log(res.data.data.users);
-
-                    this.user_info = res.data.data.users;
+                    
+                    if (this.user_info != null) {
+                        this.user_info = res.data.data.users;
+                    }
 
                     // 返回分页总数
                     this.page_arg.total = res.data.data.count;

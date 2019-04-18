@@ -24,7 +24,7 @@ Axios.interceptors.request.use(config => {
 
 //响应拦截  401 过期处理
 Axios.interceptors.response.use(response => {
-    // console.log(response);
+    // console.log(response.data.msg);
 
     const { code } = response.data;  //响应登录状态码
 
@@ -32,7 +32,7 @@ Axios.interceptors.response.use(response => {
 
     // 如果响应请求未登录，则返回登录页面
     if (code == -1){
-        Message.error(data.message);
+        Message.error(response.data.msg);
         router.push('/login')
     }
 

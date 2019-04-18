@@ -52,15 +52,17 @@
                 this.$refs[formName].validate(valid => {
                     if (valid) {
                         Login(qs.stringify(this.loginUser)).then(res => {
+                            if (res.data.code == 1){
+                                this.$message.warning(res.data.detail);
+                            }
+
                             if (res.data.code == 0) {
                                 this.$message.success("登录成功！");
+
+                                // 登陆状态记录
+                                localStorage.setItem('code', this.md5((res.data.code).toString()));
+
                                 this.$router.push("/index");
-
-                                console.log(res.data.data);
-
-                                this.$store.dispatch("getUser", res.data.data);
-                            } else {
-                                this.$message.warning(res.data.detail);
                             }
                         }).catch(err => {
                             console.log(err);
