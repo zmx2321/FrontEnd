@@ -9,14 +9,7 @@
 
         <!-- 用户列表 -->
         <el-row>
-            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)" @selection-change="selsChange" @row-click="showRow">
-                <el-table-column label="选择" width="50" align="center">
-                    <template slot-scope="scope">
-                        <el-radio class="radio"  v-model="radio"  :label="scope.$index">&nbsp;</el-radio>
-                    </template>
-                </el-table-column>
-
-                <el-table-column type="selection" width="55" align="center"></el-table-column>
+            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)">
                 <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
                 <el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>
 
@@ -100,9 +93,6 @@
                  */
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
-                sels: [],  //列表选中列
-                radio: '',
-                selected:{},
 
                 // 分页参数
                 page_arg: {
@@ -158,20 +148,9 @@
                     done();
                 }).catch(() => {});
             },
-            // 列表是否选中
-            selsChange (sels) {
-                this.sels = sels;
-                console.log(sels);
-            },
             // 表单重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
-            },
-
-            showRow(row,event){
-                if(event.target.nodeName!="INPUT"){
-                    console.log(row)
-                }
             },
 
             /**
@@ -202,11 +181,15 @@
                     pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
+                // loading
+                this.listLoading = true;
+
                 // 请求接口
                 getUser(param).then(res => {
                     // console.log(res.data.data.users);
                     
                     if (this.user_info != null) {
+                        this.listLoading = false;
                         this.user_info = res.data.data.users;
                     }
 

@@ -65,14 +65,12 @@ export default {
         },
         // 修改密码
         modifyPassword() {
-          // this.$router.push("/modify_password");
+          this.$router.push("/modify_password");
         },
         // 退出
         logout() {
-            /*Logout().then(() => {
-                localStorage.removeItem("code");
-                this.$router.push("/login");
-            }).catch({});*/
+            localStorage.removeItem("code");
+            this.$router.push("/login");
         }
     },
     created (){

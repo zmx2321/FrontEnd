@@ -30,6 +30,15 @@ export const Login = params => {
     });
 };
 
+// 修改密码
+export const ModifyPassword = params => {
+    return  axios({
+        url: `${base}/user/password/update`,
+        method: 'post',
+        data: params
+    });
+};
+
 /**
  * 账号管理
  */

@@ -12,6 +12,7 @@ import NotFound from './views/main/NotFound'
 
 // admin
 import Login from './views/admin/Login'
+import ModifyPassword from './views/admin/ModifyPassword'
 
 // test
 import Test from './views/test/Test'
@@ -54,6 +55,12 @@ const router = new Router({
             path: '/login',
             name: 'login',
             component: Login
+        },
+        // 修改密码
+        {
+            path: '/modify_password',
+            name: 'modify_password',
+            component: ModifyPassword
         },
         // 404
         {
