@@ -3,7 +3,7 @@
         <!-- 按钮 -->
         <el-row class="toolbar bdr_radiu f-cb">
             <el-col class="f-fl btn_wrap">
-                <!--<el-button type="primary" @click="addVoteVisible = true">添加投票</el-button>-->
+                <el-button type="primary" @click="addUserVisible = true">添加账号</el-button>
             </el-col>
         </el-row>
 
@@ -18,12 +18,12 @@
                 <el-table-column prop="createAt" label="创建日期" width="auto" align="center"></el-table-column>
                 <el-table-column prop="updateAt" label="更新日期" width="auto" align="center"></el-table-column>
 
-                <!--<el-table-column fixed="right" label="操作" width="100">
+                <el-table-column fixed="right" label="操作" width="100">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small" v-on:click="editVoteVisible = true" @click="editVote(scope.row)">{{ $t('btn.edit') }}</el-button>
-                        <el-button type="text" size="small" @click="delVote(scope.row)">{{ $t('btn.del') }}</el-button>
+                        <el-button type="text" size="small" @click="editUser(scope.row)" v-on:click="editUserVisible = true">编辑</el-button>
+                        <el-button type="text" size="small" @click="delUser(scope.row)">删除</el-button>
                     </template>
-                </el-table-column>-->
+                </el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -42,39 +42,39 @@
             </el-row>
         </el-row>
 
-        <!-- 新增投票 -->
-        <!--<el-dialog title="新增投票" @keyup.enter.native="addVote('editVoteForm')" :close-on-click-modal="false" :visible.sync="addVoteVisible" :before-close="handleClose">
-            <el-form :model="addVoteData" status-icon :rules="addVoteRules" ref="editVoteForm" label-width="160px">
-                &lt;!&ndash;<el-form-item label="兑换码月份(默认一月)" prop="month">
+        <!-- 添加账号 -->
+        <el-dialog title="添加账号" @keyup.enter.native="addUserSubmit('editVoteForm')" :close-on-click-modal="false" :visible.sync="addUserVisible" :before-close="handleClose">
+            <el-form :model="addUserData" status-icon :rules="addUserRules" ref="addUserForm" label-width="160px">
+                <!--<el-form-item label="兑换码月份(默认一月)" prop="month">
                   <el-input v-model="editConsultationData.month"  placeholder="请输入兑换码月份" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
                   <el-input v-model="addRedeemCodeData.memo" placeholder="请输入备注" clearable></el-input>
-                </el-form-item>&ndash;&gt;
+                </el-form-item>-->
 
                 <el-form-item>
-                    <el-button type="primary" @click="addVoteSubmit('addVoteForm')">提交</el-button>
-                    <el-button @click="resetForm('addVoteForm')">重置</el-button>
+                    <el-button type="primary" @click="addUserSubmit('addUserForm')">提交</el-button>
+                    <el-button @click="resetForm('addUserForm')">重置</el-button>
                 </el-form-item>
             </el-form>
-        </el-dialog>-->
+        </el-dialog>
 
-        <!-- 编辑投票 -->
-        <!--<el-dialog title="编辑投票" @keyup.enter.native="editVote('editVoteForm')" :close-on-click-modal="false" :visible.sync="editVoteVisible" :before-close="handleClose">
-            <el-form :model="editVoteData" status-icon :rules="editVoteRules" ref="editVoteForm" label-width="160px">
-                &lt;!&ndash;<el-form-item label="兑换码月份(默认一月)" prop="month">
+        <!-- 编辑用户 -->
+        <el-dialog title="编辑用户" @keyup.enter.native="editUserSubmit('editVoteForm')" :close-on-click-modal="false" :visible.sync="editUserVisible" :before-close="handleClose">
+            <el-form :model="editUserData" status-icon :rules="editUserRules" ref="editUserForm" label-width="160px">
+                <!--<el-form-item label="兑换码月份(默认一月)" prop="month">
                   <el-input v-model="editConsultationData.month"  placeholder="请输入兑换码月份" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
                   <el-input v-model="addRedeemCodeData.memo" placeholder="请输入备注" clearable></el-input>
-                </el-form-item>&ndash;&gt;
+                </el-form-item>-->
 
                 <el-form-item>
-                    <el-button type="primary" @click="editVoteSubmit('editVoteForm')">提交</el-button>
-                    <el-button @click="resetForm('editVoteForm')">重置</el-button>
+                    <el-button type="primary" @click="editUserSubmit('editUserForm')">提交</el-button>
+                    <el-button @click="resetForm('editUserForm')">重置</el-button>
                 </el-form-item>
             </el-form>
-        </el-dialog>-->
+        </el-dialog>
     </section>
 </template>
 
@@ -187,7 +187,7 @@
                 // 请求接口
                 getUser(param).then(res => {
                     // console.log(res.data.data.users);
-                    
+
                     if (this.user_info != null) {
                         this.listLoading = false;
                         this.user_info = res.data.data.users;
@@ -203,7 +203,7 @@
              * 添加用户
              */
             // 提交添加用户表单
-            addVoteSubmit (formName) {
+            addUserSubmit (formName) {
                 // 验证表单
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
@@ -220,11 +220,12 @@
              * 编辑用户
              */
             // 点击编辑
-            editVote (row) {
-                console.log(Object.assign({}, row));
+            editUser (row) {
+                console.log("编辑", row);
+                // console.log(Object.assign({}, row));
             },
             // 提交编辑投票表单
-            editVoteSubmit (formName) {
+            editUserSubmit (formName) {
                 // 验证表单
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
@@ -240,11 +241,12 @@
              *  api
              *  删除用户
              */
-            delVote (row) {
+            delUser (row) {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    console.log(Object.assign({}, row));
+                    // console.log(Object.assign({}, row));
+                    console.log("删除", row);
                 }).catch(() => {});
             },
         },
