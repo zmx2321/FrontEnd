@@ -333,7 +333,7 @@
                 getUser(param).then(res => {
                     // console.log(res.data.data.users);
 
-                    if (this.user_info != null) {
+                    if (res.data.data.users != null) {
                         this.listLoading = false;
                         this.user_info = res.data.data.users;
                     }
@@ -509,7 +509,7 @@
             delUser (row) {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
-                }).then(res => {
+                }).then(() => {
                     let params = {
                         userId: row.id,
                     }
@@ -524,8 +524,6 @@
                             this.getUserList();
                         }
                     }).catch({});
-                    // console.log(Object.assign({}, row));
-                    console.log("删除", row);
                 }).catch(() => {});
             },
         },
