@@ -319,7 +319,7 @@
         [{ 'direction': 'rtl' }],                         // 文本方向
 
 
-        // [{ 'size': ['small', false, 'large', 'huge'] }],  // 字体大小
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // 字体大小
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],         //几级标题
 
 

@@ -64,12 +64,13 @@
         <el-table-column prop="salary" label="薪资" width="auto" align="center"></el-table-column>
         <el-table-column prop="addressCity" label="地区" width="auto" align="center"></el-table-column>
         <el-table-column prop="age" label="年龄" width="auto" align="center"></el-table-column>
+        <el-table-column prop="status" label="状态" width="auto" align="center" :formatter="formatType"></el-table-column>
 
-        <el-table-column label="状态" width="auto" align="center">
+        <!--<el-table-column label="状态" width="auto" align="center">
           <template slot-scope="scope">
             {{ scope.row.status === 0 ? "需要认证" : "" }}
           </template>
-        </el-table-column>
+        </el-table-column>-->
 
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
@@ -136,10 +137,10 @@
       <div class="part2 f-oh" v-if="realReavierInfo.length != 0">
         <div class="p2_top f-cb">
           <div class="id_front f-fl f-oh">
-            <img :src="realReavierInfo.imgFront" alt="imgFront">
+            <img :src="realReavierInfo.imgFront" alt="imgFront" v-on:click="showImgVisible = true" @click="showImgFront">
           </div>
           <div class="id_back f-fr f-oh">
-            <img :src="realReavierInfo.imgBack" alt="imgBack">
+            <img :src="realReavierInfo.imgBack" alt="imgBack" v-on:click="showImgVisible = true" @click="showImgBack">
           </div>
         </div>
         <div class="p2_bottom">
@@ -177,7 +178,7 @@
             <div class="work" v-for="item in identiyReviewInfo">
               <ul>
                 <li class="work_img">
-                  <img :src="item.careerCertificate" alt="work_img">
+                  <img :src="item.careerCertificate" alt="work_img" v-on:click="showImgVisible = true" @click="showCareerCertificate">
                 </li>
                 <li class="work_type">
                   {{ item.ckName }}
@@ -210,8 +211,15 @@
           </div>
         </div>
       </div>
-    </el-dialog>
 
+      <el-dialog width="750px" title="显示图片" :visible.sync="showImgVisible" append-to-body>
+        <div class="show_img_wrap">
+            <img :src="realReavierInfo.imgBack" alt="imgBack" v-if="imgShow.imgFront == true">
+            <img :src="realReavierInfo.imgBack" alt="imgBack" v-if="imgShow.imgBack == true">
+            <img :src="realReavierInfo.imgBack" alt="imgBack" v-if="imgShow.careerCertificate == true">
+        </div>
+      </el-dialog>
+    </el-dialog>
   </section>
 </template>
 
@@ -336,10 +344,18 @@
                 // 工种认证用户列表
                 identiyReviewInfo: [],
 
+                // 图片显示
+                imgShow: {
+                    imgFront: false,  // 身份证认证正面
+                    imgBack: false,  // 身份证认证反面
+                    careerCertificate: false,  // 工种认证
+                },
+
                 /**
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
                 reviewUserVisible: false,  // 审核用户界面
+                showImgVisible: false,  // 显示界面
             }
         },
         methods: {
@@ -468,6 +484,24 @@
                         this.page_arg.total = res.data.data.total;
                     }).catch({});
                 }
+            },
+            // 状态转文字
+            formatType (row) {
+              //  认证状态(0:待认证,1:认证通过,2:认证失败)
+              switch (row.status) {
+                  case 0:
+                      return "待认证"
+                      break
+                  case 1:
+                      return "认证通过"
+                      break
+                  case 2:
+                      return "认证失败"
+                      break
+                  default:
+                      return ""
+                      break
+              }
             },
             // 获取地址信息并做格式转换
             getAddress (val) {
@@ -690,7 +724,25 @@
                     // this.getUserInfoById(this.reviewUserData.id);
                     this.reviewUserVisible = false;
                 }).catch({});
-            }
+            },
+            // 显示身份证正面
+            showImgFront () {
+                this.imgShow.imgFront = true;
+                this.imgShow.imgBack = false;
+                this.imgShow.careerCertificate = false;
+            },
+            // 显示身份证反面
+            showImgBack () {
+                this.imgShow.imgFront = false;
+                this.imgShow.imgBack = true;
+                this.imgShow.careerCertificate = false;
+            },
+            // 显示身份证正面
+            showCareerCertificate () {
+                this.imgShow.imgFront = false;
+                this.imgShow.imgBack = false;
+                this.imgShow.careerCertificate = true;
+            },
         },
         // 预处理
         created () {
@@ -760,7 +812,7 @@
           height: 200px;
         }
 
-        .id_front img .id_back img{
+        .id_front img, .id_back img{
           width: 100%;
           height: 100%;
         }
@@ -861,6 +913,16 @@
 
     .review_status {
       text-align: center;
+    }
+  }
+
+  .show_img_wrap {
+    width: 100%;
+    height: 56vh;
+
+    img {
+        width: 100%;
+        height: 100%;
     }
   }
 </style>

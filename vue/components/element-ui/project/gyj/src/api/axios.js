@@ -4,12 +4,12 @@ import { Message } from 'element-ui'
 import router from '../router'
 
 // const root = 'http://10.10.10.202:8000';
-const root = 'http://api8081.ximuok.com';
+const root = 'http://gyj-api.idougong.com';
 // const root = 'https://stardust.serveo.net';
 
 const Axios = axios.create({
     baseURL: root, // api
-    timeout: 10000,
+    timeout: 60000,
     responseType: "json",
     withCredentials: true, // 是否允许带cookie这些
     // headers: {

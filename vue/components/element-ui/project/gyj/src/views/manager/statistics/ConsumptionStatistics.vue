@@ -14,22 +14,42 @@
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="编号" width="80" align="center"></el-table-column>-->
 
-                <el-table-column prop="dateString" label="日期" width="auto" align="center"></el-table-column>
-                <el-table-column prop="cashConsume" label="现金消费" width="auto" align="center"></el-table-column>
-                <el-table-column prop="pointsConsume" label="积分消耗" width="auto" align="center"></el-table-column>
+                <!--rchive: 0
+                couponPrice: null
+                createAt: "2019-04-19 15:24:20"
+                discountPrice: null
+                finalPrice: 1.9  最终价格
+                id: 150
+                orderNo: "18485603840201904191524202644386"
+               -- payType: 0  (0:支付宝,1:微信支付,2:现金支付)
+                point: 10  积分消耗
+               -- status: 2  // 支付状态(0:未生效订单,1:未支付,2:支付成功,3:取消订单,4:订单关闭)
+                storeId: 2
+                storeName: "智慧之门超市"  店铺名称
+                totalPrice: 2  订单价格
+                updateAt: "2019-04-19 15:24:25"  支付时间
+                userId: 37-->
+
+                <el-table-column prop="storeName" label="店铺名称" width="auto" align="center"></el-table-column>
+                <el-table-column prop="totalPrice" label="订单价格" width="auto" align="center"></el-table-column>
+                <el-table-column prop="finalPrice" label="最终价格" width="auto" align="center"></el-table-column>
+                <el-table-column prop="point" label="积分消耗" width="auto" align="center"></el-table-column>
+                <el-table-column prop="status" label="支付状态" width="auto" align="center" :formatter="formatStatus"></el-table-column>
+                <el-table-column prop="payType" label="支付方式" width="auto" align="center" :formatter="formatPayType"></el-table-column>
+                <el-table-column prop="updateAt" label="支付时间" width="auto" align="center"></el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
                 <!-- 分页 -->
                 <el-col>
                     <el-pagination class="f-fr pagination"
-                                   :current-page.sync='page_arg.page_index'
-                                   :page-sizes="page_arg.page_sizes"
-                                   :page-size="page_arg.page_size"
-                                   :layout="page_arg.layout"
-                                   :total="page_arg.total"
-                                   @current-change='handleCurrentChange'
-                                   @size-change='handleSizeChange'>
+                       :current-page.sync='page_arg.page_index'
+                       :page-sizes="page_arg.page_sizes"
+                       :page-size="page_arg.page_size"
+                       :layout="page_arg.layout"
+                       :total="page_arg.total"
+                       @current-change='handleCurrentChange'
+                       @size-change='handleSizeChange'>
                     </el-pagination>
                 </el-col>
             </el-row>
@@ -126,6 +146,46 @@
                     this.page_arg.total = res.data.data.total;
                 }).catch({});
             },
+            // 支付状态(0:未生效订单,1:未支付,2:支付成功,3:取消订单,4:订单关闭)status
+            formatStatus (row) {
+                switch (row.status) {
+                    case 0:
+                        return "未生效订单"
+                        break
+                    case 1:
+                        return "未支付"
+                        break
+                    case 2:
+                        return "支付成功"
+                        break
+                    case 3:
+                        return "取消订单"
+                        break
+                    case 4:
+                        return "订单关闭"
+                        break
+                    default:
+                        return ""
+                        break
+                }
+            },
+            // 支付方式(0:支付宝,1:微信支付,2:现金支付)payType
+            formatPayType (row) {
+                switch (row.status) {
+                    case 0:
+                        return "支付宝"
+                        break
+                    case 1:
+                        return "微信支付"
+                        break
+                    case 2:
+                        return "现金支付"
+                        break
+                    default:
+                        return ""
+                        break
+                }
+            }
         },
         // 预处理
         created () {
