@@ -14,7 +14,7 @@
                     <!-- 账号管理 -->
                     <router-link to="/account_manager">
                         <el-menu-item index="1">
-                            <i class="fa fa-cog"></i>
+                            <i class="fa fa-address-card"></i>
                             <span slot="title">账号管理</span>
                         </el-menu-item>
                     </router-link>
@@ -24,6 +24,14 @@
                         <el-menu-item index="2">
                             <i class="fa fa-user"></i>
                             <span slot="title">用户管理</span>
+                        </el-menu-item>
+                    </router-link>
+
+                    <!-- 充值管理 -->
+                    <router-link to="/income_manager">
+                        <el-menu-item index="3">
+                            <i class="fa fa-cog"></i>
+                            <span slot="title">充值管理</span>
                         </el-menu-item>
                     </router-link>
 
@@ -82,6 +90,9 @@ export default {
                     break;
                 case "user_manager":
                     return "2";
+                    break;
+                case "income_manager":
+                    return "3";
                     break;
             }
         },

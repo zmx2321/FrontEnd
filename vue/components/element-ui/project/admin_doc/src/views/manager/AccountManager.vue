@@ -47,7 +47,7 @@
         </el-row>
 
         <!-- 添加账号 -->
-        <el-dialog title="添加账号" @keyup.enter.native="addUserSubmit('editVoteForm')" :close-on-click-modal="false" :visible.sync="addUserVisible" :before-close="handleClose">
+        <el-dialog title="添加账号" @keyup.enter.native="addUserSubmit('addUserForm')" :close-on-click-modal="false" :visible.sync="addUserVisible" :before-close="handleClose">
             <el-form :model="addUserData" status-icon :rules="addUserRules" ref="addUserForm" label-width="160px">
                 <el-form-item label="姓名" prop="realName">
                     <el-input v-model="addUserData.realName"  placeholder="请输入密码" clearable></el-input>
@@ -303,7 +303,7 @@
              */
             // 点击页码
             handleCurrentChange() {
-                this.getUserList();  // 加载分页数据
+                this.getAccountList();  // 加载分页数据
             },
             // 设置每页条数
             handleSizeChange(page_size) {
@@ -311,7 +311,7 @@
 
                 this.page_arg.page_size = page_size;  // 切换size
 
-                this.getUserList();  // 加载分页数据
+                this.getAccountList();  // 加载分页数据
             },
 
             /**
@@ -333,7 +333,7 @@
                 getAccount(param).then(res => {
                     // console.log(res.data.data.users);
 
-                    if (res.data.data.users != null) {
+                    if (res.data.code == 0) {
                         this.listLoading = false;
                         this.user_info = res.data.data.users;
                     }

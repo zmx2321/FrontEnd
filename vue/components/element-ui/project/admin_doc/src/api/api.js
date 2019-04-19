@@ -117,10 +117,32 @@ export const delUser = params => {
 /**
  * 用户管理
  */
+// 获取用户列表
 export const getUser = params => {
     return  axios({
         url: `/user/list`,
         method: 'get',
         params: params
+    });
+};
+
+/**
+ * 充值管理
+ */
+// 获取充值列表
+export const getIncome = params => {
+    return  axios({
+        url: `/income/list`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 充值
+export const addIncome = params => {
+    return  axios({
+        url: `/income/add`,
+        method: 'post',
+        data: params
     });
 };
