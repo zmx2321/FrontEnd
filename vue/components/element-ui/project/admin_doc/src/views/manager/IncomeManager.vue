@@ -24,20 +24,20 @@
                 <el-table-column prop="totalPrice" label="充值金额" width="auto" align="center"></el-table-column>
             </el-table>
 
-            <!--<el-row :span="24" class="toolbar f-cb">
-                &lt;!&ndash; 分页 &ndash;&gt;
+            <el-row :span="24" class="toolbar f-cb">
+                <!-- 分页 -->
                 <el-col>
                     <el-pagination class="f-fr pagination"
-                                   :current-page.sync='page_arg.page_index'
-                                   :page-sizes="page_arg.page_sizes"
-                                   :page-size="page_arg.page_size"
-                                   :layout="page_arg.layout"
-                                   :total="page_arg.total"
-                                   @current-change='handleCurrentChange'
-                                   @size-change='handleSizeChange'>
+                       :current-page.sync='page_arg.page_index'
+                       :page-sizes="page_arg.page_sizes"
+                       :page-size="page_arg.page_size"
+                       :layout="page_arg.layout"
+                       :total="page_arg.total"
+                       @current-change='handleCurrentChange'
+                       @size-change='handleSizeChange'>
                     </el-pagination>
                 </el-col>
-            </el-row>-->
+            </el-row>
         </el-row>
 
         <!-- 充值 -->
@@ -77,13 +77,13 @@
                 dialogVisible: false,  // 关闭提示
 
                 // 分页参数
-                /*page_arg: {
+                page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
                     page_size: 10, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
-                },*/
+                },
 
                 /**
                  * 充值
@@ -136,7 +136,7 @@
             /**
              *  分页
              */
-            /*// 点击页码
+            // 点击页码
             handleCurrentChange() {
                 this.getIncomeList();  // 加载分页数据
             },
@@ -147,7 +147,7 @@
                 this.page_arg.page_size = page_size;  // 切换size
 
                 this.getIncomeList();  // 加载分页数据
-            },*/
+            },
 
             /**
              *  api getIncome
@@ -158,8 +158,8 @@
                 //接口参数
                 let param = {
                     adminId: this.adminId,  // 管理员ID(准确的说是组长的ID)
-                    /*pageNum: this.page_arg.page_index,  // 当前页码
-                    pageSize: this.page_arg.page_size,  // 每页条数*/
+                    pageNum: this.page_arg.page_index,  // 当前页码
+                    pageSize: this.page_arg.page_size,  // 每页条数
                 };
 
                 // loading

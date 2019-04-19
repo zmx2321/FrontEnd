@@ -411,7 +411,7 @@
                     if (res.data.code == 0) {
                         this.$message.success("账号启用成功");
 
-                        this.getUserList();
+                        this.getAccountList();
                     }
                 }).catch({});
             },
@@ -429,7 +429,7 @@
                     if (res.data.code == 0) {
                         this.$message.success("账号禁用成功");
 
-                        this.getUserList();
+                        this.getAccountList();
                     }
                 }).catch({});
             },
@@ -459,7 +459,7 @@
 
                             if (res.data.code == 0) {
                                 this.$message.success("编辑用户价格和流量成功！");
-                                this.getUserList();
+                                this.getAccountList();
                             }
 
                             this.editUserAttributeVisible = false;
@@ -491,7 +491,7 @@
 
                             if (res.data.code == 0) {
                                 this.$message.success("编辑用户密码成功！");
-                                this.getUserList();
+                                this.getAccountList();
                             }
 
                             this.editUserAccountVisible = false;
