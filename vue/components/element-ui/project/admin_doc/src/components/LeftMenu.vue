@@ -14,8 +14,16 @@
                     <!-- 账号管理 -->
                     <router-link to="/account_manager">
                         <el-menu-item index="1">
-                            <i class="fa fa-user"></i>
+                            <i class="fa fa-cog"></i>
                             <span slot="title">账号管理</span>
+                        </el-menu-item>
+                    </router-link>
+
+                    <!-- 用户管理 -->
+                    <router-link to="/user_manager">
+                        <el-menu-item index="2">
+                            <i class="fa fa-user"></i>
+                            <span slot="title">用户管理</span>
                         </el-menu-item>
                     </router-link>
 
@@ -71,6 +79,9 @@ export default {
                     break;
                 case "account_manager":
                     return "1";
+                    break;
+                case "user_manager":
+                    return "2";
                     break;
             }
         },

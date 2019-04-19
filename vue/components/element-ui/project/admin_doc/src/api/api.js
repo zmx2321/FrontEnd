@@ -43,7 +43,7 @@ export const ModifyPassword = params => {
  * 账号管理
  */
 // 获取账号列表
-export const getUser = params => {
+export const getAccount = params => {
     return  axios({
         url: `${base}/user/list`,
         method: 'get',
@@ -111,5 +111,16 @@ export const delUser = params => {
         url: `${base}/user/delete`,
         method: 'post',
         data: params
+    });
+};
+
+/**
+ * 用户管理
+ */
+export const getUser = params => {
+    return  axios({
+        url: `/user/list`,
+        method: 'get',
+        params: params
     });
 };

@@ -9,7 +9,7 @@
 
         <!-- 用户列表 -->
         <el-row>
-            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)">
+            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
                 <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
                 <el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>
 
@@ -75,8 +75,8 @@
                 </el-form-item>
 
                 <!-- 客服必填这个字段 -->
-                <el-form-item label="数量" prop="amount">
-                    <el-input v-model="addUserData.amount"  placeholder="请输入数量" clearable></el-input>
+                <el-form-item label="流量" prop="amount">
+                    <el-input v-model="addUserData.amount"  placeholder="请输入流量" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -95,8 +95,8 @@
                 <el-form-item label="价格" prop="price">
                     <el-input v-model="editUserAttributeData.price"  placeholder="请输入价格" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="数量" prop="amount">
-                    <el-input v-model="editUserAttributeData.amount"  placeholder="请输入数量" clearable></el-input>
+                <el-form-item label="流量" prop="amount">
+                    <el-input v-model="editUserAttributeData.amount"  placeholder="请输入流量" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -127,7 +127,7 @@
 
 <script>
     import {
-        getUser,  // 获取投票列表
+        getAccount,  // 获取账号列表
         addUser,  // 添加账号
         checkUser,  // 查看账号
         editUserAttribute,  // 编辑价格和流量
@@ -167,16 +167,16 @@
                 }
             };
 
-            // 数量，客服必填这个字段(type[2])
+            // 流量，客服必填这个字段(type[2])
             const validateAmount = (rule, value, callback) => {
                 let reg = /^\+?[1-9][0-9]*$/;
 
                 if (!reg.test(value)) {
-                    return callback(new Error('数量为非0正整数！'));
+                    return callback(new Error('流量为非0正整数！'));
                 }
 
                 if (this.addUserData.type == 2 && value == "") {
-                    callback(new Error("客服必填数量!"));
+                    callback(new Error("客服必填流量!"));
                 } else {
                     callback();
                 }
@@ -214,7 +214,7 @@
                     password: "11111",  // 密码
                     type: "0",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
                     price: "44",  // 单价，组长必填这个字段
-                    amount: "66",  // 数量，客服必填这个字段
+                    amount: "66",  // 流量，客服必填这个字段
                 },
 
                 // 验证添加用户数据
@@ -245,7 +245,7 @@
                 editUserAttributeData: {
                     userId: "",  // 用户id
                     price: "",  // 价格
-                    amount: "",  // 数量
+                    amount: "",  // 流量
                 },
 
                 // 验证编辑用户价格和流量数据
@@ -254,7 +254,7 @@
                         { required: true, message: '价格不能为空！', trigger: 'blur' }
                     ],
                     amount: [
-                        { required: true, message: '数量不能为空！', trigger: 'blur' }
+                        { required: true, message: '流量不能为空！', trigger: 'blur' }
                     ]
                 },
 
@@ -315,11 +315,11 @@
             },
 
             /**
-             *  api getUser
-             *  获取用户信息
+             *  api getAccount
+             *  获取用户账号信息
              */
-            // 获取用户列表
-            getUserList () {
+            // 获取用户账号列表
+            getAccountList () {
                 //接口参数
                 let param = {
                     pageNum: this.page_arg.page_index,  // 当前页码
@@ -330,7 +330,7 @@
                 this.listLoading = true;
 
                 // 请求接口
-                getUser(param).then(res => {
+                getAccount(param).then(res => {
                     // console.log(res.data.data.users);
 
                     if (res.data.data.users != null) {
@@ -444,7 +444,7 @@
                 // this.editUserAttributeData = Object.assign({}, row);
                 this.editUserAttributeData.userId = row.id;  // 用户编号
                 this.editUserAttributeData.price = row.price;  // 价格
-                this.editUserAttributeData.amount = row.amount;  // 数量
+                this.editUserAttributeData.amount = row.amount;  // 流量
             },
             // 提交编辑用户价格和流量表单
             editUserAttributeSubmit (formName) {
@@ -529,7 +529,7 @@
         },
         // 预处理
         created () {
-            this.getUserList();
+            this.getAccountList();
         }
     }
 </script>
