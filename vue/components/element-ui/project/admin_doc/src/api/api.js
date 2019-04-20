@@ -9,14 +9,14 @@ const base = "/admin"
 /**
  * common
  */
-// 上传图片
-/*export const getImgURI = params => {
+// 上传文件
+export const excelUpload = params => {
     return  axios({
-        url: 'upload',
+        url: 'file/excel/import',
         method: 'post',
         data: params
     });
-};*/
+};
 
 /**
  *  登录/注销/修改密码

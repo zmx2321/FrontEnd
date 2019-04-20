@@ -2,8 +2,21 @@
     <section class="main_cont">
         <!-- 按钮 -->
         <el-row class="toolbar bdr_radiu f-cb">
-            <el-col class="f-fl btn_wrap">
-                <el-button type="primary" @click="addUserVisible = true">添加账号</el-button>
+            <el-col class="f-cb btn_wrap">
+                <el-button type="primary" @click="addUserVisible = true" class="f-fl">添加账号</el-button>
+                <el-upload
+                        class="f-fl upload_btn"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        ref='upload'
+                        multiple
+                        :before-upload="beforeUpload"
+                        :on-change="excelUploadFile"
+                        :before-remove="beforeRemove"
+                        :limit="upload_arg.limit"
+                        :on-exceed="handleExceed"
+                        :file-list="upload_arg.fileList">
+                    <el-button size="small" type="primary">Excel上传</el-button>
+                </el-upload>
             </el-col>
         </el-row>
 
@@ -20,7 +33,7 @@
 
                 <el-table-column fixed="right" label="操作" width="500">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small" @click="checkUser(scope.row)">查看</el-button>
+                        <el-button type="text" size="small" @click="checkUser(scope.row)" v-on:click="checkUserVisible = true">查看</el-button>
                         <el-button type="text" size="small" @click="editUserAttribute(scope.row)" v-on:click="editUserAttributeVisible = true">编辑价格和流量</el-button>
                         <el-button type="text" size="small" @click="editUserAccount(scope.row)" v-on:click="editUserAccountVisible = true">编辑密码</el-button>
                         <el-button type="text" size="small" @click="turnOn(scope.row)" v-show="scope.row.disable == 1">启用账号</el-button>
@@ -45,6 +58,51 @@
                 </el-col>
             </el-row>
         </el-row>
+
+        <!-- 查看用户 -->
+        <el-dialog title="查看用户" :close-on-click-modal="true" :visible.sync="checkUserVisible">
+            <!--<el-table :data="currentUser">
+                <el-table-column property="id" label="用户编号" width="150"></el-table-column>
+            </el-table>-->
+            <ul class="check_user_wrap">
+                <li>
+                    <dl>
+                        <dd>用户编号：</dd>
+                        <dd>{{ currentUser.id }}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dd>真实姓名：</dd>
+                        <dd>{{ currentUser.realName }}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dd>用户手机：</dd>
+                        <dd>{{ currentUser.mobile }}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dd>用户类型：</dd>
+                        <dd>{{ currentUser.typeName }}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dd>创建时间：</dd>
+                        <dd>{{ currentUser.createAt }}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dd>修改时间：</dd>
+                        <dd>{{ currentUser.updateAt }}</dd>
+                    </dl>
+                </li>
+            </ul>
+        </el-dialog>
 
         <!-- 添加账号 -->
         <el-dialog title="添加账号" @keyup.enter.native="addUserSubmit('addUserForm')" :close-on-click-modal="false" :visible.sync="addUserVisible" :before-close="handleClose">
@@ -129,6 +187,7 @@
     import {
         getAccount,  // 获取账号列表
         addUser,  // 添加账号
+        excelUpload,  // 上传文件
         checkUser,  // 查看账号
         editUserAttribute,  // 编辑价格和流量
         editUserAccount,  // 编辑密码
@@ -193,9 +252,16 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 10, // 1页显示多少条
+                    page_size: 20, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
+                },
+
+                // 上传文件参数
+                upload_arg: {
+                    limit:1,
+                    file: [],
+                    fileList: []
                 },
 
                 /**
@@ -203,6 +269,9 @@
                  */
                 // 用户列表
                 user_info: [],  // 存放用户信息列表数据
+
+                // currentUser: [],
+                currentUser: {},
 
                 /**
                  * 添加用户
@@ -279,6 +348,7 @@
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
                 addUserVisible: false,  // 添加用户界面
+                checkUserVisible: false,  // 查看用户界面
                 editUserAttributeVisible: false,  // 编辑用户价格和流量界面
                 editUserAccountVisible: false,  // 编辑用户密码界面
             }
@@ -315,6 +385,24 @@
             },
 
             /**
+             * el-upload common
+             */
+            // 文件上传之前
+            beforeUpload (file) {
+                this.upload_arg.file = [];
+                // console.log("aa")
+            },
+            // 文件超出个数限制时的钩子
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            // 删除文件之前的钩子
+            beforeRemove(file) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
+                // this.upload_arg.file = [];
+            },
+
+            /**
              *  api getAccount
              *  获取用户账号信息
              */
@@ -331,15 +419,15 @@
 
                 // 请求接口
                 getAccount(param).then(res => {
-                    // console.log(res.data.data.users);
+                    // console.log(res.data.data.set);
 
                     if (res.data.code == 0) {
                         this.listLoading = false;
-                        this.user_info = res.data.data.users;
+                        this.user_info = res.data.data.set;
                     }
 
                     // 返回分页总数
-                    this.page_arg.total = res.data.data.count;
+                    this.page_arg.total = res.data.data.pager.total;
                 }).catch({});
             },
 
@@ -361,7 +449,7 @@
 
                             if (res.data.code == 0) {
                                 this.$message.success("账号添加成功！");
-                                this.getUserList();
+                                this.getAccountList();
                             }
 
                             this.addUserVisible = false;
@@ -370,6 +458,44 @@
                         this.$message.error("表单填写错误");
                     }
                 });
+            },
+
+            /**
+             * api excelUpload
+             * 上传文件
+             */
+            excelUploadFile (file) {
+                this.upload_arg.file.push(file.raw);
+
+                let formData = new FormData();
+
+                formData.append('file', this.upload_arg.file[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+
+                // console.log(this.upload_arg.file)
+
+                excelUpload(formData, config).then(res => {
+                    // console.log(res);
+
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
+                        this.upload_arg.fileList = [];
+
+                        return false;
+                    }
+
+                    if (res.data.code == 0) {
+                        this.$message.success("导入成功！");
+                        this.getAccountList();
+                    }
+                });
+
+                // console.log(this.upload_arg.file[0]);
             },
 
             /**
@@ -387,9 +513,27 @@
                     }
 
                     if (res.data.code == 0) {
-                        console.log("查看用户", res.data.data);
+                        // console.log("查看用户", res.data.data);
+
+                        // this.currentUser.push(res.data.data);
+                        this.currentUser = res.data.data;
+
+                        this.changeUserType();  // 用户类型转换
                     }
                 }).catch({});
+            },
+            // 用户类型转换
+            changeUserType () {
+                // 0-管理员，1-组长，2-客服，3-话务
+                switch (this.currentUser.type) {
+                    case 0:
+                        this.currentUser.typeName = "管理员";
+                        break;
+                    case 1:
+                        this.currentUser.typeName = "组长";
+                        break;
+
+                }
             },
 
             /**
@@ -535,5 +679,42 @@
 </script>
 
 <style lang="less" scoped>
+    /deep/ .upload_btn {
+        width: 85%;
+        margin-left: 15px;
 
+        .el-upload {
+            float: left;
+
+            button {
+                padding: 12px 20px;
+            }
+        }
+
+        ul {
+            float: left;
+            width: 90%;
+            margin-left: 15px;
+
+            li {
+                a {
+
+                }
+            }
+        }
+    }
+
+    .check_user_wrap {
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+
+            dd {
+                display: inline-block;
+            }
+        }
+    }
 </style>

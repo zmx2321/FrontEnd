@@ -59,7 +59,7 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 10, // 1页显示多少条
+                    page_size: 20, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
@@ -118,7 +118,7 @@
 
                 // 请求接口
                 getUser(param).then(res => {
-                    console.log(res.data.code);
+                    // console.log(res.data.code);
 
                     if (res.data.code == 0) {
                         this.listLoading = false;

@@ -80,7 +80,7 @@
                 page_arg: {
                     page_index: 1, // 当前位于哪页
                     total: 0, // 总数
-                    page_size: 10, // 1页显示多少条
+                    page_size: 20, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
@@ -169,10 +169,18 @@
                 getIncome(param).then(res => {
                     // console.log(res);
 
-                    if (res.data.code == 0) {
-                        this.listLoading = false;
-                        this.income_info = res.data.data;
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
                     }
+
+                    if (res.data.code == 0) {
+                        this.income_info = res.data.data.set;
+
+                        // 返回分页总数
+                        this.page_arg.total = res.data.data.pager.total;
+                    }
+
+                    this.listLoading = false;
                 }).catch({});
             },
             // 查询
