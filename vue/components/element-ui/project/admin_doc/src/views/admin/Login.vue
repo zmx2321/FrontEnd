@@ -29,6 +29,14 @@
 
         data() {
             return {
+                /**
+                 * 管理员测试
+                 *   15888888888
+                 * 组长测试
+                 *   15666666666
+                 * 客服测试
+                 *   15777777777
+                 */
                 loginUser: {
                     mobile: "15888888888",
                     password: "123456"
@@ -61,6 +69,9 @@
 
                                 // 登陆状态记录
                                 localStorage.setItem('code', this.md5((res.data.code).toString()));
+
+                                // 登陆状态
+                                localStorage.setItem('userType', res.data.data.type);
 
                                 this.$router.push("/index");
                             }

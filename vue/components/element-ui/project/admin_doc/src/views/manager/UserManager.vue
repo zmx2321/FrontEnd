@@ -1,17 +1,42 @@
 <template>
     <section class="main_cont">
+        <!-- 按钮 -->
+        <el-row class="toolbar bdr_radiu f-cb">
+            <el-col class="f-cb btn_wrap">
+                <el-upload
+                        class="f-fl upload_btn"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        ref='upload'
+                        multiple
+                        :before-upload="beforeUpload"
+                        :on-change="excelUploadFile"
+                        :before-remove="beforeRemove"
+                        :limit="upload_arg.limit"
+                        :on-exceed="handleExceed"
+                        :file-list="upload_arg.fileList">
+                    <el-button size="small" type="primary">Excel上传</el-button>
+                </el-upload>
+            </el-col>
+        </el-row>
+
         <!-- 用户列表 -->
         <el-row>
             <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 160px)">
                 <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
-                <el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>
+                <!--<el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>-->
 
-                <el-table-column prop="realName" label="真实姓名" width="auto" align="center"></el-table-column>
-                <el-table-column prop="identity" label="身份证" width="auto" align="center"></el-table-column>
                 <el-table-column prop="mobile" label="手机号码" width="auto" align="center"></el-table-column>
+                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="identity" label="身份证" width="auto" align="center"></el-table-column>
                 <el-table-column prop="area" label="地址" width="auto" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="创建时间" width="auto" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="编辑时间" width="auto" align="center"></el-table-column>
+                <el-table-column prop="zhimafen" label="芝麻分" width="auto" align="center"></el-table-column>
+                <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
+
+                <el-table-column label="是否联系" width="auto" align="center">
+                    <template slot-scope="scope">
+                        {{ scope.row.contacted === 0 ? "未联系" : "已联系" }}
+                    </template>
+                </el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -34,14 +59,8 @@
 
 <script>
     import {
+        excelUpload,  // 上传文件
         getUser,  // 获取投票列表
-        addUser,  // 添加账号
-        checkUser,  // 查看账号
-        editUserAttribute,  // 编辑价格和流量
-        editUserAccount,  // 编辑密码
-        turnOn,  // 启用账号
-        turnOff,  // 禁用账号
-        delUser,  // 删除账号
     } from '../../api/api.js';
 
     export default {
@@ -62,6 +81,13 @@
                     page_size: 20, // 1页显示多少条
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
+                },
+
+                // 上传文件参数
+                upload_arg: {
+                    limit:1,
+                    file: [],
+                    fileList: []
                 },
 
                 /**
@@ -103,6 +129,22 @@
             },
 
             /**
+             * el-upload common
+             */
+            // 文件上传之前
+            beforeUpload (file) {
+                this.upload_arg.file = [];
+            },
+            // 文件超出个数限制时的钩子
+            handleExceed(files, fileList) {
+                this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            // 删除文件之前的钩子
+            beforeRemove(file) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
+            },
+
+            /**
              *  api getUser
              *  获取用户信息
              */
@@ -129,6 +171,40 @@
                     this.page_arg.total = res.data.data.pager.total;
                 }).catch({});
             },
+
+            /**
+             * api excelUpload
+             * 上传文件
+             */
+            excelUploadFile (file) {
+                this.upload_arg.file.push(file.raw);
+
+                let formData = new FormData();
+
+                formData.append('file', this.upload_arg.file[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+
+                excelUpload(formData, config).then(res => {
+                    // console.log(res);
+
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
+                        this.upload_arg.fileList = [];
+
+                        return false;
+                    }
+
+                    if (res.data.code == 0) {
+                        this.$message.success("导入成功！");
+                        this.getAccountList();
+                    }
+                });
+            },
         },
         // 预处理
         created () {
@@ -138,5 +214,28 @@
 </script>
 
 <style lang="less" scoped>
+    /deep/ .upload_btn {
+        width: 85%;
+        margin-left: 15px;
 
+        .el-upload {
+            float: left;
+
+            button {
+                padding: 12px 20px;
+            }
+        }
+
+        ul {
+            float: left;
+            width: 90%;
+            margin-left: 15px;
+
+            li {
+                a {
+
+                }
+            }
+        }
+    }
 </style>

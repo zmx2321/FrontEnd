@@ -9,7 +9,7 @@
 
                 <el-form-item>
                     <el-button type="primary" @click="getOneIncome">查询</el-button>
-                    <el-button type="primary" @click="addIncomeVisible = true">充值</el-button>
+                    <!--<el-button type="primary" @click="addIncomeVisible = true">充值</el-button>-->
                 </el-form-item>
             </el-form>
         </el-row>
@@ -22,6 +22,12 @@
                 <el-table-column prop="createAt" label="创建日期" width="auto" align="center"></el-table-column>
                 <el-table-column prop="updateAt" label="更新日期" width="auto" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="充值金额" width="auto" align="center"></el-table-column>
+
+                <el-table-column fixed="right" label="操作" width="500">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small" @click="addIncome(scope.row)" v-on:click="addIncomeVisible = true">充值</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -44,7 +50,7 @@
         <el-dialog title="充值" @keyup.enter.native="addIncomeSubmit('editIncomeForm')" :close-on-click-modal="false" :visible.sync="addIncomeVisible" :before-close="handleClose">
             <el-form :model="addIncomeData" status-icon :rules="addIncomeRules" ref="addIncomeForm" label-width="160px">
                 <el-form-item label="管理员ID(组长id)" prop="adminId">
-                    <el-input v-model="addIncomeData.adminId" placeholder="请输入管理员ID" clearable></el-input>
+                    <el-input v-model="addIncomeData.adminId" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="充值金额" prop="totalPrice">
                     <el-input v-model="addIncomeData.totalPrice" placeholder="请输入充值金额" clearable></el-input>
@@ -192,6 +198,10 @@
              * api addIncome
              * 充值
              */
+            // 点击充值
+            addIncome (row) {
+                this.addIncomeData.adminId = row.id;
+            },
             // 提交充值表单
             addIncomeSubmit (formName) {
                 // 验证表单

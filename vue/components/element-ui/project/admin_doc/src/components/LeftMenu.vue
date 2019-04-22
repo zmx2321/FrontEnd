@@ -2,7 +2,8 @@
     <section class="menu_page">
         <el-row>
              <el-col>
-                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu">
+                 <!-- 管理员0 -->
+                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType==0 || userType==1">
                     <!-- 首页 -->
                     <router-link to="/home">
                         <el-menu-item index="0">
@@ -52,6 +53,25 @@
                         </el-submenu>
                     </template>
                  </el-menu>
+
+                 <!-- 客服2 -->
+                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType == 2">
+                     <!-- 首页 -->
+                     <router-link to="/home">
+                         <el-menu-item index="0">
+                             <i class="fa fa-server"></i>
+                             <span slot="title">首页</span>
+                         </el-menu-item>
+                     </router-link>
+
+                     <!-- 用户管理 -->
+                     <router-link to="/user_manager">
+                         <el-menu-item index="2">
+                             <i class="fa fa-user"></i>
+                             <span slot="title">用户管理</span>
+                         </el-menu-item>
+                     </router-link>
+                 </el-menu>
              </el-col>
         </el-row>
     </section>
@@ -63,6 +83,9 @@ export default {
 
     data() {
         return {
+            // 用户类型
+            userType: 0,
+
             items: [
                 /*{
                     icon: "fa fa-paragraph",
@@ -97,6 +120,15 @@ export default {
             }
         },
     },
+
+    created () {
+        /**
+         * 管理员0：账号管理、用户管理、充值管理；
+         * 组长1：账号管理、用户管理、充值管理；
+         * 客服/话务2：  用户管理
+         */
+        this.userType = localStorage.userType;
+    }
 };
 </script>
 

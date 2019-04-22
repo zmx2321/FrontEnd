@@ -4,32 +4,32 @@
         <el-row class="toolbar bdr_radiu f-cb">
             <el-col class="f-cb btn_wrap">
                 <el-button type="primary" @click="addUserVisible = true" class="f-fl">添加账号</el-button>
-                <el-upload
-                        class="f-fl upload_btn"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        ref='upload'
-                        multiple
-                        :before-upload="beforeUpload"
-                        :on-change="excelUploadFile"
-                        :before-remove="beforeRemove"
-                        :limit="upload_arg.limit"
-                        :on-exceed="handleExceed"
-                        :file-list="upload_arg.fileList">
-                    <el-button size="small" type="primary">Excel上传</el-button>
-                </el-upload>
             </el-col>
         </el-row>
 
         <!-- 用户列表 -->
         <el-row>
             <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
-                <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
-                <el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>
+                <el-table-column type="index" width="60" align="center"></el-table-column>
+                <!--<el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>-->
 
-                <el-table-column prop="realName" label="真实姓名" width="80" align="center"></el-table-column>
+                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
                 <el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="创建日期" width="auto" align="center"></el-table-column>
-                <el-table-column prop="updateAt" label="更新日期" width="auto" align="center"></el-table-column>
+                <!--<el-table-column prop="parentName" label="上级姓名" width="auto" align="center"></el-table-column>-->
+                <!--<el-table-column prop="parentMobile" label="上级手机号" width="auto" align="center"></el-table-column>-->
+                <el-table-column prop="type" label="类型" width="auto" align="center" :formatter="formatType"></el-table-column>
+
+                <el-table-column prop="crtattim" label="创建日期" width="auto" align="center"></el-table-column>
+
+                <!--<el-table-column label="是否被禁用" width="auto" align="center">
+                    <template slot-scope="scope">
+                        {{ scope.row.disable === 0 ? "未被禁用" : "被禁用" }}
+                    </template>
+                </el-table-column>-->
+
+                <el-table-column prop="price" label="单价" width="auto" align="center" v-if="userType == 1"></el-table-column>
+                <el-table-column prop="balance" label="余额" width="auto" align="center" v-if="userType == 1"></el-table-column>
+                <el-table-column prop="amount" label="量" width="auto" align="center" v-if="userType == 2"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="500">
                     <template slot-scope="scope">
@@ -114,7 +114,7 @@
                     <el-input v-model="addUserData.mobile"  placeholder="请输入手机" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input type="password" v-model="addUserData.password"  placeholder="请输入密码" clearable></el-input>
+                    <el-input v-model="addUserData.password"  placeholder="请输入密码" clearable></el-input>
                 </el-form-item>
 
                 <!-- 0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）-->
@@ -123,7 +123,7 @@
                         <el-option label="管理员" value="0"></el-option>
                         <el-option label="组长" value="1"></el-option>
                         <el-option label="客服" value="2"></el-option>
-                        <el-option label="话务" value="3"></el-option>
+                        <!--<el-option label="话务" value="3"></el-option>-->
                     </el-select>
                 </el-form-item>
 
@@ -187,7 +187,6 @@
     import {
         getAccount,  // 获取账号列表
         addUser,  // 添加账号
-        excelUpload,  // 上传文件
         checkUser,  // 查看账号
         editUserAttribute,  // 编辑价格和流量
         editUserAccount,  // 编辑密码
@@ -213,11 +212,11 @@
 
             // 单价，组长必填这个字段(type[1])
             const validatePrice = (rule, value, callback) => {
-                let reg = /^(-)|([1-9]\d*)((\.\d+)?)$/;
+                /*let reg = /^(-)|([1-9]\d*)((\.\d+)?)$/;
 
                 if (!reg.test(value)) {
                     return callback(new Error('价格必须是整数或者小数且前缀不能为0！'));
-                }
+                }*/
 
                 if (this.addUserData.type == 1 && value == "") {
                     callback(new Error("组长必填单价!"));
@@ -228,11 +227,11 @@
 
             // 流量，客服必填这个字段(type[2])
             const validateAmount = (rule, value, callback) => {
-                let reg = /^\+?[1-9][0-9]*$/;
+                /*let reg = /^\+?[1-9][0-9]*$/;
 
                 if (!reg.test(value)) {
                     return callback(new Error('流量为非0正整数！'));
-                }
+                }*/
 
                 if (this.addUserData.type == 2 && value == "") {
                     callback(new Error("客服必填流量!"));
@@ -257,20 +256,15 @@
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
-                // 上传文件参数
-                upload_arg: {
-                    limit:1,
-                    file: [],
-                    fileList: []
-                },
-
                 /**
                  * 用户
                  */
                 // 用户列表
                 user_info: [],  // 存放用户信息列表数据
 
-                // currentUser: [],
+                // 用户类型
+                userType: 0,
+
                 currentUser: {},
 
                 /**
@@ -278,12 +272,12 @@
                  */
                 // 添加用户数据
                 addUserData: {
-                    realName: "wsn",  // 姓名
-                    mobile: "18254873257",  // 手机
-                    password: "11111",  // 密码
+                    realName: "",  // 姓名
+                    mobile: "",  // 手机
+                    password: "",  // 密码
                     type: "0",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
-                    price: "44",  // 单价，组长必填这个字段
-                    amount: "66",  // 流量，客服必填这个字段
+                    price: "",  // 单价，组长必填这个字段
+                    amount: "",  // 流量，客服必填这个字段
                 },
 
                 // 验证添加用户数据
@@ -367,6 +361,10 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+            // 截取字符串
+            subStr (str, start, end) {
+                return str.slice(start, end);
+            },
 
             /**
              *  分页
@@ -390,7 +388,6 @@
             // 文件上传之前
             beforeUpload (file) {
                 this.upload_arg.file = [];
-                // console.log("aa")
             },
             // 文件超出个数限制时的钩子
             handleExceed(files, fileList) {
@@ -399,7 +396,6 @@
             // 删除文件之前的钩子
             beforeRemove(file) {
                 return this.$confirm(`确定移除 ${ file.name }？`);
-                // this.upload_arg.file = [];
             },
 
             /**
@@ -419,16 +415,41 @@
 
                 // 请求接口
                 getAccount(param).then(res => {
-                    // console.log(res.data.data.set);
+                    // console.log(res.data.data.set[0].createAt);
 
                     if (res.data.code == 0) {
                         this.listLoading = false;
-                        this.user_info = res.data.data.set;
+
+                        let datas = res.data.data.set;
+
+                        for (let i=0; i<datas.length; i++) {
+                            datas[i].crtattim = datas[i].createAt.slice(2, -3)
+                        }
+
+                        // console.log(datas);
+                        this.user_info = datas;
                     }
 
                     // 返回分页总数
                     this.page_arg.total = res.data.data.pager.total;
                 }).catch({});
+            },
+            // 用户状态类型[0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）]
+            formatType (row) {
+                switch (row.type) {
+                    case 0:
+                        return "管理员";
+                        break;
+                    case 1:
+                        return "组长";
+                        break;
+                    case 2:
+                        return "客服";
+                        break;
+                    case 3:
+                        return "话务";
+                        break;
+                }
             },
 
             /**
@@ -461,44 +482,6 @@
             },
 
             /**
-             * api excelUpload
-             * 上传文件
-             */
-            excelUploadFile (file) {
-                this.upload_arg.file.push(file.raw);
-
-                let formData = new FormData();
-
-                formData.append('file', this.upload_arg.file[0]);
-
-                let config = {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                };
-
-                // console.log(this.upload_arg.file)
-
-                excelUpload(formData, config).then(res => {
-                    // console.log(res);
-
-                    if (res.data.code == 1) {
-                        this.$message.warning(res.data.msg);
-                        this.upload_arg.fileList = [];
-
-                        return false;
-                    }
-
-                    if (res.data.code == 0) {
-                        this.$message.success("导入成功！");
-                        this.getAccountList();
-                    }
-                });
-
-                // console.log(this.upload_arg.file[0]);
-            },
-
-            /**
              * api checkUser
              * 查看用户
              */
@@ -515,7 +498,6 @@
                     if (res.data.code == 0) {
                         // console.log("查看用户", res.data.data);
 
-                        // this.currentUser.push(res.data.data);
                         this.currentUser = res.data.data;
 
                         this.changeUserType();  // 用户类型转换
@@ -674,36 +656,13 @@
         // 预处理
         created () {
             this.getAccountList();
+
+            this.userType = localStorage.userType;
         }
     }
 </script>
 
 <style lang="less" scoped>
-    /deep/ .upload_btn {
-        width: 85%;
-        margin-left: 15px;
-
-        .el-upload {
-            float: left;
-
-            button {
-                padding: 12px 20px;
-            }
-        }
-
-        ul {
-            float: left;
-            width: 90%;
-            margin-left: 15px;
-
-            li {
-                a {
-
-                }
-            }
-        }
-    }
-
     .check_user_wrap {
         li:last-child {
             margin-bottom: 0;

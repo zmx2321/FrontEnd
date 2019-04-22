@@ -47,9 +47,9 @@
                 },
 
                 modifyUser: {
-                    oldPwd: "123456",  //旧密码
-                    newPwd: "123456",  //新密码
-                    newPwd2: "123456"  //重复新密码
+                    oldPwd: "",  //旧密码
+                    newPwd: "",  //新密码
+                    newPwd2: ""  //重复新密码
                 },
                 rules: {
                     oldPwd: [
