@@ -126,6 +126,15 @@ export const getUser = params => {
     });
 };
 
+// 标记用户
+export const tagUser = params => {
+    return  axios({
+        url: `/user/tag`,
+        method: 'post',
+        data: params
+    });
+};
+
 /**
  * 充值管理
  */

@@ -38,6 +38,7 @@
                         <el-button type="text" size="small" @click="editUserAccount(scope.row)" v-on:click="editUserAccountVisible = true">编辑密码</el-button>
                         <el-button type="text" size="small" @click="turnOn(scope.row)" v-show="scope.row.disable == 1">启用账号</el-button>
                         <el-button type="text" size="small" @click="turnOff(scope.row)" v-show="scope.row.disable == 0">禁用账号</el-button>
+                        <el-button type="text" size="small" @click="addIncome(scope.row)" v-on:click="addIncomeVisible = true" v-if="scope.row.type == 1">充值</el-button>
                         <el-button type="text" size="small" @click="delUser(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
@@ -128,12 +129,12 @@
                 </el-form-item>
 
                 <!-- 组长必填这个字段 -->
-                <el-form-item label="单价" prop="price">
+                <el-form-item label="单价" prop="price" v-if="addUserData.type == 0 || addUserData.type == 1">
                     <el-input v-model="addUserData.price"  placeholder="请输入单价" clearable></el-input>
                 </el-form-item>
 
                 <!-- 客服必填这个字段 -->
-                <el-form-item label="流量" prop="amount">
+                <el-form-item label="流量" prop="amount" v-if="addUserData.type == 0 || addUserData.type == 2">
                     <el-input v-model="addUserData.amount"  placeholder="请输入流量" clearable></el-input>
                 </el-form-item>
 
@@ -147,14 +148,17 @@
         <!-- 编辑用户价格和流量 -->
         <el-dialog title="编辑用户价格和流量" @keyup.enter.native="editUserAttributeSubmit('editUserAttributeForm')" :close-on-click-modal="false" :visible.sync="editUserAttributeVisible" :before-close="handleClose">
             <el-form :model="editUserAttributeData" status-icon :rules="editUserAttributeRules" ref="editUserAttributeForm" label-width="160px">
-                <el-form-item label="用户编号" prop="userId">
+                <!--<el-form-item label="用户编号" prop="userId">
                     <el-input v-model="editUserAttributeData.userId" disabled></el-input>
+                </el-form-item>-->
+                <el-form-item label="姓名" prop="realName">
+                    <el-input v-model="editUserAttributeData.realName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="价格" prop="price">
-                    <el-input v-model="editUserAttributeData.price"  placeholder="请输入价格" clearable></el-input>
+                <el-form-item label="价格" prop="price" v-if="this.editUserAttributeData.type == 1">
+                    <el-input v-model="editUserAttributeData.price" placeholder="请输入价格" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="流量" prop="amount">
-                    <el-input v-model="editUserAttributeData.amount"  placeholder="请输入流量" clearable></el-input>
+                <el-form-item label="流量" prop="amount" v-if="this.editUserAttributeData.type == 2">
+                    <el-input v-model="editUserAttributeData.amount" placeholder="请输入流量" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -167,8 +171,11 @@
         <!-- 编辑用户密码 -->
         <el-dialog title="编辑用户密码" @keyup.enter.native="editUserAccountSubmit('editUserAccountForm')" :close-on-click-modal="false" :visible.sync="editUserAccountVisible" :before-close="handleClose">
             <el-form :model="editUserAccountData" status-icon :rules="editUserAccountRules" ref="editUserAccountForm" label-width="160px">
-                <el-form-item label="用户编号" prop="userId">
+                <!--<el-form-item label="用户编号" prop="userId">
                     <el-input v-model="editUserAccountData.userId" disabled></el-input>
+                </el-form-item>-->
+                <el-form-item label="姓名" prop="realName">
+                    <el-input v-model="editUserAccountData.realName" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
                     <el-input type="password" v-model="editUserAccountData.password" placeholder="请输入密码" clearable></el-input>
@@ -177,6 +184,26 @@
                 <el-form-item>
                     <el-button type="primary" @click="editUserAccountSubmit('editUserAccountForm')">提交</el-button>
                     <el-button @click="resetForm('editUserAccountForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+
+        <!-- 充值 -->
+        <el-dialog title="充值" @keyup.enter.native="addIncomeSubmit('addIncomeForm')" :close-on-click-modal="false" :visible.sync="addIncomeVisible" :before-close="handleClose">
+            <el-form :model="addIncomeData" status-icon :rules="addIncomeRules" ref="addIncomeForm" label-width="160px">
+                <!--<el-form-item label="管理员ID(组长id)" prop="adminId">
+                    <el-input v-model="addIncomeData.adminId" disabled></el-input>
+                </el-form-item>-->
+                <el-form-item label="管理员姓名" prop="realName">
+                    <el-input v-model="addIncomeData.realName" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="充值金额" prop="totalPrice">
+                    <el-input v-model="addIncomeData.totalPrice" placeholder="请输入充值金额" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="addIncomeSubmit('addIncomeForm')">提交</el-button>
+                    <el-button @click="resetForm('addIncomeForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -192,6 +219,7 @@
         editUserAccount,  // 编辑密码
         turnOn,  // 启用账号
         turnOff,  // 禁用账号
+        addIncome,  // 充值
         delUser,  // 删除账号
     } from '../../api/api.js';
 
@@ -222,6 +250,15 @@
                     callback(new Error("组长必填单价!"));
                 } else {
                     callback();
+                }
+            };
+
+            // 价格
+            const validateTotalPrice = (rule, value, callback) => {
+                let reg = /^(-)|([1-9]\d*)((\.\d+)?)$/;
+
+                if (!reg.test(value)) {
+                    return callback(new Error('价格必须是整数或者小数且前缀不能为0！'));
                 }
             };
 
@@ -306,6 +343,8 @@
                  */
                 // 编辑用户价格和流量数据
                 editUserAttributeData: {
+                    realName: "",  // 姓名
+                    type: "",  // 类型
                     userId: "",  // 用户id
                     price: "",  // 价格
                     amount: "",  // 流量
@@ -327,6 +366,7 @@
                  */
                 // 编辑用户密码数据
                 editUserAccountData: {
+                    realName: "",  // 姓名
                     userId: "",  // 用户编号
                     password: "",  // 密码
                 },
@@ -339,12 +379,34 @@
                 },
 
                 /**
+                 * 充值
+                 */
+                // 充值数据
+                addIncomeData: {
+                    realName: "",  // 姓名
+                    adminId: "",  // 管理员ID(准确的说是组长的ID)
+                    totalPrice: "",  // 充值金额
+                },
+
+                // 验证充值数据
+                addIncomeRules: {
+                    /*adminId: [
+                        { required: true, message: '管理员ID不能为空！', trigger: 'blur' }
+                    ],*/
+                    totalPrice: [
+                        { required: true, message: '充值金额不能为空！', trigger: 'blur' },
+                        { validator: validateTotalPrice, trigger: "blur" }
+                    ],
+                },
+
+                /**
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
                 addUserVisible: false,  // 添加用户界面
                 checkUserVisible: false,  // 查看用户界面
                 editUserAttributeVisible: false,  // 编辑用户价格和流量界面
                 editUserAccountVisible: false,  // 编辑用户密码界面
+                addIncomeVisible: false,  // 添加充值界面
             }
         },
         methods: {
@@ -360,10 +422,6 @@
             // 表单重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
-            },
-            // 截取字符串
-            subStr (str, start, end) {
-                return str.slice(start, end);
             },
 
             /**
@@ -417,9 +475,11 @@
                 getAccount(param).then(res => {
                     // console.log(res.data.data.set[0].createAt);
 
-                    if (res.data.code == 0) {
-                        this.listLoading = false;
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
+                    }
 
+                    if (res.data.code == 0) {
                         let datas = res.data.data.set;
 
                         for (let i=0; i<datas.length; i++) {
@@ -428,10 +488,12 @@
 
                         // console.log(datas);
                         this.user_info = datas;
+
+                        // 返回分页总数
+                        this.page_arg.total = res.data.data.pager.total;
                     }
 
-                    // 返回分页总数
-                    this.page_arg.total = res.data.data.pager.total;
+                    this.listLoading = false;
                 }).catch({});
             },
             // 用户状态类型[0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）]
@@ -571,6 +633,9 @@
                 this.editUserAttributeData.userId = row.id;  // 用户编号
                 this.editUserAttributeData.price = row.price;  // 价格
                 this.editUserAttributeData.amount = row.amount;  // 流量
+
+                this.editUserAttributeData.realName = row.realName;  // 姓名
+                this.editUserAttributeData.type = row.type;  // 流量
             },
             // 提交编辑用户价格和流量表单
             editUserAttributeSubmit (formName) {
@@ -578,7 +643,13 @@
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        editUserAttribute(qs.stringify(this.editUserAttributeData)).then(res => {
+                        let params = {
+                            userId: this.editUserAttributeData.userId,
+                            price: this.editUserAttributeData.price,
+                            amount: this.editUserAttributeData.amount,
+                        }
+
+                        editUserAttribute(qs.stringify(params)).then(res => {
                             if (res.data.code == 1) {
                                 this.$message.warning(res.data.msg);
                             }
@@ -603,6 +674,7 @@
             // 点击编辑用户密码
             editUserAccount (row) {
                 this.editUserAccountData.userId = row.id;  // 用户编号
+                this.editUserAttributeData.realName = row.realName;  // 姓名
             },
             // 提交编辑用户密码表单
             editUserAccountSubmit (formName) {
@@ -610,7 +682,12 @@
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        editUserAccount(qs.stringify(this.editUserAccountData)).then(res => {
+                        let params = {
+                            userId: this.editUserAccountData.userId,
+                            password: this.editUserAccountData.password,
+                        }
+
+                        editUserAccount(qs.stringify(params)).then(res => {
                             if (res.data.code == 1) {
                                 this.$message.warning(res.data.msg);
                             }
@@ -624,6 +701,47 @@
                         }).catch({});
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
+                    }
+                });
+            },
+
+            /**
+             * api addIncome
+             * 充值userType
+             */
+            // 点击充值
+            addIncome (row) {
+                this.addIncomeData.adminId = row.id;
+                this.addIncomeData.realName = row.realName;
+
+                this.addIncomeData.totalPrice = "";
+            },
+            // 提交充值表单
+            addIncomeSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        let params = {
+                            adminId : this.addIncomeData.adminId,
+                            totalPrice : this.addIncomeData.totalPrice,
+                        }
+
+                        // 添加
+                        addIncome(qs.stringify(params)).then(res => {
+                            if (res.data.code == 1) {
+                                this.$message.warning(res.data.msg);
+                            }
+
+                            if (res.data.code == 0) {
+                                this.$message.success("充值成功！");
+                                this.getAccountList();
+                            }
+
+                            this.addIncomeVisible = false;
+                        }).catch({});
+                    } else {  //验证失败跳出
+                        this.$message.error("表单填写错误");
                     }
                 });
             },

@@ -22,7 +22,7 @@
         <!-- 用户列表 -->
         <el-row>
             <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 160px)">
-                <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
+                <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>-->
 
                 <el-table-column prop="mobile" label="手机号码" width="auto" align="center"></el-table-column>
@@ -35,6 +35,12 @@
                 <el-table-column label="是否联系" width="auto" align="center">
                     <template slot-scope="scope">
                         {{ scope.row.contacted === 0 ? "未联系" : "已联系" }}
+                    </template>
+                </el-table-column>
+
+                <el-table-column fixed="right" label="操作" width="500">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small" @click="tagUser(scope.row)" v-on:click="tagUserVisible = true">标记</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -54,13 +60,42 @@
                 </el-col>
             </el-row>
         </el-row>
+
+        <!-- 充值 -->
+        <el-dialog title="充值" @keyup.enter.native="tagUserSubmit('tagUserForm')" :close-on-click-modal="false" :visible.sync="tagUserVisible" :before-close="handleClose">
+            <el-form :model="tagUserData" status-icon :rules="tagUserRules" ref="tagUserForm" label-width="160px">
+                <!--<el-form-item label="用户编号" prop="userId">
+                    <el-input v-model="tagUserData.userId" disabled></el-input>
+                </el-form-item>-->
+                <el-form-item label="姓名" prop="realName">
+                    <el-input v-model="tagUserData.realName" disabled></el-input>
+                </el-form-item>
+
+                <el-form-item label="是否已经联系" prop="contacted">
+                    <el-select v-model="tagUserData.contacted">
+                        <el-option label="未联系" value="0"></el-option>
+                        <el-option label="已联系" value="1"></el-option>
+                    </el-select>
+                </el-form-item>
+
+                <el-form-item label="备注" prop="memo">
+                    <el-input type="textarea" v-model="tagUserData.memo" placeholder="请输入备注" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="tagUserSubmit('tagUserForm')">提交</el-button>
+                    <el-button @click="resetForm('tagUserForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </section>
 </template>
 
 <script>
     import {
         excelUpload,  // 上传文件
-        getUser,  // 获取投票列表
+        getUser,  // 获取用户列表
+        tagUser,  // 标记用户
     } from '../../api/api.js';
 
     export default {
@@ -95,6 +130,29 @@
                  */
                 // 用户列表
                 user_info: [],  // 存放用户信息列表数据
+
+                /**
+                 * 标记用户
+                 */
+                // 标记用户数据
+                tagUserData: {
+                    realName: "",  // 姓名
+                    userId: "",  // (被标记用户的ID)
+                    contacted: "0",  // contacted 是否已经联系（1-已联系，0-未联系；前端提供下拉选择）
+                    memo: "",  // memo 备注，512个字符限制
+                },
+
+                // 验证标记用户数据
+                tagUserRules: {
+                    /*adminId: [
+                        { required: true, message: '管理员ID不能为空！', trigger: 'blur' }
+                    ],*/
+                },
+
+                /**
+                 *  弹出表单界面(true 显示, false 隐藏)
+                 */
+                tagUserVisible: false,  // 标记用户界面
             }
         },
         methods: {
@@ -201,7 +259,51 @@
 
                     if (res.data.code == 0) {
                         this.$message.success("导入成功！");
-                        this.getAccountList();
+                        this.getUserList();
+                    }
+                });
+            },
+
+            /**
+             * api tagUser
+             * 标记用户
+             */
+            // 点击标记
+            tagUser (row) {
+                this.tagUserData = Object.assign({}, row);
+
+                // 浅拷贝
+                this.tagUserData.userId = row.id;
+            },
+
+            // 提交标记用户表单
+            tagUserSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        let params = {
+                            userId: this.tagUserData.userId,
+                            contacted: this.tagUserData.contacted,
+                            memo: this.tagUserData.memo,
+                        }
+
+                        console.log(params);
+
+                        tagUser(qs.stringify(params)).then(res => {
+                            if (res.data.code == 1) {
+                                this.$message.warning(res.data.msg);
+                            }
+
+                            if (res.data.code == 0) {
+                                this.$message.success("标记成功！");
+                                this.getUserList();
+                            }
+
+                            this.tagUserVisible = false;
+                        }).catch({});
+                    } else {  //验证失败跳出
+                        this.$message.error("表单填写错误");
                     }
                 });
             },

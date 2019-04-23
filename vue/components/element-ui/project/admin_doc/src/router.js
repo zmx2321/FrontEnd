@@ -77,7 +77,22 @@ const router = new Router({
 
 // 添加路由守卫
 router.beforeEach((to, from, next) => {
-    const isLogin = localStorage.code == md5("0") ? true : false;
+    /**
+     * 管理员0：账号管理、用户管理、充值管理；
+     * 组长1：账号管理、用户管理、充值管理；
+     * 客服/话务2：  用户管理
+     */
+    let isLogin = false;
+
+    const loginCode = localStorage.code,
+           userType = localStorage.userType;
+
+    if (loginCode == md5("0") && userType != undefined) {
+        isLogin = true;
+    } else {
+        isLogin = false;
+    }
+
     if (to.path == "/login" || to.path == '/register') {
         next();
     } else {

@@ -18,16 +18,11 @@
         <el-row>
             <el-table class="income_list" :data="income_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
                 <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
-                <el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="创建日期" width="auto" align="center"></el-table-column>
-                <el-table-column prop="updateAt" label="更新日期" width="auto" align="center"></el-table-column>
+                <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
+                <el-table-column prop="mobile" label="手机号" width="100" align="center"></el-table-column>
+                <el-table-column prop="realName" label="姓名" width="100" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="充值金额" width="auto" align="center"></el-table-column>
-
-                <el-table-column fixed="right" label="操作" width="500">
-                    <template slot-scope="scope">
-                        <el-button type="text" size="small" @click="addIncome(scope.row)" v-on:click="addIncomeVisible = true">充值</el-button>
-                    </template>
-                </el-table-column>
+                <el-table-column prop="crtattim" label="创建日期" width="auto" align="center"></el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -45,30 +40,12 @@
                 </el-col>
             </el-row>
         </el-row>
-
-        <!-- 充值 -->
-        <el-dialog title="充值" @keyup.enter.native="addIncomeSubmit('editIncomeForm')" :close-on-click-modal="false" :visible.sync="addIncomeVisible" :before-close="handleClose">
-            <el-form :model="addIncomeData" status-icon :rules="addIncomeRules" ref="addIncomeForm" label-width="160px">
-                <el-form-item label="管理员ID(组长id)" prop="adminId">
-                    <el-input v-model="addIncomeData.adminId" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="充值金额" prop="totalPrice">
-                    <el-input v-model="addIncomeData.totalPrice" placeholder="请输入充值金额" clearable></el-input>
-                </el-form-item>
-
-                <el-form-item>
-                    <el-button type="primary" @click="addIncomeSubmit('addIncomeForm')">提交</el-button>
-                    <el-button @click="resetForm('addIncomeForm')">重置</el-button>
-                </el-form-item>
-            </el-form>
-        </el-dialog>
     </section>
 </template>
 
 <script>
     import {
         getIncome,  // 获取充值列表
-        addIncome,  // 充值
     } from '../../api/api.js';
 
     export default {
@@ -98,30 +75,6 @@
                 income_info: [],  // 存放用户信息列表数据
 
                 adminId: "",  // 管理员ID(准确的说是组长的ID)
-
-                /**
-                 * 充值
-                 */
-                // 充值数据
-                addIncomeData: {
-                    adminId: "",  // 管理员ID(准确的说是组长的ID)
-                    totalPrice: "",  // 充值金额
-                },
-
-                // 验证充值数据
-                addIncomeRules: {
-                    adminId: [
-                        { required: true, message: '管理员ID不能为空！', trigger: 'blur' }
-                    ],
-                    totalPrice: [
-                        { required: true, message: '充值金额不能为空！', trigger: 'blur' }
-                    ],
-                },
-
-                /**
-                 *  弹出表单界面(true 显示, false 隐藏)
-                 */
-                addIncomeVisible: false,  // 添加充值界面
             }
         },
         methods: {
@@ -173,14 +126,20 @@
 
                 // 请求接口
                 getIncome(param).then(res => {
-                    // console.log(res);
+                    // console.log(res.data.data.set);
 
                     if (res.data.code == 1) {
                         this.$message.warning(res.data.msg);
                     }
 
                     if (res.data.code == 0) {
-                        this.income_info = res.data.data.set;
+                        let datas = res.data.data.set;
+
+                        for (let i=0; i<datas.length; i++) {
+                            datas[i].crtattim = datas[i].createAt.slice(2, -3)
+                        }
+
+                        this.income_info = datas;
 
                         // 返回分页总数
                         this.page_arg.total = res.data.data.pager.total;
@@ -192,39 +151,6 @@
             // 查询
             getOneIncome () {
                 this.getIncomeList();
-            },
-
-            /**
-             * api addIncome
-             * 充值
-             */
-            // 点击充值
-            addIncome (row) {
-                this.addIncomeData.adminId = row.id;
-            },
-            // 提交充值表单
-            addIncomeSubmit (formName) {
-                // 验证表单
-                this.$refs[formName].validate((valid) => {
-                    //如果验证成功，请求接口数据
-                    if (valid) {
-                        // 添加
-                        addIncome(qs.stringify(this.addIncomeData)).then(res => {
-                            if (res.data.code == 1) {
-                                this.$message.warning(res.data.msg);
-                            }
-
-                            if (res.data.code == 0) {
-                                this.$message.success("充值成功！");
-                                this.getIncomeList();
-                            }
-
-                            this.addIncomeVisible = false;
-                        }).catch({});
-                    } else {  //验证失败跳出
-                        this.$message.error("表单填写错误");
-                    }
-                });
             },
         },
         // 预处理

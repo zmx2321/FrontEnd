@@ -70,6 +70,7 @@ export default {
         // 退出
         logout() {
             localStorage.removeItem("code");
+            localStorage.removeItem("userType");
             this.$router.push("/login");
         }
     },

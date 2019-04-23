@@ -54,6 +54,33 @@
                     </template>
                  </el-menu>
 
+                 <!--&lt;!&ndash; 组长1 &ndash;&gt;
+                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType==1">
+                     &lt;!&ndash; 首页 &ndash;&gt;
+                     <router-link to="/home">
+                         <el-menu-item index="0">
+                             <i class="fa fa-server"></i>
+                             <span slot="title">首页</span>
+                         </el-menu-item>
+                     </router-link>
+
+                     &lt;!&ndash; 账号管理 &ndash;&gt;
+                     <router-link to="/account_manager">
+                         <el-menu-item index="1">
+                             <i class="fa fa-address-card"></i>
+                             <span slot="title">账号管理</span>
+                         </el-menu-item>
+                     </router-link>
+
+                     &lt;!&ndash; 用户管理 &ndash;&gt;
+                     <router-link to="/user_manager">
+                         <el-menu-item index="2">
+                             <i class="fa fa-user"></i>
+                             <span slot="title">用户管理</span>
+                         </el-menu-item>
+                     </router-link>
+                 </el-menu>-->
+
                  <!-- 客服2 -->
                  <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType == 2">
                      <!-- 首页 -->
