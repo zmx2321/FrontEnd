@@ -48,11 +48,29 @@ export const Login = params => {
     });
 };
 
+// 获取用户
+export const getUser = params => {
+    return  axios({
+        url: `${base}/user/get`,
+        method: 'get',
+        params: params
+    });
+};
+
 // 注销
 export const Logout = () => {
     return  axios({
         url: `${base}/user/logout`,
         method: 'post'
+    });
+};
+
+// 修改密码
+export const ModifyPassword = params => {
+    return  axios({
+        url: `${base}/user/modify`,
+        method: 'post',
+        data: params
     });
 };
 

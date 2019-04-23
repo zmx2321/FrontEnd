@@ -67,10 +67,15 @@
                                 // 登陆状态记录
                                 localStorage.setItem('code', this.md5((res.data.code).toString()));
 
+                                // 登陆状态
+                                localStorage.setItem('userCode', res.data.data.id);
+
                                 this.$message({
                                     message: this.$t('message.success.login'),
                                     type: "success"
                                 });
+
+                                // console.log(res.data.data);
 
                                 this.$router.push("/consultation");
                             }
@@ -78,8 +83,7 @@
                             console.log(err);
                         });
                     } else {
-                        this.$message.warning("error submit!!");
-                        // console.log("error submit!!");
+                        this.$message.error("表单填写错误");
                     }
                 });
             },
