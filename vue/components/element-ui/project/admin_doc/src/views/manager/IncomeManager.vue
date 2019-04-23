@@ -3,8 +3,8 @@
         <!-- 按钮 -->
         <el-row class="toolbar bdr_radiu f-cb">
             <el-form :inline="true">
-                <el-form-item label="管理员ID(组长id)" prop="target">
-                    <el-input v-model="adminId" clearable></el-input>
+                <el-form-item label="管理员手机号码" prop="mobile">
+                    <el-input v-model="mobile" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -74,7 +74,7 @@
                 // 充值列表
                 income_info: [],  // 存放用户信息列表数据
 
-                adminId: "",  // 管理员ID(准确的说是组长的ID)
+                mobile: "",  // 管理员手机号码(准确的说是组长的手机号码)
             }
         },
         methods: {
@@ -116,7 +116,7 @@
             getIncomeList () {
                 //接口参数
                 let param = {
-                    adminId: this.adminId,  // 管理员ID(准确的说是组长的ID)
+                    mobile: this.mobile == "" ? undefined : this.mobile,  // 管理员ID(准确的说是组长的ID)
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
                 };

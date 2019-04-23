@@ -275,13 +275,9 @@
              */
             // 点击标记
             tagUser (row) {
-                // 浅拷贝
+                // 浅拷贝 Object.assign({}, row)
                 this.tagUserData.userId = row.id;
                 this.tagUserData.realName = row.realName;
-                /*this.tagUserData = Object.assign({}, row);
-
-                this.tagUserData.userId = row.id;
-                this.tagUserData.contacted = parseInt(row.contacted);*/
             },
 
             // 提交标记用户表单
