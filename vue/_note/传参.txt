@@ -1,0 +1,18 @@
+// µã»÷ÏêÇé
+            fpdetail (row) {
+				console.log(row.id);
+
+                this.$router.push({
+                    path: "faPiao_fuKuan2",
+                    query: {
+                        stubId: row.id
+                    }
+                });
+
+                /*this.$router.push({
+                    name: "faPiao_fuKuan2",
+                    params: {
+                        stubId: row.id
+                    }
+                });*/
+			}
