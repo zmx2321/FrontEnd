@@ -21,7 +21,7 @@
 
         <!-- 用户列表 -->
         <el-row>
-            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 160px)">
+            <el-table class="user_list" :data="user_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 226px)">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>-->
 
@@ -220,13 +220,18 @@
                 getUser(param).then(res => {
                     // console.log(res.data.code);
 
-                    if (res.data.code == 0) {
-                        this.listLoading = false;
-                        this.user_info = res.data.data.set;
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
                     }
 
-                    // 返回分页总数
-                    this.page_arg.total = res.data.data.pager.total;
+                    if (res.data.code == 0) {
+                        this.user_info = res.data.data.set;
+
+                        // 返回分页总数
+                        this.page_arg.total = res.data.data.pager.total;
+                    }
+
+                    this.listLoading = false;
                 }).catch({});
             },
 
@@ -270,10 +275,13 @@
              */
             // 点击标记
             tagUser (row) {
-                this.tagUserData = Object.assign({}, row);
-
                 // 浅拷贝
                 this.tagUserData.userId = row.id;
+                this.tagUserData.realName = row.realName;
+                /*this.tagUserData = Object.assign({}, row);
+
+                this.tagUserData.userId = row.id;
+                this.tagUserData.contacted = parseInt(row.contacted);*/
             },
 
             // 提交标记用户表单
@@ -287,8 +295,6 @@
                             contacted: this.tagUserData.contacted,
                             memo: this.tagUserData.memo,
                         }
-
-                        console.log(params);
 
                         tagUser(qs.stringify(params)).then(res => {
                             if (res.data.code == 1) {
