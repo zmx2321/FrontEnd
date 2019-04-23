@@ -38,8 +38,8 @@
                  *   15777777777
                  */
                 loginUser: {
-                    mobile: "",
-                    password: ""
+                    mobile: "15888888888",
+                    password: "123456"
                 },
                 rules: {
                     mobile: [
@@ -79,8 +79,7 @@
                             console.log(err);
                         });
                     } else {
-                        console.log("error submit!!");
-                        return false;
+                        this.$message.error("表单填写错误");
                     }
                 });
             },

@@ -93,8 +93,7 @@
                             }
                         }).catch({});
                     } else {
-                        console.log("error submit!!");
-                        return false;
+                        this.$message.error("表单填写错误");
                     }
                 });
             },

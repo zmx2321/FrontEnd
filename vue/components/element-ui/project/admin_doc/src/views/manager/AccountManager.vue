@@ -27,9 +27,10 @@
                     </template>
                 </el-table-column>-->
 
-                <el-table-column prop="price" label="单价" width="auto" align="center" v-if="userType == 1"></el-table-column>
-                <el-table-column prop="balance" label="余额" width="auto" align="center" v-if="userType == 1"></el-table-column>
-                <el-table-column prop="amount" label="量" width="auto" align="center" v-if="userType == 2"></el-table-column>
+                <!-- 管理员登录，是组长；组长登录，是客服 -->
+                <el-table-column prop="price" label="单价" width="auto" align="center" v-if="userType == 0"></el-table-column>
+                <el-table-column prop="balance" label="余额" width="auto" align="center" v-if="userType == 0"></el-table-column>
+                <el-table-column prop="amount" label="流量" width="auto" align="center" v-if="userType == 1"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="500">
                     <template slot-scope="scope">
@@ -484,7 +485,7 @@
                         let datas = res.data.data.set;
 
                         for (let i=0; i<datas.length; i++) {
-                            datas[i].crtattim = datas[i].createAt.slice(2, -3)
+                            datas[i].crtattim = datas[i].createAt.slice(2, -3);
                         }
 
                         // console.log(datas);
