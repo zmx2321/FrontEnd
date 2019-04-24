@@ -3,7 +3,6 @@
         <!-- 按钮 -->
         <el-row class="toolbar bdr_radiu f-cb" v-if="userType == 0">
             <el-col class="f-cb btn_wrap">
-                <el-button type="primary" class="f-fl" @click="tempUpload">模板</el-button>
                 <el-upload
                         class="f-fl upload_btn"
                         action="https://jsonplaceholder.typicode.com/posts/"
@@ -14,9 +13,11 @@
                         :before-remove="beforeRemove"
                         :limit="upload_arg.limit"
                         :on-exceed="handleExceed"
+                        accept=".xlsx"
                         :file-list="upload_arg.fileList">
                     <el-button size="small" type="primary">导入用户</el-button>
                 </el-upload>
+                <a class="f-fl mod" href="http://hk-admin.fanxy7.cn/template/template.xlsx">下载模板</a>
             </el-col>
         </el-row>
 
@@ -28,9 +29,9 @@
 
                 <el-table-column prop="mobile" label="手机号码" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
-                <el-table-column prop="identity" label="身份证" width="auto" align="center"></el-table-column>
+                <el-table-column prop="identity" label="身份证" width="320" align="center"></el-table-column>
                 <el-table-column prop="area" label="地址" width="auto" align="center"></el-table-column>
-                <el-table-column prop="zhimafen" label="芝麻分" width="auto" align="center"></el-table-column>
+                <el-table-column prop="zhimafen" label="芝麻分" width="90" align="center"></el-table-column>
                 <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
 
                 <el-table-column label="是否联系" width="auto" align="center">
@@ -142,15 +143,15 @@
                 tagUserData: {
                     realName: "",  // 姓名
                     userId: "",  // (被标记用户的ID)
-                    contacted: "0",  // contacted 是否已经联系（1-已联系，0-未联系；前端提供下拉选择）
+                    contacted: "1",  // contacted 是否已经联系（1-已联系，0-未联系；前端提供下拉选择）
                     memo: "",  // memo 备注，512个字符限制
                 },
 
                 // 验证标记用户数据
                 tagUserRules: {
-                    /*adminId: [
-                        { required: true, message: '管理员ID不能为空！', trigger: 'blur' }
-                    ],*/
+                    memo: [
+                        { max: 512, message: "长度不大于 512 个字符", trigger: "blur" }
+                    ],
                 },
 
                 /**
@@ -172,6 +173,16 @@
             // 表单重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+            //获取文件后缀名
+            getFileType(fileName){
+                let fileLength = fileName.length,  //文件名总长度
+                    beforeFileLength = fileName.lastIndexOf('.');  //文件名长度
+
+                //截取字符串，获取文件后缀名
+                let suffix = fileName.substring(beforeFileLength+1, fileLength);
+
+                return suffix;
             },
 
             /**
@@ -200,6 +211,8 @@
             // 文件超出个数限制时的钩子
             handleExceed(files, fileList) {
                 this.$message.warning(`当前限制选择 ${this.upload_arg.limit} 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+
+
             },
             // 删除文件之前的钩子
             beforeRemove(file) {
@@ -239,20 +252,14 @@
                 }).catch({});
             },
 
-            // 模板
-            tempUpload () {
-                // let url = "https://www.baidu.com";
-                // let url = "../../src/assets/source/user.xlsx";
-                let url = "http://hk-admin.fanxy7.cn/template/template.xlsx";
-
-                window.location.href = url
-            },
-
             /**
              * api excelUpload
              * 上传文件
              */
             excelUploadFile (file) {
+                this.upload_arg.file = [];
+                this.upload_arg.fileList = [];
+
                 this.upload_arg.file.push(file.raw);
 
                 let formData = new FormData();
@@ -265,21 +272,27 @@
                     }
                 };
 
-                excelUpload(formData, config).then(res => {
-                    // console.log(res);
+                const isFile = this.getFileType(file.name) === 'xlsx';
 
-                    if (res.data.code == 1) {
-                        this.$message.warning(res.data.msg);
-                        this.upload_arg.fileList = [];
+                if (!isFile) {
+                    this.$message.error('上传文件只能是*.xlsx格式!');
+                } else {
+                    excelUpload(formData, config).then(res => {
+                        // console.log(res);
 
-                        return false;
-                    }
+                        if (res.data.code == 1) {
+                            this.$message.warning(res.data.msg);
+                            this.upload_arg.fileList = [];
 
-                    if (res.data.code == 0) {
-                        this.$message.success("导入成功！");
-                        this.getUserList();
-                    }
-                });
+                            return false;
+                        }
+
+                        if (res.data.code == 0) {
+                            this.$message.success("导入成功！");
+                            this.getUserList();
+                        }
+                    });
+                }
             },
 
             /**
@@ -333,8 +346,21 @@
 </script>
 
 <style lang="less" scoped>
+    a.mod {
+        color: #409EFF;
+        font-size: 12px;
+        margin: 23px 15px 0 0;
+        transition: 0.2s linear;
+    }
+
+    a.mod:hover {
+        color: #333;
+        transition: 0.3s linear;
+    }
+    
     /deep/ .upload_btn {
-        width: 85%;
+        /*width: 85%;*/
+        width: 110px;
         margin-left: 15px;
 
         .el-upload {
@@ -347,8 +373,9 @@
 
         ul {
             float: left;
-            width: 90%;
+            width: 50%;
             margin-left: 15px;
+            display: none;
 
             li {
                 a {

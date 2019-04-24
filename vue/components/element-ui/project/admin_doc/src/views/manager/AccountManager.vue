@@ -111,7 +111,7 @@
         <el-dialog title="添加账号" @keyup.enter.native="addUserSubmit('addUserForm')" :close-on-click-modal="false" :visible.sync="addUserVisible" :before-close="handleClose">
             <el-form :model="addUserData" status-icon :rules="addUserRules" ref="addUserForm" label-width="160px">
                 <el-form-item label="姓名" prop="realName">
-                    <el-input v-model="addUserData.realName"  placeholder="请输入密码" clearable></el-input>
+                    <el-input v-model="addUserData.realName"  placeholder="请输入姓名" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="手机" prop="mobile">
                     <el-input v-model="addUserData.mobile"  placeholder="请输入手机" clearable></el-input>
@@ -124,8 +124,8 @@
                 <el-form-item label="用户类型" prop="type">
                     <el-select v-model="addUserData.type">
                         <!--<el-option label="管理员" value="0"></el-option>-->
-                        <el-option label="组长" value="1"></el-option>
-                        <el-option label="客服" value="2"></el-option>
+                        <el-option label="组长" value="1" v-if="userType == 0"></el-option>
+                        <el-option label="客服" value="2" v-if="userType == 1"></el-option>
                         <!--<el-option label="话务" value="3"></el-option>-->
                     </el-select>
                 </el-form-item>
@@ -314,7 +314,7 @@
                     realName: "",  // 姓名
                     mobile: "",  // 手机
                     password: "",  // 密码
-                    type: "0",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
+                    type: "1",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
                     price: "",  // 单价，组长必填这个字段
                     amount: "",  // 流量，客服必填这个字段
                 },

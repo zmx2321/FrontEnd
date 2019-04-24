@@ -17,12 +17,12 @@
         <!-- 充值列表 -->
         <el-row>
             <el-table class="income_list" :data="income_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
-                <el-table-column type="index" width="60" align="center" label="序号"></el-table-column>
+                <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
                 <el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="充值金额" width="auto" align="center"></el-table-column>
-                <el-table-column prop="crtattim" label="创建日期" width="auto" align="center"></el-table-column>
+                <el-table-column prop="crtattim" label="充值时间" width="auto" align="center"></el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">

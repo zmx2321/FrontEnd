@@ -2,7 +2,7 @@
 const qs = window.Qs;
 
 // title
-const title = "doc后台管理系统";
+const title = "后台管理系统";
 document.title = title;
 
 // request  [http://hk-api.fanxy7.cn/swagger-ui.html]
