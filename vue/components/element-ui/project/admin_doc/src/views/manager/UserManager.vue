@@ -3,6 +3,7 @@
         <!-- 按钮 -->
         <el-row class="toolbar bdr_radiu f-cb">
             <el-col class="f-cb btn_wrap">
+                <el-button type="primary" class="f-fl" @click="tempUpload">模板</el-button>
                 <el-upload
                         class="f-fl upload_btn"
                         action="https://jsonplaceholder.typicode.com/posts/"
@@ -14,7 +15,7 @@
                         :limit="upload_arg.limit"
                         :on-exceed="handleExceed"
                         :file-list="upload_arg.fileList">
-                    <el-button size="small" type="primary">Excel上传</el-button>
+                    <el-button size="small" type="primary">导入用户</el-button>
                 </el-upload>
             </el-col>
         </el-row>
@@ -235,6 +236,15 @@
                 }).catch({});
             },
 
+            // 模板
+            tempUpload () {
+                // let url = "https://www.baidu.com";
+                // let url = "../../src/assets/source/user.xlsx";
+                let url = "../../src/assets/source/user.xlsx";
+
+                window.location.href = url
+            },
+
             /**
              * api excelUpload
              * 上传文件
@@ -275,13 +285,9 @@
              */
             // 点击标记
             tagUser (row) {
-                // 浅拷贝
+                // 浅拷贝 Object.assign({}, row)
                 this.tagUserData.userId = row.id;
                 this.tagUserData.realName = row.realName;
-                /*this.tagUserData = Object.assign({}, row);
-
-                this.tagUserData.userId = row.id;
-                this.tagUserData.contacted = parseInt(row.contacted);*/
             },
 
             // 提交标记用户表单

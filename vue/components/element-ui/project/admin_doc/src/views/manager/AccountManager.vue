@@ -28,8 +28,8 @@
                 </el-table-column>-->
 
                 <!-- 管理员登录，是组长；组长登录，是客服 -->
-                <el-table-column prop="price" label="单价" width="auto" align="center" v-if="userType == 0"></el-table-column>
-                <el-table-column prop="balance" label="余额" width="auto" align="center" v-if="userType == 0"></el-table-column>
+                <el-table-column prop="price" label="单价（元）" width="auto" align="center" v-if="userType == 0"></el-table-column>
+                <el-table-column prop="balance" label="余额（元）" width="auto" align="center" v-if="userType == 0"></el-table-column>
                 <el-table-column prop="amount" label="流量" width="auto" align="center" v-if="userType == 1"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="500">
@@ -131,8 +131,8 @@
                 </el-form-item>
 
                 <!-- 组长必填这个字段 -->
-                <el-form-item label="单价" prop="price" v-if="addUserData.type == 0 || addUserData.type == 1">
-                    <el-input v-model="addUserData.price"  placeholder="请输入单价" clearable></el-input>
+                <el-form-item label="单价(元)" prop="price" v-if="addUserData.type == 0 || addUserData.type == 1">
+                    <el-input v-model="addUserData.price"  placeholder="请输入单价（元）" clearable></el-input>
                 </el-form-item>
 
                 <!-- 客服必填这个字段 -->
@@ -156,7 +156,7 @@
                 <el-form-item label="姓名" prop="realName">
                     <el-input v-model="editUserAttributeData.realName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="价格" prop="price" v-if="this.editUserAttributeData.type == 1">
+                <el-form-item label="价格（元）" prop="price" v-if="this.editUserAttributeData.type == 1">
                     <el-input v-model="editUserAttributeData.price" placeholder="请输入价格" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="流量" prop="amount" v-if="this.editUserAttributeData.type == 2">
@@ -199,8 +199,8 @@
                 <el-form-item label="管理员姓名" prop="realName">
                     <el-input v-model="addIncomeData.realName" disabled></el-input>
                 </el-form-item>
-                <el-form-item label="充值金额" prop="totalPrice">
-                    <el-input v-model="addIncomeData.totalPrice" placeholder="请输入充值金额" clearable></el-input>
+                <el-form-item label="充值金额（元）" prop="totalPrice">
+                    <el-input v-model="addIncomeData.totalPrice" placeholder="请输入充值金额（元）" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
