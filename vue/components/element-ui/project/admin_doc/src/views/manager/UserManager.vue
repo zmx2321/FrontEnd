@@ -36,11 +36,13 @@
 
                 <el-table-column label="是否联系" width="auto" align="center">
                     <template slot-scope="scope">
-                        {{ scope.row.contacted === 0 ? "未联系" : "已联系" }}
+                        <div :class="scope.row.contacted == 0 ? 'contd_n' : 'contd_y' ">
+                            {{ scope.row.contacted === 0 ? "未联系" : "已联系" }}
+                        </div>
                     </template>
                 </el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="80">
+                <el-table-column fixed="right" label="操作" width="80" v-if="userType != 0">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="tagUser(scope.row)" v-on:click="tagUserVisible = true">标记</el-button>
                     </template>
@@ -81,7 +83,7 @@
                 </el-form-item>
 
                 <el-form-item label="备注" prop="memo">
-                    <el-input type="textarea" v-model="tagUserData.memo" placeholder="请输入备注" clearable></el-input>
+                    <el-input type="textarea" v-model="tagUserData.memo" placeholder="请输入备注" oninput="if(value.length > 512)value = value.slice(0, 512)" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -304,6 +306,7 @@
                 // 浅拷贝 Object.assign({}, row)
                 this.tagUserData.userId = row.id;
                 this.tagUserData.realName = row.realName;
+                this.tagUserData.memo = row.memo;
             },
 
             // 提交标记用户表单
@@ -383,5 +386,13 @@
                 }
             }
         }
+    }
+
+    .contd_y {
+        color: #9e9e9e;
+    }
+
+    .contd_n {
+        /*color: #f00;*/
     }
 </style>

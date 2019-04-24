@@ -3,7 +3,7 @@
         <!-- 按钮 -->
         <el-row class="toolbar bdr_radiu f-cb">
             <el-col class="f-cb btn_wrap">
-                <el-button type="primary" @click="addUserVisible = true" class="f-fl">添加账号</el-button>
+                <el-button type="primary" @click="addUser" v-on:click="addUserVisible = true" class="f-fl">添加账号</el-button>
             </el-col>
         </el-row>
 
@@ -314,7 +314,7 @@
                     realName: "",  // 姓名
                     mobile: "",  // 手机
                     password: "",  // 密码
-                    type: "1",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
+                    type: "",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
                     price: "",  // 单价，组长必填这个字段
                     amount: "",  // 流量，客服必填这个字段
                 },
@@ -520,6 +520,10 @@
              * api addUser
              * 添加用户
              */
+            // 点击添加用户
+            addUser () {
+                this.addUserData.type = (parseInt(this.userType)+1).toString();
+            },
             // 提交添加用户表单
             addUserSubmit (formName) {
                 // 验证表单

@@ -1,13 +1,16 @@
 <template>
     <section class="header_nav f-oh">
         <el-row class="header_nav f-cb">
-            <el-col class="header_left f-oh">
+            <el-col class="header_left f-oh f-pr">
                 <el-row>
-                    <el-col :span="4" class="logo f-oh">
+                    <el-col :span="2" class="logo f-oh">
                         <img src="../assets/logo.png" alt="">
                     </el-col>
-                    <el-col :span="15" class="title f-oh">
+                    <el-col :span="6" class="title f-oh">
                         <span>{{ this.$store.state.title }}</span>
+                    </el-col>
+                    <el-col :span="18" class="cen_tip" v-if="userType == 1">
+                        <span>余额（元）：{{ profile.balance }}</span>
                     </el-col>
                 </el-row>
             </el-col>
@@ -37,15 +40,33 @@
 </template>
 
 <script>
+import {
+    getProfile,  // 获取自己信息
+} from "../api/api"
+
 export default {
     name: "head-nav",
 
     data () {
         return {
+            // 用户类型
+            userType: 0,
 
+            profile: {},
         }
     },
     methods: {
+        /**
+         * api getProfile
+         * 获取自己信息
+         */
+        getProfile () {
+            getProfile().then(res => {
+                // console.log(res.data.data);
+                this.profile = res.data.data
+            }).catch({});
+        },
+
         // 下拉框属性
         setDialogInfo(cmditem) {
             if (!cmditem) {
@@ -63,10 +84,12 @@ export default {
                     break;
             }
         },
+
         // 修改密码
         modifyPassword() {
           this.$router.push("/modify_password");
         },
+
         // 退出
         logout() {
             localStorage.removeItem("code");
@@ -75,7 +98,9 @@ export default {
         }
     },
     created (){
+        this.getProfile();
 
+        this.userType = localStorage.userType;
     }
 };
 </script>
@@ -91,13 +116,20 @@ export default {
     }
 
     .header_left {
-         width: 250px;
+         width: 500px;
      }
 
     .header_right {
         width: initial;
         min-width: 140px;
         float: right;
+    }
+
+    .cen_tip {
+        position: absolute;
+        right: 0;
+        top: 18px;
+        text-align: right;
     }
 
     .logo{

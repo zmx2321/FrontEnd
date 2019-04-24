@@ -17,6 +17,13 @@ export const excelUpload = params => {
         data: params
     });
 };
+// 获取自己信息
+export const getProfile = params => {
+    return  axios({
+        url: `${base}/user/profile`,
+        method: 'get',
+    });
+};
 
 /**
  *  登录/注销/修改密码
