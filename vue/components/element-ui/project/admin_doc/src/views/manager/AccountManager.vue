@@ -32,7 +32,7 @@
                 <el-table-column prop="balance" label="余额（元）" width="auto" align="center" v-if="userType == 0"></el-table-column>
                 <el-table-column prop="amount" label="流量" width="auto" align="center" v-if="userType == 1"></el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="500">
+                <el-table-column fixed="right" label="操作" width="320">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="checkUser(scope.row)" v-on:click="checkUserVisible = true">查看</el-button>
                         <el-button type="text" size="small" @click="editUserAttribute(scope.row)" v-on:click="editUserAttributeVisible = true" v-if="scope.row.type == 1">编辑价格</el-button>
@@ -123,7 +123,7 @@
                 <!-- 0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）-->
                 <el-form-item label="用户类型" prop="type">
                     <el-select v-model="addUserData.type">
-                        <el-option label="管理员" value="0"></el-option>
+                        <!--<el-option label="管理员" value="0"></el-option>-->
                         <el-option label="组长" value="1"></el-option>
                         <el-option label="客服" value="2"></el-option>
                         <!--<el-option label="话务" value="3"></el-option>-->

@@ -1,7 +1,7 @@
 <template>
     <section class="main_cont">
         <!-- 按钮 -->
-        <el-row class="toolbar bdr_radiu f-cb">
+        <el-row class="toolbar bdr_radiu f-cb" v-if="userType == 0">
             <el-col class="f-cb btn_wrap">
                 <el-button type="primary" class="f-fl" @click="tempUpload">模板</el-button>
                 <el-upload
@@ -39,7 +39,7 @@
                     </template>
                 </el-table-column>
 
-                <el-table-column fixed="right" label="操作" width="500">
+                <el-table-column fixed="right" label="操作" width="80">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="tagUser(scope.row)" v-on:click="tagUserVisible = true">标记</el-button>
                     </template>
@@ -108,7 +108,10 @@
                  * common
                  */
                 listLoading: false,  // lodding动画
-                dialogVisible: false,  // 关闭提示
+                dialogVisible: false,  //
+
+                // 用户类型
+                userType: 0,
 
                 // 分页参数
                 page_arg: {
@@ -240,7 +243,7 @@
             tempUpload () {
                 // let url = "https://www.baidu.com";
                 // let url = "../../src/assets/source/user.xlsx";
-                let url = "../../src/assets/source/user.xlsx";
+                let url = "http://hk-admin.fanxy7.cn/template/template.xlsx";
 
                 window.location.href = url
             },
@@ -323,6 +326,8 @@
         // 预处理
         created () {
             this.getUserList();
+
+            this.userType = localStorage.userType;
         }
     }
 </script>
