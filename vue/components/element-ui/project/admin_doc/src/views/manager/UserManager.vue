@@ -1,23 +1,47 @@
 <template>
     <section class="main_cont">
-        <!-- 按钮 -->
-        <el-row class="toolbar bdr_radiu f-cb" v-if="userType == 0">
-            <el-col class="f-cb btn_wrap">
-                <el-upload
-                        class="f-fl upload_btn"
-                        action="https://jsonplaceholder.typicode.com/posts/"
-                        ref='upload'
-                        multiple
-                        :before-upload="beforeUpload"
-                        :on-change="excelUploadFile"
-                        :before-remove="beforeRemove"
-                        :limit="upload_arg.limit"
-                        :on-exceed="handleExceed"
-                        accept=".xlsx"
-                        :file-list="upload_arg.fileList">
-                    <el-button size="small" type="primary">导入用户</el-button>
-                </el-upload>
-                <a class="f-fl mod" href="http://hk-admin.fanxy7.cn/template/template.xlsx">下载模板</a>
+        <!-- 筛选 -->
+        <el-row class="toolbar bdr_radiu filter_wrap">
+            <el-col :span="24">
+                <el-form :model="filterData" status-icon :rules="filterDataRules" ref="filterDataForm" label-width="100px">
+                    <el-form-item label="手机" prop="mobile" class="intxt">
+                        <el-input v-model="filterData.mobile" placeholder="请输入手机" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="姓名" prop="realName" class="intxt">
+                        <el-input v-model="filterData.realName" placeholder="请输入姓名" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="日期" prop="date" class="intxt">
+                        <el-date-picker
+                                v-model="filterData.date"
+                                align="right"
+                                type="date"
+                                placeholder="选择日期"
+                                value-format=" yyyy-MM-dd"
+                                format="yyyy-MM-dd"
+                                @change="changeDate"
+                                :picker-options="pickerOptionsDate">
+                        </el-date-picker>
+                    </el-form-item>
+
+                    <el-form-item class="intxt btn_wrap">
+                        <el-button type="primary" @click="filterDataSubmit('filterDataForm')" class="btn_intxt">筛选</el-button>
+                        <el-upload
+                                class="upload_btn btn_intxt"
+                                action="https://jsonplaceholder.typicode.com/posts/"
+                                ref='upload'
+                                multiple
+                                :before-upload="beforeUpload"
+                                :on-change="excelUploadFile"
+                                :before-remove="beforeRemove"
+                                :limit="upload_arg.limit"
+                                :on-exceed="handleExceed"
+                                accept=".xlsx"
+                                :file-list="upload_arg.fileList">
+                            <el-button size="small" type="primary">导入用户</el-button>
+                        </el-upload>
+                        <a class="btn_intxt mod" href="http://hk-admin.fanxy7.cn/template/template.xlsx">下载模板</a>
+                    </el-form-item>
+                </el-form>
             </el-col>
         </el-row>
 
@@ -36,7 +60,7 @@
 
                 <el-table-column label="是否联系" width="auto" align="center">
                     <template slot-scope="scope">
-                        <div :class="scope.row.contacted == 0 ? 'contd_n' : 'contd_y' ">
+                        <div :class="scope.row.contacted == 0 ? '' : 'contd' ">
                             {{ scope.row.contacted === 0 ? "未联系" : "已联系" }}
                         </div>
                     </template>
@@ -106,6 +130,17 @@
         name: 'account_manager',
 
         data() {
+            // 手机号
+            const validateMobile = (rule, value, callback) => {
+                let reg = /^(-)|([1-9]\d*)((\.\d+)?)$/;
+
+                if (!reg.test(value)) {
+                    return callback(new Error('手机号错误！'));
+                }
+
+                callback();
+            };
+
             return {
                 /**
                  * common
@@ -132,11 +167,53 @@
                     fileList: []
                 },
 
+                // 日期筛选器
+                pickerOptionsDate: {
+                    disabledDate(time) {
+                        return time.getTime() > Date.now();
+                    },
+                    shortcuts: [{
+                        text: '今天',
+                        onClick(picker) {
+                            picker.$emit('pick', new Date());
+                        }
+                    }, {
+                        text: '昨天',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24);
+                            picker.$emit('pick', date);
+                        }
+                    }, {
+                        text: '一周前',
+                        onClick(picker) {
+                            const date = new Date();
+                            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                            picker.$emit('pick', date);
+                        }
+                    }]
+                },
+
                 /**
                  * 用户
                  */
                 // 用户列表
                 user_info: [],  // 存放用户信息列表数据
+
+                // 筛选用户
+                filterData: {
+                    mobile: "",  // 手机
+                    realName: "",  // 姓名
+                    date: "",  // 日期，格式行如：2019-04-12
+                },
+                filterDataRules: {
+                    postmanMobile: [
+                        { validator: validateMobile, trigger: 'blur' }
+                    ],
+                    date: [
+                        // { required: true, message: '日期不能为空！', trigger: 'blur' }
+                    ]
+                },
 
                 /**
                  * 标记用户
@@ -186,6 +263,15 @@
 
                 return suffix;
             },
+            // 时间戳 2019-04-23
+            formatDate (now) {
+                now = new Date(now);
+                let year = now.getFullYear();
+                let month = now.getMonth() + 1;
+                let date = now.getDate();
+
+                return `${year}-${month}-${date}`;
+            },
 
             /**
              *  分页
@@ -227,16 +313,21 @@
              */
             // 获取用户列表
             getUserList () {
-                let param = {
+                let params = {
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
+                    mobile: this.filterData.mobile,  // 手机
+                    realName: this.filterData.realName,  // 姓名
+                    date: this.filterData.date,  // 日期，格式行如：2019-04-12
                 };
+
+                // console.log(params);
 
                 // loading
                 this.listLoading = true;
 
                 // 请求接口
-                getUser(param).then(res => {
+                getUser(params).then(res => {
                     // console.log(res.data.code);
 
                     if (res.data.code == 1) {
@@ -252,6 +343,24 @@
 
                     this.listLoading = false;
                 }).catch({});
+            },
+            // 日期筛选器
+            changeDate (val) {
+                // 当date改变，重新赋值
+                this.filterData.date = this.formatDate(val);
+            },
+            // 筛选
+            filterDataSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    // 如果验证成功，请求接口数据
+                    if (valid) {
+                        // 加载分页数据
+                        this.getUserList();
+                    } else {  //验证失败跳出
+                        this.$message.err("表单填写错误")
+                    }
+                });
             },
 
             /**
@@ -350,9 +459,13 @@
 
 <style lang="less" scoped>
     a.mod {
-        color: #409EFF;
+        position: absolute;
+        width: 60px;
+        height: 22px;
+        line-height: 22px;
+        margin-top: 14px;
         font-size: 12px;
-        margin: 23px 15px 0 0;
+        color: #409EFF;
         transition: 0.2s linear;
     }
 
@@ -360,14 +473,20 @@
         color: #333;
         transition: 0.3s linear;
     }
+
+    .toolbar {
+        padding-bottom: 0;
+    }
     
     /deep/ .upload_btn {
         /*width: 85%;*/
         width: 110px;
         margin-left: 15px;
+        margin-top: -1px;
 
         .el-upload {
-            float: left;
+            position: absolute;
+            margin-top: -27px;
 
             button {
                 padding: 12px 20px;
@@ -375,24 +494,22 @@
         }
 
         ul {
-            float: left;
-            width: 50%;
-            margin-left: 15px;
             display: none;
-
-            li {
-                a {
-
-                }
-            }
         }
     }
 
-    .contd_y {
+    .contd {
         color: #9e9e9e;
     }
 
-    .contd_n {
-        /*color: #f00;*/
+    .filter_wrap {
+        .btn_wrap {
+            margin-bottom: 10px;
+            width: initial;
+
+            .btn_intxt {
+                display: inline-block;
+            }
+        }
     }
 </style>

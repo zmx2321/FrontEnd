@@ -136,3 +136,10 @@ a:visited{
     height: 40px;
     margin: 0 auto;
 }
+
+.intxt{
+    display: inline-block;
+    margin-right: 16px;
+    margin-bottom: 22px;
+    width: 345px;
+}
