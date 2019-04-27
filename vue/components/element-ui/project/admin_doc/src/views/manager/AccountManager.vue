@@ -262,6 +262,8 @@
                 if (!reg.test(value)) {
                     return callback(new Error('价格必须是整数或者小数且前缀不能为0！'));
                 }
+
+                callback();
             };
 
             // 流量，客服必填这个字段(type[2])
@@ -717,8 +719,12 @@
              */
             // 点击充值
             addIncome (row) {
+                // console.log(row);
+
                 this.addIncomeData.adminId = row.id;
                 this.addIncomeData.realName = row.realName;
+
+                // console.log(this.addIncomeData);
 
                 this.addIncomeData.totalPrice = "";
             },
@@ -732,6 +738,8 @@
                             adminId : this.addIncomeData.adminId,
                             totalPrice : this.addIncomeData.totalPrice,
                         }
+
+                        // console.log(params);
 
                         // 添加
                         addIncome(qs.stringify(params)).then(res => {

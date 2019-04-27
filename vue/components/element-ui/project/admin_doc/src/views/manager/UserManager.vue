@@ -25,21 +25,24 @@
 
                     <el-form-item class="intxt btn_wrap">
                         <el-button type="primary" @click="filterDataSubmit('filterDataForm')" class="btn_intxt">筛选</el-button>
-                        <el-upload
-                                class="upload_btn btn_intxt"
-                                action="https://jsonplaceholder.typicode.com/posts/"
-                                ref='upload'
-                                multiple
-                                :before-upload="beforeUpload"
-                                :on-change="excelUploadFile"
-                                :before-remove="beforeRemove"
-                                :limit="upload_arg.limit"
-                                :on-exceed="handleExceed"
-                                accept=".xlsx"
-                                :file-list="upload_arg.fileList">
-                            <el-button size="small" type="primary">导入用户</el-button>
-                        </el-upload>
-                        <a class="btn_intxt mod" href="http://hk-admin.fanxy7.cn/template/template.xlsx">下载模板</a>
+
+                        <div class="expot_user" v-if="userType == 0">
+                            <el-upload
+                                    class="upload_btn btn_intxt"
+                                    action="https://jsonplaceholder.typicode.com/posts/"
+                                    ref='upload'
+                                    multiple
+                                    :before-upload="beforeUpload"
+                                    :on-change="excelUploadFile"
+                                    :before-remove="beforeRemove"
+                                    :limit="upload_arg.limit"
+                                    :on-exceed="handleExceed"
+                                    accept=".xlsx"
+                                    :file-list="upload_arg.fileList">
+                                <el-button size="small" type="primary">导入用户</el-button>
+                            </el-upload>
+                            <a class="btn_intxt mod" href="http://hk-admin.fanxy7.cn/template/template.xlsx">下载模板</a>
+                        </div>
                     </el-form-item>
                 </el-form>
             </el-col>
@@ -458,26 +461,10 @@
 </script>
 
 <style lang="less" scoped>
-    a.mod {
-        position: absolute;
-        width: 60px;
-        height: 22px;
-        line-height: 22px;
-        margin-top: 14px;
-        font-size: 12px;
-        color: #409EFF;
-        transition: 0.2s linear;
-    }
-
-    a.mod:hover {
-        color: #333;
-        transition: 0.3s linear;
-    }
-
     .toolbar {
         padding-bottom: 0;
     }
-    
+
     /deep/ .upload_btn {
         /*width: 85%;*/
         width: 110px;
@@ -506,6 +493,26 @@
         .btn_wrap {
             margin-bottom: 10px;
             width: initial;
+
+            .expot_user {
+                display: inline-block;
+
+                a.mod {
+                    position: absolute;
+                    width: 60px;
+                    height: 22px;
+                    line-height: 22px;
+                    margin-top: 14px;
+                    font-size: 12px;
+                    color: #409EFF;
+                    transition: 0.2s linear;
+                }
+
+                a.mod:hover {
+                    color: #333;
+                    transition: 0.3s linear;
+                }
+            }
 
             .btn_intxt {
                 display: inline-block;
