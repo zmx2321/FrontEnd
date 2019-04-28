@@ -59,9 +59,9 @@
                 <el-table-column prop="identity" label="身份证" width="320" align="center"></el-table-column>
                 <el-table-column prop="area" label="地址" width="auto" align="center"></el-table-column>
                 <el-table-column prop="zhimafen" label="芝麻分" width="90" align="center"></el-table-column>
-                <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
+                <el-table-column prop="memo" label="备注" width="auto" align="center" v-if="userType != 0"></el-table-column>
 
-                <el-table-column label="是否联系" width="auto" align="center">
+                <el-table-column label="是否联系" width="auto" align="center" v-if="userType != 0">
                     <template slot-scope="scope">
                         <div :class="scope.row.contacted == 0 ? '' : 'contd' ">
                             {{ scope.row.contacted === 0 ? "未联系" : "已联系" }}
@@ -205,9 +205,9 @@
 
                 // 筛选用户
                 filterData: {
-                    mobile: "",  // 手机
-                    realName: "",  // 姓名
-                    date: "",  // 日期，格式行如：2019-04-12
+                    mobile: undefined,  // 手机
+                    realName: undefined,  // 姓名
+                    date: undefined,  // 日期，格式行如：2019-04-12
                 },
                 filterDataRules: {
                     postmanMobile: [

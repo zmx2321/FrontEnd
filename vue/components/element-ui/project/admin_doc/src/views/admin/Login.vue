@@ -38,8 +38,8 @@
                  *   15777777777
                  */
                 loginUser: {
-                    mobile: "",
-                    password: ""
+                    mobile: "15888888888",
+                    password: "123456"
                 },
                 rules: {
                     mobile: [
