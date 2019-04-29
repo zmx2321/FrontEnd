@@ -935,6 +935,8 @@
 
                                 // console.log(this.richImg);
 
+                                this.$message.success("添加成功！");
+
                                 // 隐藏弹框
                                 this.addConsultationVisible = false;
 
@@ -962,7 +964,7 @@
                 }
 
                 getConsultationById(params).then(res => {
-                    // console.log(res);
+                    console.log(res);
 
                     this.editConsultationData = res.data.data;
 
@@ -975,15 +977,13 @@
 
                 this.vote_info = [];
 
-                this.upload_arg.fileList = [];  //清空上传img file
-
-                this.upload_arg.videoFile = [],  // 视频资源
+                /*this.upload_arg.videoFile = [],  // 视频资源
                 this.upload_arg.originIcon =  [],  // 资源来源图标
                 this.upload_arg.videoImg = [],  // 视频头图
 
                 this.addConsultationData.videoUrl = "";
                 this.addConsultationData.originIcon = "";
-                this.addConsultationData.videoImg = "";
+                this.addConsultationData.videoImg = "";*/
 
                 // 获取投票列表接口
                 getVote().then(res => {
@@ -1078,6 +1078,7 @@
                             id: this.editConsultationData.id,
                             title: this.editConsultationData.title,
                             originIcon: this.editConsultationData.originIcon,
+                            videoImg: this.editConsultationData.videoImg,
                             // imgs: this.editConsultationData.imgs,
                             type: parseInt(this.editConsultationData.type),
                             content: this.editConsultationData.content,
@@ -1111,6 +1112,8 @@
                         } else {
                             editConsultation(this.qs.stringify(params)).then(() => {
                                 // console.log(res);
+
+                                this.$message.success("编辑成功！");
 
                                 // 隐藏弹框
                                 this.editConsultationVisible = false;
