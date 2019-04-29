@@ -426,7 +426,7 @@
                 richImg: [],
 
                 // 域名
-                requestUrl: requestUrl,
+                requestUrl: "https://jsonplaceholder.typicode.com/posts/",
 
                 /**
                  * 富文本数据
@@ -807,9 +807,13 @@
 
                 this.upload_arg.fileList = [];  //清空上传img file
 
-                this.upload_arg.videoFile = [];
+                this.upload_arg.videoFile = [],  // 视频资源
+                this.upload_arg.originIcon =  [],  // 资源来源图标
+                this.upload_arg.videoImg = [],  // 视频头图
 
                 this.addConsultationData.videoUrl = "";
+                this.addConsultationData.originIcon = "";
+                this.addConsultationData.videoImg = "";
 
                 // 获取资讯列表接口
                 getVote().then(res => {
@@ -828,6 +832,7 @@
             // 上传资讯视频
             addUideoUrl(file){
                 // console.log("文件状态改变时的钩子");
+                this.upload_arg.fileList = [];  //清空上传img file
 
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.videoFile.push(file.raw);
@@ -851,6 +856,8 @@
             },
             // 上传资讯来源图标
             addOriginIcone (file) {
+                this.upload_arg.fileList = [];  //清空上传img file
+
                 this.upload_arg.originIcon.push(file.raw);
 
                 let formData = new FormData();
@@ -869,6 +876,8 @@
             },
             // 上传视频头图
             addVideoImg (file) {
+                this.upload_arg.fileList = [];  //清空上传img file
+
                 this.upload_arg.videoImg.push(file.raw);
 
                 let formData = new FormData();
@@ -966,6 +975,16 @@
 
                 this.vote_info = [];
 
+                this.upload_arg.fileList = [];  //清空上传img file
+
+                this.upload_arg.videoFile = [],  // 视频资源
+                this.upload_arg.originIcon =  [],  // 资源来源图标
+                this.upload_arg.videoImg = [],  // 视频头图
+
+                this.addConsultationData.videoUrl = "";
+                this.addConsultationData.originIcon = "";
+                this.addConsultationData.videoImg = "";
+
                 // 获取投票列表接口
                 getVote().then(res => {
                     // console.log(res.data.data.list);
@@ -983,6 +1002,7 @@
             // 上传资讯视频
             editUideoUrl(file){
                 // console.log("文件状态改变时的钩子");
+                this.upload_arg.fileList = [];  //清空上传img file
 
                 //上传文件变化时将文件对象push进files数组
                 this.upload_arg.videoFile.push(file.raw);
@@ -1006,6 +1026,8 @@
             },
             // 上传资讯来源图标
             editOriginIcone (file) {
+                this.upload_arg.fileList = [];  //清空上传img file
+
                 this.upload_arg.originIcon.push(file.raw);
 
                 let formData = new FormData();
@@ -1024,6 +1046,8 @@
             },
             // 上传视频头图
             editVideoImg (file) {
+                this.upload_arg.fileList = [];  //清空上传img file
+
                 this.upload_arg.videoImg.push(file.raw);
 
                 let formData = new FormData();
