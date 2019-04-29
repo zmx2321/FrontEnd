@@ -5,7 +5,7 @@ import router from '../router'
 
 const Axios = axios.create({
     baseURL: requestUrl, // api
-    timeout: 60000,
+    timeout: 3000000,  // 超时时间30s
     responseType: "json",
     withCredentials: true, // 是否允许带cookie这些
     // headers: {

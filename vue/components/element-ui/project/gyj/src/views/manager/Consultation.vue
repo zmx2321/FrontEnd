@@ -1,6 +1,5 @@
 <template>
   <section class="main_cont">
-    <!-- 筛选 -->
     <el-row class="toolbar bdr_radiu filter_wrap">
       <el-col :span="24">
         <el-form :model="filterData" status-icon :rules="filterDataRules" ref="filterDataForm" label-width="100px">
@@ -82,43 +81,27 @@
     </el-row>
 
     <!-- 添加资讯 -->
-    <el-dialog title="添加资讯"
-               :close-on-click-modal="false"
-               class="dialog_wrap"
-               top="0"
-               :visible.sync="addConsultationVisible"
-               :before-close="handleClose">
-      <el-form :model="addConsultationData" status-icon :rules="addConsultationRules" ref="addConsultationForm" label-width="160px" class="f-cb">
-        <el-form-item label="资讯标题" prop="title" class="consulte_title f-fl">
+    <el-dialog title="添加资讯" :close-on-click-modal="false" class="dialog_wrap" top="0" :visible.sync="addConsultationVisible" :before-close="handleClose">
+      <el-form :model="addConsultationData" status-icon :rules="addConsultationRules" ref="addConsultationForm" label-width="160px">
+        <el-form-item label="资讯标题" prop="title" class="consulte_title">
           <el-input v-model="addConsultationData.title"  placeholder="请输入资讯标题" clearable></el-input>
         </el-form-item>
 
-        <el-form-item label="资讯阅读所获积分" prop="points" class="consulte_points f-fl">
+        <el-form-item label="资讯阅读所获积分" prop="points" class="consulte_points inline_fifth">
           <el-input v-model="addConsultationData.points"  placeholder="请输入资讯阅读所获积分" clearable></el-input>
         </el-form-item>
 
-        <!--<el-form-item label="资讯来源图标" prop="originIcon">
-          <el-input v-model="addConsultationData.originIcon"  placeholder="请输入资讯来源图标" clearable></el-input>
-        </el-form-item>-->
-
-        <el-form-item label="资讯来源名称" prop="originName">
+        <el-form-item label="资讯来源名称" prop="originName" class="inline_fifth">
           <el-input v-model="addConsultationData.originName"  placeholder="请输入资讯来源名称" clearable></el-input>
         </el-form-item>
-        <!--<el-form-item label="资讯列表图片显示" prop="imgs">
-          <el-input v-model="addConsultationData.imgs"  placeholder="请输入资讯列表图片显示" clearable></el-input>
-        </el-form-item>-->
 
-        <el-form-item label="资讯分类" class="intxt addintxt f-fl">
+        <el-form-item label="资讯分类" class="inline_fifth">
           <el-select v-model="addConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel sel_short">
             <el-option v-for="(item,index) in consultation_type" :label="item.name" :value="item.id" :key="index"></el-option>
           </el-select>
         </el-form-item>
 
-        <!--<el-form-item label="资讯视频地址" prop="videoUrl">
-          <el-input v-model="addConsultationData.videoUrl"  placeholder="请输入资讯视频地址" clearable></el-input>
-        </el-form-item>-->
-
-        <el-form-item label="內容分类" class="intxt addintxt f-fl">
+        <el-form-item label="內容分类" class="intxt addintxt inline_fifth">
           <el-select v-model="addConsultationData.type" placeholder="请选择內容分类"  class="dialog_sel sel_short">
             <el-option label="文字" value="0"></el-option>
             <el-option label="图文" value="1"></el-option>
@@ -134,12 +117,48 @@
           </el-select>
         </el-form-item>
 
+        <el-form-item label="上传资讯来源图标">
+          <el-upload
+                  :action="requestUrl"
+                  ref='uploadVideo'
+                  :before-remove="beforeRemove"
+                  :on-change="addOriginIcone"
+                  multiple
+                  :limit="upload_arg.limit"
+                  :on-exceed="handleExceed"
+                  :file-list="upload_arg.fileList">
+            <el-button size="small" type="primary">点击上传</el-button>
+          </el-upload>
+        </el-form-item>
+
+        <el-form-item label="资讯来源图标" prop="originIcon">
+          <el-input v-model="addConsultationData.originIcon" clearable></el-input>
+        </el-form-item>
+
+        <el-form-item label="上传视频头图">
+          <el-upload
+                  :action="requestUrl"
+                  ref='uploadVideo'
+                  :before-remove="beforeRemove"
+                  :on-change="addVideoImg"
+                  multiple
+                  :limit="upload_arg.limit"
+                  :on-exceed="handleExceed"
+                  :file-list="upload_arg.fileList">
+            <el-button size="small" type="primary">点击上传</el-button>
+          </el-upload>
+        </el-form-item>
+
+        <el-form-item label="视频头图" prop="videoImg">
+          <el-input v-model="addConsultationData.videoImg" clearable></el-input>
+        </el-form-item>
+
         <el-form-item label="上传资讯视频">
           <el-upload
                   :action="requestUrl"
                   ref='uploadVideo'
                   :before-remove="beforeRemove"
-                  :on-change="addHandleChange"
+                  :on-change="addUideoUrl"
                   multiple
                   :limit="upload_arg.limit"
                   :on-exceed="handleExceed"
@@ -149,7 +168,7 @@
         </el-form-item>
 
         <el-form-item label="资讯视频" prop="videoUrl">
-          <el-input v-model="addConsultationData.videoUrl"  disabled></el-input>
+          <el-input v-model="addConsultationData.videoUrl" disabled></el-input>
         </el-form-item>
 
         <el-form-item label="资讯内容" prop="content">
@@ -186,47 +205,31 @@
     </el-dialog>
 
     <!-- 编辑资讯 -->
-    <el-dialog title="编辑资讯"
-               :close-on-click-modal="false"
-               class="dialog_wrap"
-               :visible.sync="editConsultationVisible"
-               top="0"
-               :before-close="handleClose">
-
+    <el-dialog title="编辑资讯" :close-on-click-modal="false" class="dialog_wrap" :visible.sync="editConsultationVisible" top="0" :before-close="handleClose">
       <el-form :model="editConsultationData" status-icon :rules="editConsultationRules" ref="editConsultationForm" label-width="160px">
-        <el-form-item label="资讯编号" prop="id">
+        <!--<el-form-item label="资讯编号" prop="id">
           <el-input v-model="editConsultationData.id" disabled></el-input>
-        </el-form-item>
-        <el-form-item label="资讯标题" prop="title" class="consulte_title f-fl">
+        </el-form-item>-->
+        <el-form-item label="资讯标题" prop="title" class="consulte_title">
           <el-input v-model="editConsultationData.title"  placeholder="请输入资讯标题" clearable></el-input>
         </el-form-item>
 
-        <el-form-item label="资讯阅读所获积分" prop="points" class="consulte_points f-fl">
+        <el-form-item label="资讯阅读所获积分" prop="points" class="consulte_points inline_fifth">
           <el-input v-model="editConsultationData.points"  placeholder="请输入资讯阅读所获积分" clearable></el-input>
         </el-form-item>
 
-        <!--<el-form-item label="资讯来源图标" prop="originIcon">
-          <el-input v-model="editConsultationData.originIcon"  placeholder="请输入资讯来源图标" clearable></el-input>
-        </el-form-item>-->
-        <el-form-item label="资讯来源名称" prop="originName">
+        <el-form-item label="资讯来源名称" prop="originName" class="inline_fifth">
           <el-input v-model="editConsultationData.originName"  placeholder="请输入资讯来源名称" clearable></el-input>
         </el-form-item>
-        <!--<el-form-item label="资讯列表图片显示" prop="imgs">
-          <el-input v-model="addConsultationData.imgs"  placeholder="请输入资讯列表图片显示" clearable></el-input>
-        </el-form-item>-->
 
-        <el-form-item label="资讯分类" class="intxt f-fl">
-          <el-select v-model="editConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel sel_short">
+        <el-form-item label="资讯分类" class="intxt inline_third">
+          <el-select v-model="editConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel">
             <el-option v-for="(item,index) in consultation_type" :label="item.name" :value="item.id" :key="index"></el-option>
           </el-select>
         </el-form-item>
 
-        <!--<el-form-item label="资讯视频地址" prop="videoUrl">
-          <el-input v-model="editConsultationData.videoUrl"  placeholder="请输入资讯视频地址" clearable></el-input>
-        </el-form-item>-->
-
-        <el-form-item label="內容分类" class="intxt f-fl">
-          <el-select v-model="editConsultationData.type" placeholder="请选择內容分类" class="dialog_sel sel_short">
+        <el-form-item label="內容分类" class="intxt inline_third">
+          <el-select v-model="editConsultationData.type" placeholder="请选择內容分类" class="dialog_sel">
             <el-option label="文字" value="0"></el-option>
             <el-option label="图文" value="1"></el-option>
             <el-option label="视频" value="2"></el-option>
@@ -234,8 +237,8 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="资讯状态" class="intxt f-fl">
-          <el-select v-model="editConsultationData.status" placeholder="资讯状态" class="dialog_sel sel_short">
+        <el-form-item label="资讯状态" class="intxt inline_third">
+          <el-select v-model="editConsultationData.status" placeholder="资讯状态" class="dialog_sel">
             <el-option label="不推荐" value="0"></el-option>
             <el-option label="推荐" value="1"></el-option>
           </el-select>
@@ -248,12 +251,48 @@
           </el-select>
         </el-form-item>
 
+        <el-form-item label="上传资讯来源图标">
+          <el-upload
+                  :action="requestUrl"
+                  ref='uploadVideo'
+                  :before-remove="beforeRemove"
+                  :on-change="editOriginIcone"
+                  multiple
+                  :limit="upload_arg.limit"
+                  :on-exceed="handleExceed"
+                  :file-list="upload_arg.fileList">
+            <el-button size="small" type="primary">点击上传</el-button>
+          </el-upload>
+        </el-form-item>
+
+        <el-form-item label="资讯来源图标" prop="originIcon">
+          <el-input v-model="editConsultationData.originIcon" clearable></el-input>
+        </el-form-item>
+
+        <el-form-item label="上传视频头图">
+          <el-upload
+                  :action="requestUrl"
+                  ref='uploadVideo'
+                  :before-remove="beforeRemove"
+                  :on-change="editVideoImg"
+                  multiple
+                  :limit="upload_arg.limit"
+                  :on-exceed="handleExceed"
+                  :file-list="upload_arg.fileList">
+            <el-button size="small" type="primary">点击上传</el-button>
+          </el-upload>
+        </el-form-item>
+
+        <el-form-item label="视频头图" prop="videoImg">
+          <el-input v-model="editConsultationData.videoImg" clearable></el-input>
+        </el-form-item>
+
         <el-form-item label="上传资讯视频">
           <el-upload
                   :action="requestUrl"
                   ref='uploadVideo'
                   :before-remove="beforeRemove"
-                  :on-change="editHandleChange"
+                  :on-change="editUideoUrl"
                   multiple
                   :limit="upload_arg.limit"
                   :on-exceed="handleExceed"
@@ -265,10 +304,6 @@
         <el-form-item label="资讯视频" prop="videoUrl">
           <el-input v-model="editConsultationData.videoUrl"  disabled></el-input>
         </el-form-item>
-
-        <!--<el-form-item label="资讯内容" prop="content">
-          <el-input type="textarea" v-model="editConsultationData.content"  placeholder="请输入资讯内容" clearable></el-input>
-        </el-form-item>-->
 
         <el-form-item label="资讯内容" prop="content">
           <!-- 图片上传组件辅助-->
@@ -349,7 +384,7 @@
 
         data() {
             // url验证
-            /*const validateUrl = (rule, value, callback) => {
+            const validateUrl = (rule, value, callback) => {
                 let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/;
 
                 if (!reg.test(value)) {
@@ -357,7 +392,7 @@
                 }
 
                 callback();
-            };*/
+            };
 
             return {
                 /**
@@ -369,7 +404,9 @@
                 // 上传视频参数
                 upload_arg: {
                     limit:1,
-                    videoFile: [],
+                    videoFile: [],  // 视频资源
+                    originIcon: [],  // 资源来源图标
+                    videoImg: [],  // 视频头图
                     fileList: []
                 },
 
@@ -453,14 +490,13 @@
                 // 添加资讯数据
                 addConsultationData: {
                     title: "",  // 资讯标题
-                    // originIcon: "https://",  // 资讯来源图标
-                    // originIcon: "https://img.colabug.com/2019/02/59.jpg",  // 资讯来源图标
+                    originIcon: "http://",  // 资讯来源图标
+                    videoImg: "http://",  // 视频头图
                     content: "",  // 资讯内容
                     originName: "",  // 资讯来源名称
                     imgs: "",  // 资讯列表图片显示
                     ctId: "",  // 资讯分类id
                     videoUrl: "",  // 视频地址
-                    // videoUrl: "https://img.colabug.com/2019/02/190212214052479.jpg",  // 视频地址
                     points: "",  // 咨询阅读所获积分
                     type: "",  // 內容分類(0:文字,1:图文,2:视频,3:投票)
                     viId: ""  // 资讯投票id
@@ -472,6 +508,9 @@
                         { required: true, message: '资讯标题不能为空！', trigger: 'blur' }
                     ],
                     /*originIcon: [
+                        { validator: validateUrl, trigger: 'blur' }
+                    ],
+                    videoImg: [
                         { validator: validateUrl, trigger: 'blur' }
                     ],*/
                     ctId: [
@@ -489,12 +528,13 @@
                 editConsultationData: {
                     id: "",  // 资讯id
                     title: "",  // 资讯标题
-                    // originIcon: "",  // 资讯来源图标
+                    originIcon: "http://",  // 资讯来源图标
+                    videoImg: "http://",  // 视频头图
                     content: "",  // 资讯内容
                     originName: "",  // 资讯来源名称
                     imgs: "",  // 资讯列表图片显示(暂时不填)
                     ctId: "",  // 资讯分类id
-                    // videoUrl: "",  // 视频地址
+                    videoUrl: "",  // 视频地址
                     points: "",  // 咨询阅读所获积分
                     type: "",  // 內容分類(0:文字,1:图文,2:视频,3:投票)
                     viId: "",  // 资讯投票id
@@ -507,6 +547,9 @@
                         { required: true, message: '资讯标题不能为空！', trigger: 'blur' }
                     ],
                     /*originIcon: [
+                        { validator: validateUrl, trigger: 'blur' }
+                    ],
+                    videoImg: [
                         { validator: validateUrl, trigger: 'blur' }
                     ],*/
                     ctId: [
@@ -768,7 +811,7 @@
 
                 this.addConsultationData.videoUrl = "";
 
-                // 获取投票列表接口
+                // 获取资讯列表接口
                 getVote().then(res => {
                     // console.log(res.data.data.list);
 
@@ -782,9 +825,8 @@
                     }
                 }).catch({});
             },
-            //el-upload
-            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
-            addHandleChange(file){
+            // 上传资讯视频
+            addUideoUrl(file){
                 // console.log("文件状态改变时的钩子");
 
                 //上传文件变化时将文件对象push进files数组
@@ -793,12 +835,7 @@
                 // console.log(this.upload_arg.videoFile);
 
                 //上传视频
-                this.addUpload();
-            },
-            // 获取video url
-            addUpload(){
                 let formData = new FormData();
-
                 formData.append('file', this.upload_arg.videoFile[0]);
 
                 let config = {
@@ -810,6 +847,42 @@
                     // console.log(res);
 
                     this.addConsultationData.videoUrl = res.data.data;
+                });
+            },
+            // 上传资讯来源图标
+            addOriginIcone (file) {
+                this.upload_arg.originIcon.push(file.raw);
+
+                let formData = new FormData();
+                formData.append('file', this.upload_arg.originIcon[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    // console.log(res);
+
+                    this.addConsultationData.originIcon = res.data.data;
+                });
+            },
+            // 上传视频头图
+            addVideoImg (file) {
+                this.upload_arg.videoImg.push(file.raw);
+
+                let formData = new FormData();
+                formData.append('file', this.upload_arg.videoImg[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    // console.log(res);
+
+                    this.addConsultationData.videoImg = res.data.data;
                 });
             },
             // 提交添加资讯表单
@@ -891,8 +964,6 @@
 
                 this.upload_arg.fileList = [];  //清空上传img file
 
-                this.upload_arg.videoFile = [];
-
                 this.vote_info = [];
 
                 // 获取投票列表接口
@@ -909,9 +980,8 @@
                     }
                 }).catch({});
             },
-            //el-upload
-            // 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
-            editHandleChange(file){
+            // 上传资讯视频
+            editUideoUrl(file){
                 // console.log("文件状态改变时的钩子");
 
                 //上传文件变化时将文件对象push进files数组
@@ -920,12 +990,7 @@
                 // console.log(this.upload_arg.videoFile);
 
                 //上传视频
-                this.editUpload();
-            },
-            // 获取video url
-            editUpload(){
                 let formData = new FormData();
-
                 formData.append('file', this.upload_arg.videoFile[0]);
 
                 let config = {
@@ -937,6 +1002,42 @@
                     // console.log(res);
 
                     this.editConsultationData.videoUrl = res.data.data;
+                });
+            },
+            // 上传资讯来源图标
+            editOriginIcone (file) {
+                this.upload_arg.originIcon.push(file.raw);
+
+                let formData = new FormData();
+                formData.append('file', this.upload_arg.originIcon[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    // console.log(res);
+
+                    this.editConsultationData.originIcon = res.data.data;
+                });
+            },
+            // 上传视频头图
+            editVideoImg (file) {
+                this.upload_arg.videoImg.push(file.raw);
+
+                let formData = new FormData();
+                formData.append('file', this.upload_arg.videoImg[0]);
+
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                };
+                getImgURI(formData, config).then(res => {
+                    // console.log(res);
+
+                    this.editConsultationData.videoImg = res.data.data;
                 });
             },
             // 提交编辑资讯表单
@@ -1050,56 +1151,21 @@
   /* less */
 
   /* el-dialog */
-
-
   .dialog_wrap  /deep/ .el-dialog {
-    width: 55%;
-    margin: 0 auto;
-    padding-bottom: 22px;
-    height: 85%;
-    overflow: auto;
-    top: 50%;
-    transform: translateY(-50%);
-
-    .el-dialog__header {
-      padding: 10px 10px 22px;
+    .inline_fifth, .inline_third {
+      display: inline-block;
     }
 
-    .el-dialog__body{
-      margin: 0;
-      padding: 0 20px 10px;
+    .inline_fifth {
+      width: 50%;
+    }
 
-      .digbtn{
-        margin: 0;
-      }
+    .inline_third {
+      width: 33.3%;
+    }
 
-      .el-form-item__content{
-        position: initial;
-      }
-
-      .consulte_title{
-        width: 60%;
-      }
-
-      .consulte_points{
-        width: 40%;
-      }
-
-      .dialog_sel {
-        width: 60%;
-      }
-
-      .intxt{
-        width: 33%;
-
-        .sel_short{
-          width: 100%;
-        }
-      }
-
-      .addintxt {
-        width: 50%;
-      }
+    .dialog_sel {
+      width: 100%;
     }
   }
 
