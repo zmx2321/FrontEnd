@@ -74,7 +74,7 @@
                 <el-table-column label="是否添加wxAdd" width="auto" align="center" v-if="userType != 0">
                     <template slot-scope="scope">
                         <div :class="scope.row.wxAdd == 0 ? '' : 'contd' ">
-                            {{ scope.row.wxAdd === 0 ? "不添加" : "添加" }}
+                            {{ scope.row.wxAdd === 0 ? "未添加" : "已添加" }}
                         </div>
                     </template>
                 </el-table-column>
