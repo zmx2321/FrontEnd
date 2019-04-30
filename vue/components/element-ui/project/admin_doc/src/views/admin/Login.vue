@@ -38,7 +38,7 @@
                  *   15777777777
                  */
                 loginUser: {
-                    mobile: "15888888888",
+                    mobile: "15666666666",
                     password: "123456"
                 },
                 rules: {

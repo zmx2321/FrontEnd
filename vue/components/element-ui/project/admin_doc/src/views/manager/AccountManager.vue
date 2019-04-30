@@ -27,10 +27,11 @@
                     </template>
                 </el-table-column>-->
 
-                <!-- 管理员登录，是组长；组长登录，是客服 -->
+                <!-- 管理员登录，看组长；组长登录，看客服 -->
                 <el-table-column prop="price" label="单价（元）" width="auto" align="center" v-if="userType == 0"></el-table-column>
                 <el-table-column prop="balance" label="余额（元）" width="auto" align="center" v-if="userType == 0"></el-table-column>
-                <el-table-column prop="amount" label="流量" width="auto" align="center" v-if="userType == 1"></el-table-column>
+                <el-table-column prop="oneDayAmount" label="流量" width="auto" align="center" v-if="userType == 1"></el-table-column>
+                <el-table-column prop="dispatchedAmount" label="实际进量" width="auto" align="center"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="320">
                     <template slot-scope="scope">
@@ -136,8 +137,8 @@
                 </el-form-item>
 
                 <!-- 客服必填这个字段 -->
-                <el-form-item label="流量" prop="amount" v-if="addUserData.type == 0 || addUserData.type == 2">
-                    <el-input v-model="addUserData.amount"  placeholder="请输入流量" clearable></el-input>
+                <el-form-item label="流量" prop="oneDayAmount" v-if="addUserData.type == 0 || addUserData.type == 2">
+                    <el-input v-model="addUserData.oneDayAmount"  placeholder="请输入流量" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -159,8 +160,8 @@
                 <el-form-item label="价格（元）" prop="price" v-if="this.editUserAttributeData.type == 1">
                     <el-input v-model="editUserAttributeData.price" placeholder="请输入价格" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="流量" prop="amount" v-if="this.editUserAttributeData.type == 2">
-                    <el-input v-model="editUserAttributeData.amount" placeholder="请输入流量" clearable></el-input>
+                <el-form-item label="流量" prop="oneDayAmount" v-if="this.editUserAttributeData.type == 2">
+                    <el-input v-model="editUserAttributeData.oneDayAmount" placeholder="请输入流量" clearable :disabled="this.isWorkTime == true"></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -288,6 +289,8 @@
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
 
+                isWorkTime: false,  // 是否为工作时间
+
                 // 分页参数
                 page_arg: {
                     page_index: 1, // 当前位于哪页
@@ -318,7 +321,7 @@
                     password: "",  // 密码
                     type: "",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
                     price: "",  // 单价，组长必填这个字段
-                    amount: "",  // 流量，客服必填这个字段
+                    oneDayAmount: "",  // 流量，客服必填这个字段
                 },
 
                 // 验证添加用户数据
@@ -336,7 +339,7 @@
                     price: [
                         { validator: validatePrice, trigger: "blur" }
                     ],
-                    amount: [
+                    oneDayAmount: [
                         { validator: validateAmount, trigger: "blur" }
                     ]
                 },
@@ -351,7 +354,7 @@
                     type: "",  // 类型
                     userId: "",  // 用户id
                     price: "",  // 价格
-                    amount: "",  // 流量
+                    oneDayAmount: "",  // 流量
                 },
 
                 // 验证编辑用户价格和流量数据
@@ -359,7 +362,7 @@
                     price: [
                         { required: true, message: '价格不能为空！', trigger: 'blur' }
                     ],
-                    amount: [
+                    oneDayAmount: [
                         { required: true, message: '流量不能为空！', trigger: 'blur' }
                     ]
                 },
@@ -426,6 +429,16 @@
             // 表单重置
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+            // 时间戳
+            formatDate (now) {
+                let hour = now.getHours();
+                let minute = now.getMinutes();
+                let second = now.getSeconds();
+                minute=="0"?minute="00":minute;
+                second=="0"?second="00":second;
+
+                return `${hour}:${minute}:${second}`;
             },
 
             /**
@@ -634,13 +647,33 @@
              * api editUserAttribute
              * 编辑用户价格和流量
              */
+            // 判断当前时间是否在8:30-18:30  isWorkTime
+            judgeTime () {
+                this.isWorkTime == false;
+
+                let now = new Date();
+
+                let hour = now.getHours();
+                let minute = now.getMinutes();
+                let second = now.getSeconds();
+
+                if (hour > 8 && hour <18) {
+                    if (minute > 0 && minute < 30) {
+                        if (second > 0) {
+                            this.isWorkTime == true;
+                        }
+                    }
+                }
+            },
             // 点击编辑用户价格和流量
             editUserAttribute (row) {
+                this.judgeTime();
+
                 // 浅拷贝
                 // this.editUserAttributeData = Object.assign({}, row);
                 this.editUserAttributeData.userId = row.id;  // 用户编号
                 this.editUserAttributeData.price = row.price;  // 价格
-                this.editUserAttributeData.amount = row.amount;  // 流量
+                this.editUserAttributeData.oneDayAmount = row.oneDayAmount;  // 流量
 
                 this.editUserAttributeData.realName = row.realName;  // 姓名
                 this.editUserAttributeData.type = row.type;  // 流量
@@ -654,21 +687,25 @@
                         let params = {
                             userId: this.editUserAttributeData.userId,
                             price: this.editUserAttributeData.price,
-                            amount: this.editUserAttributeData.amount,
+                            oneDayAmount: this.editUserAttributeData.oneDayAmount,
                         }
 
-                        editUserAttribute(qs.stringify(params)).then(res => {
-                            if (res.data.code == 1) {
-                                this.$message.warning(res.data.msg);
-                            }
+                        if (parseInt(params.oneDayAmount) == NaN && (parseInt(params.oneDayAmount) < 61)) {
+                            this.$message.warning("流量必须为数值且大于61！");
+                        } else {
+                            editUserAttribute(qs.stringify(params)).then(res => {
+                                if (res.data.code == 1) {
+                                    this.$message.warning(res.data.msg);
+                                }
 
-                            if (res.data.code == 0) {
-                                this.$message.success("编辑用户价格和流量成功！");
-                                this.getAccountList();
-                            }
+                                if (res.data.code == 0) {
+                                    this.$message.success("编辑用户价格和流量成功！");
+                                    this.getAccountList();
+                                }
 
-                            this.editUserAttributeVisible = false;
-                        }).catch({});
+                                this.editUserAttributeVisible = false;
+                            }).catch({});
+                        }
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
                     }

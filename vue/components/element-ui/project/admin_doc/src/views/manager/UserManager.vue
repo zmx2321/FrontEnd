@@ -59,12 +59,22 @@
                 <el-table-column prop="identity" label="身份证" width="320" align="center"></el-table-column>
                 <el-table-column prop="area" label="地址" width="auto" align="center"></el-table-column>
                 <el-table-column prop="zhimafen" label="芝麻分" width="90" align="center"></el-table-column>
+                <el-table-column prop="kefuMobile" label="处理人员" width="auto" align="center" v-if="userType == 1"></el-table-column>
+                <el-table-column prop="createAt" label="分配时间" width="auto" align="center"></el-table-column>
                 <el-table-column prop="memo" label="备注" width="auto" align="center" v-if="userType != 0"></el-table-column>
 
                 <el-table-column label="是否联系" width="auto" align="center" v-if="userType != 0">
                     <template slot-scope="scope">
                         <div :class="scope.row.contacted == 0 ? '' : 'contd' ">
                             {{ scope.row.contacted === 0 ? "未联系" : "已联系" }}
+                        </div>
+                    </template>
+                </el-table-column>
+
+                <el-table-column label="是否添加wxAdd" width="auto" align="center" v-if="userType != 0">
+                    <template slot-scope="scope">
+                        <div :class="scope.row.wxAdd == 0 ? '' : 'contd' ">
+                            {{ scope.row.wxAdd === 0 ? "不添加" : "添加" }}
                         </div>
                     </template>
                 </el-table-column>
