@@ -105,12 +105,22 @@ export default {
         return {
             items: [
                 {
-                    icon: "fa fa-pie-chart",
-                    name: "数据统计",
-                    path: this.$t('leftMenu.statistics'),
+                    icon: "fa fa-bullseye",
+                    name: "工地驿站",
+                    path: "工地驿站",
                     children: [
-                        { path: "/userStatistics", name: this.$t('leftMenu.userStatistics') },
-                        { path: "/consumptionStatistics", name: this.$t('leftMenu.consumptionStatistics') }
+                        { path: "/site", name: "工地管理" },
+                        { path: "/post", name: "驿站管理" }
+                    ]
+                },
+                {
+                    icon: "fa fa-university",
+                    name: "超市管理",
+                    path: "超市管理",
+                    children: [
+                        { path: "/merchandise_order", name: "商品订单" },
+                        { path: "/commodity", name: "商品管理" },
+                        { path: "/commodity_classification", name: "商品分类" },
                     ]
                 },
                 /*{
@@ -131,6 +141,15 @@ export default {
                         { path: "/richTest2", name: "richTest2" },
                     ]
                 },*/
+                {
+                    icon: "fa fa-pie-chart",
+                    name: this.$t('leftMenu.statistics'),
+                    path: this.$t('leftMenu.statistics'),
+                    children: [
+                        { path: "/userStatistics", name: this.$t('leftMenu.userStatistics') },
+                        { path: "/consumptionStatistics", name: this.$t('leftMenu.consumptionStatistics') }
+                    ]
+                },
             ]
         };
     },

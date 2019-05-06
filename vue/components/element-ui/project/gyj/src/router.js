@@ -25,6 +25,15 @@ import UserStatistics from './views/manager/statistics/UserStatistics'
 import ConsumptionStatistics from './views/manager/statistics/ConsumptionStatistics'
 import Staff from './views/manager/Staff'
 
+// 工地驿站
+import Site from './views/manager/siteStation/Site'
+import Post from './views/manager/siteStation/Post'
+
+// 超市管理
+import MerchandiseOrder from './views/manager/supermarket/MerchandiseOrder'
+import Commodity from './views/manager/supermarket/Commodity'
+import CommodityClassification from './views/manager/supermarket/CommodityClassification'
+
 // Test
 import RichTest from './views/test/RichTest'
 import RichTest2 from './views/test/RichTest2'
@@ -72,7 +81,25 @@ const router = new Router({
                 // 员工管理
                 { path: '/staff', component: Staff, name: 'staff' },
 
+                /**
+                 * 工地驿站
+                 */
+                // 工地管理
+                { path: '/site', component: Site, name: 'site' },
+                // 驿站管理
+                { path: '/post', component: Post, name: 'post' },
 
+                /**
+                 * 超市管理
+                 */
+                // 商品订单
+                { path: '/merchandise_order', component: MerchandiseOrder, name: 'merchandise_order' },
+                // 商品管理
+                { path: '/commodity', component: Commodity, name: 'commodity' },
+                // 商品分类
+                { path: '/commodity_classification', component: CommodityClassification, name: 'commodity_classification' },
+
+                // test
                 { path: '/richTest', component: RichTest, name: 'richTest' },
                 { path: '/richTest2', component: RichTest2, name: 'richTest2' },
             ]
