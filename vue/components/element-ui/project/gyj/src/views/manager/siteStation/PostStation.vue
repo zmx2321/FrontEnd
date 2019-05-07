@@ -11,8 +11,16 @@
 
                     <!-- 地址选择 -->
                     <el-form-item>
-                        <el-select></el-select>
-                        <el-select></el-select>
+                        <el-cascader
+                                placeholder="请选择地址"
+                                expand-trigger="click"
+                                :options="selectCity.cityInfo"
+                                v-model="selectCity.selectedOptions"
+                                @visible-change="getAddress"
+                                change-on-select
+                                filterable
+                                @change="handleChange">
+                        </el-cascader>
                     </el-form-item>
 
                     <!-- 按钮 -->
@@ -43,13 +51,13 @@
                 <!-- 分页 -->
                 <el-col>
                     <el-pagination class="f-fr pagination"
-                                   :current-page.sync='page_arg.page_index'
-                                   :page-sizes="page_arg.page_sizes"
-                                   :page-size="page_arg.page_size"
-                                   :layout="page_arg.layout"
-                                   :total="page_arg.total"
-                                   @current-change='handleCurrentChange'
-                                   @size-change='handleSizeChange'>
+                           :current-page.sync='page_arg.page_index'
+                           :page-sizes="page_arg.page_sizes"
+                           :page-size="page_arg.page_size"
+                           :layout="page_arg.layout"
+                           :total="page_arg.total"
+                           @current-change='handleCurrentChange'
+                           @size-change='handleSizeChange'>
                     </el-pagination>
                 </el-col>
             </el-row>
@@ -102,7 +110,7 @@
     } from '../../../api/api.js';
 
     export default {
-        name: 'site',
+        name: 'post_station',
 
         data() {
             return {
@@ -126,6 +134,14 @@
                  */
                 // 工地列表
                 siteInfo: [],
+
+                /**
+                 * 选择城市
+                 */
+                selectCity: {
+                    cityInfo: [], // 格式转换地址
+                    selectedOptions: [],  // 选择
+                },
 
                 /**
                  * 筛选数据
@@ -197,6 +213,54 @@
             },
 
             /**
+             * 获取地址信息
+             */
+            // 获取地址信息并做格式转换
+            getAddress (val) {
+                if (val == true && this.selectCity.cityInfo.length == 0){
+                    this.selectCity.cityInfo.push({
+                        value: undefined,
+                        label: '全部'
+                    });
+
+                    getAddress().then(res => {
+                        // console.log(res.data.data.list);
+
+                        let datas = res.data.data.list;
+
+                        // console.log(datas);
+
+                        for (let i=0; i<datas.length; i++) {
+                            // console.log(datas[i].provinceAreas);
+
+                            let provinceAreas = new Array();
+
+                            for (let j=0; j<datas[i].provinceAreas.length; j++){
+                                let obj = {};
+                                obj.label = datas[i].provinceAreas[j].netName
+                                obj.value = datas[i].provinceAreas[j].netName
+
+                                provinceAreas.push(obj);
+                            }
+
+                            this.selectCity.cityInfo.push({
+                                label: datas[i].netName,
+                                value: datas[i].netName,
+                                children: provinceAreas,
+                            });
+                        }
+                    }).catch({});
+                }
+            },
+            // 点击选择
+            handleChange(value) {
+                // console.log(value);
+
+                this.filterData.province = value[0];
+                this.filterData.city = value[1];
+            },
+
+            /**
              *  api getSite
              *  获取工地信息
              */
@@ -206,6 +270,9 @@
                 let param = {
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
+                    name: this.filterData.name,  // 名称
+                    province: this.filterData.province,  // 省份
+                    city: this.filterData.city,  // 城市
                 };
 
                 this.listloading = true;

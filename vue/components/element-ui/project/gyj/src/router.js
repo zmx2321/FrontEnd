@@ -26,8 +26,8 @@ import ConsumptionStatistics from './views/manager/statistics/ConsumptionStatist
 import Staff from './views/manager/Staff'
 
 // 工地驿站
-import Site from './views/manager/siteStation/Site'
-import Post from './views/manager/siteStation/Post'
+import ConstructionSite from './views/manager/siteStation/ConstructionSite'
+import PostStation from './views/manager/siteStation/PostStation'
 
 // 超市管理
 import MerchandiseOrder from './views/manager/supermarket/MerchandiseOrder'
@@ -85,9 +85,9 @@ const router = new Router({
                  * 工地驿站
                  */
                 // 工地管理
-                { path: '/site', component: Site, name: 'site' },
+                { path: '/construction_site', component: ConstructionSite, name: 'construction_site' },
                 // 驿站管理
-                { path: '/post', component: Post, name: 'post' },
+                { path: '/post_station', component: PostStation, name: 'post_station' },
 
                 /**
                  * 超市管理

@@ -109,8 +109,8 @@ export default {
                     name: "工地驿站",
                     path: "工地驿站",
                     children: [
-                        { path: "/site", name: "工地管理" },
-                        { path: "/post", name: "驿站管理" }
+                        { path: "/construction_site", name: "工地管理" },
+                        { path: "/post_station", name: "驿站管理" }
                     ]
                 },
                 {

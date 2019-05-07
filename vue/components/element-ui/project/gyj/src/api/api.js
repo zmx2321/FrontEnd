@@ -281,6 +281,53 @@ export const delBanner = params => {
     });
 };
 
+/**
+ * 工地管理
+ */
+// 获取工地列表
+export const getSite = params => {
+    return  axios({
+        url: `${base}/construction/place/search`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 根据id获取工地
+export const getSiteById = params => {
+    return  axios({
+        url: `${base}/construction/place/get`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 添加工地
+export const addSite = params => {
+    return  axios({
+        url: `${base}/construction/place/add`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 修改工地
+export const updateSite = params => {
+    return  axios({
+        url: `${base}/construction/place/modify`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 删除工地
+export const delSite = params => {
+    return  axios({
+        url: `${base}/construction/place/remove`,
+        method: 'post',
+        data: params
+    });
+};
 
 /**
  *  统计
