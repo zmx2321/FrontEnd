@@ -11,8 +11,16 @@
 
                     <!-- 地址选择 -->
                     <el-form-item>
-                        <el-select></el-select>
-                        <el-select></el-select>
+                        <el-cascader
+                                placeholder="请选择地址"
+                                expand-trigger="click"
+                                :options="selectCity.cityInfo"
+                                v-model="selectCity.selectedOptions"
+                                @visible-change="getAddress"
+                                change-on-select
+                                filterable
+                                @change="handleChange">
+                        </el-cascader>
                     </el-form-item>
 
                     <!-- 按钮 -->
@@ -29,12 +37,19 @@
             <el-table :data="siteInfo" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)">
                 <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
-                <el-table-column prop="id" label="工地编号" width="80" align="center"></el-table-column>
+                <!--<el-table-column prop="id" label="工地编号" width="80" align="center"></el-table-column>-->
+
+                <el-table-column prop="name" label="工地名称" width="auto" align="center"></el-table-column>
+                <el-table-column prop="area" label="面积" width="auto" align="center"></el-table-column>
+                <el-table-column prop="province" label="省份" width="auto" align="center"></el-table-column>
+                <el-table-column prop="city" label="城市" width="auto" align="center"></el-table-column>
+                <el-table-column prop="zone" label="区域" width="auto" align="center"></el-table-column>
+                <el-table-column prop="periodTime" label="工期" width="period" align="center"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="100">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" v-on:click="editSiteVisible = true" @click="editSite(scope.row)">编辑</el-button>
-                        <el-button type="text" size="small" @click="delVote(scope.row)">删除</el-button>
+                        <el-button type="text" size="small" @click="delSite(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -102,7 +117,7 @@
     } from '../../../api/api.js';
 
     export default {
-        name: 'site',
+        name: 'construction_site',
 
         data() {
             return {
@@ -128,14 +143,21 @@
                 siteInfo: [],
 
                 /**
+                 * 选择城市
+                 */
+                selectCity: {
+                    cityInfo: [], // 格式转换地址
+                    selectedOptions: [],  // 选择
+                },
+
+                /**
                  * 筛选数据
                  */
                 filterData: {
                     name: "",  // 名称
-                    province: "",  // 名称
-                    name: "",  // 省份
-                    city: "",  // 城市
-                    zone: "",  // 区域
+                    province: undefined,  // 省份
+                    city: undefined,  // 城市
+                    zone: undefined,  // 区域
                 },
 
                 /**
@@ -197,6 +219,54 @@
             },
 
             /**
+             * 获取地址信息
+             */
+            // 获取地址信息并做格式转换
+            getAddress (val) {
+                if (val == true && this.selectCity.cityInfo.length == 0){
+                    this.selectCity.cityInfo.push({
+                        value: undefined,
+                        label: '全部'
+                    });
+
+                    getAddress().then(res => {
+                        // console.log(res.data.data.list);
+
+                        let datas = res.data.data.list;
+
+                        // console.log(datas);
+
+                        for (let i=0; i<datas.length; i++) {
+                            // console.log(datas[i].provinceAreas);
+
+                            let provinceAreas = new Array();
+
+                            for (let j=0; j<datas[i].provinceAreas.length; j++){
+                                let obj = {};
+                                obj.label = datas[i].provinceAreas[j].netName
+                                obj.value = datas[i].provinceAreas[j].netName
+
+                                provinceAreas.push(obj);
+                            }
+
+                            this.selectCity.cityInfo.push({
+                                label: datas[i].netName,
+                                value: datas[i].netName,
+                                children: provinceAreas,
+                            });
+                        }
+                    }).catch({});
+                }
+            },
+            // 点击选择
+            handleChange(value) {
+                // console.log(value);
+
+                this.filterData.province = value[0];
+                this.filterData.city = value[1];
+            },
+
+            /**
              *  api getSite
              *  获取工地信息
              */
@@ -206,20 +276,29 @@
                 let param = {
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
+                    name: this.filterData.name == "" ? undefined : this.filterData.name,  // 名称
+                    province: this.filterData.province,  // 省份
+                    city: this.filterData.city,  // 城市
                 };
 
                 this.listloading = true;
 
                 // 请求接口
                 getSite(param).then(res => {
-                    // console.log(res.data.data.list);
+                    // console.log(res.data.code);
 
-                    if (res.code == 1) {
+                    if (res.data.code == 1) {
                         this.$message.warning(res.msg);
                     }
 
-                    if (res.code == 0) {
-                        this.siteInfo = res.data.data.list;
+                    if (res.data.code == 0) {
+                        let datas = res.data.data.list;
+
+                        for (let i=0; i<datas.length; i++) {
+                            datas[i].periodTime = `${datas[i].period[0]}-${datas[i].period[1]}-${datas[i].period[2]}`;
+                        }
+
+                        this.siteInfo = datas;
 
                         // 返回分页总数
                         this.page_arg.total = res.data.data.total;
@@ -284,7 +363,7 @@
              *  api
              *  删除工地
              */
-            delVote (row) {
+            delSite (row) {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
