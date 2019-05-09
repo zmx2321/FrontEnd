@@ -297,8 +297,8 @@ export const getSite = params => {
 export const getSiteById = params => {
     return  axios({
         url: `${base}/construction/place/get`,
-        method: 'post',
-        data: params
+        method: 'get',
+        params: params
     });
 };
 

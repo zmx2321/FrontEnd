@@ -14,8 +14,8 @@
                         <el-cascader
                             placeholder="请选择地址"
                             expand-trigger="click"
-                            :options="selectCity.filterSiteCityInfo"
-                            @visible-change="filterSiteAddress"
+                            :options="cityInfo"
+                            @visible-change="getAddress"
                             change-on-select
                             filterable
                             @change="filterSiteChange">
@@ -42,7 +42,7 @@
                 <el-table-column prop="area" label="面积" width="auto" align="center"></el-table-column>
                 <el-table-column prop="province" label="省份" width="auto" align="center"></el-table-column>
                 <el-table-column prop="city" label="城市" width="auto" align="center"></el-table-column>
-                <el-table-column prop="zone" label="区域" width="auto" align="center"></el-table-column>
+                <!--<el-table-column prop="zone" label="区域" width="auto" align="center"></el-table-column>-->
                 <el-table-column prop="periodTime" label="工期" width="period" align="center"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="100">
@@ -80,8 +80,8 @@
                     <el-cascader
                             placeholder="请选择地址"
                             expand-trigger="click"
-                            :options="selectCity.cityInfo"
-                            @visible-change="addSiteAddress"
+                            :options="cityInfo"
+                            @visible-change="getAddress"
                             change-on-select
                             filterable
                             @change="addSiteChange">
@@ -119,16 +119,47 @@
         <!-- 编辑工地 -->
         <el-dialog title="编辑工地" @keyup.enter.native="editSiteSubmit('editSiteForm')" :close-on-click-modal="false" :visible.sync="editSiteVisible" :before-close="handleClose">
             <el-form :model="editSiteData" status-icon :rules="editSiteRules" ref="editSiteForm" label-width="160px">
-                <!--<el-form-item label="兑换码月份(默认一月)" prop="month">
-                  <el-input v-model="editConsultationData.month"  placeholder="请输入兑换码月份" clearable></el-input>
+                <el-form-item label="名称" prop="name">
+                    <el-input v-model="editSiteData.name"  placeholder="请输入名称" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="备注" prop="memo">
-                  <el-input v-model="addRedeemCodeData.memo" placeholder="请输入备注" clearable></el-input>
-                </el-form-item>-->
+
+                <el-form-item label="选择地址">
+                    <el-cascader
+                            placeholder="请选择地址"
+                            expand-trigger="click"
+                            :options="cityInfo"
+                            v-model="selectedOptions"
+                            @visible-change="getAddress"
+                            change-on-select
+                            filterable
+                            @change="editSiteChange">
+                    </el-cascader>
+                </el-form-item>
+
+                <el-form-item label="详细地址" prop="address">
+                    <el-input v-model="editSiteData.address"  placeholder="请输入详细地址" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item label="面积" prop="area">
+                    <el-input v-model="editSiteData.area"  placeholder="请输入面积" clearable></el-input>
+                </el-form-item>
+
+                <!-- @change="addSiteDate" -->
+                <el-form-item label="工地周期" prop="period">
+                    <el-date-picker
+                            v-model="editSiteData.period"
+                            align="right"
+                            type="date"
+                            placeholder="选择日期"
+                            value-format=" yyyy-MM-dd"
+                            format="yyyy-MM-dd"
+                            :picker-options="pickerOptionsDate">
+                    </el-date-picker>
+                </el-form-item>
 
                 <el-form-item>
                     <el-button type="primary" @click="editSiteSubmit('editSiteForm')">提交</el-button>
-                    <el-button @click="resetForm('editSiteForm')">重置</el-button>
+                    <el-button @click="resetForm('addSiteForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -164,6 +195,8 @@
                  */
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
+
+                aa: "132",
 
                 // 分页参数
                 page_arg: {
@@ -211,11 +244,8 @@
                  * 选择城市
                  * 格式转换地址
                  */
-                selectCity: {
-                    cityInfo: [], // main
-                    filterSiteCityInfo: [],  // 筛选
-                    addSiteCityInfo: [],  // 添加
-                },
+                cityInfo: [], // main
+                selectedOptions: [],
 
                 /**
                  * 筛选数据
@@ -225,7 +255,6 @@
                     province: undefined,  // 省份
                     city: undefined,  // 城市
                     zone: undefined,  // 区域
-                    selectedOptions: [],  // 选择
                 },
 
                 /**
@@ -255,10 +284,22 @@
                  */
                 // 编辑工地数据
                 editSiteData: {
+                    id: "",  // 工地编号
+                    name: "",  // 名称
+                    province: "",  // 省份
+                    city: "",  // 城市
+                    zone: "",  // 区域
+                    area: "",  // 面积
+                    address: "",  // 详细地址
+                    period: "",  // 工地周期(2019-05-24)
                 },
 
                 // 验证编辑工地数据
                 editSiteRules: {
+                    /*id: [
+                        { required: true, message: 'id不能为空！', trigger: 'blur' }
+                        { validator: validatePhone, trigger: "blur" }
+                    ],*/
                 },
 
                 /**
@@ -284,12 +325,54 @@
             },
             // 时间戳
             formatDate (now) {
+                let dateFom = (str) => {
+                    if (str < 10) {
+                        str=="0" ? str="00" : str=`0${str}`;
+                        // console.log(str);
+                    } else {
+                        str = `${str}`;
+                    }
+
+                    return str;
+                };
+
                 now = new Date();
                 let year = now.getFullYear();
-                var month = now.getMonth() + 1;
-                var date = now.getDate();
+                var month = dateFom(now.getMonth() + 1);
+                var date = dateFom(now.getDate());
 
                 return `${year}-${month}-${date}`;
+            },
+
+            // cityInfo
+            getAddressList () {
+                getAddress().then(res => {
+                    // console.log(res.data.data.list);
+
+                    let datas = res.data.data.list;
+
+                    // console.log(datas);
+
+                    for (let i=0; i<datas.length; i++) {
+                        // console.log(datas[i].provinceAreas);
+
+                        let provinceAreas = new Array();
+
+                        for (let j=0; j<datas[i].provinceAreas.length; j++){
+                            let obj = {};
+                            obj.label = datas[i].provinceAreas[j].netName
+                            obj.value = datas[i].provinceAreas[j].netName
+
+                            provinceAreas.push(obj);
+                        }
+
+                        this.cityInfo.push({
+                            label: datas[i].netName,
+                            value: datas[i].netName,
+                            children: provinceAreas,
+                        });
+                    }
+                }).catch({});
             },
 
             /**
@@ -297,39 +380,13 @@
              */
             // 获取地址信息并做格式转换
             getAddress (val) {
-                if (val == true && this.selectCity.cityInfo.length == 0){
-                    this.selectCity.cityInfo.push({
+                if (val == true && this.cityInfo.length == 0){
+                    this.cityInfo.push({
                         value: undefined,
                         label: '全部'
                     });
 
-                    getAddress().then(res => {
-                        // console.log(res.data.data.list);
-
-                        let datas = res.data.data.list;
-
-                        // console.log(datas);
-
-                        for (let i=0; i<datas.length; i++) {
-                            // console.log(datas[i].provinceAreas);
-
-                            let provinceAreas = new Array();
-
-                            for (let j=0; j<datas[i].provinceAreas.length; j++){
-                                let obj = {};
-                                obj.label = datas[i].provinceAreas[j].netName
-                                obj.value = datas[i].provinceAreas[j].netName
-
-                                provinceAreas.push(obj);
-                            }
-
-                            this.selectCity.cityInfo.push({
-                                label: datas[i].netName,
-                                value: datas[i].netName,
-                                children: provinceAreas,
-                            });
-                        }
-                    }).catch({});
+                    this.getAddressList();
                 }
             },
 
@@ -351,10 +408,10 @@
              *  api getSite
              *  获取工地信息
              */
-            // 获取投票列表
+            // 获取工地列表
             getSiteList () {
                 //接口参数
-                let param = {
+                let params = {
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
                     name: this.filterData.name == "" ? undefined : this.filterData.name,  // 名称
@@ -365,11 +422,11 @@
                 this.listloading = true;
 
                 // 请求接口
-                getSite(param).then(res => {
+                getSite(params).then(res => {
                     // console.log(res.data.code);
 
                     if (res.data.code == 1) {
-                        this.$message.warning(res.msg);
+                        this.$message.warning(res.data.msg);
                     }
 
                     if (res.data.code == 0) {
@@ -405,12 +462,6 @@
                     }
                 });
             },
-            // 获取地址信息
-            filterSiteAddress (val) {
-                this.getAddress(val);
-
-                this.selectCity.filterSiteCityInfo = this.selectCity.cityInfo;
-            },
             // 点击选择城市
             filterSiteChange(value) {
                 // console.log(value);
@@ -423,15 +474,6 @@
              * api addSite
              * 新增工地
              */
-            /*addSiteDate (val) {
-                console.log(val);
-            },*/
-            // 获取地址信息
-            addSiteAddress (val) {
-                this.getAddress(val);
-
-                this.selectCity.addSiteCityInfo = this.selectCity.cityInfo;
-            },
             // 点击选择城市
             addSiteChange(value) {
                 // console.log(value);
@@ -448,6 +490,8 @@
                         this.listloading = true;
 
                         this.addSiteData.period = this.formatDate(this.addSiteData.period);
+
+                        // console.log(this.formatDate(this.addSiteData.period));
 
                         addSite(this.qs.stringify(this.addSiteData)).then(res => {
                             // console.log(res.data.code);
@@ -471,12 +515,50 @@
             },
 
             /**
-             * api
+             * api updateSite
              * 编辑工地
              */
-            // 点击编辑
+            // 点击编辑  getSiteById
             editSite (row) {
-                // console.log(Object.assign({}, row));
+                this.editSiteData.id = Object.assign({}, row).id;
+
+                let params = {
+                    id: Object.assign({}, row).id,
+                }
+
+                this.getAddressList();
+
+                getSiteById(params).then(res => {
+                    // console.log(res.data.code);
+
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
+                    }
+
+                    if (res.data.code == 0) {
+                        let datas = res.data.data;
+
+                        // 显示省市区
+                        datas.city == null ? datas.city = undefined : datas.city = datas.city;
+                        datas.zone == "" ? datas.zone = undefined : datas.zone = datas.zone;
+                        this.selectedOptions = [datas.province, datas.city, datas.zone];
+
+                        this.editSiteData.name = datas.name;  // 名称
+                        this.editSiteData.province = datas.province;  // 省份
+                        this.editSiteData.city = datas.city;  // 城市
+                        this.editSiteData.zone = datas.zone;  // 区域
+                        this.editSiteData.area = datas.area;  // 面积
+                        this.editSiteData.address = datas.address;  // 详细地址
+                        this.editSiteData.period = this.formatDate(`${datas.period[0]}-${datas.period[1]}-${datas.period[2]}`);  // 工地周期(2019-05-24)
+                    }
+                }).catch({});
+            },
+            // 点击选择城市
+            editSiteChange(value) {
+                // console.log(value);  v-model="selectedOptions"
+
+                this.editSiteData.province = value[0];
+                this.editSiteData.city = value[1];
             },
             // 提交编辑工地表单
             editSiteSubmit (formName) {
@@ -484,7 +566,31 @@
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        console.log("submit!!")
+                        this.listloading = true;
+
+                        let params = {
+                            id: this.editSiteData.id,
+                            province: this.editSiteData.province == "" ? undefined : this.editSiteData.province,
+                            city: this.editSiteData.city == "" ? undefined : this.editSiteData.city,
+                            zone: this.editSiteData.zone == "" ? undefined : this.editSiteData.zone,
+                            area: this.editSiteData.area == "" ? undefined : this.editSiteData.area,
+                            address: this.editSiteData.address == "" ? undefined : this.editSiteData.address,
+                            period: this.editSiteData.period == "" ? undefined : this.formatDate(this.editSiteData.period),
+                        }
+
+                        updateSite(this.qs.stringify(params)).then(res => {
+                            if (res.data.code == 1) {
+                                this.$message.warning(res.data.msg);
+                            }
+
+                            if (res.data.code == 0) {
+                                this.$message.success("编辑成功");
+                            }
+
+                            this.editSiteVisible = false;
+                            this.listloading = false;
+                            this.getSiteList();
+                        }).catch({});
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
                     }
@@ -492,14 +598,31 @@
             },
 
             /**
-             *  api
+             *  api delSite
              *  删除工地
              */
             delSite (row) {
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    console.log(Object.assign({}, row));
+                    let params = {
+                        id: Object.assign({}, row).id,
+                    }
+
+                    this.listloading = true;
+
+                    delSite(this.qs.stringify(params)).then(res => {
+                        if (res.data.code == 1) {
+                            this.$message.warning(res.data.msg);
+                        }
+
+                        if (res.data.code == 0) {
+                            this.$message.success("删除成功");
+                        }
+
+                        this.listloading = false;
+                        this.getSiteList();
+                    }).catch({});
                 }).catch(() => {});
             },
         },
