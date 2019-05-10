@@ -113,7 +113,7 @@ export default {
                         { path: "/post_station", name: "驿站管理" }
                     ]
                 },
-                {
+                /*{
                     icon: "fa fa-university",
                     name: "超市管理",
                     path: "超市管理",
@@ -122,7 +122,7 @@ export default {
                         { path: "/commodity", name: "商品管理" },
                         { path: "/commodity_classification", name: "商品分类" },
                     ]
-                },
+                },*/
                 /*{
                     icon: "fa fa-pie-chart",
                     name: "数据统计",

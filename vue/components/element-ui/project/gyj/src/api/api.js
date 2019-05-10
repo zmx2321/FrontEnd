@@ -330,6 +330,45 @@ export const delSite = params => {
 };
 
 /**
+ * 驿站管理
+ */
+// 获取驿站列表
+export const getPostStation = params => {
+    return  axios({
+        url: `${base}/store/search`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 新增驿站
+export const addPostStation = params => {
+    return  axios({
+        url: `${base}/store/add`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 编辑驿站
+export const updatePostStation = params => {
+    return  axios({
+        url: `${base}/store/modify`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 删除驿站
+export const delPostStation = params => {
+    return  axios({
+        url: `${base}/store/remove`,
+        method: 'post',
+        data: params
+    });
+};
+
+/**
  *  统计
  */
 // 消费数据统计

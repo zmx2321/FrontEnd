@@ -180,23 +180,12 @@
         name: 'construction_site',
 
         data() {
-            // 单价，组长必填这个字段(type[1])
-            /*const validateArea = (rule, value, callback) => {
-                let reg = /^(-)|([1-9]\d*)((\.\d+)?)$/;
-
-                if (!reg.test(value)) {
-                    return callback(new Error('价格必须是整数或者小数且前缀不能为0！'));
-                }
-            };*/
-
             return {
                 /**
                  * common
                  */
                 listLoading: false,  // lodding动画
                 dialogVisible: false,  // 关闭提示
-
-                aa: "132",
 
                 // 分页参数
                 page_arg: {
@@ -433,10 +422,16 @@
                         let datas = res.data.data.list;
 
                         for (let i=0; i<datas.length; i++) {
+                            // 工期
                             if (datas[i].period != null) {
                                 datas[i].periodTime = `${datas[i].period[0]}-${datas[i].period[1]}-${datas[i].period[2]}`;
                             } else {
                                 datas[i].periodTime = null;
+                            }
+
+                            // 面积
+                            if (datas[i].area != "") {
+                                datas[i].area = `${datas[i].area}㎡`;
                             }
                         }
 
@@ -492,22 +487,26 @@
                         this.addSiteData.period = this.formatDate(this.addSiteData.period);
 
                         // console.log(this.formatDate(this.addSiteData.period));
+                        
+                        if (isNaN(parseInt(this.addSiteData.area)) == false && parseInt(this.addSiteData.area) > 0) {
+                            addSite(this.qs.stringify(this.addSiteData)).then(res => {
+                                // console.log(res.data.code);
 
-                        addSite(this.qs.stringify(this.addSiteData)).then(res => {
-                            // console.log(res.data.code);
+                                if (res.data.code == 1) {
+                                    this.$message.warning(res.data.msg);
+                                }
 
-                            if (res.data.code == 1) {
-                                this.$message.warning(res.data.msg);
-                            }
+                                if (res.data.code == 0) {
+                                    this.$message.success("添加成功");
+                                }
 
-                            if (res.data.code == 0) {
-                                this.$message.success("添加成功");
-                            }
-
-                            this.addSiteVisible = false;
-                            this.listloading = false;
-                            this.getSiteList();
-                        }).catch({});
+                                this.addSiteVisible = false;
+                                this.listloading = false;
+                                this.getSiteList();
+                            }).catch({});
+                        } else {
+                            this.$message.warning("面积必须为数字且大于0");
+                        }
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
                     }
@@ -570,6 +569,7 @@
 
                         let params = {
                             id: this.editSiteData.id,
+                            name: this.editSiteData.name == "" ? undefined : this.editSiteData.name,
                             province: this.editSiteData.province == "" ? undefined : this.editSiteData.province,
                             city: this.editSiteData.city == "" ? undefined : this.editSiteData.city,
                             zone: this.editSiteData.zone == "" ? undefined : this.editSiteData.zone,
@@ -578,19 +578,23 @@
                             period: this.editSiteData.period == "" ? undefined : this.formatDate(this.editSiteData.period),
                         }
 
-                        updateSite(this.qs.stringify(params)).then(res => {
-                            if (res.data.code == 1) {
-                                this.$message.warning(res.data.msg);
-                            }
+                        if (isNaN(parseInt(this.editSiteData.area)) == false && parseInt(this.editSiteData.area) > 0) {
+                            updateSite(this.qs.stringify(params)).then(res => {
+                                if (res.data.code == 1) {
+                                    this.$message.warning(res.data.msg);
+                                }
 
-                            if (res.data.code == 0) {
-                                this.$message.success("编辑成功");
-                            }
+                                if (res.data.code == 0) {
+                                    this.$message.success("编辑成功");
+                                }
 
-                            this.editSiteVisible = false;
-                            this.listloading = false;
-                            this.getSiteList();
-                        }).catch({});
+                                this.editSiteVisible = false;
+                                this.listloading = false;
+                                this.getSiteList();
+                            }).catch({});
+                        } else {
+                            this.$message.warning("面积必须为数字且大于0");
+                        }
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
                     }
