@@ -4,19 +4,19 @@
 
 import axios from './axios'
 
-const base = "/admin"
+let base = "/admin";
 
 /**
  * common
  */
 // 上传图片
-/*export const getImgURI = params => {
+export const getImgURI = params => {
     return  axios({
-        url: 'upload',
+        url: `${base}/upload/uploadImage`,
         method: 'post',
         data: params
     });
-};*/
+};
 
 /**
  *  登录/注销/修改密码
@@ -30,23 +30,28 @@ export const Login = params => {
     });
 };
 
-// 修改密码
-export const ModifyPassword = params => {
+// 获取用户
+export const getUser = params => {
     return  axios({
-        url: `${base}/user/password/update`,
-        method: 'post',
-        data: params
+        url: `${base}/user/get`,
+        method: 'get',
+        params: params
     });
 };
 
-/**
- * 账号管理
- */
-// 获取账号列表
-export const getUser = params => {
+// 注销
+export const Logout = () => {
     return  axios({
-        url: `${base}/user/list`,
-        method: 'get',
-        params: params
+        url: `${base}/user/logout`,
+        method: 'post'
+    });
+};
+
+// 修改密码
+export const ModifyPassword = params => {
+    return  axios({
+        url: `${base}/user/modify`,
+        method: 'post',
+        data: params
     });
 };

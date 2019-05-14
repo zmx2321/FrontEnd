@@ -12,12 +12,12 @@
                     </router-link>
 
                     <!-- 账号管理 -->
-                    <router-link to="/account_manager">
+                    <!--<router-link to="/account_manager">
                         <el-menu-item index="1">
                             <i class="fa fa-user"></i>
                             <span slot="title">账号管理</span>
                         </el-menu-item>
-                    </router-link>
+                    </router-link>-->
 
                     <!-- 二级菜单 -->
                     <template  v-for="item in items" >
@@ -48,14 +48,25 @@ export default {
     data() {
         return {
             items: [
-                /*{
-                    icon: "fa fa-paragraph",
-                    name: "test",
-                    path: "infoshow",
+                {
+                    icon: "fa fa-bullseye",
+                    name: "超市管理",
+                    path: "超市管理",
                     children: [
-                        { path: "/test", name: "test" },
+                        { path: "/merchandise_order", name: "商品订单" },
+                        { path: "/commodity", name: "商品管理" },
+                        { path: "/commodity_classification", name: "商品分类" },
                     ]
-                }*/
+                },
+                {
+                    icon: "fa fa-university",
+                    name: "食堂管理",
+                    path: "食堂管理",
+                    children: [
+                        { path: "/food_products", name: "餐品管理" },
+                        { path: "/food_products_order", name: "餐品订单" },
+                    ]
+                },
             ]
         };
     },

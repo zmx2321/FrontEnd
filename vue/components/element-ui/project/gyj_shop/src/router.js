@@ -12,14 +12,21 @@ import NotFound from './views/main/NotFound'
 
 // admin
 import Login from './views/admin/Login'
-import ModifyPassword from './views/admin/ModifyPassword'
+
+/**
+ * manager
+ */
+// 超市管理
+import MerchandiseOrder from './views/manager/supermarket/MerchandiseOrder'
+import Commodity from './views/manager/supermarket/Commodity'
+import CommodityClassification from './views/manager/supermarket/CommodityClassification'
+
+// 食堂管理
+import FoodProducts from './views/manager/canteen/FoodProducts'  // 餐品管理
+import FoodProductsOrder from './views/manager/canteen/FoodProductsOrder'  // 餐品订单
 
 // test
 import Test from './views/test/Test'
-
-// manager
-import AccountManager from './views/manager/AccountManager'
-
 
 Vue.use(Router);
 
@@ -46,8 +53,23 @@ const router = new Router({
                 // test
                 { path: '/test', component: Test, name: 'test' },
 
-                // manager
-                { path: '/account_manager', component: AccountManager, name: 'account_manager' },
+                /**
+                * 超市管理
+                */
+                // 商品订单
+                { path: '/merchandise_order', component: MerchandiseOrder, name: 'merchandise_order' },
+                // 商品管理
+                { path: '/commodity', component: Commodity, name: 'commodity' },
+                // 商品分类
+                { path: '/commodity_classification', component: CommodityClassification, name: 'commodity_classification' },
+
+                /**
+                * 食堂管理
+                */
+                // 餐品管理
+                { path: '/food_products', component: FoodProducts, name: 'food_products' },
+                // 餐品订单
+                { path: '/food_products_order', component: FoodProductsOrder, name: 'food_products_order' },
             ]
         },
         // 登陆页面
@@ -55,12 +77,6 @@ const router = new Router({
             path: '/login',
             name: 'login',
             component: Login
-        },
-        // 修改密码
-        {
-            path: '/modify_password',
-            name: 'modify_password',
-            component: ModifyPassword
         },
         // 404
         {
