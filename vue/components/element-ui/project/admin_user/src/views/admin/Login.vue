@@ -66,7 +66,7 @@
                                 // 登陆状态记录
                                 localStorage.setItem('code', this.md5((res.data.code).toString()));
 
-                                // 登陆状态
+                                // 登陆状态（0-管理员，2-渠道）
                                 localStorage.setItem('userType', res.data.data.type);
 
                                 this.$router.push("/index");

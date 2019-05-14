@@ -27,17 +27,10 @@
                     </template>
                 </el-table-column>-->
 
-                <!-- 管理员登录，看组长；组长登录，看客服 -->
-                <el-table-column prop="price" label="单价（元）" width="auto" align="center" v-if="userType == 0"></el-table-column>
-                <el-table-column prop="balance" label="余额（元）" width="auto" align="center" v-if="userType == 0"></el-table-column>
-                <el-table-column prop="oneDayAmount" label="流量" width="auto" align="center" v-if="userType == 1"></el-table-column>
-                <el-table-column prop="dispatchedAmount" label="实际进量" width="auto" align="center"></el-table-column>
-
                 <el-table-column fixed="right" label="操作" width="320">
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="checkUser(scope.row)" v-on:click="checkUserVisible = true">查看</el-button>
-                        <el-button type="text" size="small" @click="editUserAttribute(scope.row)" v-on:click="editUserAttributeVisible = true" v-if="scope.row.type == 1">编辑价格</el-button>
-                        <el-button type="text" size="small" @click="editUserAttribute(scope.row)" v-on:click="editUserAttributeVisible = true" v-if="scope.row.type == 2">编辑流量</el-button>
+                        <el-button type="text" size="small" @click="editUser(scope.row)" v-on:click="editUserVisible = true">修改权值和备注</el-button>
                         <el-button type="text" size="small" @click="editUserAccount(scope.row)" v-on:click="editUserAccountVisible = true">编辑密码</el-button>
                         <el-button type="text" size="small" @click="turnOn(scope.row)" v-show="scope.row.disable == 1">启用账号</el-button>
                         <el-button type="text" size="small" @click="turnOff(scope.row)" v-show="scope.row.disable == 0">禁用账号</el-button>
@@ -105,6 +98,24 @@
                         <dd>{{ currentUser.updateAt }}</dd>
                     </dl>
                 </li>
+                <li>
+                    <dl>
+                        <dd>CPA 权值：</dd>
+                        <dd>{{ currentUser.cpaWeight }}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dd>CPS  权值：</dd>
+                        <dd>{{ currentUser.cpsWeight }}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dd>备注：</dd>
+                        <dd>{{ currentUser.memo }}</dd>
+                    </dl>
+                </li>
             </ul>
         </el-dialog>
 
@@ -121,24 +132,22 @@
                     <el-input v-model="addUserData.password"  placeholder="请输入密码" clearable></el-input>
                 </el-form-item>
 
-                <!-- 0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）-->
+                <!--用户类型：0-管理员，2-渠道（管理员能添加渠道账号，渠道不能添加账号,做成下拉选择的）-->
                 <el-form-item label="用户类型" prop="type">
                     <el-select v-model="addUserData.type">
-                        <!--<el-option label="管理员" value="0"></el-option>-->
-                        <el-option label="组长" value="1" v-if="userType == 0"></el-option>
-                        <el-option label="客服" value="2" v-if="userType == 1"></el-option>
-                        <!--<el-option label="话务" value="3"></el-option>-->
+                        <el-option label="管理员" value="0" v-if="userType == -1"></el-option>
+                        <el-option label="渠道" value="2" v-if="userType == 0"></el-option>
                     </el-select>
                 </el-form-item>
 
-                <!-- 组长必填这个字段 -->
-                <el-form-item label="单价(元)" prop="price" v-if="addUserData.type == 0 || addUserData.type == 1">
-                    <el-input v-model="addUserData.price"  placeholder="请输入单价（元）" clearable></el-input>
+                <el-form-item label="CPA 权值" prop="cpaWeight">
+                    <el-input v-model="addUserData.cpaWeight"  placeholder="请输入CPA 权值" clearable></el-input>
                 </el-form-item>
-
-                <!-- 客服必填这个字段 -->
-                <el-form-item label="流量" prop="oneDayAmount" v-if="addUserData.type == 0 || addUserData.type == 2">
-                    <el-input v-model="addUserData.oneDayAmount"  placeholder="请输入流量" clearable></el-input>
+                <el-form-item label="CPS 权值" prop="cpsWeight">
+                    <el-input v-model="addUserData.cpsWeight"  placeholder="请输入CPS 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="备注" prop="memo">
+                    <el-input type="textarea" v-model="addUserData.memo"  placeholder="请输入备注" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
@@ -148,25 +157,22 @@
             </el-form>
         </el-dialog>
 
-        <!-- 编辑用户价格和流量 -->
-        <el-dialog title="编辑用户价格和流量" @keyup.enter.native="editUserAttributeSubmit('editUserAttributeForm')" :close-on-click-modal="false" :visible.sync="editUserAttributeVisible" :before-close="handleClose">
-            <el-form :model="editUserAttributeData" status-icon :rules="editUserAttributeRules" ref="editUserAttributeForm" label-width="160px">
+        <!-- 修改权值和备注 -->
+        <el-dialog title="修改权值和备注" @keyup.enter.native="editUserSubmit('editUserForm')" :close-on-click-modal="false" :visible.sync="editUserVisible" :before-close="handleClose">
+            <el-form :model="editUserData" status-icon :rules="editUserRules" ref="editUserForm" label-width="160px">
                 <!--<el-form-item label="用户编号" prop="userId">
                     <el-input v-model="editUserAttributeData.userId" disabled></el-input>
                 </el-form-item>-->
-                <el-form-item label="姓名" prop="realName">
-                    <el-input v-model="editUserAttributeData.realName" disabled></el-input>
+                <el-form-item label="CPA 权值" prop="cpaWeight">
+                    <el-input v-model="editUserData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="价格（元）" prop="price" v-if="this.editUserAttributeData.type == 1">
-                    <el-input v-model="editUserAttributeData.price" placeholder="请输入价格" clearable></el-input>
-                </el-form-item>
-                <el-form-item label="流量" prop="oneDayAmount" v-if="this.editUserAttributeData.type == 2">
-                    <el-input v-model="editUserAttributeData.oneDayAmount" placeholder="请输入流量" clearable :disabled="this.isWorkTime == true"></el-input>
+                <el-form-item label="CPS 权值" prop="cpsWeight">
+                    <el-input v-model="editUserData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" @click="editUserAttributeSubmit('editUserAttributeForm')">提交</el-button>
-                    <el-button @click="resetForm('editUserAttributeForm')">重置</el-button>
+                    <el-button type="primary" @click="editUserSubmit('editUserForm')">提交</el-button>
+                    <el-button @click="resetForm('editUserForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -218,7 +224,7 @@
         getAccount,  // 获取账号列表
         addUser,  // 添加账号
         checkUser,  // 查看账号
-        editUserAttribute,  // 编辑价格和流量
+        editUser,  // 修改权值和备注
         editUserAccount,  // 编辑密码
         turnOn,  // 启用账号
         turnOff,  // 禁用账号
@@ -241,45 +247,13 @@
                 callback();
             };
 
-            // 单价，组长必填这个字段(type[1])
-            const validatePrice = (rule, value, callback) => {
-                /*let reg = /^(-)|([1-9]\d*)((\.\d+)?)$/;
-
-                if (!reg.test(value)) {
-                    return callback(new Error('价格必须是整数或者小数且前缀不能为0！'));
-                }*/
-
-                if (this.addUserData.type == 1 && value == "") {
-                    callback(new Error("组长必填单价!"));
-                } else {
-                    callback();
-                }
-            };
-
-            // 价格
-            const validateTotalPrice = (rule, value, callback) => {
-                let reg = /^(-)|([1-9]\d*)((\.\d+)?)$/;
-
-                if (!reg.test(value)) {
-                    return callback(new Error('价格必须是整数或者小数且前缀不能为0！'));
+            // 数字为正整数
+            const validateNum = (rule, value, callback) => {
+                if (!Number.isInteger(parseInt(value))) {
+                    return callback(new Error('必须为整数'));
                 }
 
                 callback();
-            };
-
-            // 流量，客服必填这个字段(type[2])
-            const validateAmount = (rule, value, callback) => {
-                /*let reg = /^\+?[1-9][0-9]*$/;
-
-                if (!reg.test(value)) {
-                    return callback(new Error('流量为非0正整数！'));
-                }*/
-
-                if (this.addUserData.type == 2 && value == "") {
-                    callback(new Error("客服必填流量!"));
-                } else {
-                    callback();
-                }
             };
 
             return {
@@ -316,12 +290,13 @@
                  */
                 // 添加用户数据
                 addUserData: {
-                    realName: "",  // 姓名
-                    mobile: "",  // 手机
-                    password: "",  // 密码
-                    type: "",  // 用户类型：0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）
-                    price: "",  // 单价，组长必填这个字段
-                    oneDayAmount: "",  // 流量，客服必填这个字段
+                    realName: "fff",  // 姓名
+                    mobile: "451564165",  // 手机
+                    password: "123",  // 密码
+                    type: "",  // 0-管理员，2-渠道
+                    cpaWeight: 50,  // CPA 权值，整数类型，默认50
+                    cpsWeight: 50,  // CPS 权值，整数类型，默认50
+                    memo: "",  // 备注
                 },
 
                 // 验证添加用户数据
@@ -336,34 +311,36 @@
                     password: [
                         { required: true, message: '密码不能为空！', trigger: 'blur' }
                     ],
-                    price: [
-                        { validator: validatePrice, trigger: "blur" }
+                    cpaWeight: [
+                        { required: true, message: 'CPA不能为空！', trigger: 'blur' },
+                        { validator: validateNum, trigger: "blur" }
                     ],
-                    oneDayAmount: [
-                        { validator: validateAmount, trigger: "blur" }
+                    cpsWeight: [
+                        { required: true, message: 'CPS不能为空！', trigger: 'blur' },
+                        { validator: validateNum, trigger: "blur" }
                     ]
                 },
 
                 /**
-                 * api editUserAttribute
-                 * 编辑用户价格和流量
+                 * api editUser
+                 * 修改权值和备注
                  */
-                // 编辑用户价格和流量数据
-                editUserAttributeData: {
-                    realName: "",  // 姓名
-                    type: "",  // 类型
+                // 修改权值和备注数据
+                editUserData: {
                     userId: "",  // 用户id
-                    price: "",  // 价格
-                    oneDayAmount: "",  // 流量
+                    cpaWeight: "50",  // CPA 权值，整数类型，默认50
+                    cpsWeight: "50",  // CPS 权值，整数类型，默认50
                 },
 
-                // 验证编辑用户价格和流量数据
-                editUserAttributeRules: {
-                    price: [
-                        { required: true, message: '价格不能为空！', trigger: 'blur' }
+                // 验证修改权值和备注数据
+                editUserRules: {
+                    cpaWeight: [
+                        { required: true, message: 'CPA 权值不能为空！', trigger: 'blur' },
+                        { validator: validateNum, trigger: "blur" }
                     ],
-                    oneDayAmount: [
-                        { required: true, message: '流量不能为空！', trigger: 'blur' }
+                    cpsWeight: [
+                        { required: true, message: 'CPS 权值不能为空！', trigger: 'blur' },
+                        { validator: validateNum, trigger: "blur" }
                     ]
                 },
 
@@ -402,7 +379,7 @@
                     ],*/
                     totalPrice: [
                         { required: true, message: '充值金额不能为空！', trigger: 'blur' },
-                        { validator: validateTotalPrice, trigger: "blur" }
+                        // { validator: validateTotalPrice, trigger: "blur" }
                     ],
                 },
 
@@ -411,7 +388,7 @@
                  */
                 addUserVisible: false,  // 添加用户界面
                 checkUserVisible: false,  // 查看用户界面
-                editUserAttributeVisible: false,  // 编辑用户价格和流量界面
+                editUserVisible: false,  // 修改权值和备注界面
                 editUserAccountVisible: false,  // 编辑用户密码界面
                 addIncomeVisible: false,  // 添加充值界面
             }
@@ -520,13 +497,10 @@
                         return "管理员";
                         break;
                     case 1:
-                        return "组长";
+                        return "";
                         break;
                     case 2:
-                        return "客服";
-                        break;
-                    case 3:
-                        return "话务";
+                        return "渠道";
                         break;
                 }
             },
@@ -537,7 +511,7 @@
              */
             // 点击添加用户
             addUser () {
-                this.addUserData.type = (parseInt(this.userType)+1).toString();
+                this.addUserData.type = "2";
             },
             // 提交添加用户表单
             addUserSubmit (formName) {
@@ -644,68 +618,39 @@
             },
 
             /**
-             * api editUserAttribute
-             * 编辑用户价格和流量
+             * api editUser
+             * 修改权值和备注
              */
-            // 判断当前时间是否在8:30-18:30  isWorkTime
-            judgeTime () {
-                this.isWorkTime == false;
+            // 点击修改权值和备注
+            editUser (row) {
+                this.editUserData.userId = row.id;
 
-                let now = new Date();
-
-                let hour = now.getHours();
-                let minute = now.getMinutes();
-                let second = now.getSeconds();
-
-                if (hour > 8 && hour <18) {
-                    if (minute > 0 && minute < 30) {
-                        if (second > 0) {
-                            this.isWorkTime == true;
-                        }
-                    }
-                }
+                // console.log(this.editUserData.userId);
             },
-            // 点击编辑用户价格和流量
-            editUserAttribute (row) {
-                this.judgeTime();
-
-                // 浅拷贝
-                // this.editUserAttributeData = Object.assign({}, row);
-                this.editUserAttributeData.userId = row.id;  // 用户编号
-                this.editUserAttributeData.price = row.price;  // 价格
-                this.editUserAttributeData.oneDayAmount = row.oneDayAmount;  // 流量
-
-                this.editUserAttributeData.realName = row.realName;  // 姓名
-                this.editUserAttributeData.type = row.type;  // 流量
-            },
-            // 提交编辑用户价格和流量表单
-            editUserAttributeSubmit (formName) {
+            // 提交修改权值和备注表单
+            editUserSubmit (formName) {
                 // 验证表单
                 this.$refs[formName].validate((valid) => {
                     //如果验证成功，请求接口数据
                     if (valid) {
                         let params = {
-                            userId: this.editUserAttributeData.userId,
-                            price: this.editUserAttributeData.price,
-                            oneDayAmount: this.editUserAttributeData.oneDayAmount,
+                            userId: this.editUserData.userId,
+                            cpaWeight: this.editUserData.cpaWeight,
+                            cpsWeight: this.editUserData.cpsWeight,
                         }
 
-                        if (parseInt(params.oneDayAmount) == NaN && (parseInt(params.oneDayAmount) < 61)) {
-                            this.$message.warning("流量必须为数值且大于61！");
-                        } else {
-                            editUserAttribute(qs.stringify(params)).then(res => {
-                                if (res.data.code == 1) {
-                                    this.$message.warning(res.data.msg);
-                                }
+                        editUser(qs.stringify(params)).then(res => {
+                            if (res.data.code == 1) {
+                                this.$message.warning(res.data.msg);
+                            }
 
-                                if (res.data.code == 0) {
-                                    this.$message.success("编辑用户价格和流量成功！");
-                                    this.getAccountList();
-                                }
+                            if (res.data.code == 0) {
+                                this.$message.success("修改权值和备注成功！");
+                                this.getAccountList();
+                            }
 
-                                this.editUserAttributeVisible = false;
-                            }).catch({});
-                        }
+                            this.editUserVisible = false;
+                        }).catch({});
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
                     }
@@ -816,7 +761,7 @@
 
                         if (res.data.code == 0) {
                             this.$message.success("账号删除成功！");
-                            this.getUserList();
+                            this.getAccountList();
                         }
                     }).catch({});
                 }).catch(() => {});

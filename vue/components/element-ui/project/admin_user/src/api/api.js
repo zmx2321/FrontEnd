@@ -84,8 +84,8 @@ export const checkUser = params => {
     });
 };
 
-// 编辑价格和流量
-export const editUserAttribute = params => {
+// 修改权值和备注
+export const editUser = params => {
     return  axios({
         url: `${base}/user/modify`,
         method: 'post',
@@ -123,7 +123,7 @@ export const turnOff = params => {
 // 删除账号
 export const delUser = params => {
     return  axios({
-        url: `${base}/user/delete`,
+        url: `${base}/user/remove`,
         method: 'post',
         data: params
     });
