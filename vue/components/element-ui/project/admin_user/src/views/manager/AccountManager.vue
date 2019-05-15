@@ -31,10 +31,9 @@
                     <template slot-scope="scope">
                         <el-button type="text" size="small" @click="checkUser(scope.row)" v-on:click="checkUserVisible = true">查看</el-button>
                         <el-button type="text" size="small" @click="editUser(scope.row)" v-on:click="editUserVisible = true">修改权值和备注</el-button>
-                        <el-button type="text" size="small" @click="editUserAccount(scope.row)" v-on:click="editUserAccountVisible = true">编辑密码</el-button>
+                        <!--<el-button type="text" size="small" @click="editUserAccount(scope.row)" v-on:click="editUserAccountVisible = true">编辑密码</el-button>-->
                         <el-button type="text" size="small" @click="turnOn(scope.row)" v-show="scope.row.disable == 1">启用账号</el-button>
                         <el-button type="text" size="small" @click="turnOff(scope.row)" v-show="scope.row.disable == 0">禁用账号</el-button>
-                        <el-button type="text" size="small" @click="addIncome(scope.row)" v-on:click="addIncomeVisible = true" v-if="scope.row.type == 1">充值</el-button>
                         <el-button type="text" size="small" @click="delUser(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
@@ -196,26 +195,6 @@
                 </el-form-item>
             </el-form>
         </el-dialog>
-
-        <!-- 充值 -->
-        <el-dialog title="充值" @keyup.enter.native="addIncomeSubmit('addIncomeForm')" :close-on-click-modal="false" :visible.sync="addIncomeVisible" :before-close="handleClose">
-            <el-form :model="addIncomeData" status-icon :rules="addIncomeRules" ref="addIncomeForm" label-width="160px">
-                <!--<el-form-item label="管理员ID(组长id)" prop="adminId">
-                    <el-input v-model="addIncomeData.adminId" disabled></el-input>
-                </el-form-item>-->
-                <el-form-item label="管理员姓名" prop="realName">
-                    <el-input v-model="addIncomeData.realName" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="充值金额（元）" prop="totalPrice">
-                    <el-input v-model="addIncomeData.totalPrice" placeholder="请输入充值金额（元）" clearable></el-input>
-                </el-form-item>
-
-                <el-form-item>
-                    <el-button type="primary" @click="addIncomeSubmit('addIncomeForm')">提交</el-button>
-                    <el-button @click="resetForm('addIncomeForm')">重置</el-button>
-                </el-form-item>
-            </el-form>
-        </el-dialog>
     </section>
 </template>
 
@@ -228,7 +207,6 @@
         editUserAccount,  // 编辑密码
         turnOn,  // 启用账号
         turnOff,  // 禁用账号
-        addIncome,  // 充值
         delUser,  // 删除账号
     } from '../../api/api.js';
 
@@ -363,34 +341,12 @@
                 },
 
                 /**
-                 * 充值
-                 */
-                // 充值数据
-                addIncomeData: {
-                    realName: "",  // 姓名
-                    adminId: "",  // 管理员ID(准确的说是组长的ID)
-                    totalPrice: "",  // 充值金额
-                },
-
-                // 验证充值数据
-                addIncomeRules: {
-                    /*adminId: [
-                        { required: true, message: '管理员ID不能为空！', trigger: 'blur' }
-                    ],*/
-                    totalPrice: [
-                        { required: true, message: '充值金额不能为空！', trigger: 'blur' },
-                        // { validator: validateTotalPrice, trigger: "blur" }
-                    ],
-                },
-
-                /**
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
                 addUserVisible: false,  // 添加用户界面
                 checkUserVisible: false,  // 查看用户界面
                 editUserVisible: false,  // 修改权值和备注界面
                 editUserAccountVisible: false,  // 编辑用户密码界面
-                addIncomeVisible: false,  // 添加充值界面
             }
         },
         methods: {
@@ -691,53 +647,6 @@
                         }).catch({});
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
-                    }
-                });
-            },
-
-            /**
-             * api addIncome
-             * 充值userType
-             */
-            // 点击充值
-            addIncome (row) {
-                // console.log(row);
-
-                this.addIncomeData.adminId = row.id;
-                this.addIncomeData.realName = row.realName;
-
-                // console.log(this.addIncomeData);
-
-                this.addIncomeData.totalPrice = "";
-            },
-            // 提交充值表单
-            addIncomeSubmit (formName) {
-                // 验证表单
-                this.$refs[formName].validate((valid) => {
-                    //如果验证成功，请求接口数据
-                    if (valid) {
-                        let params = {
-                            adminId : this.addIncomeData.adminId,
-                            totalPrice : this.addIncomeData.totalPrice,
-                        }
-
-                        // console.log(params);
-
-                        // 添加
-                        addIncome(qs.stringify(params)).then(res => {
-                            if (res.data.code == 1) {
-                                this.$message.warning(res.data.msg);
-                            }
-
-                            if (res.data.code == 0) {
-                                this.$message.success("充值成功！");
-                                this.getAccountList();
-                            }
-
-                            this.addIncomeVisible = false;
-                        }).catch({});
-                    } else {  //验证失败跳出
-                        this.$message.error("表单填写错误");
                     }
                 });
             },

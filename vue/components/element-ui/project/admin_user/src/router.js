@@ -19,8 +19,10 @@ import Test from './views/test/Test'
 
 // manager
 import AccountManager from './views/manager/AccountManager'  // 账号管理
+import LinkManager from './views/manager/LinkManager'  // 充值管理
+
 import UserManager from './views/manager/UserManager'  // 用户管理
-import IncomeManager from './views/manager/IncomeManager'  // 充值管理
+
 
 
 Vue.use(Router);
@@ -50,8 +52,8 @@ const router = new Router({
 
                 // manager
                 { path: '/account_manager', component: AccountManager, name: 'account_manager' },
+                { path: '/link_manager', component: LinkManager, name: 'link_manager' },
                 { path: '/user_manager', component: UserManager, name: 'user_manager' },
-                { path: '/income_manager', component: IncomeManager, name: 'income_manager' },
             ]
         },
         // 登陆页面

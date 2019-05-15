@@ -20,19 +20,19 @@
                         </el-menu-item>
                     </router-link>
 
+                     <!-- 充值管理 -->
+                     <router-link to="/link_manager">
+                         <el-menu-item index="3">
+                             <i class="fa fa-cog"></i>
+                             <span slot="title">链接管理</span>
+                         </el-menu-item>
+                     </router-link>
+
                     <!-- 用户管理 -->
                     <router-link to="/user_manager">
                         <el-menu-item index="2">
                             <i class="fa fa-user"></i>
                             <span slot="title">用户管理</span>
-                        </el-menu-item>
-                    </router-link>
-
-                    <!-- 充值管理 -->
-                    <router-link to="/income_manager">
-                        <el-menu-item index="3">
-                            <i class="fa fa-cog"></i>
-                            <span slot="title">充值管理</span>
                         </el-menu-item>
                     </router-link>
 

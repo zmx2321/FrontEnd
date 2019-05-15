@@ -151,21 +151,48 @@ export const tagUser = params => {
 };
 
 /**
- * 充值管理
+ * 链接管理
  */
-// 获取充值列表
-export const getIncome = params => {
+// 查看用户列表
+export const getLinkList = params => {
     return  axios({
-        url: `/income/list`,
+        url: `/link/list`,
         method: 'get',
         params: params
     });
 };
 
-// 充值
-export const addIncome = params => {
+// 添加新链接(自动生成若干子链接)
+export const addLink = params => {
     return  axios({
-        url: `/income/add`,
+        url: `/link/add`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 补添若干条子链接
+export const addOneLink = params => {
+    return  axios({
+        url: `/link/add/one`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 编辑子链接的属性
+export const updateLink = params => {
+    return  axios({
+        url: `/link/modify`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 删除链接
+export const delLink = params => {
+    return  axios({
+        url: `/link/remove`,
         method: 'post',
         data: params
     });
