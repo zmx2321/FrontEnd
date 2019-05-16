@@ -19,6 +19,9 @@
                 <!--<el-table-column prop="parentMobile" label="上级手机号" width="auto" align="center"></el-table-column>-->
                 <el-table-column prop="type" label="类型" width="auto" align="center" :formatter="formatType"></el-table-column>
 
+                <el-table-column prop="cpaWeight" label="CPA 权值" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS 权值" width="auto" align="center"></el-table-column>
+
                 <el-table-column prop="crtattim" label="创建日期" width="auto" align="center"></el-table-column>
 
                 <!--<el-table-column label="是否被禁用" width="auto" align="center">
@@ -29,7 +32,6 @@
 
                 <el-table-column fixed="right" label="操作" width="320">
                     <template slot-scope="scope">
-                        <el-button type="text" size="small" @click="checkUser(scope.row)" v-on:click="checkUserVisible = true">查看</el-button>
                         <el-button type="text" size="small" @click="editUser(scope.row)" v-on:click="editUserVisible = true">修改权值和备注</el-button>
                         <!--<el-button type="text" size="small" @click="editUserAccount(scope.row)" v-on:click="editUserAccountVisible = true">编辑密码</el-button>-->
                         <el-button type="text" size="small" @click="turnOn(scope.row)" v-show="scope.row.disable == 1">启用账号</el-button>
@@ -527,7 +529,6 @@
                     case 1:
                         this.currentUser.typeName = "组长";
                         break;
-
                 }
             },
 

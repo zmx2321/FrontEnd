@@ -1,18 +1,5 @@
 <template>
     <section class="main_cont">
-        <!-- 按钮 -->
-        <!--<el-row class="toolbar bdr_radiu f-cb">
-            <el-form :inline="true">
-                <el-form-item label="手机号码" prop="mobile">
-                    <el-input v-model="mobile" clearable></el-input>
-                </el-form-item>
-
-                <el-form-item>
-                    <el-button type="primary" @click="getOneLink">查询</el-button>
-                    &lt;!&ndash;<el-button type="primary" @click="addLinkVisible = true">链接</el-button>&ndash;&gt;
-                </el-form-item>
-            </el-form>
-        </el-row>-->
         <!-- 筛选 -->
         <el-row class="toolbar bdr_radiu f-cb">
             <el-form :model="filterData" status-icon ref="filterForm" :inline="true">
@@ -38,17 +25,17 @@
                         </el-date-picker>
                     </el-form-item>
 
-                    <!--parentId: "",  // 主链接ID，传null查看所有的主链接，指定主链接Id查看其下挂的所以子链接-->
-                    <!--<el-form-item label="资讯分类" class="intxt inline_third">
-                        <el-select v-model="editConsultationData.ctId" placeholder="请选择资讯分类" class="dialog_sel">
-                            <el-option v-for="(item,index) in consultation_type" :label="item.name" :value="item.id" :key="index"></el-option>
+                    <!--主链接ID，传null查看所有的主链接，指定主链接Id查看其下挂的所以子链接-->
+                    <el-form-item label="主链接" class="intxt inline_third">
+                        <el-select v-model="filterData.parentId" placeholder="请选择主链接" class="dialog_sel">
+                            <el-option v-for="(item,index) in link_info" :label="item.name" :value="item.id" :key="index"></el-option>
                         </el-select>
-                    </el-form-item>-->
+                    </el-form-item>
 
                     <!-- 按钮 -->
                     <el-form-item>
                         <el-button type="primary" @click="filterFormSubmit('filterForm')">查询</el-button>
-                        <el-button type="primary" @click="addSiteVisible = true">新增工地</el-button>
+                        <el-button type="primary" @click="addLinkVisible = true">新增链接</el-button>
                     </el-form-item>
                 </el-col>
             </el-form>
@@ -80,6 +67,39 @@
                 </el-col>
             </el-row>
         </el-row>
+
+        <!--新增链接-->
+        addLinkData: {
+        url: "",
+        num: "",
+        cpaWeight: "",
+        cpsWeight: "",
+        memo: "",
+        },
+        <el-dialog title="新增链接" :close-on-click-modal="false" :visible.sync="addLinkVisible" :before-close="handleClose">
+            <el-form :model="addLinkData" status-icon :rules="addLinkRules" ref="addLinkForm" label-width="160px">
+                <el-form-item label="url" prop="url">
+                    <el-input v-model="addLinkData.url" placeholder="请输入url" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="数量" prop="num">
+                    <el-input v-model="addLinkData.num" placeholder="请输入数量" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="CPA 权值" prop="cpaWeight">
+                    <el-input v-model="addLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="CPS 权值" prop="cpsWeight">
+                    <el-input v-model="addLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="备注" prop="memo">
+                    <el-input type="textarea" v-model="addLinkData.memo" placeholder="请输入备注" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="addLinkSubmit('addLinkForm')">提交</el-button>
+                    <el-button @click="resetForm('addLinkForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </section>
 </template>
 
@@ -160,6 +180,31 @@
                 link_info: [],  // 存放用户信息列表数据
 
                 mobile: "",  // 管理员手机号码(准确的说是组长的手机号码)
+
+                /**
+                 * 添加链接
+                 */
+                addLinkData: {
+                    url: "",  // url
+                    num: "",  // 数量
+                    cpaWeight: "",
+                    cpsWeight: "",
+                    memo: "",
+                },
+
+                addLinkRules: {
+                    url: [
+                        { required: true, message: 'url不能为空！', trigger: 'blur' }
+                    ],
+                    num: [
+                        { required: true, message: '数量不能为空！', trigger: 'blur' }
+                    ],
+                },
+
+                /**
+                 *  弹出表单界面(true 显示, false 隐藏)
+                 */
+                addLinkVisible: false,  // 新增链接
             }
         },
         methods: {
@@ -228,8 +273,6 @@
                     parentId: this.filterData.parentId == "" ? undefined : this.filterData.parentId,  // 主链接ID，传null查看所有的主链接，指定主链接Id查看其下挂的所以子链接
                 };
 
-                console.log(params);
-
                 // loading
                 this.listLoading = true;
 
@@ -243,10 +286,6 @@
 
                     if (res.data.code == 0) {
                         let datas = res.data.data.set;
-
-                        for (let i=0; i<datas.length; i++) {
-                            datas[i].crtattim = datas[i].createAt.slice(2, -3)
-                        }
 
                         this.link_info = datas;
 
@@ -266,6 +305,23 @@
                         this.getLinkList();
                     } else {  //验证失败跳出
                         this.message.error("表单填写错误");
+                    }
+                });
+            },
+
+            /**
+             *  api addLink
+             *  获取用户账号信息
+             */
+            // 提交添加表单
+            addLinkSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        console.log("aa")
+                    } else {  //验证失败跳出
+                        this.$message.error("表单填写错误");
                     }
                 });
             },
