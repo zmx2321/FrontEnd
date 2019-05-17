@@ -85,7 +85,7 @@
                 <el-form-item>
                     <el-button type="primary" @click="editFlowSubmit('editFlowForm')">提交</el-button>
                     <el-button @click="resetForm('editFlowForm')">重置</el-button>
-                </el-form-item>-->
+                </el-form-item>
             </el-form>
         </el-dialog>
     </section>
@@ -264,7 +264,7 @@
 
                 // 请求接口
                 getFlow(params).then(res => {
-                    console.log(res.data.data.set);
+                    // console.log(res.data.data.set);
 
                     if (res.data.code == 1) {
                         this.$message.warning(res.data.msg);
@@ -334,6 +334,8 @@
 
                                 this.listLoading = false;
                                 this.editFlowVisible = false;
+
+                                this.getFlowList();
                             }).catch({});
                         }
                     } else {  //验证失败跳出
