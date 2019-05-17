@@ -9,7 +9,7 @@
                     </el-form-item>
 
                     <!--日期，格式行如：2019-04-12-->
-                    <el-form-item label="日期">
+                    <!--<el-form-item label="日期">
                         <el-date-picker
                                 v-model="filterData.timeArray"
                                 type="daterange"
@@ -22,7 +22,7 @@
                                 @change="getSTime"
                                 :picker-options="pickerOptions">
                         </el-date-picker>
-                    </el-form-item>
+                    </el-form-item>-->
 
                     <!-- 按钮 -->
                     <el-form-item>
@@ -220,8 +220,8 @@
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
                     keyword: this.filterData.keyword == "" ? undefined : this.filterData.keyword,  // keyword（查询关键词，模糊匹配 url 和 memo字段）
-                    dateBegin: this.filterData.dateBegin == "" ? undefined : this.filterData.dateBegin,  // 日期，格式行如：2019-04-12
-                    dateEnd: this.filterData.dateEnd == "" ? undefined : this.filterData.dateEnd,  // 日期，格式行如：2019-04-12
+                    /*dateBegin: this.filterData.dateBegin == "" ? undefined : this.filterData.dateBegin,  // 日期，格式行如：2019-04-12
+                    dateEnd: this.filterData.dateEnd == "" ? undefined : this.filterData.dateEnd,  // 日期，格式行如：2019-04-12*/
                 };
 
                 // loading

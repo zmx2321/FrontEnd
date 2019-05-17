@@ -222,7 +222,7 @@ export const editFlow = params => {
 // 实时统计
 export const getReal = params => {
     return  axios({
-        url: `/realtime/list`,
+        url: `/flow/realtime/list`,
         method: 'get',
         params: params
     });

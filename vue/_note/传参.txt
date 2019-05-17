@@ -16,3 +16,6 @@
                     }
                 });*/
 			}
+
+
+this.$route.params.guiNo

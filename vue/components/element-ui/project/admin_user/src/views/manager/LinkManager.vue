@@ -40,7 +40,7 @@
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
 
-                <el-table-column prop="url" label="url" width="auto" align="center"></el-table-column>
+                <el-table-column prop="url" label="url" width="auto" align="left"></el-table-column>
                 <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="链接金额" width="auto" align="center"></el-table-column>
@@ -394,7 +394,7 @@
              */
             // 点击添加子链接
             addOneLink (row) {
-
+                this.addOneLinkData.linkId = row.id;
             },
             // 提交添加表单
             addOneLinkSubmit (formName) {
@@ -404,7 +404,7 @@
 
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        /*addOneLink(qs.stringify(this.addLinkData)).then(res => {
+                        addOneLink(qs.stringify(this.addLinkData)).then(res => {
                             console.log(res);
 
                             if (res.data.code == 1) {
@@ -417,7 +417,9 @@
 
                             this.listLoading = false;
                             this.addLinkVisible = false;
-                        }).catch({});*/
+
+                            this.getLinkList();
+                        }).catch({});
                     } else {  //验证失败跳出
                         this.$message.error("表单填写错误");
                     }
