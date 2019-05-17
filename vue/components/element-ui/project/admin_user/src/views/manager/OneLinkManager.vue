@@ -140,7 +140,7 @@
     } from '../../api/api.js';
 
     export default {
-        name: 'account_manager',
+        name: 'onelink_manager',
 
         data() {
             // 手机号

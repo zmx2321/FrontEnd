@@ -20,21 +20,29 @@
                         </el-menu-item>
                     </router-link>
 
-                     <!-- 充值管理 -->
+                     <!-- 链接管理 -->
                      <router-link to="/link_manager">
-                         <el-menu-item index="3">
+                         <el-menu-item index="2">
                              <i class="fa fa-cog"></i>
                              <span slot="title">链接管理</span>
                          </el-menu-item>
                      </router-link>
 
+                     <!-- 统计管理 -->
+                     <!--<router-link to="/log_manager">
+                         <el-menu-item index="4">
+                             <i class="fa fa-cog"></i>
+                             <span slot="title">统计管理</span>
+                         </el-menu-item>
+                     </router-link>-->
+
                     <!-- 用户管理 -->
-                    <router-link to="/user_manager">
+                    <!--<router-link to="/user_manager">
                         <el-menu-item index="2">
                             <i class="fa fa-user"></i>
                             <span slot="title">用户管理</span>
                         </el-menu-item>
-                    </router-link>
+                    </router-link>-->
 
                     <!-- 二级菜单 -->
                     <template  v-for="item in items" >
@@ -53,52 +61,6 @@
                         </el-submenu>
                     </template>
                  </el-menu>
-
-                 <!-- 组长1 -->
-                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType==1">
-                     <!-- 首页 -->
-                     <router-link to="/home">
-                         <el-menu-item index="0">
-                             <i class="fa fa-server"></i>
-                             <span slot="title">首页</span>
-                         </el-menu-item>
-                     </router-link>
-
-                     <!-- 账号管理 -->
-                     <router-link to="/account_manager">
-                         <el-menu-item index="1">
-                             <i class="fa fa-address-card"></i>
-                             <span slot="title">账号管理</span>
-                         </el-menu-item>
-                     </router-link>
-
-                     <!-- 用户管理 -->
-                     <router-link to="/user_manager">
-                         <el-menu-item index="2">
-                             <i class="fa fa-user"></i>
-                             <span slot="title">用户管理</span>
-                         </el-menu-item>
-                     </router-link>
-                 </el-menu>
-
-                 <!-- 客服2 -->
-                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType == 2">
-                     <!-- 首页 -->
-                     <router-link to="/home">
-                         <el-menu-item index="0">
-                             <i class="fa fa-server"></i>
-                             <span slot="title">首页</span>
-                         </el-menu-item>
-                     </router-link>
-
-                     <!-- 用户管理 -->
-                     <router-link to="/user_manager">
-                         <el-menu-item index="2">
-                             <i class="fa fa-user"></i>
-                             <span slot="title">用户管理</span>
-                         </el-menu-item>
-                     </router-link>
-                 </el-menu>
              </el-col>
         </el-row>
     </section>
@@ -114,14 +76,15 @@ export default {
             userType: 0,
 
             items: [
-                /*{
+                {
                     icon: "fa fa-paragraph",
-                    name: "test",
-                    path: "infoshow",
+                    name: "统计管理",
+                    path: "统计管理",
                     children: [
-                        { path: "/test", name: "test" },
+                        { path: "/log_manager", name: "统计管理" },
+                        { path: "/rltm_manager", name: "实时统计" },
                     ]
-                }*/
+                }
             ]
         };
     },
@@ -138,11 +101,8 @@ export default {
                 case "account_manager":
                     return "1";
                     break;
-                case "user_manager":
+                case "link_manager":
                     return "2";
-                    break;
-                case "income_manager":
-                    return "3";
                     break;
             }
         },

@@ -19,9 +19,11 @@ import Test from './views/test/Test'
 
 // manager
 import AccountManager from './views/manager/AccountManager'  // 账号管理
-import LinkManager from './views/manager/LinkManager'  // 充值管理
+import LogManager from './views/manager/LogManager'  // 统计
+import RltmManager from './views/manager/RltmManager'  // 实时统计
+import LinkManager from './views/manager/LinkManager'  // 链接管理
 
-import UserManager from './views/manager/UserManager'  // 用户管理
+import OneLinkManager from './views/manager/OneLinkManager'  // 子链接
 
 
 
@@ -49,11 +51,12 @@ const router = new Router({
 
                 // test
                 { path: '/test', component: Test, name: 'test' },
-
                 // manager
                 { path: '/account_manager', component: AccountManager, name: 'account_manager' },
                 { path: '/link_manager', component: LinkManager, name: 'link_manager' },
-                { path: '/user_manager', component: UserManager, name: 'user_manager' },
+                { path: '/onelink_manager', component: OneLinkManager, name: 'onelink_manager' },
+                { path: '/log_manager', component: LogManager, name: 'log_manager' },
+                { path: '/rltm_manager', component: RltmManager, name: 'rltm_manager' },
             ]
         },
         // 登陆页面

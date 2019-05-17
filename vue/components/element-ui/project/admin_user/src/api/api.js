@@ -197,3 +197,33 @@ export const delLink = params => {
         data: params
     });
 };
+
+/**
+ * 统计管理
+ */
+// 获取统计列表
+export const getFlow = params => {
+    return  axios({
+        url: `/flow/list`,
+        method: 'get',
+        params: params
+    });
+};
+
+// 获取统计列表
+export const editFlow = params => {
+    return  axios({
+        url: `/flow/modify`,
+        method: 'post',
+        data: params
+    });
+};
+
+// 实时统计
+export const getReal = params => {
+    return  axios({
+        url: `/realtime/list`,
+        method: 'get',
+        params: params
+    });
+};

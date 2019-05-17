@@ -45,7 +45,7 @@
 
 <script>
     import {
-        getIncome,  // 获取充值列表
+        LogManagerList,  // 统计管理
     } from '../../api/api.js';
 
     export default {

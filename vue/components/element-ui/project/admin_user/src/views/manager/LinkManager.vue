@@ -25,13 +25,6 @@
                         </el-date-picker>
                     </el-form-item>
 
-                    <!--主链接ID，传null查看所有的主链接，指定主链接Id查看其下挂的所以子链接-->
-                    <el-form-item label="主链接" class="intxt inline_third">
-                        <el-select v-model="filterData.parentId" placeholder="请选择主链接" class="dialog_sel">
-                            <el-option v-for="(item,index) in link_info" :label="item.name" :value="item.id" :key="index"></el-option>
-                        </el-select>
-                    </el-form-item>
-
                     <!-- 按钮 -->
                     <el-form-item>
                         <el-button type="primary" @click="filterFormSubmit('filterForm')">查询</el-button>
@@ -46,10 +39,21 @@
             <el-table class="link_list" :data="link_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
-                <el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
+
+                <el-table-column prop="url" label="url" width="auto" align="center"></el-table-column>
+                <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="链接金额" width="auto" align="center"></el-table-column>
-                <el-table-column prop="crtattim" label="链接时间" width="auto" align="center"></el-table-column>
+                <el-table-column prop="crtattim" label="链接时间" width="auto" align="center"></el-table-column>-->
+
+                <el-table-column fixed="right" label="操作" width="320">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small" @click="checkLink(scope.row)">查看子链接</el-button>
+                        <el-button type="text" size="small" @click="addOneLink(scope.row)" v-on:click="addOneLinkVisible = true">添加子链接</el-button>
+                        <el-button type="text" size="small" @click="editLink(scope.row)" v-on:click="editLinkVisible = true">编辑</el-button>
+                        <el-button type="text" size="small" @click="delLink(scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -68,14 +72,6 @@
             </el-row>
         </el-row>
 
-        <!--新增链接-->
-        addLinkData: {
-        url: "",
-        num: "",
-        cpaWeight: "",
-        cpsWeight: "",
-        memo: "",
-        },
         <el-dialog title="新增链接" :close-on-click-modal="false" :visible.sync="addLinkVisible" :before-close="handleClose">
             <el-form :model="addLinkData" status-icon :rules="addLinkRules" ref="addLinkForm" label-width="160px">
                 <el-form-item label="url" prop="url">
@@ -97,6 +93,48 @@
                 <el-form-item>
                     <el-button type="primary" @click="addLinkSubmit('addLinkForm')">提交</el-button>
                     <el-button @click="resetForm('addLinkForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+
+        <el-dialog title="新增子链接" :close-on-click-modal="false" :visible.sync="addOneLinkVisible" :before-close="handleClose">
+            <el-form :model="addOneLinkData" status-icon :rules="addOneLinkRules" ref="addOneLinkForm" label-width="160px">
+                <el-form-item label="数量" prop="num">
+                    <el-input v-model="addOneLinkData.num" placeholder="请输入数量" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="CPA 权值" prop="cpaWeight">
+                    <el-input v-model="addOneLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="CPS 权值" prop="cpsWeight">
+                    <el-input v-model="addOneLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="备注" prop="memo">
+                    <el-input type="textarea" v-model="addOneLinkData.memo" placeholder="请输入备注" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="addOneLinkSubmit('addOneLinkForm')">提交</el-button>
+                    <el-button type="primary" @click="addOneLinkSubmit('addOneLinkForm')">提交</el-button>
+                    <el-button @click="resetForm('addOneLinkForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+
+        <el-dialog title="编辑链接" :close-on-click-modal="false" :visible.sync="editLinkVisible" :before-close="handleClose">
+            <el-form :model="editLinkData" status-icon :rules="editLinkRules" ref="editLinkForm" label-width="160px">
+                <el-form-item label="CPA 权值" prop="cpaWeight">
+                    <el-input v-model="editLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="CPS 权值" prop="cpsWeight">
+                    <el-input v-model="editLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="备注" prop="memo">
+                    <el-input type="textarea" v-model="editLinkData.memo" placeholder="请输入备注" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="editLinkSubmit('editLinkForm')">提交</el-button>
+                    <el-button @click="resetForm('editLinkForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -131,6 +169,8 @@
                     page_sizes: [5, 10, 15, 20, 50], //每页显示多少条
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
+
+                userCode: "",  // 登录用户id
 
                 /**
                  * 筛选器
@@ -170,7 +210,6 @@
                     keyword: "",  // keyword（查询关键词，模糊匹配 url 和 memo字段）
                     dateBegin: "",  // 日期，格式行如：2019-04-12
                     dateEnd: "",  // 日期，格式行如：2019-04-12
-                    parentId: "",  // 主链接ID，传null查看所有的主链接，指定主链接Id查看其下挂的所以子链接
                 },
 
                 /**
@@ -179,17 +218,15 @@
                 // 链接列表
                 link_info: [],  // 存放用户信息列表数据
 
-                mobile: "",  // 管理员手机号码(准确的说是组长的手机号码)
-
                 /**
                  * 添加链接
                  */
                 addLinkData: {
-                    url: "",  // url
-                    num: "",  // 数量
-                    cpaWeight: "",
-                    cpsWeight: "",
-                    memo: "",
+                    url: "https://www.baidu.com",  // url
+                    num: "20",  // 数量
+                    cpaWeight: "33",
+                    cpsWeight: "33",
+                    memo: "test",
                 },
 
                 addLinkRules: {
@@ -202,9 +239,42 @@
                 },
 
                 /**
+                 * 添加子链接
+                 */
+                addOneLinkData: {
+                    linkId: "",
+                    num: "20",  // 数量
+                    cpaWeight: "33",
+                    cpsWeight: "33",
+                    memo: "test",
+                },
+
+                addOneLinkRules: {
+                    num: [
+                        { required: true, message: '数量不能为空！', trigger: 'blur' }
+                    ],
+                },
+
+                /**
+                 * 编辑链接
+                 */
+                editLinkData: {
+                    linkId: "",  // linkId， 主链接的ID
+                    adminId: "",  // 挂一个关联的 渠道经理Id（adminId）
+                    cpaWeight: "33",
+                    cpsWeight: "33",
+                    memo: "test",
+                },
+
+                editLinkRules: {
+                },
+
+                /**
                  *  弹出表单界面(true 显示, false 隐藏)
                  */
                 addLinkVisible: false,  // 新增链接
+                addOneLinkVisible: false,  // 新增子链接
+                editLinkVisible: false,  // 编辑链接
             }
         },
         methods: {
@@ -248,7 +318,7 @@
             },
 
             /**
-             *  api getLinkList
+             *  api delLink
              *  获取用户账号信息
              */
             // 点击日期控制器
@@ -278,7 +348,7 @@
 
                 // 请求接口
                 getLinkList(params).then(res => {
-                    console.log(res.data.data.set);
+                    // console.log(res.data.data.set);
 
                     if (res.data.code == 1) {
                         this.$message.warning(res.data.msg);
@@ -308,26 +378,151 @@
                     }
                 });
             },
+            // 查看子链接
+            checkLink (row) {
+                this.$router.push({
+                    path: "onelink_manager",
+                    query: {
+                        parentId: row.id
+                    }
+                });
+            },
 
             /**
-             *  api addLink
-             *  获取用户账号信息
+             *  api addOneLink
+             *  添加子链接
              */
+            // 点击添加子链接
+            addOneLink (row) {
+
+            },
             // 提交添加表单
-            addLinkSubmit (formName) {
+            addOneLinkSubmit (formName) {
                 // 验证表单
                 this.$refs[formName].validate((valid) => {
+                    this.listLoading = true;
+
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        console.log("aa")
+                        /*addOneLink(qs.stringify(this.addLinkData)).then(res => {
+                            console.log(res);
+
+                            if (res.data.code == 1) {
+                                this.$message.warning(res.data.msg);
+                            }
+
+                            if (res.data.code == 0) {
+                                this.$message.success("添加成功");
+                            }
+
+                            this.listLoading = false;
+                            this.addLinkVisible = false;
+                        }).catch({});*/
                     } else {  //验证失败跳出
                         this.$message.error("表单填写错误");
                     }
                 });
             },
+
+            /**
+             *  api addLink
+             *  添加链接
+             */
+            // 提交添加表单
+            addLinkSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    this.listLoading = true;
+
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        addLink(qs.stringify(this.addLinkData)).then(res => {
+                            console.log(res);
+
+                            if (res.data.code == 1) {
+                                this.$message.warning(res.data.msg);
+                            }
+
+                            if (res.data.code == 0) {
+                                this.$message.success("添加成功");
+                            }
+
+                            this.listLoading = false;
+                            this.addLinkVisible = false;
+
+                            this.getLinkList();
+                        }).catch({});
+                    } else {  //验证失败跳出
+                        this.$message.error("表单填写错误");
+                    }
+                });
+            },
+
+            /**
+             * api updateLink
+             * 编辑链接
+             */
+            // 点击编辑
+            editLink (row) {
+                this.editLinkData.linkId = row.id;
+                this.editLinkData.adminId = this.userCode;
+            },
+            // 提交编辑表单
+            editLinkSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    this.listLoading = true;
+
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        updateLink(qs.stringify(this.editLinkData)).then(res => {
+                            // console.log(res);
+
+                            if (res.data.code == 1) {
+                                this.$message.warning(res.data.msg);
+                            }
+
+                            if (res.data.code == 0) {
+                                this.$message.success("编辑成功");
+                            }
+
+                            this.listLoading = false;
+                            this.editLinkVisible = false;
+                        }).catch({});
+                    } else {  //验证失败跳出
+                        this.$message.error("表单填写错误");
+                    }
+                });
+            },
+
+            /**
+             *  api delLink
+             *  删除链接
+             */
+            delLink (row) {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    let params = {
+                        linkId: row.id,
+                    }
+
+                    delLink(qs.stringify(params)).then(res => {
+                        if (res.data.code == 1) {
+                            this.$message.warning(res.data.msg);
+                        }
+
+                        if (res.data.code == 0) {
+                            this.$message.success("链接删除成功！");
+                            this.getLinkList();
+                        }
+                    }).catch({});
+                }).catch(() => {});
+            },
         },
         // 预处理
         created () {
+            this.userCode = localStorage.userCode;
             this.getLinkList();
         }
     }
