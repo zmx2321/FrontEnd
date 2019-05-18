@@ -40,7 +40,12 @@
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
 
-                <el-table-column prop="url" label="url" width="auto" align="left"></el-table-column>
+                <el-table-column prop="url" label="链接" width="auto" align="left"></el-table-column>
+                <el-table-column prop="cpaWeight" label="CPA权值" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="mobile" label="账号" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
                 <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="链接金额" width="auto" align="center"></el-table-column>
@@ -74,8 +79,8 @@
 
         <el-dialog title="新增链接" :close-on-click-modal="false" :visible.sync="addLinkVisible" :before-close="handleClose">
             <el-form :model="addLinkData" status-icon :rules="addLinkRules" ref="addLinkForm" label-width="160px">
-                <el-form-item label="url" prop="url">
-                    <el-input v-model="addLinkData.url" placeholder="请输入url" clearable></el-input>
+                <el-form-item label="链接" prop="url">
+                    <el-input v-model="addLinkData.url" placeholder="请输入链接(必须 http:// 或者 https:// 开头)" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="数量" prop="num">
                     <el-input v-model="addLinkData.num" placeholder="请输入数量" clearable></el-input>
@@ -129,7 +134,7 @@
                 </el-form-item>
                 <el-form-item label="渠道" class="intxt">
                     <el-select v-model="editLinkData.adminId" placeholder="请输入渠道">
-                        <el-option v-for="(item,index) in user_info" :label="item.name" :value="item.id" :key="index"></el-option>
+                        <el-option v-for="(item,index) in user_info" :label="item.mobile" :value="item.id" :key="index"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
@@ -231,16 +236,16 @@
                  * 添加链接
                  */
                 addLinkData: {
-                    url: "https://www.baidu.com",  // url
-                    num: "20",  // 数量
-                    cpaWeight: "33",
-                    cpsWeight: "33",
-                    memo: "test",
+                    url: "",  // url
+                    num: "",  // 数量
+                    cpaWeight: "50",
+                    cpsWeight: "50",
+                    memo: "",
                 },
 
                 addLinkRules: {
                     url: [
-                        { required: true, message: 'url不能为空！', trigger: 'blur' }
+                        { required: true, message: '链接不能为空！', trigger: 'blur' }
                     ],
                     num: [
                         { required: true, message: '数量不能为空！', trigger: 'blur' }
@@ -389,6 +394,16 @@
                     if (res.data.code == 0) {
                         let datas = res.data.data.set;
 
+                        for (let i=0; i<datas.length; i++) {
+                            if (datas[i].cpaWeight != null) {
+                                datas[i].cpaWeight = `${datas[i].cpaWeight}%`;
+                            }
+
+                            if (datas[i].cpsWeight != null) {
+                                datas[i].cpsWeight = `${datas[i].cpsWeight}%`;
+                            }
+                        }
+
                         this.link_info = datas;
 
                         // 返回分页总数
@@ -500,7 +515,6 @@
             // 点击编辑
             editLink (row) {
                 this.editLinkData.linkId = row.id;
-                this.editLinkData.adminId = this.userCode;
             },
             // 提交编辑表单
             editLinkSubmit (formName) {
@@ -510,8 +524,9 @@
 
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        if (this.editLinkData.adminId == "") {
+                        if (this.editLinkData.adminId == "" || this.editLinkData.adminId == undefined) {
                             this.$message.warning("渠道不能为空");
+                            this.listLoading = false;
                         } else {
                             updateLink(qs.stringify(this.editLinkData)).then(res => {
                                 // console.log(res);
@@ -526,6 +541,8 @@
 
                                 this.listLoading = false;
                                 this.editLinkVisible = false;
+
+                                this.getLinkList();
                             }).catch({});
                         }
                     } else {  //验证失败跳出

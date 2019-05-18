@@ -236,6 +236,15 @@
                 callback();
             };
 
+            // 权值
+            const validateQZ = (rule, value, callback) => {
+                if (parseInt(value) < 0 || parseInt(value) > 100) {
+                    return callback(new Error('权值在0-100之间'));
+                }
+
+                callback();
+            };
+
             return {
                 /**
                  * common
@@ -293,11 +302,13 @@
                     ],
                     cpaWeight: [
                         { required: true, message: 'CPA不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" }
                     ],
                     cpsWeight: [
                         { required: true, message: 'CPS不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" }
                     ]
                 },
 
@@ -316,11 +327,13 @@
                 editUserRules: {
                     cpaWeight: [
                         { required: true, message: 'CPA 权值不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" }
                     ],
                     cpsWeight: [
                         { required: true, message: 'CPS 权值不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" },
                     ]
                 },
 
@@ -436,6 +449,14 @@
 
                         for (let i=0; i<datas.length; i++) {
                             datas[i].crtattim = datas[i].createAt.slice(2, -3);
+
+                            if (datas[i].cpaWeight != null) {
+                                datas[i].cpaWeight = `${datas[i].cpaWeight}%`;
+                            }
+
+                            if (datas[i].cpsWeight != null) {
+                                datas[i].cpsWeight = `${datas[i].cpsWeight}%`;
+                            }
                         }
 
                         // console.log(datas);

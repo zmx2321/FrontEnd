@@ -28,11 +28,11 @@
                          </el-menu-item>
                      </router-link>
 
-                     <!-- 统计管理 -->
+                     <!-- 流量统计 -->
                      <!--<router-link to="/log_manager">
                          <el-menu-item index="4">
                              <i class="fa fa-cog"></i>
-                             <span slot="title">统计管理</span>
+                             <span slot="title">流量统计</span>
                          </el-menu-item>
                      </router-link>-->
 
@@ -72,11 +72,11 @@
                          </el-menu-item>
                      </router-link>
 
-                     <!-- 统计管理 -->
+                     <!--流量统计 -->
                      <router-link to="/log_manager">
                          <el-menu-item index="1">
                              <i class="fa fa-address-card"></i>
-                             <span slot="title">统计管理</span>
+                             <span slot="title">流量统计</span>
                          </el-menu-item>
                      </router-link>
                  </el-menu>
@@ -97,10 +97,10 @@ export default {
             items: [
                 {
                     icon: "fa fa-paragraph",
-                    name: "统计管理",
-                    path: "统计管理",
+                    name: "流量统计",
+                    path: "流量统计",
                     children: [
-                        { path: "/log_manager", name: "统计管理" },
+                        { path: "/log_manager", name: "流量统计" },
                         { path: "/rltm_manager", name: "实时统计" },
                     ]
                 }

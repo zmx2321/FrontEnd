@@ -36,13 +36,15 @@
         <el-row>
             <el-table class="flow_list" :data="flow_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
-
-                <el-table-column prop="url" label="url" width="auto" align="center"></el-table-column>
-                <el-table-column prop="pv" label="pv" width="auto" align="center"></el-table-column>
-                <el-table-column prop="uv" label="uv" width="auto" align="center"></el-table-column>
-                <el-table-column prop="registerNum" label="registerNum" width="auto" align="center"></el-table-column>
-                <el-table-column prop="passNum" label="passNum" width="auto" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="createAt" width="auto" align="center"></el-table-column>
+                
+                <el-table-column prop="mobile" label="渠道账号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="url" label="链接" width="auto" align="center"></el-table-column>
+                <el-table-column prop="pv" label="PV" width="auto" align="center"></el-table-column>
+                <el-table-column prop="uv" label="UV" width="auto" align="center"></el-table-column>
+                <el-table-column prop="registerNum" label="注册数(CPA)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="passNum" label="通过数(CPS)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="createAt" label="时间" width="auto" align="center"></el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">

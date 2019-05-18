@@ -5,19 +5,20 @@
             <el-table :data="link_info" border highlight-current-row v-loading="listLoading" @current-change="copyLink" height="calc(100vh - 226px)" row-class-name="link_info">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
+                <!--<el-table-column label="url" width="auto" align="left">  </el-table-column>-->
+                <el-table-column prop="url" label="链接" width="auto" align="left"></el-table-column>                
+                <el-table-column prop="cpaWeight" label="CPA权值" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>
+                <el-table-column prop="mobile" label="渠道账号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="realName" label="渠道姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
 
-                <!--<el-table-column prop="url" label="url" width="auto" align="left"></el-table-column>-->
-                <el-table-column label="url" width="auto" align="left">
+                <el-table-column fixed="right" label="操作" width="320">
                     <template slot-scope="scope">
-                        <span :class="scope.row.isCopy == false ? 'copy_link' : '' ">
-                            {{ scope.row.url }}
-                        </span>
+                        <el-button type="text" size="small" @click="editLink(scope.row)" v-on:click="editLinkVisible = true">编辑</el-button>
+                        <el-button type="text" size="small" @click="delLink(scope.row)">删除</el-button>
                     </template>
                 </el-table-column>
-                <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
-                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
-                <el-table-column prop="totalPrice" label="链接金额" width="auto" align="center"></el-table-column>
-                <el-table-column prop="crtattim" label="链接时间" width="auto" align="center"></el-table-column>-->
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -35,6 +36,30 @@
                 </el-col>
             </el-row>
         </el-row>
+
+        <el-dialog title="编辑链接" :close-on-click-modal="false" :visible.sync="editLinkVisible" :before-close="handleClose">
+            <el-form :model="editLinkData" status-icon :rules="editLinkRules" ref="editLinkForm" label-width="160px">
+                <el-form-item label="CPA 权值" prop="cpaWeight">
+                    <el-input v-model="editLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="CPS 权值" prop="cpsWeight">
+                    <el-input v-model="editLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="渠道" class="intxt">
+                    <el-select v-model="editLinkData.adminId" placeholder="请输入渠道">
+                        <el-option v-for="(item,index) in user_info" :label="item.mobile" :value="item.id" :key="index"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="备注" prop="memo">
+                    <el-input type="textarea" v-model="editLinkData.memo" placeholder="请输入备注" clearable></el-input>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="editLinkSubmit('editLinkForm')">提交</el-button>
+                    <el-button @click="resetForm('editLinkForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </section>
 </template>
 
@@ -42,13 +67,27 @@
     import Clipboard from 'clipboard';  // 点击复制
 
     import {
+        getAccount,  // 获取账号列表
         getLinkList,  // 获取链接列表
+        updateLink,  // 编辑子链接的属性
+        delLink,  // 删除链接
     } from '../../api/api.js';
 
     export default {
         name: 'onelink_manager',
 
         data() {
+            // url验证
+            let validateUrl = (rule, value, callback) => {
+                let reg = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/;
+
+                if (!reg.test(value)) {
+                    return callback(new Error('url输入不正确！'));
+                }
+
+                callback();
+            };
+
             return {
                 /**
                  * common
@@ -73,6 +112,30 @@
                 // 链接列表
                 link_info: [],  // 存放链接信息列表数据
 
+                /**
+                 * 用户
+                 */
+                // 用户列表
+                user_info: [],  // 存放用户信息列表数据
+
+                /**
+                 * 编辑链接
+                 */
+                editLinkData: {
+                    linkId: "",  // linkId， 主链接的ID
+                    adminId: "",  // 挂一个关联的 渠道经理Id（adminId）
+                    cpaWeight: "",
+                    cpsWeight: "",
+                    memo: "",
+                },
+
+                editLinkRules: {
+                },
+
+                /**
+                 *  弹出表单界面(true 显示, false 隐藏)
+                 */
+                editLinkVisible: false,  // 编辑链接
             }
         },
         methods: {
@@ -107,6 +170,29 @@
             },
 
             /**
+             *  api getAccount
+             *  获取用户账号信息
+             */
+            // 获取用户账号列表
+            getAccountList () {
+                // 请求接口
+                getAccount().then(res => {
+                    // console.log(res.data.data.set[0].createAt);
+
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
+                    }
+
+                    if (res.data.code == 0) {
+                        let datas = res.data.data.set;
+
+                        // console.log(datas);
+                        this.user_info = datas;
+                    }
+                }).catch({});
+            },
+
+            /**
              *  api getLinkList
              *  获取链接信息
              */
@@ -136,6 +222,14 @@
 
                         for (let i=0; i<datas.length; i++) {
                             datas[i].isCopy = false;
+
+                            if (datas[i].cpaWeight != null) {
+                                datas[i].cpaWeight = `${datas[i].cpaWeight}%`;
+                            }
+
+                            if (datas[i].cpsWeight != null) {
+                                datas[i].cpsWeight = `${datas[i].cpsWeight}%`;
+                            }
                         }
 
                         // console.log(datas);
@@ -170,10 +264,79 @@
                     clipboard.destroy()
                 })
             },
+
+            /**
+             * api updateLink
+             * 编辑链接
+             */
+            // 点击编辑
+            editLink (row) {
+                this.editLinkData = Object.assign({}, row);
+                this.editLinkData.linkId = row.id;
+            },
+            // 提交编辑表单
+            editLinkSubmit (formName) {
+                // 验证表单
+                this.$refs[formName].validate((valid) => {
+                    this.listLoading = true;
+
+                    //如果验证成功，请求接口数据
+                    if (valid) {
+                        if (this.editLinkData.adminId == "" || this.editLinkData.adminId == undefined) {
+                            this.$message.warning("渠道不能为空");
+                            this.listLoading = false;
+                        } else {
+                            updateLink(qs.stringify(this.editLinkData)).then(res => {
+                                // console.log(res);
+
+                                if (res.data.code == 1) {
+                                    this.$message.warning(res.data.msg);
+                                }
+
+                                if (res.data.code == 0) {
+                                    this.$message.success("编辑成功");
+                                }
+
+                                this.listLoading = false;
+                                this.editLinkVisible = false;
+
+                                this.getLinkList();
+                            }).catch({});
+                        }
+                    } else {  //验证失败跳出
+                        this.$message.error("表单填写错误");
+                    }
+                });
+            },
+
+            /**
+             *  api delLink
+             *  删除链接
+             */
+            delLink (row) {
+                this.$confirm('确认删除该记录吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    let params = {
+                        linkId: row.id,
+                    }
+
+                    delLink(qs.stringify(params)).then(res => {
+                        if (res.data.code == 1) {
+                            this.$message.warning(res.data.msg);
+                        }
+
+                        if (res.data.code == 0) {
+                            this.$message.success("链接删除成功！");
+                            this.getLinkList();
+                        }
+                    }).catch({});
+                }).catch(() => {});
+            },
         },
         // 预处理
         created () {
-            // console.log(this.parentId);
+            this.getAccountList();
             this.getLinkList();
         }
     }
