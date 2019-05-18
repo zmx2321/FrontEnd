@@ -61,6 +61,25 @@
                         </el-submenu>
                     </template>
                  </el-menu>
+
+                 <!-- 管理员0 -->
+                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType==2">
+                     <!-- 首页 -->
+                     <router-link to="/home">
+                         <el-menu-item index="0">
+                             <i class="fa fa-server"></i>
+                             <span slot="title">首页</span>
+                         </el-menu-item>
+                     </router-link>
+
+                     <!-- 统计管理 -->
+                     <router-link to="/log_manager">
+                         <el-menu-item index="1">
+                             <i class="fa fa-address-card"></i>
+                             <span slot="title">统计管理</span>
+                         </el-menu-item>
+                     </router-link>
+                 </el-menu>
              </el-col>
         </el-row>
     </section>
@@ -110,9 +129,7 @@ export default {
 
     created () {
         /**
-         * 管理员0：账号管理、用户管理、充值管理；
-         * 组长1：账号管理、用户管理、充值管理；
-         * 客服/话务2：  用户管理
+         * 0-管理员，2-渠道
          */
         this.userType = localStorage.userType;
     }

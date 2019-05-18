@@ -114,7 +114,6 @@
 
                 <el-form-item>
                     <el-button type="primary" @click="addOneLinkSubmit('addOneLinkForm')">提交</el-button>
-                    <el-button type="primary" @click="addOneLinkSubmit('addOneLinkForm')">提交</el-button>
                     <el-button @click="resetForm('addOneLinkForm')">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -127,6 +126,11 @@
                 </el-form-item>
                 <el-form-item label="CPS 权值" prop="cpsWeight">
                     <el-input v-model="editLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="渠道" class="intxt">
+                    <el-select v-model="editLinkData.adminId" placeholder="请输入渠道">
+                        <el-option v-for="(item,index) in user_info" :label="item.name" :value="item.id" :key="index"></el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
                     <el-input type="textarea" v-model="editLinkData.memo" placeholder="请输入备注" clearable></el-input>
@@ -143,6 +147,7 @@
 
 <script>
     import {
+        getAccount,  // 获取账号列表
         getLinkList,  // 获取链接列表
         addLink,  // 添加新链接(自动生成若干子链接)
         addOneLink,  // 补添若干条子链接
@@ -170,7 +175,11 @@
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
-                userCode: "",  // 登录用户id
+                /**
+                 * 用户
+                 */
+                // 用户列表
+                user_info: [],  // 存放用户信息列表数据
 
                 /**
                  * 筛选器
@@ -243,10 +252,10 @@
                  */
                 addOneLinkData: {
                     linkId: "",
-                    num: "20",  // 数量
-                    cpaWeight: "33",
-                    cpsWeight: "33",
-                    memo: "test",
+                    num: "",  // 数量
+                    cpaWeight: "",
+                    cpsWeight: "",
+                    memo: "",
                 },
 
                 addOneLinkRules: {
@@ -261,9 +270,9 @@
                 editLinkData: {
                     linkId: "",  // linkId， 主链接的ID
                     adminId: "",  // 挂一个关联的 渠道经理Id（adminId）
-                    cpaWeight: "33",
-                    cpsWeight: "33",
-                    memo: "test",
+                    cpaWeight: "",
+                    cpsWeight: "",
+                    memo: "",
                 },
 
                 editLinkRules: {
@@ -318,8 +327,31 @@
             },
 
             /**
-             *  api delLink
+             *  api getAccount
              *  获取用户账号信息
+             */
+            // 获取用户账号列表
+            getAccountList () {
+                // 请求接口
+                getAccount().then(res => {
+                    // console.log(res.data.data.set[0].createAt);
+
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
+                    }
+
+                    if (res.data.code == 0) {
+                        let datas = res.data.data.set;
+
+                        // console.log(datas);
+                        this.user_info = datas;
+                    }
+                }).catch({});
+            },
+
+            /**
+             *  api delLink
+             *  获取连接信息
              */
             // 点击日期控制器
             getSTime(val) {
@@ -380,6 +412,7 @@
             },
             // 查看子链接
             checkLink (row) {
+                // console.log(row.id);
                 this.$router.push({
                     path: "onelink_manager",
                     query: {
@@ -404,8 +437,8 @@
 
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        addOneLink(qs.stringify(this.addLinkData)).then(res => {
-                            console.log(res);
+                        addOneLink(qs.stringify(this.addOneLinkData)).then(res => {
+                            // console.log(res);
 
                             if (res.data.code == 1) {
                                 this.$message.warning(res.data.msg);
@@ -416,7 +449,7 @@
                             }
 
                             this.listLoading = false;
-                            this.addLinkVisible = false;
+                            this.addOneLinkVisible = false;
 
                             this.getLinkList();
                         }).catch({});
@@ -439,7 +472,7 @@
                     //如果验证成功，请求接口数据
                     if (valid) {
                         addLink(qs.stringify(this.addLinkData)).then(res => {
-                            console.log(res);
+                            // console.log(res);
 
                             if (res.data.code == 1) {
                                 this.$message.warning(res.data.msg);
@@ -477,20 +510,24 @@
 
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        updateLink(qs.stringify(this.editLinkData)).then(res => {
-                            // console.log(res);
+                        if (this.editLinkData.adminId == "") {
+                            this.$message.warning("渠道不能为空");
+                        } else {
+                            updateLink(qs.stringify(this.editLinkData)).then(res => {
+                                // console.log(res);
 
-                            if (res.data.code == 1) {
-                                this.$message.warning(res.data.msg);
-                            }
+                                if (res.data.code == 1) {
+                                    this.$message.warning(res.data.msg);
+                                }
 
-                            if (res.data.code == 0) {
-                                this.$message.success("编辑成功");
-                            }
+                                if (res.data.code == 0) {
+                                    this.$message.success("编辑成功");
+                                }
 
-                            this.listLoading = false;
-                            this.editLinkVisible = false;
-                        }).catch({});
+                                this.listLoading = false;
+                                this.editLinkVisible = false;
+                            }).catch({});
+                        }
                     } else {  //验证失败跳出
                         this.$message.error("表单填写错误");
                     }
@@ -524,7 +561,7 @@
         },
         // 预处理
         created () {
-            this.userCode = localStorage.userCode;
+            this.getAccountList();
             this.getLinkList();
         }
     }

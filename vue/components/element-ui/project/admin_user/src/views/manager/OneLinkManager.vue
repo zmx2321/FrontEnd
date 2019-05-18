@@ -2,11 +2,18 @@
     <section class="main_cont">
         <!-- 链接列表 -->
         <el-row>
-            <el-table :data="link_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 226px)">
+            <el-table :data="link_info" border highlight-current-row v-loading="listLoading" @current-change="copyLink" height="calc(100vh - 226px)" row-class-name="link_info">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
 
-                <el-table-column prop="url" label="url" width="auto" align="left"></el-table-column>
+                <!--<el-table-column prop="url" label="url" width="auto" align="left"></el-table-column>-->
+                <el-table-column label="url" width="auto" align="left">
+                    <template slot-scope="scope">
+                        <span :class="scope.row.isCopy == false ? 'copy_link' : '' ">
+                            {{ scope.row.url }}
+                        </span>
+                    </template>
+                </el-table-column>
                 <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="链接金额" width="auto" align="center"></el-table-column>
@@ -32,6 +39,8 @@
 </template>
 
 <script>
+    import Clipboard from 'clipboard';  // 点击复制
+
     import {
         getLinkList,  // 获取链接列表
     } from '../../api/api.js';
@@ -56,7 +65,7 @@
                 },
 
                 // 页面参数
-                parentId: this.$route.params.parentId,
+                parentId: this.$route.query.parentId,
 
                 /**
                  * 链接
@@ -86,7 +95,7 @@
              */
             // 点击页码
             handleCurrentChange() {
-                this.getUserList();  // 加载分页数据
+                this.getLinkList();  // 加载分页数据
             },
             // 设置每页条数
             handleSizeChange(page_size) {
@@ -94,7 +103,7 @@
 
                 this.page_arg.page_size = page_size;  // 切换size
 
-                this.getUserList();  // 加载分页数据
+                this.getLinkList();  // 加载分页数据
             },
 
             /**
@@ -123,7 +132,17 @@
                     }
 
                     if (res.data.code == 0) {
-                        this.user_info = res.data.data.set;
+                        let datas = res.data.data.set;
+
+                        for (let i=0; i<datas.length; i++) {
+                            datas[i].isCopy = false;
+                        }
+
+                        // console.log(datas);
+
+                        this.link_info = datas;
+
+                        // console.log(this.link_info);
 
                         // 返回分页总数
                         this.page_arg.total = res.data.data.pager.total;
@@ -132,12 +151,30 @@
                     this.listLoading = false;
                 }).catch({});
             },
+
+            // 复制连接
+            copyLink (val) {
+                let clipboard = new Clipboard('.copy_link')
+                clipboard.on('success', e => {
+                    this.$message.success("复制成功!");
+
+                    val.isCopy = true;
+
+                    // 释放内存
+                    clipboard.destroy()
+                })
+                clipboard.on('error', e => {
+                    // 不支持复制
+                    this.$message.warning("该浏览器不支持自动复制!");
+                    // 释放内存
+                    clipboard.destroy()
+                })
+            },
         },
         // 预处理
         created () {
-            this.getUserList();
-
-            this.userType = localStorage.userType;
+            // console.log(this.parentId);
+            this.getLinkList();
         }
     }
 </script>

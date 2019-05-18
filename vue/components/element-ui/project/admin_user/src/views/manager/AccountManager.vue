@@ -270,9 +270,9 @@
                  */
                 // 添加用户数据
                 addUserData: {
-                    realName: "fff",  // 姓名
-                    mobile: "451564165",  // 手机
-                    password: "123",  // 密码
+                    realName: "",  // 姓名
+                    mobile: "",  // 手机
+                    password: "",  // 密码
                     type: "",  // 0-管理员，2-渠道
                     cpaWeight: 50,  // CPA 权值，整数类型，默认50
                     cpsWeight: 50,  // CPS 权值，整数类型，默认50
@@ -448,7 +448,7 @@
                     this.listLoading = false;
                 }).catch({});
             },
-            // 用户状态类型[0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）]
+            // 用户状态类型
             formatType (row) {
                 switch (row.type) {
                     case 0:
