@@ -1,5 +1,12 @@
 <template>
     <section class="main_cont">
+        <!-- 按钮 -->
+        <el-row class="toolbar bdr_radiu f-cb">
+            <el-col class="f-cb btn_wrap">
+                <el-button type="primary" @click="goback">返回</el-button>
+            </el-col>
+        </el-row>
+
         <!-- 链接列表 -->
         <el-row>
             <el-table :data="link_info" border highlight-current-row v-loading="listLoading" @current-change="copyLink" height="calc(100vh - 226px)" row-class-name="link_info">
@@ -39,15 +46,15 @@
 
         <el-dialog title="编辑链接" :close-on-click-modal="false" :visible.sync="editLinkVisible" :before-close="handleClose">
             <el-form :model="editLinkData" status-icon :rules="editLinkRules" ref="editLinkForm" label-width="160px">
-                <el-form-item label="CPA 权值" prop="cpaWeight">
+                <el-form-item label="CPA 权值(%)" prop="cpaWeight">
                     <el-input v-model="editLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="CPS 权值" prop="cpsWeight">
+                <el-form-item label="CPS 权值(%)" prop="cpsWeight">
                     <el-input v-model="editLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="渠道名称" class="intxt">
                     <el-select v-model="editLinkData.adminId" placeholder="请选择渠道">
-                        <el-option v-for="(item,index) in user_info" :label="item.realeName" :value="item.id" :key="index"></el-option>
+                        <el-option v-for="(item,index) in user_info" :label="item.realeName" :value="item.realName" :key="index"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
@@ -272,6 +279,8 @@
             // 点击编辑
             editLink (row) {
                 this.editLinkData = Object.assign({}, row);
+                this.editLinkData.cpaWeight = row.cpaWeight.replace("%", "");
+                this.editLinkData.cpsWeight = row.cpsWeight.replace("%", "");
                 this.editLinkData.linkId = row.id;
             },
             // 提交编辑表单
@@ -333,6 +342,10 @@
                     }).catch({});
                 }).catch(() => {});
             },
+
+            goback() {
+                this.$router.go(-1);
+            }
         },
         // 预处理
         created () {
@@ -343,10 +356,6 @@
 </script>
 
 <style lang="less" scoped>
-    .toolbar {
-        padding-bottom: 0;
-    }
-
     /deep/ .upload_btn {
         /*width: 85%;*/
         width: 110px;
