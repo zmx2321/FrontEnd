@@ -17,10 +17,25 @@
         {{$t('message.hello')}}
 
         <p v-html="$t('message.hello')"></p>
+
+        <!-- Target -->
+        <input id="foo" value="https://github.com/zenorocha/clipboard.js.git">
+
+        <!-- Trigger -->
+        <button class="btn" data-clipboard-target="#foo">
+            <img src="assets/clippy.svg" alt="Copy to clipboard">
+        </button>
+
+        <hr />
+
+        <button class="tag-read" data-clipboard-text="我是可以复制的内容，请点击复制" @click="copy">立即阅读</button>
+        <button class="tag-read" data-clipboard-text="我是可以复制的内容，请点击复制ssdsa" @click="copy">立即阅读</button>
     </section>
 </template>
 
 <script>
+    import Clipboard from 'clipboard'
+
     export default {
         name: "Test",
 
@@ -49,6 +64,21 @@
                         this.$i18n.locale = e;
                     }).catch(() => {});
 
+            },
+            copy() {
+                // var clipboard = new this.clipboard('.tag-read')
+                var clipboard = new Clipboard('.tag-read')
+                clipboard.on('success', e => {
+                    console.log('复制成功')
+                    // 释放内存
+                    clipboard.destroy()
+                })
+                clipboard.on('error', e => {
+                    // 不支持复制
+                    console.log('该浏览器不支持自动复制')
+                    // 释放内存
+                    clipboard.destroy()
+                })
             }
         },
         created : function(){

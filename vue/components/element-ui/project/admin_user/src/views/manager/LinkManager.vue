@@ -40,7 +40,12 @@
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
 
-                <el-table-column prop="url" label="url" width="auto" align="center"></el-table-column>
+                <el-table-column prop="url" label="链接" width="auto" align="left"></el-table-column>
+                <el-table-column prop="cpaWeight" label="CPA权值" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="mobile" label="账号" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
                 <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
                 <el-table-column prop="totalPrice" label="链接金额" width="auto" align="center"></el-table-column>
@@ -74,8 +79,8 @@
 
         <el-dialog title="新增链接" :close-on-click-modal="false" :visible.sync="addLinkVisible" :before-close="handleClose">
             <el-form :model="addLinkData" status-icon :rules="addLinkRules" ref="addLinkForm" label-width="160px">
-                <el-form-item label="url" prop="url">
-                    <el-input v-model="addLinkData.url" placeholder="请输入url" clearable></el-input>
+                <el-form-item label="链接" prop="url">
+                    <el-input v-model="addLinkData.url" placeholder="请输入链接(必须 http:// 或者 https:// 开头)" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="数量" prop="num">
                     <el-input v-model="addLinkData.num" placeholder="请输入数量" clearable></el-input>
@@ -114,7 +119,6 @@
 
                 <el-form-item>
                     <el-button type="primary" @click="addOneLinkSubmit('addOneLinkForm')">提交</el-button>
-                    <el-button type="primary" @click="addOneLinkSubmit('addOneLinkForm')">提交</el-button>
                     <el-button @click="resetForm('addOneLinkForm')">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -127,6 +131,11 @@
                 </el-form-item>
                 <el-form-item label="CPS 权值" prop="cpsWeight">
                     <el-input v-model="editLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="渠道" class="intxt">
+                    <el-select v-model="editLinkData.adminId" placeholder="请输入渠道">
+                        <el-option v-for="(item,index) in user_info" :label="item.mobile" :value="item.id" :key="index"></el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
                     <el-input type="textarea" v-model="editLinkData.memo" placeholder="请输入备注" clearable></el-input>
@@ -143,6 +152,7 @@
 
 <script>
     import {
+        getAccount,  // 获取账号列表
         getLinkList,  // 获取链接列表
         addLink,  // 添加新链接(自动生成若干子链接)
         addOneLink,  // 补添若干条子链接
@@ -170,7 +180,11 @@
                     layout: "total, sizes, prev, pager, next, jumper" // 翻页属性
                 },
 
-                userCode: "",  // 登录用户id
+                /**
+                 * 用户
+                 */
+                // 用户列表
+                user_info: [],  // 存放用户信息列表数据
 
                 /**
                  * 筛选器
@@ -222,16 +236,16 @@
                  * 添加链接
                  */
                 addLinkData: {
-                    url: "https://www.baidu.com",  // url
-                    num: "20",  // 数量
-                    cpaWeight: "33",
-                    cpsWeight: "33",
-                    memo: "test",
+                    url: "",  // url
+                    num: "",  // 数量
+                    cpaWeight: "50",
+                    cpsWeight: "50",
+                    memo: "",
                 },
 
                 addLinkRules: {
                     url: [
-                        { required: true, message: 'url不能为空！', trigger: 'blur' }
+                        { required: true, message: '链接不能为空！', trigger: 'blur' }
                     ],
                     num: [
                         { required: true, message: '数量不能为空！', trigger: 'blur' }
@@ -243,10 +257,10 @@
                  */
                 addOneLinkData: {
                     linkId: "",
-                    num: "20",  // 数量
-                    cpaWeight: "33",
-                    cpsWeight: "33",
-                    memo: "test",
+                    num: "",  // 数量
+                    cpaWeight: "",
+                    cpsWeight: "",
+                    memo: "",
                 },
 
                 addOneLinkRules: {
@@ -261,9 +275,9 @@
                 editLinkData: {
                     linkId: "",  // linkId， 主链接的ID
                     adminId: "",  // 挂一个关联的 渠道经理Id（adminId）
-                    cpaWeight: "33",
-                    cpsWeight: "33",
-                    memo: "test",
+                    cpaWeight: "",
+                    cpsWeight: "",
+                    memo: "",
                 },
 
                 editLinkRules: {
@@ -318,8 +332,31 @@
             },
 
             /**
-             *  api delLink
+             *  api getAccount
              *  获取用户账号信息
+             */
+            // 获取用户账号列表
+            getAccountList () {
+                // 请求接口
+                getAccount().then(res => {
+                    // console.log(res.data.data.set[0].createAt);
+
+                    if (res.data.code == 1) {
+                        this.$message.warning(res.data.msg);
+                    }
+
+                    if (res.data.code == 0) {
+                        let datas = res.data.data.set;
+
+                        // console.log(datas);
+                        this.user_info = datas;
+                    }
+                }).catch({});
+            },
+
+            /**
+             *  api delLink
+             *  获取连接信息
              */
             // 点击日期控制器
             getSTime(val) {
@@ -357,6 +394,16 @@
                     if (res.data.code == 0) {
                         let datas = res.data.data.set;
 
+                        for (let i=0; i<datas.length; i++) {
+                            if (datas[i].cpaWeight != null) {
+                                datas[i].cpaWeight = `${datas[i].cpaWeight}%`;
+                            }
+
+                            if (datas[i].cpsWeight != null) {
+                                datas[i].cpsWeight = `${datas[i].cpsWeight}%`;
+                            }
+                        }
+
                         this.link_info = datas;
 
                         // 返回分页总数
@@ -380,6 +427,7 @@
             },
             // 查看子链接
             checkLink (row) {
+                // console.log(row.id);
                 this.$router.push({
                     path: "onelink_manager",
                     query: {
@@ -394,7 +442,7 @@
              */
             // 点击添加子链接
             addOneLink (row) {
-
+                this.addOneLinkData.linkId = row.id;
             },
             // 提交添加表单
             addOneLinkSubmit (formName) {
@@ -404,8 +452,8 @@
 
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        /*addOneLink(qs.stringify(this.addLinkData)).then(res => {
-                            console.log(res);
+                        addOneLink(qs.stringify(this.addOneLinkData)).then(res => {
+                            // console.log(res);
 
                             if (res.data.code == 1) {
                                 this.$message.warning(res.data.msg);
@@ -416,8 +464,10 @@
                             }
 
                             this.listLoading = false;
-                            this.addLinkVisible = false;
-                        }).catch({});*/
+                            this.addOneLinkVisible = false;
+
+                            this.getLinkList();
+                        }).catch({});
                     } else {  //验证失败跳出
                         this.$message.error("表单填写错误");
                     }
@@ -437,7 +487,7 @@
                     //如果验证成功，请求接口数据
                     if (valid) {
                         addLink(qs.stringify(this.addLinkData)).then(res => {
-                            console.log(res);
+                            // console.log(res);
 
                             if (res.data.code == 1) {
                                 this.$message.warning(res.data.msg);
@@ -465,7 +515,6 @@
             // 点击编辑
             editLink (row) {
                 this.editLinkData.linkId = row.id;
-                this.editLinkData.adminId = this.userCode;
             },
             // 提交编辑表单
             editLinkSubmit (formName) {
@@ -475,20 +524,27 @@
 
                     //如果验证成功，请求接口数据
                     if (valid) {
-                        updateLink(qs.stringify(this.editLinkData)).then(res => {
-                            // console.log(res);
-
-                            if (res.data.code == 1) {
-                                this.$message.warning(res.data.msg);
-                            }
-
-                            if (res.data.code == 0) {
-                                this.$message.success("编辑成功");
-                            }
-
+                        if (this.editLinkData.adminId == "" || this.editLinkData.adminId == undefined) {
+                            this.$message.warning("渠道不能为空");
                             this.listLoading = false;
-                            this.editLinkVisible = false;
-                        }).catch({});
+                        } else {
+                            updateLink(qs.stringify(this.editLinkData)).then(res => {
+                                // console.log(res);
+
+                                if (res.data.code == 1) {
+                                    this.$message.warning(res.data.msg);
+                                }
+
+                                if (res.data.code == 0) {
+                                    this.$message.success("编辑成功");
+                                }
+
+                                this.listLoading = false;
+                                this.editLinkVisible = false;
+
+                                this.getLinkList();
+                            }).catch({});
+                        }
                     } else {  //验证失败跳出
                         this.$message.error("表单填写错误");
                     }
@@ -522,7 +578,7 @@
         },
         // 预处理
         created () {
-            this.userCode = localStorage.userCode;
+            this.getAccountList();
             this.getLinkList();
         }
     }

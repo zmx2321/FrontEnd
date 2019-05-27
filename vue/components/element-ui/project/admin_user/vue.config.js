@@ -15,22 +15,22 @@ module.exports = {
         }
     },
     productionSourceMap: false, // 是否在构建生产包时生成 sourceMap 文件，false将提高构建速度
-    // devServer: {
-    //     open: true,
-    //     host: 'localhost',
-    //     port: 80,
-    //     https: false,
-    //     hotOnly: false,
-    //     proxy: { // 配置跨域
-    //         '/api': {
-    //             target: 'http://10.10.10.199:8080',
-    //             ws: true,
-    //             changOrigin: true,
-    //             pathRewrite: {
-    //                 '^/api': ''
-    //             }
-    //         }
-    //     },
-    //     before: app => { }
-    // }
+    devServer: {
+        open: true,
+        host: '0.0.0.0',
+        port: 8888,
+        https: false,
+        // hotOnly: false,
+        // proxy: { // 配置跨域
+        //     '/api': {
+        //         target: 'http://10.10.10.199:8080',
+        //         ws: true,
+        //         changOrigin: true,
+        //         pathRewrite: {
+        //             '^/api': ''
+        //         }
+        //     }
+        // },
+        //before: app => {}
+    }
 };

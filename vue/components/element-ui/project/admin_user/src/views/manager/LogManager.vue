@@ -37,12 +37,14 @@
             <el-table class="flow_list" :data="flow_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
 
-                <el-table-column prop="url" label="url" width="auto" align="center"></el-table-column>
-                <el-table-column prop="pv" label="pv" width="auto" align="center"></el-table-column>
-                <el-table-column prop="uv" label="uv" width="auto" align="center"></el-table-column>
-                <el-table-column prop="registerNum" label="registerNum" width="auto" align="center"></el-table-column>
-                <el-table-column prop="passNum" label="passNum" width="auto" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="createAt" width="auto" align="center"></el-table-column>
+                <el-table-column prop="mobile" label="渠道账号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="url" label="链接" width="auto" align="center"></el-table-column>
+                <el-table-column prop="pv" label="PV" width="auto" align="center"></el-table-column>
+                <el-table-column prop="uv" label="UV" width="auto" align="center"></el-table-column>
+                <el-table-column prop="registerNum" label="注册数(CPA)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="passNum" label="通过数(CPS)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="createAt" label="时间" width="auto" align="center"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="75">
                     <template slot-scope="scope">
@@ -85,7 +87,7 @@
                 <el-form-item>
                     <el-button type="primary" @click="editFlowSubmit('editFlowForm')">提交</el-button>
                     <el-button @click="resetForm('editFlowForm')">重置</el-button>
-                </el-form-item>-->
+                </el-form-item>
             </el-form>
         </el-dialog>
     </section>
@@ -264,7 +266,7 @@
 
                 // 请求接口
                 getFlow(params).then(res => {
-                    console.log(res.data.data.set);
+                    // console.log(res.data.data.set);
 
                     if (res.data.code == 1) {
                         this.$message.warning(res.data.msg);
@@ -334,6 +336,8 @@
 
                                 this.listLoading = false;
                                 this.editFlowVisible = false;
+
+                                this.getFlowList();
                             }).catch({});
                         }
                     } else {  //验证失败跳出

@@ -45,7 +45,7 @@
 
 <script>
     import {
-        LogManagerList,  // 统计管理
+        LogManagerList,  // 流量统计
     } from '../../api/api.js';
 
     export default {

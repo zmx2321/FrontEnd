@@ -9,7 +9,7 @@
                     </el-form-item>
 
                     <!--日期，格式行如：2019-04-12-->
-                    <el-form-item label="日期">
+                    <!--<el-form-item label="日期">
                         <el-date-picker
                                 v-model="filterData.timeArray"
                                 type="daterange"
@@ -22,7 +22,7 @@
                                 @change="getSTime"
                                 :picker-options="pickerOptions">
                         </el-date-picker>
-                    </el-form-item>
+                    </el-form-item>-->
 
                     <!-- 按钮 -->
                     <el-form-item>
@@ -36,13 +36,15 @@
         <el-row>
             <el-table class="flow_list" :data="flow_info" border highlight-current-row v-loading="listLoading" height="calc(100vh - 218px)">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
-
-                <el-table-column prop="url" label="url" width="auto" align="center"></el-table-column>
-                <el-table-column prop="pv" label="pv" width="auto" align="center"></el-table-column>
-                <el-table-column prop="uv" label="uv" width="auto" align="center"></el-table-column>
-                <el-table-column prop="registerNum" label="registerNum" width="auto" align="center"></el-table-column>
-                <el-table-column prop="passNum" label="passNum" width="auto" align="center"></el-table-column>
-                <el-table-column prop="createAt" label="createAt" width="auto" align="center"></el-table-column>
+                
+                <el-table-column prop="mobile" label="渠道账号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="url" label="链接" width="auto" align="center"></el-table-column>
+                <el-table-column prop="pv" label="PV" width="auto" align="center"></el-table-column>
+                <el-table-column prop="uv" label="UV" width="auto" align="center"></el-table-column>
+                <el-table-column prop="registerNum" label="注册数(CPA)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="passNum" label="通过数(CPS)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="createAt" label="时间" width="auto" align="center"></el-table-column>
             </el-table>
 
             <el-row :span="24" class="toolbar f-cb">
@@ -220,8 +222,8 @@
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
                     keyword: this.filterData.keyword == "" ? undefined : this.filterData.keyword,  // keyword（查询关键词，模糊匹配 url 和 memo字段）
-                    dateBegin: this.filterData.dateBegin == "" ? undefined : this.filterData.dateBegin,  // 日期，格式行如：2019-04-12
-                    dateEnd: this.filterData.dateEnd == "" ? undefined : this.filterData.dateEnd,  // 日期，格式行如：2019-04-12
+                    /*dateBegin: this.filterData.dateBegin == "" ? undefined : this.filterData.dateBegin,  // 日期，格式行如：2019-04-12
+                    dateEnd: this.filterData.dateEnd == "" ? undefined : this.filterData.dateEnd,  // 日期，格式行如：2019-04-12*/
                 };
 
                 // loading

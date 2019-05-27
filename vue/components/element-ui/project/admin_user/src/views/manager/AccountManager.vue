@@ -236,6 +236,15 @@
                 callback();
             };
 
+            // 权值
+            const validateQZ = (rule, value, callback) => {
+                if (parseInt(value) < 0 || parseInt(value) > 100) {
+                    return callback(new Error('权值在0-100之间'));
+                }
+
+                callback();
+            };
+
             return {
                 /**
                  * common
@@ -270,9 +279,9 @@
                  */
                 // 添加用户数据
                 addUserData: {
-                    realName: "fff",  // 姓名
-                    mobile: "451564165",  // 手机
-                    password: "123",  // 密码
+                    realName: "",  // 姓名
+                    mobile: "",  // 手机
+                    password: "",  // 密码
                     type: "",  // 0-管理员，2-渠道
                     cpaWeight: 50,  // CPA 权值，整数类型，默认50
                     cpsWeight: 50,  // CPS 权值，整数类型，默认50
@@ -293,11 +302,13 @@
                     ],
                     cpaWeight: [
                         { required: true, message: 'CPA不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" }
                     ],
                     cpsWeight: [
                         { required: true, message: 'CPS不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" }
                     ]
                 },
 
@@ -316,11 +327,13 @@
                 editUserRules: {
                     cpaWeight: [
                         { required: true, message: 'CPA 权值不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" }
                     ],
                     cpsWeight: [
                         { required: true, message: 'CPS 权值不能为空！', trigger: 'blur' },
-                        { validator: validateNum, trigger: "blur" }
+                        { validator: validateNum, trigger: "blur" },
+                        { validator: validateQZ, trigger: "blur" },
                     ]
                 },
 
@@ -436,6 +449,14 @@
 
                         for (let i=0; i<datas.length; i++) {
                             datas[i].crtattim = datas[i].createAt.slice(2, -3);
+
+                            if (datas[i].cpaWeight != null) {
+                                datas[i].cpaWeight = `${datas[i].cpaWeight}%`;
+                            }
+
+                            if (datas[i].cpsWeight != null) {
+                                datas[i].cpsWeight = `${datas[i].cpsWeight}%`;
+                            }
                         }
 
                         // console.log(datas);
@@ -448,7 +469,7 @@
                     this.listLoading = false;
                 }).catch({});
             },
-            // 用户状态类型[0-管理员，1-组长，2-客服，3-话务（管理员只能添加组长，组长只能添加L客服和话务）]
+            // 用户状态类型
             formatType (row) {
                 switch (row.type) {
                     case 0:

@@ -32,10 +32,13 @@
                 /**
                  * 管理员测试
                  *   15888888888
+                 *
+                 * 渠道
+                 *   15777777777
                  */
                 loginUser: {
-                    mobile: "15888888888",
-                    password: "123456"
+                    mobile: "",
+                    password: ""
                 },
                 rules: {
                     mobile: [

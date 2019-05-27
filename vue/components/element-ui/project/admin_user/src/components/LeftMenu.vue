@@ -28,11 +28,11 @@
                          </el-menu-item>
                      </router-link>
 
-                     <!-- 统计管理 -->
+                     <!-- 流量统计 -->
                      <!--<router-link to="/log_manager">
                          <el-menu-item index="4">
                              <i class="fa fa-cog"></i>
-                             <span slot="title">统计管理</span>
+                             <span slot="title">流量统计</span>
                          </el-menu-item>
                      </router-link>-->
 
@@ -61,6 +61,25 @@
                         </el-submenu>
                     </template>
                  </el-menu>
+
+                 <!-- 管理员0 -->
+                 <el-menu :default-active="activeIndex" mode="vertical" background-color="#324057" text-color="#fff" active-text-color="#409eff" class="menu" v-if="userType==2">
+                     <!-- 首页 -->
+                     <router-link to="/home">
+                         <el-menu-item index="0">
+                             <i class="fa fa-server"></i>
+                             <span slot="title">首页</span>
+                         </el-menu-item>
+                     </router-link>
+
+                     <!--流量统计 -->
+                     <router-link to="/log_manager">
+                         <el-menu-item index="1">
+                             <i class="fa fa-address-card"></i>
+                             <span slot="title">流量统计</span>
+                         </el-menu-item>
+                     </router-link>
+                 </el-menu>
              </el-col>
         </el-row>
     </section>
@@ -78,10 +97,10 @@ export default {
             items: [
                 {
                     icon: "fa fa-paragraph",
-                    name: "统计管理",
-                    path: "统计管理",
+                    name: "流量统计",
+                    path: "流量统计",
                     children: [
-                        { path: "/log_manager", name: "统计管理" },
+                        { path: "/log_manager", name: "流量统计" },
                         { path: "/rltm_manager", name: "实时统计" },
                     ]
                 }
@@ -110,9 +129,7 @@ export default {
 
     created () {
         /**
-         * 管理员0：账号管理、用户管理、充值管理；
-         * 组长1：账号管理、用户管理、充值管理；
-         * 客服/话务2：  用户管理
+         * 0-管理员，2-渠道
          */
         this.userType = localStorage.userType;
     }
