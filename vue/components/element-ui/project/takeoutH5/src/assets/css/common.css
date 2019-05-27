@@ -1,0 +1,149 @@
+body, html {height: 100%; width: 100%;overflow: hidden;}
+/*body{font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;}*/
+.page,body,html{background-color:#ffffff}
+*{margin: 0;padding: 0;}
+ul li{
+  list-style: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+.flex{
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+.bg{
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }  
+.container{
+  margin-top: 2.3rem;
+}
+.clear-both{
+  clear: both;
+}
+.img{
+  height:3rem;
+  width:3rem;
+  border-radius: 0.1rem;
+}
+
+.float-right{
+  float: right;
+}
+.float-left{
+  float:left;
+}
+.font-2e{
+  color: #2e2e2e;
+  font-size: 0.75rem;
+}
+
+.font-f0{
+  color: #ffab00;
+  font-size: 0.6rem;
+}
+.line-space{
+  background-color:#f6f6f6;
+  height: 0.5rem;
+}
+.font-f2{
+  color: #ffbb22;
+  font-size: 0.7rem;
+}
+.text-name{
+  font-size:0.75rem;
+  color: #2e2e2e;
+}
+.font-one-line-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.font-two-line-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.font-price{
+  color: #ff4f22;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.gray{
+  color: #999;
+  font-size: 0.6rem;
+}
+.content .zz-btn{
+    background-color:#ff6000;
+    width:90%;
+    margin-top:30px;
+  }
+.borderbt{
+  height: 1px;
+  background: #e0e0e0;
+
+}
+  @media(-webkit-min-device-pixel-ratio:2){
+    .borderbt{
+      -webkit-transform: scaleY(0.5);
+       -webkit-transform-origin:0 0;
+    }
+  }
+  @media screen and (max-width:750px) 
+  {
+      html{
+          font-size:40px;
+      } 
+  }
+  @media screen and (max-width:675px)
+  {
+
+      html{
+          font-size:36px; 
+      } 
+  }
+  @media screen and (max-width:600px)
+  {
+      html{
+          font-size:32px;
+      } 
+  }
+  @media screen and (max-width:525px)
+  {
+      html{
+          font-size:28px;
+      } 
+  }
+  @media screen and (max-width:450px)
+  {
+      html{
+          font-size:24px; 
+      } 
+  }
+  @media screen and (max-width:375px)
+  {
+      html{
+          font-size:20px;
+      } 
+  }
+  @media screen and (max-width:300px)
+  {
+      html{
+          font-size:16px;
+      } 
+  }

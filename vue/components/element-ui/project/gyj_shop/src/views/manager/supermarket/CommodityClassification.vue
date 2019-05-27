@@ -85,7 +85,7 @@
                 <!--父菜单-->
                 <el-form-item label="父菜单" class="intxt inline_third">
                     <el-select v-model="addCategoryData.parentId" placeholder="请选择父菜单" class="dialog_sel">
-                        <el-option label="" value=""></el-option>
+                        <el-option label="无" value=""></el-option>
                         <el-option v-for="(item,index) in categoryInfo" :label="item.name" :value="item.id" :key="index"></el-option>
                     </el-select>
                 </el-form-item>
@@ -418,7 +418,7 @@
 
                         this.listloading = true;
 
-                        console.log(this.addCategoryData);
+                        // console.log(this.addCategoryData);
 
                         addCategory(qs.stringify(this.addCategoryData)).then(res => {
                             // console.log(res.data);

@@ -119,25 +119,31 @@ export const getProductList = params => {
 // 添加商品
 export const addProduct = params => {
     return  axios({
-        url: `${base}/category/add`,
+        url: `${base}/product/add`,
         method: 'post',
-        data: params
+        data: params,
+        /*header: {
+            "Content-Type": "application/json;charset=utf-8"
+        }*/
     });
 };
 
 // 编辑商品
 export const updateProduct = params => {
     return  axios({
-        url: `${base}/category/modify`,
+        url: `${base}/product/modify`,
         method: 'post',
-        data: params
+        data: params,
+        header: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
     });
 };
 
 // 删除商品
 export const delProduct = params => {
     return  axios({
-        url: `${base}/category/remove`,
+        url: `${base}/product/remove`,
         method: 'post',
         data: params
     });
