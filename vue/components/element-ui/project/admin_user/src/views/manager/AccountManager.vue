@@ -13,8 +13,8 @@
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="id" label="用户编号" width="80" align="center"></el-table-column>-->
 
-                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
-                <el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
+                <el-table-column prop="realName" label="渠道名称" width="auto" align="center"></el-table-column>
+                <el-table-column prop="mobile" label="账号" width="auto" align="center"></el-table-column>
                 <!--<el-table-column prop="parentName" label="上级姓名" width="auto" align="center"></el-table-column>-->
                 <!--<el-table-column prop="parentMobile" label="上级手机号" width="auto" align="center"></el-table-column>-->
                 <el-table-column prop="type" label="类型" width="auto" align="center" :formatter="formatType"></el-table-column>

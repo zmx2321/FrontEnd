@@ -40,11 +40,13 @@
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
 
+                <!--
+                <el-table-column prop="mobile" label="账号" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="realName" label="渠道名称" width="auto" align="center"></el-table-column>
+                -->
                 <el-table-column prop="url" label="链接" width="auto" align="left"></el-table-column>
                 <el-table-column prop="cpaWeight" label="CPA权值" width="auto" align="center"></el-table-column>
-                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>                
-                <el-table-column prop="mobile" label="账号" width="auto" align="center"></el-table-column>                
-                <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>                                
                 <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
                 <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>

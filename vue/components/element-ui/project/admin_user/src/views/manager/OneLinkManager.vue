@@ -5,12 +5,12 @@
             <el-table :data="link_info" border highlight-current-row v-loading="listLoading" @current-change="copyLink" height="calc(100vh - 226px)" row-class-name="link_info">
                 <el-table-column type="index" width="60" align="center"></el-table-column>
                 <!--<el-table-column prop="adminId" label="管理员编号" width="100" align="center"></el-table-column>-->
-                <!--<el-table-column label="url" width="auto" align="left">  </el-table-column>-->
+                <!--<el-table-column label="url" width="auto" align="left">  </el-table-column>-->                
+                <el-table-column prop="realName" label="渠道名称" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="mobile" label="账号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="url" label="链接" width="auto" align="left"></el-table-column>                
                 <el-table-column prop="cpaWeight" label="CPA权值" width="auto" align="center"></el-table-column>
-                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>
-                <el-table-column prop="mobile" label="渠道账号" width="auto" align="center"></el-table-column>
-                <el-table-column prop="realName" label="渠道姓名" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>                
                 <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="320">
@@ -45,9 +45,9 @@
                 <el-form-item label="CPS 权值" prop="cpsWeight">
                     <el-input v-model="editLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="渠道" class="intxt">
-                    <el-select v-model="editLinkData.adminId" placeholder="请输入渠道">
-                        <el-option v-for="(item,index) in user_info" :label="item.mobile" :value="item.id" :key="index"></el-option>
+                <el-form-item label="渠道名称" class="intxt">
+                    <el-select v-model="editLinkData.adminId" placeholder="请选择渠道">
+                        <el-option v-for="(item,index) in user_info" :label="item.realeName" :value="item.id" :key="index"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
