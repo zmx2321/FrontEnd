@@ -54,7 +54,7 @@
                 </el-form-item>
                 <el-form-item label="渠道名称" class="intxt">
                     <el-select v-model="editLinkData.adminId" placeholder="请选择渠道">
-                        <el-option v-for="(item,index) in user_info" :label="item.realeName" :value="item.realName" :key="index"></el-option>
+                        <el-option v-for="(item,index) in user_info" :label="item.realeName" :value="item.id" :key="index"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">

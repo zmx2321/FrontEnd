@@ -136,7 +136,7 @@
                 </el-form-item>
                 <el-form-item label="渠道" class="intxt">
                     <el-select v-model="editLinkData.adminId" placeholder="请输入渠道">
-                        <el-option v-for="(item,index) in user_info" :label="item.mobile" :value="item.id" :key="index"></el-option>
+                        <el-option v-for="(item,index) in user_info" :label="item.realName" :value="item.id" :key="index"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
@@ -516,6 +516,8 @@
              */
             // 点击编辑
             editLink (row) {
+                this.editLinkData = Object.assign({}, row);
+
                 this.editLinkData.linkId = row.id;
             },
             // 提交编辑表单
