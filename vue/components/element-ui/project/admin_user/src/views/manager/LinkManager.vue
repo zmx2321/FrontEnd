@@ -45,8 +45,8 @@
                 <el-table-column prop="realName" label="渠道名称" width="auto" align="center"></el-table-column>
                 -->
                 <el-table-column prop="url" label="链接" width="auto" align="left"></el-table-column>
-                <el-table-column prop="cpaWeight" label="CPA权值" width="auto" align="center"></el-table-column>
-                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>                                
+                <el-table-column prop="cpaWeight" label="CPA权值(%)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS权值(%)" width="auto" align="center"></el-table-column>
                 <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
                 <!--<el-table-column prop="mobile" label="手机号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="realName" label="姓名" width="auto" align="center"></el-table-column>
@@ -87,10 +87,10 @@
                 <el-form-item label="数量" prop="num">
                     <el-input v-model="addLinkData.num" placeholder="请输入数量" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="CPA 权值" prop="cpaWeight">
+                <el-form-item label="CPA 权值(%)" prop="cpaWeight">
                     <el-input v-model="addLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="CPS 权值" prop="cpsWeight">
+                <el-form-item label="CPS 权值(%)" prop="cpsWeight">
                     <el-input v-model="addLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
@@ -109,10 +109,10 @@
                 <el-form-item label="数量" prop="num">
                     <el-input v-model="addOneLinkData.num" placeholder="请输入数量" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="CPA 权值" prop="cpaWeight">
+                <el-form-item label="CPA 权值(%)" prop="cpaWeight">
                     <el-input v-model="addOneLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="CPS 权值" prop="cpsWeight">
+                <el-form-item label="CPS 权值(%)" prop="cpsWeight">
                     <el-input v-model="addOneLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="备注" prop="memo">
@@ -128,10 +128,10 @@
 
         <el-dialog title="编辑链接" :close-on-click-modal="false" :visible.sync="editLinkVisible" :before-close="handleClose">
             <el-form :model="editLinkData" status-icon :rules="editLinkRules" ref="editLinkForm" label-width="160px">
-                <el-form-item label="CPA 权值" prop="cpaWeight">
+                <el-form-item label="CPA 权值(%)" prop="cpaWeight">
                     <el-input v-model="editLinkData.cpaWeight" placeholder="请输入CPA 权值" clearable></el-input>
                 </el-form-item>
-                <el-form-item label="CPS 权值" prop="cpsWeight">
+                <el-form-item label="CPS 权值(%)" prop="cpsWeight">
                     <el-input v-model="editLinkData.cpsWeight" placeholder="请输入CPS 权值" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="渠道" class="intxt">
@@ -396,7 +396,7 @@
                     if (res.data.code == 0) {
                         let datas = res.data.data.set;
 
-                        for (let i=0; i<datas.length; i++) {
+                        /*for (let i=0; i<datas.length; i++) {
                             if (datas[i].cpaWeight != null) {
                                 datas[i].cpaWeight = `${datas[i].cpaWeight}%`;
                             }
@@ -404,7 +404,7 @@
                             if (datas[i].cpsWeight != null) {
                                 datas[i].cpsWeight = `${datas[i].cpsWeight}%`;
                             }
-                        }
+                        }*/
 
                         this.link_info = datas;
 
@@ -517,6 +517,9 @@
             // 点击编辑
             editLink (row) {
                 this.editLinkData = Object.assign({}, row);
+
+                /*this.editLinkData.cpaWeight == null ? null : row.cpaWeight.replace("%", "");
+                this.editLinkData.cpsWeight == null ? null : row.cpsWeight.replace("%", "");*/
 
                 this.editLinkData.linkId = row.id;
             },

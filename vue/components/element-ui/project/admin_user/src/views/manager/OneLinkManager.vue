@@ -16,8 +16,8 @@
                 <el-table-column prop="realName" label="渠道名称" width="auto" align="center"></el-table-column>                
                 <el-table-column prop="mobile" label="账号" width="auto" align="center"></el-table-column>
                 <el-table-column prop="url" label="链接" width="auto" align="left"></el-table-column>                
-                <el-table-column prop="cpaWeight" label="CPA权值" width="auto" align="center"></el-table-column>
-                <el-table-column prop="cpsWeight" label="CPS权值" width="auto" align="center"></el-table-column>                
+                <el-table-column prop="cpaWeight" label="CPA权值(%)" width="auto" align="center"></el-table-column>
+                <el-table-column prop="cpsWeight" label="CPS权值(%)" width="auto" align="center"></el-table-column>
                 <el-table-column prop="memo" label="备注" width="auto" align="center"></el-table-column>
 
                 <el-table-column fixed="right" label="操作" width="320">
@@ -54,9 +54,10 @@
                 </el-form-item>
                 <el-form-item label="渠道名称" class="intxt">
                     <el-select v-model="editLinkData.adminId" placeholder="请选择渠道">
-                        <el-option v-for="(item,index) in user_info" :label="item.realeName" :value="item.id" :key="index"></el-option>
+                        <el-option v-for="(item,index) in user_info" :label="item.realName" :value="item.id" :key="index"></el-option>
                     </el-select>
                 </el-form-item>
+
                 <el-form-item label="备注" prop="memo">
                     <el-input type="textarea" v-model="editLinkData.memo" placeholder="请输入备注" clearable></el-input>
                 </el-form-item>
@@ -227,7 +228,7 @@
                     if (res.data.code == 0) {
                         let datas = res.data.data.set;
 
-                        for (let i=0; i<datas.length; i++) {
+                        /*for (let i=0; i<datas.length; i++) {
                             datas[i].isCopy = false;
 
                             if (datas[i].cpaWeight != null) {
@@ -237,7 +238,7 @@
                             if (datas[i].cpsWeight != null) {
                                 datas[i].cpsWeight = `${datas[i].cpsWeight}%`;
                             }
-                        }
+                        }*/
 
                         // console.log(datas);
 
@@ -279,8 +280,9 @@
             // 点击编辑
             editLink (row) {
                 this.editLinkData = Object.assign({}, row);
-                this.editLinkData.cpaWeight = row.cpaWeight.replace("%", "");
-                this.editLinkData.cpsWeight = row.cpsWeight.replace("%", "");
+
+                /*this.editLinkData.cpaWeight = row.cpaWeight.replace("%", "");
+                this.editLinkData.cpsWeight = row.cpsWeight.replace("%", "");*/
                 this.editLinkData.linkId = row.id;
             },
             // 提交编辑表单
