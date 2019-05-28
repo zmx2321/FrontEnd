@@ -1,25 +1,93 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import store from '@/store/index' 
+import routerCenter from 'vue-router'
+import { Toast } from 'mint-ui'; 
+import VueCookies from 'vue-cookies'//操作cookie
 
-Vue.use(Router)
+import Index from './views/index/index.vue'
+import Category from './views/category/index.vue'
+import Login from './views/login/index.vue'
+import Car from './views/car/index.vue'
+import I from './views/i/index.vue'
+import Detail from './views/detail/index.vue'
+import Comments from './views/detail/comment.vue'
+import CommentDetail from './views/detail/commentDetail.vue'
 
-export default new Router({
+import Test from './views/Test.vue'
+
+Vue.use(routerCenter)
+
+const Router = new routerCenter({
+  // mode: 'hash',
   mode: 'history',
-  base: process.env.BASE_URL,
+
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'index',
+      component: Index
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+      path: '/category',
+      name: 'category',
+      component: Category
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/car',
+      name: 'car',
+      component: Car
+    },
+    {
+      path: '/i',
+      name: 'i',
+      component: I,
+      meta: { 
+        requireAuth: true
+      }
+    },
+    {
+      path: '/detail',
+      name: 'detail',
+      component: Detail
+    },
+    {
+      path: '/detail/comment',
+      name: 'comment',
+      component: Comments
+    },
+    {
+      path: '/detail/commentDetail',
+      name: 'commentDetail',
+      component: CommentDetail
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test
+    },
   ]
-})
+});
+// 判断是否需要登录权限 以及是否登录
+Router.beforeEach((to, from, next) => {
+  store.commit('auth/setPrevUrl',from.fullPath);
+	if (to.matched.some(res => res.meta.requireAuth)) {
+		if (VueCookies.isKey("user_session")) {
+			next()
+		} else {
+      Toast('请先登陆...');
+			next({
+				path: '/login',
+				query: {backUrl: to.fullPath}
+			})
+		}
+	} else {
+		next()
+	}
+});
+
+export default Router
