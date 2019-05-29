@@ -28,7 +28,7 @@ module.exports = {
         }
     },
     productionSourceMap: false, // 是否在构建生产包时生成 sourceMap 文件，false将提高构建速度
-    devServer: {
+    /*devServer: {
         open: true,
         host: '0.0.0.0',
         port: 8888,
@@ -45,7 +45,7 @@ module.exports = {
         //     }
         // },
         //before: app => {}
-    }
+    }*/
 };
 
 /*module.exports = {

@@ -13,7 +13,9 @@ import Detail from './views/detail/index.vue'
 import Comments from './views/detail/comment.vue'
 import CommentDetail from './views/detail/commentDetail.vue'
 
-import Test from './views/Test.vue'
+import Test1 from './views/test/Test1.vue'
+import Test2 from './views/test/Test2.vue'
+import Test3 from './views/test/Test3.vue'
 
 Vue.use(routerCenter)
 
@@ -66,9 +68,19 @@ const Router = new routerCenter({
       component: CommentDetail
     },
     {
-      path: '/test',
-      name: 'test',
-      component: Test
+      path: '/test1',
+      name: 'test1',
+      component: Test1
+    },
+    {
+      path: '/test2',
+      name: 'test2',
+      component: Test2
+    },
+    {
+      path: '/test3',
+      name: 'test3',
+      component: Test3
     },
   ]
 });

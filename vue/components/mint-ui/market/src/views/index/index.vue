@@ -1,89 +1,97 @@
 <template>
-<div> 
-	<head-nav></head-nav>
-	<transition-group tag="div" :name="swipeName" class="indexbox">
-		<index-item v-show="activeIndex==1" :key="1"></index-item>
-		<index-item-mobile v-show="activeIndex==2" :key="2"></index-item-mobile>
-		<index-item-intelligent v-show="activeIndex==3" :key="3"></index-item-intelligent>
-		<index-item-intelligent v-show="activeIndex==4" :key="4"></index-item-intelligent>
-	</transition-group>
-	<foot-tab></foot-tab>
-</div>
+	<div class="page-wrap">
+		<!-- tabbar -->
+		<mt-tabbar v-model="tabSelected" fixed>
+			<mt-tab-item id="sel1">选项一</mt-tab-item>
+			<mt-tab-item id="sel2">选项二</mt-tab-item>
+			<mt-tab-item id="sel3">选项三</mt-tab-item>
+			<mt-tab-item id="sel4">选项四</mt-tab-item>
+		</mt-tabbar>
+
+		<!-- tabcontainer -->
+		<mt-tab-container class="page-tabbar-container" v-model="tabSelected">
+			<!--sel1-->
+			<mt-tab-container-item id="sel1">
+				<div class="page-navbar">
+					<!-- navbar -->
+					<mt-navbar class="page-part" v-model="navSelected">
+						<mt-tab-item id="1">选项一</mt-tab-item>
+						<mt-tab-item id="2">选项二</mt-tab-item>
+						<mt-tab-item id="3">选项三</mt-tab-item>
+					</mt-navbar>
+
+					<!-- tabcontainer -->
+					<mt-tab-container v-model="navSelected" class="tabcont">
+						<mt-tab-container-item id="1">
+							<mt-cell title="内容" />
+							<mt-swipe :auto="4000">
+								<mt-swipe-item>1</mt-swipe-item>
+								<mt-swipe-item>2</mt-swipe-item>
+								<mt-swipe-item>3</mt-swipe-item>
+							</mt-swipe>
+
+						</mt-tab-container-item>
+						<mt-tab-container-item id="2">
+							<mt-cell title="测试" />
+						</mt-tab-container-item>
+						<mt-tab-container-item id="3">
+							<mt-cell title="选项" />
+						</mt-tab-container-item>
+					</mt-tab-container>
+				</div>
+			</mt-tab-container-item>
+
+			<!--sel2-->
+			<mt-tab-container-item id="sel2">
+				<mt-cell title="订单" />
+			</mt-tab-container-item>
+
+			<!--sel3-->
+			<mt-tab-container-item id="sel3">
+				<mt-cell title="发现" />
+			</mt-tab-container-item>
+
+			<!--sel4-->
+			<mt-tab-container-item id="sel4">
+				<div class="page-part">
+					<mt-cell title="我的" />
+				</div>
+				<router-link to="/">
+					<!-- button -->
+					<mt-button type="danger" size="large">退出</mt-button>
+				</router-link>
+			</mt-tab-container-item>
+		</mt-tab-container>
+	</div>
 </template>
 
-<script> 
-import { mapState,mapActions } from 'vuex';
-import headNav from '@/components/header/index.vue';
-import footTab from '@/components/footer/index.vue';
-import indexItem from './components/index_item.vue';
-import indexItemMobile from './components/inex_item_mobile.vue';
-import indexItemIntelligent from './components/index_item_intelligent.vue';
-import { bannerListData } from '@/server/index.js'; 
+<script>
+
 export default {
 	name: 'index',
+
 	components: { 
-		headNav,
-		footTab,
-		indexItem,
-		indexItemMobile,
-		indexItemIntelligent
+
 	},
+
 	data(){
-		return{ 
+		return{
+            tabSelected: 'sel1',
+            navSelected: "1",
 		}
 	},
+
 	computed:{
-		...mapState('indexItem',[
-			'activeIndex',
-			'swipeName'
-		]),
-	},
-	async mounted() {
-		const _data = await bannerListData();
-		this.setBannerList(_data.data);
+
 	},
 	methods:{
-		...mapActions('indexItem',[
-			'setBannerList'
-		]),
+
 	}
 }
 </script>
-<style>
-	.indexbox{
-		position: fixed;
-		top:2.24rem;
-		bottom: 0;
-		width: 10rem;
-		overflow-y: scroll;
-		background-color: #F5f5f5;
-	} 
-	.indexbox::-webkit-scrollbar {
-		display: none;
-	}  
-	.indexitem{
-		position:absolute;
-		width: 100%;
-		margin-bottom: 1.386667rem;
-	} 
-
-	 .swipe-prev-enter-active, .swipe-prev-leave-active {
-	 	transition: transform 0.35s;
-	 }
-	 .swipe-prev-enter{ 
-	 	transform: translateX(-10rem);
-	 }
-	 .swipe-prev-leave-to { 
-	 	transform: translateX(10rem);
-	 }
-	 .swipe-next-enter-active, .swipe-next-leave-active {
-	 	transition: transform 0.35s;
-	 }
-	 .swipe-next-enter{ 
-	 	transform: translateX(10rem);
-	 }
-	 .swipe-next-leave-to { 
-	 	transform: translateX(-10rem);
-	 }
+<style lang="less" scoped>
+.tabcont {
+	padding-bottom: 20px;
+}
 </style>
 
