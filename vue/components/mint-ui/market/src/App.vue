@@ -30,7 +30,11 @@ export default {
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+body {
+    background: #eeeeee;
+}
+
+/*html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -50,7 +54,7 @@ time, mark, audio, video ,input{
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+!* HTML5 display-role reset for older browsers *!
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -101,6 +105,6 @@ table {
 			}
 		}
 	} 
-}
+}*/
 
 </style>
