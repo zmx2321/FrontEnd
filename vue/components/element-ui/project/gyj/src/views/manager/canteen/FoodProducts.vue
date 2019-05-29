@@ -9,14 +9,6 @@
                         <el-input v-model="filterData.name" placeholder="请输入名称" clearable></el-input>
                     </el-form-item>
 
-                    <!-- 父菜单 -->
-                    <el-form-item label="父菜单" class="intxt inline_third">
-                        <el-select v-model="filterData.categoryId" placeholder="请选择父菜单" class="dialog_sel">
-                            <el-option label="全部" value=""></el-option>
-                            <el-option v-for="(item,index) in categoryInfo" :label="item.name" :value="item.id" :key="index"></el-option>
-                        </el-select>
-                    </el-form-item>
-
                     <!-- 状态 -->
                     <el-form-item label="状态" class="intxt inline_third">
                         <el-select v-model="filterData.status" placeholder="请选择状态" class="dialog_sel">
@@ -50,7 +42,7 @@
 
                 <el-table-column prop="name" label="名称" width="auto" align="center"></el-table-column>
                 <!--<el-table-column prop="amount" label="数量" width="auto" align="center"></el-table-column>-->
-                <el-table-column prop="parentName" label="父类" width="auto" align="center"></el-table-column>
+                <!--<el-table-column prop="parentName" label="父类" width="auto" align="center"></el-table-column>-->
                 <el-table-column prop="desc" label="描述" width="auto" align="center"></el-table-column>
                 <!--<el-table-column prop="price" label="原价" width="auto" align="center"></el-table-column>-->
                 <el-table-column prop="currentPrice" label="现价" width="auto" align="center"></el-table-column>
@@ -67,13 +59,13 @@
                 <!-- 分页 -->
                 <el-col>
                     <el-pagination class="f-fr pagination"
-                       :current-page.sync='page_arg.page_index'
-                       :page-sizes="page_arg.page_sizes"
-                       :page-size="page_arg.page_size"
-                       :layout="page_arg.layout"
-                       :total="page_arg.total"
-                       @current-change='handleCurrentChange'
-                       @size-change='handleSizeChange'>
+                                   :current-page.sync='page_arg.page_index'
+                                   :page-sizes="page_arg.page_sizes"
+                                   :page-size="page_arg.page_size"
+                                   :layout="page_arg.layout"
+                                   :total="page_arg.total"
+                                   @current-change='handleCurrentChange'
+                                   @size-change='handleSizeChange'>
                     </el-pagination>
                 </el-col>
             </el-row>
@@ -84,12 +76,6 @@
             <el-form :model="addProductData" status-icon :rules="addProductRules" ref="addProductForm" label-width="160px">
                 <el-form-item label="名称" prop="name">
                     <el-input v-model="addProductData.name" placeholder="请输入名称" clearable></el-input>
-                </el-form-item>
-
-                <el-form-item label="父菜单" class="intxt inline_third">
-                    <el-select v-model="addProductData.categoryId" placeholder="请选择父菜单" class="dialog_sel">
-                        <el-option v-for="(item,index) in categoryInfo" :label="item.name" :value="item.id" :key="index"></el-option>
-                    </el-select>
                 </el-form-item>
 
                 <el-form-item label="状态" class="intxt inline_third">
@@ -141,12 +127,6 @@
             <el-form :model="editProductData" status-icon :rules="editProductRules" ref="editProductForm" label-width="160px">
                 <el-form-item label="名称" prop="name">
                     <el-input v-model="editProductData.name" placeholder="请输入名称" clearable></el-input>
-                </el-form-item>
-
-                <el-form-item label="父菜单" class="intxt inline_third">
-                    <el-select v-model="editProductData.categoryId" placeholder="请选择父菜单" class="dialog_sel">
-                        <el-option v-for="(item,index) in categoryInfo" :label="item.name" :value="item.id" :key="index"></el-option>
-                    </el-select>
                 </el-form-item>
 
                 <el-form-item label="状态" class="intxt inline_third">
@@ -206,7 +186,7 @@
     } from '../../../api/api.js';
 
     export default {
-        name: 'commodity',
+        name: 'food_products',
 
         data() {
             // url验证
@@ -273,7 +253,6 @@
                  */
                 // 新增商品数据
                 addProductData: {
-                    categoryId: undefined,  // 父菜单id
                     desc: "",  // 描述
                     dividerPercent: 0,  // 默认0
                     images: undefined,  // 图片
@@ -282,7 +261,7 @@
                     status: "",  // 状态（0上架，1下架）
                     storeId: 0,  // 默认0，不显示
                     currentPrice: undefined,  // 现价
-                    food: 0  // 食品1 商品0
+                    food: 1  // 食品1 商品0
                 },
 
                 // 验证新增商品数据
@@ -301,7 +280,6 @@
                 // 编辑商品数据
                 editProductData: {
                     id: "",
-                    categoryId: undefined,  // 父菜单id
                     desc: undefined,  // 描述
                     dividerPercent: 0,  // 默认0
                     images: undefined,  // 图片
@@ -401,9 +379,9 @@
                     pageNum: this.page_arg.page_index,  // 当前页码
                     pageSize: this.page_arg.page_size,  // 每页条数
                     name: this.filterData.name == "" ? undefined : this.filterData.name,  // 名称
-                    categoryId: this.filterData.categoryId == "" ? undefined : this.filterData.categoryId,  // 名称
+                    // categoryId: this.filterData.categoryId == "" ? undefined : this.filterData.categoryId,  // 名称
                     status: this.filterData.status == "" ? undefined : this.filterData.status,  // 名称
-                    food: "0"
+                    food: "1"
                 };
 
                 this.listloading = true;
@@ -420,13 +398,13 @@
                         // categoryId
                         let datas = res.data.data.list;
 
-                        for (let i=0; i<datas.length; i++) {
+                        /*for (let i=0; i<datas.length; i++) {
                             for (let j=0; j<this.categoryInfo.length; j++) {
                                 if (datas[i].categoryId = this.categoryInfo.id) {
                                     datas.categoryName = this.categoryInfo.name;
                                 }
                             }
-                        }
+                        }*/
 
                         this.productInfo = datas;
 
@@ -489,9 +467,7 @@
 
                         // console.log(this.addProductData);
 
-                        if (this.addProductData.categoryId == undefined) {
-                            this.$message.warning("请选择所属菜单");
-                        } else if (this.addProductData.images == undefined) {
+                        if (this.addProductData.images == undefined) {
                             this.$message.warning("必须先选择图片");
                         }
                         else {
@@ -532,7 +508,6 @@
                 this.editProductData.images = row.images;
                 this.editProductData.currentPrice = row.currentPrice;
                 this.editProductData.sort = row.sort;
-                this.editProductData.categoryId == undefined ? undefined : row.categoryId.toString();
                 this.editProductData.status == undefined ? undefined : row.status;
                 this.editProductData.desc = row.desc;
                 this.editProductData.status = row.status.toString();

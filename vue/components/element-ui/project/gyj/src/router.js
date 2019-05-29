@@ -34,6 +34,10 @@ import MerchandiseOrder from './views/manager/supermarket/MerchandiseOrder'
 import Commodity from './views/manager/supermarket/Commodity'
 import CommodityClassification from './views/manager/supermarket/CommodityClassification'
 
+// 食堂管理
+import FoodProducts from './views/manager/canteen/FoodProducts'  // 餐品管理
+import FoodProductsOrder from './views/manager/canteen/FoodProductsOrder'  // 餐品订单
+
 // Test
 import RichTest from './views/test/RichTest'
 import RichTest2 from './views/test/RichTest2'
@@ -98,6 +102,14 @@ const router = new Router({
                 { path: '/commodity', component: Commodity, name: 'commodity' },
                 // 商品分类
                 { path: '/commodity_classification', component: CommodityClassification, name: 'commodity_classification' },
+
+                /**
+                 * 食堂管理
+                 */
+                // 餐品管理
+                { path: '/food_products', component: FoodProducts, name: 'food_products' },
+                // 餐品订单
+                { path: '/food_products_order', component: FoodProductsOrder, name: 'food_products_order' },
 
                 // test
                 { path: '/richTest', component: RichTest, name: 'richTest' },

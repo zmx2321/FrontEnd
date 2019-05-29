@@ -113,6 +113,25 @@ export default {
                         { path: "/post_station", name: "驿站管理" }
                     ]
                 },
+                {
+                    icon: "fa fa-credit-card-alt",
+                    name: "超市管理",
+                    path: "超市管理",
+                    children: [
+                        { path: "/merchandise_order", name: "商品订单" },
+                        { path: "/commodity", name: "商品管理" },
+                        { path: "/commodity_classification", name: "商品分类" },
+                    ]
+                },
+                {
+                    icon: "fa fa-university",
+                    name: "食堂管理",
+                    path: "食堂管理",
+                    children: [
+                        { path: "/food_products", name: "餐品管理" },
+                        { path: "/food_products_order", name: "餐品订单" },
+                    ]
+                },
                 /*{
                     icon: "fa fa-university",
                     name: "超市管理",

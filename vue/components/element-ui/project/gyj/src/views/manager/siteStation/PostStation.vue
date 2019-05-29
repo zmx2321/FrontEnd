@@ -20,7 +20,7 @@
 
         <!-- 驿站列表 -->
         <el-row>
-            <el-table :data="postStationInfo" border highlight-current-row v-loading="listLoading" height="calc(100vh - 240px)">
+            <el-table :data="postStationInfo" border highlight-current-row v-loading="listLoading" height="calc(100vh - 200px)">
                 <!--<el-table-column type="selection" width="55" align="center"></el-table-column>-->
                 <!--<el-table-column type="index" width="60" align="center"></el-table-column>-->
                 <!--<el-table-column prop="id" label="驿站编号" width="80" align="center"></el-table-column>-->
