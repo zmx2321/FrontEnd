@@ -3,7 +3,9 @@
 		<!-- tabbar -->
 		<mt-tabbar v-model="tabSelected" fixed class="tabbar">
 			<mt-tab-item id="sel1">
-				<span>借啊</span>
+				<div class="tabslwp" @click="ja">
+					<span>借啊</span>
+				</div>
 			</mt-tab-item>
 			<mt-tab-item id="sel2">
 				<img src="" alt="">
@@ -20,12 +22,14 @@
 			<!--sel1-->
 			<mt-tab-container-item id="sel1" class="tabcont">
 				<mt-swipe :auto="4000" class="swp">
-					<mt-swipe-item>1</mt-swipe-item>
-					<mt-swipe-item>2</mt-swipe-item>
-					<mt-swipe-item>3</mt-swipe-item>
+					<mt-swipe-item v-for="(item,index) in banner" :key="index">
+						<img :src="item.img" :alt="item.title">
+					</mt-swipe-item>
 				</mt-swipe>
 
-				<div class="banbar"></div>
+				<div class="banbar">
+					<marquee behavior="scroll" style="color:red; font-size:large">dddddddddddddddd</marquee>
+				</div>
 
 				<div class="cotbar">
 					<ul>
@@ -33,9 +37,43 @@
 						<li>查看更多</li>
 					</ul>
 				</div>
-
-				<div class="tablist">
-
+				<!--adminId: 3
+				archive: 0
+				categoryId: 1
+				createAt: "2019-05-30 01:36:01"
+				desc: "借呗日下17万"
+				descAmount: "1111"
+				descApplyMaterials: "111"
+				descApplyNum: "1111"
+				descApplyRequires: "111"
+				descDate: "1111"
+				descDatesGivenMoney: "1111"
+				descRefundWays: "111"
+				icon: "https://iconfont.alicdn.com/t/1546597984039.jpeg@100h_100w.jpg"
+				id: 84
+				linkId: 12
+				memo: "111"
+				mobile: "15777777777"
+				rateMonth: "1111"
+				ratePass: "1111"
+				realName: "李四"
+				sort: 111
+				tags: "1111"
+				title: "222222"
+				updateAt: "2019-05-30 01:43:42"
+				url: "http://qq.com"-->
+				<div class="ltwp">
+					<div class="tablist" v-for="(item,index) in product" :key="index">
+						<a :href="item.url">
+							<div class="tblimg f-oh">
+								<div class="imgwp f-fl">
+									<img :src="item.icon" :alt="item.title">
+								</div>
+								<span class="f-fl">{{ item.title }}</span>
+								<span class="f-fl tbdsc">{{ item.desc }}</span>
+							</div>
+						</a>
+					</div>
 				</div>
 			</mt-tab-container-item>
 
@@ -55,17 +93,15 @@
 					<mt-tab-container v-model="navSelected" class="tabcont">
 						<!--推荐-->
 						<mt-tab-container-item id="1">
-							<div class="tablist">
-
-							</div>
-							<div class="tablist">
-
-							</div>
-							<div class="tablist">
-
-							</div>
-							<div class="tablist">
-
+							<div class="ltwp" v-infinite-scroll="loadMore"
+								 infinite-scroll-disabled="loading"
+								 infinite-scroll-distance="10">
+								<div class="tablist" v-for="(item,index) in product" :key="index">
+									<a :href="item.url">
+										{{ item.id }}
+										{{ item.title }}
+									</a>
+								</div>
 							</div>
 						</mt-tab-container-item>
 						<!--新产品-->
@@ -115,6 +151,12 @@
 
 <script>
 
+import {
+    banner,
+    product,
+    category
+} from "../../server/api"
+
 export default {
 	name: 'index',
 
@@ -126,6 +168,16 @@ export default {
 		return{
             tabSelected: 'sel1',
             navSelected: "1",
+
+			banner: [],
+            product: [],
+            category: [],
+
+			page_arg: {
+                pageNum: 1,
+                pageSize: 5,
+                total: "",
+			}
 		}
 	},
 
@@ -133,15 +185,98 @@ export default {
 
 	},
 	methods:{
+	    /**
+		 * api banner
+		 */
+		getBanner() {
+            banner().then(res => {
+                let datas = res.data.data;
 
+                this.banner = datas;
+			}).catch({});
+		},
+	    /**
+		 * api product
+		 */
+		getProduct() {
+            let params = {
+                pageNum: this.page_arg.pageNum,
+                pageSize: this.page_arg.pageSize,
+                // categoryId: 0,
+			}
+
+            product(params).then(res => {
+                // console.log(res.data.data.set);
+
+                let datas = res.data.data.set;
+
+                this.product = datas;
+
+                this.page_arg.total = res.data.data.pager.total;
+			}).catch({});
+		},
+
+        /*loadMore() {
+            this.loading = true;
+            setTimeout(() => {
+                let last = this.page_arg.total;
+
+                for (let i = 1; i <= 5; i++) {
+                    this.product.push(last + i);
+                }
+                this.loading = false;
+            }, 2500);
+        },*/
+
+	    /**
+		 * api category
+		 */
+		getCategory() {
+            category().then(res => {
+                // console.log(res.data.data);
+
+                let datas = res.data.data;
+
+                this.category = datas;
+			}).catch({});
+		},
+
+		// 借啊
+        ja() {
+            let params = {
+                pageNum: this.page_arg.pageNum,
+                pageSize: this.page_arg.pageSize,
+                categoryId: 0,
+            }
+
+            product(params).then(res => {
+                // console.log(res.data.data.set);
+
+                let datas = res.data.data.set;
+
+                this.product = datas;
+
+                this.page_arg.total = res.data.data.pager.total;
+            }).catch({});
+		}
+	},
+    created() {
+	    this.getBanner();
+	    this.getProduct();
+	    this.getCategory();
 	}
 }
 </script>
 <style lang="less" scoped>
+
 	.swp {
 		z-index: -1;
-		height: 100px;
-		background: #f00;
+		height: 4.2rem;
+
+		img{
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.tabbar {
@@ -150,19 +285,31 @@ export default {
 		min-height: 1.5rem;
 
 		.mint-tab-item {
-			span {
-				/*display: block;*/
-				/*height: 30px;*/
-				/*line-height: 30px;*/
+			.tabslwp {
+				display: block;
+				width: 100%;
+				min-height: 1.5rem;
+
+				span {
+					/*display: block;*/
+					/*height: 30px;*/
+					/*line-height: 30px;*/
+				}
 			}
 		}
 	}
 
 	.banbar {
 		width: 100%;
-		height: 1.2rem;
-		background: #f00;
+		height: 1rem;
+		background: #fff;
 		margin: 0.3rem 0;
+
+		marquee {
+			height: 1rem;
+			line-height: 1rem;
+			overflow: hidden;
+		}
 	}
 
 	.cotbar {
@@ -184,14 +331,45 @@ export default {
 	}
 
 	.tabcont {
-		padding-bottom: 1.6rem;
+		padding-bottom: 2.5rem;
 
 		.tablist {
 			width: 100%;
 			height: 133px;
-			border-bottom: solid 1px #efefef;
-			background: #fec9c9;
-			margin-bottom: 0.3rem;
+			border-top: solid 1px #efefef;
+			background: #fff;
+
+			a{
+				display: block;
+				width: 100%;
+				height: 100%;
+
+				.tblimg {
+					width: 5.5rem;
+					height: 2rem;
+					margin: 0.25rem 0 0 0.4rem;
+
+					.imgwp {
+						width: 2.5rem;
+						height: 1.8rem;
+						overflow: hidden;
+
+						img {
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+					span{
+						margin: 0.2rem 0 0 0.2rem;
+						font-size: 0.22rem;
+					}
+
+					.tbdsc{
+						margin-top: 0.8rem;
+					}
+				}
+			}
 		}
 	}
 

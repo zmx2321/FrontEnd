@@ -31,7 +31,7 @@ Axios.interceptors.response.use(response => {
 
     // 如果响应请求未登录，则返回登录页面
     if (code == -1){
-        router.push('/login')
+        router.push('/index')
     }
 
     return response

@@ -30,6 +30,11 @@ const Router = new routerCenter({
       component: Index
     },
     {
+      path: '*',
+      name: 'index',
+      component: Index
+    },
+    {
       path: '/category',
       name: 'category',
       component: Category
@@ -85,7 +90,7 @@ const Router = new routerCenter({
   ]
 });
 // 判断是否需要登录权限 以及是否登录
-Router.beforeEach((to, from, next) => {
+/*Router.beforeEach((to, from, next) => {
   store.commit('auth/setPrevUrl',from.fullPath);
 	if (to.matched.some(res => res.meta.requireAuth)) {
 		if (VueCookies.isKey("user_session")) {
@@ -100,6 +105,6 @@ Router.beforeEach((to, from, next) => {
 	} else {
 		next()
 	}
-});
+});*/
 
 export default Router

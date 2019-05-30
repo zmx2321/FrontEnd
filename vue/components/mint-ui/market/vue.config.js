@@ -1,4 +1,4 @@
-const dev_config = require('./config/dev.js');
+/*const dev_config = require('./config/dev.js');
 const test_config = require('./config/test.js');
 const prodctioin_config = require('./config/production.js');
 
@@ -10,7 +10,7 @@ if(env=='production'){
     config = test_config;
 }else{
     config = dev_config;
-};
+};*/
 module.exports = {
     baseUrl: './', // 部署应用时的根路径(默认'/'),也可用相对路径(存在使用限制)
     outputDir: 'dist', // 运行时生成的生产环境构建文件的目录(默认''dist''，构建之前会被清除)
