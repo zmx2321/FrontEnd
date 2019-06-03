@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>(子=>父)父子组件传递数据</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+</head>
+
+<body>
+<!-- body s -->
+<div id="app">
+   <!-- 父组件 -->
+   <father></father>
+</div>
+
+<!-- 父组件模板 -->
+<template id="fatherTemplate">
+     <div>
+       	<h1>父组件</h1>
+       	<span>把"{{ name }}"传给子组件</span>
+       	<p>{{ sondata }}</p>
+
+       <!-- 在子组件标签绑定属性 -->
+       <!-- 在子组件用props属性把已经绑定的属性名写进去 -->
+       <!-- 在子组件的template使用数据 -->
+       <!-- getdata用来接收数据 -->
+       	<son :fatherdata="name" @getdata="getval"></son>
+     </div>
+</template>
+
+<!-- 子组件模板 -->
+<template id="sonTemplate">
+      <div>
+      	<h1>子组件</h1>
+      	<span>这是子组件</span>
+
+      	<p>父组件传过来的数据：“{{ fatherdata }}”</p>
+
+          <!-- 给父组件传数据 -->
+          <button @click="send">给父组件传数据</button>
+      </div>
+</template>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

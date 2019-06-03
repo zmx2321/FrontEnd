@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>props传递数据</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+</head>
+
+<body>
+<!-- body s -->
+<div id="app">
+  <ul>
+    <box-list title="可乐" price="112"></box-list>
+    <box-list title="雪碧" price="333"></box-list>
+  </ul>
+</div>
+
+<!-- 组件模板 -->
+<template id="boxListTemplate">
+   <li>
+     <span>{{ title }}</span>
+     <span>{{ price }}</span>
+   </li>
+</template>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

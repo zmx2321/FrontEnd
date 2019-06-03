@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>局部组件</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+</head>
+
+<body>
+<!-- body s -->
+<div id="app">
+  <!-- 调用组件 -->
+  <!-- 组件模板1 -->
+  <nav-bar></nav-bar>
+  <!-- 组件模板2  -->
+  <nav-list></nav-list>  
+</div>
+
+<!-- 局部组件无法应用，有作用域，只能在app中使用 -->
+<div id="box">
+  <!-- 组件模板2  -->
+  <nav-list></nav-list>  
+</div>
+
+<!-- 组件模板1 -->
+<template id="navTemplate">
+  <!-- <ul>
+    <li>{{ text[0] }}</li>
+    <li>{{ text[1] }}</li>
+  </ul> -->
+  <ul>
+    <li v-for="(item, index) in text" :key="index" @click="log">{{ item }}</li>
+  </ul>
+</template>
+
+<!-- 组件模板2 -->
+<template id="navListTemplate">
+   <span>navList233333</span>
+</template>
+
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

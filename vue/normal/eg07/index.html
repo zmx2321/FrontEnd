@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>父子组件</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+</head>
+
+<body>
+<!-- body s -->
+<div id="app">
+   <!-- 父组件 -->
+   <box-list></box-list>
+</div>
+
+<!-- 父组件模板 -->
+<template id="boxListTemplate">
+     <ul>
+     	<!-- 子组件只能在父组件模板里面调用 -->
+     	<!-- 定义所有插槽的值 -->
+     	<item>
+		<span slot="title">可乐</span>
+		<span slot="price">44</span>
+	</item>
+     	<item>
+		<span slot="title">雪碧</span>
+		<span slot="price">33</span>
+	</item>
+     </ul>
+</template>
+
+<!-- 子组件模板 -->
+<template id="itemTemplate">
+      <!-- html结构，值用插槽代替 -->
+      <li>
+     	<slot name="title"></slot>
+     	<slot name="price"></slot>
+     </li>
+</template>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>全局组件</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+</head>
+
+<body>
+<!-- body s -->
+<div id="app">
+  <!-- 调用组件 -->
+   <counter></counter>
+</div>
+
+<!-- 数据不干涉 -->
+<div id="box">
+    <counter></counter>
+    <!-- 模板名称用大写，这边用下划线 -->
+    <counter-a></counter-a>
+</div>
+
+<!-- 父组件 
+	一定要与div平级
+	给一个div用于关联
+	里面需要父级
+   -->
+<template id="btn">
+     <div>
+     	<button @click="add">按钮</button>
+     	<!-- 模板字符串 -->
+     	<span>{{ count }}</span>
+     </div>
+</template>
+
+<template id="test">
+     <div>
+     	<span>test</span>
+     </div>
+</template>
+
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

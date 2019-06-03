@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>slot插槽(用于分发内容)</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+</head>
+
+<body>
+<!-- body s -->
+<div id="app">
+    <!-- <box-list title="可乐" price="112"></box-list> -->
+    <box-list>
+    	<!-- 在组件标签对中的内容是不会显示的 -->
+    	<h2>组件中显示</h2>
+    	<h3>组件中显示2</h3>
+
+	<span slot="cc1">插槽1</span>
+	<span slot="cc2">插槽2</span>
+    	<!--  -->
+    </box-list>
+</div>
+
+<!-- 组件模板 -->
+<template id="boxListTemplate">
+   <div>
+	<h1>test2333</h1>
+	<!-- 为了显示组件中的标签，给这个组件标签对装上插槽 -->
+	<slot></slot>
+	<!-- 显示全部 -->
+	<!-- <slot></slot> -->
+
+
+	<!-- 可以用名称定义显示部分（具名插槽） -->
+	<slot name="cc1"></slot>
+	<slot name="cc2"></slot>
+   </div>
+</template>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>

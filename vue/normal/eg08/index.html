@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+<title>(父=>子)父子组件传递数据</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="css/index.css"/> -->
+</head>
+
+<body>
+<!-- body s -->
+<div id="app">
+   <!-- 父组件 -->
+   <father></father>
+</div>
+
+<!-- 父组件模板 -->
+<template id="fatherTemplate">
+     <div>
+       	<h1>父组件</h1>
+       	<span>把"{{ name }}"传给子组件</span>
+       	<p></p>
+
+       <!-- 在子组件标签绑定属性 -->
+       <!-- 在子组件用props属性把已经绑定的属性名写进去 -->
+       <!-- 在子组件的template使用数据 -->
+       	<son :fatherdata="name"></son>
+     </div>
+</template>
+
+<!-- 子组件模板 -->
+<template id="sonTemplate">
+      <div>
+      	<h1>子组件</h1>
+      	<span>这是儿子</span>
+
+      	<p>{{ fatherdata }}</p>
+      </div>
+</template>
+<!-- body e -->
+
+<!-- js s -->
+<script src="js/lib/vue-2.5.16.js"></script>
+<script src="js/index.js"></script>
+<!-- js e -->
+</body>
+</html>
