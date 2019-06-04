@@ -21,7 +21,7 @@ import Email from './components/about/contact/Email'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',  // 去掉#用history
+  mode: 'hash',  // 去掉#用history
   linkActiveClass: 'active',  // 选中默认样式
 
   base: process.env.BASE_URL,
