@@ -246,6 +246,15 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+            // 时间戳 2019-04-23
+            formatDate (now) {
+                now = new Date(now);
+                let year = now.getFullYear();
+                let month = now.getMonth() + 1;
+                let date = now.getDate();
+
+                return `${year}-${month}-${date}`;
+            },
 
             /**
              * api getProfile
@@ -259,6 +268,10 @@
                     // console.log(res)
 
                     this.profilesInfo = res.data;
+
+                    for(let i=0; i<this.profilesInfo.length; i++) {
+                        this.profilesInfo[i].date = this.formatDate(this.profilesInfo[i].date)
+                    }
 
                     this.listLoading = false;
                 });
@@ -288,7 +301,6 @@
 
                             if (res.status == 200) {
                                 this.$message.success("添加成功！");
-                                this.getProfile();
                             }
 
                             this.addProfilesVisible = false;
