@@ -18,7 +18,7 @@ function endLoading() {    //使用Element loading-close 方法
 // 请求拦截  设置统一header
 axios.interceptors.request.use(config => {
     // 加载
-    startLoading()
+    // startLoading()
 
     // 请求头
     if (localStorage.eleToken) {
@@ -32,12 +32,12 @@ axios.interceptors.request.use(config => {
 
 // 响应拦截  401 token过期处理
 axios.interceptors.response.use(response => {
-    endLoading();
+    // endLoading();
 
     return response
 }, error => {
     // 错误提醒
-    endLoading()
+    // endLoading()
 
     Message.error(error.response.data)
 

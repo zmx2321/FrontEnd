@@ -15,6 +15,7 @@ import Register from './views/admin/Register'
 // manager
 import InfoShow from './views/manager/InfoShow'
 import FoundList from './views/manager/FoundList'
+import UserList from './views/manager/UserList'
 
 Vue.use(Router)
 
@@ -39,7 +40,8 @@ const router = new Router({
               { path: '/home', component: Home, name: 'home' },
 
               { path: '/infoshow', name: 'infoshow', component: InfoShow },
-              { path: '/foundlist', name: 'foundlist', component: FoundList }
+              { path: '/foundlist', name: 'foundlist', component: FoundList },
+              { path: '/userlist', name: 'userlist', component: UserList },
           ]
       },
       // 登陆页面

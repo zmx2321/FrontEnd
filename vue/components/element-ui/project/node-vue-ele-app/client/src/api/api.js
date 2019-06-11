@@ -44,3 +44,38 @@ export const getProfile = () => {
         method: 'get',
     });
 };
+
+// 添加
+export const addProfile = params => {
+    return  axios({
+        url: 'api/profiles/add',
+        method: 'post',
+        data: params
+    });
+};
+
+// 编辑
+export const editProfile = params => {
+    return  axios({
+        url: 'api/profiles/edit',
+        method: 'post',
+        data: params
+    });
+};
+
+// 删除
+export const delProfile = params => {
+    return  axios({
+        url: 'api/profiles/delete',
+        method: 'post',
+        data: params
+    });
+};
+
+
+export const getUser = () => {
+    return  axios({
+        url: 'api/users/current',
+        method: 'get',
+    });
+};

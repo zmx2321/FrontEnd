@@ -62,8 +62,8 @@
                 registerUser: {
                     name: "aa",
                     email: "aa@aa.com",
-                    password: "aaaaaa",
-                    password2: "aaaaaa",
+                    password: "123456",
+                    password2: "123456",
                     identity: "管理员"
                 },
                 // 注册约束
@@ -104,7 +104,7 @@
                 this.$refs[formName].validate(valid => {
                     // 校验成功，请求接口数据
                     if (valid) {
-                        console.log("fetch data success!!");
+                        // console.log("fetch data success!!");
 
                         // 请求接口数据
                         Register(this.registerUser).then(() => {

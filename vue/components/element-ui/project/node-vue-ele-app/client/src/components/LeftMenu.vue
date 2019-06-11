@@ -11,6 +11,13 @@
                         </el-menu-item>
                     </router-link>
 
+                    <!--<router-link to="/userlist">
+                        <el-menu-item index="1">
+                            <i class="fa fa-server"></i>
+                            <span slot="title">用户</span>
+                        </el-menu-item>
+                    </router-link>-->
+
                     <!-- 二级菜单 -->
                     <template  v-for="item in items" >
                         <el-submenu v-if="item.children" :index="item.path" :key="item.path">
