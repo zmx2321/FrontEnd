@@ -66,7 +66,7 @@ export const editProfile = params => {
 // 删除
 export const delProfile = params => {
     return  axios({
-        url: 'api/profiles/delete',
+        url: 'api/profiles/delete/',
         method: 'post',
         data: params
     });

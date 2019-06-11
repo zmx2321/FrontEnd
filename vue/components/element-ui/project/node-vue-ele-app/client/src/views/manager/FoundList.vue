@@ -282,11 +282,11 @@
 
                         // 添加
                         addProfile(qs.stringify(this.addProfilesData)).then(res => {
-                            if (res.data.code == 1) {
+                            if (res.status != 200) {
                                 this.$message.warning(res.data.msg);
                             }
 
-                            if (res.data.code == 0) {
+                            if (res.status == 200) {
                                 this.$message.success("添加成功！");
                                 this.getProfile();
                             }
@@ -321,17 +321,20 @@
                         this.listLoading = true;
 
                         // 编辑
-                        editProfile(qs.stringify(this.editProfilesData)).then(res => {
-                            if (res.data.code == 1) {
+                        // editProfile(qs.stringify(this.editProfilesData)).then(res => {
+                        this.axios.post("/api/profiles/edit/"+this.editProfilesData.id, this.editProfilesData).then(res => {
+                            // console.log(res);
+
+                            if (res.status != 200) {
                                 this.$message.warning(res.data.msg);
                             }
 
-                            if (res.data.code == 0) {
+                            if (res.status == 200) {
                                 this.$message.success("编辑成功！");
                                 this.getProfile();
                             }
 
-                            this.addProfilesVisible = false;
+                            this.editProfilesVisible = false;
                             this.getProfile();
                             this.listLoading = false;
                         }).catch({});
@@ -349,18 +352,19 @@
                 this.$confirm('确认删除该记录吗?', '提示', {
                     type: 'warning'
                 }).then(() => {
-                    this.listLoading = true;
+                    /*this.listLoading = true;
 
                     let params = {
                         id: row._id
-                    }
+                    }*/
 
-                    delProfile(params).then(res => {
-                        if (res.data.code == 1) {
+                    // delProfile(params).then(res => {
+                    this.axios.delete("/api/profiles/delete/"+row._id).then(res => {
+                        if (res.status != 200) {
                             this.$message.warning(res.data.msg);
                         }
 
-                        if (res.data.code == 0) {
+                        if (res.status == 200) {
                             this.$message.success("删除成功！");
                             this.getProfile();
                         }
